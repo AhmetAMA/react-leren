@@ -1,0 +1,199 @@
+1
+00:00:00,980 --> 00:00:05,840
+Let's now add a very simple loading indicator to our application.
+
+2
+00:00:07,090 --> 00:00:13,900
+So basically, whenever the movie data here is still being loaded in the background, we want to instead
+
+3
+00:00:13,900 --> 00:00:17,650
+display some kind of loading indicator right here.
+
+4
+00:00:17,650 --> 00:00:23,860
+And to show you what I mean, let's come here to the network tab, which is always a good friend when
+
+5
+00:00:23,860 --> 00:00:26,320
+we're dealing with Http requests.
+
+6
+00:00:26,320 --> 00:00:30,550
+And then let's throttle our network here to a slow 3G.
+
+7
+00:00:30,850 --> 00:00:34,460
+And so then I can either show you what I mean.
+
+8
+00:00:34,480 --> 00:00:40,690
+So all of this will now take a lot of time to load, but here you now see this flash where there is
+
+9
+00:00:40,690 --> 00:00:42,490
+no content, basically.
+
+10
+00:00:42,490 --> 00:00:46,210
+So the movie data was loading but hadn't arrived yet.
+
+11
+00:00:46,210 --> 00:00:51,580
+And so now again, in the meantime, we want to display some loading indicator.
+
+12
+00:00:52,370 --> 00:00:56,240
+So in order to do that, we need some more state.
+
+13
+00:00:56,240 --> 00:01:02,000
+So a state variable, which basically tells our UI that the data is still being loaded.
+
+14
+00:01:02,000 --> 00:01:08,810
+And then as soon as the data has been loaded, we want to display then the data and not that loading
+
+15
+00:01:08,810 --> 00:01:10,010
+indicator anymore.
+
+16
+00:01:11,270 --> 00:01:17,720
+But anyway, let's simply create that state variable and usually it is called is loading.
+
+17
+00:01:17,810 --> 00:01:20,780
+And so then set is loading.
+
+18
+00:01:22,910 --> 00:01:26,030
+And let's start with false.
+
+19
+00:01:27,320 --> 00:01:31,400
+Now then let's come here to our effect into our async function.
+
+20
+00:01:31,400 --> 00:01:38,810
+And so then right before the fetching actually starts, let's set is loading.
+
+21
+00:01:39,630 --> 00:01:40,530
+Too true.
+
+22
+00:01:41,010 --> 00:01:48,090
+And so this then will indicate our UI that loading is being happened and that we can then render that
+
+23
+00:01:48,090 --> 00:01:51,900
+indicator over there and then when all of this is done.
+
+24
+00:01:52,350 --> 00:01:54,840
+So let's do it right at the very end.
+
+25
+00:01:55,410 --> 00:01:57,420
+So this one we don't need anymore.
+
+26
+00:01:58,590 --> 00:02:05,550
+So here, after everything is finished, we can then set the loading state back to False.
+
+27
+00:02:06,560 --> 00:02:08,450
+And now it's very easy.
+
+28
+00:02:08,480 --> 00:02:10,790
+So here, inside this box.
+
+29
+00:02:11,720 --> 00:02:15,050
+We basically want to say that.
+
+30
+00:02:15,710 --> 00:02:22,940
+If is loading, then we want to display that indicator and I will actually create a new component for
+
+31
+00:02:22,970 --> 00:02:23,570
+that.
+
+32
+00:02:24,800 --> 00:02:26,270
+Let's call it loader.
+
+33
+00:02:27,230 --> 00:02:29,870
+Or else display that movie list.
+
+34
+00:02:31,320 --> 00:02:32,020
+Okay.
+
+35
+00:02:34,150 --> 00:02:37,790
+So creating that loader, that's just very simple.
+
+36
+00:02:37,810 --> 00:02:43,210
+We just return a paragraph with the class of loader.
+
+37
+00:02:45,390 --> 00:02:52,620
+And then here we can say just loading so many times in web applications, you will get like a rotating
+
+38
+00:02:52,620 --> 00:02:54,690
+spinner or something like that.
+
+39
+00:02:55,230 --> 00:02:58,320
+But you immediately saw that it was already working.
+
+40
+00:02:58,890 --> 00:03:03,810
+So as I save now the code, it will always refetch the data.
+
+41
+00:03:03,840 --> 00:03:06,480
+But let's try it again here manually.
+
+42
+00:03:08,470 --> 00:03:09,820
+Let's wait for it.
+
+43
+00:03:10,510 --> 00:03:13,480
+So now it's still the application that's being loaded.
+
+44
+00:03:13,600 --> 00:03:16,090
+So we get this white screen in the meantime.
+
+45
+00:03:16,480 --> 00:03:19,390
+But now it has started fetching the data.
+
+46
+00:03:19,420 --> 00:03:21,910
+Then it displayed that loader.
+
+47
+00:03:22,120 --> 00:03:24,000
+So that new component here.
+
+48
+00:03:24,010 --> 00:03:30,860
+But then as soon as is loading was set to false, it was time to actually display our movie list.
+
+49
+00:03:30,880 --> 00:03:38,050
+And so with this, this whole behavior is a bit more natural and also a bit more real world because
+
+50
+00:03:38,050 --> 00:03:44,650
+in all real applications, you always have some indication to the user that some data is being fetched.

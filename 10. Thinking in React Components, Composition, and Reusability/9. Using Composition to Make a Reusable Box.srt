@@ -1,0 +1,343 @@
+1
+00:00:00,810 --> 00:00:08,610
+So we used composition in order to solve a prop drilling problem and to build our layout in a way nicer
+
+2
+00:00:08,610 --> 00:00:09,150
+way.
+
+3
+00:00:09,180 --> 00:00:14,220
+And so now let's use it to build a reusable box component.
+
+4
+00:00:15,610 --> 00:00:23,800
+So we already converted the list box component here to use the children prop in order to then basically
+
+5
+00:00:23,800 --> 00:00:25,200
+fill that slot.
+
+6
+00:00:25,210 --> 00:00:30,100
+So that whole with this component that we pass in as a child component.
+
+7
+00:00:30,100 --> 00:00:35,860
+And so now we could go ahead and do the exact same thing with the watched box.
+
+8
+00:00:36,250 --> 00:00:37,810
+So let's actually go there.
+
+9
+00:00:38,850 --> 00:00:40,410
+So what?
+
+10
+00:00:40,440 --> 00:00:41,580
+Box.
+
+11
+00:00:42,480 --> 00:00:44,100
+And it's right here.
+
+12
+00:00:44,310 --> 00:00:51,000
+However, if we take a look at this component right here, it is very, very similar to that other box.
+
+13
+00:00:51,000 --> 00:00:52,410
+So to that.
+
+14
+00:00:53,600 --> 00:00:55,080
+A list box.
+
+15
+00:00:55,100 --> 00:00:59,620
+So basically both of them have this state here of is open.
+
+16
+00:00:59,630 --> 00:01:05,720
+Then they have a div with the class of box and then they have this button which is also exactly the
+
+17
+00:01:05,720 --> 00:01:06,200
+same.
+
+18
+00:01:06,200 --> 00:01:09,920
+And in the end they will render their children conditionally.
+
+19
+00:01:09,920 --> 00:01:12,680
+So based on the is open state.
+
+20
+00:01:13,890 --> 00:01:18,900
+So again, if we go here, we will see that it is basically exactly the same.
+
+21
+00:01:19,050 --> 00:01:24,040
+This one here has this watched state, but we can easily move that somewhere else.
+
+22
+00:01:24,060 --> 00:01:30,810
+So what I'm saying is that both the watched box and the movie box have this same state here.
+
+23
+00:01:30,810 --> 00:01:36,930
+Basically, they have this same class name, this same button, and then they render something conditionally
+
+24
+00:01:36,930 --> 00:01:38,700
+based on the open state.
+
+25
+00:01:38,700 --> 00:01:43,770
+And so this is an amazing candidate to create a reusable component.
+
+26
+00:01:44,390 --> 00:01:49,790
+So let's do that and let's do it separately actually, of the other ones.
+
+27
+00:01:50,390 --> 00:01:52,670
+And I will simply call it box.
+
+28
+00:01:52,850 --> 00:01:53,750
+Let me.
+
+29
+00:01:54,390 --> 00:01:56,520
+Just to make this a bit easier.
+
+30
+00:01:56,550 --> 00:02:03,750
+Cut this one and paste it close to the other one and then we can see how similar they actually are.
+
+31
+00:02:04,050 --> 00:02:05,490
+And you know what?
+
+32
+00:02:05,520 --> 00:02:11,130
+I will actually not create a new one, but I will immediately convert this one here because the list
+
+33
+00:02:11,130 --> 00:02:13,860
+box is basically already what we want.
+
+34
+00:02:14,160 --> 00:02:16,800
+So let's just recall it box.
+
+35
+00:02:17,040 --> 00:02:22,320
+Then here we no longer need like this name here of is open one.
+
+36
+00:02:23,610 --> 00:02:25,800
+And set is open one.
+
+37
+00:02:26,340 --> 00:02:31,680
+Let's change that here, change that here and here, and that's already it.
+
+38
+00:02:31,980 --> 00:02:35,100
+So we no longer need this watched box.
+
+39
+00:02:35,190 --> 00:02:37,980
+So it's completely comment that one out.
+
+40
+00:02:40,260 --> 00:02:43,470
+And so let's now use this box.
+
+41
+00:02:44,820 --> 00:02:48,390
+Here inside of this list box that we're using.
+
+42
+00:02:49,870 --> 00:02:51,430
+So box right here.
+
+43
+00:02:52,170 --> 00:02:54,360
+Let's remove that one for now.
+
+44
+00:02:55,640 --> 00:02:57,440
+And box here as well.
+
+45
+00:02:58,520 --> 00:03:04,250
+And well, for some I had the wrong one here open still.
+
+46
+00:03:04,670 --> 00:03:10,250
+So just to make sure let's reload and to this part still looks exactly the same as before.
+
+47
+00:03:10,250 --> 00:03:14,060
+And so now we can use this reusable box.
+
+48
+00:03:19,210 --> 00:03:27,010
+And simply pass in that content that we passed before into the watched box, which is basically this.
+
+49
+00:03:27,800 --> 00:03:28,430
+Right.
+
+50
+00:03:28,430 --> 00:03:29,720
+So copy that.
+
+51
+00:03:29,930 --> 00:03:31,340
+And.
+
+52
+00:03:32,250 --> 00:03:33,720
+Let's paste that here.
+
+53
+00:03:35,120 --> 00:03:41,450
+And now we get the problem, which I was saying before, which is that this watched array here now needs
+
+54
+00:03:41,450 --> 00:03:44,270
+to be moved onto this component.
+
+55
+00:03:45,360 --> 00:03:49,350
+So this state that we had before can no longer live here.
+
+56
+00:03:49,500 --> 00:03:53,790
+But it couldn't anyway, as we will see in a future section.
+
+57
+00:03:55,250 --> 00:03:59,030
+So we would have to place this here anyway and.
+
+58
+00:03:59,720 --> 00:04:03,620
+So, yeah, this fixes the problem and we shouldn't even need.
+
+59
+00:04:04,480 --> 00:04:06,340
+Uh, this right here.
+
+60
+00:04:06,860 --> 00:04:08,230
+And so there we go.
+
+61
+00:04:08,240 --> 00:04:12,440
+We just created ourselves a reusable box component.
+
+62
+00:04:12,440 --> 00:04:17,170
+And the state now works, of course, still in both.
+
+63
+00:04:17,180 --> 00:04:24,140
+And so we didn't have to rewrite that same state logic and the same button here in both of these lists
+
+64
+00:04:24,140 --> 00:04:28,070
+because again, they were basically exactly the same.
+
+65
+00:04:28,400 --> 00:04:36,530
+And so what we did again, was to create this reusable box and in there allow for any children to be
+
+66
+00:04:36,530 --> 00:04:37,400
+passed in.
+
+67
+00:04:37,400 --> 00:04:44,750
+So we created like this empty hole here ready to receive any components that we want, which in this
+
+68
+00:04:44,750 --> 00:04:46,520
+case is the movies list.
+
+69
+00:04:46,520 --> 00:04:51,250
+And in this case it's the watched summary and the watched list.
+
+70
+00:04:51,260 --> 00:04:55,730
+So here we have just one children component and here we have two.
+
+71
+00:04:55,730 --> 00:05:00,890
+But no matter what, our box always works for all of these situations.
+
+72
+00:05:00,890 --> 00:05:09,240
+And so again, all of this logic here, so this button here with setting the open state could just be
+
+73
+00:05:09,240 --> 00:05:10,740
+reused in this way.
+
+74
+00:05:10,740 --> 00:05:19,170
+And on top of that, as a bonus, we made our application tree here even more explicit in the app component.
+
+75
+00:05:19,170 --> 00:05:24,780
+So now it really is very clear what exactly is happening in the application.
+
+76
+00:05:24,780 --> 00:05:31,560
+Just by looking at this one component, we can immediately see the entire structure of the application,
+
+77
+00:05:31,560 --> 00:05:34,310
+which is really, really helpful.
+
+78
+00:05:34,320 --> 00:05:40,890
+So this is really great and we're moving into some more intermediate React territory, but that makes
+
+79
+00:05:40,890 --> 00:05:47,190
+complete sense because we are already in part two, which is exactly for intermediate react.
+
+80
+00:05:47,190 --> 00:05:53,460
+So it's great that at this point we are already able to do something like this, which is already way
+
+81
+00:05:53,460 --> 00:05:57,420
+closer to how real world react applications look like.
+
+82
+00:05:57,420 --> 00:06:04,830
+So really, really keep this technique of component composition in mind, both for building better layouts,
+
+83
+00:06:04,830 --> 00:06:11,550
+for solving prop drilling and also for creating reusable components like this one.
+
+84
+00:06:11,550 --> 00:06:15,030
+So hopefully you saw how powerful this is.
+
+85
+00:06:15,030 --> 00:06:21,300
+And so as you start writing your own code, be on the watch out for whenever you can do this.
+
+86
+00:06:21,300 --> 00:06:27,990
+So whenever you can create some reusable components in your own code using this amazing technique.

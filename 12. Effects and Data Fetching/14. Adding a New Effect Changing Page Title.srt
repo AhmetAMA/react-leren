@@ -1,0 +1,467 @@
+1
+00:00:00,900 --> 00:00:01,950
+In this video.
+
+2
+00:00:01,950 --> 00:00:07,620
+Let's change the page title in the browser to the movie that we are currently watching.
+
+3
+00:00:08,960 --> 00:00:12,710
+So to show you, let's again come to our demo here.
+
+4
+00:00:12,710 --> 00:00:18,860
+And so watch what happens here to the browser tab title as I click on one of the movies.
+
+5
+00:00:20,000 --> 00:00:26,440
+So you see that now the title of the page is equal to the movie that we are currently checking out.
+
+6
+00:00:26,450 --> 00:00:32,660
+And if I then click on another one, then of course that changes to the new movie.
+
+7
+00:00:33,570 --> 00:00:34,260
+All right.
+
+8
+00:00:34,260 --> 00:00:38,130
+And so let's do the same thing in our application as well.
+
+9
+00:00:38,770 --> 00:00:45,730
+Now to start, as we see, the initial title of the page is actually use Popcorn, so the name of the
+
+10
+00:00:45,730 --> 00:00:48,820
+application and not just React app.
+
+11
+00:00:48,970 --> 00:00:57,640
+So let's come into our public folder and in index.html, let's just change the title here to.
+
+12
+00:00:59,290 --> 00:01:00,610
+Use popcorn.
+
+13
+00:01:00,910 --> 00:01:02,020
+Give it a save.
+
+14
+00:01:02,020 --> 00:01:05,620
+And then immediately it changed up here.
+
+15
+00:01:07,370 --> 00:01:08,090
+Okay.
+
+16
+00:01:08,240 --> 00:01:15,260
+But anyway, let's now actually try to implement changing the title to the currently watched movie.
+
+17
+00:01:15,350 --> 00:01:17,900
+So how are we going to do that?
+
+18
+00:01:18,140 --> 00:01:21,700
+Well, changing the page title in the browser.
+
+19
+00:01:21,710 --> 00:01:30,350
+So outside here of the application is a side effect because we are very clearly going to interact with
+
+20
+00:01:30,350 --> 00:01:31,680
+the outside world.
+
+21
+00:01:31,700 --> 00:01:35,960
+So basically with the world outside of our React application.
+
+22
+00:01:35,960 --> 00:01:40,790
+And so again, this is then considered a side effect.
+
+23
+00:01:40,940 --> 00:01:48,530
+So what this means is that we will want to register a side effect using again, the use effect hook.
+
+24
+00:01:48,770 --> 00:01:51,820
+Now where exactly are we going to do that?
+
+25
+00:01:51,830 --> 00:01:55,630
+So in which component are we going to use use effect?
+
+26
+00:01:55,640 --> 00:02:01,520
+Or in other words, in which component do we actually want to register the side effect?
+
+27
+00:02:01,880 --> 00:02:09,540
+Well, thinking about it, we want this title here to change as soon as we click on one of these movies,
+
+28
+00:02:09,540 --> 00:02:14,340
+which will then trigger the movie details component here to mount.
+
+29
+00:02:14,340 --> 00:02:20,070
+And so it's in exactly that situation where we want to change the browser title here.
+
+30
+00:02:20,070 --> 00:02:24,540
+And so that component is where we want that effect.
+
+31
+00:02:25,990 --> 00:02:29,080
+So let's come to movie detail.
+
+32
+00:02:31,860 --> 00:02:34,780
+And yeah, so this is the component.
+
+33
+00:02:34,800 --> 00:02:38,070
+And so let's simply add another effect here.
+
+34
+00:02:40,440 --> 00:02:45,230
+So we should always use different effects for different things.
+
+35
+00:02:45,240 --> 00:02:48,840
+So basically that each effect has only one purpose.
+
+36
+00:02:48,840 --> 00:02:51,000
+So it only does one thing.
+
+37
+00:02:53,340 --> 00:02:55,050
+So this will be our effect.
+
+38
+00:02:55,050 --> 00:02:58,740
+And then we want to run that effect on mount.
+
+39
+00:03:00,500 --> 00:03:01,220
+Okay.
+
+40
+00:03:01,220 --> 00:03:03,200
+And now it's very easy.
+
+41
+00:03:04,540 --> 00:03:11,770
+So we can just change the title of the page in the browser by setting document dot title.
+
+42
+00:03:13,020 --> 00:03:15,690
+And for now, let's just use something else here.
+
+43
+00:03:16,830 --> 00:03:21,420
+And you see that actually it already changed to test right here.
+
+44
+00:03:21,980 --> 00:03:23,480
+But let's just reload.
+
+45
+00:03:23,480 --> 00:03:25,910
+And so then it goes back to use popcorn.
+
+46
+00:03:25,910 --> 00:03:29,540
+And then when I click, it changed to test.
+
+47
+00:03:29,750 --> 00:03:30,920
+Nice.
+
+48
+00:03:31,100 --> 00:03:32,900
+So that's already working.
+
+49
+00:03:32,900 --> 00:03:36,050
+But of course we now want the actual title there.
+
+50
+00:03:37,800 --> 00:03:42,690
+So let's use a template literal and then I will just write movie.
+
+51
+00:03:44,130 --> 00:03:48,090
+And then the actual title of the movie.
+
+52
+00:03:48,890 --> 00:03:53,450
+Give it a save and immediately we get Inception here.
+
+53
+00:03:54,060 --> 00:03:55,710
+And here in the title.
+
+54
+00:03:56,300 --> 00:03:58,130
+But again, let's just reload.
+
+55
+00:03:59,750 --> 00:04:03,560
+And you see that now it actually says undefined.
+
+56
+00:04:03,710 --> 00:04:05,360
+So why is that?
+
+57
+00:04:05,360 --> 00:04:07,700
+That looks very weird, right?
+
+58
+00:04:07,700 --> 00:04:13,100
+But let's think about it, because after we do that, it will actually make sense.
+
+59
+00:04:13,940 --> 00:04:21,170
+So our effect here will right now only be executed as the component first mounts.
+
+60
+00:04:21,200 --> 00:04:24,160
+Right now, at that point.
+
+61
+00:04:24,170 --> 00:04:28,730
+So when the component first mounts, what is the title going to be?
+
+62
+00:04:29,520 --> 00:04:35,220
+And remember how actually we already inspected that earlier, But let's just do that again.
+
+63
+00:04:38,860 --> 00:04:40,870
+So logging to the console.
+
+64
+00:04:41,830 --> 00:04:43,270
+Here we notice.
+
+65
+00:04:43,600 --> 00:04:47,410
+Well, actually, we don't notice anything, so let's just reload.
+
+66
+00:04:48,160 --> 00:04:51,250
+Then clear this, then click.
+
+67
+00:04:51,400 --> 00:04:58,270
+And so you see that initially the title is undefined, which is because in the beginning this movie
+
+68
+00:04:58,270 --> 00:05:06,340
+object is still empty and only after the movie actually arrives from the API, the component will rerender.
+
+69
+00:05:06,340 --> 00:05:10,870
+And then we have the correct title that is then logged to the console.
+
+70
+00:05:12,520 --> 00:05:19,630
+So moving back to our effect, basically what happens here is that again, in the beginning the title
+
+71
+00:05:19,630 --> 00:05:20,980
+is undefined.
+
+72
+00:05:20,980 --> 00:05:28,090
+And so since this effect only runs exactly once, when the component mounts, it will just stay undefined
+
+73
+00:05:28,090 --> 00:05:28,920
+forever.
+
+74
+00:05:28,930 --> 00:05:35,680
+So when the component rerenders with the correct movie object and the correct title, our effect will
+
+75
+00:05:35,680 --> 00:05:37,840
+right now not react to that.
+
+76
+00:05:37,840 --> 00:05:40,630
+So it will not be re-executed.
+
+77
+00:05:41,450 --> 00:05:46,340
+Now, luckily for us, we already know how to fix that, right?
+
+78
+00:05:46,490 --> 00:05:52,060
+So we just have to include this title variable here in the dependency array.
+
+79
+00:05:52,100 --> 00:05:58,820
+And so then if we give it a save, then you see that it actually changed to the correct title.
+
+80
+00:05:59,000 --> 00:06:00,650
+Let's just try that again.
+
+81
+00:06:01,370 --> 00:06:08,870
+So first we get undefined and then we get Inception, which again is because now our effect is basically
+
+82
+00:06:08,870 --> 00:06:11,690
+listening for this variable to change.
+
+83
+00:06:11,690 --> 00:06:16,340
+And when it does change, then our effect is executed again.
+
+84
+00:06:17,090 --> 00:06:23,540
+Now there's just one problem, which is that we actually don't want to see the undefined here in the
+
+85
+00:06:23,540 --> 00:06:24,260
+beginning.
+
+86
+00:06:25,160 --> 00:06:33,410
+So we don't want temporarily to be our movie set to undefined, but we can simply fix that by writing
+
+87
+00:06:33,410 --> 00:06:36,170
+if there is no title.
+
+88
+00:06:37,000 --> 00:06:38,170
+Then just return.
+
+89
+00:06:40,800 --> 00:06:42,240
+So try that again.
+
+90
+00:06:42,660 --> 00:06:45,570
+And yeah, that's fixed now.
+
+91
+00:06:45,930 --> 00:06:52,920
+Now, also, because we did this here, so we specified the title, we can now move to another movie
+
+92
+00:06:52,920 --> 00:06:59,370
+and it will then automatically change the title up here, which if we hadn't done this, this actually
+
+93
+00:06:59,370 --> 00:07:00,270
+wouldn't happen.
+
+94
+00:07:01,280 --> 00:07:04,340
+So let's just remove it just so I can show you.
+
+95
+00:07:06,010 --> 00:07:06,760
+And.
+
+96
+00:07:08,130 --> 00:07:14,970
+Uh, well, now, actually, we never see anything because we have this early return here.
+
+97
+00:07:16,700 --> 00:07:18,290
+So let's try that again.
+
+98
+00:07:19,820 --> 00:07:20,480
+Okay.
+
+99
+00:07:20,480 --> 00:07:26,600
+And now again, as I click another one, we see that the title stays at undefined.
+
+100
+00:07:26,630 --> 00:07:29,360
+So this component here has Rerendered.
+
+101
+00:07:29,360 --> 00:07:34,410
+And so the title has changed, but of course our effect did not react to that.
+
+102
+00:07:34,430 --> 00:07:41,420
+And again, that's because we are missing this critical dependency in the dependency array.
+
+103
+00:07:42,000 --> 00:07:45,420
+But now with this, it does actually work.
+
+104
+00:07:45,990 --> 00:07:46,770
+Great.
+
+105
+00:07:46,800 --> 00:07:54,360
+There's just one final problem, which is that when we go back, then you see that the movie actually
+
+106
+00:07:54,360 --> 00:07:56,220
+stays here in the title.
+
+107
+00:07:57,290 --> 00:07:59,240
+So let's do another one then.
+
+108
+00:07:59,270 --> 00:08:00,860
+Of course it is correct.
+
+109
+00:08:00,860 --> 00:08:05,360
+But again, if we go back, then the title will stay here.
+
+110
+00:08:05,510 --> 00:08:10,990
+So it will not go back to just use popcorn as we would probably want.
+
+111
+00:08:11,000 --> 00:08:17,690
+So it doesn't make any sense that now here we still have the Inception movie while we are no longer
+
+112
+00:08:17,690 --> 00:08:19,040
+seeing that movie.
+
+113
+00:08:19,040 --> 00:08:21,230
+So how could we change that?
+
+114
+00:08:21,380 --> 00:08:28,520
+I mean, nowhere in our code we are actually telling React to go back to the use popcorn title, right?
+
+115
+00:08:28,640 --> 00:08:34,850
+And right now we actually don't know how to do that yet because for that we will first need to learn
+
+116
+00:08:34,850 --> 00:08:37,520
+about the concept of cleaning up.
+
+117
+00:08:37,520 --> 00:08:40,970
+And so let's do that right in the next lecture.

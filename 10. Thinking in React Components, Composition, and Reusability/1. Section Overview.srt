@@ -1,0 +1,35 @@
+1
+00:00:00,980 --> 00:00:05,930
+Welcome to the second section on how to think in React.
+
+2
+00:00:05,960 --> 00:00:14,300
+This time we'll learn how to think about components, component composition, and component reusability.
+
+3
+00:00:14,570 --> 00:00:20,890
+So we're going to build this beautiful new project over the next few sections.
+
+4
+00:00:20,900 --> 00:00:28,880
+In this section, we lay the foundation of the project by learning deeply about how to split a user
+
+5
+00:00:28,880 --> 00:00:36,740
+interface into components, what type of components we can use, and then how to implement it all in
+
+6
+00:00:36,740 --> 00:00:37,610
+React.
+
+7
+00:00:37,880 --> 00:00:46,310
+We'll also build a simple app layout for the first time using the power of composition, and all these
+
+8
+00:00:46,310 --> 00:00:54,200
+are already intermediate react topics, but still absolutely fundamental for any React developer.
+
+9
+00:00:54,350 --> 00:00:59,030
+So if that sounds like fun, then let's get started.

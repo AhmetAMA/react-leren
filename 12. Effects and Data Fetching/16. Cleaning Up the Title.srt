@@ -1,0 +1,295 @@
+1
+00:00:00,890 --> 00:00:07,610
+So with our knowledge about the cleanup function, we can now very easily solve the problem that we
+
+2
+00:00:07,610 --> 00:00:10,250
+still have with our page title.
+
+3
+00:00:11,870 --> 00:00:19,040
+So remember that we need a cleanup function whenever the side effect that we introduced in the effect
+
+4
+00:00:19,040 --> 00:00:23,640
+keeps happening after the component has already been unmounted.
+
+5
+00:00:23,660 --> 00:00:26,840
+And so that is actually exactly our case here.
+
+6
+00:00:26,990 --> 00:00:34,130
+So indeed, we no longer have the Inception movie here, but the side effect is still happening.
+
+7
+00:00:34,130 --> 00:00:40,010
+So the title is still showing that old movie that we had selected before.
+
+8
+00:00:40,790 --> 00:00:46,130
+And so the cleanup function is, of course, the perfect solution for this case.
+
+9
+00:00:46,460 --> 00:00:52,490
+So a cleanup function, remember, is simply a function that we return from an effect.
+
+10
+00:00:53,570 --> 00:00:57,440
+And so let's specify a function here and then.
+
+11
+00:00:58,280 --> 00:01:00,800
+Return it from the effect function.
+
+12
+00:01:01,550 --> 00:01:02,210
+Okay.
+
+13
+00:01:02,210 --> 00:01:10,060
+And here all we want to do is to basically reset the document title to its original form.
+
+14
+00:01:10,070 --> 00:01:11,420
+So that's use.
+
+15
+00:01:12,430 --> 00:01:13,240
+Popcorn.
+
+16
+00:01:14,440 --> 00:01:16,480
+And this is all we have to do.
+
+17
+00:01:17,850 --> 00:01:18,990
+So let's reload.
+
+18
+00:01:19,020 --> 00:01:20,970
+Let's select our movie.
+
+19
+00:01:21,240 --> 00:01:23,130
+Then indeed, we get the title.
+
+20
+00:01:23,130 --> 00:01:28,410
+But as we go back or title also goes back to use popcorn.
+
+21
+00:01:29,100 --> 00:01:29,910
+Great.
+
+22
+00:01:29,910 --> 00:01:35,090
+And so this is actually all the code that we have to write to solve this problem.
+
+23
+00:01:35,130 --> 00:01:40,080
+But let's just do a quick experiment just so I can show you something.
+
+24
+00:01:40,380 --> 00:01:44,730
+So let's look to the console here also in this situation.
+
+25
+00:01:44,850 --> 00:01:49,320
+Clean up effect for movie.
+
+26
+00:01:50,570 --> 00:01:52,070
+And then the title.
+
+27
+00:01:56,690 --> 00:02:03,770
+And here we keep getting these random errors, which is because one of these images here cannot be found.
+
+28
+00:02:03,800 --> 00:02:06,860
+So that's a bit annoying, but let's just ignore that.
+
+29
+00:02:07,640 --> 00:02:08,930
+So let's reload.
+
+30
+00:02:08,960 --> 00:02:10,760
+Clear the console here.
+
+31
+00:02:11,490 --> 00:02:12,960
+Then select one of the movies.
+
+32
+00:02:12,990 --> 00:02:18,720
+And now as I go back, we already know that this function here will get executed.
+
+33
+00:02:18,720 --> 00:02:23,070
+And so again, that's because this component here will be unmounted.
+
+34
+00:02:23,070 --> 00:02:28,140
+And so that's when the cleanup function of the effect will get executed.
+
+35
+00:02:28,700 --> 00:02:33,020
+So our title will change and let's see what is logged to the console.
+
+36
+00:02:34,650 --> 00:02:36,270
+So we get cleaned up.
+
+37
+00:02:36,270 --> 00:02:38,400
+Effect for movie Inception.
+
+38
+00:02:38,790 --> 00:02:45,600
+Now it might seem obvious that we get the name here, but if we think about it, it actually might seem
+
+39
+00:02:45,600 --> 00:02:47,500
+a bit strange, right?
+
+40
+00:02:47,520 --> 00:02:54,540
+Because as we learned in the previous lecture, this clean up function here will actually run after
+
+41
+00:02:54,540 --> 00:02:57,150
+the component has already unmounted.
+
+42
+00:02:57,150 --> 00:03:03,480
+And so if that's the case, then how will the function actually remember this title here?
+
+43
+00:03:04,090 --> 00:03:11,410
+So again, this function here runs only after the component has already disappeared from our component
+
+44
+00:03:11,410 --> 00:03:11,950
+tree.
+
+45
+00:03:11,950 --> 00:03:16,900
+And so all the state, including the movie object, has been destroyed.
+
+46
+00:03:16,900 --> 00:03:20,500
+But still our function here remembers the title.
+
+47
+00:03:20,590 --> 00:03:22,210
+So how is that?
+
+48
+00:03:22,390 --> 00:03:27,880
+Well, it's because of a very important concept in JavaScript called a closure.
+
+49
+00:03:27,970 --> 00:03:35,290
+So basically a closure in JavaScript means that a function will always remember all the variables that
+
+50
+00:03:35,290 --> 00:03:40,030
+were present at the time and the place that the function was created.
+
+51
+00:03:40,390 --> 00:03:48,640
+So in the case of our cleanup function here, it was created by the time this effect first was created
+
+52
+00:03:48,640 --> 00:03:49,060
+here.
+
+53
+00:03:49,060 --> 00:03:54,480
+And so by that time the title was actually defined as Inception.
+
+54
+00:03:54,490 --> 00:03:58,570
+So in this case, the movie that we were seeing before.
+
+55
+00:03:58,720 --> 00:04:03,300
+So it was inception at the time this function was created.
+
+56
+00:04:03,310 --> 00:04:10,490
+And so therefore we say that this function closed over the title variable and will therefore remember
+
+57
+00:04:10,490 --> 00:04:11,750
+it in the future.
+
+58
+00:04:11,750 --> 00:04:16,430
+So in this case, even after the component has already unmounted.
+
+59
+00:04:16,730 --> 00:04:17,390
+Okay.
+
+60
+00:04:17,390 --> 00:04:23,360
+So that was just a bit of a theoretical explanation of what happens behind the scenes, but I think
+
+61
+00:04:23,360 --> 00:04:30,440
+it's pretty important to understand this idea of closures because it is really a crucial part of how
+
+62
+00:04:30,470 --> 00:04:32,570
+effects work in React.
+
+63
+00:04:32,570 --> 00:04:37,490
+And therefore, we will actually also come back to this issue a bit later.
+
+64
+00:04:38,200 --> 00:04:45,160
+But anyway, I also want to show you that the cleanup function runs between renders.
+
+65
+00:04:45,170 --> 00:04:47,800
+So basically after each render.
+
+66
+00:04:48,360 --> 00:04:52,800
+So if we click here on some movie and then we click on another one.
+
+67
+00:04:53,490 --> 00:04:54,900
+Let's say this one here.
+
+68
+00:04:55,080 --> 00:05:00,650
+Then you see that the cleanup function actually run again for this movie.
+
+69
+00:05:00,660 --> 00:05:04,080
+And so that happened right after the rerender.
+
+70
+00:05:05,720 --> 00:05:06,200
+Right.
+
+71
+00:05:06,200 --> 00:05:09,050
+Let's just clean this to watch that again.
+
+72
+00:05:09,320 --> 00:05:12,470
+So as I click here, there will be a rerender.
+
+73
+00:05:12,470 --> 00:05:19,250
+And so again, then the previous effect was cleaned up with the previous movie that we had selected
+
+74
+00:05:19,250 --> 00:05:19,970
+before.

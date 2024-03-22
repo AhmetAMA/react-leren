@@ -1,0 +1,63 @@
+1
+00:00:00,770 --> 00:00:08,750
+Welcome to probably the most challenging section in this course, but also one of the most exciting
+
+2
+00:00:08,750 --> 00:00:11,660
+ones and most rewarding ones.
+
+3
+00:00:12,410 --> 00:00:20,390
+So up until this point, we have only focused on how React concepts and features work in practice.
+
+4
+00:00:20,390 --> 00:00:28,550
+But now it's time to understand how things actually work internally, inside, react behind the scenes.
+
+5
+00:00:29,030 --> 00:00:38,210
+So just like my other courses, this course also includes a really deep dive, which most students absolutely
+
+6
+00:00:38,210 --> 00:00:45,950
+love, because this information you're about to learn will not only make you a much better and more
+
+7
+00:00:45,950 --> 00:00:54,080
+confident react developer, but it will also allow you to ace the most common React interview questions
+
+8
+00:00:54,080 --> 00:01:03,270
+with all the confidence that you need in order to nail that job and would go as far as saying that this
+
+9
+00:01:03,270 --> 00:01:10,440
+knowledge will actually put you right in the top 5% of all react developers.
+
+10
+00:01:10,890 --> 00:01:19,530
+Now, again, this section is quite intense and it should probably be in the advanced part of the course.
+
+11
+00:01:19,530 --> 00:01:26,310
+But since there is so much important stuff that we need to talk about before moving on, I decided to
+
+12
+00:01:26,310 --> 00:01:27,990
+place it right here.
+
+13
+00:01:28,410 --> 00:01:35,700
+If at some point it becomes a bit too much or if you become bored, please watch at least the final
+
+14
+00:01:35,700 --> 00:01:41,270
+lecture of the section where I'm briefly going to summarize everything we covered.
+
+15
+00:01:41,280 --> 00:01:44,880
+So that video really is a must watch.
+
+16
+00:01:45,030 --> 00:01:53,430
+But anyway, without further ado, let's dive right in and uncover how React works.

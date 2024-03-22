@@ -1,0 +1,867 @@
+1
+00:00:00,970 --> 00:00:03,850
+Welcome to the next coding challenge.
+
+2
+00:00:04,820 --> 00:00:09,830
+And in this one we will build this very simple currency conversion tool.
+
+3
+00:00:10,160 --> 00:00:17,240
+So here we can input some amount of money that we want to convert from one currency to another.
+
+4
+00:00:17,750 --> 00:00:22,010
+So let's say, for example, we want to convert €100.
+
+5
+00:00:22,010 --> 00:00:27,530
+So the input currency to the output currency, which is US dollars right now.
+
+6
+00:00:27,530 --> 00:00:33,410
+And so you see that the converted value is $107.70.
+
+7
+00:00:33,410 --> 00:00:41,420
+And this conversion here is actually done by an API which contains real time currency conversion data.
+
+8
+00:00:41,450 --> 00:00:47,120
+And so by the time you're watching this, the value here will most likely look different.
+
+9
+00:00:47,300 --> 00:00:51,170
+And of course, we can also change the currencies.
+
+10
+00:00:51,170 --> 00:00:55,210
+So let's say we want to convert from US dollar to euro.
+
+11
+00:00:55,220 --> 00:01:02,510
+So the other way around and then €100 or actually $100 is just €93.
+
+12
+00:01:03,550 --> 00:01:04,270
+All right.
+
+13
+00:01:04,270 --> 00:01:07,510
+So this is the task for this lecture.
+
+14
+00:01:07,510 --> 00:01:12,700
+And as always, we are starting from some very simple starter file.
+
+15
+00:01:12,820 --> 00:01:20,320
+So here I already have basically the HTML skeleton laid out for you here in the app component.
+
+16
+00:01:20,320 --> 00:01:27,840
+And so your task now is to first transform these elements here into controlled input elements.
+
+17
+00:01:27,850 --> 00:01:30,190
+So just like we have done before.
+
+18
+00:01:30,190 --> 00:01:37,570
+And then after that, I want you to use an effect like we did in this section in order to actually do
+
+19
+00:01:37,570 --> 00:01:43,270
+an API call to this URL here, which will then do the actual conversion.
+
+20
+00:01:43,900 --> 00:01:49,720
+So here again is the URL of the API that we're going to use.
+
+21
+00:01:49,750 --> 00:01:57,220
+So your fetch request will be made to this URL right here and then you can replace the amount the from
+
+22
+00:01:57,220 --> 00:02:00,340
+currency and the to currency.
+
+23
+00:02:00,340 --> 00:02:06,250
+And if you want to get more information about this API, you can just go to this link right here.
+
+24
+00:02:07,360 --> 00:02:08,140
+All right.
+
+25
+00:02:08,440 --> 00:02:15,730
+And so as you see here in the demo, the conversion is made each time that one of these three fields
+
+26
+00:02:15,730 --> 00:02:16,800
+here updates.
+
+27
+00:02:16,810 --> 00:02:23,560
+So if I delete something here, then immediately the value is updated here with the new value coming
+
+28
+00:02:23,560 --> 00:02:24,930
+from the API.
+
+29
+00:02:24,940 --> 00:02:29,040
+And the same if we change here to some other currency.
+
+30
+00:02:29,050 --> 00:02:33,700
+So this is going to be a bit similar to what we did throughout this section.
+
+31
+00:02:33,700 --> 00:02:40,000
+And so take a few minutes now and I see you back here once you are finished so that you can then check
+
+32
+00:02:40,000 --> 00:02:45,280
+out if your solution is correct and what you could have done maybe differently.
+
+33
+00:02:47,180 --> 00:02:48,110
+Okay.
+
+34
+00:02:48,110 --> 00:02:56,000
+So I hope that you had a great time with building this calculator and that you had some success with
+
+35
+00:02:56,000 --> 00:02:56,510
+it.
+
+36
+00:02:56,720 --> 00:03:01,820
+So if your calculator works, then you are already done with this video here.
+
+37
+00:03:01,820 --> 00:03:09,290
+But in any case, I will of course now implement my own solution here and I will just start by making
+
+38
+00:03:09,290 --> 00:03:12,260
+these three elements here controlled elements.
+
+39
+00:03:13,250 --> 00:03:15,380
+So let's create some pieces of state.
+
+40
+00:03:18,720 --> 00:03:21,920
+So amount and set amount.
+
+41
+00:03:21,930 --> 00:03:25,980
+And of course you could have called them any other thing.
+
+42
+00:03:26,070 --> 00:03:28,260
+So that's not really important.
+
+43
+00:03:28,260 --> 00:03:31,320
+And let's actually start with one here.
+
+44
+00:03:35,850 --> 00:03:37,200
+So that's const.
+
+45
+00:03:37,200 --> 00:03:44,190
+And then here let's do the from currency and set from currency.
+
+46
+00:03:45,800 --> 00:03:49,010
+And here the default is going to be zero.
+
+47
+00:03:51,260 --> 00:03:55,150
+And then let's do the same for the other currency.
+
+48
+00:03:55,160 --> 00:03:59,690
+So two currency and set two currency.
+
+49
+00:04:01,630 --> 00:04:04,780
+And so here let's use by default US dollar.
+
+50
+00:04:04,960 --> 00:04:10,030
+And now we just need to wire all that up here with these elements.
+
+51
+00:04:10,540 --> 00:04:13,150
+So the value should be the amount.
+
+52
+00:04:13,150 --> 00:04:16,180
+And then on change we do.
+
+53
+00:04:19,090 --> 00:04:24,970
+Set amount is equal to e dot target dot value.
+
+54
+00:04:24,970 --> 00:04:32,860
+But we should not forget to actually convert this to a number because otherwise we get a string and
+
+55
+00:04:32,860 --> 00:04:34,600
+that we cannot really convert.
+
+56
+00:04:34,930 --> 00:04:41,260
+Well, probably we could actually, because we will then plug it here into a string later.
+
+57
+00:04:41,260 --> 00:04:45,940
+But it's nicer to have it all in the correct data format here.
+
+58
+00:04:48,600 --> 00:04:53,700
+But anyway this now is the from currency and then.
+
+59
+00:04:55,090 --> 00:04:57,220
+On change will be.
+
+60
+00:05:01,000 --> 00:05:04,480
+Set from currency again.
+
+61
+00:05:04,510 --> 00:05:06,520
+E dot target.
+
+62
+00:05:06,550 --> 00:05:07,420
+Dot.
+
+63
+00:05:08,430 --> 00:05:09,330
+Value.
+
+64
+00:05:10,190 --> 00:05:10,940
+Okay.
+
+65
+00:05:10,940 --> 00:05:16,610
+And now I will just copy the same thing here to the other select element.
+
+66
+00:05:18,030 --> 00:05:23,460
+So to currency and set to currency.
+
+67
+00:05:23,790 --> 00:05:25,380
+And here we are missing.
+
+68
+00:05:26,140 --> 00:05:33,880
+This closing brackets and yeah, that's it for the controlled elements.
+
+69
+00:05:33,880 --> 00:05:37,330
+And so let's now get to work on the effect.
+
+70
+00:05:39,830 --> 00:05:42,110
+So use effect.
+
+71
+00:05:43,050 --> 00:05:47,740
+And then passing in our effect function, as always.
+
+72
+00:05:47,760 --> 00:05:51,990
+And then let's initially run this on component mount.
+
+73
+00:05:52,570 --> 00:06:00,520
+So we will do an Http request to this URL right here and therefore we will need a fetch function which
+
+74
+00:06:00,520 --> 00:06:04,870
+returns a promise and therefore we now need an async function.
+
+75
+00:06:04,870 --> 00:06:11,080
+And since the effect function itself cannot be async, let's create another one in here.
+
+76
+00:06:11,990 --> 00:06:13,550
+So async function.
+
+77
+00:06:15,390 --> 00:06:17,640
+And calling it simply convert.
+
+78
+00:06:17,790 --> 00:06:18,690
+And then.
+
+79
+00:06:20,000 --> 00:06:23,510
+Later, we will simply call that function in here.
+
+80
+00:06:26,430 --> 00:06:26,940
+Okay.
+
+81
+00:06:26,940 --> 00:06:29,730
+And now let's do the actual conversion itself.
+
+82
+00:06:30,630 --> 00:06:37,260
+So we will do our fetch request to this URL right here.
+
+83
+00:06:38,090 --> 00:06:39,500
+So let's grab that.
+
+84
+00:06:42,300 --> 00:06:46,650
+And then, of course, we need to replace all these values here in this template.
+
+85
+00:06:46,650 --> 00:06:47,430
+Literal.
+
+86
+00:06:48,680 --> 00:06:49,880
+So amount.
+
+87
+00:06:54,090 --> 00:06:56,610
+Here we have the from currency.
+
+88
+00:06:56,610 --> 00:07:00,570
+And then finally we have also the.
+
+89
+00:07:02,460 --> 00:07:03,900
+Two currency.
+
+90
+00:07:05,560 --> 00:07:09,870
+And so this will remember return a promise.
+
+91
+00:07:09,880 --> 00:07:14,740
+And so let's await that promise and store it in a variable called response.
+
+92
+00:07:17,140 --> 00:07:21,460
+And then from there, let's also await the data itself.
+
+93
+00:07:22,550 --> 00:07:27,050
+So we'll wait by converting the response to Json.
+
+94
+00:07:27,320 --> 00:07:31,610
+And then let's start by simply logging that to the console.
+
+95
+00:07:31,820 --> 00:07:39,260
+So checking out the data so that we know which format it has and immediately we see down here that we
+
+96
+00:07:39,260 --> 00:07:40,460
+get a result.
+
+97
+00:07:40,670 --> 00:07:46,940
+And so that means that our effect is already working with the default data that we gave it here.
+
+98
+00:07:48,350 --> 00:07:56,510
+So here then we can see that inside the rates object we have the property, which is our two currency.
+
+99
+00:07:56,510 --> 00:07:59,300
+And so that's the converted value right here.
+
+100
+00:08:01,090 --> 00:08:03,640
+So let's try to read that value.
+
+101
+00:08:03,850 --> 00:08:07,600
+So that's inside data dot rates.
+
+102
+00:08:08,280 --> 00:08:12,160
+And now we need to dynamically read the property from there.
+
+103
+00:08:12,180 --> 00:08:14,160
+So in this case, that's USD.
+
+104
+00:08:14,460 --> 00:08:21,090
+But of course we cannot hardcode that because if our two currency would be euros, then here we would
+
+105
+00:08:21,090 --> 00:08:21,930
+have euros.
+
+106
+00:08:21,930 --> 00:08:27,930
+And so we can simply read the property by doing it like this.
+
+107
+00:08:28,720 --> 00:08:30,010
+And so there is our number.
+
+108
+00:08:30,100 --> 00:08:36,190
+And so instead of logging it to the console, we now want to have it appear on the screen right here.
+
+109
+00:08:36,840 --> 00:08:40,920
+So as always, what we need is a new piece of state.
+
+110
+00:08:44,420 --> 00:08:46,840
+And set converted.
+
+111
+00:08:46,850 --> 00:08:54,560
+And so just like before, as soon as the data arrives, we will update the state, which will then update
+
+112
+00:08:54,560 --> 00:08:58,460
+our user interface and show us the converted value.
+
+113
+00:08:59,960 --> 00:09:07,910
+He let us start with nothing and yeah, simply replacing this console dot log with set.
+
+114
+00:09:08,480 --> 00:09:13,100
+Convert it, give it a save, and nothing happened.
+
+115
+00:09:13,250 --> 00:09:16,520
+But it should happen as we reload the page.
+
+116
+00:09:17,280 --> 00:09:18,840
+Well, actually not.
+
+117
+00:09:18,840 --> 00:09:25,440
+And well, of course, the reason is that down here we still hardcoded the output.
+
+118
+00:09:27,070 --> 00:09:33,460
+So here now we want to read, convert it and then we can even write the to currency here as well.
+
+119
+00:09:35,900 --> 00:09:40,910
+So we have 1.0717 USD.
+
+120
+00:09:41,300 --> 00:09:42,140
+Great.
+
+121
+00:09:42,140 --> 00:09:44,330
+So that's working just fine.
+
+122
+00:09:44,330 --> 00:09:47,000
+But what if we change something here?
+
+123
+00:09:47,240 --> 00:09:52,160
+So now I update this to 100, but you see that nothing is happening.
+
+124
+00:09:52,160 --> 00:09:57,800
+And if you remember everything we just learned throughout this section, this is going to make total
+
+125
+00:09:57,800 --> 00:10:04,390
+sense to you because as we type a new number here, we will update the state that is inside the app
+
+126
+00:10:04,400 --> 00:10:08,480
+component and therefore we will rerender this component.
+
+127
+00:10:08,660 --> 00:10:15,800
+However, our effect right now only runs on the initial render, so we don't have anything here in our
+
+128
+00:10:15,800 --> 00:10:16,880
+dependency array.
+
+129
+00:10:16,880 --> 00:10:23,450
+And so React has no way of knowing that it should also rerun this effect right now.
+
+130
+00:10:23,540 --> 00:10:25,660
+And so let's change that.
+
+131
+00:10:25,670 --> 00:10:33,140
+So let's basically give our dependency array all the values that our effect in fact depends on.
+
+132
+00:10:33,140 --> 00:10:38,730
+And so those are amount the from currency and the two currency.
+
+133
+00:10:38,910 --> 00:10:46,590
+So each time one of these three changes, then our effect here should basically synchronize with any
+
+134
+00:10:46,590 --> 00:10:47,370
+of those.
+
+135
+00:10:48,670 --> 00:10:49,930
+So amount.
+
+136
+00:10:50,520 --> 00:10:54,050
+From currency and to currency.
+
+137
+00:10:54,060 --> 00:11:01,260
+And again, here I like to use the analogy that this dependency array is essentially like listening
+
+138
+00:11:01,260 --> 00:11:08,100
+for one of these three variables to change, and then each time that happens, it will just re-execute
+
+139
+00:11:08,130 --> 00:11:09,390
+our effect again.
+
+140
+00:11:09,390 --> 00:11:16,260
+And so this means that really our effect is now synchronized to these three variables.
+
+141
+00:11:16,560 --> 00:11:17,550
+Great.
+
+142
+00:11:19,260 --> 00:11:24,000
+And so as we type here, you see that the value actually updates.
+
+143
+00:11:25,290 --> 00:11:30,210
+Now you do see maybe that it takes some time for the update to happen.
+
+144
+00:11:31,190 --> 00:11:32,450
+Let's maybe click here.
+
+145
+00:11:33,080 --> 00:11:35,900
+And notice that the change wasn't immediate.
+
+146
+00:11:35,900 --> 00:11:41,420
+And if you have a slower Internet connection, then maybe for you it will take even longer.
+
+147
+00:11:41,420 --> 00:11:48,710
+And so that's of course because our application needs to make this API call and only after that the
+
+148
+00:11:48,710 --> 00:11:50,360
+state is updated.
+
+149
+00:11:50,360 --> 00:11:53,960
+So only then we get our result which we can display here.
+
+150
+00:11:54,200 --> 00:11:59,300
+So to tell the user about that, we again need our loading state.
+
+151
+00:12:00,420 --> 00:12:01,890
+So let's do that.
+
+152
+00:12:02,250 --> 00:12:05,580
+And notice how here we are just ignoring errors.
+
+153
+00:12:05,580 --> 00:12:11,190
+So if something goes wrong, then we are not accounting for that situation right here.
+
+154
+00:12:12,880 --> 00:12:16,570
+But this is just a challenge to make the effect work.
+
+155
+00:12:16,750 --> 00:12:21,000
+So set is loading to true.
+
+156
+00:12:21,010 --> 00:12:25,180
+And of course, first I need to create this new piece of state.
+
+157
+00:12:26,210 --> 00:12:30,950
+So is loading and set is loading.
+
+158
+00:12:31,860 --> 00:12:34,590
+And we start with faults.
+
+159
+00:12:34,590 --> 00:12:38,370
+And then before the fetch happens, we set it to true.
+
+160
+00:12:38,370 --> 00:12:41,610
+And once we are done, we set it to false again.
+
+161
+00:12:42,220 --> 00:12:44,530
+So set is loading.
+
+162
+00:12:45,380 --> 00:12:50,750
+Back to faults, but now where do we actually use this is loading state.
+
+163
+00:12:50,870 --> 00:12:52,130
+So we could.
+
+164
+00:12:52,160 --> 00:12:59,180
+Of course, again display some loader here so something like a text displaying loading.
+
+165
+00:12:59,180 --> 00:13:04,580
+But instead what I want to do here is to basically disable these three fields.
+
+166
+00:13:04,580 --> 00:13:10,250
+And so that then has the purpose of showing the user that something is happening.
+
+167
+00:13:10,250 --> 00:13:18,680
+And also besides that, it then prevents the user from typing in anything else and creating multiple
+
+168
+00:13:18,710 --> 00:13:21,290
+Http requests at the same time.
+
+169
+00:13:22,120 --> 00:13:23,800
+So let's do that.
+
+170
+00:13:23,800 --> 00:13:27,160
+And this we haven't done before, actually.
+
+171
+00:13:27,160 --> 00:13:35,530
+But in all of these input elements, we can specify the disabled prop, which again is standard HTML.
+
+172
+00:13:36,480 --> 00:13:40,110
+And so disabled basically takes a true or false.
+
+173
+00:13:40,650 --> 00:13:48,090
+So if we set it just to true here, then you see that it gets like grayed out and then we cannot do
+
+174
+00:13:48,090 --> 00:13:49,200
+anything with it.
+
+175
+00:13:50,030 --> 00:13:55,250
+Now, of course, we don't want it to always be true, but instead we want it to be disabled.
+
+176
+00:13:55,250 --> 00:13:57,890
+When is loading is true?
+
+177
+00:13:59,440 --> 00:14:00,250
+Okay.
+
+178
+00:14:01,490 --> 00:14:04,560
+And we will do this many other times throughout the course.
+
+179
+00:14:04,580 --> 00:14:07,640
+So this is a pretty common thing to do, actually.
+
+180
+00:14:09,400 --> 00:14:09,560
+No.
+
+181
+00:14:09,610 --> 00:14:10,270
+Okay.
+
+182
+00:14:11,260 --> 00:14:13,900
+And this one as well.
+
+183
+00:14:16,300 --> 00:14:16,480
+Now.
+
+184
+00:14:16,510 --> 00:14:18,490
+Now watch what happens when I click.
+
+185
+00:14:19,100 --> 00:14:25,730
+So very shortly these three got disabled, which shows the user that indeed something is happening so
+
+186
+00:14:25,730 --> 00:14:28,550
+that the data is being loaded in the background.
+
+187
+00:14:29,840 --> 00:14:36,050
+Now, there's just one final thing that I want to do, which is what happens when these two are the
+
+188
+00:14:36,050 --> 00:14:36,650
+same.
+
+189
+00:14:37,230 --> 00:14:44,490
+And in fact, we even get an error in this situation because the API is not made for the case that we
+
+190
+00:14:44,490 --> 00:14:47,940
+are converting from one currency to the same one.
+
+191
+00:14:48,590 --> 00:14:50,780
+So let's fix that.
+
+192
+00:14:50,780 --> 00:14:52,340
+And that's not too hard.
+
+193
+00:14:52,370 --> 00:14:59,420
+So before we do any of this, we can check if the from currency is the same as the two currency.
+
+194
+00:14:59,420 --> 00:15:05,960
+And so in that case, then we basically do not want to run the convert function.
+
+195
+00:15:06,540 --> 00:15:08,260
+So let's do that down here.
+
+196
+00:15:08,280 --> 00:15:12,630
+So outside of this function and before even calling it.
+
+197
+00:15:14,270 --> 00:15:19,880
+So we just say if from cur is equal.
+
+198
+00:15:20,520 --> 00:15:29,220
+To the two currency, then return and also set the converted value to the amount.
+
+199
+00:15:29,800 --> 00:15:34,360
+Were to simply because the converted value will be the same as the amount.
+
+200
+00:15:34,390 --> 00:15:36,250
+If the currency is the same.
+
+201
+00:15:36,400 --> 00:15:37,270
+Right.
+
+202
+00:15:37,850 --> 00:15:39,470
+So let's try that here.
+
+203
+00:15:40,780 --> 00:15:43,920
+I'm just reloading to getting rid of those errors.
+
+204
+00:15:43,930 --> 00:15:45,310
+And then let's see.
+
+205
+00:15:45,700 --> 00:15:47,270
+And there we go.
+
+206
+00:15:47,290 --> 00:15:49,630
+So now €1 is €1.
+
+207
+00:15:49,630 --> 00:15:57,130
+And we didn't even have to call the API for this conversion because it is in fact not really a conversion.
+
+208
+00:15:57,820 --> 00:15:58,390
+Okay.
+
+209
+00:15:58,390 --> 00:16:00,190
+And that's it, I think.
+
+210
+00:16:00,310 --> 00:16:06,420
+Now, remember that we ignored errors here, so we didn't handle them at all.
+
+211
+00:16:06,430 --> 00:16:09,490
+But you should never do that in the real world.
+
+212
+00:16:09,490 --> 00:16:12,450
+So that's just something that I wanted to mention here.
+
+213
+00:16:12,460 --> 00:16:17,340
+But since this is just a learning exercise, that's no big deal.
+
+214
+00:16:17,350 --> 00:16:22,030
+But anyway, with this, we finish yet another section.
+
+215
+00:16:22,030 --> 00:16:28,030
+So congratulations on the great progress that you have been making up until this point.
+
+216
+00:16:28,030 --> 00:16:34,630
+And now after you hopefully review everything we just learned in this section, I see you right in the
+
+217
+00:16:34,630 --> 00:16:40,180
+next one where we will dive even deeper into the topic of React hooks.

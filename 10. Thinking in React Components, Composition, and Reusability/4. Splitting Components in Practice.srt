@@ -1,0 +1,1423 @@
+1
+00:00:00,840 --> 00:00:08,850
+So let's now split one huge components into many small ones using the framework that we just learned
+
+2
+00:00:08,850 --> 00:00:09,570
+about.
+
+3
+00:00:10,940 --> 00:00:16,520
+Now, as always to start, we need to get our starter files here from this folder.
+
+4
+00:00:16,850 --> 00:00:18,740
+So let's grab.
+
+5
+00:00:19,300 --> 00:00:20,200
+These two.
+
+6
+00:00:20,560 --> 00:00:24,100
+And then let's move back to our project folder.
+
+7
+00:00:24,280 --> 00:00:33,340
+And as always, I'm renaming it and then let's paste the new files right in here into the source folder.
+
+8
+00:00:33,340 --> 00:00:40,210
+And then we need to replace these and just get rid of some of this garbage that we have here.
+
+9
+00:00:43,460 --> 00:00:44,150
+All right.
+
+10
+00:00:44,150 --> 00:00:47,420
+So as always, we just end up with Index.js.
+
+11
+00:00:47,510 --> 00:00:50,860
+Index.css and App.js.
+
+12
+00:00:51,460 --> 00:00:54,650
+Then we just grab all this.
+
+13
+00:00:55,400 --> 00:00:57,500
+And open it in vs code.
+
+14
+00:00:57,560 --> 00:00:58,550
+As always.
+
+15
+00:00:59,680 --> 00:01:01,630
+Close down this one.
+
+16
+00:01:03,280 --> 00:01:04,180
+And.
+
+17
+00:01:04,480 --> 00:01:07,330
+Yeah, then we need to clean up this file here.
+
+18
+00:01:07,540 --> 00:01:12,850
+And so this is always a little bit of tedious work, but we just have to do it.
+
+19
+00:01:13,060 --> 00:01:15,160
+And actually that's already done.
+
+20
+00:01:15,930 --> 00:01:21,990
+You can take a look here at the CSS if you'd like, because there's actually a lot of it to make this
+
+21
+00:01:21,990 --> 00:01:23,340
+application here work.
+
+22
+00:01:23,880 --> 00:01:25,950
+So to style that application.
+
+23
+00:01:25,950 --> 00:01:30,900
+But what matters most to us is of course this app dot JS.
+
+24
+00:01:30,960 --> 00:01:35,790
+So here we have this array of objects that I talked about in the previous lecture.
+
+25
+00:01:36,770 --> 00:01:37,160
+Here.
+
+26
+00:01:37,160 --> 00:01:42,200
+Then we have another array of objects, which is for this watch list.
+
+27
+00:01:42,200 --> 00:01:48,350
+And then here we have that huge component that I was talking about.
+
+28
+00:01:48,410 --> 00:01:52,080
+So it has all this JS inside.
+
+29
+00:01:52,100 --> 00:01:58,070
+So basically all of this, the entire application is now inside of one component.
+
+30
+00:01:58,280 --> 00:02:04,100
+To prove that to you, let's actually start this application here because this one here is of course
+
+31
+00:02:04,100 --> 00:02:05,060
+still the demo.
+
+32
+00:02:06,440 --> 00:02:09,260
+So let's open up our integrated terminal.
+
+33
+00:02:09,860 --> 00:02:15,740
+That's slightly too big and then npm start.
+
+34
+00:02:16,650 --> 00:02:19,290
+So that should then open up a new tab in here.
+
+35
+00:02:20,490 --> 00:02:22,020
+And there it is.
+
+36
+00:02:23,610 --> 00:02:25,230
+So make this even smaller.
+
+37
+00:02:26,330 --> 00:02:28,430
+And yeah, so there is the app.
+
+38
+00:02:28,430 --> 00:02:35,690
+And as I was saying in the first lecture, it does work here in terms of collapsing these two lists,
+
+39
+00:02:35,780 --> 00:02:37,840
+also writing something in here.
+
+40
+00:02:37,850 --> 00:02:43,670
+So all of that is working and it's all working within this one huge component.
+
+41
+00:02:43,670 --> 00:02:50,780
+And so I thought that it was a nice exercise to basically pretend that we're working on some team and
+
+42
+00:02:50,780 --> 00:02:57,560
+that one of our team members created this huge component and now it's our task to take it and split
+
+43
+00:02:57,560 --> 00:03:04,760
+it up into small components that make it easy to work with and well, which isn't this huge mess.
+
+44
+00:03:05,120 --> 00:03:10,520
+So let's use the framework that we learned about in the previous lecture to do that.
+
+45
+00:03:11,150 --> 00:03:14,720
+So let's take a look at our JS here.
+
+46
+00:03:15,560 --> 00:03:20,270
+And if you want, you can, of course, pause the video and do that on your own because there is a lot
+
+47
+00:03:20,300 --> 00:03:21,620
+to unpack here.
+
+48
+00:03:22,430 --> 00:03:24,760
+So we have this nav bar here.
+
+49
+00:03:24,770 --> 00:03:28,670
+So this entire thing here is this nav element.
+
+50
+00:03:28,670 --> 00:03:32,390
+And then we have this main part, which is all of this.
+
+51
+00:03:33,060 --> 00:03:40,080
+Then inside the nave, we have this box here for this left side, which contains this list.
+
+52
+00:03:41,180 --> 00:03:47,000
+And then we have another box on the right side which contains all of this, but we will take care of
+
+53
+00:03:47,030 --> 00:03:47,910
+that later.
+
+54
+00:03:47,930 --> 00:03:54,800
+So for now, let's basically split up all of this here into the nav bar and into this main part.
+
+55
+00:03:54,830 --> 00:04:01,100
+So I think to start, that's the best logical separation of the content, which is remember the first
+
+56
+00:04:01,100 --> 00:04:02,920
+criteria that we talked about.
+
+57
+00:04:02,930 --> 00:04:10,850
+So those were logical separation of content, second reusability, third responsibilities and complexity,
+
+58
+00:04:10,850 --> 00:04:13,880
+and fourth, the personal coding style.
+
+59
+00:04:14,060 --> 00:04:20,120
+So this nav bar here and the main content here, they really don't belong together.
+
+60
+00:04:20,120 --> 00:04:25,670
+And so that's a good idea then to create a component for each of them.
+
+61
+00:04:25,670 --> 00:04:31,790
+So I'm cutting this code here and I will actually now create these components here on top.
+
+62
+00:04:31,970 --> 00:04:34,070
+Otherwise, I have to scroll too much.
+
+63
+00:04:35,590 --> 00:04:38,620
+So let's write function nav bar.
+
+64
+00:04:40,430 --> 00:04:43,130
+And then return simply this.
+
+65
+00:04:43,970 --> 00:04:44,960
+Give it a safe.
+
+66
+00:04:44,960 --> 00:04:46,940
+And now it's complaining here.
+
+67
+00:04:47,640 --> 00:04:52,280
+So we now need to also move this date here into this other component.
+
+68
+00:04:52,290 --> 00:04:55,890
+So this one here is depending on query and set query.
+
+69
+00:04:55,890 --> 00:04:59,070
+And so therefore, we need to move that state right there.
+
+70
+00:04:59,190 --> 00:05:05,970
+And so actually having all the state here was another great indicator that this component here had way
+
+71
+00:05:05,970 --> 00:05:07,650
+too many responsibilities.
+
+72
+00:05:07,650 --> 00:05:12,510
+So we have five pieces of state and then these three derived states.
+
+73
+00:05:12,660 --> 00:05:14,220
+So that's way too much.
+
+74
+00:05:14,220 --> 00:05:16,140
+So let's just cut this here.
+
+75
+00:05:17,380 --> 00:05:19,690
+Paste that here and here.
+
+76
+00:05:19,690 --> 00:05:20,980
+We also need the movies.
+
+77
+00:05:20,980 --> 00:05:24,580
+But for now, just replace this here with an X.
+
+78
+00:05:26,230 --> 00:05:31,450
+Okay, so now the nav bar is gone because, of course, we haven't yet included it here.
+
+79
+00:05:32,600 --> 00:05:33,620
+And so.
+
+80
+00:05:36,610 --> 00:05:37,870
+Let's do that.
+
+81
+00:05:38,920 --> 00:05:41,380
+And now our app looks just like before.
+
+82
+00:05:41,830 --> 00:05:44,830
+So now let's then grab all this other code.
+
+83
+00:05:46,020 --> 00:05:47,160
+All of this.
+
+84
+00:05:47,930 --> 00:05:51,620
+Cut it and put it into yet another component.
+
+85
+00:05:52,550 --> 00:05:54,980
+And this one, let's actually call it main.
+
+86
+00:05:56,590 --> 00:06:02,140
+And as we save it, it will now complain that it needs all of these states here.
+
+87
+00:06:02,990 --> 00:06:08,510
+So for now, let's just grab everything and paste that here.
+
+88
+00:06:11,120 --> 00:06:11,960
+All right.
+
+89
+00:06:14,820 --> 00:06:19,740
+And then well, we just have to include, of course, that Maine right here.
+
+90
+00:06:19,920 --> 00:06:23,670
+And then after doing that, the app should look just like before.
+
+91
+00:06:24,380 --> 00:06:26,270
+Well, for some reason it isn't.
+
+92
+00:06:26,540 --> 00:06:29,060
+But let's see that in a minute.
+
+93
+00:06:29,060 --> 00:06:34,010
+For now, I will just take this component here actually back to the top.
+
+94
+00:06:36,260 --> 00:06:37,370
+So just here.
+
+95
+00:06:38,550 --> 00:06:40,410
+Now let's open up our console.
+
+96
+00:06:40,440 --> 00:06:43,470
+Maybe we have some errors here that we're not catching.
+
+97
+00:06:43,650 --> 00:06:44,400
+But.
+
+98
+00:06:44,400 --> 00:06:45,750
+Well, actually, no.
+
+99
+00:06:46,140 --> 00:06:47,520
+Ah, but I think I know.
+
+100
+00:06:47,820 --> 00:06:50,520
+And the reason is that here we are not returning.
+
+101
+00:06:53,190 --> 00:06:54,810
+So we were not returning any.
+
+102
+00:06:54,810 --> 00:06:55,140
+JS.
+
+103
+00:06:55,620 --> 00:06:59,940
+And so then of course we couldn't have any JS here in the UI.
+
+104
+00:07:00,150 --> 00:07:00,960
+Great.
+
+105
+00:07:00,960 --> 00:07:05,910
+So let's keep going and let's look again at our nav bar.
+
+106
+00:07:06,180 --> 00:07:13,110
+So our nav bar is now a lot simpler than before, but it's still doing a lot of different things here
+
+107
+00:07:13,110 --> 00:07:13,930
+I would say.
+
+108
+00:07:13,950 --> 00:07:15,900
+So we are displaying a logo.
+
+109
+00:07:15,930 --> 00:07:20,490
+We have this input field and we have the number of results here.
+
+110
+00:07:20,700 --> 00:07:27,420
+Now, in a way, all of this does actually belong together because well together they form this nav
+
+111
+00:07:27,450 --> 00:07:27,920
+bar.
+
+112
+00:07:27,930 --> 00:07:31,620
+So we could definitely argue that this is okay like this.
+
+113
+00:07:31,620 --> 00:07:36,990
+But on the other hand, it still takes some work to actually figure out what this component here is
+
+114
+00:07:36,990 --> 00:07:41,030
+doing and maybe we even might want to reuse some parts of it.
+
+115
+00:07:41,040 --> 00:07:46,530
+So, for example, this search bar, which is basically this, we might want to reuse it all over the
+
+116
+00:07:46,530 --> 00:07:51,300
+place in the application, at least if the app grew a bit bigger in the future.
+
+117
+00:07:51,300 --> 00:07:57,370
+And so let's at least grab this part here and extract it into its own component.
+
+118
+00:07:58,110 --> 00:07:59,520
+So I'm cutting that.
+
+119
+00:08:03,100 --> 00:08:05,290
+And then let's create a function.
+
+120
+00:08:05,970 --> 00:08:09,450
+Simply called search, then return that.
+
+121
+00:08:10,200 --> 00:08:14,310
+And of course, we will then need this state.
+
+122
+00:08:15,010 --> 00:08:18,340
+And we will want to include that here.
+
+123
+00:08:19,330 --> 00:08:20,380
+Give it a save.
+
+124
+00:08:20,380 --> 00:08:22,690
+And then it looks exactly like before.
+
+125
+00:08:23,380 --> 00:08:24,100
+Okay.
+
+126
+00:08:24,310 --> 00:08:30,880
+But now something happened here that I personally really don't like, which is to have one piece of
+
+127
+00:08:30,880 --> 00:08:37,160
+JSX which mixes like this native HTML elements with our custom components.
+
+128
+00:08:37,180 --> 00:08:42,520
+So we have this div, we have this P, but then in the middle we have like our own search.
+
+129
+00:08:42,520 --> 00:08:46,990
+So that I think looks really ugly and I really don't like that.
+
+130
+00:08:47,080 --> 00:08:48,700
+I think it's quite confusing.
+
+131
+00:08:48,700 --> 00:08:53,470
+And so let's actually also extract the logo and the Num results.
+
+132
+00:08:53,470 --> 00:08:58,810
+And so then we make this component here really nice and clean and end up with these three components
+
+133
+00:08:58,810 --> 00:09:02,140
+here where each of them has its own responsibility.
+
+134
+00:09:04,230 --> 00:09:06,180
+So let's create the logo.
+
+135
+00:09:09,240 --> 00:09:14,160
+So we will end up here with a few small and reusable components if we'd like.
+
+136
+00:09:15,420 --> 00:09:20,340
+So we have our logo and then let's say num results.
+
+137
+00:09:21,810 --> 00:09:22,770
+Function.
+
+138
+00:09:23,720 --> 00:09:25,790
+Num results.
+
+139
+00:09:28,960 --> 00:09:29,220
+No.
+
+140
+00:09:29,230 --> 00:09:29,860
+Right.
+
+141
+00:09:29,980 --> 00:09:31,900
+This doesn't look quite correct.
+
+142
+00:09:34,640 --> 00:09:37,700
+And yeah, now all we have to do is to include them here.
+
+143
+00:09:40,230 --> 00:09:45,930
+And then numb results and this looks a lot nicer.
+
+144
+00:09:45,930 --> 00:09:52,740
+So as soon as we look at our navbar component, we can immediately see, oh, it contains a logo, a
+
+145
+00:09:52,740 --> 00:09:55,140
+search and the numb results.
+
+146
+00:09:55,140 --> 00:10:00,480
+And from there, if we were interested, we could then really drill down into each of these components
+
+147
+00:10:00,480 --> 00:10:01,680
+if we needed to.
+
+148
+00:10:02,040 --> 00:10:05,460
+And of course, if we wanted, we could even keep going.
+
+149
+00:10:05,460 --> 00:10:12,510
+So we could now create like one component here for the icon and one for the title, so to say.
+
+150
+00:10:12,510 --> 00:10:18,720
+But that would then be that situation in which we would end up with like hundreds of mini components,
+
+151
+00:10:18,720 --> 00:10:20,690
+which really isn't worth it.
+
+152
+00:10:20,700 --> 00:10:22,950
+So this is more than enough.
+
+153
+00:10:22,980 --> 00:10:30,030
+This logo is doing just one thing, so it has one responsibility already, which is basically to display
+
+154
+00:10:30,030 --> 00:10:31,940
+this logo, which is all this.
+
+155
+00:10:31,950 --> 00:10:35,990
+So there's absolutely no need to break it down even further.
+
+156
+00:10:36,000 --> 00:10:37,350
+So this is perfect.
+
+157
+00:10:37,350 --> 00:10:38,170
+Like this.
+
+158
+00:10:38,190 --> 00:10:42,060
+So the nav bar is now finished and we are ready to break up.
+
+159
+00:10:42,060 --> 00:10:45,240
+The main component, of course, a lot more as well.
+
+160
+00:10:45,360 --> 00:10:52,770
+So looking at our first criterion, which is the logical separation of content, we clearly have no
+
+161
+00:10:52,770 --> 00:10:54,300
+clear separation right now.
+
+162
+00:10:54,300 --> 00:10:57,270
+So we have one component that has all of this.
+
+163
+00:10:57,270 --> 00:11:03,990
+And so the first visual division that I would make here is to create one component for this box and
+
+164
+00:11:03,990 --> 00:11:06,300
+one for the right one here.
+
+165
+00:11:07,010 --> 00:11:08,630
+And so let's do just that.
+
+166
+00:11:08,660 --> 00:11:10,010
+Take this box.
+
+167
+00:11:13,760 --> 00:11:16,390
+Then let's move down here and create.
+
+168
+00:11:17,040 --> 00:11:19,290
+The list box.
+
+169
+00:11:24,360 --> 00:11:25,110
+All right.
+
+170
+00:11:25,110 --> 00:11:27,150
+And I'm calling it the list box.
+
+171
+00:11:27,390 --> 00:11:28,590
+And now we can see.
+
+172
+00:11:29,280 --> 00:11:35,280
+So again, I'm calling this component here, the list box, because in there is where we will have this
+
+173
+00:11:35,280 --> 00:11:36,840
+list of movies here.
+
+174
+00:11:38,190 --> 00:11:40,740
+So let's now grab the state that is missing here.
+
+175
+00:11:40,740 --> 00:11:44,490
+So set open one and the movies.
+
+176
+00:11:47,280 --> 00:11:48,450
+So.
+
+177
+00:11:49,760 --> 00:11:53,270
+Cutting that from here and placing it here.
+
+178
+00:11:55,210 --> 00:11:56,080
+All right.
+
+179
+00:11:56,350 --> 00:12:02,290
+Now, of course, when you build your own apps in the future, then you will not build one huge component
+
+180
+00:12:02,290 --> 00:12:03,100
+like this.
+
+181
+00:12:03,310 --> 00:12:07,180
+This is just an exercise so that we can apply what we learned before.
+
+182
+00:12:07,180 --> 00:12:13,870
+But again, never built such a huge component like this because there's really no need to then have
+
+183
+00:12:13,870 --> 00:12:18,810
+all the work of splitting that huge component up like we are doing right now.
+
+184
+00:12:18,820 --> 00:12:24,490
+But I think that yeah, for learning this is fun and absolutely no problem.
+
+185
+00:12:25,720 --> 00:12:31,300
+So let's grab this other box as well and place it into the watched box.
+
+186
+00:12:32,530 --> 00:12:34,540
+So function watched.
+
+187
+00:12:35,080 --> 00:12:36,130
+Box.
+
+188
+00:12:39,840 --> 00:12:41,190
+All right.
+
+189
+00:12:42,240 --> 00:12:44,880
+Let's grab all the state that we need here.
+
+190
+00:12:45,610 --> 00:12:48,630
+And let's also already include both the boxes here.
+
+191
+00:12:48,640 --> 00:12:53,770
+So that's the list box and the watched box.
+
+192
+00:12:54,550 --> 00:13:00,670
+So basically exactly the code that we had here before now split up into these two components.
+
+193
+00:13:02,410 --> 00:13:06,190
+Placing the state there and it's not appearing.
+
+194
+00:13:06,580 --> 00:13:10,570
+But that's because, once again, I'll forgot to return here.
+
+195
+00:13:11,620 --> 00:13:12,580
+Nice.
+
+196
+00:13:13,000 --> 00:13:17,920
+So let's keep going, because I still think that this is way too big.
+
+197
+00:13:18,160 --> 00:13:21,840
+So just looking at this code, it looks quite confusing.
+
+198
+00:13:21,850 --> 00:13:25,710
+You cannot immediately understand what this component here is doing.
+
+199
+00:13:25,720 --> 00:13:31,600
+It has like this button here which does something, and then we have all of this code down here.
+
+200
+00:13:31,750 --> 00:13:38,140
+And so now what I want to do is to extract this code here into its own list component, which will then
+
+201
+00:13:38,170 --> 00:13:44,260
+have only one responsibility, which is to simply display, well, the list of movies.
+
+202
+00:13:45,000 --> 00:13:46,740
+So let's grab this.
+
+203
+00:13:47,040 --> 00:13:48,600
+Cut it from here.
+
+204
+00:13:50,760 --> 00:13:52,560
+And place it right here.
+
+205
+00:13:52,920 --> 00:13:55,350
+So movie list.
+
+206
+00:13:57,930 --> 00:13:58,920
+And keep.
+
+207
+00:13:59,760 --> 00:14:01,260
+Forgetting to return.
+
+208
+00:14:01,740 --> 00:14:05,310
+And then here we also need that movies state.
+
+209
+00:14:09,160 --> 00:14:11,230
+And yeah, here.
+
+210
+00:14:11,230 --> 00:14:16,120
+Then all we need to do is to include that movie list.
+
+211
+00:14:17,520 --> 00:14:18,270
+Nice.
+
+212
+00:14:18,270 --> 00:14:19,920
+And this is still working.
+
+213
+00:14:20,670 --> 00:14:21,360
+Yes.
+
+214
+00:14:21,360 --> 00:14:23,760
+And so we're doing a great job here.
+
+215
+00:14:24,180 --> 00:14:28,470
+So this component is now a lot easier to understand here, if you ask me.
+
+216
+00:14:29,070 --> 00:14:34,410
+So we have one button, and then if that button is open, we show the movie list.
+
+217
+00:14:35,030 --> 00:14:35,900
+Nice.
+
+218
+00:14:37,160 --> 00:14:38,840
+So getting better and better.
+
+219
+00:14:38,840 --> 00:14:44,660
+And I just want to mention that in the real world, we would probably have one file for each of these
+
+220
+00:14:44,660 --> 00:14:45,500
+components.
+
+221
+00:14:45,500 --> 00:14:52,100
+So something I said already many times ago or many times before, but I still wanted to just mention
+
+222
+00:14:52,100 --> 00:14:52,730
+that here.
+
+223
+00:14:54,280 --> 00:14:58,150
+So we now have this movie list component right here.
+
+224
+00:14:58,150 --> 00:15:01,290
+And for many people, this would now be enough.
+
+225
+00:15:01,300 --> 00:15:08,470
+But if it comes down to my personal coding style or my personal preference, I would actually like to
+
+226
+00:15:08,470 --> 00:15:13,150
+still extract this list element here into its own movie.
+
+227
+00:15:13,330 --> 00:15:19,330
+And we have actually done that many times before already in this application where we had one component
+
+228
+00:15:19,330 --> 00:15:26,470
+for the list which would then simply loop over some array and then display one component for each element.
+
+229
+00:15:26,470 --> 00:15:28,990
+And so now I will do exactly the same here.
+
+230
+00:15:30,140 --> 00:15:35,510
+So again, this is now a bit more of my personal preference, but I think that it's actually quite a
+
+231
+00:15:35,510 --> 00:15:41,570
+sensible thing to do because then here we have a the mapping over the array here, isolated in this
+
+232
+00:15:41,570 --> 00:15:48,050
+one component and have then one component which is really only about the movie and nothing else.
+
+233
+00:15:48,790 --> 00:15:51,730
+And again, I keep forgetting to return here.
+
+234
+00:15:53,610 --> 00:15:57,330
+And yeah, let's then use that movie here.
+
+235
+00:15:57,330 --> 00:16:00,810
+And what will happen is that we will pass the current movie.
+
+236
+00:16:02,450 --> 00:16:08,600
+So this one here that's coming from the map as a prop into that component.
+
+237
+00:16:10,340 --> 00:16:14,870
+We will also need this key no longer here, but now here.
+
+238
+00:16:14,870 --> 00:16:17,570
+And finally accept that prop.
+
+239
+00:16:18,760 --> 00:16:20,080
+Right here.
+
+240
+00:16:21,210 --> 00:16:22,320
+We give it a save?
+
+241
+00:16:22,350 --> 00:16:23,610
+We have no error.
+
+242
+00:16:23,610 --> 00:16:25,500
+And so let's keep going.
+
+243
+00:16:25,620 --> 00:16:29,820
+So I think we are quite finished here with this left part.
+
+244
+00:16:29,820 --> 00:16:31,980
+And so let's go over here.
+
+245
+00:16:32,310 --> 00:16:38,430
+Now, here we can already see that it's a bit more complex because here we have not only the list,
+
+246
+00:16:38,430 --> 00:16:44,490
+but also like this summary of the list, but let's see what we actually have there.
+
+247
+00:16:44,490 --> 00:16:47,460
+So it's inside this watched box.
+
+248
+00:16:47,460 --> 00:16:54,930
+And of course, we can also start seeing our components tree right here, which is always nice.
+
+249
+00:16:54,930 --> 00:16:57,480
+So I always like to do that actually.
+
+250
+00:16:57,810 --> 00:17:01,260
+And so it's coming together here quite nicely.
+
+251
+00:17:02,070 --> 00:17:04,530
+Maybe it doesn't even have to be this big.
+
+252
+00:17:04,560 --> 00:17:07,410
+Then we can see a bit better.
+
+253
+00:17:09,170 --> 00:17:12,950
+And so, yeah, this is exactly what we have been building.
+
+254
+00:17:12,950 --> 00:17:18,380
+And now all we have to do is to also break up this watched box a bit better.
+
+255
+00:17:19,570 --> 00:17:21,180
+So let's take care of that.
+
+256
+00:17:21,190 --> 00:17:26,350
+And first up, I will do that division that I just mentioned earlier.
+
+257
+00:17:26,350 --> 00:17:29,710
+So we have this list here and also this summary.
+
+258
+00:17:30,730 --> 00:17:33,550
+So let's grab that summary here.
+
+259
+00:17:33,760 --> 00:17:38,080
+And so that's basically this div with the class name of summary.
+
+260
+00:17:38,900 --> 00:17:42,830
+So I'm cutting that and then let's just create.
+
+261
+00:17:43,490 --> 00:17:44,420
+Function.
+
+262
+00:17:46,410 --> 00:17:48,900
+Watched summary.
+
+263
+00:17:51,910 --> 00:17:54,340
+And then returning this.
+
+264
+00:17:55,280 --> 00:17:59,520
+So now this code here actually depends on a few things.
+
+265
+00:17:59,540 --> 00:18:01,180
+So all of these variables.
+
+266
+00:18:01,190 --> 00:18:02,780
+So let's see what they are.
+
+267
+00:18:03,530 --> 00:18:07,610
+So that's these variables right here, plus the West.
+
+268
+00:18:07,700 --> 00:18:12,920
+Now, we could pass all of these three here individually or actually the four of them.
+
+269
+00:18:12,920 --> 00:18:15,480
+So what plus these three here?
+
+270
+00:18:15,500 --> 00:18:17,300
+So we could pass them in.
+
+271
+00:18:18,220 --> 00:18:19,720
+Into the.
+
+272
+00:18:20,450 --> 00:18:23,890
+Watched box component that we just created.
+
+273
+00:18:23,900 --> 00:18:29,620
+But actually, if we take a look at them, all of them simply depend on the watched state.
+
+274
+00:18:29,630 --> 00:18:35,960
+And so what we're going to do is to grab this and pass this watched list.
+
+275
+00:18:36,620 --> 00:18:39,740
+So that array right here as a prop.
+
+276
+00:18:43,180 --> 00:18:43,860
+Okay.
+
+277
+00:18:43,870 --> 00:18:44,920
+Moving there.
+
+278
+00:18:45,870 --> 00:18:47,100
+Pasting that here.
+
+279
+00:18:47,950 --> 00:18:51,930
+Oh, and of course, we need to accept that Prop ten here.
+
+280
+00:18:53,220 --> 00:18:55,260
+And now React is happy again.
+
+281
+00:18:56,210 --> 00:19:03,770
+So again, what we did is that these three pieces here are derived state and they are derived from this
+
+282
+00:19:03,800 --> 00:19:05,390
+watched array right here.
+
+283
+00:19:05,510 --> 00:19:12,590
+And so we simply passed the watched array into this component and then, yeah, just moved these three
+
+284
+00:19:12,590 --> 00:19:12,980
+here.
+
+285
+00:19:13,010 --> 00:19:15,140
+Of course, also into this component.
+
+286
+00:19:15,140 --> 00:19:20,570
+And so we did that instead of leaving this here in the parent component and passing all of them one
+
+287
+00:19:20,570 --> 00:19:21,220
+by one.
+
+288
+00:19:21,230 --> 00:19:24,850
+But this code here clearly belongs in this component.
+
+289
+00:19:24,860 --> 00:19:31,370
+So it's clearly part of the responsibility of what summary to calculate its own statistics.
+
+290
+00:19:31,370 --> 00:19:38,570
+And if all it needs to do that is this watched array, well then we are happy to provide it with exactly
+
+291
+00:19:38,570 --> 00:19:39,320
+that array.
+
+292
+00:19:39,890 --> 00:19:45,650
+But moving on, let's now create another list which is here for this watched.
+
+293
+00:19:46,790 --> 00:19:48,860
+So this watched movies list.
+
+294
+00:19:50,010 --> 00:19:51,660
+So cut that as well.
+
+295
+00:19:55,490 --> 00:19:58,430
+So let's call this one here, the watch list.
+
+296
+00:19:59,260 --> 00:20:02,800
+And of course, we could have also called it the watched movie list.
+
+297
+00:20:03,990 --> 00:20:05,340
+And let's actually do that.
+
+298
+00:20:06,600 --> 00:20:11,160
+So remember how I said that we should not be afraid of long component names?
+
+299
+00:20:11,160 --> 00:20:14,400
+And so I think that this is a bit better, actually.
+
+300
+00:20:14,970 --> 00:20:17,910
+Now here we will need that watched array.
+
+301
+00:20:17,940 --> 00:20:20,670
+So that piece of state that we have up here.
+
+302
+00:20:22,800 --> 00:20:23,430
+Right.
+
+303
+00:20:23,430 --> 00:20:26,520
+But let's first give it a save and then see that error.
+
+304
+00:20:30,060 --> 00:20:30,960
+And.
+
+305
+00:20:32,990 --> 00:20:35,300
+Well, nothing really happened here.
+
+306
+00:20:36,150 --> 00:20:36,280
+Uh.
+
+307
+00:20:37,620 --> 00:20:44,010
+Well, first of all, we have a bug here and it's a big one, which is that we are here, including
+
+308
+00:20:44,010 --> 00:20:46,380
+the same component inside itself.
+
+309
+00:20:46,380 --> 00:20:49,800
+So we are including Watchbox inside Watchbox.
+
+310
+00:20:49,800 --> 00:20:51,420
+So this was by mistake.
+
+311
+00:20:51,780 --> 00:20:54,990
+Probably you have noticed this as I was typing.
+
+312
+00:20:54,990 --> 00:21:00,330
+So here of course it needs to be the watched summary which is the component that we were talking about
+
+313
+00:21:00,330 --> 00:21:00,990
+before.
+
+314
+00:21:01,570 --> 00:21:03,430
+But still nothing is happening.
+
+315
+00:21:04,130 --> 00:21:05,870
+So let's try to reload here.
+
+316
+00:21:06,020 --> 00:21:08,990
+But now we have like this infinite loop.
+
+317
+00:21:09,380 --> 00:21:11,060
+Maybe we have some errors.
+
+318
+00:21:11,150 --> 00:21:20,120
+But yeah, I think the best thing to do is to actually quit the application altogether and then just
+
+319
+00:21:20,120 --> 00:21:21,380
+try to restart.
+
+320
+00:21:22,700 --> 00:21:24,370
+So let's wait for it.
+
+321
+00:21:24,380 --> 00:21:25,550
+And.
+
+322
+00:21:27,010 --> 00:21:27,610
+Yeah.
+
+323
+00:21:28,400 --> 00:21:30,140
+Let's close the old one.
+
+324
+00:21:31,230 --> 00:21:34,410
+And now we get that error that we had before.
+
+325
+00:21:36,080 --> 00:21:37,880
+So before I fix that.
+
+326
+00:21:40,240 --> 00:21:43,120
+Or actually, let's pass it in already here.
+
+327
+00:21:43,120 --> 00:21:49,660
+But still wanted to say that it's really, really important that you do not call the component inside
+
+328
+00:21:49,660 --> 00:21:50,650
+of itself.
+
+329
+00:21:50,860 --> 00:21:54,850
+So again, I was calling watched box in here.
+
+330
+00:21:54,850 --> 00:22:00,220
+And so the problem was that this then created an infinite loop of the component calling itself.
+
+331
+00:22:00,220 --> 00:22:06,160
+And so that's why when I was reloading the application react here wasn't really reacting.
+
+332
+00:22:06,160 --> 00:22:10,120
+So the application wasn't really able to then render itself.
+
+333
+00:22:10,120 --> 00:22:16,240
+And again, because of that infinite loop, so never do what I just did here by mistake.
+
+334
+00:22:17,110 --> 00:22:23,200
+But anyway, we now past the watched array here into this watched movies list.
+
+335
+00:22:23,200 --> 00:22:27,580
+And so here we just need to receive that.
+
+336
+00:22:28,220 --> 00:22:31,580
+Give it a save and then we are back to normal.
+
+337
+00:22:31,880 --> 00:22:35,360
+Let's quickly get our console back.
+
+338
+00:22:37,430 --> 00:22:42,070
+And, uh, yeah, So this is the list that we have.
+
+339
+00:22:42,080 --> 00:22:49,430
+And now just one more component where just like before, I will extract the list item into its own component.
+
+340
+00:22:49,670 --> 00:22:51,500
+So grabbing all of this.
+
+341
+00:22:52,210 --> 00:22:56,380
+Let's create the watched movie.
+
+342
+00:22:58,330 --> 00:22:58,660
+Here.
+
+343
+00:22:58,660 --> 00:23:01,420
+We already know that we need to accept the movie.
+
+344
+00:23:01,750 --> 00:23:07,810
+And here remember, it's very important that we place the prop name into these curly braces because
+
+345
+00:23:07,810 --> 00:23:11,860
+we are in fact, just destructuring the props object.
+
+346
+00:23:12,400 --> 00:23:13,390
+Right?
+
+347
+00:23:14,120 --> 00:23:17,630
+And so then here all we have to do is to write.
+
+348
+00:23:18,640 --> 00:23:21,640
+What movie pass in the.
+
+349
+00:23:22,290 --> 00:23:23,340
+Movie prop.
+
+350
+00:23:24,880 --> 00:23:28,450
+And yeah, we also need this key right here.
+
+351
+00:23:30,800 --> 00:23:33,230
+And with this we should be done.
+
+352
+00:23:33,350 --> 00:23:34,830
+And we are indeed.
+
+353
+00:23:34,850 --> 00:23:39,170
+So the app works and looks just like before.
+
+354
+00:23:39,290 --> 00:23:43,760
+But we now divided this application into its logical components.
+
+355
+00:23:43,760 --> 00:23:50,930
+So components that have a logical separation of the content that might be reusable and that have the
+
+356
+00:23:50,930 --> 00:23:55,100
+right number of responsibilities and of complexity.

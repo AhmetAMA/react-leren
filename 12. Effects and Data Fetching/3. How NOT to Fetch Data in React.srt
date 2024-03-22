@@ -1,0 +1,527 @@
+1
+00:00:00,990 --> 00:00:06,420
+Let's now load some data into a React application for the very first time.
+
+2
+00:00:06,510 --> 00:00:13,770
+However, in this lecture, let's start by doing it the wrong way, basically, which is going to be
+
+3
+00:00:13,770 --> 00:00:15,930
+a great learning experience.
+
+4
+00:00:17,240 --> 00:00:23,390
+So in this section we are going to go back to our use popcorn application that we have been working
+
+5
+00:00:23,390 --> 00:00:24,350
+on before.
+
+6
+00:00:24,540 --> 00:00:30,680
+And so let's now grab the project folder and open it back up in VS code.
+
+7
+00:00:32,620 --> 00:00:33,640
+All right.
+
+8
+00:00:35,380 --> 00:00:39,280
+Now here, let's start by actually duplicating this file.
+
+9
+00:00:39,520 --> 00:00:43,540
+And then I'm going to rename one of them to app version one.
+
+10
+00:00:43,540 --> 00:00:49,120
+And so by doing this, we are not going to overwrite the code that we have written before, and so you
+
+11
+00:00:49,120 --> 00:00:51,070
+can keep it as a reference.
+
+12
+00:00:52,240 --> 00:00:59,220
+Now, as we have learned before in the previous section, we should never update state in render logic,
+
+13
+00:00:59,230 --> 00:01:00,100
+right?
+
+14
+00:01:00,250 --> 00:01:07,930
+But now in this lecture, let's actually break that rule so that we can see why it actually exists in
+
+15
+00:01:07,930 --> 00:01:09,010
+the first place.
+
+16
+00:01:09,010 --> 00:01:16,390
+And breaking rules like this is actually a pretty great way of learning react and also its rules even
+
+17
+00:01:16,390 --> 00:01:17,020
+better.
+
+18
+00:01:17,350 --> 00:01:24,220
+Now the idea here is to fetch some movie data as soon as the app component here mounts for the very
+
+19
+00:01:24,220 --> 00:01:25,000
+first time.
+
+20
+00:01:25,000 --> 00:01:28,030
+So as soon as it has its initial render.
+
+21
+00:01:28,910 --> 00:01:38,480
+So to fetch that data, we use the IMDb API, which is basically like an open version of IMDb.
+
+22
+00:01:38,990 --> 00:01:45,500
+Now to get started, you need to get your own API key, which you can get for free just by clicking
+
+23
+00:01:45,500 --> 00:01:47,870
+here and then filling out this form.
+
+24
+00:01:47,870 --> 00:01:51,860
+And so immediately you will then get your free API key.
+
+25
+00:01:52,100 --> 00:01:58,220
+And then once you have that, you can just come back here to the main page so we can see how we can
+
+26
+00:01:58,220 --> 00:01:59,360
+use this API.
+
+27
+00:02:00,460 --> 00:02:05,080
+So our data requests should simply be sent to this URL.
+
+28
+00:02:05,380 --> 00:02:07,050
+So just copy that.
+
+29
+00:02:07,060 --> 00:02:12,760
+And then here, let's fetch the data using the fetch API.
+
+30
+00:02:12,790 --> 00:02:15,550
+So using the fetch function like this.
+
+31
+00:02:17,110 --> 00:02:17,950
+All right.
+
+32
+00:02:18,070 --> 00:02:24,670
+Now, in case you're not familiar with the fetch function and on how to work with asynchronous JavaScript,
+
+33
+00:02:24,700 --> 00:02:30,430
+then please go back to the beginning of the course and take a look at the JavaScript review section
+
+34
+00:02:30,430 --> 00:02:33,580
+where I talk about all that in great length.
+
+35
+00:02:33,760 --> 00:02:35,230
+But anyway, here.
+
+36
+00:02:35,230 --> 00:02:40,480
+Now of course you need to place your own key and actually I want to do this.
+
+37
+00:02:40,720 --> 00:02:44,200
+So I want to place this key in a separate variable.
+
+38
+00:02:44,820 --> 00:02:47,010
+So let's define that out here.
+
+39
+00:02:47,160 --> 00:02:48,450
+So key.
+
+40
+00:02:48,960 --> 00:02:55,470
+And by now, after that long previous section, you know why we should actually define a variable like
+
+41
+00:02:55,470 --> 00:02:58,020
+this outside the component function.
+
+42
+00:02:58,020 --> 00:03:04,500
+And the reason for that is that each time the component gets rendered, this entire function here will
+
+43
+00:03:04,500 --> 00:03:05,730
+be executed again.
+
+44
+00:03:05,730 --> 00:03:07,950
+So basically all the render logic.
+
+45
+00:03:07,950 --> 00:03:14,700
+And so if this variable definition here is part of that render logic, it will also be recreated each
+
+46
+00:03:14,700 --> 00:03:21,240
+time that the component renders, which is in this case, of course not a big deal, but it's good to
+
+47
+00:03:21,240 --> 00:03:24,720
+already get into the habit of not doing that.
+
+48
+00:03:24,720 --> 00:03:30,060
+So when you're just defining a variable like this, that doesn't depend on anything that's inside the
+
+49
+00:03:30,060 --> 00:03:33,090
+component, then just declare it outside.
+
+50
+00:03:34,200 --> 00:03:37,480
+Now I'm just getting my own API key.
+
+51
+00:03:37,500 --> 00:03:40,470
+But of course you should use your own one here.
+
+52
+00:03:40,860 --> 00:03:48,240
+And now let's go back to the documentation page where we can see that we can query the API in two ways,
+
+53
+00:03:48,240 --> 00:03:55,020
+so we can search for an ID or a title, or we can actually search by some query string.
+
+54
+00:03:55,020 --> 00:03:57,480
+And so that's actually what we will do here.
+
+55
+00:03:59,570 --> 00:04:02,780
+So here, let's use S and then equal.
+
+56
+00:04:02,780 --> 00:04:08,570
+And then here you can type your favorite movie, which for me probably is Interstellar.
+
+57
+00:04:08,600 --> 00:04:13,100
+Not 100% sure of that, but it's definitely a great one.
+
+58
+00:04:14,660 --> 00:04:15,320
+Okay.
+
+59
+00:04:15,320 --> 00:04:16,400
+But anyway.
+
+60
+00:04:17,460 --> 00:04:23,280
+Now we need to handle the promise that the fetch function here returns inside.
+
+61
+00:04:23,490 --> 00:04:25,170
+And of course, here it's then.
+
+62
+00:04:25,200 --> 00:04:30,200
+So inside a then method which gets access to the response.
+
+63
+00:04:30,210 --> 00:04:33,060
+And then here we can convert that response.
+
+64
+00:04:33,680 --> 00:04:38,810
+To Jason immediately, which will return another promise.
+
+65
+00:04:39,620 --> 00:04:41,750
+That's all we chain on another then.
+
+66
+00:04:41,840 --> 00:04:49,640
+And then here we get access to the data which we can Then for now, log to the console.
+
+67
+00:04:50,250 --> 00:04:52,200
+And for now, that's actually it.
+
+68
+00:04:52,940 --> 00:04:55,460
+So let's see what we get here.
+
+69
+00:04:55,850 --> 00:04:59,630
+Or, of course, we first need to actually start our application.
+
+70
+00:05:00,690 --> 00:05:05,910
+So make sure you are in the right project folder here and then type NPM start.
+
+71
+00:05:07,030 --> 00:05:09,580
+So that should then open up the new tab here.
+
+72
+00:05:10,460 --> 00:05:13,130
+And indeed, there it is.
+
+73
+00:05:13,340 --> 00:05:15,890
+So let's check out our console.
+
+74
+00:05:16,860 --> 00:05:18,580
+And let's just reload quickly.
+
+75
+00:05:18,600 --> 00:05:23,820
+And indeed, you see that React was able to fetch the data from the API.
+
+76
+00:05:24,550 --> 00:05:27,100
+So we are just interested in the search here.
+
+77
+00:05:27,100 --> 00:05:33,700
+And so all the movies here are in fact about Interstellar, which means that our query here is already
+
+78
+00:05:33,700 --> 00:05:34,460
+working.
+
+79
+00:05:34,480 --> 00:05:40,720
+Now, as we learned in the previous section, this data fetching that we're doing right here is actually
+
+80
+00:05:40,720 --> 00:05:44,850
+introducing a side effect into the component's render logic.
+
+81
+00:05:44,860 --> 00:05:51,790
+So it is clearly an interaction with the outside world which should never be allowed in render logic.
+
+82
+00:05:52,090 --> 00:05:58,210
+So again, all this code that is here at the top level of the function is of course, code that will
+
+83
+00:05:58,210 --> 00:06:03,380
+run as the component first mounts and therefore it is called render logic.
+
+84
+00:06:03,400 --> 00:06:07,180
+And so again, here we should have no side effects.
+
+85
+00:06:07,300 --> 00:06:12,880
+I mean, in this example where we only lock something to the console, it actually appears to work just
+
+86
+00:06:12,880 --> 00:06:13,480
+fine.
+
+87
+00:06:13,480 --> 00:06:16,720
+But watch what happens if we set some state here.
+
+88
+00:06:17,740 --> 00:06:23,660
+And to do that, let's actually first get rid of our temporary data here.
+
+89
+00:06:23,680 --> 00:06:31,480
+So this movie data and what data we only used like as a template for the previous section, but now
+
+90
+00:06:31,480 --> 00:06:32,760
+let's get rid of that.
+
+91
+00:06:32,770 --> 00:06:37,870
+And so as I was just saying, let's now here actually set state.
+
+92
+00:06:39,630 --> 00:06:45,900
+So that list of movies that we get from the API, we now want to get it into our movie state.
+
+93
+00:06:45,930 --> 00:06:52,860
+And so that's a data dot search gave it a save and beautiful.
+
+94
+00:06:52,860 --> 00:06:57,900
+So we got some data from the API now showing up in our UI.
+
+95
+00:06:58,230 --> 00:07:02,760
+But watch what happens when we check out the network tab.
+
+96
+00:07:03,840 --> 00:07:09,290
+So you see that it's basically running an infinite number of requests here.
+
+97
+00:07:09,300 --> 00:07:12,630
+So it keeps going and it never really stops.
+
+98
+00:07:12,870 --> 00:07:20,580
+So every second our app is firing off multiple fetch requests to this API, which of course is a really,
+
+99
+00:07:20,580 --> 00:07:21,780
+really bad idea.
+
+100
+00:07:22,140 --> 00:07:24,060
+So why do you think that is?
+
+101
+00:07:24,090 --> 00:07:28,050
+Why do you think all these fetch requests are being fired off?
+
+102
+00:07:28,080 --> 00:07:34,080
+Well, the reason is that setting the state here in the render logic will then immediately cause the
+
+103
+00:07:34,080 --> 00:07:36,980
+component to rerender itself again.
+
+104
+00:07:36,990 --> 00:07:40,380
+So that's just how state works, right?
+
+105
+00:07:40,410 --> 00:07:46,830
+However, as the component is re rendered, the function here, of course, is executed again, which
+
+106
+00:07:46,830 --> 00:07:51,480
+then will fetch again, which in turn will set the movies again as well.
+
+107
+00:07:51,480 --> 00:07:54,960
+And then this whole thing starts over and over again.
+
+108
+00:07:55,200 --> 00:08:00,960
+So as the state is that the component is re rendered again, which then will fetch again, which will
+
+109
+00:08:00,960 --> 00:08:02,160
+set the movies again.
+
+110
+00:08:02,160 --> 00:08:08,630
+And so this really is an infinite loop of state setting and then the component re rendering.
+
+111
+00:08:08,650 --> 00:08:14,740
+And so this is the reason why it is really not allowed to set state in render logic.
+
+112
+00:08:15,500 --> 00:08:22,070
+So let's quickly set this back here so that we don't have like a million requests here.
+
+113
+00:08:22,160 --> 00:08:25,250
+And so as we reload, then it stops.
+
+114
+00:08:26,430 --> 00:08:28,980
+And let's just see another example here quickly.
+
+115
+00:08:29,430 --> 00:08:34,710
+So let's say we did set what, immediately here in the top level code?
+
+116
+00:08:35,480 --> 00:08:36,920
+To some empty array.
+
+117
+00:08:37,010 --> 00:08:39,860
+And then actually we do get a real error.
+
+118
+00:08:41,700 --> 00:08:43,260
+I mean, let's reload that.
+
+119
+00:08:45,170 --> 00:08:51,040
+And yeah, here we are now, reloading all the time again the data from the API.
+
+120
+00:08:51,050 --> 00:08:55,460
+But what matters here is that we get the error of too many rerenders.
+
+121
+00:08:55,460 --> 00:08:59,150
+And so that's now because of this state setting right here.
+
+122
+00:08:59,150 --> 00:09:05,450
+So if we're really setting the state here in the top level, even without being inside a then handler,
+
+123
+00:09:05,480 --> 00:09:11,330
+then immediately react will complain that there are too many renders, which means that we again entered
+
+124
+00:09:11,330 --> 00:09:17,240
+that infinite loop where updating state will cause the component to rerender, which will cost the state
+
+125
+00:09:17,240 --> 00:09:20,510
+to be set and so on into infinity.
+
+126
+00:09:21,170 --> 00:09:23,630
+So let's of course get rid of that.
+
+127
+00:09:23,810 --> 00:09:25,550
+Let's reload here.
+
+128
+00:09:25,550 --> 00:09:27,950
+And so now we are again good.
+
+129
+00:09:28,250 --> 00:09:31,790
+However, we do actually want to set the state here.
+
+130
+00:09:31,790 --> 00:09:37,460
+So we do want set movies here, but without all the problems that we just saw.
+
+131
+00:09:37,460 --> 00:09:39,470
+And so how can we do that?
+
+132
+00:09:39,680 --> 00:09:45,720
+Well, that's where we need the use effect hook, which we will learn about in the next lecture.

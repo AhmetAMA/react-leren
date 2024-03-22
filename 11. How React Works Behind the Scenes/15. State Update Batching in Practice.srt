@@ -1,0 +1,903 @@
+1
+00:00:01,110 --> 00:00:08,580
+All right, So let's move back to our project and see how React batches, state updates in practice
+
+2
+00:00:08,580 --> 00:00:13,590
+and how this state updating is, in fact asynchronous.
+
+3
+00:00:14,840 --> 00:00:21,530
+So let's come down here to our tab content component and then let's play around a little bit with the
+
+4
+00:00:21,530 --> 00:00:23,250
+states that we have here.
+
+5
+00:00:23,270 --> 00:00:29,630
+And first of all, I want to now implement the functionality of this undo button here.
+
+6
+00:00:29,750 --> 00:00:35,700
+So this undo will basically undo or reset the two states that we have here.
+
+7
+00:00:35,720 --> 00:00:38,510
+So this one and this one.
+
+8
+00:00:41,080 --> 00:00:46,480
+So let's write a simple function handle undo.
+
+9
+00:00:47,780 --> 00:00:53,480
+And then what it does is set show details back to True.
+
+10
+00:00:54,200 --> 00:00:57,590
+And set the likes back to zero.
+
+11
+00:00:58,780 --> 00:01:01,480
+And then let's use that handler.
+
+12
+00:01:02,790 --> 00:01:04,290
+Right here.
+
+13
+00:01:05,320 --> 00:01:07,080
+So easy enough.
+
+14
+00:01:07,090 --> 00:01:07,740
+Handle.
+
+15
+00:01:07,750 --> 00:01:08,560
+Undo.
+
+16
+00:01:09,380 --> 00:01:12,740
+And yeah, that works great.
+
+17
+00:01:13,440 --> 00:01:21,000
+So as we just learned in the previous lecture inside of this event handler function here, these two
+
+18
+00:01:21,030 --> 00:01:23,100
+state updates are batched.
+
+19
+00:01:23,130 --> 00:01:26,910
+So they will only cause one component rerender.
+
+20
+00:01:27,090 --> 00:01:29,850
+Now, how can we actually prove that?
+
+21
+00:01:30,120 --> 00:01:35,790
+Well, one simple way is to log something to the console here.
+
+22
+00:01:36,930 --> 00:01:37,780
+So let's see.
+
+23
+00:01:37,800 --> 00:01:38,700
+Render.
+
+24
+00:01:38,700 --> 00:01:42,450
+And so then each time that the component gets re rendered.
+
+25
+00:01:42,450 --> 00:01:48,330
+And so then each time this console dot log will log render to the console.
+
+26
+00:01:49,690 --> 00:01:50,920
+So let's see.
+
+27
+00:01:51,190 --> 00:01:55,120
+Let's first get rid of these other ones that we had here.
+
+28
+00:01:57,660 --> 00:01:59,100
+So here there are.
+
+29
+00:01:59,340 --> 00:02:00,930
+And.
+
+30
+00:02:04,080 --> 00:02:04,740
+Okay.
+
+31
+00:02:05,490 --> 00:02:09,170
+Now, never mind this one here that is a bit more grayed out.
+
+32
+00:02:09,180 --> 00:02:11,190
+This is coming from somewhere else.
+
+33
+00:02:11,190 --> 00:02:14,280
+So only this one render here is important.
+
+34
+00:02:14,430 --> 00:02:20,250
+So this first render string here comes from the initial render of this tab content component.
+
+35
+00:02:20,250 --> 00:02:27,540
+And if we go to another tab, then we get another one because of course then this component here is
+
+36
+00:02:27,540 --> 00:02:28,410
+updated.
+
+37
+00:02:29,750 --> 00:02:33,600
+Okay, now let's remove this so that we start empty.
+
+38
+00:02:34,360 --> 00:02:36,250
+Or actually we will see a few more.
+
+39
+00:02:37,090 --> 00:02:40,660
+So each time that we click here, the component function gets rendered.
+
+40
+00:02:40,660 --> 00:02:43,840
+And so then the console dot log is executed.
+
+41
+00:02:43,840 --> 00:02:49,930
+And so this is actually a really nice way of proving that the rendering is calling the component function.
+
+42
+00:02:51,540 --> 00:02:52,410
+All right.
+
+43
+00:02:52,990 --> 00:02:54,460
+But now let's empty this.
+
+44
+00:02:54,490 --> 00:03:01,300
+And then as I click this button here, we should only see one render here, which would then mean that
+
+45
+00:03:01,300 --> 00:03:03,760
+these two state updates were batched.
+
+46
+00:03:04,430 --> 00:03:05,560
+So let's see.
+
+47
+00:03:05,570 --> 00:03:08,270
+And indeed, we only get one here.
+
+48
+00:03:08,510 --> 00:03:09,470
+Great.
+
+49
+00:03:10,120 --> 00:03:15,220
+Now let's also see that the state updating is asynchronous.
+
+50
+00:03:16,210 --> 00:03:22,720
+So basically, if I try to access the number of likes here right after updating the state.
+
+51
+00:03:23,270 --> 00:03:24,320
+Then what?
+
+52
+00:03:24,350 --> 00:03:25,460
+What happens?
+
+53
+00:03:26,430 --> 00:03:29,220
+So first I need to, of course, increase a little bit.
+
+54
+00:03:29,370 --> 00:03:30,930
+Then let's clean this.
+
+55
+00:03:30,930 --> 00:03:40,140
+And as I reset, well, we get five, which might be surprising, but if you paid good attention in
+
+56
+00:03:40,140 --> 00:03:45,480
+the previous lecture, then this will actually no longer come as a surprise to you.
+
+57
+00:03:46,040 --> 00:03:54,320
+So the reason that here we get five is that the state is in fact actually only updated after the re
+
+58
+00:03:54,320 --> 00:04:01,970
+rendering or basically during the re rendering, but not immediately after we call this function.
+
+59
+00:04:01,970 --> 00:04:03,710
+So that's impossible.
+
+60
+00:04:03,710 --> 00:04:12,140
+And therefore here we still get that old likes state which again is still at five then now it is of
+
+61
+00:04:12,140 --> 00:04:16,640
+course at zero because now the re rendering has already happened.
+
+62
+00:04:16,910 --> 00:04:20,420
+Now, by the way, what do you think will happen?
+
+63
+00:04:20,420 --> 00:04:25,130
+So what do you think will get rendered if we click the undo button again?
+
+64
+00:04:25,790 --> 00:04:27,380
+So let's clear this.
+
+65
+00:04:27,410 --> 00:04:29,350
+And so let's see what happens.
+
+66
+00:04:29,360 --> 00:04:30,890
+So I click this now.
+
+67
+00:04:31,590 --> 00:04:36,750
+And you see that no render was logged to the console.
+
+68
+00:04:36,930 --> 00:04:38,970
+So why do you think that is?
+
+69
+00:04:39,000 --> 00:04:43,230
+Why was the component instance not re rendered this time?
+
+70
+00:04:43,560 --> 00:04:50,180
+Well, it's because both of the state values were already at their default basically.
+
+71
+00:04:50,190 --> 00:04:54,690
+So details was already true and likes was already zero.
+
+72
+00:04:54,690 --> 00:05:00,940
+And so then as we attempted to update the state, both of them were actually not updated.
+
+73
+00:05:00,960 --> 00:05:05,690
+And again, that's because the new state was equal to the current state.
+
+74
+00:05:05,700 --> 00:05:11,190
+And so in that situation, React will not even try to attempt to update the state.
+
+75
+00:05:11,190 --> 00:05:15,900
+And then of course, it will also not re render the component instance.
+
+76
+00:05:15,900 --> 00:05:19,110
+And so that's why well, nothing happens.
+
+77
+00:05:20,090 --> 00:05:25,270
+So as we keep clicking here, of course, the console log keeps getting executed.
+
+78
+00:05:25,280 --> 00:05:29,510
+But again, the component itself is not rerendered.
+
+79
+00:05:30,270 --> 00:05:35,490
+Okay, But let's move on here and let's implement this next button here.
+
+80
+00:05:36,020 --> 00:05:43,040
+So here I have these three pluses, which means that when I click here, I actually want like a super
+
+81
+00:05:43,040 --> 00:05:43,610
+like.
+
+82
+00:05:43,610 --> 00:05:46,160
+So this should then improve by three.
+
+83
+00:05:46,890 --> 00:05:50,790
+So let's create a function for that and I will just copy this one.
+
+84
+00:05:51,820 --> 00:05:54,850
+And let's call it triple ink.
+
+85
+00:05:57,050 --> 00:05:59,510
+And then I'll just duplicate this here.
+
+86
+00:06:00,370 --> 00:06:06,130
+And then let's come down here on click.
+
+87
+00:06:07,690 --> 00:06:10,690
+And then handle triple Inc.
+
+88
+00:06:11,910 --> 00:06:16,440
+Okay, let's go back to our function because this will become very important.
+
+89
+00:06:17,260 --> 00:06:22,030
+So what do you think is going to happen when I click here now?
+
+90
+00:06:22,840 --> 00:06:23,110
+Again.
+
+91
+00:06:23,110 --> 00:06:24,010
+Let's close.
+
+92
+00:06:24,190 --> 00:06:28,300
+So what do you think will happen to this state here in particular?
+
+93
+00:06:28,930 --> 00:06:30,370
+So let's see.
+
+94
+00:06:31,350 --> 00:06:38,700
+And well, it only increased once, so not three times as we might expect.
+
+95
+00:06:38,880 --> 00:06:44,100
+But where we actually really expecting that it would increase three times.
+
+96
+00:06:44,370 --> 00:06:50,340
+I mean, with what we already know, we should know that this here could never work.
+
+97
+00:06:50,670 --> 00:06:52,980
+So let's see why that is.
+
+98
+00:06:53,720 --> 00:06:58,940
+So right here at the beginning of this function likes was zero.
+
+99
+00:06:59,030 --> 00:06:59,900
+Right.
+
+100
+00:06:59,910 --> 00:07:04,820
+And so then here set likes would be zero plus one equals one.
+
+101
+00:07:04,910 --> 00:07:05,720
+Right.
+
+102
+00:07:05,720 --> 00:07:07,400
+So this one is pretty clear.
+
+103
+00:07:07,400 --> 00:07:10,130
+But then what in the next line.
+
+104
+00:07:10,310 --> 00:07:13,610
+So what is the value of likes here in this line?
+
+105
+00:07:13,880 --> 00:07:17,300
+Well, it is actually still zero.
+
+106
+00:07:17,300 --> 00:07:22,910
+And so that's because the state update is once again a synchronous.
+
+107
+00:07:22,910 --> 00:07:28,520
+So we do not get access to the new state value after this line of code right here.
+
+108
+00:07:28,520 --> 00:07:31,820
+And so this is exactly what happens down here.
+
+109
+00:07:31,970 --> 00:07:35,120
+So here the state is now stale.
+
+110
+00:07:35,120 --> 00:07:38,090
+So as we learned in the previous lecture as well.
+
+111
+00:07:38,830 --> 00:07:43,390
+So we can very easily see that here again with this console dot log.
+
+112
+00:07:45,620 --> 00:07:49,070
+So if I click again and actually I want the other one.
+
+113
+00:07:49,430 --> 00:07:57,050
+So this one here, well then you see that it became two, which is exactly the value that we had before.
+
+114
+00:07:57,050 --> 00:08:04,070
+And so here it was two plus one made this new three, but here it was still two and here as well and
+
+115
+00:08:04,070 --> 00:08:04,910
+here as well.
+
+116
+00:08:05,150 --> 00:08:11,570
+So how could we make this work if we really wanted to update the state three times like here?
+
+117
+00:08:11,990 --> 00:08:16,760
+I mean, of course we could just do this, but this is not the point here.
+
+118
+00:08:16,760 --> 00:08:21,620
+So we are trying to learn how we could do this right here in another way.
+
+119
+00:08:22,260 --> 00:08:26,270
+So actually we have been doing that all along.
+
+120
+00:08:26,280 --> 00:08:33,390
+So all the time, whenever we were updating state based on the current state, we would use a callback
+
+121
+00:08:33,390 --> 00:08:36,090
+function instead of just a value.
+
+122
+00:08:36,180 --> 00:08:39,540
+So we also talked about that in the previous lecture.
+
+123
+00:08:39,540 --> 00:08:45,870
+And so now the time came where we really learn why we have been doing it with the callback function
+
+124
+00:08:45,870 --> 00:08:47,220
+all the time.
+
+125
+00:08:48,810 --> 00:08:49,680
+So let's.
+
+126
+00:08:51,220 --> 00:08:54,070
+Remove this here or comment it out.
+
+127
+00:08:55,810 --> 00:08:57,850
+And then let's do it the right way.
+
+128
+00:08:58,600 --> 00:09:01,960
+So set likes and now we pass in the callback function.
+
+129
+00:09:01,960 --> 00:09:07,720
+And then, as you already know, the first argument here is the current value of the state.
+
+130
+00:09:07,750 --> 00:09:10,300
+And then we just return the new one.
+
+131
+00:09:11,340 --> 00:09:14,760
+And again, here alikes could be called anything.
+
+132
+00:09:15,970 --> 00:09:18,340
+Okay, let's do this three times.
+
+133
+00:09:19,940 --> 00:09:21,740
+And then let's reload.
+
+134
+00:09:22,010 --> 00:09:23,570
+And now.
+
+135
+00:09:24,390 --> 00:09:26,650
+Yeah, now it works.
+
+136
+00:09:26,670 --> 00:09:31,120
+So this is the trick that changes the way the state is updated.
+
+137
+00:09:31,140 --> 00:09:37,860
+So here in the callback function, we do actually get access to the latest updated state.
+
+138
+00:09:38,010 --> 00:09:42,030
+So initially likes was zero and then it returned one.
+
+139
+00:09:42,030 --> 00:09:48,690
+And so then in the next call here this likes in this callback function will be one and so then we can
+
+140
+00:09:48,690 --> 00:09:52,230
+update it to another one and to another one.
+
+141
+00:09:52,560 --> 00:09:53,730
+Beautiful.
+
+142
+00:09:54,120 --> 00:10:01,080
+And so this is the reason why I've been telling you that each time that we set state based on the previous
+
+143
+00:10:01,080 --> 00:10:08,820
+state or based on the current state, we should always, always use a callback function like this here.
+
+144
+00:10:09,580 --> 00:10:13,660
+Now, you might be wondering, like, why should we do that here?
+
+145
+00:10:13,690 --> 00:10:16,960
+I mean, it works perfectly fine, right?
+
+146
+00:10:17,170 --> 00:10:18,850
+And you're right about that.
+
+147
+00:10:18,850 --> 00:10:20,650
+It works perfectly fine.
+
+148
+00:10:20,650 --> 00:10:28,360
+But we never know what other developers might do with our functions or even what we might do later ourselves.
+
+149
+00:10:28,480 --> 00:10:32,200
+So let's say that at some point we want to change how this function works.
+
+150
+00:10:32,200 --> 00:10:35,940
+And then without thinking about it, we just do this.
+
+151
+00:10:35,950 --> 00:10:40,440
+And so then we go back to this not working as expected.
+
+152
+00:10:40,450 --> 00:10:46,120
+So now we want to increase the likes by two, but it will still only increase by one.
+
+153
+00:10:46,360 --> 00:10:47,290
+Right.
+
+154
+00:10:47,470 --> 00:10:50,680
+Or another situation, maybe.
+
+155
+00:10:51,800 --> 00:10:53,310
+Let's comment this one out.
+
+156
+00:10:53,330 --> 00:10:58,730
+So maybe here we could think that we could just call this function here three times.
+
+157
+00:11:01,850 --> 00:11:04,700
+Or maybe some other developer might think that.
+
+158
+00:11:04,970 --> 00:11:10,160
+And so then they would get surprised when they see that this is actually not working.
+
+159
+00:11:10,850 --> 00:11:11,690
+Right.
+
+160
+00:11:11,690 --> 00:11:18,800
+And so, again, you should always, always use the callback function because then you are always safe
+
+161
+00:11:18,800 --> 00:11:22,640
+for whatever change your code goes through in the future.
+
+162
+00:11:25,740 --> 00:11:28,790
+So with this, it will now work.
+
+163
+00:11:28,800 --> 00:11:32,460
+But of course we need to write the correct.
+
+164
+00:11:33,050 --> 00:11:34,070
+Variable name.
+
+165
+00:11:35,360 --> 00:11:38,840
+So yeah, now it does work.
+
+166
+00:11:39,170 --> 00:11:46,460
+So even if you then use the function somewhere else by doing this, you are safeguarded about, well,
+
+167
+00:11:46,460 --> 00:11:49,700
+any changes that might occur in the future.
+
+168
+00:11:52,000 --> 00:11:53,020
+All right.
+
+169
+00:11:53,200 --> 00:12:00,940
+And now to finish, let's just prove that automatic batching now works in React 18, even outside of
+
+170
+00:12:00,940 --> 00:12:02,140
+event handlers.
+
+171
+00:12:02,670 --> 00:12:06,600
+So here we have this button that should undo.
+
+172
+00:12:06,630 --> 00:12:10,620
+So it should reset our state two seconds later.
+
+173
+00:12:10,800 --> 00:12:13,200
+Well, that's easy enough.
+
+174
+00:12:13,230 --> 00:12:14,730
+Let's just create.
+
+175
+00:12:16,250 --> 00:12:18,380
+A function called.
+
+176
+00:12:19,250 --> 00:12:26,870
+Handle undo later and this function will simply set a timeout.
+
+177
+00:12:27,410 --> 00:12:32,150
+And then after two seconds it will call handle undo.
+
+178
+00:12:33,000 --> 00:12:35,520
+So after 2000 milliseconds.
+
+179
+00:12:35,520 --> 00:12:43,380
+And so what this will do is to schedule this handle undo function to be executed two seconds after this
+
+180
+00:12:43,380 --> 00:12:45,180
+function here was called.
+
+181
+00:12:45,180 --> 00:12:50,550
+And so then handle undo is no longer really an event handler function.
+
+182
+00:12:50,550 --> 00:12:55,170
+It's just any function that simply gets called at a later time.
+
+183
+00:12:55,560 --> 00:12:58,140
+So that's just what set timeout does.
+
+184
+00:12:59,670 --> 00:13:00,660
+So.
+
+185
+00:13:01,600 --> 00:13:05,050
+Let's then wire that up here with the onClick prop.
+
+186
+00:13:05,650 --> 00:13:08,950
+So handle undo later.
+
+187
+00:13:10,140 --> 00:13:11,040
+All right.
+
+188
+00:13:12,320 --> 00:13:15,140
+Let's just then set our state.
+
+189
+00:13:15,870 --> 00:13:17,310
+Let's clean up here.
+
+190
+00:13:17,310 --> 00:13:20,520
+And then I just clicked and let's wait.
+
+191
+00:13:20,790 --> 00:13:29,340
+And indeed, two seconds later, our state was updated and indeed our component was only rendered once,
+
+192
+00:13:29,340 --> 00:13:33,540
+which is proved here by this single render string.
+
+193
+00:13:33,870 --> 00:13:34,800
+Great.
+
+194
+00:13:34,950 --> 00:13:43,890
+So again, this proves that in React 18 batching happens not only inside event handlers but also inside
+
+195
+00:13:43,890 --> 00:13:45,060
+a setTimeout.
+
+196
+00:13:45,060 --> 00:13:48,990
+And the same is true for promises and other situations.
+
+197
+00:13:49,660 --> 00:13:55,600
+Now just to really make sure and you don't have to do this, but I like to play around with this stuff.
+
+198
+00:13:56,230 --> 00:14:01,060
+So what I want to do now is to render this using React 17.
+
+199
+00:14:01,740 --> 00:14:05,670
+So I will comment this one out and comment this one.
+
+200
+00:14:07,630 --> 00:14:08,140
+Okay.
+
+201
+00:14:08,170 --> 00:14:11,590
+And then here we need to also change here from here.
+
+202
+00:14:11,590 --> 00:14:16,660
+And so now this is basically back to being a React 17 application.
+
+203
+00:14:16,660 --> 00:14:19,330
+And that's exactly what it says here in this warning.
+
+204
+00:14:19,330 --> 00:14:26,530
+So until you switch to the new API, your app will behave as if it's running React 17 But right now
+
+205
+00:14:26,530 --> 00:14:28,660
+that's actually exactly what we want.
+
+206
+00:14:29,760 --> 00:14:31,560
+So now we get some error here.
+
+207
+00:14:31,860 --> 00:14:32,940
+But yeah.
+
+208
+00:14:34,190 --> 00:14:36,860
+So let's do some state updating here.
+
+209
+00:14:37,040 --> 00:14:41,540
+Then I will clean and watch what happens when I click this button now.
+
+210
+00:14:42,170 --> 00:14:43,250
+So let's wait.
+
+211
+00:14:43,250 --> 00:14:47,210
+And now we got to Rerenders.
+
+212
+00:14:47,210 --> 00:14:55,760
+And so this does actually prove that before React 18 automatic batching was not happening inside a set
+
+213
+00:14:55,790 --> 00:14:56,660
+timeout.
+
+214
+00:14:56,930 --> 00:14:58,790
+So that's really curious.
+
+215
+00:14:59,490 --> 00:15:02,610
+But of course, let's now put it back.
+
+216
+00:15:04,880 --> 00:15:05,840
+All right.
+
+217
+00:15:05,840 --> 00:15:11,330
+So this was just to show you that there really is a difference so that react 18.
+
+218
+00:15:12,050 --> 00:15:14,270
+Well, really changed this.
+
+219
+00:15:15,300 --> 00:15:18,780
+So again, now we should be back to only one.
+
+220
+00:15:19,410 --> 00:15:20,040
+Yeah.
+
+221
+00:15:20,070 --> 00:15:21,090
+There we go.
+
+222
+00:15:21,960 --> 00:15:22,590
+Okay.
+
+223
+00:15:22,590 --> 00:15:25,260
+And this is actually all I had to show you here.
+
+224
+00:15:25,260 --> 00:15:30,060
+So this was a bit longer than expected, but we did do a lot of stuff here.
+
+225
+00:15:30,060 --> 00:15:38,430
+So after you do a quick recap of everything we just do here or that we did here, actually, then let's
+
+226
+00:15:38,430 --> 00:15:40,620
+go to the next lecture.

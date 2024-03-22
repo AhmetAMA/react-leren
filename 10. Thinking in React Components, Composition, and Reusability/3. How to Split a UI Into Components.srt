@@ -1,0 +1,543 @@
+1
+00:00:00,880 --> 00:00:08,000
+So we're back in a section about thinking in React, which is all about state data flow and components.
+
+2
+00:00:08,020 --> 00:00:14,770
+We already talked about state management in detail, and so now it's time to talk more about components.
+
+3
+00:00:14,860 --> 00:00:21,220
+Now, when it comes to components, the important questions that we need to ask ourselves are how do
+
+4
+00:00:21,220 --> 00:00:27,910
+we split up a UI into components and when should we actually create new components?
+
+5
+00:00:28,180 --> 00:00:32,380
+So let's try to answer these questions in this video.
+
+6
+00:00:33,920 --> 00:00:40,490
+And one way in which we can start answering those questions is by looking at component size.
+
+7
+00:00:40,640 --> 00:00:48,500
+So we can classify every component based on its size, which means that we can place every component
+
+8
+00:00:48,530 --> 00:00:51,710
+on this axis of component size.
+
+9
+00:00:51,950 --> 00:00:59,960
+On one side we have really small components and on the other extreme we have huge components and many
+
+10
+00:00:59,960 --> 00:01:03,050
+times none of these extremes are ideal.
+
+11
+00:01:03,260 --> 00:01:07,430
+So imagine that we wanted to build this simple card.
+
+12
+00:01:07,640 --> 00:01:14,270
+One way of doing it would be to create just one huge component for the entire card.
+
+13
+00:01:14,510 --> 00:01:18,310
+However, that would create a whole set of problems.
+
+14
+00:01:18,320 --> 00:01:26,180
+First, there is way too much stuff going on in this component, so it has way too many responsibilities.
+
+15
+00:01:26,300 --> 00:01:33,170
+So components are just like JavaScript functions in the sense that if a function does too many different
+
+16
+00:01:33,170 --> 00:01:36,720
+things, we should break it up into multiple functions.
+
+17
+00:01:36,720 --> 00:01:40,180
+And so the same applies to React components.
+
+18
+00:01:40,200 --> 00:01:47,100
+Now another way in which it becomes apparent that a component is too large is when it needs to receive
+
+19
+00:01:47,130 --> 00:01:50,100
+too many props in order to work properly.
+
+20
+00:01:50,400 --> 00:01:58,620
+So, for example, if we need like 10 or 15 props to properly configure a certain component, that component
+
+21
+00:01:58,620 --> 00:02:02,700
+is probably way too big and should be split up.
+
+22
+00:02:02,910 --> 00:02:09,750
+So in general, these two problems make it very hard to reuse the component, which is one of the big
+
+23
+00:02:09,750 --> 00:02:12,720
+advantages of components in the first place.
+
+24
+00:02:13,140 --> 00:02:20,550
+Also, huge components generally contain a lot of code that might be complex and intertwined, which
+
+25
+00:02:20,580 --> 00:02:25,200
+ultimately makes the whole component hard to understand and to use.
+
+26
+00:02:25,800 --> 00:02:32,430
+Now, does this mean that we should do the opposite and create many small components like this one?
+
+27
+00:02:32,890 --> 00:02:37,960
+Well, most of the time that would probably be a terrible idea as well.
+
+28
+00:02:38,080 --> 00:02:45,730
+If we would build a UI or an entire app in this way, we would end up with hundreds if not thousands,
+
+29
+00:02:45,730 --> 00:02:47,590
+of mini components.
+
+30
+00:02:47,680 --> 00:02:54,400
+This, of course, would create a codebase that is super confusing to navigate and to understand, and
+
+31
+00:02:54,400 --> 00:03:01,090
+it would be way too abstract it and if you're not familiar with the term abstraction in programming,
+
+32
+00:03:01,090 --> 00:03:08,020
+it basically means to create something new in order to hide the implementation details of that thing.
+
+33
+00:03:08,170 --> 00:03:15,340
+For example, when we create a button component, the user of that component might have no idea how
+
+34
+00:03:15,340 --> 00:03:22,390
+the button actually does what it does because the implementation details are hidden behind this abstraction.
+
+35
+00:03:22,390 --> 00:03:24,790
+So behind this component.
+
+36
+00:03:24,880 --> 00:03:30,610
+So in a way, each new component that we create is an abstraction.
+
+37
+00:03:30,820 --> 00:03:38,630
+Now, if both ends of the spectrum, so both really small and huge components have these problems,
+
+38
+00:03:38,630 --> 00:03:40,430
+then what should we do?
+
+39
+00:03:40,790 --> 00:03:47,720
+Well, most of the time the goal is to create components that strike the right balance between being
+
+40
+00:03:47,750 --> 00:03:50,420
+too specific and too broad.
+
+41
+00:03:50,450 --> 00:03:55,130
+Or in other words, between being too small and being too big.
+
+42
+00:03:55,670 --> 00:04:02,150
+Now, these problems that we identified here, like components having too many responsibilities and
+
+43
+00:04:02,150 --> 00:04:09,170
+being hard to reuse, can help us understand how we should actually split a UI into components.
+
+44
+00:04:10,770 --> 00:04:13,740
+So using the same example as before.
+
+45
+00:04:13,770 --> 00:04:21,470
+First we had this, which is one huge component, and then we had a lot of small components.
+
+46
+00:04:21,480 --> 00:04:28,920
+And both these ways of splitting up the UI are far from ideal for all the reasons that we have talked
+
+47
+00:04:28,920 --> 00:04:29,580
+about.
+
+48
+00:04:30,150 --> 00:04:34,500
+So instead what we want is something like this.
+
+49
+00:04:34,590 --> 00:04:40,020
+So here we have a more logical separation of the content into different components.
+
+50
+00:04:40,020 --> 00:04:46,620
+And some of these components are probably even going to be reusable, like the heart button or the Superhost
+
+51
+00:04:46,620 --> 00:04:47,250
+label.
+
+52
+00:04:47,370 --> 00:04:54,390
+Also, each of these components has a well-defined responsibility, like displaying the price or the
+
+53
+00:04:54,390 --> 00:04:58,080
+rating, and they're also not overly complex.
+
+54
+00:04:58,830 --> 00:04:59,490
+Okay.
+
+55
+00:04:59,490 --> 00:05:07,290
+And so from this, we can now derive a couple of criteria that we can use to split a user interface
+
+56
+00:05:07,290 --> 00:05:08,730
+into components.
+
+57
+00:05:08,880 --> 00:05:15,630
+First, when we decide which components we need to implement a certain UI, it's important that these
+
+58
+00:05:15,630 --> 00:05:22,770
+components create a logical separation of the content or even of the layout of a page.
+
+59
+00:05:23,010 --> 00:05:29,400
+We should also strive to make some of these components reusable and ensure that each component has a
+
+60
+00:05:29,400 --> 00:05:32,430
+single, well-defined responsibility.
+
+61
+00:05:32,640 --> 00:05:38,940
+Finally, there's one even more subjective criterion, which is your personal coding style.
+
+62
+00:05:39,090 --> 00:05:46,050
+So some people work better with smaller components and some people just prefer larger components and
+
+63
+00:05:46,050 --> 00:05:53,100
+therefore you need to create components in a way that works best for you so that you can stay as productive
+
+64
+00:05:53,100 --> 00:05:54,360
+as possible.
+
+65
+00:05:54,900 --> 00:05:55,710
+All right.
+
+66
+00:05:55,710 --> 00:06:01,120
+But now let's actually dig a bit deeper into all these different criteria.
+
+67
+00:06:01,670 --> 00:06:08,000
+So what I want to do in this slide is to give you something like a framework that will help you create
+
+68
+00:06:08,030 --> 00:06:11,030
+new components from bigger components.
+
+69
+00:06:11,210 --> 00:06:17,540
+So the idea is that when you're creating a new component and you're in doubt about what the component
+
+70
+00:06:17,540 --> 00:06:25,400
+should include, just start with a relatively big component but not a huge component, and then split
+
+71
+00:06:25,400 --> 00:06:30,620
+that bigger component into smaller components as it becomes necessary.
+
+72
+00:06:30,920 --> 00:06:38,420
+But naturally you will now ask when does it actually become necessary to split big components into multiple
+
+73
+00:06:38,420 --> 00:06:39,410
+small ones?
+
+74
+00:06:39,650 --> 00:06:43,700
+Well, that's where the four criteria come into play again.
+
+75
+00:06:43,700 --> 00:06:51,200
+So logical separation of content, reusability, the responsibilities and complexity of the component
+
+76
+00:06:51,200 --> 00:06:53,510
+and your personal coding style.
+
+77
+00:06:54,180 --> 00:07:01,410
+Now, of course, if you already know that you need a small and reusable component, such as a button,
+
+78
+00:07:01,410 --> 00:07:05,490
+you can just skip all this and simply create a component.
+
+79
+00:07:05,580 --> 00:07:13,170
+But otherwise you can just start big and don't need to focus on reusability and complexity at the very
+
+80
+00:07:13,170 --> 00:07:13,890
+beginning.
+
+81
+00:07:14,220 --> 00:07:18,510
+At some point, however, you do need to worry about these topics.
+
+82
+00:07:18,510 --> 00:07:23,610
+And so let's analyze them one by one, starting with logical separation.
+
+83
+00:07:24,180 --> 00:07:31,530
+So if after writing your big component, you feel like the component contains some piece of code or
+
+84
+00:07:31,530 --> 00:07:38,460
+of the layout that don't really belong together, then that means that is probably a good idea to create
+
+85
+00:07:38,460 --> 00:07:39,750
+a new component.
+
+86
+00:07:40,430 --> 00:07:48,530
+Now about reusability if it's possible to reuse a part of your big component and if you actually want
+
+87
+00:07:48,530 --> 00:07:55,580
+or need to reuse that part, then you should take that code and extract it into a new component.
+
+88
+00:07:55,670 --> 00:08:02,630
+Another sign that you should probably extract part of your component into a new one is that your component
+
+89
+00:08:02,630 --> 00:08:08,630
+is doing way too many different things or that it's relying on too many props.
+
+90
+00:08:08,750 --> 00:08:17,120
+So if your big component has too many pieces of state or effects, or if the code is way too complex
+
+91
+00:08:17,120 --> 00:08:24,320
+or too confusing, it might be once again time to create a new, smaller component.
+
+92
+00:08:24,710 --> 00:08:31,670
+And finally, as I said in the previous slide, it's important that you feel productive when working
+
+93
+00:08:31,670 --> 00:08:33,100
+with your components.
+
+94
+00:08:33,110 --> 00:08:41,210
+So if you prefer smaller functions or components, just split up big components into smaller ones.
+
+95
+00:08:41,220 --> 00:08:46,500
+But on the other hand, if you prefer big components, that's also totally fine.
+
+96
+00:08:46,500 --> 00:08:48,450
+It's all up to you.
+
+97
+00:08:48,480 --> 00:08:56,280
+Because remember, in the end, these are all just guidelines and best practices that will become intuitive
+
+98
+00:08:56,280 --> 00:08:57,350
+over time.
+
+99
+00:08:57,360 --> 00:09:02,320
+And by then building your components will become second nature to you.
+
+100
+00:09:02,340 --> 00:09:08,640
+But as you start out right now, it's great to have guidelines like these to help you out.
+
+101
+00:09:08,670 --> 00:09:13,980
+And speaking of guidelines, I actually have a few more general guidelines for you.
+
+102
+00:09:14,190 --> 00:09:21,480
+So first off, you need to be aware that creating a new component creates a new abstraction.
+
+103
+00:09:21,480 --> 00:09:25,730
+And we talked about abstractions a bit earlier in this lecture.
+
+104
+00:09:25,740 --> 00:09:34,350
+Right now, abstractions have a cost because having more abstractions requires more mental energy to
+
+105
+00:09:34,350 --> 00:09:39,840
+think about different components and to switch back and forth between components.
+
+106
+00:09:39,930 --> 00:09:44,910
+So try not to create new components too early if you can avoid it.
+
+107
+00:09:45,350 --> 00:09:46,010
+Next.
+
+108
+00:09:46,010 --> 00:09:52,600
+It's important that you name a component according to what it does or what it displays.
+
+109
+00:09:52,610 --> 00:09:56,170
+And don't be afraid of using long component names.
+
+110
+00:09:56,180 --> 00:09:59,240
+That's completely normal in React development.
+
+111
+00:09:59,510 --> 00:10:07,490
+Now, what's even more important is that you never, ever declare a new component inside another component,
+
+112
+00:10:07,490 --> 00:10:11,030
+and we will learn the reason for that in the next section.
+
+113
+00:10:11,300 --> 00:10:18,620
+What you can do instead when you have some related components is to co-locate these related components
+
+114
+00:10:18,620 --> 00:10:20,750
+inside the same file.
+
+115
+00:10:21,500 --> 00:10:29,180
+Finally, and going back to our initial topic of component size, it's completely normal that an application
+
+116
+00:10:29,180 --> 00:10:36,470
+has components of many different sizes, including some very small ones and some huge ones.
+
+117
+00:10:37,660 --> 00:10:44,350
+So even though we said in the beginning that very small components have some problems, of course we
+
+118
+00:10:44,350 --> 00:10:51,850
+always need some small components like this in any application because they're highly reusable and have
+
+119
+00:10:51,850 --> 00:10:56,110
+very low complexity, which is sometimes exactly what we need.
+
+120
+00:10:56,140 --> 00:11:02,890
+Most apps will also have a few huge components that are not meant to be reused.
+
+121
+00:11:02,920 --> 00:11:10,990
+For example, we might have a huge page component which contains the layout of the entire app or a page,
+
+122
+00:11:11,080 --> 00:11:17,380
+and that might very well be a fairly complex component which is not meant to be reused.
+
+123
+00:11:17,410 --> 00:11:24,340
+So in situations like this, don't worry about reusability or about needing to split this component
+
+124
+00:11:24,340 --> 00:11:24,970
+up.
+
+125
+00:11:25,090 --> 00:11:33,190
+And speaking of reusability, as you can see from this, we can say that as a general rule, the reusability
+
+126
+00:11:33,190 --> 00:11:37,060
+range is pretty similar to the size range.
+
+127
+00:11:37,340 --> 00:11:43,430
+So generally speaking, the smaller components are the more reusable they will be.
+
+128
+00:11:43,580 --> 00:11:48,760
+And of course, as components get bigger, they will become less reusable.
+
+129
+00:11:48,770 --> 00:11:53,600
+But again, that's no problem at all for some components.
+
+130
+00:11:53,600 --> 00:11:57,230
+So not all components are meant to be reusable.
+
+131
+00:11:57,530 --> 00:12:05,780
+But anyway, finally we have all these medium sized components as well, which all have different degrees
+
+132
+00:12:05,780 --> 00:12:11,210
+of size, reusability, responsibility and complexity.
+
+133
+00:12:11,330 --> 00:12:18,530
+So in the end, our application will have many different components across the entire spectrum, and
+
+134
+00:12:18,530 --> 00:12:21,410
+that's completely normal and natural.
+
+135
+00:12:21,620 --> 00:12:30,470
+And now let's go back to coding and break up a huge component into many small ones using all the concepts
+
+136
+00:12:30,470 --> 00:12:32,600
+that we have just learned about.

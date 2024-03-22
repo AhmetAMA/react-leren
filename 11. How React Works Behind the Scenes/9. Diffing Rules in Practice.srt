@@ -1,0 +1,259 @@
+1
+00:00:00,960 --> 00:00:02,220
+In this lecture.
+
+2
+00:00:02,220 --> 00:00:09,000
+I just want to quickly demonstrate the different rules that we just learned in our project so that you
+
+3
+00:00:09,000 --> 00:00:14,310
+can see that they actually do have a practical effect in the real world.
+
+4
+00:00:15,470 --> 00:00:21,680
+So let's start by examining a bit better what happens as we use this tab component?
+
+5
+00:00:22,520 --> 00:00:29,180
+So again, here we have this button that when we click, we'll hide that paragraph, right?
+
+6
+00:00:29,180 --> 00:00:34,850
+And also when we click here, then we update the state and the likes number increases.
+
+7
+00:00:35,580 --> 00:00:37,990
+So that's what happens in this tab.
+
+8
+00:00:38,010 --> 00:00:42,000
+But now watch what happens when we go to another tab.
+
+9
+00:00:43,560 --> 00:00:49,930
+So you see that the text is still hidden and the number of likes is still at four.
+
+10
+00:00:49,950 --> 00:00:56,970
+So what this means is that the state of this tab component instance has been preserved.
+
+11
+00:00:57,240 --> 00:01:03,090
+Now, if we hadn't learned about this in the previous section, then this would look really strange,
+
+12
+00:01:03,090 --> 00:01:03,860
+right?
+
+13
+00:01:03,870 --> 00:01:10,170
+Because we would expect that whenever we go to a new tab that the state would be reset.
+
+14
+00:01:10,750 --> 00:01:12,610
+But that's not what happens.
+
+15
+00:01:12,610 --> 00:01:18,070
+So as we click around here, the only thing that happens is that this title here is changed.
+
+16
+00:01:18,900 --> 00:01:22,920
+I mean, this text down here also changes, but it stays invisible.
+
+17
+00:01:24,100 --> 00:01:30,430
+So here the text changed and the state again stayed the same at the same here for the number of likes.
+
+18
+00:01:30,960 --> 00:01:33,570
+So what is actually happening?
+
+19
+00:01:33,840 --> 00:01:42,210
+Well, basically, each time that we click on one of these tabs, the tab component down here is rerendered.
+
+20
+00:01:42,240 --> 00:01:48,870
+However, as we can see down here in this component tree, as we keep clicking around, we see that
+
+21
+00:01:48,870 --> 00:01:54,830
+the tab content component instance always stays in the exact same position in the tree.
+
+22
+00:01:54,840 --> 00:02:00,510
+And so with this, we are now in the situation that we learned in the previous lecture where we have
+
+23
+00:02:00,510 --> 00:02:01,870
+the same element.
+
+24
+00:02:01,890 --> 00:02:06,270
+So in this case the same component in the same position.
+
+25
+00:02:06,270 --> 00:02:11,370
+And so because of that, the state is preserved across renders.
+
+26
+00:02:11,370 --> 00:02:13,680
+So just like we learned before.
+
+27
+00:02:14,270 --> 00:02:21,320
+So again, as we keep clicking around these tabs here, this component instance here is actually not
+
+28
+00:02:21,320 --> 00:02:22,120
+destroyed.
+
+29
+00:02:22,130 --> 00:02:28,040
+So it stays in the Dom and the only thing that changes is the props that it receives.
+
+30
+00:02:28,730 --> 00:02:31,580
+So of course the props will change.
+
+31
+00:02:31,790 --> 00:02:33,260
+So where is that?
+
+32
+00:02:34,380 --> 00:02:35,190
+Uh, right here.
+
+33
+00:02:35,610 --> 00:02:37,710
+So you see that now as I click here.
+
+34
+00:02:37,740 --> 00:02:43,650
+Then, of course, down here the prop will have changed, but that's the only thing that changes.
+
+35
+00:02:43,650 --> 00:02:48,090
+So the state again, remains completely unchanged.
+
+36
+00:02:48,270 --> 00:02:52,140
+But what if we now click on this tab, number four?
+
+37
+00:02:52,350 --> 00:03:00,840
+So as you can see in our code in this case, so when the Tab num is three, actually this different
+
+38
+00:03:00,840 --> 00:03:04,730
+content component will be rendered right?
+
+39
+00:03:04,740 --> 00:03:07,410
+And so let's see what's going to happen.
+
+40
+00:03:07,650 --> 00:03:12,720
+So we have number four here and we have the text closed.
+
+41
+00:03:13,500 --> 00:03:21,150
+So now we click here and immediately we see that we get a completely different component instance right
+
+42
+00:03:21,150 --> 00:03:21,750
+here.
+
+43
+00:03:22,080 --> 00:03:28,610
+So it's still in the same position of the tree, but it's no longer tab content but different content.
+
+44
+00:03:28,620 --> 00:03:32,310
+And so now when I go back, watch what happens.
+
+45
+00:03:32,990 --> 00:03:36,800
+So now the state has actually been reset.
+
+46
+00:03:36,800 --> 00:03:43,040
+And so that's because the Tab content that we had here before has been completely destroyed and removed
+
+47
+00:03:43,040 --> 00:03:45,050
+from the Dom in the meantime.
+
+48
+00:03:45,050 --> 00:03:52,370
+So while we were at the different content and so that's why I placed this string here which says that
+
+49
+00:03:52,370 --> 00:03:55,640
+this is a different tab and so it resets state.
+
+50
+00:03:55,640 --> 00:04:00,380
+And so indeed if we keep going here, maybe we hide this.
+
+51
+00:04:00,380 --> 00:04:08,750
+Then again, when we go here and we go back, then the state has been reset because again, in the meantime,
+
+52
+00:04:08,750 --> 00:04:13,760
+this component here has disappeared and with it its state.
+
+53
+00:04:14,390 --> 00:04:19,500
+So this is a direct consequence of the diffing rules that we just learned about.
+
+54
+00:04:19,520 --> 00:04:25,530
+And so this means that these rules are very important actually in practice.
+
+55
+00:04:25,550 --> 00:04:28,970
+So you can see this situation happening all the time.
+
+56
+00:04:28,970 --> 00:04:35,170
+And actually we saw the exact same thing in or eat and split application.
+
+57
+00:04:35,180 --> 00:04:40,970
+But don't worry about that for now because we will come back to that app actually in a few lectures
+
+58
+00:04:40,970 --> 00:04:41,720
+from now.
+
+59
+00:04:42,260 --> 00:04:46,220
+Now, sometimes, of course, we do not want this behavior.
+
+60
+00:04:46,220 --> 00:04:50,150
+So actually, just as I was saying in the last lecture as well.
+
+61
+00:04:50,330 --> 00:04:57,140
+So, for example, let's say I hide the details here, but then I actually expect that when I go to
+
+62
+00:04:57,140 --> 00:05:00,350
+a new tab that it starts again with the default.
+
+63
+00:05:00,350 --> 00:05:02,690
+So with this opened again.
+
+64
+00:05:02,870 --> 00:05:06,170
+So again, usually this is not what we want.
+
+65
+00:05:06,170 --> 00:05:10,370
+And so let's take a look at how we can solve this in the next video.

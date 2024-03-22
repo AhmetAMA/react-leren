@@ -1,0 +1,1515 @@
+1
+00:00:01,020 --> 00:00:06,950
+Let's now make our watched movies list work and let's do it all in one go.
+
+2
+00:00:06,960 --> 00:00:09,210
+So this is going to be a long one.
+
+3
+00:00:09,210 --> 00:00:11,850
+And so let's quickly get started.
+
+4
+00:00:13,260 --> 00:00:19,980
+And let's actually get started by quickly recapping what this watch list actually is.
+
+5
+00:00:20,310 --> 00:00:26,910
+So remember how we already have this watch state here, which right now is this empty array, but it
+
+6
+00:00:26,910 --> 00:00:29,070
+used to be this.
+
+7
+00:00:29,740 --> 00:00:31,960
+Temp watched data.
+
+8
+00:00:33,050 --> 00:00:34,520
+So let's close this here.
+
+9
+00:00:34,670 --> 00:00:35,750
+And so you see that?
+
+10
+00:00:35,750 --> 00:00:43,040
+Then we had these two movies with a few details with the user rating and then also this summary right
+
+11
+00:00:43,040 --> 00:00:43,580
+here.
+
+12
+00:00:44,800 --> 00:00:52,900
+Now, of course, we will start from zero here and then we can add each of the movies here to our list.
+
+13
+00:00:52,900 --> 00:00:55,060
+So they will then appear over there.
+
+14
+00:00:55,770 --> 00:00:58,440
+So we already have the list component.
+
+15
+00:00:59,740 --> 00:01:02,830
+So it should be somewhere down here.
+
+16
+00:01:03,220 --> 00:01:05,200
+So we have the watch summary.
+
+17
+00:01:05,320 --> 00:01:10,300
+We have the watched movie list and we have the watched movie itself.
+
+18
+00:01:11,120 --> 00:01:19,190
+So each of these movies needs the poster, the title, the rating, the user rating and the runtime.
+
+19
+00:01:20,170 --> 00:01:24,910
+So basically we need to create a brand new object for each of these movies.
+
+20
+00:01:25,830 --> 00:01:33,060
+And then pass each of these objects here into this watched array.
+
+21
+00:01:34,070 --> 00:01:41,780
+So actually, let's start by creating that function with which we can add a new item to that array.
+
+22
+00:01:42,580 --> 00:01:46,270
+So let's call it handle ad watch.
+
+23
+00:01:47,960 --> 00:01:49,310
+Then we get a movie.
+
+24
+00:01:49,580 --> 00:01:50,990
+Let's call this watched.
+
+25
+00:01:51,900 --> 00:01:53,580
+And then let's do it as always.
+
+26
+00:01:53,580 --> 00:02:02,010
+So we call, set, watched, and then we get the current watched movies array, and then we create a
+
+27
+00:02:02,010 --> 00:02:04,620
+brand new one based on that one.
+
+28
+00:02:05,430 --> 00:02:08,010
+So based on all the elements of that array.
+
+29
+00:02:08,630 --> 00:02:11,330
+And then the brand new movie object.
+
+30
+00:02:12,580 --> 00:02:13,330
+Okay.
+
+31
+00:02:13,330 --> 00:02:16,690
+And now we just need to pass that in.
+
+32
+00:02:17,050 --> 00:02:23,890
+So again, as a prop and you see that this component is getting really big at the same for this entire
+
+33
+00:02:23,890 --> 00:02:24,510
+file.
+
+34
+00:02:24,520 --> 00:02:29,440
+So if you want, feel free to split up this file into multiple files.
+
+35
+00:02:29,440 --> 00:02:31,630
+So one component per file.
+
+36
+00:02:31,990 --> 00:02:34,570
+But anyway, I will just keep working here.
+
+37
+00:02:35,640 --> 00:02:36,030
+That's all.
+
+38
+00:02:36,030 --> 00:02:41,160
+Let's pass that function that we just created here as on Add.
+
+39
+00:02:42,010 --> 00:02:42,820
+What?
+
+40
+00:02:45,180 --> 00:02:46,110
+Handle at what?
+
+41
+00:02:46,350 --> 00:02:52,920
+So we're passing that into movie details because again, that is where we will actually have the button
+
+42
+00:02:52,920 --> 00:02:55,800
+to add the movie to the watch list.
+
+43
+00:02:55,920 --> 00:02:57,450
+So it will be right here.
+
+44
+00:02:57,450 --> 00:03:03,660
+And so then here in this component, we set the state, it will get updated in the parent and from there
+
+45
+00:03:03,660 --> 00:03:09,630
+it goes back here into the statistics and then into this list, of course.
+
+46
+00:03:11,200 --> 00:03:18,880
+Okay, but now let's then move to the movie details component and let's add a button.
+
+47
+00:03:19,670 --> 00:03:20,690
+Right here.
+
+48
+00:03:20,990 --> 00:03:23,150
+So under this rating.
+
+49
+00:03:25,390 --> 00:03:26,980
+So here, let's say.
+
+50
+00:03:28,240 --> 00:03:32,470
+Button with the class name of BTN add.
+
+51
+00:03:33,920 --> 00:03:35,420
+And then add.
+
+52
+00:03:36,060 --> 00:03:37,650
+To list.
+
+53
+00:03:37,890 --> 00:03:44,490
+Now here, of course, we need our event handler and let's actually create a.
+
+54
+00:03:45,470 --> 00:03:50,720
+Another event handler right here, which will then call the one that we passed into the component.
+
+55
+00:03:51,560 --> 00:03:56,000
+Because here we actually need to do a lot of stuff.
+
+56
+00:03:58,890 --> 00:04:01,650
+So function handle add.
+
+57
+00:04:03,810 --> 00:04:09,200
+And so again, this one will then eventually call that function that we passed here as a prop.
+
+58
+00:04:09,210 --> 00:04:12,570
+So that was on ad watched.
+
+59
+00:04:17,810 --> 00:04:24,560
+So again, in the end, we will call that function here, which remember, needs a new movie object
+
+60
+00:04:24,560 --> 00:04:25,700
+as the input.
+
+61
+00:04:25,910 --> 00:04:29,420
+So new movie basically.
+
+62
+00:04:29,420 --> 00:04:31,490
+So like a new watched movie.
+
+63
+00:04:32,450 --> 00:04:34,670
+So let's create that object here.
+
+64
+00:04:37,650 --> 00:04:42,990
+Let's actually call it new watched movie, just so we understand what we are doing here.
+
+65
+00:04:44,920 --> 00:04:52,600
+So this movie object will also need an IMDb rating, and here we can simply use the one that is currently
+
+66
+00:04:52,600 --> 00:04:53,470
+selected.
+
+67
+00:04:53,560 --> 00:05:00,820
+So the currently selected ID is of course the IMDb rating of that movie that we are going to add.
+
+68
+00:05:02,680 --> 00:05:09,010
+Then remember, we also need the title, of course, of the movie The Year, the Poster.
+
+69
+00:05:10,210 --> 00:05:15,270
+The IMDb, IMDb rating.
+
+70
+00:05:15,280 --> 00:05:19,030
+And here we actually need to convert that to a number.
+
+71
+00:05:19,030 --> 00:05:25,150
+And the reason for that is that the rating needs to be a number so that we can then do the statistics
+
+72
+00:05:25,150 --> 00:05:25,600
+here.
+
+73
+00:05:25,600 --> 00:05:27,580
+So calculating the averages.
+
+74
+00:05:29,030 --> 00:05:34,490
+So let's just use the number function on the IMDb rating.
+
+75
+00:05:34,640 --> 00:05:39,290
+And finally, we also need the runtime.
+
+76
+00:05:40,190 --> 00:05:47,190
+Now, if we take a look at one of the movies, you see that the runtime includes the minutes here.
+
+77
+00:05:47,220 --> 00:05:52,190
+And so again, with this, we can then later not do any calculations.
+
+78
+00:05:52,190 --> 00:05:54,800
+So we need to basically split that.
+
+79
+00:05:55,590 --> 00:05:59,460
+So runtime dot split.
+
+80
+00:06:00,230 --> 00:06:04,160
+Buy an empty string, which will just get us that first part.
+
+81
+00:06:04,160 --> 00:06:13,130
+And then from there we can just take that first part and then we just convert everything to a number
+
+82
+00:06:13,130 --> 00:06:13,730
+again.
+
+83
+00:06:13,970 --> 00:06:15,770
+Now here we get some problem.
+
+84
+00:06:16,460 --> 00:06:18,290
+It's because we have a duplicate.
+
+85
+00:06:18,890 --> 00:06:19,480
+Key.
+
+86
+00:06:19,700 --> 00:06:24,260
+And that's because here of course, it is the IMDb ID.
+
+87
+00:06:25,230 --> 00:06:28,550
+So thinks he has lint here for letting me know.
+
+88
+00:06:28,560 --> 00:06:32,310
+That was a pretty big problem, actually.
+
+89
+00:06:33,190 --> 00:06:37,040
+So let's see if this already works at this point.
+
+90
+00:06:37,060 --> 00:06:38,290
+So maybe it does.
+
+91
+00:06:38,320 --> 00:06:39,490
+Maybe it doesn't.
+
+92
+00:06:40,340 --> 00:06:41,330
+But let's see.
+
+93
+00:06:41,810 --> 00:06:43,070
+That's your console.
+
+94
+00:06:43,610 --> 00:06:46,790
+So there are a lot of moving pieces here, so let's check.
+
+95
+00:06:48,510 --> 00:06:50,310
+So let's add this to our list.
+
+96
+00:06:50,460 --> 00:06:52,690
+And we didn't get any error.
+
+97
+00:06:52,710 --> 00:06:54,900
+So let's go back to our list.
+
+98
+00:06:55,020 --> 00:06:56,910
+And there it is.
+
+99
+00:06:57,700 --> 00:07:04,300
+I mean, there are still some problems here, but something did work, so that's great.
+
+100
+00:07:05,350 --> 00:07:05,890
+Now.
+
+101
+00:07:05,890 --> 00:07:08,140
+I think it is because down here.
+
+102
+00:07:08,910 --> 00:07:12,420
+We are using some of these properties with their uppercase.
+
+103
+00:07:13,570 --> 00:07:15,040
+Uh, letters here.
+
+104
+00:07:15,400 --> 00:07:20,230
+So this should be title and tidal like this.
+
+105
+00:07:22,140 --> 00:07:22,440
+And.
+
+106
+00:07:22,440 --> 00:07:24,210
+Yeah, beautiful.
+
+107
+00:07:24,240 --> 00:07:27,540
+The only thing that we are missing here is the stars.
+
+108
+00:07:27,540 --> 00:07:31,770
+And so that's actually what we're going to take care of next.
+
+109
+00:07:33,060 --> 00:07:34,800
+So let's go back here.
+
+110
+00:07:36,030 --> 00:07:39,890
+And I just remembered that actually there's something else.
+
+111
+00:07:39,900 --> 00:07:42,300
+So let's say we also want to add this one.
+
+112
+00:07:42,750 --> 00:07:46,020
+So we add it to the list, but then nothing happens.
+
+113
+00:07:46,020 --> 00:07:54,300
+So I think that as we click here, we should probably close this movie and then basically go back.
+
+114
+00:07:54,300 --> 00:07:58,620
+And so then we can immediately see the new movie that has been added.
+
+115
+00:07:59,860 --> 00:08:05,170
+So that's not too difficult because we already have a function for that.
+
+116
+00:08:05,890 --> 00:08:09,040
+So it's this handle close movie.
+
+117
+00:08:09,040 --> 00:08:13,120
+And so this is the function that we now want to call here as well.
+
+118
+00:08:13,120 --> 00:08:17,170
+As soon as a new movie is added there to that list.
+
+119
+00:08:19,080 --> 00:08:21,450
+So into movie details.
+
+120
+00:08:21,630 --> 00:08:23,910
+Ah, we already have the function there.
+
+121
+00:08:24,000 --> 00:08:25,890
+Well, that's very convenient.
+
+122
+00:08:26,580 --> 00:08:30,240
+And yeah, of course we do have it because of.
+
+123
+00:08:31,180 --> 00:08:32,440
+Uh, this button here.
+
+124
+00:08:35,130 --> 00:08:35,810
+Okay.
+
+125
+00:08:35,810 --> 00:08:37,250
+But anyway.
+
+126
+00:08:38,120 --> 00:08:40,010
+Uh, yeah, here it is.
+
+127
+00:08:40,190 --> 00:08:46,160
+So after adding a movie, we then want to immediately also close the movie.
+
+128
+00:08:50,460 --> 00:08:51,900
+Okay, let's add this.
+
+129
+00:08:52,710 --> 00:08:54,300
+And so there it is again.
+
+130
+00:08:54,540 --> 00:08:59,310
+Now, you immediately see that there is a problem because we already have the movie on the list.
+
+131
+00:08:59,310 --> 00:09:02,100
+But we will take care of that a little bit later.
+
+132
+00:09:02,100 --> 00:09:05,460
+For now, let's take care of the user rating here.
+
+133
+00:09:06,580 --> 00:09:10,150
+So let's maybe just reload, which will clear our list.
+
+134
+00:09:13,490 --> 00:09:14,480
+And.
+
+135
+00:09:15,110 --> 00:09:15,770
+Yeah.
+
+136
+00:09:16,850 --> 00:09:22,400
+So basically, we want to be able to get this rating here from the user.
+
+137
+00:09:22,400 --> 00:09:29,420
+And then as we add to the list, that should be the rating that should be added here to this new watched
+
+138
+00:09:29,420 --> 00:09:30,080
+movie.
+
+139
+00:09:30,230 --> 00:09:31,160
+Right?
+
+140
+00:09:31,460 --> 00:09:35,740
+Or in other words, we now need this state that we have here.
+
+141
+00:09:35,750 --> 00:09:43,220
+So like this nine rating, we need it outside the star rating component and inside our movie details
+
+142
+00:09:43,220 --> 00:09:44,120
+component.
+
+143
+00:09:44,510 --> 00:09:46,550
+So how do we do that?
+
+144
+00:09:47,090 --> 00:09:54,860
+Well, remember that we actually created a way of getting that state outside the component by adding
+
+145
+00:09:54,860 --> 00:09:56,570
+in a function.
+
+146
+00:09:56,930 --> 00:09:59,840
+So we defined the on set rating prop.
+
+147
+00:09:59,840 --> 00:10:03,800
+And so into this we can pass a state set or function.
+
+148
+00:10:05,240 --> 00:10:08,750
+So then we need that state setter function.
+
+149
+00:10:09,080 --> 00:10:13,370
+So let's create yet another piece of state here for that rating.
+
+150
+00:10:13,520 --> 00:10:14,810
+So user.
+
+151
+00:10:16,070 --> 00:10:20,300
+Rating and set user rating.
+
+152
+00:10:23,100 --> 00:10:24,900
+So use state.
+
+153
+00:10:24,900 --> 00:10:28,620
+And here let's just start at an empty string.
+
+154
+00:10:29,790 --> 00:10:30,600
+Okay.
+
+155
+00:10:31,790 --> 00:10:34,610
+Now, for some reason we are already using this somewhere.
+
+156
+00:10:37,090 --> 00:10:38,470
+Well, not really.
+
+157
+00:10:40,250 --> 00:10:44,660
+So I was saying that because it wasn't with the yellow Underline.
+
+158
+00:10:44,660 --> 00:10:49,580
+But anyway, let's get this set user rating and then pass it here into.
+
+159
+00:10:50,250 --> 00:10:52,020
+Our star rating component.
+
+160
+00:10:55,650 --> 00:10:57,060
+Then let's reload.
+
+161
+00:11:01,650 --> 00:11:03,270
+Then let's open up this.
+
+162
+00:11:04,300 --> 00:11:05,410
+Give a rating.
+
+163
+00:11:05,410 --> 00:11:09,010
+And if we now check in here in our component.
+
+164
+00:11:10,510 --> 00:11:12,460
+So this we haven't done in a long time.
+
+165
+00:11:12,460 --> 00:11:14,410
+But again, this is really helpful.
+
+166
+00:11:15,490 --> 00:11:16,690
+So.
+
+167
+00:11:17,360 --> 00:11:18,170
+Here we have.
+
+168
+00:11:18,170 --> 00:11:20,540
+Oh, that reset everything.
+
+169
+00:11:20,540 --> 00:11:22,370
+Sometimes that happens when you click.
+
+170
+00:11:23,460 --> 00:11:30,060
+But anyway, here in our movie details, we see all the props, like the selected ID and the state.
+
+171
+00:11:30,180 --> 00:11:33,780
+So here we have, of course, the movie object that has been loading.
+
+172
+00:11:33,810 --> 00:11:38,190
+Then we have the is loading state and finally the current rating.
+
+173
+00:11:38,550 --> 00:11:42,090
+So as we click here now, you see that this changes.
+
+174
+00:11:42,120 --> 00:11:48,840
+And so therefore, that means that now we have this state inside our movie details component.
+
+175
+00:11:49,230 --> 00:11:52,920
+Of course, it's also still inside the star rating.
+
+176
+00:11:53,800 --> 00:11:55,240
+So here we have the same.
+
+177
+00:11:55,960 --> 00:11:58,150
+So of course, now that changes to ten.
+
+178
+00:11:58,960 --> 00:12:02,770
+But now it also changed to ten in movie details.
+
+179
+00:12:04,130 --> 00:12:04,670
+All right.
+
+180
+00:12:04,670 --> 00:12:06,140
+So that's really helpful.
+
+181
+00:12:06,230 --> 00:12:12,350
+And so now we can just add that new state right here to that object.
+
+182
+00:12:12,380 --> 00:12:15,070
+So user rating.
+
+183
+00:12:15,080 --> 00:12:21,980
+And now as we have this user rating, we only want to allow a movie to be added to the list if the user
+
+184
+00:12:21,980 --> 00:12:23,450
+actually gave it a rating.
+
+185
+00:12:25,110 --> 00:12:28,380
+So let's translate that requirement into code.
+
+186
+00:12:29,270 --> 00:12:32,000
+And so what I just said is basically.
+
+187
+00:12:33,760 --> 00:12:34,300
+This.
+
+188
+00:12:34,750 --> 00:12:43,150
+So if user rating is greater than zero, then display the button.
+
+189
+00:12:47,590 --> 00:12:49,930
+So let's reload that here manually.
+
+190
+00:12:53,170 --> 00:12:53,830
+Okay.
+
+191
+00:12:53,830 --> 00:12:55,600
+And so now the button is gone.
+
+192
+00:12:55,600 --> 00:12:58,600
+But then as soon as I click here, the button will appear.
+
+193
+00:12:58,600 --> 00:13:01,800
+And now edit And there it is.
+
+194
+00:13:01,810 --> 00:13:03,490
+So there is our eight.
+
+195
+00:13:04,350 --> 00:13:06,690
+Now, I haven't watched any of these other ones.
+
+196
+00:13:07,050 --> 00:13:08,760
+Let's just give it something.
+
+197
+00:13:08,970 --> 00:13:15,810
+And then indeed, we get this movie with the IMDb rating and with my own rating.
+
+198
+00:13:15,810 --> 00:13:21,780
+And so then the average between these two is actually correctly calculated with five and a half.
+
+199
+00:13:22,700 --> 00:13:23,600
+Great.
+
+200
+00:13:23,630 --> 00:13:31,310
+Now, next up, we need to ensure that I cannot just add this movie here as many times as I want.
+
+201
+00:13:31,400 --> 00:13:36,290
+So of course I can keep going and I can keep going over and over again.
+
+202
+00:13:36,500 --> 00:13:43,160
+So now I have the exact same movie here three times in my list, and that should not be allowed.
+
+203
+00:13:44,370 --> 00:13:51,390
+So basically when we come here to this component, we want to check if this movie is already in the
+
+204
+00:13:51,390 --> 00:13:51,900
+list.
+
+205
+00:13:51,900 --> 00:13:56,610
+And if it is, then we don't want to display any of this here.
+
+206
+00:13:56,610 --> 00:14:02,610
+So then we can no longer rate it and it should then simply display the rating that we already gave.
+
+207
+00:14:04,100 --> 00:14:04,910
+All right.
+
+208
+00:14:06,100 --> 00:14:11,350
+Now, does that maybe sound like something that you might want to try on your own?
+
+209
+00:14:12,670 --> 00:14:18,000
+I know it sounds probably a bit scary, but I think you could actually do it.
+
+210
+00:14:18,010 --> 00:14:24,100
+So if you are up to speed with how the data flows through this application, I think you will be able
+
+211
+00:14:24,100 --> 00:14:24,980
+to do this.
+
+212
+00:14:25,000 --> 00:14:31,080
+So maybe take a minute or two now and then I see you back here once you are done with that.
+
+213
+00:14:33,030 --> 00:14:34,020
+All right.
+
+214
+00:14:34,140 --> 00:14:36,750
+So maybe you tried it.
+
+215
+00:14:36,750 --> 00:14:40,500
+And if not, that's also absolutely no problem.
+
+216
+00:14:41,230 --> 00:14:49,660
+So what we need to do is to now pass the watched array into that component, Right?
+
+217
+00:14:50,690 --> 00:14:54,140
+So that is right here.
+
+218
+00:14:55,200 --> 00:14:59,790
+So the watched array, we simply pass it as a prop.
+
+219
+00:14:59,790 --> 00:15:06,870
+And so then with that, we can check for each of these movies if it is already part of the watched list.
+
+220
+00:15:09,580 --> 00:15:12,970
+Okay, so let's calculate that here.
+
+221
+00:15:13,060 --> 00:15:17,170
+So a new piece of derived state, which is.
+
+222
+00:15:18,210 --> 00:15:19,590
+Is watched.
+
+223
+00:15:20,250 --> 00:15:27,420
+So what we need to do now is to basically check if the watched array that we need to accept here still
+
+224
+00:15:27,420 --> 00:15:28,230
+as a prop.
+
+225
+00:15:29,550 --> 00:15:36,570
+So we need to check if this array of objects includes the array that is currently selected.
+
+226
+00:15:36,960 --> 00:15:38,970
+So let's do that.
+
+227
+00:15:39,150 --> 00:15:40,380
+So what?
+
+228
+00:15:40,960 --> 00:15:45,610
+And let's first transform this simply into an array of IDs.
+
+229
+00:15:46,710 --> 00:15:53,640
+So we grab all the movies and then we simply take out the movie dot IMDb DB.
+
+230
+00:15:54,850 --> 00:15:58,960
+So let's just lock that to the console here just to make sure.
+
+231
+00:16:03,370 --> 00:16:03,630
+No.
+
+232
+00:16:03,670 --> 00:16:04,450
+Right.
+
+233
+00:16:06,100 --> 00:16:08,500
+Well, let's check that.
+
+234
+00:16:10,280 --> 00:16:10,700
+Somehow.
+
+235
+00:16:10,700 --> 00:16:12,380
+It's taking a lot of time here.
+
+236
+00:16:13,050 --> 00:16:15,600
+So right now, we have nothing on the watch list.
+
+237
+00:16:20,670 --> 00:16:22,710
+So let's add a couple of movies there.
+
+238
+00:16:25,450 --> 00:16:26,350
+All right.
+
+239
+00:16:26,350 --> 00:16:29,140
+And for some reason, we are getting undefined here.
+
+240
+00:16:30,190 --> 00:16:31,450
+Ah, but I see.
+
+241
+00:16:31,450 --> 00:16:33,540
+That's because here it should be IMDb.
+
+242
+00:16:34,030 --> 00:16:34,840
+I'd.
+
+243
+00:16:37,050 --> 00:16:39,330
+And indeed, now it works.
+
+244
+00:16:39,510 --> 00:16:41,220
+So we have this array now.
+
+245
+00:16:41,220 --> 00:16:50,160
+And so now all we need to do is to check whether this array includes the currently selected ID.
+
+246
+00:16:53,120 --> 00:16:53,960
+All right.
+
+247
+00:16:53,960 --> 00:16:59,780
+And now based on that, we will basically display this entire thing here.
+
+248
+00:16:59,870 --> 00:17:01,670
+So all of this.
+
+249
+00:17:04,330 --> 00:17:05,710
+So let's say.
+
+250
+00:17:06,350 --> 00:17:08,330
+If is watched.
+
+251
+00:17:10,470 --> 00:17:15,180
+Well, let's start with if it's not watched, then display what we have here.
+
+252
+00:17:16,920 --> 00:17:22,230
+And if not, then let's just create another paragraph here.
+
+253
+00:17:23,500 --> 00:17:32,860
+You rated this movie And then we can also later calculate or derive the rating that we actually gave.
+
+254
+00:17:32,890 --> 00:17:36,130
+Now here we need to return yet again.
+
+255
+00:17:38,080 --> 00:17:38,930
+A piece of.
+
+256
+00:17:41,430 --> 00:17:42,930
+With a fragment.
+
+257
+00:17:44,880 --> 00:17:46,500
+So just like this.
+
+258
+00:17:48,250 --> 00:17:48,820
+That.
+
+259
+00:17:48,940 --> 00:17:49,300
+Yeah.
+
+260
+00:17:49,300 --> 00:17:53,110
+So here is where we then place that paragraph.
+
+261
+00:17:53,920 --> 00:17:57,970
+So working with Jayesh, as you see, can always be a bit confusing.
+
+262
+00:17:57,970 --> 00:18:03,370
+And even after you have done it for years, it can still take a little bit of time.
+
+263
+00:18:04,700 --> 00:18:05,030
+No.
+
+264
+00:18:05,030 --> 00:18:05,630
+Right.
+
+265
+00:18:06,820 --> 00:18:09,970
+And now you see you rated this movie.
+
+266
+00:18:10,690 --> 00:18:12,530
+And the same with this one.
+
+267
+00:18:12,550 --> 00:18:16,540
+But this one we haven't rated, so it's not on our list.
+
+268
+00:18:17,380 --> 00:18:18,610
+So only these two.
+
+269
+00:18:18,610 --> 00:18:22,030
+And so for all the other ones, we can still rate them.
+
+270
+00:18:23,560 --> 00:18:25,630
+So we tried the third one.
+
+271
+00:18:25,630 --> 00:18:31,530
+And so now as we click on that again, then you see that we can no longer edit to the list.
+
+272
+00:18:31,540 --> 00:18:33,790
+So that option is now gone.
+
+273
+00:18:34,000 --> 00:18:36,490
+And so we fixed that problem.
+
+274
+00:18:36,490 --> 00:18:41,500
+Now all we have left to do is to then place the current rating there.
+
+275
+00:18:41,800 --> 00:18:46,030
+So let's again derive that from the watched array.
+
+276
+00:18:46,880 --> 00:18:52,640
+So let's say const watched user rating.
+
+277
+00:18:54,380 --> 00:18:59,750
+And then let's take watched dot find.
+
+278
+00:18:59,840 --> 00:19:02,480
+So we will just find the movie.
+
+279
+00:19:03,320 --> 00:19:04,190
+Where?
+
+280
+00:19:04,870 --> 00:19:14,500
+The movie dot IMDb ID is equal to the selected ID and then if that exists.
+
+281
+00:19:14,590 --> 00:19:20,920
+And so here we are now using optional chaining because there might be actually no movie already in the
+
+282
+00:19:20,920 --> 00:19:21,510
+list.
+
+283
+00:19:21,520 --> 00:19:29,110
+So if we haven't watched the movie then here this find method will return nothing.
+
+284
+00:19:29,320 --> 00:19:37,270
+So here then we need optional chaining so that the user rating is only taken from that object in case
+
+285
+00:19:37,270 --> 00:19:38,620
+it actually exists.
+
+286
+00:19:40,820 --> 00:19:41,420
+All right.
+
+287
+00:19:41,420 --> 00:19:44,630
+So again, pretty standard JavaScript right here.
+
+288
+00:19:44,630 --> 00:19:52,520
+But if that's confusing, then yeah, as I said many times, I have a review section for all this stuff
+
+289
+00:19:52,640 --> 00:19:54,560
+right at the beginning of the course.
+
+290
+00:19:54,710 --> 00:19:56,450
+So what?
+
+291
+00:19:57,530 --> 00:20:00,740
+User rating and.
+
+292
+00:20:01,950 --> 00:20:02,520
+Yeah.
+
+293
+00:20:02,520 --> 00:20:03,450
+Here we go.
+
+294
+00:20:04,360 --> 00:20:06,250
+You rated this movie seven?
+
+295
+00:20:07,000 --> 00:20:11,380
+Maybe let's add some nice emoji here once again.
+
+296
+00:20:13,540 --> 00:20:14,680
+So the star.
+
+297
+00:20:14,860 --> 00:20:15,700
+Where is it?
+
+298
+00:20:20,720 --> 00:20:21,020
+No.
+
+299
+00:20:21,030 --> 00:20:21,620
+Okay.
+
+300
+00:20:22,220 --> 00:20:26,120
+And so with this, we are now almost, almost done.
+
+301
+00:20:26,390 --> 00:20:30,290
+So all this works almost the same way as before.
+
+302
+00:20:32,620 --> 00:20:34,330
+So you see now it is here.
+
+303
+00:20:34,330 --> 00:20:40,960
+And our inception, for example, has the eight, which it also had here, and all the other ones have
+
+304
+00:20:40,960 --> 00:20:41,680
+the seven.
+
+305
+00:20:42,420 --> 00:20:43,140
+Okay.
+
+306
+00:20:43,140 --> 00:20:49,810
+And now the only thing that is left to do is the ability to also remove movies from the list.
+
+307
+00:20:49,830 --> 00:20:53,520
+So that's the only thing that is here in the demo app.
+
+308
+00:20:57,130 --> 00:20:59,350
+But which we do not have yet.
+
+309
+00:20:59,380 --> 00:21:04,270
+So this button right here where we click and it will then remove it from the list.
+
+310
+00:21:05,490 --> 00:21:06,620
+All right.
+
+311
+00:21:06,630 --> 00:21:10,980
+So let's go again back up here where the state actually lives.
+
+312
+00:21:14,950 --> 00:21:15,790
+And then.
+
+313
+00:21:16,630 --> 00:21:20,560
+Let's add the function for handle delete.
+
+314
+00:21:21,620 --> 00:21:22,250
+What?
+
+315
+00:21:23,110 --> 00:21:23,980
+So then, here.
+
+316
+00:21:23,980 --> 00:21:25,840
+Let's pass in the ID.
+
+317
+00:21:28,350 --> 00:21:32,620
+And then here we do it just like we always do.
+
+318
+00:21:32,640 --> 00:21:40,620
+So we use the current watched movies array, and then we filter out the one that we no longer want.
+
+319
+00:21:43,200 --> 00:21:53,910
+So we get the current movie and then if movie.imdb.id is different from the passed in ID, then that
+
+320
+00:21:53,910 --> 00:21:57,000
+movie will stay basically in the array.
+
+321
+00:21:57,000 --> 00:22:03,450
+But if it's the same, then that movie will be filtered out, so it will be deleted basically.
+
+322
+00:22:03,600 --> 00:22:09,780
+And so now let's pass in this function into the list here.
+
+323
+00:22:11,690 --> 00:22:15,950
+So that is the what?
+
+324
+00:22:15,950 --> 00:22:17,270
+Movies list.
+
+325
+00:22:17,660 --> 00:22:19,350
+So the movies.
+
+326
+00:22:19,370 --> 00:22:21,470
+So these movies are right here.
+
+327
+00:22:21,500 --> 00:22:24,660
+They are inside the watched movies list.
+
+328
+00:22:24,680 --> 00:22:31,580
+And so therefore, we need to pass this function into there so that we can then pass it into each of
+
+329
+00:22:31,580 --> 00:22:34,130
+these movie components right there.
+
+330
+00:22:34,820 --> 00:22:38,540
+So on delete watched.
+
+331
+00:22:39,870 --> 00:22:41,160
+Is handle.
+
+332
+00:22:42,370 --> 00:22:43,870
+Delete watched.
+
+333
+00:22:45,220 --> 00:22:47,800
+And let's move there.
+
+334
+00:22:50,280 --> 00:22:57,930
+So on delete, watched, and then let's immediately pass that down into the child component.
+
+335
+00:22:58,650 --> 00:23:00,930
+So on delete watched is on.
+
+336
+00:23:00,930 --> 00:23:01,530
+Delete.
+
+337
+00:23:01,560 --> 00:23:02,490
+Watched.
+
+338
+00:23:03,710 --> 00:23:04,730
+Okay.
+
+339
+00:23:04,730 --> 00:23:06,440
+And then let's go there.
+
+340
+00:23:07,470 --> 00:23:08,130
+Oh, that's right.
+
+341
+00:23:08,130 --> 00:23:08,580
+Here.
+
+342
+00:23:09,590 --> 00:23:10,550
+On delete.
+
+343
+00:23:10,670 --> 00:23:11,600
+What?
+
+344
+00:23:11,750 --> 00:23:16,590
+And don't worry if it's taking you a lot longer to process all of this.
+
+345
+00:23:16,610 --> 00:23:20,420
+So to write all the code, that's just completely normal, of course.
+
+346
+00:23:20,420 --> 00:23:26,330
+So when I built this app here for the first time, it also took me a few hours to build this.
+
+347
+00:23:26,330 --> 00:23:29,780
+So it was not nearly as fast as right now.
+
+348
+00:23:29,780 --> 00:23:37,220
+But of course here we cannot take like 30 hours just to build one small application, right?
+
+349
+00:23:38,300 --> 00:23:41,150
+But anyway, here, let's now create this button.
+
+350
+00:23:41,630 --> 00:23:46,760
+We need to give it the class of BTN Delete.
+
+351
+00:23:48,160 --> 00:23:49,600
+And then on click.
+
+352
+00:23:49,930 --> 00:23:54,550
+And don't forget, it needs to be a function, not a function call.
+
+353
+00:23:54,850 --> 00:23:58,090
+So on delete, watched.
+
+354
+00:23:58,390 --> 00:24:01,720
+And then all we have to do is to pass in the ID.
+
+355
+00:24:02,320 --> 00:24:06,670
+So once again, that's movie dot imdb id.
+
+356
+00:24:08,190 --> 00:24:10,050
+And that should be it.
+
+357
+00:24:10,950 --> 00:24:15,810
+So you see that the buttons are here and let's see.
+
+358
+00:24:16,610 --> 00:24:21,080
+Yes, that works and our statistics get updated.
+
+359
+00:24:21,820 --> 00:24:26,950
+Now here we have still this weird thing where JavaScript is like really bad at math.
+
+360
+00:24:27,550 --> 00:24:31,410
+Or actually this time it looks like it's not even JavaScript's fault.
+
+361
+00:24:31,420 --> 00:24:36,310
+But let's just fix that because that looks just like really bad.
+
+362
+00:24:37,490 --> 00:24:41,360
+So we should be able to just append a.
+
+363
+00:24:42,150 --> 00:24:45,570
+To fixed here, hopefully.
+
+364
+00:24:49,270 --> 00:24:50,770
+Yeah, that's a lot better.
+
+365
+00:24:50,860 --> 00:24:52,990
+Let's do the same here for the rating.
+
+366
+00:24:53,860 --> 00:24:55,300
+To fixed.
+
+367
+00:24:55,570 --> 00:25:00,970
+So the to here is the number of decimal points basically that we are allowing.
+
+368
+00:25:03,090 --> 00:25:06,550
+Uh, yeah, but anyway, that's actually it.
+
+369
+00:25:06,570 --> 00:25:10,410
+So you see our stats update in real time, Of course.
+
+370
+00:25:10,620 --> 00:25:13,980
+And now everything is back to zero.
+
+371
+00:25:14,940 --> 00:25:15,690
+All right.
+
+372
+00:25:15,690 --> 00:25:22,950
+So as I said in the beginning, it was a long lecture, but we also got a lot of stuff done.
+
+373
+00:25:23,130 --> 00:25:30,150
+Now, I'm aware that we moved a lot of like data up and down the tree at the same for some handler functions.
+
+374
+00:25:30,150 --> 00:25:36,030
+And so please, again, just make sure that you really understand what we just did here.
+
+375
+00:25:36,030 --> 00:25:41,340
+And with that, I think our component tree can really help you out a lot.
+
+376
+00:25:41,370 --> 00:25:48,690
+So just analyze all the props that all these components receive, how the state changes over time.
+
+377
+00:25:48,930 --> 00:25:56,400
+And so all of that will really help you out in becoming a better react developer because as I mentioned
+
+378
+00:25:56,400 --> 00:26:01,590
+many times before, you will also have to learn to work with other developers code.
+
+379
+00:26:01,590 --> 00:26:08,310
+And so then these skills of really analyzing the code and the data flow will become very handy.

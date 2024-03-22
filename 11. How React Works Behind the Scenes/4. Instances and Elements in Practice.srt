@@ -1,0 +1,383 @@
+1
+00:00:00,850 --> 00:00:08,980
+So as promised, let's now shortly look at component instances and react elements in our code.
+
+2
+00:00:10,180 --> 00:00:16,930
+So what I want to do in this lecture is just a couple of quick experiments to show you some interesting
+
+3
+00:00:16,930 --> 00:00:17,680
+things.
+
+4
+00:00:17,920 --> 00:00:25,420
+So first off, we can actually look at a component instance simply by using the component and logging
+
+5
+00:00:25,420 --> 00:00:26,890
+it to the console.
+
+6
+00:00:27,580 --> 00:00:29,170
+So let's try that out.
+
+7
+00:00:29,440 --> 00:00:35,170
+So actually, right out here, we can write like this.
+
+8
+00:00:35,840 --> 00:00:42,980
+So let's use the different component or the different content component because this one doesn't have
+
+9
+00:00:42,980 --> 00:00:43,970
+any state.
+
+10
+00:00:45,290 --> 00:00:46,160
+All right.
+
+11
+00:00:46,160 --> 00:00:51,020
+And if we run this, then we should see something in the console.
+
+12
+00:00:51,020 --> 00:00:53,280
+And indeed, there it is.
+
+13
+00:00:53,300 --> 00:01:01,640
+So as soon as React sees this right here, it will internally call the different content function and
+
+14
+00:01:01,640 --> 00:01:04,430
+will then return this react element.
+
+15
+00:01:04,430 --> 00:01:07,400
+So just like we learned in the previous video.
+
+16
+00:01:07,640 --> 00:01:10,460
+So let's take a quick look at this.
+
+17
+00:01:10,670 --> 00:01:17,600
+And while this is not really interesting, we can see that the type here is of different content.
+
+18
+00:01:17,600 --> 00:01:21,260
+And so that's exactly the name of the component right here.
+
+19
+00:01:21,530 --> 00:01:26,420
+We can also see that we didn't pass in any props, but which we actually could.
+
+20
+00:01:27,260 --> 00:01:31,010
+So let's just do test equals 23.
+
+21
+00:01:31,010 --> 00:01:34,580
+And so then we should see that right here.
+
+22
+00:01:34,580 --> 00:01:38,350
+So now in the second one and indeed there it is.
+
+23
+00:01:38,360 --> 00:01:44,990
+So again, this is what react internally use to then later create our Dom elements.
+
+24
+00:01:45,230 --> 00:01:51,890
+Now if you're wondering what this weird dollar, dollar type of thing here is, well, this is simply
+
+25
+00:01:51,890 --> 00:01:59,690
+a security feature that React has implemented in order to protect us against cross-site scripting attacks.
+
+26
+00:02:00,270 --> 00:02:08,130
+So notice how this is a symbol and the symbols are one of the JavaScript primitives which cannot be
+
+27
+00:02:08,130 --> 00:02:16,440
+transmitted via Json or in other words, this means that a symbol like this cannot come from an API
+
+28
+00:02:16,440 --> 00:02:17,010
+call.
+
+29
+00:02:17,010 --> 00:02:25,590
+So if some hacker would try to send us a fake react element from that API, then React would not see
+
+30
+00:02:25,590 --> 00:02:31,860
+this type of as a symbol again, because symbols cannot be transmitted via Json.
+
+31
+00:02:31,860 --> 00:02:37,290
+And so then React would not include that fake react element into the Dom.
+
+32
+00:02:37,290 --> 00:02:41,280
+So protecting us against that kind of attack.
+
+33
+00:02:41,730 --> 00:02:42,600
+All right.
+
+34
+00:02:42,840 --> 00:02:47,130
+But anyway, let's come back here and try something else.
+
+35
+00:02:47,430 --> 00:02:52,470
+So if React calls our component internally when it renders them.
+
+36
+00:02:52,470 --> 00:02:59,820
+So just as it did here in this previous line, then maybe you have wondered, why don't we just call
+
+37
+00:02:59,920 --> 00:03:01,630
+components directly?
+
+38
+00:03:01,720 --> 00:03:06,310
+So why should we write it like this when we could also write?
+
+39
+00:03:07,410 --> 00:03:09,270
+Different content.
+
+40
+00:03:11,360 --> 00:03:12,350
+Like this.
+
+41
+00:03:12,350 --> 00:03:18,710
+So basically calling the function ourselves, well, there is really nothing stopping us from doing
+
+42
+00:03:18,710 --> 00:03:19,290
+so.
+
+43
+00:03:19,310 --> 00:03:23,570
+So if we save this, then we actually get a result as well.
+
+44
+00:03:23,750 --> 00:03:27,910
+Let's just reload here so that we only get these two outputs.
+
+45
+00:03:27,920 --> 00:03:31,340
+So one output from here and one from here.
+
+46
+00:03:32,230 --> 00:03:38,260
+So you see that even here in this case, we still got a react element like this.
+
+47
+00:03:38,290 --> 00:03:41,110
+However, it is a very different one.
+
+48
+00:03:41,140 --> 00:03:49,090
+So this one no longer has the type of different content and instead it is a div, which is basically
+
+49
+00:03:49,090 --> 00:03:52,300
+just the content of that component.
+
+50
+00:03:52,600 --> 00:03:56,680
+So this div here is now the type of this react element.
+
+51
+00:03:56,680 --> 00:04:02,350
+And we can also see that because the props include the class name of tab content.
+
+52
+00:04:02,590 --> 00:04:10,750
+So what this means is that right now React does no longer see this as a component instance, and instead
+
+53
+00:04:10,750 --> 00:04:15,940
+it just sees the raw react element, which is really not what we want.
+
+54
+00:04:16,550 --> 00:04:24,200
+So when we write or actually when we use a component we want react to see the component instance and
+
+55
+00:04:24,200 --> 00:04:28,040
+not the raw output element like this one.
+
+56
+00:04:28,870 --> 00:04:31,150
+So never do this.
+
+57
+00:04:31,180 --> 00:04:38,470
+What we did right here and let's actually demonstrate this one more time, but now inside the component
+
+58
+00:04:38,470 --> 00:04:39,010
+here.
+
+59
+00:04:39,250 --> 00:04:47,920
+So after all this, let's enter JavaScript mode here and then let's just call.
+
+60
+00:04:48,720 --> 00:04:50,790
+Or actually tab content.
+
+61
+00:04:51,030 --> 00:04:57,190
+This time let's call tap content and we can pass in props just like this.
+
+62
+00:04:57,210 --> 00:05:03,150
+So we pass in an object and then item and then let's say content.
+
+63
+00:05:04,640 --> 00:05:06,320
+At zero.
+
+64
+00:05:07,660 --> 00:05:12,490
+And well, we got some errors here, but let's try to reload.
+
+65
+00:05:12,730 --> 00:05:15,760
+And now this somehow works.
+
+66
+00:05:16,410 --> 00:05:17,850
+So you see that?
+
+67
+00:05:17,850 --> 00:05:22,320
+Actually, we got a second tab content rendered down here.
+
+68
+00:05:22,440 --> 00:05:26,190
+So it looks like this works, right?
+
+69
+00:05:26,520 --> 00:05:28,530
+Well, not so fast.
+
+70
+00:05:28,560 --> 00:05:32,790
+Let's check out our component tree here again.
+
+71
+00:05:34,420 --> 00:05:35,980
+We need some more space.
+
+72
+00:05:36,760 --> 00:05:42,850
+And so now you see that we still only have one tab content here in our component tree.
+
+73
+00:05:42,850 --> 00:05:49,030
+And so this happened exactly because of what I explained before, which is that when we call a component
+
+74
+00:05:49,030 --> 00:05:54,610
+directly like this, then react no longer sees it as a component instance.
+
+75
+00:05:54,790 --> 00:06:03,340
+Now, we can also see that the state that this component manages is actually now inside the parent state
+
+76
+00:06:03,370 --> 00:06:04,900
+or the parent component.
+
+77
+00:06:05,080 --> 00:06:13,390
+So if we check out the tabbed component here, you see that it has the normal state that it had before,
+
+78
+00:06:13,390 --> 00:06:20,600
+which is this active tab, but it also has some other hooks here which come from tab content.
+
+79
+00:06:20,620 --> 00:06:27,310
+So these two are the two hooks that are inside this component, but they don't really belong here.
+
+80
+00:06:27,310 --> 00:06:32,950
+So we actually want them to be inside tab content and not inside.
+
+81
+00:06:33,070 --> 00:06:35,860
+Well, not here inside the tabbed component.
+
+82
+00:06:36,100 --> 00:06:43,520
+So what this means again, is that this is here not really a component because it cannot even manage
+
+83
+00:06:43,520 --> 00:06:45,920
+its own state at this point.
+
+84
+00:06:46,620 --> 00:06:52,980
+So for all these reasons, you should never, ever do what we just did here because this will create
+
+85
+00:06:52,980 --> 00:06:58,960
+multiple problems, such as violating the rules of hooks that we will talk about later.
+
+86
+00:06:58,980 --> 00:07:03,780
+So instead, as you already know, always render it inside the JS.
+
+87
+00:07:04,440 --> 00:07:08,820
+So just like this and so here we just use the component.
+
+88
+00:07:08,850 --> 00:07:16,110
+So basically this blueprint like we have always been doing and so then React calls the component and
+
+89
+00:07:16,110 --> 00:07:19,770
+actually recognizes this as a component instance.
+
+90
+00:07:20,660 --> 00:07:21,560
+All right.
+
+91
+00:07:24,320 --> 00:07:29,300
+So let's reload here again and then we are back to normal.
+
+92
+00:07:31,120 --> 00:07:32,050
+All right.
+
+93
+00:07:32,260 --> 00:07:37,860
+And here we can see one of those examples that we talked about in the previous lecture.
+
+94
+00:07:37,870 --> 00:07:41,890
+So we wrote one tab component here.
+
+95
+00:07:42,010 --> 00:07:43,690
+So this is like the blueprint.
+
+96
+00:07:43,690 --> 00:07:50,860
+But then we have four component instances, each with its own state and its own props.

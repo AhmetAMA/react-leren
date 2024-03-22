@@ -1,0 +1,707 @@
+1
+00:00:00,950 --> 00:00:07,910
+So whenever we are doing any data fetching in any web application and dealing with asynchronous data,
+
+2
+00:00:07,910 --> 00:00:11,930
+we always need to assume that something can go wrong.
+
+3
+00:00:11,930 --> 00:00:18,050
+And so therefore let's now account for that situation by handling those errors.
+
+4
+00:00:19,270 --> 00:00:25,750
+So one of the things that can go wrong is your users suddenly losing their Internet connection.
+
+5
+00:00:25,960 --> 00:00:32,980
+So let's simulate that here again in our network tab and let's make sure that we are first on slow 3G,
+
+6
+00:00:33,340 --> 00:00:35,610
+then let's reload here.
+
+7
+00:00:35,620 --> 00:00:39,710
+And then while the movies are loaded, we will click on offline.
+
+8
+00:00:39,730 --> 00:00:41,200
+So right now.
+
+9
+00:00:42,050 --> 00:00:46,810
+So you see that Now, the application basically never leaves this state.
+
+10
+00:00:46,820 --> 00:00:54,590
+And also when we come to our console here, we see that we failed to fetch, which again is because
+
+11
+00:00:54,620 --> 00:00:58,670
+our user basically now lost their Internet connection.
+
+12
+00:00:59,270 --> 00:01:05,660
+So when that happens, we want to display some kind of error message here on the screen and not keep
+
+13
+00:01:05,660 --> 00:01:12,020
+the application in this loading state here forever, because like this, the user will think that the
+
+14
+00:01:12,020 --> 00:01:15,980
+data might eventually arrive, but of course it will not.
+
+15
+00:01:16,160 --> 00:01:23,360
+Now, reacting to errors like this is actually not built into the fetch function itself.
+
+16
+00:01:23,360 --> 00:01:26,600
+And so we have to kind of do that manually.
+
+17
+00:01:26,690 --> 00:01:30,680
+And so let's try that here in our fetch movies function.
+
+18
+00:01:32,610 --> 00:01:38,910
+So here on the response object that we receive from Fetch exists one.
+
+19
+00:01:38,910 --> 00:01:39,380
+Okay.
+
+20
+00:01:39,390 --> 00:01:40,260
+Property.
+
+21
+00:01:40,530 --> 00:01:42,600
+And so here we can check for that.
+
+22
+00:01:42,900 --> 00:01:48,540
+So basically, if the response is not okay, then we want to throw a new error.
+
+23
+00:01:49,430 --> 00:01:52,700
+And again, this is pretty standard JavaScript code.
+
+24
+00:01:53,510 --> 00:01:58,760
+So then let's just say something went wrong.
+
+25
+00:02:00,520 --> 00:02:02,440
+Would fetching movies.
+
+26
+00:02:03,130 --> 00:02:03,940
+Okay.
+
+27
+00:02:04,030 --> 00:02:09,160
+And so now if we throw an error here, we need to wrap all of our code into a try.
+
+28
+00:02:09,190 --> 00:02:10,090
+Catch block.
+
+29
+00:02:10,900 --> 00:02:15,640
+So try and.
+
+30
+00:02:16,440 --> 00:02:20,210
+Catch, which again is just a normal JavaScript feature.
+
+31
+00:02:20,220 --> 00:02:22,770
+This one has nothing to do with React.
+
+32
+00:02:23,550 --> 00:02:26,940
+Okay, then here let's console dot error.
+
+33
+00:02:28,300 --> 00:02:29,530
+That error.
+
+34
+00:02:31,000 --> 00:02:31,760
+Okay.
+
+35
+00:02:32,270 --> 00:02:34,190
+And then let's come back here.
+
+36
+00:02:35,750 --> 00:02:39,110
+Well, if we load now, then of course nothing will work.
+
+37
+00:02:39,710 --> 00:02:41,120
+So let's do that trick again.
+
+38
+00:02:41,120 --> 00:02:41,450
+Where?
+
+39
+00:02:41,480 --> 00:02:43,550
+First we set it to slow 3G.
+
+40
+00:02:44,120 --> 00:02:48,830
+Then let's reload and then let's wait for it.
+
+41
+00:02:48,950 --> 00:02:54,050
+We set our users back to offline right now.
+
+42
+00:02:55,710 --> 00:02:57,840
+And so where is it?
+
+43
+00:02:58,940 --> 00:03:02,870
+Well, it's not actually anywhere here, but.
+
+44
+00:03:02,870 --> 00:03:04,700
+Well, that's not really important anyway.
+
+45
+00:03:05,340 --> 00:03:10,440
+So let's actually just log error.message.
+
+46
+00:03:10,620 --> 00:03:15,870
+So this is the property of the error where this string here will get saved into.
+
+47
+00:03:15,900 --> 00:03:22,590
+But then what we're actually interested in is to get this message here onto the screen.
+
+48
+00:03:22,740 --> 00:03:26,850
+So basically displaying it right here instead of loading.
+
+49
+00:03:27,610 --> 00:03:30,970
+So that means that we need another piece of state.
+
+50
+00:03:31,000 --> 00:03:37,000
+So basically a piece of state indicating whether we currently have an error or not.
+
+51
+00:03:39,320 --> 00:03:43,550
+So const error and set error.
+
+52
+00:03:46,970 --> 00:03:51,860
+And so here, this one is actually not a Boolean, but it's truly the error message.
+
+53
+00:03:53,260 --> 00:03:54,120
+Okay.
+
+54
+00:03:54,420 --> 00:03:58,290
+So here, let's then set the error.
+
+55
+00:03:59,140 --> 00:04:00,850
+To actually that message.
+
+56
+00:04:01,150 --> 00:04:06,430
+And again, error message is basically this string that we passed into.
+
+57
+00:04:06,430 --> 00:04:11,860
+The error and error is the error itself as it was passed into this catch block.
+
+58
+00:04:12,190 --> 00:04:15,460
+And again, that is just basic JavaScript.
+
+59
+00:04:15,940 --> 00:04:16,840
+All right.
+
+60
+00:04:17,200 --> 00:04:24,970
+And then let's do some conditional rendering here to basically get the error here onto the screen whenever
+
+61
+00:04:24,970 --> 00:04:26,170
+there exists one.
+
+62
+00:04:28,280 --> 00:04:28,490
+No.
+
+63
+00:04:28,490 --> 00:04:29,090
+Okay.
+
+64
+00:04:29,090 --> 00:04:36,920
+And let's start by creating a new error component here, or maybe let's call it error message and it
+
+65
+00:04:36,920 --> 00:04:43,010
+will receive a prop with some message that it will then display on the screen.
+
+66
+00:04:46,060 --> 00:04:54,040
+So let's return again a paragraph, this time with the class name of error, which as always, I already
+
+67
+00:04:54,040 --> 00:04:56,800
+included into my CSS file.
+
+68
+00:04:58,060 --> 00:05:02,080
+Then here, let's maybe add some small emoji here.
+
+69
+00:05:02,860 --> 00:05:03,030
+Yeah.
+
+70
+00:05:03,040 --> 00:05:04,060
+Like this one.
+
+71
+00:05:05,200 --> 00:05:08,050
+So showing there was some kind of problem.
+
+72
+00:05:10,220 --> 00:05:13,440
+And then here we simply display that message.
+
+73
+00:05:13,460 --> 00:05:16,880
+So this is a very simple presentational component.
+
+74
+00:05:17,060 --> 00:05:18,230
+Remember that?
+
+75
+00:05:21,240 --> 00:05:21,860
+Okay.
+
+76
+00:05:21,870 --> 00:05:29,400
+Now, here in our conditional rendering, basically what we want to do is that when it's no longer loading,
+
+77
+00:05:29,400 --> 00:05:34,960
+then we want to display this movie list, but only if there was no error.
+
+78
+00:05:34,980 --> 00:05:41,640
+So basically here we now would have to nest another ternary inside this ternary, but that makes for
+
+79
+00:05:41,640 --> 00:05:42,900
+really ugly code.
+
+80
+00:05:42,900 --> 00:05:45,720
+And so let's do something else instead.
+
+81
+00:05:46,830 --> 00:05:49,350
+So let's comment out this entire part.
+
+82
+00:05:51,160 --> 00:05:54,000
+Well, only this one.
+
+83
+00:05:54,010 --> 00:05:56,470
+So the box, of course we still need.
+
+84
+00:05:57,300 --> 00:05:58,560
+But then let's do.
+
+85
+00:05:59,510 --> 00:06:04,010
+Is loading and if there is no error.
+
+86
+00:06:05,770 --> 00:06:10,510
+Then display this movie's list right here.
+
+87
+00:06:12,740 --> 00:06:14,570
+Now if there is an error.
+
+88
+00:06:17,420 --> 00:06:24,470
+Then display the error message component with the error, or I think it's called message.
+
+89
+00:06:24,950 --> 00:06:27,320
+So with the message prop set.
+
+90
+00:06:27,910 --> 00:06:29,680
+To error.
+
+91
+00:06:30,660 --> 00:06:35,940
+And here, of course, it needs to be that the data is not loading and there is no error.
+
+92
+00:06:36,770 --> 00:06:41,600
+And finally, we also need to account, of course, for the is loading state.
+
+93
+00:06:43,170 --> 00:06:46,230
+So if it is loading, then just display.
+
+94
+00:06:47,130 --> 00:06:48,420
+Our loader.
+
+95
+00:06:49,400 --> 00:06:55,700
+So here the situation is indeed a little bit tricky with all these different states that we have and
+
+96
+00:06:55,700 --> 00:06:57,290
+with all the conditional rendering.
+
+97
+00:06:57,290 --> 00:07:02,210
+But well, these are now three mutually exclusive conditions.
+
+98
+00:07:02,760 --> 00:07:09,300
+So it is either loading or it is not loading and there is no error or there is an error.
+
+99
+00:07:09,300 --> 00:07:12,990
+So only one of these three here can be true at the same time.
+
+100
+00:07:12,990 --> 00:07:18,420
+And so that's very important so that we don't display multiple of these components at the same time
+
+101
+00:07:18,420 --> 00:07:19,380
+by mistake.
+
+102
+00:07:20,440 --> 00:07:24,550
+So let's give it a save and let's try again.
+
+103
+00:07:25,240 --> 00:07:27,160
+So back to our 3G.
+
+104
+00:07:29,930 --> 00:07:32,300
+And then I will set it to offline very soon.
+
+105
+00:07:34,220 --> 00:07:35,960
+Let's wait for it.
+
+106
+00:07:41,620 --> 00:07:42,900
+And there it is.
+
+107
+00:07:42,910 --> 00:07:46,420
+So we get our error message correctly displayed here.
+
+108
+00:07:46,660 --> 00:07:52,690
+However, there's still some problem because the loading state is still set to true.
+
+109
+00:07:53,630 --> 00:07:56,420
+And in fact, that's actually correct.
+
+110
+00:07:56,720 --> 00:08:03,440
+So as soon as the error here is thrown, this rest of the code is no longer evaluated.
+
+111
+00:08:03,440 --> 00:08:07,210
+And so therefore, it's loading is never set to false.
+
+112
+00:08:07,220 --> 00:08:12,110
+So our application will keep thinking that the data is still being loaded.
+
+113
+00:08:12,650 --> 00:08:19,670
+So again, the problem is that after this error is being thrown, then React will basically never see
+
+114
+00:08:19,670 --> 00:08:23,630
+this piece of code here where the loading state is reset.
+
+115
+00:08:23,930 --> 00:08:29,630
+So instead of doing that here, let's attach a finally block here.
+
+116
+00:08:30,350 --> 00:08:36,200
+So this block of code here will basically always be executed at the very end.
+
+117
+00:08:39,000 --> 00:08:39,600
+Okay.
+
+118
+00:08:39,600 --> 00:08:45,690
+And as an alternative, we could have kept the code here and also pasted it here, but that would have
+
+119
+00:08:45,690 --> 00:08:47,880
+created a duplication of code.
+
+120
+00:08:48,240 --> 00:08:50,940
+So with this, it's going to be a lot better.
+
+121
+00:08:51,120 --> 00:08:57,570
+Now, I will not try this yet here because actually I want to handle another kind of error, which is
+
+122
+00:08:57,570 --> 00:09:04,080
+not really an error, but also a situation where we want to display a message, which is the situation
+
+123
+00:09:04,080 --> 00:09:08,580
+in which we cannot find any movie for the search query.
+
+124
+00:09:09,170 --> 00:09:12,240
+So let's say the query is like this one here.
+
+125
+00:09:12,260 --> 00:09:15,620
+Then of course the API will not find anything.
+
+126
+00:09:17,310 --> 00:09:19,200
+So I had to remove all throttling.
+
+127
+00:09:21,810 --> 00:09:22,170
+And.
+
+128
+00:09:22,170 --> 00:09:24,510
+Well, what happens here?
+
+129
+00:09:28,790 --> 00:09:32,540
+Well, basically the length cannot be read of undefined.
+
+130
+00:09:32,540 --> 00:09:39,530
+And so the problem here is that the data that comes back from the API now is apparently undefined.
+
+131
+00:09:41,080 --> 00:09:42,760
+So let's take a look at that.
+
+132
+00:09:43,330 --> 00:09:47,380
+So just add data here and let's try that again.
+
+133
+00:09:48,750 --> 00:09:53,790
+And so, indeed, we no longer have the search property here.
+
+134
+00:09:54,440 --> 00:09:57,020
+So we no longer have data dot search.
+
+135
+00:09:57,020 --> 00:10:04,790
+And so what's happening then is that data search is being set to undefined and therefore we get this
+
+136
+00:10:04,790 --> 00:10:05,900
+other error here.
+
+137
+00:10:08,190 --> 00:10:13,470
+So as I was saying in the very beginning, we always need to handle all these different situations that
+
+138
+00:10:13,470 --> 00:10:14,430
+can go wrong.
+
+139
+00:10:14,430 --> 00:10:19,890
+And when we are working with data fetching, there's always a lot of things that can go wrong.
+
+140
+00:10:20,930 --> 00:10:28,370
+So working with data is a lot of work, but it's also essential in most, if not all, web applications.
+
+141
+00:10:28,980 --> 00:10:36,810
+But anyway, here we can now use this response to our advantage in order to throw another error in this
+
+142
+00:10:36,810 --> 00:10:37,740
+situation.
+
+143
+00:10:37,950 --> 00:10:44,760
+So we can say that data dot response and actually this now needs to be.
+
+144
+00:10:45,860 --> 00:10:48,830
+Uh, here after we already have the data.
+
+145
+00:10:50,040 --> 00:10:54,180
+So in this case, if data dot response is equal.
+
+146
+00:10:55,120 --> 00:10:56,060
+Faults.
+
+147
+00:10:56,080 --> 00:11:02,470
+And so for some reason the API here responds with a string of faults and not a boolean.
+
+148
+00:11:02,680 --> 00:11:04,630
+But well, this still works.
+
+149
+00:11:05,050 --> 00:11:10,840
+So in this case, let's also throw a new error and let's simply say.
+
+150
+00:11:11,600 --> 00:11:14,390
+Movie not found.
+
+151
+00:11:15,970 --> 00:11:16,810
+All right.
+
+152
+00:11:17,200 --> 00:11:18,940
+And beautiful.
+
+153
+00:11:20,740 --> 00:11:21,820
+Let's just reload.
+
+154
+00:11:21,820 --> 00:11:24,010
+And then here we get this log.
+
+155
+00:11:24,220 --> 00:11:27,340
+So that's this console.error coming from here.
+
+156
+00:11:27,340 --> 00:11:31,750
+And then indeed we get our error message also displayed on the UI.
+
+157
+00:11:32,170 --> 00:11:35,200
+So this one was maybe a little bit trickier.
+
+158
+00:11:35,350 --> 00:11:37,900
+So let's just quickly recap.
+
+159
+00:11:37,930 --> 00:11:44,980
+So what we did was to implement another state variable this time specific for the error so that whenever
+
+160
+00:11:44,980 --> 00:11:51,340
+some error occurred, we could store the error message in there and then display it in the UI as soon
+
+161
+00:11:51,340 --> 00:11:52,960
+as an error occurred.
+
+162
+00:11:53,110 --> 00:12:01,270
+Now, as soon as an error did occur, which is in this situation and in this one we threw a new error
+
+163
+00:12:01,270 --> 00:12:07,020
+and then we caught that error inside the catch block of this try catch.
+
+164
+00:12:07,030 --> 00:12:11,110
+And so this is a standard way of catching errors in JavaScript.
+
+165
+00:12:11,110 --> 00:12:17,530
+And so in this situation, we then set the error state to the message of the error that we specified
+
+166
+00:12:17,530 --> 00:12:18,040
+here.
+
+167
+00:12:18,780 --> 00:12:24,900
+Then finally, we used, of course, that state variable in order to render something on the screen
+
+168
+00:12:24,900 --> 00:12:25,920
+conditionally.
+
+169
+00:12:25,920 --> 00:12:28,710
+And so that was right here.
+
+170
+00:12:29,340 --> 00:12:31,920
+So this part here is maybe a bit confusing.
+
+171
+00:12:31,920 --> 00:12:37,920
+And so make sure that after this video you just analyze exactly what's happening here and that, in
+
+172
+00:12:37,920 --> 00:12:41,640
+fact, these three conditions here are mutually exclusive.
+
+173
+00:12:41,640 --> 00:12:44,490
+So only one of them will ever be true.
+
+174
+00:12:44,860 --> 00:12:45,510
+Okay.
+
+175
+00:12:45,510 --> 00:12:50,580
+And I think that for now, this is enough for error handling in this application.
+
+176
+00:12:50,580 --> 00:12:55,410
+So that's always a very, very important part that many people overlook.
+
+177
+00:12:55,410 --> 00:12:59,700
+But it is, of course, essential to deal with this kind of situations.

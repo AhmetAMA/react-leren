@@ -1,0 +1,1023 @@
+1
+00:00:00,970 --> 00:00:07,390
+Welcome to another coding challenge and hope that you really are finding these useful.
+
+2
+00:00:07,390 --> 00:00:13,840
+And if you do, then it's now time to build a reusable text expander component.
+
+3
+00:00:15,130 --> 00:00:21,280
+So here I have three of these text expander components that we are going to build.
+
+4
+00:00:21,460 --> 00:00:28,900
+So a text expander is basically when we have some part of a text and then we have this kind of button
+
+5
+00:00:28,900 --> 00:00:34,210
+here that when we click, it will reveal the entirety of the text.
+
+6
+00:00:34,210 --> 00:00:38,050
+And then when we click it again, it will go back to hiding it.
+
+7
+00:00:38,680 --> 00:00:43,290
+So this one here is basically one of the text expander components.
+
+8
+00:00:43,300 --> 00:00:45,160
+And then here we have another one.
+
+9
+00:00:45,160 --> 00:00:50,340
+And immediately you see that this one has by default a lot more text.
+
+10
+00:00:50,350 --> 00:00:56,530
+And then this button here has some different text than this one and also a different color.
+
+11
+00:00:56,710 --> 00:01:00,310
+But then when we click it, the behavior is exactly the same.
+
+12
+00:01:01,000 --> 00:01:03,760
+Then finally we have another one.
+
+13
+00:01:03,760 --> 00:01:06,880
+And you see that this one has some different styling.
+
+14
+00:01:06,880 --> 00:01:09,850
+And also by default, it is open.
+
+15
+00:01:09,850 --> 00:01:12,940
+And so then when we click here, it will close.
+
+16
+00:01:13,730 --> 00:01:21,470
+So let's go here to the starter code, which is always I have attached as a link to this lecture.
+
+17
+00:01:21,470 --> 00:01:28,190
+And if for some reason you don't want to build this challenge here on Code Sandbox, just copy paste
+
+18
+00:01:28,190 --> 00:01:32,330
+the code from here and also from the CSS file.
+
+19
+00:01:33,420 --> 00:01:38,430
+So that's not a lot, but we will still need that.
+
+20
+00:01:40,210 --> 00:01:47,140
+All right, So here I already have the three components included inside the app.
+
+21
+00:01:47,140 --> 00:01:51,850
+And the component itself right now only renders this to do.
+
+22
+00:01:51,850 --> 00:01:57,580
+And so, yeah, this here is your to do so to build this expander right here.
+
+23
+00:01:58,530 --> 00:02:05,040
+Now by including these three text expanders here, I'm already giving you a hint into what the public
+
+24
+00:02:05,040 --> 00:02:12,420
+API of this reusable component will look like, because here we already used many of these props.
+
+25
+00:02:12,420 --> 00:02:16,530
+And so from this you can kind of imagine what each of them does.
+
+26
+00:02:16,560 --> 00:02:20,520
+In order to achieve the three results that we saw here.
+
+27
+00:02:21,100 --> 00:02:27,910
+So the challenge for you is to now actually go ahead and implement this text expander using everything
+
+28
+00:02:27,910 --> 00:02:30,300
+that we have learned up until this point.
+
+29
+00:02:30,310 --> 00:02:37,000
+And if for some reason this is a bit difficult, then just imagine this as a collaboration between you
+
+30
+00:02:37,000 --> 00:02:38,500
+and me, basically.
+
+31
+00:02:38,590 --> 00:02:45,400
+So you build as much as you can on your own, and then if you can't move on anymore, at some point
+
+32
+00:02:45,430 --> 00:02:52,030
+you simply watch the rest of the video where I will then basically help you completing this component.
+
+33
+00:02:52,210 --> 00:03:00,250
+And if you want, you can of course also go crazy with this one and include even a lot more props than
+
+34
+00:03:00,250 --> 00:03:02,110
+just the ones that you see here.
+
+35
+00:03:02,110 --> 00:03:03,310
+So you can.
+
+36
+00:03:03,910 --> 00:03:07,090
+Yeah, really do a lot of customization here if you want.
+
+37
+00:03:07,090 --> 00:03:12,430
+But of course it's also more than enough to just do what we have here.
+
+38
+00:03:12,430 --> 00:03:18,040
+So this is a really nice exercise which I hope you will complete or at least part of it.
+
+39
+00:03:18,040 --> 00:03:21,550
+And then I see you back here with my implementation in.
+
+40
+00:03:23,520 --> 00:03:24,320
+Okay.
+
+41
+00:03:24,330 --> 00:03:26,400
+And let's get to work.
+
+42
+00:03:26,730 --> 00:03:31,740
+And I will immediately start by copying all these prop names here.
+
+43
+00:03:33,200 --> 00:03:36,650
+So selecting them one by one, then copy.
+
+44
+00:03:36,980 --> 00:03:39,980
+And then I will just receive them here.
+
+45
+00:03:40,720 --> 00:03:43,270
+Then, of course, just some commas.
+
+46
+00:03:46,130 --> 00:03:47,990
+And then we can get to work.
+
+47
+00:03:48,730 --> 00:03:54,490
+And in fact, we are actually missing one, which is basically just the text here.
+
+48
+00:03:54,580 --> 00:03:59,380
+So, of course, inside of the expander, we need access to the text.
+
+49
+00:03:59,500 --> 00:04:03,250
+Now, this text is between the opening and the closing tag.
+
+50
+00:04:03,280 --> 00:04:08,980
+And so what that means is that this is the children of this component.
+
+51
+00:04:09,190 --> 00:04:12,250
+So it's going to be inside the children prop.
+
+52
+00:04:12,520 --> 00:04:17,230
+So to start, we can actually immediately render that here just.
+
+53
+00:04:18,110 --> 00:04:19,910
+So we see that this works.
+
+54
+00:04:19,910 --> 00:04:23,750
+And indeed, here we get the three pieces of text.
+
+55
+00:04:24,360 --> 00:04:25,860
+That we have right here.
+
+56
+00:04:26,410 --> 00:04:27,270
+Great.
+
+57
+00:04:27,280 --> 00:04:30,550
+So we already have part of the output.
+
+58
+00:04:30,550 --> 00:04:33,250
+But of course we also want that button.
+
+59
+00:04:34,150 --> 00:04:35,980
+So let's do that.
+
+60
+00:04:36,310 --> 00:04:40,930
+And here let's immediately allow the user to pass in a class name.
+
+61
+00:04:41,970 --> 00:04:47,130
+So in this last one here, the user passes in this box class name.
+
+62
+00:04:47,130 --> 00:04:49,140
+And so here we then accept that.
+
+63
+00:04:49,140 --> 00:04:51,630
+And so then let's edit right here.
+
+64
+00:04:53,170 --> 00:04:55,810
+So class name equals.
+
+65
+00:04:56,780 --> 00:04:58,100
+Class name.
+
+66
+00:04:59,060 --> 00:05:00,770
+Like this.
+
+67
+00:05:00,800 --> 00:05:07,430
+And so this is exactly what we also did in our reusable star rating component, right?
+
+68
+00:05:07,880 --> 00:05:12,130
+Now, in that example, we didn't actually have a class name, but now we have.
+
+69
+00:05:12,140 --> 00:05:17,780
+And so immediately you see that this third one here got this different styling.
+
+70
+00:05:19,340 --> 00:05:20,030
+Okay.
+
+71
+00:05:21,130 --> 00:05:22,060
+Now, let's.
+
+72
+00:05:23,000 --> 00:05:27,890
+Place this text here inside a span so that then.
+
+73
+00:05:28,540 --> 00:05:30,550
+We can add the button.
+
+74
+00:05:33,570 --> 00:05:34,500
+All right.
+
+75
+00:05:34,500 --> 00:05:38,210
+And now the text of the button can actually be customized.
+
+76
+00:05:38,220 --> 00:05:44,430
+So that is what we have, the prop of the collapse button text for.
+
+77
+00:05:44,850 --> 00:05:49,320
+So let's get that place that here.
+
+78
+00:05:50,600 --> 00:05:52,590
+And then we have some error.
+
+79
+00:05:52,610 --> 00:05:54,230
+So let's see what's happening.
+
+80
+00:05:54,410 --> 00:05:56,300
+Now we're not closing the span.
+
+81
+00:05:56,720 --> 00:05:58,590
+So that doesn't look too good.
+
+82
+00:05:58,610 --> 00:06:02,540
+And so here we already have one button.
+
+83
+00:06:02,840 --> 00:06:08,300
+Now here then we have this, like, kind of very small button, which doesn't have any text.
+
+84
+00:06:08,300 --> 00:06:16,790
+And so that's because only this second text expander is actually passing in the text for the collapse
+
+85
+00:06:16,790 --> 00:06:18,410
+button text property.
+
+86
+00:06:18,650 --> 00:06:24,920
+And so that's because this text here, so this label of the button is different from the default.
+
+87
+00:06:24,950 --> 00:06:30,920
+So if we take a look here, then you see that by default, this one and this one display the text show
+
+88
+00:06:30,920 --> 00:06:31,460
+more.
+
+89
+00:06:31,460 --> 00:06:35,810
+And so then this one here is different and it says Show text.
+
+90
+00:06:39,100 --> 00:06:41,770
+So yeah, this one here is show text.
+
+91
+00:06:44,210 --> 00:06:46,430
+And here it is actually expand.
+
+92
+00:06:48,640 --> 00:06:55,780
+Okay, so expand button text should be by default show more.
+
+93
+00:06:56,260 --> 00:07:02,050
+And so now here we have show more then this one that's different show text and then again show more
+
+94
+00:07:02,050 --> 00:07:02,860
+right here.
+
+95
+00:07:03,040 --> 00:07:07,540
+But now, of course we want something to happen when we click on this button.
+
+96
+00:07:07,540 --> 00:07:11,410
+So we want only parts of the text here to be visible.
+
+97
+00:07:12,180 --> 00:07:15,810
+So we need some state, right?
+
+98
+00:07:17,000 --> 00:07:17,720
+So let's call.
+
+99
+00:07:17,720 --> 00:07:18,890
+This is.
+
+100
+00:07:20,000 --> 00:07:21,020
+Expand it.
+
+101
+00:07:22,470 --> 00:07:25,770
+And set is expanded.
+
+102
+00:07:27,160 --> 00:07:28,900
+Use state.
+
+103
+00:07:28,900 --> 00:07:32,410
+And then by default, let's make it false.
+
+104
+00:07:33,110 --> 00:07:36,320
+So by default, the text should not be expanded.
+
+105
+00:07:36,320 --> 00:07:40,100
+So we only want to see a small piece of the text.
+
+106
+00:07:40,790 --> 00:07:41,510
+All right.
+
+107
+00:07:41,510 --> 00:07:45,590
+And just make sure that your use date was correctly imported.
+
+108
+00:07:47,110 --> 00:07:47,720
+Okay.
+
+109
+00:07:47,730 --> 00:07:54,960
+And now let's use this is expanded state in order to calculate or to compute the text that we actually
+
+110
+00:07:54,960 --> 00:07:56,370
+want to display here.
+
+111
+00:07:58,780 --> 00:08:05,050
+So let's do that in a separate variable and let's call it the display text.
+
+112
+00:08:06,200 --> 00:08:09,020
+So if it is expanded.
+
+113
+00:08:09,140 --> 00:08:13,820
+So if expanded is true, then we want all the text to be shown.
+
+114
+00:08:13,820 --> 00:08:16,160
+And so that's then the children.
+
+115
+00:08:17,170 --> 00:08:17,860
+Right.
+
+116
+00:08:17,860 --> 00:08:20,500
+So, children, is that text.
+
+117
+00:08:20,530 --> 00:08:23,800
+That's why we place that here in the beginning, right?
+
+118
+00:08:23,950 --> 00:08:27,310
+But if not, then we want something else.
+
+119
+00:08:27,640 --> 00:08:32,380
+So let's just write test there just to experiment.
+
+120
+00:08:32,390 --> 00:08:38,290
+And then we will, of course, replace the children here with that display text.
+
+121
+00:08:38,380 --> 00:08:44,890
+And so by default now, all three of them have this test here, which is this part.
+
+122
+00:08:44,890 --> 00:08:49,900
+And so again, that's because by default is expanded, is false.
+
+123
+00:08:50,140 --> 00:08:54,460
+Now, actually, if we take a look at one of these components here.
+
+124
+00:08:55,680 --> 00:09:00,240
+Then this last one will have the prop of extended equals.
+
+125
+00:09:00,240 --> 00:09:00,880
+True.
+
+126
+00:09:00,900 --> 00:09:03,060
+So right here, I don't have that.
+
+127
+00:09:03,060 --> 00:09:04,500
+So I have this one.
+
+128
+00:09:04,500 --> 00:09:11,280
+But in the starter file that you will see, I will not have this one, but instead expand it.
+
+129
+00:09:13,710 --> 00:09:14,310
+Okay.
+
+130
+00:09:14,310 --> 00:09:19,200
+So again, in the starter file that I had here, I had a mistake.
+
+131
+00:09:19,200 --> 00:09:21,900
+So we had the wrong prop here.
+
+132
+00:09:21,900 --> 00:09:26,220
+And instead we want an expanded prop and not this one.
+
+133
+00:09:27,030 --> 00:09:31,340
+So here it's not button inline but expanded.
+
+134
+00:09:31,350 --> 00:09:35,550
+But in the code that you see, this will already have been fixed.
+
+135
+00:09:35,760 --> 00:09:43,560
+So the meaning of this expanded prop is that if it is set to true, then by default the component here
+
+136
+00:09:43,560 --> 00:09:45,180
+will be expanded.
+
+137
+00:09:45,180 --> 00:09:48,750
+And so that's exactly this third situation right here.
+
+138
+00:09:49,420 --> 00:09:56,560
+So if we reload this one here, then you see that the third text expander is by default already expanded.
+
+139
+00:09:57,600 --> 00:09:58,140
+Okay.
+
+140
+00:09:58,140 --> 00:10:01,350
+And so that's because expended is set to true.
+
+141
+00:10:02,330 --> 00:10:07,520
+So here let's now actually not use false but really get this initial state.
+
+142
+00:10:08,260 --> 00:10:09,730
+From expanded.
+
+143
+00:10:09,820 --> 00:10:14,860
+And so then we can set expanded to false by default.
+
+144
+00:10:14,860 --> 00:10:19,570
+And so this is very similar what we also did in our star rating component.
+
+145
+00:10:19,690 --> 00:10:25,210
+So there we also set the initial state based on one of the props, Right?
+
+146
+00:10:26,530 --> 00:10:30,070
+So by default, we now have this last one here already opened.
+
+147
+00:10:30,070 --> 00:10:36,130
+And so this one shows the entire text, while this ones here for now only show test.
+
+148
+00:10:36,990 --> 00:10:43,740
+Now, another thing is that in this case that the text is expanded here, the text, so the label of
+
+149
+00:10:43,740 --> 00:10:45,480
+this button should be different.
+
+150
+00:10:45,480 --> 00:10:48,510
+So it should be show less by default.
+
+151
+00:10:48,750 --> 00:10:53,100
+And so let's do that here again as a default prop.
+
+152
+00:10:55,320 --> 00:10:56,640
+Sochaux Les.
+
+153
+00:10:57,600 --> 00:11:00,990
+And so then here, let's conditionally display that text.
+
+154
+00:11:01,880 --> 00:11:04,040
+So if is expanded.
+
+155
+00:11:07,560 --> 00:11:13,620
+Then show the collapse button text and if not, then show the expand button text.
+
+156
+00:11:13,620 --> 00:11:16,290
+And so now it says Show less.
+
+157
+00:11:18,040 --> 00:11:26,050
+And so this other component here will then show collapse text instead of show less so because it passes
+
+158
+00:11:26,050 --> 00:11:29,740
+in this special prop that we have defined here.
+
+159
+00:11:30,540 --> 00:11:36,840
+And if all of these props here and all these default values here look very confusing to you.
+
+160
+00:11:36,870 --> 00:11:43,480
+Well, that's just because we are really trying to make this component here very flexible and reusable.
+
+161
+00:11:43,500 --> 00:11:50,130
+So just like we did with our star rating component, when we built our normal components in applications,
+
+162
+00:11:50,130 --> 00:11:52,620
+we will not do this right.
+
+163
+00:11:52,650 --> 00:11:56,430
+We will then usually have the text directly in here.
+
+164
+00:11:56,430 --> 00:12:02,290
+For example, instead of relying on the props and on default values of those props.
+
+165
+00:12:02,310 --> 00:12:06,600
+But again, here we are striving for maximum reusability.
+
+166
+00:12:07,230 --> 00:12:11,940
+But anyway, let's now finally actually make this button work.
+
+167
+00:12:12,420 --> 00:12:13,230
+So.
+
+168
+00:12:14,330 --> 00:12:17,240
+Specifying the onClick prop.
+
+169
+00:12:20,620 --> 00:12:21,010
+Here.
+
+170
+00:12:21,010 --> 00:12:22,660
+We just need a function.
+
+171
+00:12:22,780 --> 00:12:26,980
+And then let's say set is expanded.
+
+172
+00:12:27,810 --> 00:12:30,690
+And then the new state will be based on the current state.
+
+173
+00:12:30,690 --> 00:12:39,930
+So we use the callback function here and instead of writing the entire word, let's just say Exp, which
+
+174
+00:12:39,930 --> 00:12:41,370
+stands for Expanded.
+
+175
+00:12:41,520 --> 00:12:43,380
+And then we just toggle that here.
+
+176
+00:12:44,550 --> 00:12:44,760
+Now.
+
+177
+00:12:44,760 --> 00:12:45,450
+That's it.
+
+178
+00:12:46,050 --> 00:12:46,980
+So let's see.
+
+179
+00:12:47,310 --> 00:12:50,580
+And indeed, as we click there, the text is now hidden.
+
+180
+00:12:50,580 --> 00:12:54,360
+And if we click on one of these, then it will show the text.
+
+181
+00:12:55,980 --> 00:12:58,260
+And again, it will then hide it.
+
+182
+00:12:58,590 --> 00:12:59,520
+Great.
+
+183
+00:12:59,550 --> 00:13:07,320
+Now, next up, let's take care of not displaying the test here, but instead displaying some actual
+
+184
+00:13:07,320 --> 00:13:09,090
+part of the text.
+
+185
+00:13:09,270 --> 00:13:15,230
+Now, notice how here we have this prop which says collapsed number of words.
+
+186
+00:13:15,240 --> 00:13:19,800
+And so here let's again specify a default, which is 20.
+
+187
+00:13:19,980 --> 00:13:23,700
+But of course it could also be any other value.
+
+188
+00:13:24,030 --> 00:13:31,020
+So the idea here is that by default, when the text is collapsed, it will only display exactly this
+
+189
+00:13:31,020 --> 00:13:32,070
+number of words.
+
+190
+00:13:32,070 --> 00:13:33,740
+So only 20 words.
+
+191
+00:13:33,750 --> 00:13:38,610
+But then you have, for example, this component here, which shows more words.
+
+192
+00:13:38,820 --> 00:13:43,230
+So 20 this one should then actually be ten.
+
+193
+00:13:43,230 --> 00:13:46,920
+So that this one here shows, in fact, more words.
+
+194
+00:13:47,710 --> 00:13:51,400
+So by default, only ten words should be displayed.
+
+195
+00:13:52,070 --> 00:13:53,810
+So let's do that.
+
+196
+00:13:55,180 --> 00:13:57,370
+So this is just some standard.
+
+197
+00:13:58,200 --> 00:14:00,270
+String and array manipulation.
+
+198
+00:14:00,870 --> 00:14:04,530
+So we can simply split this string.
+
+199
+00:14:05,180 --> 00:14:08,390
+By the empty space, which will then give us an array.
+
+200
+00:14:09,240 --> 00:14:16,980
+And then we can slice or in other words, we can take all the elements from zero all the way to collapsed
+
+201
+00:14:17,010 --> 00:14:18,210
+number of words.
+
+202
+00:14:18,570 --> 00:14:21,750
+So by default, we take the first ten words.
+
+203
+00:14:21,750 --> 00:14:23,340
+So from 0 to 10.
+
+204
+00:14:24,030 --> 00:14:25,800
+And now this is still an array.
+
+205
+00:14:25,800 --> 00:14:30,240
+And so we need to put it back to being a string.
+
+206
+00:14:31,100 --> 00:14:33,920
+Now, then we also want to add at the end.
+
+207
+00:14:34,670 --> 00:14:36,350
+These three dots.
+
+208
+00:14:37,160 --> 00:14:37,960
+Okay.
+
+209
+00:14:37,970 --> 00:14:45,050
+And we could have used a template literal for this, but we can also just add them here at the end like
+
+210
+00:14:45,050 --> 00:14:45,530
+this.
+
+211
+00:14:45,530 --> 00:14:47,520
+So that works the same way.
+
+212
+00:14:47,540 --> 00:14:55,040
+And so as we click here, it shows all of them and otherwise it just shows exactly one, two, three,
+
+213
+00:14:55,040 --> 00:15:00,500
+four, five, six, seven, eight, nine, ten words plus these three dots.
+
+214
+00:15:00,770 --> 00:15:01,910
+Beautiful.
+
+215
+00:15:02,180 --> 00:15:04,340
+So that is already working.
+
+216
+00:15:04,340 --> 00:15:09,230
+Now all we have to do is to take care of the styling of this button.
+
+217
+00:15:10,080 --> 00:15:13,590
+So let's again specify an object here.
+
+218
+00:15:16,160 --> 00:15:18,050
+Let's say button style.
+
+219
+00:15:19,770 --> 00:15:20,370
+And then.
+
+220
+00:15:21,460 --> 00:15:22,570
+Background.
+
+221
+00:15:24,520 --> 00:15:25,960
+Set it to none.
+
+222
+00:15:27,910 --> 00:15:29,470
+Also no border.
+
+223
+00:15:32,600 --> 00:15:40,850
+And again, this is necessary because we want this component here to be 100% reusable and standalone,
+
+224
+00:15:40,850 --> 00:15:44,600
+so it cannot depend on any external styles.
+
+225
+00:15:46,160 --> 00:15:48,740
+So let's also set a cursor.
+
+226
+00:15:49,380 --> 00:15:50,610
+Two pointer.
+
+227
+00:15:55,890 --> 00:15:59,550
+Let's give it some margin on the left side.
+
+228
+00:16:00,890 --> 00:16:03,560
+Or four pixels or, let's say six.
+
+229
+00:16:04,750 --> 00:16:09,040
+And finally, we also want to give it a text color.
+
+230
+00:16:10,050 --> 00:16:14,280
+And so this is where this button color prop comes into play.
+
+231
+00:16:14,940 --> 00:16:18,450
+So let's grab that and place that here.
+
+232
+00:16:19,370 --> 00:16:25,220
+And now all we have to do is to assign this here to the style prop.
+
+233
+00:16:25,460 --> 00:16:28,130
+So style, button style.
+
+234
+00:16:30,920 --> 00:16:33,740
+Give it a safe and beautiful.
+
+235
+00:16:34,580 --> 00:16:40,040
+So now this button looks more like text, but it is still missing some color.
+
+236
+00:16:40,190 --> 00:16:48,860
+So let's by default add some blue color here, which is 1F09 CD.
+
+237
+00:16:50,680 --> 00:16:51,640
+All right.
+
+238
+00:16:51,640 --> 00:16:53,050
+And there we go.
+
+239
+00:16:53,950 --> 00:17:00,550
+So the second one again is personalizing not only these two texts here on the button, but also the
+
+240
+00:17:00,550 --> 00:17:02,590
+color and the number of words.
+
+241
+00:17:02,590 --> 00:17:05,620
+And so that's why this one here looks quite different.
+
+242
+00:17:05,710 --> 00:17:12,760
+And then again, this one here has this special styling here that's coming right from our CSS file in
+
+243
+00:17:12,760 --> 00:17:14,830
+the form of this box class.
+
+244
+00:17:14,860 --> 00:17:15,490
+Great.
+
+245
+00:17:15,490 --> 00:17:16,630
+So this is working.
+
+246
+00:17:16,630 --> 00:17:19,660
+And in fact, we are now basically finished.
+
+247
+00:17:20,340 --> 00:17:28,310
+So this text expander component is now highly reusability and it hides all the complexity from the user.
+
+248
+00:17:28,320 --> 00:17:34,290
+So from the consumer of this component, which again is really nice and really important.
+
+249
+00:17:34,290 --> 00:17:41,520
+So as the developer of this component, then we chose the public API basically and therefore allowed
+
+250
+00:17:41,520 --> 00:17:44,760
+the user to customize it to their needs.
+
+251
+00:17:44,820 --> 00:17:52,530
+And as always, we could have gone really crazy here and for example, allow the user to place this
+
+252
+00:17:52,530 --> 00:17:59,400
+button here in different places like below or on the left side or here right at the very beginning,
+
+253
+00:17:59,400 --> 00:18:03,960
+we could have allowed some more styling here of the entire component.
+
+254
+00:18:03,960 --> 00:18:10,110
+Or we could also allow the user to specify whether they want to see these three dots here or not.
+
+255
+00:18:10,320 --> 00:18:15,630
+But again, that's just not necessary because with this we found a nice balance.
+
+256
+00:18:15,630 --> 00:18:18,240
+So this is the interface that we chose.

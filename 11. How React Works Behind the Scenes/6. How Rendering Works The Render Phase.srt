@@ -1,0 +1,815 @@
+1
+00:00:01,100 --> 00:00:09,020
+Welcome back to probably the most complicated and most confusing lecture of the entire course.
+
+2
+00:00:09,020 --> 00:00:16,880
+But I don't say this to scare you because this might also be the most interesting and fascinating lecture
+
+3
+00:00:16,910 --> 00:00:18,050
+of the course.
+
+4
+00:00:18,290 --> 00:00:25,610
+Now, if you don't immediately understand 100% of what I'm going to teach you here, that's absolutely
+
+5
+00:00:25,640 --> 00:00:26,270
+fine.
+
+6
+00:00:26,270 --> 00:00:28,640
+So don't stress about it at all.
+
+7
+00:00:28,940 --> 00:00:36,680
+Again, you can use React without knowing any of this stuff, but if you have a curious mind and feel
+
+8
+00:00:36,680 --> 00:00:42,680
+the need to understand how react does what it does, then this video is for you.
+
+9
+00:00:44,580 --> 00:00:51,840
+Now, before we even start, let's first go back to where we first learned about the mechanics of state.
+
+10
+00:00:51,960 --> 00:00:53,940
+Remember this diagram?
+
+11
+00:00:54,240 --> 00:01:02,580
+Well, back then I told you that we can conceptually imagine this as a new view being rendered on the
+
+12
+00:01:02,580 --> 00:01:04,920
+screen so into the Dom.
+
+13
+00:01:05,250 --> 00:01:12,990
+However, now we know that this was technically not true because rendering is not about the screen or
+
+14
+00:01:12,990 --> 00:01:14,670
+the Dom or the View.
+
+15
+00:01:14,700 --> 00:01:18,030
+It's just about calling component functions.
+
+16
+00:01:18,480 --> 00:01:26,520
+I also told you that whenever there is a rerender, react discards the old component view and replaces
+
+17
+00:01:26,520 --> 00:01:28,680
+it with a brand new one.
+
+18
+00:01:28,860 --> 00:01:32,470
+However, that's also technically not true.
+
+19
+00:01:32,490 --> 00:01:38,490
+So the Dom will actually not be updated for the entire component instance.
+
+20
+00:01:38,880 --> 00:01:47,170
+So if those things are not true, then let's now learn what happens instead and how rendering actually
+
+21
+00:01:47,170 --> 00:01:47,920
+works.
+
+22
+00:01:49,670 --> 00:01:55,010
+So in the previous lecture we talked about how renders are triggered.
+
+23
+00:01:55,040 --> 00:02:02,150
+In this lecture, we're going to learn all about how renders are actually performed in the render phase.
+
+24
+00:02:02,450 --> 00:02:09,500
+So at the beginning of the render phase, React will go through the entire component tree, take all
+
+25
+00:02:09,500 --> 00:02:16,520
+the component instances that triggered a rerender and actually render them, which simply means to call
+
+26
+00:02:16,520 --> 00:02:21,260
+the corresponding component functions that we have written in our code.
+
+27
+00:02:21,530 --> 00:02:29,240
+This will create updated react elements which all together make up the so-called virtual dom.
+
+28
+00:02:29,540 --> 00:02:32,660
+And this is a term that you might have heard before.
+
+29
+00:02:32,690 --> 00:02:38,630
+And so let's dig a little bit deeper now into what the virtual Dom actually is.
+
+30
+00:02:39,640 --> 00:02:47,860
+So on the initial render, react will take the entire component tree and transform it into one big react
+
+31
+00:02:47,860 --> 00:02:53,200
+element, which will basically be a react element tree like this one.
+
+32
+00:02:53,200 --> 00:02:56,560
+And this is what we call the virtual Dom.
+
+33
+00:02:57,010 --> 00:03:05,290
+So the virtual dom is just a tree of all react elements created from all instances in the component
+
+34
+00:03:05,290 --> 00:03:05,860
+tree.
+
+35
+00:03:06,040 --> 00:03:13,330
+And it's relatively cheap and fast to create a tree like this, even if we need many iterations of it.
+
+36
+00:03:13,360 --> 00:03:17,290
+Because in the end it's just a JavaScript object.
+
+37
+00:03:18,020 --> 00:03:26,660
+Now, Virtual Dom is probably the most hyped and most used term when people describe what React is and
+
+38
+00:03:26,660 --> 00:03:27,710
+how it works.
+
+39
+00:03:27,800 --> 00:03:35,090
+But if we think about it, if the virtual Dom is just this simple object, it's actually not such a
+
+40
+00:03:35,090 --> 00:03:35,780
+big deal.
+
+41
+00:03:35,780 --> 00:03:36,650
+Right?
+
+42
+00:03:36,830 --> 00:03:42,140
+And that's why the React team has really downplayed the meaning of this name.
+
+43
+00:03:42,140 --> 00:03:48,530
+And the official documentation actually no longer mentioned the term virtual dom anywhere.
+
+44
+00:03:48,530 --> 00:03:55,910
+But I'm still using this term here because everyone still uses it and also because it just sounds a
+
+45
+00:03:55,910 --> 00:03:58,850
+bit nicer than React Elementary.
+
+46
+00:03:59,660 --> 00:04:06,560
+Also, some people confuse the term with the shadow dom, even though it has nothing to do with the
+
+47
+00:04:06,560 --> 00:04:08,410
+virtual dom in React.
+
+48
+00:04:08,420 --> 00:04:15,710
+So the shadow dom is actually just a browser technology that is used in stuff like web components.
+
+49
+00:04:15,950 --> 00:04:23,330
+But anyway, let's now suppose that there is going to be a state update in component D, which will
+
+50
+00:04:23,360 --> 00:04:26,120
+of course trigger a rerender.
+
+51
+00:04:26,390 --> 00:04:33,560
+That means that react will call the function of component D again and place the new react element in
+
+52
+00:04:33,560 --> 00:04:35,510
+a new react element tree.
+
+53
+00:04:35,540 --> 00:04:38,060
+So in a new virtual dom.
+
+54
+00:04:38,420 --> 00:04:42,510
+But now comes the very important part, which is this.
+
+55
+00:04:42,530 --> 00:04:50,120
+Whenever React renders a component, that render will cause all of its child components to be rendered
+
+56
+00:04:50,120 --> 00:04:51,140
+as well.
+
+57
+00:04:51,140 --> 00:04:56,810
+And that happens no matter if the props that we pass down have changed or not.
+
+58
+00:04:57,080 --> 00:05:05,400
+So again, if the updated components returns one or more other components, those nested components
+
+59
+00:05:05,400 --> 00:05:09,960
+will be re rendered as well all the way down the component tree.
+
+60
+00:05:10,260 --> 00:05:17,250
+This means that if you update the highest component in a component tree in this example component A,
+
+61
+00:05:17,310 --> 00:05:22,080
+then the entire application will actually be re rendered.
+
+62
+00:05:22,540 --> 00:05:29,980
+Now, this may sound crazy, but React uses this strategy because it doesn't know beforehand whether
+
+63
+00:05:29,980 --> 00:05:34,420
+an update in a component will affect the child components or not.
+
+64
+00:05:34,420 --> 00:05:40,660
+And so by default, React prefers to play it safe and just render everything.
+
+65
+00:05:40,750 --> 00:05:47,440
+Also, keep in mind once again that this does not mean that the entire Dom is updated.
+
+66
+00:05:47,470 --> 00:05:54,940
+It's just a virtual dom that will be recreated, which is really not a big problem in small or medium
+
+67
+00:05:54,940 --> 00:05:56,530
+sized applications.
+
+68
+00:05:57,950 --> 00:06:03,130
+Okay, So with this, we now know what this new virtual dom here means.
+
+69
+00:06:03,140 --> 00:06:05,540
+And so let's keep moving forward.
+
+70
+00:06:05,900 --> 00:06:14,990
+So what happens next is that this new virtual Dom that was created after this date update will get reconciled
+
+71
+00:06:14,990 --> 00:06:20,840
+with the current so-called fiber tree as it exists before the state update.
+
+72
+00:06:21,560 --> 00:06:29,720
+Now this reconciliation is done in react's reconciler, which is called fiber, and that's why we have
+
+73
+00:06:29,720 --> 00:06:30,890
+a fiber tree.
+
+74
+00:06:31,280 --> 00:06:37,870
+Then the results of this reconciliation process is going to be an updated fiber tree.
+
+75
+00:06:37,880 --> 00:06:42,590
+So a tree that will eventually be used to write to the Dom.
+
+76
+00:06:42,980 --> 00:06:49,940
+So this is a high level overview of the inputs and the outputs of reconciliation.
+
+77
+00:06:49,940 --> 00:06:56,120
+But of course now we need to understand what reconciliation is and how it works.
+
+78
+00:06:57,920 --> 00:07:03,060
+So you might be wondering why do we even need stuff like the virtual dom?
+
+79
+00:07:03,080 --> 00:07:06,150
+A reconciler and those fiber trees.
+
+80
+00:07:06,170 --> 00:07:12,230
+Why not simply update the entire dom whenever state changes somewhere in the app?
+
+81
+00:07:12,830 --> 00:07:15,480
+Well, the answer is simple.
+
+82
+00:07:15,500 --> 00:07:19,040
+Remember how we said that creating the virtual Dom?
+
+83
+00:07:19,040 --> 00:07:26,690
+So the react element tree for the entire app is cheap and fast because it's just a JavaScript object.
+
+84
+00:07:27,020 --> 00:07:31,430
+Well, writing to the Dom is not cheap and fast.
+
+85
+00:07:31,460 --> 00:07:39,140
+It would be extremely inefficient and wasteful to always write the entire virtual dom to the actual
+
+86
+00:07:39,140 --> 00:07:42,440
+dom each time that a render was triggered.
+
+87
+00:07:42,800 --> 00:07:49,790
+Also, usually when the state changes somewhere in the app, only a small portion of the Dom needs to
+
+88
+00:07:49,790 --> 00:07:55,340
+be updated and the rest of the Dom that is already present can be reused.
+
+89
+00:07:56,090 --> 00:08:03,110
+Now, of course, on the initial render, there is no way around creating the entire Dom from scratch,
+
+90
+00:08:03,110 --> 00:08:07,280
+but from there on, doing so doesn't make sense anymore.
+
+91
+00:08:08,160 --> 00:08:16,230
+So imagine that you have a complex app like Udemy.com, and when you click on some button there, then
+
+92
+00:08:16,230 --> 00:08:22,380
+show Modal is set to true, which in turn will then trigger a modal to be shown.
+
+93
+00:08:22,590 --> 00:08:30,960
+So in this situation only the Dom elements for that modal need to be inserted into the Dom and the rest
+
+94
+00:08:30,960 --> 00:08:33,510
+of the dom should just stay the same.
+
+95
+00:08:33,720 --> 00:08:36,540
+And so that's what React tries to do.
+
+96
+00:08:36,630 --> 00:08:44,490
+Whenever a render is triggered, React will try to be as efficient as possible by reusing as much of
+
+97
+00:08:44,490 --> 00:08:47,250
+the existing Dom tree as possible.
+
+98
+00:08:47,400 --> 00:08:50,410
+But that leads us to the next question.
+
+99
+00:08:50,430 --> 00:08:53,310
+So how does React actually do that?
+
+100
+00:08:53,340 --> 00:08:57,960
+How does it know what changed from one render to the next one?
+
+101
+00:08:58,320 --> 00:09:03,510
+Well, that's where a process called reconciliation comes into play.
+
+102
+00:09:04,180 --> 00:09:12,130
+So reconciliation is basically deciding exactly which Dom elements need to be inserted, deleted or
+
+103
+00:09:12,130 --> 00:09:16,300
+updated in order to reflect the latest state changes.
+
+104
+00:09:16,450 --> 00:09:23,920
+So the result of the reconciliation process is going to be a list of Dom operations that are necessary
+
+105
+00:09:23,920 --> 00:09:27,520
+to update the current Dom with the new state.
+
+106
+00:09:28,180 --> 00:09:36,730
+Now reconciliation is processed by a reconciler, and we can say that the reconciler really is the engine
+
+107
+00:09:36,760 --> 00:09:37,600
+of react.
+
+108
+00:09:37,630 --> 00:09:40,210
+It's like the heart of react.
+
+109
+00:09:40,420 --> 00:09:47,980
+So it's this reconciler that allows us to never touch the Dom directly and instead simply tell react
+
+110
+00:09:47,980 --> 00:09:53,110
+what the next snapshot of the UI should look like based on state.
+
+111
+00:09:53,350 --> 00:09:59,620
+And as I mentioned before, the current reconciler in React is called fiber.
+
+112
+00:09:59,830 --> 00:10:02,290
+And this is how it works.
+
+113
+00:10:02,500 --> 00:10:09,430
+So during the initial render of the application, fiber takes the entire React element tree.
+
+114
+00:10:09,460 --> 00:10:17,080
+So the virtual Dom and based on it builds yet another tree, which is the fiber tree.
+
+115
+00:10:17,260 --> 00:10:24,880
+The fiber tree is a special internal tree where for each component instance and Dom element in the app
+
+116
+00:10:24,880 --> 00:10:27,490
+there is one so-called fiber.
+
+117
+00:10:28,090 --> 00:10:35,620
+Now, what's special about this tree is that unlike react elements in the virtual Dom, fibers are not
+
+118
+00:10:35,620 --> 00:10:37,850
+recreated on every render.
+
+119
+00:10:37,870 --> 00:10:40,960
+So the fiber tree is never destroyed.
+
+120
+00:10:40,990 --> 00:10:44,050
+Instead, it's a mutable data structure.
+
+121
+00:10:44,050 --> 00:10:51,400
+And once it has been created during the initial render, it simply mutated over and over again in future
+
+122
+00:10:51,400 --> 00:10:53,090
+reconciliation steps.
+
+123
+00:10:53,110 --> 00:11:00,580
+And this makes fibers the perfect place for keeping track of things like the current component state
+
+124
+00:11:00,610 --> 00:11:05,620
+props, side effects, list of used hooks and more.
+
+125
+00:11:05,980 --> 00:11:14,500
+So the actual state and props of any component instance that we see on the screen are internally stored
+
+126
+00:11:14,500 --> 00:11:18,280
+inside the corresponding fiber in the fiber tree.
+
+127
+00:11:18,610 --> 00:11:26,920
+Now, each fiber also contains a queue of work to do, like updating state updating refs, running registered
+
+128
+00:11:26,920 --> 00:11:30,980
+side effects, performing Dom updates and so on.
+
+129
+00:11:31,160 --> 00:11:36,050
+This is why a fiber is also defined as a unit of work.
+
+130
+00:11:36,320 --> 00:11:42,980
+Now if we take a quick look at the fiber tree, we will see that the fibers are arranged in a different
+
+131
+00:11:42,980 --> 00:11:46,340
+way than the elements in the React element tree.
+
+132
+00:11:46,670 --> 00:11:54,470
+So instead of a normal parent child relationship, each first child has a link to its parent and all
+
+133
+00:11:54,470 --> 00:11:58,280
+the other children then have a link to their previous sibling.
+
+134
+00:11:58,310 --> 00:12:05,150
+And this kind of structure is called a linked list, and it makes it easier for react to process the
+
+135
+00:12:05,150 --> 00:12:08,210
+work that is associated with each fiber.
+
+136
+00:12:08,770 --> 00:12:17,290
+We also see that both trees include not only react elements or components, but also regular Dom elements
+
+137
+00:12:17,290 --> 00:12:22,000
+such as the H3 and button elements in this example.
+
+138
+00:12:22,030 --> 00:12:30,670
+So both trees really are a complete representation of the entire Dom structure, not just of React components.
+
+139
+00:12:31,410 --> 00:12:36,210
+Now going back to the idea that fibers are units of work.
+
+140
+00:12:36,240 --> 00:12:44,910
+One extremely important characteristic of the fiber reconciler is that work can be performed asynchronously.
+
+141
+00:12:45,090 --> 00:12:52,720
+This means that the rendering process, which is what the reconciler does, can be split into chunks.
+
+142
+00:12:52,740 --> 00:13:01,140
+Some tasks can be prioritized over others and work can be paused, reused or thrown away if not valid
+
+143
+00:13:01,140 --> 00:13:01,890
+anymore.
+
+144
+00:13:02,130 --> 00:13:06,810
+Just keep in mind that all this happens automatically behind the scenes.
+
+145
+00:13:06,840 --> 00:13:10,410
+It's completely invisible to US developers.
+
+146
+00:13:10,560 --> 00:13:18,150
+There are, however, also some practical uses of this asynchronous rendering because it enables modern
+
+147
+00:13:18,150 --> 00:13:25,350
+so-called concurrent features like suspense or transitions starting in React 18.
+
+148
+00:13:25,680 --> 00:13:32,860
+It also allows the rendering process to pause and resume later so that it won't block the browser's
+
+149
+00:13:32,860 --> 00:13:40,420
+JavaScript engine with too long renders, which can be problematic for performance in large applications.
+
+150
+00:13:40,600 --> 00:13:47,650
+And again, this is only possible because the render phase does not produce any visible output to the
+
+151
+00:13:47,680 --> 00:13:48,520
+Dom yet.
+
+152
+00:13:49,110 --> 00:13:49,960
+Okay.
+
+153
+00:13:50,110 --> 00:13:57,520
+So at this point we know what the fiber reconciler is and how the fiber tree works, but now it's time
+
+154
+00:13:57,520 --> 00:14:03,790
+to talk about what fiber actually does, which is the reconciliation process.
+
+155
+00:14:04,030 --> 00:14:10,210
+And the best way to explain how reconciliation works is by using a practical example.
+
+156
+00:14:10,600 --> 00:14:17,170
+So let's take the virtual Dom and the corresponding fiber tree from the last slide which correspond
+
+157
+00:14:17,170 --> 00:14:19,810
+to this piece of code right here.
+
+158
+00:14:20,140 --> 00:14:27,610
+So in the app component, there is a piece of state called Show Modal, which is currently set to true.
+
+159
+00:14:27,730 --> 00:14:32,620
+And you can pause the video here to analyze it, but it's not really necessary.
+
+160
+00:14:32,950 --> 00:14:37,840
+So let's say now that the state is updated to false.
+
+161
+00:14:37,960 --> 00:14:43,210
+This will then trigger a rerender which will create a new virtual dom.
+
+162
+00:14:43,480 --> 00:14:50,950
+And in this tree, the modal and all its children are actually gone because they are no longer displayed
+
+163
+00:14:50,950 --> 00:14:53,740
+when show modal is not true.
+
+164
+00:14:54,130 --> 00:15:01,660
+Also, all remaining react elements are yellow, meaning that all of them were re rendered.
+
+165
+00:15:01,720 --> 00:15:04,690
+And do you remember why that is?
+
+166
+00:15:04,960 --> 00:15:06,010
+That's right.
+
+167
+00:15:06,040 --> 00:15:13,720
+It's because all children of a re rendered element are re rendered as well as we just learned a few
+
+168
+00:15:13,720 --> 00:15:14,710
+minutes ago.
+
+169
+00:15:15,300 --> 00:15:22,680
+But anyway, this new virtual dom now needs to be reconciled with the current fiber tree, which will
+
+170
+00:15:22,680 --> 00:15:29,520
+then result in this updated tree, which internally is called the Work in Progress Tree.
+
+171
+00:15:29,790 --> 00:15:38,550
+So whenever reconciliation needs to happen, fiber walks through the entire tree step by step and analyzes
+
+172
+00:15:38,550 --> 00:15:46,020
+exactly what needs to change between the current fiber tree and the updated fiber tree based on the
+
+173
+00:15:46,020 --> 00:15:47,670
+new virtual Dom.
+
+174
+00:15:47,820 --> 00:15:55,730
+And this process of comparing elements step by step based on their position in the tree is called Diffing
+
+175
+00:15:55,740 --> 00:16:02,460
+and we will explore exactly how Diffing works a bit later in this section because that's actually pretty
+
+176
+00:16:02,460 --> 00:16:04,380
+important in practice.
+
+177
+00:16:05,020 --> 00:16:13,120
+But anyway, let's quickly analyze or updated fiber tree where a marked new work that is related to
+
+178
+00:16:13,150 --> 00:16:14,470
+Dom mutations.
+
+179
+00:16:14,960 --> 00:16:23,180
+So first the BTN component has some new text, and so the work that will need to be done in this fiber
+
+180
+00:16:23,180 --> 00:16:24,990
+is a Dom update.
+
+181
+00:16:25,010 --> 00:16:29,510
+So in this case, swapping text from height to rate.
+
+182
+00:16:29,630 --> 00:16:34,370
+Then we have the modal overlay, H3 and button.
+
+183
+00:16:34,550 --> 00:16:41,480
+So these were in the current fiber tree but are no longer in the virtual dom and therefore they are
+
+184
+00:16:41,480 --> 00:16:43,850
+marked as Dom deletions.
+
+185
+00:16:44,440 --> 00:16:49,000
+Finally, we have the interesting case of the video component.
+
+186
+00:16:49,090 --> 00:16:56,080
+So this component was re rendered because it's a child of the app component, but it actually didn't
+
+187
+00:16:56,080 --> 00:16:56,770
+change.
+
+188
+00:16:56,770 --> 00:17:03,340
+And so as a result of reconciliation, the Dom will not be updated in this case.
+
+189
+00:17:04,080 --> 00:17:11,460
+Now, once this process is over, all these mutations will be placed into a list called the list of
+
+190
+00:17:11,460 --> 00:17:14,800
+effects, which will be used in the next phase.
+
+191
+00:17:14,820 --> 00:17:18,930
+So in the commit phase to actually mutate the Dom.
+
+192
+00:17:19,610 --> 00:17:24,350
+Now, what I showed you here was actually still a bit oversimplified.
+
+193
+00:17:24,380 --> 00:17:25,970
+If you can believe that.
+
+194
+00:17:26,060 --> 00:17:32,720
+But I think that this is more than enough for you to understand how this process works.
+
+195
+00:17:34,600 --> 00:17:35,410
+Okay.
+
+196
+00:17:35,410 --> 00:17:38,580
+So that was quite a deep dive.
+
+197
+00:17:38,590 --> 00:17:43,600
+But now we're back here in the high level overview of the render phase.
+
+198
+00:17:44,160 --> 00:17:52,710
+So we learned that the results of the reconciliation process is a second updated fiber tree, plus basically
+
+199
+00:17:52,710 --> 00:17:57,480
+a list of updates that need to be performed in the next phase.
+
+200
+00:17:58,000 --> 00:18:05,380
+So React still hasn't written anything to the Dom yet, but it has figured out this so called list of
+
+201
+00:18:05,380 --> 00:18:06,290
+effects.
+
+202
+00:18:06,310 --> 00:18:13,930
+So this is the final result of the render phase as it includes the Dom operations that will finally
+
+203
+00:18:13,930 --> 00:18:19,480
+be made in the commit phase, which is the topic of our next video.
+
+204
+00:18:19,600 --> 00:18:24,550
+So if you don't want to break the flow, then let's move on there right now.

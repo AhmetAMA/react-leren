@@ -1,0 +1,223 @@
+1
+00:00:01,070 --> 00:00:06,050
+Let's start this section with the conceptual difference between React components.
+
+2
+00:00:06,080 --> 00:00:09,470
+Component instances and react elements.
+
+3
+00:00:09,680 --> 00:00:15,770
+Knowing about this difference will hopefully make it a bit more clear what actually happens with your
+
+4
+00:00:15,770 --> 00:00:17,980
+components as you use them.
+
+5
+00:00:17,990 --> 00:00:25,700
+And also this is a pretty common interview question and so this topic is definitely worth learning about.
+
+6
+00:00:26,930 --> 00:00:30,920
+And let's begin by taking another look at components.
+
+7
+00:00:31,480 --> 00:00:38,050
+So components are what we write in order to describe a piece of the user interface.
+
+8
+00:00:38,050 --> 00:00:45,550
+And a component is just a regular JavaScript function, but it's a function that returns react elements.
+
+9
+00:00:45,550 --> 00:00:52,690
+So it returns an element tree, and we usually write these elements using the JSX syntax.
+
+10
+00:00:53,290 --> 00:00:57,730
+Now a component is a generic description of the UI.
+
+11
+00:00:57,760 --> 00:01:05,710
+So we can essentially think of a component as a blueprint or a template, and it's out of this one blueprint
+
+12
+00:01:05,710 --> 00:01:11,740
+or template that react then creates one or multiple component instances.
+
+13
+00:01:11,980 --> 00:01:18,070
+Now React does this each time that we use the component somewhere in our code.
+
+14
+00:01:18,220 --> 00:01:23,560
+For example, the Tab component that we saw in the last slide is used.
+
+15
+00:01:23,590 --> 00:01:27,850
+So it is included three times in this app component.
+
+16
+00:01:27,850 --> 00:01:33,480
+And so therefore three instances of Tab are placed in a component tree.
+
+17
+00:01:33,490 --> 00:01:41,080
+So in our actual application behind the scenes, this happens because React will call the tab function
+
+18
+00:01:41,080 --> 00:01:42,280
+three times.
+
+19
+00:01:42,280 --> 00:01:45,010
+So one time for each instance.
+
+20
+00:01:45,250 --> 00:01:53,900
+So we can say that an instance is like the actual physical manifestation of a component living in our
+
+21
+00:01:53,900 --> 00:01:54,950
+component tree.
+
+22
+00:01:54,980 --> 00:02:01,760
+While the component itself is really just a function that we wrote before being called.
+
+23
+00:02:01,970 --> 00:02:10,610
+And actually it's each instance that holds its own state and props and that also has its own lifecycle.
+
+24
+00:02:10,730 --> 00:02:14,420
+So basically a component instance can be born.
+
+25
+00:02:14,420 --> 00:02:19,010
+It can live for some time until it will eventually die.
+
+26
+00:02:19,070 --> 00:02:22,490
+So it's a bit like a living organism, really.
+
+27
+00:02:22,820 --> 00:02:30,870
+Now in practice, we many times just use the terms component and component instance interchangeably.
+
+28
+00:02:30,890 --> 00:02:37,940
+For example, we just say component lifecycle and not component instance lifecycle.
+
+29
+00:02:37,940 --> 00:02:46,610
+And we also say that a UI is made up of components, not of component instances, even though instances
+
+30
+00:02:46,610 --> 00:02:49,250
+would technically be more accurate.
+
+31
+00:02:49,610 --> 00:02:56,150
+Okay, so just keep that in mind in the future when you read documentation or some StackOverflow post
+
+32
+00:02:56,150 --> 00:02:57,800
+or something like that.
+
+33
+00:02:58,240 --> 00:03:06,190
+But anyway, as React executes the code, in each of these instances, each of them will return one
+
+34
+00:03:06,190 --> 00:03:08,470
+or more react elements.
+
+35
+00:03:08,590 --> 00:03:16,870
+So as we learned when we first talked about JS behind the scenes, JS will actually get converted to
+
+36
+00:03:16,900 --> 00:03:21,100
+multiple react.createelement function calls.
+
+37
+00:03:21,670 --> 00:03:25,390
+Then, as React calls, these create element functions.
+
+38
+00:03:25,390 --> 00:03:28,400
+The result will be a react element.
+
+39
+00:03:28,420 --> 00:03:35,320
+So a react element is basically the result of using a component in our code.
+
+40
+00:03:35,410 --> 00:03:40,930
+It's simply a big immutable JavaScript object that react keeps in memory.
+
+41
+00:03:40,930 --> 00:03:44,260
+And we will take a look at this later in our code.
+
+42
+00:03:44,290 --> 00:03:47,170
+But what is this object actually?
+
+43
+00:03:47,350 --> 00:03:54,520
+Well, a react element basically contains all the information that is necessary in order to create Dom
+
+44
+00:03:54,520 --> 00:03:57,610
+elements for the current component instance.
+
+45
+00:03:57,790 --> 00:04:06,520
+And so it's this react element that will eventually be converted to actual Dom elements and then paint
+
+46
+00:04:06,520 --> 00:04:09,070
+it onto the screen by the browser.
+
+47
+00:04:09,750 --> 00:04:18,480
+So based on all this, the Dom elements are the actual final and visual representation of the components
+
+48
+00:04:18,480 --> 00:04:20,580
+instance in the browser.
+
+49
+00:04:20,700 --> 00:04:25,770
+And again, it's not react elements that are rendered to the Dom.
+
+50
+00:04:25,890 --> 00:04:31,840
+React elements just live inside the React app and have nothing to do with the Dom.
+
+51
+00:04:31,860 --> 00:04:38,280
+They are simply converted to Dom elements when they are painted on the screen in this final step.
+
+52
+00:04:39,290 --> 00:04:46,730
+Okay, so this is the journey from writing a single component to using it multiple times in our code
+
+53
+00:04:46,730 --> 00:04:54,620
+as a blueprint, all the way until it's converted to a react element and then render it as HTML elements
+
+54
+00:04:54,620 --> 00:04:55,910
+into the Dom.
+
+55
+00:04:56,030 --> 00:04:59,510
+So I hope you found this interesting and useful.
+
+56
+00:04:59,510 --> 00:05:06,230
+And if you did, then let's move on to the next video and take a look at all this in code.

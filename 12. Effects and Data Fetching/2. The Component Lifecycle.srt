@@ -1,0 +1,199 @@
+1
+00:00:00,890 --> 00:00:07,460
+So in this section, we're finally going to come back to our Use Popcorn project.
+
+2
+00:00:07,490 --> 00:00:14,900
+However, before we go any further, we just need to look at one more slide here where we will quickly
+
+3
+00:00:14,900 --> 00:00:21,590
+learn about the life cycle of components, because this is going to be highly relevant for the rest
+
+4
+00:00:21,590 --> 00:00:22,850
+of the section.
+
+5
+00:00:24,120 --> 00:00:31,560
+And actually, I should say that we're going to learn about the life cycle of a component instance because
+
+6
+00:00:31,560 --> 00:00:38,250
+it's only an actual physical instance of a component that can go through a life cycle.
+
+7
+00:00:38,370 --> 00:00:45,710
+But as I mentioned earlier, it's just a bit too much work to always say component instance.
+
+8
+00:00:45,720 --> 00:00:53,550
+And so for the rest of this lecture, I will just say component most of the time, which is what everybody
+
+9
+00:00:53,550 --> 00:00:55,070
+else also does.
+
+10
+00:00:55,080 --> 00:01:00,600
+So no one can always say component instance, that's just too much work.
+
+11
+00:01:00,900 --> 00:01:06,330
+But anyway, what does component lifecycle actually mean?
+
+12
+00:01:06,910 --> 00:01:14,740
+Well, the life cycle of a component basically encompasses the different phases that a specific component
+
+13
+00:01:14,740 --> 00:01:17,920
+instance can go through over time.
+
+14
+00:01:18,160 --> 00:01:26,170
+And the first phase in any components life cycle is that the component instance is mounted, which is
+
+15
+00:01:26,170 --> 00:01:28,840
+also called the initial render.
+
+16
+00:01:28,870 --> 00:01:36,580
+So this is when the component is rendered for the very first time based on everything that we have learned
+
+17
+00:01:36,580 --> 00:01:38,110
+in the previous section.
+
+18
+00:01:38,470 --> 00:01:45,130
+This is also when fresh state and props are created for the component instance.
+
+19
+00:01:45,130 --> 00:01:51,520
+And therefore, I like to use the analogy that the component is born in this phase.
+
+20
+00:01:51,730 --> 00:01:59,440
+Now, once the component has been rendered and is on the screen, it can be re rendered an unlimited
+
+21
+00:01:59,440 --> 00:02:00,940
+number of times.
+
+22
+00:02:01,560 --> 00:02:08,340
+Now, as we learned in the previous section, a React application is rerendered whenever there is a
+
+23
+00:02:08,340 --> 00:02:10,380
+state update, right?
+
+24
+00:02:10,560 --> 00:02:18,990
+However, back then we were only talking about the entire application, not about one specific component
+
+25
+00:02:18,990 --> 00:02:19,860
+instance.
+
+26
+00:02:20,040 --> 00:02:28,920
+So in practical terms, a component will also be rerendered when the props that it receives change when
+
+27
+00:02:28,920 --> 00:02:36,930
+its parent component rerenders or when something called context changes and more about context later.
+
+28
+00:02:37,760 --> 00:02:45,220
+Now the rerender phase is actually optional, so it doesn't always happen in all components.
+
+29
+00:02:45,230 --> 00:02:53,150
+So some components are only mounted and then unmounted right away, which actually brings us to the
+
+30
+00:02:53,150 --> 00:02:54,170
+next phase.
+
+31
+00:02:54,780 --> 00:03:01,770
+So finally there comes a point in time where a component instance is no longer needed.
+
+32
+00:03:01,770 --> 00:03:05,450
+And so that's when the component is unmounted.
+
+33
+00:03:05,460 --> 00:03:12,810
+And as you can see from that not so subtle emoji, this is when the component basically dies.
+
+34
+00:03:13,110 --> 00:03:20,820
+So in this step, the component instance is completely destroyed and removed from the screen along with
+
+35
+00:03:20,820 --> 00:03:22,950
+its state and props.
+
+36
+00:03:22,950 --> 00:03:28,470
+And of course, we have already seen this happening many times in the applications that we have been
+
+37
+00:03:28,470 --> 00:03:29,280
+building.
+
+38
+00:03:29,280 --> 00:03:36,900
+So this can happen when users navigate to a new section or a new page of the app or when they close
+
+39
+00:03:36,900 --> 00:03:38,580
+the app altogether.
+
+40
+00:03:38,760 --> 00:03:46,020
+Now, of course, a new instance of the same component can be mounted later, but this specific instance
+
+41
+00:03:46,050 --> 00:03:47,430
+is now gone.
+
+42
+00:03:47,430 --> 00:03:51,900
+So it has been unmounted and that's actually it.
+
+43
+00:03:51,930 --> 00:03:54,850
+So pretty straightforward, right?
+
+44
+00:03:54,850 --> 00:03:58,360
+Especially after that deep dive last section.
+
+45
+00:03:58,660 --> 00:04:02,590
+So why was it even worth learning about this now?
+
+46
+00:04:03,010 --> 00:04:10,120
+Well, it's important to know about the component lifecycle because we can hook into different phases
+
+47
+00:04:10,120 --> 00:04:11,620
+of this lifecycle.
+
+48
+00:04:11,620 --> 00:04:20,260
+So we can basically define code to be executed at these specific points in time, which can be extremely
+
+49
+00:04:20,260 --> 00:04:21,250
+useful.
+
+50
+00:04:21,250 --> 00:04:28,210
+And we do so by using the use effect hook, which is the big topic of this section.

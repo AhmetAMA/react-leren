@@ -1,0 +1,1003 @@
+1
+00:00:01,130 --> 00:00:10,160
+Okay, so let's now make our component really flexible and reusable by defining a nice public API for
+
+2
+00:00:10,160 --> 00:00:11,720
+consumers to use it.
+
+3
+00:00:13,160 --> 00:00:20,300
+So right now our component is quite unflexible and therefore not really reusable.
+
+4
+00:00:20,480 --> 00:00:28,370
+So it might maybe be useful in one very specific case where we want the component to look and behave
+
+5
+00:00:28,370 --> 00:00:33,890
+exactly like this, but it won't be useful for many other consumers.
+
+6
+00:00:34,380 --> 00:00:41,730
+So if we imagine that we want to reuse this component in many other applications or maybe even publish
+
+7
+00:00:41,730 --> 00:00:48,990
+it to NPM to share it with all React developers around the world, then they will probably not find
+
+8
+00:00:48,990 --> 00:00:51,510
+this component very useful right now.
+
+9
+00:00:51,690 --> 00:00:59,280
+So those developers or in other words, those consumers, they will probably want to define things like
+
+10
+00:00:59,280 --> 00:01:07,500
+the colors of the stars or maybe the sizes of the stars and the text in order to basically make this
+
+11
+00:01:07,500 --> 00:01:10,270
+component fit into their own applications.
+
+12
+00:01:10,290 --> 00:01:17,490
+And so what we're going to do now is to try to define a good public API for this component, just as
+
+13
+00:01:17,490 --> 00:01:18,460
+we learned before.
+
+14
+00:01:18,480 --> 00:01:26,070
+And so by doing that, we will try to find that balance of using too few props and using too little
+
+15
+00:01:26,070 --> 00:01:30,750
+props so that the component also doesn't get way too complex.
+
+16
+00:01:31,410 --> 00:01:38,200
+So let's get to work and let's actually start with those two simple things that I just mentioned.
+
+17
+00:01:38,230 --> 00:01:40,840
+So the color and the size.
+
+18
+00:01:41,590 --> 00:01:43,990
+So let's just write it here.
+
+19
+00:01:44,230 --> 00:01:46,960
+Color and size.
+
+20
+00:01:47,170 --> 00:01:53,080
+And as I mentioned also in the last lecture, it's a good idea to provide default values.
+
+21
+00:01:53,880 --> 00:01:59,910
+So we already learned that we can do that by providing the default values during the structuring.
+
+22
+00:02:00,120 --> 00:02:03,000
+So just like we did with the Max rating.
+
+23
+00:02:03,090 --> 00:02:12,440
+And so let's say that our default color will be this yellow of FCC for one nine and the default size,
+
+24
+00:02:12,450 --> 00:02:15,900
+let's make it the number of 48.
+
+25
+00:02:18,030 --> 00:02:29,280
+N.A., N.A., N.A., N.A., N.A., N.A., N.A., N.A., N.A., N.A., N.A., N.A., N.A., N.A., N.A.,
+
+26
+00:02:29,430 --> 00:02:32,130
+N.A., N.A., N.A., N.A., N.A., N.A..
+
+27
+00:02:34,090 --> 00:02:36,220
+So I want to start with a text.
+
+28
+00:02:36,220 --> 00:02:44,740
+And so now I actually need to take this object here back into the component because now we will specify
+
+29
+00:02:44,740 --> 00:02:48,790
+some properties which will depend on the props.
+
+30
+00:02:48,790 --> 00:02:53,320
+And so the props are of course only accessible inside the component.
+
+31
+00:02:53,560 --> 00:02:57,850
+So then this object will have to live inside the component as well.
+
+32
+00:02:59,990 --> 00:03:03,770
+So the color property will be set to color.
+
+33
+00:03:04,440 --> 00:03:07,340
+And so we can actually just do it like this.
+
+34
+00:03:07,350 --> 00:03:13,140
+And if we give this a save, then you see the text does indeed turn yellow.
+
+35
+00:03:13,910 --> 00:03:16,220
+Now it might be a bit small.
+
+36
+00:03:16,220 --> 00:03:18,770
+And so let's now also use the size.
+
+37
+00:03:22,120 --> 00:03:29,530
+And so let's use a template literal and then use the size that we received as a prop and set the pixels
+
+38
+00:03:29,530 --> 00:03:30,490
+to that.
+
+39
+00:03:31,460 --> 00:03:34,160
+Well, that's maybe a bit too large.
+
+40
+00:03:34,340 --> 00:03:41,090
+Let's try to divide this, for example, by 1.5, and that looks a bit nicer.
+
+41
+00:03:42,180 --> 00:03:42,960
+All right.
+
+42
+00:03:42,960 --> 00:03:48,540
+And now we should also use these values here, of course, for the stars themselves.
+
+43
+00:03:50,400 --> 00:03:57,180
+So to do that, we will also now place this style object inside the star.
+
+44
+00:03:57,180 --> 00:04:00,930
+And then we need these values also here.
+
+45
+00:04:01,480 --> 00:04:05,020
+So the color and the size.
+
+46
+00:04:05,020 --> 00:04:08,710
+And so, of course, then we need to pass them in here as props.
+
+47
+00:04:09,400 --> 00:04:13,090
+So color and color and size.
+
+48
+00:04:13,730 --> 00:04:15,440
+And size.
+
+49
+00:04:16,310 --> 00:04:17,810
+And so then here we can.
+
+50
+00:04:19,560 --> 00:04:21,570
+Again create a template literal.
+
+51
+00:04:23,010 --> 00:04:26,010
+Get the size and then pixels.
+
+52
+00:04:26,370 --> 00:04:28,860
+Let's do the same for the height.
+
+53
+00:04:32,060 --> 00:04:36,740
+And here nothing changed because we already had 48 year.
+
+54
+00:04:38,340 --> 00:04:44,520
+And now finally, the color is actually defined right in the SVG elements.
+
+55
+00:04:44,520 --> 00:04:50,790
+So here we have the fill and the stroke of black, which is the reason why these are currently black.
+
+56
+00:04:51,740 --> 00:04:53,420
+But if we change that here.
+
+57
+00:04:55,240 --> 00:04:56,320
+Like this.
+
+58
+00:04:57,940 --> 00:04:59,050
+So color.
+
+59
+00:05:03,270 --> 00:05:05,640
+Then you see that they just turned yellow.
+
+60
+00:05:06,760 --> 00:05:12,730
+Now, of course, this other one isn't yellow yet because, well, it is still at black.
+
+61
+00:05:13,000 --> 00:05:15,040
+So let's change that here as well.
+
+62
+00:05:17,700 --> 00:05:17,940
+No.
+
+63
+00:05:17,940 --> 00:05:18,600
+Okay.
+
+64
+00:05:18,960 --> 00:05:20,100
+Beautiful.
+
+65
+00:05:21,030 --> 00:05:23,940
+So that's already a lot nicer than before.
+
+66
+00:05:24,810 --> 00:05:28,140
+Let's just call another component here.
+
+67
+00:05:32,920 --> 00:05:35,780
+And let's define some other size here.
+
+68
+00:05:35,800 --> 00:05:37,240
+Let's say 24.
+
+69
+00:05:38,440 --> 00:05:43,000
+And so here we have a much smaller component, but which still works in the same way.
+
+70
+00:05:43,390 --> 00:05:47,890
+And of course, we can also specify the color, let's say red.
+
+71
+00:05:48,680 --> 00:05:52,750
+And so with this, we just made our component a lot more flexible.
+
+72
+00:05:52,760 --> 00:05:58,820
+So if someone wants to use this component in an application where the main color is red, then they
+
+73
+00:05:58,820 --> 00:06:02,270
+can now easily change all of this to red.
+
+74
+00:06:02,570 --> 00:06:10,130
+Now sometimes consumers or users of the component want to have even more control over the styling.
+
+75
+00:06:10,340 --> 00:06:15,860
+So sometimes it's a good idea to allow users to pass in a class name.
+
+76
+00:06:18,730 --> 00:06:25,720
+So, for example, a class name with the name of test just in this case, which will then come from
+
+77
+00:06:25,720 --> 00:06:30,760
+some CSS file in the application where this component is being used.
+
+78
+00:06:31,090 --> 00:06:37,570
+So right now, we don't have any class like this, but this is just really for testing purposes.
+
+79
+00:06:39,770 --> 00:06:44,210
+So then here we need to accept the class name.
+
+80
+00:06:47,190 --> 00:06:50,370
+And by default, it will just be an empty class name.
+
+81
+00:06:50,520 --> 00:06:53,640
+And then we just add it here to the overall container.
+
+82
+00:06:55,490 --> 00:06:56,780
+So class name.
+
+83
+00:06:57,700 --> 00:07:00,340
+And then class name like this.
+
+84
+00:07:00,400 --> 00:07:07,180
+So, for example, if the user wants to somehow change the font style, they can do that right inside
+
+85
+00:07:07,180 --> 00:07:09,070
+this class name that they pass in.
+
+86
+00:07:09,070 --> 00:07:16,150
+And so that class name will then be added here and will then change the font family of our component.
+
+87
+00:07:16,760 --> 00:07:23,120
+Now, another thing that I sometimes see on the web when we have a component like this is that instead
+
+88
+00:07:23,120 --> 00:07:30,170
+of just displaying the rating number, is that they display like some message according to the rating.
+
+89
+00:07:31,600 --> 00:07:35,110
+So in order to do that, we could pass in an array.
+
+90
+00:07:35,830 --> 00:07:37,570
+And let's actually do that here.
+
+91
+00:07:37,810 --> 00:07:40,990
+So we could pass in an array of messages.
+
+92
+00:07:43,010 --> 00:07:44,900
+For example, saying.
+
+93
+00:07:46,010 --> 00:07:48,860
+That the first value is terrible.
+
+94
+00:07:48,950 --> 00:07:51,860
+The second one is bad.
+
+95
+00:07:52,990 --> 00:07:53,770
+Then we have.
+
+96
+00:07:53,770 --> 00:07:54,520
+Okay.
+
+97
+00:07:55,700 --> 00:07:56,570
+Good.
+
+98
+00:07:57,650 --> 00:08:00,230
+Well as a string and then.
+
+99
+00:08:00,680 --> 00:08:01,700
+Amazing.
+
+100
+00:08:02,960 --> 00:08:06,280
+And so now we can display these five values here.
+
+101
+00:08:06,290 --> 00:08:09,190
+So these strings instead of the numbers.
+
+102
+00:08:09,200 --> 00:08:13,340
+So that's another nice touch that we can give our component here.
+
+103
+00:08:16,380 --> 00:08:18,510
+So then we accept that prop here.
+
+104
+00:08:19,390 --> 00:08:21,830
+And by default, let's make it an empty array.
+
+105
+00:08:21,850 --> 00:08:25,900
+So really, really important to always give default values.
+
+106
+00:08:26,110 --> 00:08:30,130
+And so now here we can use those values.
+
+107
+00:08:30,820 --> 00:08:38,020
+However, we want of course to only use that messages array in case that there actually are some elements
+
+108
+00:08:38,020 --> 00:08:42,190
+in there and also the number of elements should be correct.
+
+109
+00:08:42,370 --> 00:08:49,930
+So, for example, if we allow for a rating between 1 and 5, but then we only have three elements in
+
+110
+00:08:49,930 --> 00:08:52,730
+the array, then that doesn't make a lot of sense.
+
+111
+00:08:52,750 --> 00:08:54,310
+So this wouldn't work.
+
+112
+00:08:54,310 --> 00:09:04,870
+And so here what we can do is to just check if messages dot length is equal to the Max rating.
+
+113
+00:09:04,990 --> 00:09:10,630
+And if that is the case, then that means that a messages array was passed in.
+
+114
+00:09:11,980 --> 00:09:15,230
+And if not, then we just do exactly what we had before.
+
+115
+00:09:15,250 --> 00:09:20,890
+But in this case, let's then just display the messages at position.
+
+116
+00:09:22,480 --> 00:09:28,420
+Rating minus one in order to convert back to zero based index.
+
+117
+00:09:28,600 --> 00:09:32,560
+And of course, we should also consider the temporary rating.
+
+118
+00:09:32,680 --> 00:09:35,410
+So let's actually just copy what we have here.
+
+119
+00:09:35,710 --> 00:09:37,390
+Or maybe not.
+
+120
+00:09:37,540 --> 00:09:38,200
+Okay.
+
+121
+00:09:39,160 --> 00:09:40,510
+It's not that similar.
+
+122
+00:09:41,540 --> 00:09:48,230
+So let's come here and say if there is a temp rating, then use.
+
+123
+00:09:49,430 --> 00:09:52,010
+Temp rating minus one.
+
+124
+00:09:52,220 --> 00:09:55,040
+And if not, then just use the regular rating.
+
+125
+00:09:55,040 --> 00:09:56,000
+Minus one.
+
+126
+00:09:56,740 --> 00:10:02,810
+So again, if this looks confusing, then just make sure to pause the video and analyze that code.
+
+127
+00:10:02,830 --> 00:10:06,010
+But this is just normal JavaScript at this point.
+
+128
+00:10:06,570 --> 00:10:10,130
+But anyway, as you see, this works great now.
+
+129
+00:10:10,140 --> 00:10:15,330
+So one star means terrible, but then it starts to become, okay, good.
+
+130
+00:10:15,330 --> 00:10:17,520
+And finally amazing.
+
+131
+00:10:17,520 --> 00:10:22,170
+And of course, it also works with the not temporary rating.
+
+132
+00:10:22,170 --> 00:10:28,620
+So with the fixed rating while here this other component where the messages array is empty.
+
+133
+00:10:29,430 --> 00:10:31,080
+So that's the default here.
+
+134
+00:10:31,080 --> 00:10:32,370
+So here it's empty.
+
+135
+00:10:32,370 --> 00:10:36,120
+And so therefore, we are still displaying just the number.
+
+136
+00:10:36,870 --> 00:10:37,830
+Great.
+
+137
+00:10:37,860 --> 00:10:43,680
+And let's keep going, because there is still at least one important thing missing, and that is to
+
+138
+00:10:43,680 --> 00:10:46,920
+allow the consumer to set a default rating.
+
+139
+00:10:48,760 --> 00:10:49,510
+Okay.
+
+140
+00:10:49,510 --> 00:10:51,400
+So that's not very hard.
+
+141
+00:10:52,090 --> 00:10:57,460
+So let's say, for example, that the user wants to start with a default of three.
+
+142
+00:10:59,020 --> 00:11:00,130
+Default.
+
+143
+00:11:01,000 --> 00:11:03,190
+Rating should be three.
+
+144
+00:11:04,300 --> 00:11:08,580
+So the consumer might want to specify a prop like this.
+
+145
+00:11:08,590 --> 00:11:09,760
+And so let's now.
+
+146
+00:11:10,690 --> 00:11:15,160
+Then add that prop here and give it a default value.
+
+147
+00:11:15,550 --> 00:11:21,640
+Now, by default, the rating should be zero, which is exactly why that's what we put here.
+
+148
+00:11:21,880 --> 00:11:22,840
+Right.
+
+149
+00:11:22,870 --> 00:11:27,250
+And so the default rating should be just that zero.
+
+150
+00:11:27,280 --> 00:11:34,930
+But of course, now we need to use this default rating and we will use it right here instead of that
+
+151
+00:11:34,930 --> 00:11:35,530
+zero.
+
+152
+00:11:36,590 --> 00:11:43,070
+So basically we will initialize our rating state with whatever default rating comes into the prop.
+
+153
+00:11:43,070 --> 00:11:48,860
+And if that prop is not specified, then that simply exactly the zero that we had before.
+
+154
+00:11:49,570 --> 00:11:55,690
+Now, maybe you heard or read that we should never initialize state from props.
+
+155
+00:11:55,960 --> 00:12:03,520
+However, this is only true if you want the state variable to stay in sync with that passed in props.
+
+156
+00:12:03,550 --> 00:12:11,320
+Or in other words, if you want the state value to update in case that the prop value is also updated.
+
+157
+00:12:11,560 --> 00:12:14,700
+However, that is clearly not the case here.
+
+158
+00:12:14,710 --> 00:12:18,530
+So we are really only using this default rating here.
+
+159
+00:12:18,550 --> 00:12:21,070
+Basically as setdata.
+
+160
+00:12:21,070 --> 00:12:28,480
+So really just as the initial state and we don't care whether this value here maybe changes somewhere
+
+161
+00:12:28,480 --> 00:12:30,340
+else in the application.
+
+162
+00:12:30,340 --> 00:12:36,190
+So outside this component and therefore this is perfectly fine and normal to do.
+
+163
+00:12:36,790 --> 00:12:37,540
+All right.
+
+164
+00:12:37,540 --> 00:12:42,280
+So it's really no problem to initialize your state based on a prop.
+
+165
+00:12:42,280 --> 00:12:48,700
+So I just wanted to address this point because I could already hear some people complaining about this.
+
+166
+00:12:48,850 --> 00:12:53,690
+So this was more relevant in the old days of React before we had hooks.
+
+167
+00:12:53,690 --> 00:12:56,990
+But now that's really no longer a problem.
+
+168
+00:12:57,110 --> 00:13:07,010
+But anyway, as we save this now, you see that immediately we see the three ratings or the three stars
+
+169
+00:13:07,040 --> 00:13:08,420
+as the default here.
+
+170
+00:13:08,570 --> 00:13:14,600
+And of course, if this was 1 or 2, then that's what we will see there.
+
+171
+00:13:14,600 --> 00:13:21,650
+And so, again, that's just because we are now using this number two, as the initial state value of
+
+172
+00:13:21,650 --> 00:13:22,700
+our rating.
+
+173
+00:13:22,940 --> 00:13:23,840
+All right.
+
+174
+00:13:23,840 --> 00:13:29,600
+And now we could keep going here, of course, and add a lot more different props.
+
+175
+00:13:29,600 --> 00:13:32,870
+So allowing for a lot more configuration.
+
+176
+00:13:32,870 --> 00:13:40,340
+For example, we could say that we want the colors here to change according to the rating, or we could
+
+177
+00:13:40,340 --> 00:13:43,620
+allow for some different spacing between the stars.
+
+178
+00:13:43,670 --> 00:13:51,010
+We could also allow the consumer to specify on which site this text label here appears.
+
+179
+00:13:51,020 --> 00:13:57,740
+So maybe they want it on the left or at the top or at the bottom here, but that might be going a bit
+
+180
+00:13:57,740 --> 00:14:03,340
+too far here and maybe specifying too many props and adding too much complexity.
+
+181
+00:14:03,350 --> 00:14:10,100
+So I think that what we have here right now is more than enough, except for one important thing that
+
+182
+00:14:10,100 --> 00:14:11,900
+we are still missing right now.
+
+183
+00:14:11,900 --> 00:14:20,870
+And that thing is the fact that the consumer might actually need this rating state outside of this component.
+
+184
+00:14:20,960 --> 00:14:25,070
+And to exemplify this, let's come again back here.
+
+185
+00:14:25,070 --> 00:14:31,550
+And what I want to do now, just temporarily, is to create a new component right here.
+
+186
+00:14:32,190 --> 00:14:33,810
+Let's call it test.
+
+187
+00:14:34,050 --> 00:14:35,640
+And so this component.
+
+188
+00:14:36,730 --> 00:14:41,140
+Is then the one that will include the star rating.
+
+189
+00:14:41,140 --> 00:14:44,800
+And let's say the color in this case is blue.
+
+190
+00:14:45,130 --> 00:14:46,180
+Why not?
+
+191
+00:14:48,390 --> 00:14:51,780
+And then let's also include that down here.
+
+192
+00:14:53,010 --> 00:14:56,550
+And you will see why I'm doing this in this way in a minute.
+
+193
+00:14:58,470 --> 00:15:01,740
+Okay, so here we have another one and the blue one.
+
+194
+00:15:01,740 --> 00:15:04,470
+But now let's say that for some reason.
+
+195
+00:15:05,520 --> 00:15:12,600
+They also really needed to display this rating somewhere in their user interface.
+
+196
+00:15:13,170 --> 00:15:20,070
+So, for example, they might have a paragraph saying this movie was rated.
+
+197
+00:15:21,970 --> 00:15:23,290
+X stars.
+
+198
+00:15:25,200 --> 00:15:29,760
+So here, let's actually already use a max rating of ten.
+
+199
+00:15:30,460 --> 00:15:37,900
+And so now what they want to happen is that whatever rating we specify here should then be displayed
+
+200
+00:15:37,900 --> 00:15:40,300
+right here in the user interface.
+
+201
+00:15:40,360 --> 00:15:44,920
+So now it should say here that the movie was rated seven stars.
+
+202
+00:15:46,110 --> 00:15:48,640
+So how will they do this right now?
+
+203
+00:15:48,660 --> 00:15:51,840
+So they basically need access to the state.
+
+204
+00:15:51,870 --> 00:15:55,830
+So to this rating state that we have inside the component.
+
+205
+00:15:55,830 --> 00:15:57,250
+But right here.
+
+206
+00:15:57,270 --> 00:15:59,550
+So inside of the test component.
+
+207
+00:16:00,710 --> 00:16:03,560
+So what they need is some state.
+
+208
+00:16:04,980 --> 00:16:09,720
+So let's say movie rating and set movie.
+
+209
+00:16:10,410 --> 00:16:11,290
+A rating.
+
+210
+00:16:12,830 --> 00:16:14,720
+And then use state.
+
+211
+00:16:15,170 --> 00:16:17,500
+And let's again set it to zero.
+
+212
+00:16:17,510 --> 00:16:19,310
+And then here let's use.
+
+213
+00:16:20,370 --> 00:16:22,110
+Debt movie rating.
+
+214
+00:16:22,200 --> 00:16:27,930
+But of course, this now will not change at all when we rate the movie right here.
+
+215
+00:16:28,230 --> 00:16:35,910
+So we need a way to update this date here whenever the state inside this component is updated as well.
+
+216
+00:16:36,500 --> 00:16:37,910
+So how do we do that?
+
+217
+00:16:38,150 --> 00:16:46,340
+Well, basically, we want to give the consumer of this component the ability to pass in a set function.
+
+218
+00:16:47,450 --> 00:16:52,880
+So basically we want them to allow to specify an on set.
+
+219
+00:16:53,900 --> 00:16:55,130
+Reading handler.
+
+220
+00:16:58,320 --> 00:17:05,040
+And so in this case, what this component wants to pass in is simply this function right here.
+
+221
+00:17:06,760 --> 00:17:11,140
+Okay, So let's now specify then this prop here.
+
+222
+00:17:11,140 --> 00:17:14,620
+So we want to accept this very important prop right here.
+
+223
+00:17:14,620 --> 00:17:19,150
+And this one by default doesn't need any default value.
+
+224
+00:17:20,590 --> 00:17:20,950
+No.
+
+225
+00:17:20,950 --> 00:17:21,430
+Right.
+
+226
+00:17:21,430 --> 00:17:23,210
+And now it's very simple.
+
+227
+00:17:23,230 --> 00:17:31,240
+All we have to do here is on the handle rating is to not only set the internal rating, but also to
+
+228
+00:17:31,240 --> 00:17:34,000
+basically set the external rating.
+
+229
+00:17:34,240 --> 00:17:41,290
+So we can now just say on set rating, also set that external rating.
+
+230
+00:17:42,230 --> 00:17:50,120
+And with this, we now gave the outside test component basically the ability to get access to that internal
+
+231
+00:17:50,120 --> 00:17:53,540
+state right inside this component.
+
+232
+00:17:54,740 --> 00:17:55,310
+Okay.
+
+233
+00:17:55,310 --> 00:18:00,690
+And now if we change this here, you see that it did indeed get updated to seven.
+
+234
+00:18:00,710 --> 00:18:08,210
+So this additional configuration, so this final prop that we updated here or that we actually added
+
+235
+00:18:08,210 --> 00:18:15,260
+here to our component was really, really important because without this, this component would really
+
+236
+00:18:15,260 --> 00:18:17,720
+just be presentational in the end.
+
+237
+00:18:17,840 --> 00:18:24,260
+I mean, it contains some state internally, but from the perspective of the test component, we couldn't
+
+238
+00:18:24,260 --> 00:18:30,560
+really touch that state in any way and therefore we couldn't use that state inside this component,
+
+239
+00:18:30,590 --> 00:18:34,550
+which then again wouldn't make this component really useful.
+
+240
+00:18:35,030 --> 00:18:35,720
+Okay.
+
+241
+00:18:35,720 --> 00:18:38,930
+So this was the final prop that we added.
+
+242
+00:18:38,930 --> 00:18:45,650
+And as I said, we could keep going and get really crazy here with our configuration options.
+
+243
+00:18:45,650 --> 00:18:51,920
+And you could, of course, if you wanted, allow some other things, such as the ones that I have mentioned
+
+244
+00:18:51,920 --> 00:18:52,670
+earlier.
+
+245
+00:18:52,670 --> 00:18:58,980
+But we will just leave it as this, because I think this right now is a pretty good balance.
+
+246
+00:18:59,130 --> 00:19:05,220
+Now, there's just one final thing that we need to do here in our component, which is to prevent the
+
+247
+00:19:05,220 --> 00:19:09,740
+user basically to pass in some values that we do not want.
+
+248
+00:19:09,750 --> 00:19:13,560
+So here, for example, this shouldn't be a string, right?
+
+249
+00:19:13,560 --> 00:19:16,890
+Because, well, then this wouldn't work at all.
+
+250
+00:19:16,980 --> 00:19:20,850
+So we need to make sure that this is actually a number here.
+
+251
+00:19:20,970 --> 00:19:25,170
+And so let's look at something called prop types in the next lecture.

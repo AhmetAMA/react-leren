@@ -1,0 +1,35 @@
+1
+00:00:01,000 --> 00:00:11,440
+Probably 95% of all React apps out there fetch some kind of data from some API, making data fetching
+
+2
+00:00:11,440 --> 00:00:15,550
+an essential skill when building web applications.
+
+3
+00:00:15,910 --> 00:00:21,970
+Now one way of fetching data in a React app is inside an effect.
+
+4
+00:00:21,970 --> 00:00:25,690
+And so that's what this section is all about.
+
+5
+00:00:25,990 --> 00:00:34,710
+So in this section we'll continue working on the Use Popcorn project as we learn all about side effects.
+
+6
+00:00:34,780 --> 00:00:43,000
+So we're going to focus on the use effect hook, how and when effects are executed and how we can clean
+
+7
+00:00:43,000 --> 00:00:48,380
+effects up and loading external data into our applications.
+
+8
+00:00:48,400 --> 00:00:53,700
+Finally makes them feel a lot more real world and alive.
+
+9
+00:00:53,710 --> 00:00:56,530
+And so let's quickly get started.

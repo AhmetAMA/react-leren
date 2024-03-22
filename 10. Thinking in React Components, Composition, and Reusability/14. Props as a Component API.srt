@@ -1,0 +1,203 @@
+1
+00:00:00,870 --> 00:00:07,890
+When we build a reusable component like the one we are currently building, we should carefully think
+
+2
+00:00:07,890 --> 00:00:10,890
+about what props the component needs.
+
+3
+00:00:11,070 --> 00:00:15,420
+So let's now shortly look at how to think about props.
+
+4
+00:00:16,870 --> 00:00:25,270
+So first of all, as we start working on our components, we should get into the mindset that any component
+
+5
+00:00:25,270 --> 00:00:31,120
+is always created by someone and always consumed by someone.
+
+6
+00:00:31,450 --> 00:00:38,980
+Now, when you're working on your own, the component creator and consumer is of course the same person.
+
+7
+00:00:38,980 --> 00:00:44,350
+But if you're on a team, those might very well be different developers.
+
+8
+00:00:44,530 --> 00:00:52,120
+But in any case, it's always a good idea to think in terms of there being a creator and a consumer
+
+9
+00:00:52,120 --> 00:00:53,190
+of a component.
+
+10
+00:00:53,200 --> 00:00:57,190
+So different entities, even if it's just yourself.
+
+11
+00:00:57,340 --> 00:01:04,810
+So basically the creator is the person building a component and defining what props the component can
+
+12
+00:01:04,810 --> 00:01:12,730
+accept while the consumer uses the component somewhere in the application by specifying values for the
+
+13
+00:01:12,730 --> 00:01:13,450
+props.
+
+14
+00:01:14,070 --> 00:01:20,700
+Now the reason for this separation between creator and consumer, even if you're just working on your
+
+15
+00:01:20,700 --> 00:01:29,190
+own, is that if we have this mindset, we can think of the components props as the public API of the
+
+16
+00:01:29,190 --> 00:01:30,150
+component.
+
+17
+00:01:30,180 --> 00:01:38,070
+So as a component creator, when we choose what props the consumer is allowed to pass in, we are essentially
+
+18
+00:01:38,070 --> 00:01:41,950
+defining the public interface of our component.
+
+19
+00:01:41,970 --> 00:01:50,160
+And at the same time we are choosing how much complexity of the component we want to expose to the consumer
+
+20
+00:01:50,160 --> 00:01:51,540
+of the API.
+
+21
+00:01:51,660 --> 00:01:56,940
+Because in the end a component is basically just an abstraction.
+
+22
+00:01:57,060 --> 00:02:05,940
+So we are encapsulating a part of the UI and the associated logic into a component and allow consumers
+
+23
+00:02:05,940 --> 00:02:09,590
+to interact with that component via props.
+
+24
+00:02:09,600 --> 00:02:10,780
+And that's it.
+
+25
+00:02:10,800 --> 00:02:14,590
+That's basically what creating a new component is.
+
+26
+00:02:15,190 --> 00:02:22,870
+But anyway, when we decide about what props to allow in a component, we need to find a good balance
+
+27
+00:02:22,870 --> 00:02:24,980
+on how strict we want to be.
+
+28
+00:02:25,000 --> 00:02:30,040
+So about how many props we want to enable for configuration.
+
+29
+00:02:30,590 --> 00:02:37,310
+For example, let's say we're building a weather component, so a component that simply displays the
+
+30
+00:02:37,310 --> 00:02:37,970
+weather.
+
+31
+00:02:38,270 --> 00:02:41,000
+We could make it extremely simple.
+
+32
+00:02:41,000 --> 00:02:44,060
+For example, only allowing one prop.
+
+33
+00:02:44,060 --> 00:02:48,290
+So for the location for which the consumer wants the weather.
+
+34
+00:02:48,650 --> 00:02:56,180
+Now, this might be perfectly fine, but it might also make the component not flexible enough or maybe
+
+35
+00:02:56,180 --> 00:02:59,210
+even straight out useless for the consumer.
+
+36
+00:02:59,570 --> 00:03:07,010
+On the other hand, we could allow props for the URL of the weather data, the number of days, whether
+
+37
+00:03:07,010 --> 00:03:13,730
+it should be daily or hourly, how many days, which temperature unit, what data should be displayed
+
+38
+00:03:13,730 --> 00:03:15,350
+and so on.
+
+39
+00:03:15,440 --> 00:03:23,390
+I could think of really 20 other props here, but the point is that exposing so many props might make
+
+40
+00:03:23,390 --> 00:03:30,390
+the component way too hard to use for the consumer because we're exposing too much complexity.
+
+41
+00:03:30,660 --> 00:03:38,190
+And speaking of complexity, you will end up with very complex code if you want to allow so many props.
+
+42
+00:03:38,800 --> 00:03:45,790
+So when deciding on the right API for your components, try to strike the right balance between too
+
+43
+00:03:45,790 --> 00:03:53,200
+little and too many props and a balance that works well for both the creator and the consumer of the
+
+44
+00:03:53,200 --> 00:03:56,320
+component based on the project's needs.
+
+45
+00:03:57,110 --> 00:04:03,890
+Now, if for some reason you really need to expose so many props, make sure to at least provide some
+
+46
+00:04:03,890 --> 00:04:06,920
+good default values for many of them.
+
+47
+00:04:07,960 --> 00:04:08,590
+Okay.
+
+48
+00:04:08,590 --> 00:04:12,070
+And as always, this will come to you with practice.
+
+49
+00:04:12,070 --> 00:04:18,880
+But I thought that it was quite important to get you into this mindset of distinguishing between component
+
+50
+00:04:18,880 --> 00:04:21,100
+creators and consumers.
+
+51
+00:04:21,100 --> 00:04:25,060
+And so with that, we're ready to put this into practice.

@@ -1,0 +1,731 @@
+1
+00:00:01,160 --> 00:00:08,660
+Let's keep working on our application and allow users to select a movie so that they can see some details
+
+2
+00:00:08,660 --> 00:00:09,530
+about it.
+
+3
+00:00:10,710 --> 00:00:17,910
+So checking our demo app, what we want to do now again is to add the ability to select a movie like
+
+4
+00:00:17,910 --> 00:00:18,590
+this.
+
+5
+00:00:18,600 --> 00:00:24,450
+And so then our app will load some additional data about that movie and display it here.
+
+6
+00:00:24,450 --> 00:00:30,120
+And then we can also go back by clicking on this button, which will then close that movie.
+
+7
+00:00:31,920 --> 00:00:32,670
+All right.
+
+8
+00:00:33,830 --> 00:00:38,390
+So basically that is adding some more dynamics to the application.
+
+9
+00:00:38,390 --> 00:00:43,520
+And so what that means once again, is that we need a new piece of state.
+
+10
+00:00:43,760 --> 00:00:49,070
+And so that state will basically store which movie has been selected here.
+
+11
+00:00:49,310 --> 00:00:51,350
+Now the selection itself.
+
+12
+00:00:51,380 --> 00:00:56,630
+So updating the state will happen here in this box on the left side.
+
+13
+00:00:56,660 --> 00:00:57,500
+Right.
+
+14
+00:00:57,500 --> 00:01:01,600
+But the displaying of the movie happens here on the right side.
+
+15
+00:01:01,610 --> 00:01:03,140
+So in this box.
+
+16
+00:01:03,140 --> 00:01:07,160
+So this box will also need to know about the selected ID.
+
+17
+00:01:07,400 --> 00:01:15,680
+And so this means that this new piece of state, so the selected ID state will have to live here in
+
+18
+00:01:15,680 --> 00:01:16,960
+the parent component.
+
+19
+00:01:16,970 --> 00:01:18,650
+So right in app.
+
+20
+00:01:20,480 --> 00:01:21,440
+So select ID.
+
+21
+00:01:21,470 --> 00:01:23,870
+ID and set.
+
+22
+00:01:24,610 --> 00:01:26,770
+Selected ID.
+
+23
+00:01:27,770 --> 00:01:32,300
+Use state and we are going to start with null.
+
+24
+00:01:33,000 --> 00:01:36,120
+And here it's, of course, selected.
+
+25
+00:01:36,480 --> 00:01:40,830
+Then here, let's get rid of this, which we don't need anymore.
+
+26
+00:01:40,980 --> 00:01:43,590
+And now you might be wondering why.
+
+27
+00:01:43,590 --> 00:01:49,350
+Here we are only going to store the ID and not the entire movie object itself.
+
+28
+00:01:49,380 --> 00:01:56,050
+Well, the reason for that is that the movies that we get here from the search are very limited.
+
+29
+00:01:56,070 --> 00:02:01,490
+So we only get the data really about the title the year and the poster here.
+
+30
+00:02:01,500 --> 00:02:07,200
+While here on the right side, we will want all kinds of details that are not included in this first
+
+31
+00:02:07,200 --> 00:02:07,850
+search.
+
+32
+00:02:07,860 --> 00:02:15,270
+So there will have to be another API call and we can see that here when we click it loads the movie
+
+33
+00:02:15,270 --> 00:02:15,810
+again.
+
+34
+00:02:15,810 --> 00:02:21,170
+And so only then all of these details here are fetched and this fetch here.
+
+35
+00:02:21,180 --> 00:02:26,940
+So this movie will be fetched based on the ID that we got here in this array.
+
+36
+00:02:27,330 --> 00:02:29,490
+So let's take a look at that quickly.
+
+37
+00:02:29,880 --> 00:02:35,320
+So it's very important that you understand how we actually built this application.
+
+38
+00:02:35,500 --> 00:02:43,390
+So it's not just about the React concepts themselves, but also about the logic of how we build an application.
+
+39
+00:02:43,390 --> 00:02:45,670
+So I think that's also pretty important.
+
+40
+00:02:47,450 --> 00:02:48,080
+So.
+
+41
+00:02:48,770 --> 00:02:49,700
+Let's see.
+
+42
+00:02:51,070 --> 00:02:57,520
+So taking a closer look at our results, each of the objects has the poster, the title, the Type the
+
+43
+00:02:57,520 --> 00:02:59,590
+Year and the ID.
+
+44
+00:02:59,890 --> 00:03:04,450
+And again, it's based on this ID that we then will search for details.
+
+45
+00:03:04,450 --> 00:03:08,860
+And actually, let's copy this ID here and I will.
+
+46
+00:03:09,610 --> 00:03:12,850
+Temporarily use that here.
+
+47
+00:03:14,350 --> 00:03:15,220
+All right.
+
+48
+00:03:17,100 --> 00:03:22,110
+So just so we can see what happens when we actually have a selected movie.
+
+49
+00:03:22,910 --> 00:03:24,920
+Then we no longer need this.
+
+50
+00:03:25,040 --> 00:03:28,490
+And now let's create a new component.
+
+51
+00:03:28,490 --> 00:03:32,840
+And so that component will then be displayed if there is a selected ID.
+
+52
+00:03:34,330 --> 00:03:37,360
+So basically that's like a selected movie.
+
+53
+00:03:37,750 --> 00:03:39,700
+So movie list movie.
+
+54
+00:03:39,730 --> 00:03:41,140
+Let's do it right here.
+
+55
+00:03:42,720 --> 00:03:46,080
+Function selected movie.
+
+56
+00:03:46,900 --> 00:03:51,520
+And this one will get as an input as you can guess, the selected ID.
+
+57
+00:03:53,680 --> 00:03:59,230
+So here, let's for now just return a div with the class name of detail.
+
+58
+00:04:01,500 --> 00:04:07,380
+And then for now, all we are going to do is to display that selected ID in there.
+
+59
+00:04:08,310 --> 00:04:09,330
+All right.
+
+60
+00:04:10,180 --> 00:04:19,600
+And now going back up here into our DJs here on the right side, we now want to display not this, but
+
+61
+00:04:19,600 --> 00:04:25,120
+instead that component that we just created in case that there is a selected ID.
+
+62
+00:04:26,560 --> 00:04:33,040
+So let's wrap all of this into a JavaScript code block and then let's do a ternary operator.
+
+63
+00:04:33,040 --> 00:04:41,050
+So all we have to do is to say, if there is an selected ID, then display movie detail.
+
+64
+00:04:41,500 --> 00:04:44,530
+So not sure why that's not appearing here.
+
+65
+00:04:44,680 --> 00:04:46,450
+Maybe I gave it some other name.
+
+66
+00:04:47,550 --> 00:04:48,750
+My selected movie.
+
+67
+00:04:49,740 --> 00:04:55,710
+Well, actually, I wanted to call it movie detail or movie details even.
+
+68
+00:04:57,060 --> 00:04:59,880
+So that makes a bit more sense, I think.
+
+69
+00:05:00,270 --> 00:05:00,780
+Yeah.
+
+70
+00:05:00,780 --> 00:05:02,160
+So movie details.
+
+71
+00:05:03,380 --> 00:05:08,450
+And then we pass in the selected ID.
+
+72
+00:05:10,420 --> 00:05:11,260
+Okay.
+
+73
+00:05:11,260 --> 00:05:15,460
+And if not, then that's where we want to display these two.
+
+74
+00:05:16,140 --> 00:05:18,080
+However, this is not going to work.
+
+75
+00:05:18,090 --> 00:05:19,310
+So let's see.
+
+76
+00:05:19,320 --> 00:05:27,930
+And indeed, once again, it's because here we have a piece of JS X, So all this which has basically
+
+77
+00:05:27,930 --> 00:05:35,700
+two root elements so it doesn't have just one single parent element which remember is always necessary
+
+78
+00:05:35,700 --> 00:05:36,780
+in a piece of JS.
+
+79
+00:05:37,380 --> 00:05:44,460
+And so this is yet another great use case of a fragment because of course we don't want to create like
+
+80
+00:05:44,460 --> 00:05:48,870
+a new div element or something like that around these two.
+
+81
+00:05:50,440 --> 00:05:51,810
+So just like this.
+
+82
+00:05:51,820 --> 00:05:59,740
+And again, the reason for that is here as the third part of the ternary operator, we needed a new
+
+83
+00:05:59,740 --> 00:06:05,220
+piece of JSX, which cannot have two elements as the root element.
+
+84
+00:06:05,230 --> 00:06:09,550
+And so we just created one root element with the fragment.
+
+85
+00:06:10,690 --> 00:06:16,570
+Okay, so now we can indeed see this ID that we passed in.
+
+86
+00:06:16,870 --> 00:06:21,550
+So the selected ID, but of course we don't want this to be hardcoded.
+
+87
+00:06:22,560 --> 00:06:25,710
+So let's set it back to null and then this will disappear.
+
+88
+00:06:26,010 --> 00:06:27,090
+Indeed.
+
+89
+00:06:27,090 --> 00:06:31,470
+And so the final step, as always, is to update the state.
+
+90
+00:06:32,240 --> 00:06:34,430
+So where are we going to do that?
+
+91
+00:06:34,700 --> 00:06:42,590
+Well, basically, as the user clicks one of these movie objects or actually movie components.
+
+92
+00:06:43,250 --> 00:06:46,460
+So let's go to the movie component then.
+
+93
+00:06:47,410 --> 00:06:53,410
+And let's do that here with the trick where we hover and then command or control click.
+
+94
+00:06:53,500 --> 00:06:55,030
+So movie list.
+
+95
+00:06:55,030 --> 00:07:02,020
+And then right here on the movie on the fly, we can attach the on click handler.
+
+96
+00:07:02,960 --> 00:07:09,860
+However, we don't have access to any function here yet, so let's first go back and create that function.
+
+97
+00:07:11,220 --> 00:07:12,660
+So let's do that.
+
+98
+00:07:13,340 --> 00:07:15,290
+What may be before the effect.
+
+99
+00:07:16,580 --> 00:07:18,740
+Okay, so let's do that here.
+
+100
+00:07:19,540 --> 00:07:25,480
+So this is just what we have done many times before, which is in the component that owns the state.
+
+101
+00:07:25,510 --> 00:07:32,230
+We write some event handler functions that we then pass down to some child component to update the state
+
+102
+00:07:32,230 --> 00:07:33,340
+in the parent.
+
+103
+00:07:34,120 --> 00:07:35,050
+So here.
+
+104
+00:07:36,250 --> 00:07:40,180
+Now we'll call it handle select movie.
+
+105
+00:07:40,210 --> 00:07:43,960
+And so then this will pass in a movie ID.
+
+106
+00:07:46,180 --> 00:07:54,970
+Set selected ID to that ID, And so we could also have simply pass down the set selected ID.
+
+107
+00:07:55,300 --> 00:07:59,470
+But I think like this, it is a little bit cleaner in some situations.
+
+108
+00:08:01,470 --> 00:08:02,340
+All right.
+
+109
+00:08:05,700 --> 00:08:11,670
+So it's cleaner, in my view, because like this, we give it a really clear name and so then we know
+
+110
+00:08:11,670 --> 00:08:14,220
+exactly what's happening.
+
+111
+00:08:16,800 --> 00:08:19,530
+Ah, of course we didn't pass it yet into the movie.
+
+112
+00:08:20,370 --> 00:08:21,360
+So.
+
+113
+00:08:22,230 --> 00:08:25,050
+That movie is inside movie list.
+
+114
+00:08:25,140 --> 00:08:27,520
+And so we need to pass it there first.
+
+115
+00:08:27,540 --> 00:08:30,570
+So here we are going to need a little bit of prop drilling.
+
+116
+00:08:30,570 --> 00:08:34,620
+But if it's just one level, then that's not a big deal at all.
+
+117
+00:08:34,890 --> 00:08:38,250
+So let's call this here on Select.
+
+118
+00:08:39,250 --> 00:08:40,000
+Movie.
+
+119
+00:08:41,330 --> 00:08:43,340
+Will be handle select movie.
+
+120
+00:08:44,090 --> 00:08:48,110
+And then let's just grab this move to our movie list.
+
+121
+00:08:48,140 --> 00:08:53,750
+Then we accept that prop here and pass it right into the movie.
+
+122
+00:08:53,750 --> 00:08:57,290
+So just like we have been doing so many times.
+
+123
+00:08:58,220 --> 00:09:02,880
+Except that here and then here, we need to create a brand new function.
+
+124
+00:09:02,900 --> 00:09:07,300
+Remember, not just calling a function now, okay?
+
+125
+00:09:07,310 --> 00:09:15,720
+And then we pass in the movie dot IMDb ID so we can see that right from here.
+
+126
+00:09:15,740 --> 00:09:20,420
+So in each of the movie objects, the ID has this name right here.
+
+127
+00:09:21,290 --> 00:09:22,030
+Okay.
+
+128
+00:09:22,040 --> 00:09:23,020
+Give it a save.
+
+129
+00:09:23,030 --> 00:09:24,650
+And now let's see what happens.
+
+130
+00:09:25,710 --> 00:09:30,000
+So we click here, then we get this ID, then we get another one.
+
+131
+00:09:30,000 --> 00:09:34,740
+And then here we get this, which is exactly the same as this one.
+
+132
+00:09:35,400 --> 00:09:37,560
+So this is working great.
+
+133
+00:09:37,710 --> 00:09:42,540
+The only thing I noticed is that here we don't have these styles, which here we have.
+
+134
+00:09:43,350 --> 00:09:45,510
+Let me just see if we are missing.
+
+135
+00:09:46,990 --> 00:09:48,640
+If we are missing some styles here.
+
+136
+00:09:48,640 --> 00:09:53,290
+And apparently this list here also needs the list.
+
+137
+00:09:55,050 --> 00:09:59,040
+Of movies class, so I forgot that one earlier.
+
+138
+00:09:59,490 --> 00:10:06,000
+And yeah, so now as we hover over each of these movies, we get this nice highlighting.
+
+139
+00:10:06,630 --> 00:10:07,200
+Okay.
+
+140
+00:10:07,200 --> 00:10:14,460
+And now just to finish, let's quickly add the ability to also close basically the movie detail, which
+
+141
+00:10:14,490 --> 00:10:18,750
+is simply to set the selected ID back to null.
+
+142
+00:10:20,100 --> 00:10:21,120
+So.
+
+143
+00:10:22,460 --> 00:10:25,440
+Let's create that function as well.
+
+144
+00:10:25,460 --> 00:10:26,780
+So handle.
+
+145
+00:10:27,570 --> 00:10:28,530
+Close.
+
+146
+00:10:29,630 --> 00:10:37,250
+Movie and this one doesn't need anything because all it will do is to set the selected ID.
+
+147
+00:10:38,290 --> 00:10:39,880
+To null.
+
+148
+00:10:40,920 --> 00:10:41,790
+Okay.
+
+149
+00:10:42,240 --> 00:10:46,800
+And then, of course, we need to pass this function into the movie detail.
+
+150
+00:10:48,630 --> 00:10:53,310
+So right here on close movie.
+
+151
+00:10:55,790 --> 00:10:58,880
+And then let's grab that move there.
+
+152
+00:11:00,280 --> 00:11:01,530
+Pass it in.
+
+153
+00:11:01,540 --> 00:11:05,020
+And now let's just create a button here.
+
+154
+00:11:06,980 --> 00:11:11,480
+And this one has the class of btn a back.
+
+155
+00:11:12,800 --> 00:11:14,480
+And on click.
+
+156
+00:11:16,070 --> 00:11:18,470
+Well, it's simply on close movie.
+
+157
+00:11:18,590 --> 00:11:25,700
+And so since in this case, we are not passing in any ID here or anything, there's no need to create
+
+158
+00:11:25,700 --> 00:11:26,690
+a new function.
+
+159
+00:11:27,200 --> 00:11:31,910
+So of course we could do this, which would be exactly the same thing.
+
+160
+00:11:31,910 --> 00:11:38,450
+But that doesn't make sense in this case because again, there is no need to pass anything into this
+
+161
+00:11:38,450 --> 00:11:39,110
+function.
+
+162
+00:11:40,150 --> 00:11:41,740
+So let's just do this.
+
+163
+00:11:41,980 --> 00:11:46,450
+But of course, we also need some content into that button.
+
+164
+00:11:48,960 --> 00:11:54,090
+So let's use this entity, which means left arrow.
+
+165
+00:11:54,450 --> 00:11:55,710
+And there we go.
+
+166
+00:11:56,040 --> 00:12:00,030
+So if we click this, then we go back to what we had before.
+
+167
+00:12:01,420 --> 00:12:05,620
+Now, finally, we could also implement that when we click here again.
+
+168
+00:12:05,650 --> 00:12:07,990
+Then it will also close the movie.
+
+169
+00:12:08,930 --> 00:12:13,940
+So of course, if we click on one of the other ones, then we see the ID here change.
+
+170
+00:12:13,940 --> 00:12:18,680
+But if we click on the same again, we could also make it so that the movie then closes.
+
+171
+00:12:18,680 --> 00:12:22,010
+And so let's do that to finish this lecture.
+
+172
+00:12:22,400 --> 00:12:26,090
+So going back here, that's not too hard.
+
+173
+00:12:27,050 --> 00:12:30,770
+So right here we can simply do a ternary operator.
+
+174
+00:12:30,770 --> 00:12:38,810
+So basically we can ask if the ID is equal to the current one, then set the new selected ID to null.
+
+175
+00:12:38,990 --> 00:12:44,390
+So this means that we will now set the new state based on the current one.
+
+176
+00:12:44,960 --> 00:12:48,530
+So let's just use the callback.
+
+177
+00:12:48,920 --> 00:12:56,960
+So selected ID, and then we just say ID equal to the already selected ID, and if so, set the new
+
+178
+00:12:56,960 --> 00:12:59,990
+one to null and otherwise to the passed in ID.
+
+179
+00:13:01,820 --> 00:13:03,230
+So let's try that.
+
+180
+00:13:03,380 --> 00:13:06,680
+And if I click again, then it closes.
+
+181
+00:13:06,800 --> 00:13:07,980
+Beautiful.
+
+182
+00:13:08,000 --> 00:13:14,540
+And so with this, we are now ready to, in the next lecture, actually fetch the movie that corresponds
+
+183
+00:13:14,540 --> 00:13:16,790
+to the selected ID here.

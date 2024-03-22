@@ -1,0 +1,439 @@
+1
+00:00:00,880 --> 00:00:05,800
+Let's now handle the event of users hovering over our stars.
+
+2
+00:00:06,810 --> 00:00:11,580
+So basically the functionality that we're looking for is this one.
+
+3
+00:00:11,910 --> 00:00:17,540
+So whenever we hover over these stars, we get like a temporary rating here.
+
+4
+00:00:17,550 --> 00:00:18,360
+Exactly.
+
+5
+00:00:18,360 --> 00:00:21,890
+With the number of stars that are currently being hovered.
+
+6
+00:00:21,900 --> 00:00:28,890
+So here we have nine, here we have three, but it is completely independent from the rating that is
+
+7
+00:00:28,890 --> 00:00:30,660
+actually set right now.
+
+8
+00:00:30,660 --> 00:00:32,790
+So the rating is set to five.
+
+9
+00:00:32,820 --> 00:00:40,290
+But again, whenever we hover over some other number of stars, then that temporarily changes to that
+
+10
+00:00:40,290 --> 00:00:41,040
+rating.
+
+11
+00:00:41,520 --> 00:00:42,360
+All right.
+
+12
+00:00:42,360 --> 00:00:48,900
+So what that means is that now we need a brand new piece of state to basically store that temporary
+
+13
+00:00:48,900 --> 00:00:49,590
+rating.
+
+14
+00:00:49,680 --> 00:00:54,540
+And again, that makes sense because something should happen on the screen.
+
+15
+00:00:54,630 --> 00:00:59,700
+So the component should rerender whenever there is some hover event.
+
+16
+00:00:59,730 --> 00:01:02,880
+That's how we then get that new rating in there.
+
+17
+00:01:03,900 --> 00:01:05,880
+So let's say.
+
+18
+00:01:08,690 --> 00:01:14,150
+For example, temp rating, which stands for temporary and then set.
+
+19
+00:01:16,510 --> 00:01:17,770
+Temp rating.
+
+20
+00:01:18,770 --> 00:01:21,590
+And we start at zero.
+
+21
+00:01:21,590 --> 00:01:25,940
+And of course, the rating itself should also start at zero.
+
+22
+00:01:28,070 --> 00:01:37,310
+Now, right now, in order to actually handle that hover event, let's go down here onto our star.
+
+23
+00:01:38,200 --> 00:01:40,000
+So into our start component.
+
+24
+00:01:40,030 --> 00:01:44,350
+And then where we handle the click is where we also handle the hover.
+
+25
+00:01:44,950 --> 00:01:52,480
+Now there is not really a hover event, but instead we have on mouse enter.
+
+26
+00:01:54,910 --> 00:01:58,360
+So let's just do some console.log here for now.
+
+27
+00:02:04,240 --> 00:02:05,710
+So that's one of them.
+
+28
+00:02:05,710 --> 00:02:08,800
+And then we have mouse leaf.
+
+29
+00:02:09,100 --> 00:02:12,850
+So we basically need to handle these two separately.
+
+30
+00:02:16,620 --> 00:02:17,210
+Okay.
+
+31
+00:02:17,220 --> 00:02:19,350
+Just so that we can quickly see.
+
+32
+00:02:20,430 --> 00:02:24,720
+So I entered basically this element and then it said Enter.
+
+33
+00:02:24,720 --> 00:02:27,660
+And immediately afterwards it said Leave.
+
+34
+00:02:27,690 --> 00:02:29,190
+So let's see again.
+
+35
+00:02:29,550 --> 00:02:32,640
+And indeed, each time that we enter or leave.
+
+36
+00:02:32,940 --> 00:02:35,280
+Well, we get our log down there.
+
+37
+00:02:35,400 --> 00:02:42,450
+And so now all we have to do is to update that temp rating state that we just created in each of these
+
+38
+00:02:42,450 --> 00:02:43,500
+situations.
+
+39
+00:02:44,950 --> 00:02:53,290
+So let's pass in then to handler functions here into the star, just like we did for the on rate.
+
+40
+00:02:55,880 --> 00:02:59,450
+So let's call this one here on hover in.
+
+41
+00:02:59,690 --> 00:03:06,590
+And the prop name here is different again from the event name just to avoid some confusion here.
+
+42
+00:03:06,800 --> 00:03:14,120
+So we could also call this prop on mouse enter again, but then it might be a bit confusing and you
+
+43
+00:03:14,120 --> 00:03:20,870
+might think that the event is actually handled right here on the star component, which of course is
+
+44
+00:03:20,870 --> 00:03:21,710
+not possible.
+
+45
+00:03:21,710 --> 00:03:26,720
+So the event always needs to be handled on a JSX element itself.
+
+46
+00:03:27,250 --> 00:03:30,880
+So like an HTML element such as a span.
+
+47
+00:03:31,470 --> 00:03:32,110
+Okay.
+
+48
+00:03:32,110 --> 00:03:34,120
+And now all we have to do here.
+
+49
+00:03:34,950 --> 00:03:41,520
+Is to basically set the temp rating to the rating of the current star.
+
+50
+00:03:41,640 --> 00:03:44,070
+So that's again, I plus one.
+
+51
+00:03:44,550 --> 00:03:45,450
+Right.
+
+52
+00:03:45,570 --> 00:03:49,170
+And then on hover out.
+
+53
+00:03:50,090 --> 00:03:52,670
+We set it back to the initial value.
+
+54
+00:03:55,130 --> 00:03:57,050
+So temp rating.
+
+55
+00:03:58,510 --> 00:03:59,530
+Back to zero.
+
+56
+00:04:00,920 --> 00:04:03,590
+So here we need to change the name.
+
+57
+00:04:04,190 --> 00:04:07,670
+So of course, this is with an uppercase R.
+
+58
+00:04:08,790 --> 00:04:15,450
+And now all we need to do is to accept these two props here and wire everything together.
+
+59
+00:04:16,460 --> 00:04:19,250
+So on hover in.
+
+60
+00:04:20,680 --> 00:04:21,100
+On.
+
+61
+00:04:21,100 --> 00:04:22,840
+Hover out.
+
+62
+00:04:24,110 --> 00:04:25,060
+All right.
+
+63
+00:04:25,070 --> 00:04:29,480
+And so then here we, of course, want to now call these functions.
+
+64
+00:04:32,880 --> 00:04:33,990
+And here.
+
+65
+00:04:37,220 --> 00:04:37,640
+On.
+
+66
+00:04:37,640 --> 00:04:39,050
+Hover out.
+
+67
+00:04:40,390 --> 00:04:45,760
+And now finally, we need to actually display this rating in the UI.
+
+68
+00:04:46,060 --> 00:04:51,370
+So you see here right now that it's still yellow, which means that we haven't used it anywhere.
+
+69
+00:04:52,180 --> 00:04:57,490
+So let's for now replace this rating with the temp rating.
+
+70
+00:05:00,070 --> 00:05:01,060
+And then let's see.
+
+71
+00:05:01,750 --> 00:05:05,080
+And yeah, that's already working.
+
+72
+00:05:05,290 --> 00:05:07,890
+So see how that value was there.
+
+73
+00:05:07,900 --> 00:05:14,080
+Shortly we had the three, then here, the four, the five and so on and so forth.
+
+74
+00:05:14,440 --> 00:05:16,100
+So that's working great.
+
+75
+00:05:16,120 --> 00:05:21,100
+The only part that is not working is that the stars are not getting full.
+
+76
+00:05:21,220 --> 00:05:27,130
+And so let's quickly fix that here inside this condition here.
+
+77
+00:05:27,460 --> 00:05:34,810
+So here we can say that if there is a temp rating, so if there is a temporary rating, then do the
+
+78
+00:05:34,810 --> 00:05:35,710
+same thing.
+
+79
+00:05:36,730 --> 00:05:38,890
+But with that temp rating.
+
+80
+00:05:39,850 --> 00:05:44,560
+So then temp rating greater or equal I plus one.
+
+81
+00:05:44,920 --> 00:05:49,030
+But if not, well, then we just do what we had before.
+
+82
+00:05:49,370 --> 00:05:51,790
+And so this should fix that.
+
+83
+00:05:51,940 --> 00:05:54,490
+And yeah, beautiful.
+
+84
+00:05:55,450 --> 00:05:57,130
+So that works great.
+
+85
+00:05:57,850 --> 00:06:04,240
+And if we click here, well, then the number disappears, but the stars stay the same.
+
+86
+00:06:04,240 --> 00:06:07,480
+And so that's because now we have the rating set.
+
+87
+00:06:07,480 --> 00:06:15,130
+And then so here in this full prop, we enter the second branch, which then just like before, sets
+
+88
+00:06:15,130 --> 00:06:17,860
+these four stars here to full.
+
+89
+00:06:18,280 --> 00:06:26,410
+Now all we have to do here is to place another order here and say basically if there is no temp rating,
+
+90
+00:06:26,410 --> 00:06:27,790
+then display.
+
+91
+00:06:28,700 --> 00:06:30,080
+The current rating.
+
+92
+00:06:30,080 --> 00:06:32,000
+And if that also doesn't exist.
+
+93
+00:06:32,030 --> 00:06:34,130
+Well, then we get the empty string.
+
+94
+00:06:35,330 --> 00:06:37,270
+So indeed, we now get four.
+
+95
+00:06:37,280 --> 00:06:39,490
+If we click again, we get five.
+
+96
+00:06:39,500 --> 00:06:42,860
+But as we hover, we get the temporary rating.
+
+97
+00:06:42,860 --> 00:06:49,010
+So just like we wanted and just like this component here works as well.
+
+98
+00:06:50,820 --> 00:06:52,470
+So this looks really nice.
+
+99
+00:06:52,470 --> 00:06:54,960
+Really real world, actually.
+
+100
+00:06:54,960 --> 00:06:57,180
+And it wasn't that much work.
+
+101
+00:06:57,210 --> 00:07:04,320
+All we had to do is some tricks with these two rating states and then handling all of these different
+
+102
+00:07:04,320 --> 00:07:05,140
+events.
+
+103
+00:07:05,190 --> 00:07:11,070
+So basically handling the click, the mouse enter and the mouse leave and the result.
+
+104
+00:07:11,250 --> 00:07:14,930
+If you ask me, is even a bit magical here.
+
+105
+00:07:14,940 --> 00:07:18,780
+So I really, really like this effect that we created here.
+
+106
+00:07:19,470 --> 00:07:20,160
+Okay.
+
+107
+00:07:20,160 --> 00:07:24,960
+And so that's the main functionality already implemented.
+
+108
+00:07:24,960 --> 00:07:30,660
+But now let's make the component really, really flexible by allowing a couple of props.
+
+109
+00:07:30,750 --> 00:07:37,890
+So we will learn all about that in the next lecture and then we will come back here and create the API
+
+110
+00:07:38,100 --> 00:07:40,140
+basically of this component.

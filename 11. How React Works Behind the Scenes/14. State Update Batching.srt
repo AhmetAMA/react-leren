@@ -1,0 +1,403 @@
+1
+00:00:00,900 --> 00:00:08,310
+So we have dived really deep into some aspects of the render phase, like the rules for render logic
+
+2
+00:00:08,310 --> 00:00:10,530
+and how the key prop works.
+
+3
+00:00:10,530 --> 00:00:18,450
+But now let's take one step back and go back to one very important aspect of the first triggering phase,
+
+4
+00:00:18,450 --> 00:00:22,650
+which is the fact that state updates are batched.
+
+5
+00:00:24,050 --> 00:00:31,670
+So in that first lecture about how rendering works, we had this sentence which says that renders are
+
+6
+00:00:31,670 --> 00:00:33,610
+not triggered immediately.
+
+7
+00:00:33,620 --> 00:00:41,660
+And so in this lecture I want to focus on this part which says that there is also batching of multiple
+
+8
+00:00:41,660 --> 00:00:43,400
+setstate calls.
+
+9
+00:00:43,700 --> 00:00:51,410
+Now, as always, the easiest way of explaining difficult concepts is by using a small code example.
+
+10
+00:00:51,560 --> 00:00:59,180
+So here we have three pieces of state defined using the state took and we also have a button in the
+
+11
+00:00:59,180 --> 00:01:00,570
+user interface.
+
+12
+00:01:00,590 --> 00:01:07,490
+Then whenever there is a click on the button, the event handler function named reset is called.
+
+13
+00:01:07,580 --> 00:01:15,860
+In this function, the three pieces of state answer best and solved are basically reverted back to their
+
+14
+00:01:15,860 --> 00:01:17,120
+original state.
+
+15
+00:01:17,120 --> 00:01:20,150
+And therefore this function is called reset.
+
+16
+00:01:20,390 --> 00:01:25,200
+Now, actually, this is the part that interests us in this lecture.
+
+17
+00:01:25,200 --> 00:01:29,550
+And so let's now focus only on the event handler function.
+
+18
+00:01:29,880 --> 00:01:37,200
+Now what I want to do here is to analyze how these three pieces of state are actually updated behind
+
+19
+00:01:37,200 --> 00:01:38,070
+the scenes.
+
+20
+00:01:38,370 --> 00:01:45,930
+So we might think that as React sees the set answer function call, it would update the state to the
+
+21
+00:01:45,930 --> 00:01:51,990
+empty string as requested and then trigger a rerender and the commit phase.
+
+22
+00:01:52,050 --> 00:01:57,000
+Then it would move on to the next line and do the same thing again.
+
+23
+00:01:57,000 --> 00:02:02,670
+And finally do the entire thing one more time for the third state update.
+
+24
+00:02:02,970 --> 00:02:09,810
+So intuitively, we would think that if there are three state variables being updated in this event,
+
+25
+00:02:09,810 --> 00:02:14,460
+handler then react would rerender three times, right?
+
+26
+00:02:14,700 --> 00:02:18,510
+However, this is actually not how it works.
+
+27
+00:02:18,510 --> 00:02:24,270
+So this is not how react updates multiple pieces of state in the same event.
+
+28
+00:02:24,270 --> 00:02:25,260
+Handler function.
+
+29
+00:02:25,260 --> 00:02:33,090
+Instead, these state updates will actually get batched into just one state update for the entire event
+
+30
+00:02:33,120 --> 00:02:33,810
+handler.
+
+31
+00:02:34,140 --> 00:02:40,680
+So updating multiple pieces of state won't immediately cause a rerender for each update.
+
+32
+00:02:40,710 --> 00:02:48,990
+Instead, all pieces of state inside the event handler are updated in one go so they are batched and
+
+33
+00:02:48,990 --> 00:02:54,090
+only then will react trigger one single render and commit.
+
+34
+00:02:54,210 --> 00:03:01,350
+And conceptually, it makes sense that React works this way because if we're updating these pieces of
+
+35
+00:03:01,350 --> 00:03:08,280
+state together, it probably means that they should just represent one new view and therefore react
+
+36
+00:03:08,280 --> 00:03:10,710
+only updates the screen once.
+
+37
+00:03:11,120 --> 00:03:18,110
+So if these data updates belong together, it really wouldn't make much sense to update the screen three
+
+38
+00:03:18,110 --> 00:03:18,920
+times.
+
+39
+00:03:19,010 --> 00:03:26,540
+Doing so would also create two wasted renders because we're not interested in the first two renders
+
+40
+00:03:26,570 --> 00:03:31,520
+only the final one, which already contains all the three state updates.
+
+41
+00:03:31,760 --> 00:03:39,110
+Therefore, the fact that react automatically batches state updates in this way is yet another performance.
+
+42
+00:03:39,110 --> 00:03:43,190
+Optimization that react gives us out of the box.
+
+43
+00:03:43,370 --> 00:03:50,050
+Now batching state updates is extremely useful, but it can also have surprising results.
+
+44
+00:03:50,090 --> 00:03:57,830
+So let's turn our attention to this line of code now where we reference the answer state variable right
+
+45
+00:03:57,830 --> 00:03:59,360
+after updating it.
+
+46
+00:03:59,390 --> 00:04:04,490
+So what do you think will be the value of this variable at this point?
+
+47
+00:04:04,760 --> 00:04:07,790
+Well, let's try to think about this.
+
+48
+00:04:07,970 --> 00:04:15,120
+So remember, that component state is stored in the fiber tree during the render phase.
+
+49
+00:04:15,150 --> 00:04:19,950
+Now, at this point in the code, the render phase has not happened yet.
+
+50
+00:04:19,980 --> 00:04:27,120
+So React is still reading the function line by line to figure out what state needs to be updated.
+
+51
+00:04:27,120 --> 00:04:33,390
+But it hasn't actually updated the state yet and it also hasn't rerendered yet.
+
+52
+00:04:33,510 --> 00:04:38,760
+That's the whole point of batching state updates in the first place, right.
+
+53
+00:04:39,000 --> 00:04:46,500
+So what this means is that at this point of the code, the answer variable will still hold the current
+
+54
+00:04:46,500 --> 00:04:47,170
+state.
+
+55
+00:04:47,190 --> 00:04:53,550
+So the state before the update, even though we already told the react to update it.
+
+56
+00:04:54,050 --> 00:05:02,300
+So at this point, we say that our state is stable, meaning that the state is no longer fresh and updated
+
+57
+00:05:02,330 --> 00:05:09,830
+because in fact a state update will only be reflected in the state variable after the rerender.
+
+58
+00:05:09,830 --> 00:05:19,370
+And so for this reason, we say that updating state in React is asynchronous and again, it is asynchronous
+
+59
+00:05:19,370 --> 00:05:25,590
+because React does not give us the updated state variable immediately after the set.
+
+60
+00:05:25,610 --> 00:05:30,200
+Answer call, but only after the rerender has happened.
+
+61
+00:05:30,910 --> 00:05:37,360
+Now the same thing is also true whenever there is only one piece of state being updated.
+
+62
+00:05:37,480 --> 00:05:45,100
+So no matter how many state variables are being updated, the updated state is only available after
+
+63
+00:05:45,100 --> 00:05:46,070
+the rerender.
+
+64
+00:05:46,090 --> 00:05:47,710
+Not immediately.
+
+65
+00:05:48,450 --> 00:05:54,090
+Now, sometimes we actually do need the new value immediately after updating it.
+
+66
+00:05:54,090 --> 00:06:01,500
+And in the case that we need the new value in order to update the same state again, or in other words,
+
+67
+00:06:01,500 --> 00:06:08,310
+if we need to update state based on a previous state update in the same event handler, we can pass
+
+68
+00:06:08,310 --> 00:06:13,620
+a callback function into the set state function instead of a single value.
+
+69
+00:06:13,620 --> 00:06:18,030
+And we have actually done this in practice all the time, right?
+
+70
+00:06:19,930 --> 00:06:27,460
+Now, so far we have only talked about batching in event handler functions like our reset function.
+
+71
+00:06:27,610 --> 00:06:36,130
+That's because before react 18 react only did automatic batching in event handlers, but not in situations
+
+72
+00:06:36,130 --> 00:06:39,970
+that happen after a browser event has already happened.
+
+73
+00:06:40,000 --> 00:06:47,170
+However, there are certain very important situations in which we do need to update state long after
+
+74
+00:06:47,170 --> 00:06:50,500
+a browser event like a click has happened.
+
+75
+00:06:50,530 --> 00:06:54,820
+Examples of that are timeouts and promises.
+
+76
+00:06:55,000 --> 00:07:02,710
+For instance, we might want to run a reset function only a second after a click event, or we might
+
+77
+00:07:02,710 --> 00:07:05,980
+want to run it after some data has been fetched.
+
+78
+00:07:06,010 --> 00:07:13,480
+So it would be nice to also have automatic batching in those situations to improve performance, right?
+
+79
+00:07:13,870 --> 00:07:19,970
+Well, that's actually one of the important features that React 18 gave us.
+
+80
+00:07:20,150 --> 00:07:28,910
+So before React 18 if this reset function was called by a timeout or by a promise state updates inside
+
+81
+00:07:28,910 --> 00:07:31,550
+the function would not be batched.
+
+82
+00:07:31,580 --> 00:07:39,230
+Instead, in these situations, React would actually update the state variables one by one and therefore
+
+83
+00:07:39,230 --> 00:07:42,050
+in this case render three times.
+
+84
+00:07:42,230 --> 00:07:49,520
+Now another case is handling native events using Dom methods such as add event listener, where state
+
+85
+00:07:49,520 --> 00:07:54,230
+updates also used to not be batched, but now they are.
+
+86
+00:07:54,440 --> 00:08:01,400
+So again, if you're using the latest React version, you will now get automatic batching all the time
+
+87
+00:08:01,400 --> 00:08:03,420
+everywhere in your code.
+
+88
+00:08:03,440 --> 00:08:10,760
+And if for some reason you're working with an older version of React, maybe at your work, it's important
+
+89
+00:08:10,760 --> 00:08:16,130
+that you know that batching used to work in a different way before version 18.
+
+90
+00:08:16,340 --> 00:08:23,120
+Now, there are also some extremely rare situations runs in which automatic batching can be problematic.
+
+91
+00:08:23,150 --> 00:08:29,660
+So if you ever find yourself in a situation like that, you can just wrap the problematic state update
+
+92
+00:08:29,660 --> 00:08:38,270
+in a react dom dot flush sync function and react will then exclude that update from batching, but you
+
+93
+00:08:38,270 --> 00:08:40,620
+will most likely never need this.
+
+94
+00:08:40,640 --> 00:08:44,600
+I'm just mentioning this here so that you know that it exists.
+
+95
+00:08:45,300 --> 00:08:45,930
+Okay.
+
+96
+00:08:45,930 --> 00:08:47,010
+And that's it.
+
+97
+00:08:47,010 --> 00:08:49,430
+About state update batching.
+
+98
+00:08:49,440 --> 00:08:56,220
+It turned out to be a bit longer than I thought, but as always, there is just so much interesting
+
+99
+00:08:56,220 --> 00:08:57,240
+stuff to learn.
+
+100
+00:08:57,240 --> 00:09:00,210
+And so I hope that you don't mind at all.
+
+101
+00:09:00,450 --> 00:09:07,470
+But in any case, let's quickly go to the next video so I can show you some of this in practice.

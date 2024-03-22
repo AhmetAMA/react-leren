@@ -1,0 +1,619 @@
+1
+00:00:00,950 --> 00:00:09,050
+Let's now take a break from building our project and build a small, reusable and flexible star rating
+
+2
+00:00:09,050 --> 00:00:09,980
+component.
+
+3
+00:00:11,340 --> 00:00:15,420
+So what we want to build is a component like this one.
+
+4
+00:00:15,420 --> 00:00:22,470
+So it displays multiple stars and then as we hover over them, it displays the currently selected rating
+
+5
+00:00:22,470 --> 00:00:24,250
+here on the right side.
+
+6
+00:00:24,270 --> 00:00:31,320
+So as you see, as we hover over the stars, it always shows the currently selected number of stars.
+
+7
+00:00:31,320 --> 00:00:35,330
+And if we click here, then that number stays fixed.
+
+8
+00:00:35,340 --> 00:00:41,880
+And if we then click again because this movie is definitely a ten, then of course we can also change
+
+9
+00:00:41,880 --> 00:00:42,960
+that rating.
+
+10
+00:00:43,720 --> 00:00:43,970
+Now.
+
+11
+00:00:44,020 --> 00:00:49,120
+Okay, Now we will develop this component here in complete isolation.
+
+12
+00:00:49,120 --> 00:00:55,960
+So outside of this current application so that we could reuse it anywhere we wanted and also make it
+
+13
+00:00:55,960 --> 00:00:59,230
+really flexible by allowing for different props.
+
+14
+00:00:59,320 --> 00:01:07,450
+For example, here we can rate between 0 and 10 right now, but we will make it so that the user of
+
+15
+00:01:07,450 --> 00:01:11,920
+the component can choose what number of stars they want to display.
+
+16
+00:01:11,920 --> 00:01:14,620
+And that's just one of the things that we will do.
+
+17
+00:01:15,740 --> 00:01:18,980
+But anyway, let's now come here to our project.
+
+18
+00:01:19,620 --> 00:01:23,370
+And then let's create a brand new component file here.
+
+19
+00:01:25,020 --> 00:01:27,690
+So star rating.
+
+20
+00:01:29,600 --> 00:01:31,280
+And then export.
+
+21
+00:01:32,310 --> 00:01:33,390
+Default.
+
+22
+00:01:34,180 --> 00:01:37,330
+Function and then the name of the component.
+
+23
+00:01:38,260 --> 00:01:40,150
+So star rating.
+
+24
+00:01:40,840 --> 00:01:43,790
+And for now, we won't accept any props here.
+
+25
+00:01:43,810 --> 00:01:45,460
+We will leave that for later.
+
+26
+00:01:46,380 --> 00:01:47,610
+And now let's just.
+
+27
+00:01:49,130 --> 00:01:51,230
+Return something here.
+
+28
+00:01:52,080 --> 00:01:59,520
+And now what I want to do is to actually come to the Index.js file and then no longer import the app
+
+29
+00:01:59,520 --> 00:02:07,440
+here for now, and also not the CSS file, because again, this component should be completely reusable
+
+30
+00:02:07,440 --> 00:02:11,370
+and so it shouldn't depend on any external CSS files.
+
+31
+00:02:12,550 --> 00:02:18,070
+So instead what I want to do now is to import that star rating.
+
+32
+00:02:19,380 --> 00:02:23,910
+And you see that vs code automatically wrote our import statement here.
+
+33
+00:02:23,910 --> 00:02:29,730
+And if for some reason your VS code didn't help you with this autocomplete, then just make sure to
+
+34
+00:02:29,730 --> 00:02:30,990
+type exactly this.
+
+35
+00:02:32,140 --> 00:02:39,460
+Then finally, we also need to remove this one here temporarily and instead include our star rating
+
+36
+00:02:39,460 --> 00:02:39,940
+here.
+
+37
+00:02:41,110 --> 00:02:47,590
+And I'm doing it like this just so that we don't have to create a brand new project just for building
+
+38
+00:02:47,590 --> 00:02:48,850
+this one component.
+
+39
+00:02:48,880 --> 00:02:55,150
+So for now, we will just use this project that we already have instead of creating a new Create React
+
+40
+00:02:55,150 --> 00:02:55,660
+app.
+
+41
+00:02:56,610 --> 00:02:58,650
+But anyway, let's give it a save now.
+
+42
+00:02:58,650 --> 00:02:59,280
+And now.
+
+43
+00:02:59,280 --> 00:02:59,820
+Here.
+
+44
+00:02:59,820 --> 00:03:00,710
+You see that?
+
+45
+00:03:00,720 --> 00:03:01,320
+Hello?
+
+46
+00:03:01,350 --> 00:03:02,970
+That's coming from here.
+
+47
+00:03:02,970 --> 00:03:04,590
+So from the star rating.
+
+48
+00:03:04,770 --> 00:03:09,630
+So let's close the app and the sidebar and then let's get started.
+
+49
+00:03:10,230 --> 00:03:13,380
+So starting with the JS here.
+
+50
+00:03:13,410 --> 00:03:18,190
+So just with the structure, we see that we have basically two main elements.
+
+51
+00:03:18,210 --> 00:03:23,520
+So we have one container for all these stars and we have then like this message here.
+
+52
+00:03:23,520 --> 00:03:26,340
+So the current rating on the right side.
+
+53
+00:03:27,570 --> 00:03:36,900
+So inside our div, let's place another div for those stars and then one paragraph for that message.
+
+54
+00:03:37,980 --> 00:03:41,660
+So for now, let me just place a number here and here for the stars.
+
+55
+00:03:41,670 --> 00:03:45,270
+We want to dynamically generate these star elements.
+
+56
+00:03:45,270 --> 00:03:51,420
+So instead of writing them by hand, one by one, because that's the only way in which we could sometimes
+
+57
+00:03:51,420 --> 00:03:57,090
+have five stars in other situations, ten stars or really any other number.
+
+58
+00:03:57,360 --> 00:04:02,040
+So let's use the technique that we used before in the far away app.
+
+59
+00:04:02,400 --> 00:04:08,130
+So entering JavaScript mode and then we can write array dot from.
+
+60
+00:04:08,830 --> 00:04:13,120
+And here we can then specify an object with the length property.
+
+61
+00:04:13,150 --> 00:04:16,660
+And let's set it here to five initially.
+
+62
+00:04:16,810 --> 00:04:23,350
+And so this then creates an empty array with five elements that we can then immediately loop over by
+
+63
+00:04:23,350 --> 00:04:24,730
+passing in a function.
+
+64
+00:04:24,760 --> 00:04:28,450
+So like a map function here as the second argument.
+
+65
+00:04:29,440 --> 00:04:33,670
+So in this function we are not interested in the elements themselves.
+
+66
+00:04:33,970 --> 00:04:36,360
+So let's just use a placeholder variable.
+
+67
+00:04:36,370 --> 00:04:39,520
+But we are interested here in the number.
+
+68
+00:04:42,790 --> 00:04:43,300
+All right.
+
+69
+00:04:43,300 --> 00:04:45,580
+And now here we can just render anything.
+
+70
+00:04:45,850 --> 00:04:48,340
+Let's just do a span element for now.
+
+71
+00:04:48,340 --> 00:04:51,340
+But later, we will place the stars in here.
+
+72
+00:04:51,340 --> 00:04:54,250
+So let's just write s for Star.
+
+73
+00:04:54,250 --> 00:04:56,470
+And then here the number.
+
+74
+00:04:57,380 --> 00:05:03,500
+And actually this should be s plus one because I, of course, is zero based here.
+
+75
+00:05:04,830 --> 00:05:05,370
+Okay.
+
+76
+00:05:05,370 --> 00:05:08,070
+And this should already be something.
+
+77
+00:05:08,370 --> 00:05:15,630
+And indeed, we see star one, two, three, four and five, which of course, again are just placeholders
+
+78
+00:05:15,630 --> 00:05:16,410
+for now.
+
+79
+00:05:16,680 --> 00:05:21,750
+Here we have some error, which probably yeah, it's because of that key prop.
+
+80
+00:05:21,780 --> 00:05:23,910
+So let's add that key here.
+
+81
+00:05:23,940 --> 00:05:28,110
+Well, actually, we don't because this is just temporary anyway.
+
+82
+00:05:28,960 --> 00:05:32,320
+Okay, so now let's define some styles here.
+
+83
+00:05:32,320 --> 00:05:40,330
+And remember how I said initially that we cannot depend on any external CSS file or CSS classes and
+
+84
+00:05:40,330 --> 00:05:43,600
+therefore we need to define all our styles inline.
+
+85
+00:05:43,900 --> 00:05:48,940
+So let's do that starting here with the parent element.
+
+86
+00:05:51,120 --> 00:05:54,030
+And so here we now need to specify an object.
+
+87
+00:05:54,030 --> 00:05:59,790
+And why not actually do that here as a separate object outside?
+
+88
+00:06:00,710 --> 00:06:02,090
+So let's write.
+
+89
+00:06:03,200 --> 00:06:05,510
+The container style.
+
+90
+00:06:07,440 --> 00:06:10,800
+Then let's set the display property to flex.
+
+91
+00:06:12,800 --> 00:06:15,860
+So to place the two elements side by side.
+
+92
+00:06:17,420 --> 00:06:18,710
+Then align.
+
+93
+00:06:19,600 --> 00:06:20,470
+Items.
+
+94
+00:06:21,890 --> 00:06:27,110
+Let's set that one to center which will align the items vertically.
+
+95
+00:06:28,320 --> 00:06:32,130
+And then let's also specify a gap of 16 pixels.
+
+96
+00:06:35,320 --> 00:06:35,800
+Okay.
+
+97
+00:06:35,800 --> 00:06:39,160
+And now here we can just specify that.
+
+98
+00:06:40,140 --> 00:06:43,920
+Give it a save and it looks already a bit better.
+
+99
+00:06:44,130 --> 00:06:51,000
+And now we can do even better, which is to take this entire object, which will never change.
+
+100
+00:06:51,000 --> 00:06:58,380
+And it doesn't depend on anything that is here in the component, and we can place it completely outside
+
+101
+00:06:58,380 --> 00:06:59,550
+of the component.
+
+102
+00:06:59,580 --> 00:07:06,510
+And by doing so, this object here will not have to be regenerated by JavaScript each time that this
+
+103
+00:07:06,510 --> 00:07:13,380
+component here rerenders, because otherwise each time that the component does rerender, this function
+
+104
+00:07:13,380 --> 00:07:14,610
+will get called again.
+
+105
+00:07:14,610 --> 00:07:18,480
+And so then this object would also get regenerated again.
+
+106
+00:07:18,480 --> 00:07:20,460
+And so that's not necessary.
+
+107
+00:07:20,460 --> 00:07:23,100
+And so we can just place it outside here.
+
+108
+00:07:25,990 --> 00:07:26,170
+Now.
+
+109
+00:07:26,170 --> 00:07:31,780
+Next, let's also create some styles for the other container.
+
+110
+00:07:31,780 --> 00:07:34,210
+So this container here with the stars.
+
+111
+00:07:35,260 --> 00:07:36,460
+So let's say star.
+
+112
+00:07:37,550 --> 00:07:39,980
+Container style.
+
+113
+00:07:44,180 --> 00:07:47,510
+So let's also do display flex.
+
+114
+00:07:49,310 --> 00:07:54,770
+And then give it a gap here of just four pixels for now.
+
+115
+00:07:56,470 --> 00:07:57,460
+All right.
+
+116
+00:08:04,100 --> 00:08:08,660
+And finally, just some styling here for the text.
+
+117
+00:08:10,760 --> 00:08:15,140
+So text style, let's say line height.
+
+118
+00:08:17,020 --> 00:08:21,310
+Yeah, I was trying to write some actual CSS.
+
+119
+00:08:22,470 --> 00:08:26,770
+But in remember, we need to write our property names.
+
+120
+00:08:26,790 --> 00:08:27,930
+Camel case.
+
+121
+00:08:28,260 --> 00:08:32,010
+So not line dash height, but line height like this.
+
+122
+00:08:33,220 --> 00:08:37,430
+And let's also specify a margin of zero.
+
+123
+00:08:37,450 --> 00:08:39,310
+And here, let's actually say one.
+
+124
+00:08:40,230 --> 00:08:45,150
+So this probably won't change a lot yet, but it's going to be important later.
+
+125
+00:08:45,940 --> 00:08:47,140
+So style.
+
+126
+00:08:50,290 --> 00:08:50,890
+Okay.
+
+127
+00:08:50,890 --> 00:08:57,160
+And now to finish, let's do what I said right in the very beginning, which is to basically allow the
+
+128
+00:08:57,160 --> 00:09:04,000
+user of this component to set the maximum amount of stars so the maximum rating.
+
+129
+00:09:04,330 --> 00:09:12,850
+So coming back here, let's say that as the user of this component, I wanted to pass in the Max rating,
+
+130
+00:09:13,000 --> 00:09:20,800
+for example, as five and then maybe I wanted to use this component at some other place in my application.
+
+131
+00:09:20,800 --> 00:09:23,050
+But here I wanted ten stars.
+
+132
+00:09:23,140 --> 00:09:30,640
+But now as we reload, of course, both of these components will only have five stars because we hardcoded
+
+133
+00:09:30,640 --> 00:09:32,770
+that value here in our rating.
+
+134
+00:09:33,670 --> 00:09:37,660
+So what we need to do is to now accept that prop here.
+
+135
+00:09:39,590 --> 00:09:42,980
+Max rating and then use that right here.
+
+136
+00:09:44,750 --> 00:09:52,310
+And so this is why we had to use this trick here instead of manually writing the number of stars.
+
+137
+00:09:52,840 --> 00:09:56,130
+So instead of writing one element here per star.
+
+138
+00:09:56,140 --> 00:10:01,510
+And so if I save this now, you see that indeed we get now ten stars here.
+
+139
+00:10:02,520 --> 00:10:03,360
+Great.
+
+140
+00:10:04,330 --> 00:10:10,810
+But now what if someone used this component without specifying the Max rating property?
+
+141
+00:10:11,020 --> 00:10:17,890
+So since we're building a highly reusable component, we need to account for all these situations because
+
+142
+00:10:17,890 --> 00:10:23,930
+we will never know who is actually going to use this component and what props they will specify.
+
+143
+00:10:23,950 --> 00:10:26,980
+So we need to account that this might happen.
+
+144
+00:10:27,690 --> 00:10:31,320
+So in this case, we have a problem because then.
+
+145
+00:10:31,320 --> 00:10:33,810
+Well, we have exactly no stars.
+
+146
+00:10:34,650 --> 00:10:39,930
+So what we need to do is to set a default value for the rating.
+
+147
+00:10:41,000 --> 00:10:42,350
+So how do we do that?
+
+148
+00:10:42,530 --> 00:10:49,520
+Well, we can actually leverage the power of Destructuring in JavaScript because whenever we destructure
+
+149
+00:10:49,520 --> 00:10:54,320
+an object, we can actually set a default value as we do so.
+
+150
+00:10:54,320 --> 00:10:55,400
+And so.
+
+151
+00:10:55,400 --> 00:10:58,250
+So here we are actually destructuring the props object.
+
+152
+00:10:58,250 --> 00:11:04,760
+And so if Max rating doesn't exist, we can set a default simply by writing this.
+
+153
+00:11:04,760 --> 00:11:10,910
+And so if we save this now, then we are back to having our five stars by default.
+
+154
+00:11:10,910 --> 00:11:16,430
+And so this is a very common way of setting default props in React applications.
+
+155
+00:11:16,430 --> 00:11:19,640
+We will do this all the time as we go through the course.

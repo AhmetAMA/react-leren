@@ -1,0 +1,523 @@
+1
+00:00:00,890 --> 00:00:08,240
+Next up, we also need to clean up our data fetching because right now we're actually creating way too
+
+2
+00:00:08,240 --> 00:00:12,020
+many Http requests as we search for movies.
+
+3
+00:00:13,200 --> 00:00:18,510
+And to show you what I mean by that, let's make our window here a bit bigger.
+
+4
+00:00:18,540 --> 00:00:21,030
+Let's come to our network tab again.
+
+5
+00:00:22,040 --> 00:00:28,820
+Let's add some throttling here and then make sure that you hear in the fetch tab only.
+
+6
+00:00:29,530 --> 00:00:34,350
+Then let's clear all the requests that had been made before.
+
+7
+00:00:34,360 --> 00:00:38,080
+And then I will just very quickly search for a movie here.
+
+8
+00:00:40,060 --> 00:00:40,900
+All right.
+
+9
+00:00:40,900 --> 00:00:45,310
+And so here we can now see all the requests that have been made.
+
+10
+00:00:45,580 --> 00:00:50,680
+So basically, we see that we made one request for each keystroke.
+
+11
+00:00:50,890 --> 00:00:58,510
+So it started here, then it or whatever, then in Sep in Sept and all the way until the final word.
+
+12
+00:00:58,660 --> 00:01:05,950
+Now, the problem with that is that this created all these different requests that were basically happening
+
+13
+00:01:05,950 --> 00:01:07,120
+at the same time.
+
+14
+00:01:07,120 --> 00:01:08,790
+And that has two problems.
+
+15
+00:01:08,800 --> 00:01:14,180
+First of all, having so many requests at the same time will slow each of them down.
+
+16
+00:01:14,200 --> 00:01:20,530
+And second, this means that we will end up downloading way too much data because we're actually not
+
+17
+00:01:20,530 --> 00:01:24,310
+even interested in the data for all of these other queries.
+
+18
+00:01:24,310 --> 00:01:26,710
+But still, they were downloaded here.
+
+19
+00:01:27,270 --> 00:01:30,280
+Now, in this case, it's very, very little data.
+
+20
+00:01:30,300 --> 00:01:33,060
+So that's not going to have any impact.
+
+21
+00:01:33,060 --> 00:01:36,960
+But in another application, this might actually become a problem.
+
+22
+00:01:36,960 --> 00:01:45,300
+And so let's now learn how we can clean up basically our fetch requests so that as soon as a new request
+
+23
+00:01:45,300 --> 00:01:48,630
+is fired off, the previous one will stop.
+
+24
+00:01:48,630 --> 00:01:50,280
+So it will get canceled.
+
+25
+00:01:50,460 --> 00:01:57,180
+And actually, I forgot to mention the third big problem with having all of these requests happening
+
+26
+00:01:57,180 --> 00:02:04,860
+at the same time, which is imagine that actually, for example, this request here would take a little
+
+27
+00:02:04,860 --> 00:02:06,870
+bit longer than the other ones.
+
+28
+00:02:06,870 --> 00:02:12,450
+So if this request here would be the last one to arrive, let's say this one.
+
+29
+00:02:13,280 --> 00:02:16,460
+Well, here we then get the response if we click.
+
+30
+00:02:17,900 --> 00:02:25,010
+But anyway, again, let's imagine that this request for some reason took a lot longer than all the
+
+31
+00:02:25,010 --> 00:02:25,790
+other ones.
+
+32
+00:02:25,790 --> 00:02:28,910
+And so then this one would be the last one to arrive.
+
+33
+00:02:28,910 --> 00:02:36,020
+And so in that case, it would be the movies or the results from this request that would be stored in
+
+34
+00:02:36,020 --> 00:02:42,080
+our state and it would be rendered in our UI, which is of course not what we want.
+
+35
+00:02:42,110 --> 00:02:48,380
+We always want exactly the last request of all to be the one that matters, right?
+
+36
+00:02:48,410 --> 00:02:51,680
+So all these other ones, again, we are not interested in them.
+
+37
+00:02:51,680 --> 00:02:58,070
+But if one of them takes longer than the rest, then that one will actually become the one that we see
+
+38
+00:02:58,070 --> 00:02:59,330
+in our UI.
+
+39
+00:02:59,360 --> 00:03:05,870
+And this is actually a pretty common problem which even has the name of a race condition, because all
+
+40
+00:03:05,870 --> 00:03:11,960
+these requests here are basically racing with one another, seeing which one arrives first.
+
+41
+00:03:11,960 --> 00:03:15,740
+And so let's now fix that issue back in our code.
+
+42
+00:03:16,690 --> 00:03:23,880
+And the way that we will do this is by using a Native browser API, which is the abort controller,
+
+43
+00:03:23,890 --> 00:03:28,300
+and we will then use that abort controller in or clean up function.
+
+44
+00:03:29,410 --> 00:03:34,690
+So the first step for using the abort controller is to actually create one.
+
+45
+00:03:35,370 --> 00:03:40,890
+So let's define a new variable called controller, and then we use new.
+
+46
+00:03:42,270 --> 00:03:44,010
+Abort controller.
+
+47
+00:03:44,010 --> 00:03:50,340
+And again, this is actually a browser API, so this has nothing to do with React but with the browser
+
+48
+00:03:50,340 --> 00:03:51,060
+itself.
+
+49
+00:03:51,060 --> 00:03:53,730
+So just like the fetch function right here.
+
+50
+00:03:54,960 --> 00:03:55,740
+Okay.
+
+51
+00:03:56,460 --> 00:04:03,300
+Then here, in order to connect the abort controller with the fetch function, we pass in a second argument
+
+52
+00:04:03,450 --> 00:04:07,830
+where we define an object with the signal property.
+
+53
+00:04:09,410 --> 00:04:13,580
+And so there we pass in controller dot signal.
+
+54
+00:04:13,880 --> 00:04:18,730
+So it's not really important to understand exactly how this abort controller works.
+
+55
+00:04:18,740 --> 00:04:21,800
+This is basically just following a recipe.
+
+56
+00:04:22,520 --> 00:04:23,270
+Okay.
+
+57
+00:04:23,600 --> 00:04:28,430
+So we have our board controller and we connected it with our fetch.
+
+58
+00:04:28,430 --> 00:04:30,680
+And so now in the clean up function.
+
+59
+00:04:32,180 --> 00:04:34,970
+So a function that we return from here.
+
+60
+00:04:37,490 --> 00:04:39,380
+We can then, actually.
+
+61
+00:04:41,790 --> 00:04:45,300
+Say controller Dot abort.
+
+62
+00:04:46,580 --> 00:04:47,300
+All right.
+
+63
+00:04:47,300 --> 00:04:48,860
+And that's actually it.
+
+64
+00:04:49,040 --> 00:04:54,230
+So let's see that this works in practice and then we will understand what is happening here.
+
+65
+00:04:54,230 --> 00:04:57,080
+And we will also do some minor fixes.
+
+66
+00:04:57,170 --> 00:05:00,350
+So let's make this big again so we can see.
+
+67
+00:05:02,020 --> 00:05:04,120
+And reload the entire thing.
+
+68
+00:05:05,770 --> 00:05:08,170
+And immediately you see a small problem here.
+
+69
+00:05:08,940 --> 00:05:10,590
+But for now, let's ignore that.
+
+70
+00:05:10,590 --> 00:05:12,570
+And again, search for a movie.
+
+71
+00:05:20,790 --> 00:05:23,720
+Okay, now here we have a different types.
+
+72
+00:05:23,720 --> 00:05:30,020
+So we have this fetch and the fetch redirect for some reason, but we are only interested in the fetches
+
+73
+00:05:30,020 --> 00:05:30,500
+here.
+
+74
+00:05:30,500 --> 00:05:37,070
+And immediately you see that all these other ones which are not the last one, got cancelled.
+
+75
+00:05:37,310 --> 00:05:38,150
+Right.
+
+76
+00:05:38,150 --> 00:05:44,570
+And so we can also see that now we no longer have all these different requests happening at the same
+
+77
+00:05:44,570 --> 00:05:45,230
+time.
+
+78
+00:05:45,470 --> 00:05:47,450
+So this one here started basically.
+
+79
+00:05:47,450 --> 00:05:53,600
+And then immediately as the next one started, this one was finished, so it was cancelled.
+
+80
+00:05:53,870 --> 00:05:55,880
+This thing keeps popping up.
+
+81
+00:05:56,070 --> 00:05:57,620
+Makes it hard to explain.
+
+82
+00:05:58,320 --> 00:06:05,150
+And yeah, Then finally, the last one that we were actually interested in was of course not canceled.
+
+83
+00:06:05,160 --> 00:06:08,190
+So this one then went all the way until the end.
+
+84
+00:06:09,160 --> 00:06:09,910
+All right.
+
+85
+00:06:09,910 --> 00:06:16,870
+But here we can very clearly see that there is basically only one request happening at the time until
+
+86
+00:06:16,870 --> 00:06:19,570
+it then got canceled by the next one.
+
+87
+00:06:19,750 --> 00:06:23,380
+So let's just see why this is actually working.
+
+88
+00:06:23,770 --> 00:06:30,430
+So each time that there is a new keystroke here, the component gets rerendered, right?
+
+89
+00:06:30,430 --> 00:06:37,630
+And as we already know between each of these rerenders this function here, so the cleanup function
+
+90
+00:06:37,630 --> 00:06:39,160
+will get called.
+
+91
+00:06:39,160 --> 00:06:46,210
+And so what that means is that each time that there is a new keystroke, so a new rerender, our controller
+
+92
+00:06:46,210 --> 00:06:48,960
+will abort the current fetch request.
+
+93
+00:06:48,970 --> 00:06:52,420
+And so that is exactly what we want, right?
+
+94
+00:06:52,420 --> 00:06:57,820
+So we want to cancel the current request each time that the new one comes in.
+
+95
+00:06:57,820 --> 00:07:03,370
+And so that is exactly the point in time in which our cleanup function gets called.
+
+96
+00:07:04,000 --> 00:07:10,690
+And so again, the cleanup function is a perfect place for doing this kind of work between renders.
+
+97
+00:07:10,930 --> 00:07:18,340
+Now, the problem with this is that as soon as a request get canceled, JavaScript actually sees that
+
+98
+00:07:18,340 --> 00:07:19,530
+as an error.
+
+99
+00:07:19,540 --> 00:07:23,410
+And so that's why we then get the error here.
+
+100
+00:07:24,070 --> 00:07:29,890
+So basically this fetch request as it is canceled, it will throw an error which will then immediately
+
+101
+00:07:29,890 --> 00:07:34,150
+go here into our catch block where the error is set.
+
+102
+00:07:34,180 --> 00:07:38,540
+And so that's why we can also see the errors down here.
+
+103
+00:07:38,560 --> 00:07:44,050
+So saying that the user aborted a request, which is exactly what we have here.
+
+104
+00:07:44,260 --> 00:07:51,130
+However, this is not really an error here in our application and so we want to ignore that.
+
+105
+00:07:51,430 --> 00:08:03,220
+So what we can do in order to do that is to say if error dot name is different from abort error only,
+
+106
+00:08:03,220 --> 00:08:05,830
+then we actually want to set the error.
+
+107
+00:08:08,970 --> 00:08:12,900
+And this works because the error that is thrown here.
+
+108
+00:08:13,110 --> 00:08:19,440
+So this object that we then get access to will have the name property set to abort error.
+
+109
+00:08:19,470 --> 00:08:26,220
+And then here we use that to our advantage to again, basically ignore these errors that are of this
+
+110
+00:08:26,220 --> 00:08:26,820
+type.
+
+111
+00:08:26,820 --> 00:08:32,190
+And so only if they're not, we set the error to the one that we are interested in.
+
+112
+00:08:32,370 --> 00:08:40,890
+Now to make this work here, actually, we need to also set the error to an empty string after the movies
+
+113
+00:08:40,890 --> 00:08:41,910
+have been set.
+
+114
+00:08:44,680 --> 00:08:51,430
+So we basically set the error to an empty string here at the beginning and at the end as well.
+
+115
+00:08:52,060 --> 00:08:52,570
+Okay.
+
+116
+00:08:52,570 --> 00:08:55,060
+And so let's try that now.
+
+117
+00:08:56,620 --> 00:08:58,360
+And we're still doing that throttling.
+
+118
+00:08:58,360 --> 00:09:00,520
+That's why it took so much time here.
+
+119
+00:09:01,170 --> 00:09:04,350
+But anyway, let's just again clean this here.
+
+120
+00:09:08,230 --> 00:09:14,620
+And so now we never got that error, but we still got all our and again.
+
+121
+00:09:17,070 --> 00:09:20,370
+So we still got all our requests here cancelled.
+
+122
+00:09:20,370 --> 00:09:25,830
+And so no more race conditions and no more unnecessary data being fetched.
+
+123
+00:09:26,620 --> 00:09:35,050
+And so if at some point in the future you are going to do your own Http requests in an effect like this,
+
+124
+00:09:35,050 --> 00:09:42,100
+make sure to always clean up after your fetch requests in case that you have a situation where many
+
+125
+00:09:42,100 --> 00:09:48,640
+requests can be fired off very rapidly, one after another, which is exactly the situation that we
+
+126
+00:09:48,640 --> 00:09:49,420
+have here.
+
+127
+00:09:50,040 --> 00:09:57,210
+So here when we click on one of the movies and the data gets fetched, then usually we will not have
+
+128
+00:09:57,210 --> 00:10:04,260
+so many requests one after another unless we click like really fast between these movies right here.
+
+129
+00:10:04,260 --> 00:10:06,390
+But that's usually not going to happen.
+
+130
+00:10:06,390 --> 00:10:12,690
+And so therefore there is no need to clean up the fetch that we're doing here in this movie.
+
+131
+00:10:12,690 --> 00:10:13,980
+Details component.

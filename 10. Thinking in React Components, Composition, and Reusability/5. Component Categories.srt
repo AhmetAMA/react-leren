@@ -1,0 +1,115 @@
+1
+00:00:00,860 --> 00:00:07,940
+Now that we have created a few different components, let's quickly talk about different component categories
+
+2
+00:00:07,940 --> 00:00:11,780
+that naturally emerge in most React code bases.
+
+3
+00:00:13,010 --> 00:00:21,440
+So most of your components will naturally fall into one of three categories stateless or presentational
+
+4
+00:00:21,440 --> 00:00:22,400
+components.
+
+5
+00:00:22,430 --> 00:00:26,480
+Stateful components or structural components.
+
+6
+00:00:26,570 --> 00:00:33,380
+And I say naturally, because we shouldn't force our components into one of these categories.
+
+7
+00:00:33,710 --> 00:00:38,490
+Now these are all still normal react components in our code.
+
+8
+00:00:38,510 --> 00:00:45,410
+So just like the ones that we have been writing, but we can categorize them in this way when we think
+
+9
+00:00:45,410 --> 00:00:46,850
+about components.
+
+10
+00:00:47,120 --> 00:00:53,360
+There are also other categories that could be used, but I think that these make the most sense.
+
+11
+00:00:54,060 --> 00:01:02,340
+So starting with stateless or presentational components, as the name says, these don't have any state.
+
+12
+00:01:02,550 --> 00:01:10,110
+Usually they are components that receive some props and then they simply present that data or even some
+
+13
+00:01:10,140 --> 00:01:14,280
+other content and therefore the name presentational.
+
+14
+00:01:14,370 --> 00:01:22,260
+Many times these are quite small components such as the logo num results and movie components in our
+
+15
+00:01:22,260 --> 00:01:23,160
+current app.
+
+16
+00:01:23,810 --> 00:01:24,590
+Next.
+
+17
+00:01:24,590 --> 00:01:29,210
+Stateful components are simply components that do have state.
+
+18
+00:01:29,510 --> 00:01:36,240
+Now, just because these components have state, that doesn't mean that they can't be highly reusable.
+
+19
+00:01:36,260 --> 00:01:44,780
+For example, the search component that we built does have state and we could reuse this input as many
+
+20
+00:01:44,780 --> 00:01:47,450
+times as we wanted throughout the app.
+
+21
+00:01:48,010 --> 00:01:56,140
+Now, finally, you can think of structural components as pages, layouts or screens of the application,
+
+22
+00:01:56,140 --> 00:02:01,840
+which are oftentimes the result of composing many smaller components together.
+
+23
+00:02:01,960 --> 00:02:05,740
+And more about composition later in this section.
+
+24
+00:02:06,320 --> 00:02:13,640
+So these structural components can be large and non reusable components, but they don't have to.
+
+25
+00:02:13,850 --> 00:02:17,540
+Structural components are sometimes quite small too.
+
+26
+00:02:17,750 --> 00:02:25,040
+What matters is that they are responsible for providing some sort of structure to applications such
+
+27
+00:02:25,040 --> 00:02:27,350
+as pages or layouts.
+
+28
+00:02:27,530 --> 00:02:34,460
+Therefore, these components might not be present in really small apps, but you will definitely have
+
+29
+00:02:34,460 --> 00:02:38,930
+a few structural components as your app grows bigger and bigger.

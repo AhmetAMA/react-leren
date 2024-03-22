@@ -1,0 +1,219 @@
+1
+00:00:00,880 --> 00:00:08,860
+So let's now learn about the next important tool in our toolbox, which is the use effect hook.
+
+2
+00:00:10,150 --> 00:00:13,390
+So we already know about the use state hook.
+
+3
+00:00:13,420 --> 00:00:19,600
+And so now it's time for our second hook, which is again the use effect hook.
+
+4
+00:00:20,180 --> 00:00:27,740
+Now the idea of the use effect hook is to give us a place where we can safely write side effects like
+
+5
+00:00:27,740 --> 00:00:28,490
+this one.
+
+6
+00:00:28,640 --> 00:00:36,380
+So just again, like our data fetching, but the side effects registered with the use effect hook will
+
+7
+00:00:36,380 --> 00:00:43,940
+only be executed after certain renders, for example, only right after the initial render, which is
+
+8
+00:00:43,940 --> 00:00:47,330
+exactly what we are looking for in this situation.
+
+9
+00:00:47,570 --> 00:00:54,290
+Now we will learn all about what this hook actually is, but for now, let's just use it in practice.
+
+10
+00:00:55,670 --> 00:01:00,110
+So just like with EU state we just write use effect.
+
+11
+00:01:01,510 --> 00:01:08,440
+And then we also need to make sure that it has been imported automatically here from React.
+
+12
+00:01:08,620 --> 00:01:15,130
+So just like you state again, this is also a function that is part of react and so therefore that we
+
+13
+00:01:15,130 --> 00:01:16,240
+need to import.
+
+14
+00:01:17,190 --> 00:01:24,360
+Now the use effect doesn't return anything, so we don't store the result into any variable, but instead
+
+15
+00:01:24,360 --> 00:01:26,070
+we pass in a function.
+
+16
+00:01:26,700 --> 00:01:33,150
+And so this function is then called our effect, and it contains the code that we want to run as a side
+
+17
+00:01:33,150 --> 00:01:33,840
+effect.
+
+18
+00:01:35,610 --> 00:01:41,520
+So basically that we want to register as a side effect to be executed at a certain point in time.
+
+19
+00:01:42,410 --> 00:01:44,180
+So let's paste that here.
+
+20
+00:01:44,420 --> 00:01:51,230
+But we are actually not done yet because now we need to pass in a second argument, which is the so-called
+
+21
+00:01:51,230 --> 00:01:52,610
+dependency array.
+
+22
+00:01:52,640 --> 00:01:57,710
+Now, this dependency array is actually the most confusing part of this hook.
+
+23
+00:01:57,740 --> 00:02:01,640
+And we will again learn all about this throughout this section.
+
+24
+00:02:01,640 --> 00:02:08,120
+But for now, what you need to do here is to just pass in this empty array, which means that the effect
+
+25
+00:02:08,120 --> 00:02:12,320
+that we just specified here will only run on mount.
+
+26
+00:02:12,350 --> 00:02:18,470
+So it will only run when this app component here renders for the very first time.
+
+27
+00:02:18,590 --> 00:02:21,800
+And so now here, let's change this back.
+
+28
+00:02:22,590 --> 00:02:25,740
+To set movies, give it a save.
+
+29
+00:02:25,740 --> 00:02:30,750
+And yeah, our movies here are now in the user interface.
+
+30
+00:02:30,750 --> 00:02:36,000
+But even more importantly, let's check if the problem from before has been solved.
+
+31
+00:02:37,070 --> 00:02:44,510
+And indeed, now we have no more infinite loops here and no more infinite requests to our API.
+
+32
+00:02:44,720 --> 00:02:50,330
+So the problem that we created in the previous lecture has indeed been fixed.
+
+33
+00:02:50,330 --> 00:02:55,100
+And so now our effect is only running as the component mounts.
+
+34
+00:02:55,550 --> 00:02:56,570
+Great.
+
+35
+00:02:56,570 --> 00:03:04,400
+And so this is basically the very bare bones way in which we do data fetching in simple react applications
+
+36
+00:03:04,400 --> 00:03:10,940
+like this one, at least if we want to fetch our data as soon as the application loads.
+
+37
+00:03:11,030 --> 00:03:17,990
+Now, in a larger, more real world application, we may use some external library for data fetching.
+
+38
+00:03:17,990 --> 00:03:25,920
+But again, in a small application like this one, this is now a great way to fetch some data on mount.
+
+39
+00:03:25,940 --> 00:03:28,880
+So when our application first loads.
+
+40
+00:03:29,270 --> 00:03:32,150
+So let's just quickly recap here.
+
+41
+00:03:32,770 --> 00:03:36,850
+So we used the use effect hook to register an effect.
+
+42
+00:03:36,850 --> 00:03:43,180
+And so that effect is this function right here, which contains the side effect that we want to register.
+
+43
+00:03:43,180 --> 00:03:50,380
+And basically register means that we want this code here not to run as the component renders, but actually
+
+44
+00:03:50,380 --> 00:03:53,140
+after it has been painted onto the screen.
+
+45
+00:03:53,140 --> 00:03:56,080
+And so that's exactly what use effect does.
+
+46
+00:03:56,080 --> 00:04:03,160
+So while before the code was executed, while the component was rendering, so while the function was
+
+47
+00:04:03,190 --> 00:04:04,350
+being executed.
+
+48
+00:04:04,360 --> 00:04:08,590
+Now this effect will actually be executed after render.
+
+49
+00:04:08,590 --> 00:04:10,390
+And so that's a lot better.
+
+50
+00:04:10,390 --> 00:04:16,390
+Then as a second argument, we passed this empty array here into use effect.
+
+51
+00:04:16,390 --> 00:04:23,110
+And so this means that this effect will only be executed as the component first mounts.
+
+52
+00:04:23,650 --> 00:04:24,250
+Okay.
+
+53
+00:04:24,250 --> 00:04:25,870
+And that's actually it.
+
+54
+00:04:25,870 --> 00:04:33,710
+So this is how we use the use effect hook in practice in a simple situation like this and so next up,
+
+55
+00:04:33,710 --> 00:04:37,580
+let's now take a bit of a closer look at this new hook.

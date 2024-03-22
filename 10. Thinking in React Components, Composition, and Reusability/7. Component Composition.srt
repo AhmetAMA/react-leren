@@ -1,0 +1,211 @@
+1
+00:00:00,960 --> 00:00:07,440
+As we keep learning about components in this section, there is one essential principle that we really
+
+2
+00:00:07,440 --> 00:00:11,760
+need to focus on now, which is component composition.
+
+3
+00:00:13,340 --> 00:00:20,480
+Now, in order to talk about component composition, we first need to take a look at what happens when
+
+4
+00:00:20,480 --> 00:00:26,840
+we simply use or include a component in another component in X.
+
+5
+00:00:27,050 --> 00:00:34,700
+So let's say that we have this modal component that we want to reuse and also this success component
+
+6
+00:00:34,700 --> 00:00:37,550
+which simply renders the message well done.
+
+7
+00:00:37,820 --> 00:00:44,150
+And then we just use the success component inside the modal component like this.
+
+8
+00:00:44,480 --> 00:00:49,880
+And this sort of thing is exactly what we have been doing with our components.
+
+9
+00:00:49,910 --> 00:00:51,470
+Most of the time.
+
+10
+00:00:51,470 --> 00:00:52,340
+Right.
+
+11
+00:00:52,370 --> 00:00:56,360
+So we just use them inside of other components.
+
+12
+00:00:57,010 --> 00:01:02,140
+However, when it comes to reusability, this creates a big problem.
+
+13
+00:01:02,170 --> 00:01:09,340
+That's because right now the success component really is inside of modal.
+
+14
+00:01:09,370 --> 00:01:13,390
+They are deeply linked together in the JSX right now.
+
+15
+00:01:13,390 --> 00:01:20,800
+And therefore, we cannot reuse this modal component to display some other message inside of it, for
+
+16
+00:01:20,800 --> 00:01:22,570
+example, an error message.
+
+17
+00:01:22,810 --> 00:01:30,550
+But as you can imagine, in order to solve this, we now bring in the technique of component composition,
+
+18
+00:01:30,550 --> 00:01:35,320
+where we can compose the modal and success components together.
+
+19
+00:01:35,950 --> 00:01:42,130
+So here we have our modal component again, but with a fundamental difference.
+
+20
+00:01:42,280 --> 00:01:50,440
+So this component does not include a predefined component, but instead it accepts children with the
+
+21
+00:01:50,440 --> 00:01:51,550
+children prop.
+
+22
+00:01:51,580 --> 00:01:54,280
+So just like we have learned before.
+
+23
+00:01:54,580 --> 00:02:02,800
+So if we get our success component again, we can now basically just pass it into the modal by placing
+
+24
+00:02:02,800 --> 00:02:07,170
+it between the opening and closing tags when we use modal.
+
+25
+00:02:07,210 --> 00:02:13,000
+And if you need a minute to analyze this code a bit better, feel free to just pause the video right
+
+26
+00:02:13,000 --> 00:02:18,550
+now because I want you to really grasp the fundamental difference here.
+
+27
+00:02:18,820 --> 00:02:27,010
+So in the first example, the success component is really tight to the modal, and so that modal might
+
+28
+00:02:27,010 --> 00:02:33,780
+as well be called a success modal because we can't use it for anything else anymore.
+
+29
+00:02:33,850 --> 00:02:41,170
+But with component composition, we simply passed the success component right into the modal and compose
+
+30
+00:02:41,170 --> 00:02:43,180
+them together in this way.
+
+31
+00:02:43,300 --> 00:02:47,440
+And again, this works thanks to the children prop.
+
+32
+00:02:47,940 --> 00:02:54,960
+Now, of course, we could have passed in any other component, which makes the modal component highly
+
+33
+00:02:54,960 --> 00:02:55,980
+reusable.
+
+34
+00:02:56,370 --> 00:03:05,070
+So essentially when we do component composition, we leave this hole or this empty slot in the component
+
+35
+00:03:05,100 --> 00:03:09,390
+ready to be filled with any other component that we want.
+
+36
+00:03:09,940 --> 00:03:17,290
+So let's say that later we needed another modal window somewhere else in the app, but one that renders
+
+37
+00:03:17,290 --> 00:03:18,910
+this error message.
+
+38
+00:03:19,210 --> 00:03:21,190
+Well, that's pretty easy.
+
+39
+00:03:21,190 --> 00:03:29,080
+Now we just use the modal component again, but this time we pass in the error component as a children
+
+40
+00:03:29,080 --> 00:03:34,960
+and with this we have also successfully composed these two components together as well.
+
+41
+00:03:35,500 --> 00:03:43,030
+So formally, component composition is the technique of combining different components by using the
+
+42
+00:03:43,030 --> 00:03:48,190
+children prop or by explicitly defining components as props.
+
+43
+00:03:48,430 --> 00:03:54,550
+Now we use composition for two big reasons or in two important situations.
+
+44
+00:03:54,670 --> 00:04:02,890
+First, when we want to create highly reusable and flexible components such as the modal window or really
+
+45
+00:04:02,890 --> 00:04:06,730
+a million other reusable components that we can think of.
+
+46
+00:04:06,970 --> 00:04:09,670
+And we do this really all the time.
+
+47
+00:04:10,350 --> 00:04:17,370
+Now, the second situation in which we can use composition is in order to fix a prop drilling problem
+
+48
+00:04:17,370 --> 00:04:20,780
+like the one that we found in the previous video.
+
+49
+00:04:20,790 --> 00:04:27,180
+And this is actually great for creating layouts as we will do in the next video.
+
+50
+00:04:27,300 --> 00:04:34,860
+Just keep in mind once again that this is only possible because components do not need to know their
+
+51
+00:04:34,860 --> 00:04:42,690
+children in advance, which allows us to leave these empty slots inside of them in the form of the children
+
+52
+00:04:42,690 --> 00:04:43,320
+prop.
+
+53
+00:04:43,530 --> 00:04:47,610
+And with that being said, let's return to our project.

@@ -1,0 +1,251 @@
+1
+00:00:00,890 --> 00:00:07,670
+In the lecture about component composition, I said that we can use the children prop for composition
+
+2
+00:00:07,670 --> 00:00:10,420
+or an explicitly defined prop.
+
+3
+00:00:10,430 --> 00:00:14,300
+And so let's now quickly explore that second option.
+
+4
+00:00:15,370 --> 00:00:23,020
+So instead of using the children, prop in a component and then passing in a component like this, we
+
+5
+00:00:23,020 --> 00:00:26,290
+can use an explicit prop as an alternative.
+
+6
+00:00:26,810 --> 00:00:31,640
+So let me show you what I mean by first commenting out all of this.
+
+7
+00:00:32,300 --> 00:00:35,330
+And then we can go to the box component.
+
+8
+00:00:35,990 --> 00:00:43,610
+So down here and now, instead of accepting children here, let's say we accept something called element
+
+9
+00:00:43,730 --> 00:00:46,130
+and it can really be called anything.
+
+10
+00:00:46,130 --> 00:00:48,980
+So just L or really whatever.
+
+11
+00:00:50,210 --> 00:00:58,000
+And so now we can go back up here and include the box in the old way.
+
+12
+00:00:58,010 --> 00:01:00,050
+So closing it immediately.
+
+13
+00:01:00,060 --> 00:01:07,220
+But then we can specify the element prop and now here we can then do exactly what we had here.
+
+14
+00:01:08,170 --> 00:01:10,660
+So let's copy that and paste it.
+
+15
+00:01:10,990 --> 00:01:12,240
+Give it a save.
+
+16
+00:01:12,250 --> 00:01:14,530
+And that worked.
+
+17
+00:01:14,800 --> 00:01:21,970
+So now we have our movie list like here, and it was passed into the box component as an explicit prop,
+
+18
+00:01:21,970 --> 00:01:25,240
+in this case a prop called element.
+
+19
+00:01:25,910 --> 00:01:33,650
+So before what we had here is that we were basically implicitly passing in this component into the box,
+
+20
+00:01:33,650 --> 00:01:36,560
+and then we read it there with the children prop.
+
+21
+00:01:36,560 --> 00:01:41,000
+But here we now basically pass it in more explicitly.
+
+22
+00:01:41,000 --> 00:01:48,560
+So we really say that we have an element prop and then we place whatever we want to pass in right here.
+
+23
+00:01:48,560 --> 00:01:56,420
+So right into the element prop and this pattern is used in some library, for example, in React router.
+
+24
+00:01:56,420 --> 00:02:01,130
+And so this is why I thought it might be interesting to show this to you right now.
+
+25
+00:02:01,310 --> 00:02:03,290
+And of course we can do the same.
+
+26
+00:02:04,420 --> 00:02:05,650
+With the.
+
+27
+00:02:06,330 --> 00:02:07,410
+Other box here.
+
+28
+00:02:08,790 --> 00:02:10,140
+So simply saying.
+
+29
+00:02:11,250 --> 00:02:12,060
+Element.
+
+30
+00:02:12,120 --> 00:02:13,080
+And then this.
+
+31
+00:02:14,050 --> 00:02:18,160
+Now here, basically we are passing in a brand new piece of JSX.
+
+32
+00:02:18,790 --> 00:02:22,270
+And so here we now actually need a fragment.
+
+33
+00:02:23,220 --> 00:02:24,090
+Give it a safe.
+
+34
+00:02:24,090 --> 00:02:25,410
+And there we go.
+
+35
+00:02:25,560 --> 00:02:32,280
+So the app now looks exactly the same as before, but we basically passed in an element or multiple
+
+36
+00:02:32,280 --> 00:02:35,250
+elements here instead of using the children prop.
+
+37
+00:02:35,250 --> 00:02:37,380
+But the result is exactly the same.
+
+38
+00:02:37,380 --> 00:02:39,600
+And under the hood inside react.
+
+39
+00:02:39,630 --> 00:02:42,990
+It should also be basically exactly the same.
+
+40
+00:02:43,140 --> 00:02:49,350
+So this can be a viable pattern in case you need to pass in multiple elements and give them separate
+
+41
+00:02:49,380 --> 00:02:50,070
+names.
+
+42
+00:02:50,220 --> 00:02:57,780
+So that would be a perfectly fine use case for using something like an element prop or really any other
+
+43
+00:02:57,780 --> 00:03:02,160
+prop with any other name instead of the implicit children prop.
+
+44
+00:03:02,160 --> 00:03:09,300
+But in our case, let's go back to what we had before because I think it looks a lot nicer, actually.
+
+45
+00:03:09,300 --> 00:03:14,700
+And it's also clearly the preferred way of doing this inside react.
+
+46
+00:03:14,910 --> 00:03:17,160
+So this was really just to show you.
+
+47
+00:03:17,190 --> 00:03:19,770
+So I will just delete this entire code.
+
+48
+00:03:21,830 --> 00:03:28,010
+And put this one here back and then let's go to the box and fix it there as well.
+
+49
+00:03:28,280 --> 00:03:36,140
+And by the way, let me show you a very nice trick in VS code, which is that if you hover over any
+
+50
+00:03:36,140 --> 00:03:43,760
+component here and then hit command on the Mac or control on Windows, we can actually go right to the
+
+51
+00:03:43,760 --> 00:03:45,740
+definition of the function.
+
+52
+00:03:45,740 --> 00:03:53,450
+So in this case of the component so I'm hovering box here, then I hit the command key click and then
+
+53
+00:03:53,450 --> 00:03:55,190
+I immediately move there.
+
+54
+00:03:55,220 --> 00:04:01,850
+And what's even nicer is that if we do the same down here, so again, hitting the command or the control
+
+55
+00:04:01,880 --> 00:04:05,090
+key, then we go right back up.
+
+56
+00:04:06,350 --> 00:04:11,750
+Well, in this case, somehow it doesn't work, but usually it should.
+
+57
+00:04:11,990 --> 00:04:18,620
+But yeah, what matters is that we can move from where the component is called into the place where
+
+58
+00:04:18,620 --> 00:04:19,980
+it is actually defined.
+
+59
+00:04:20,010 --> 00:04:24,830
+And so now let's change element back to children.
+
+60
+00:04:25,010 --> 00:04:27,780
+And then we have just what we had before.
+
+61
+00:04:27,800 --> 00:04:34,820
+So this was really just to show you an alternative way of using component composition without the children
+
+62
+00:04:34,820 --> 00:04:35,360
+prop.
+
+63
+00:04:35,360 --> 00:04:41,240
+But again, using children is by far the preferred way of doing things.

@@ -1,0 +1,807 @@
+1
+00:00:01,090 --> 00:00:08,110
+Let's now put some of the things that we just learned in the previous lecture into practice and also
+
+2
+00:00:08,140 --> 00:00:13,570
+magically synchronize our search query with the movie search results.
+
+3
+00:00:14,820 --> 00:00:19,280
+And actually want to start this lecture with a couple of experiments.
+
+4
+00:00:19,290 --> 00:00:23,070
+And to do that, let's first do a couple of changes here.
+
+5
+00:00:23,560 --> 00:00:27,220
+First, let's set this back to Interstellar.
+
+6
+00:00:28,560 --> 00:00:33,630
+And I also want to rename this variable here to temp.
+
+7
+00:00:34,180 --> 00:00:34,930
+Query.
+
+8
+00:00:35,260 --> 00:00:44,230
+And that's because now we actually want to get the query state that right now lives here inside search
+
+9
+00:00:44,230 --> 00:00:48,070
+into the app, so into its parent component.
+
+10
+00:00:48,870 --> 00:00:55,620
+So let's cut this from here and we will then later pass in both of these back in.
+
+11
+00:00:55,830 --> 00:00:58,980
+So query and set query.
+
+12
+00:01:00,910 --> 00:01:01,780
+Okay.
+
+13
+00:01:01,870 --> 00:01:08,590
+So we're basically lifting this date up because we will need it here inside the app component.
+
+14
+00:01:10,150 --> 00:01:13,360
+So now let's pass those props in.
+
+15
+00:01:14,870 --> 00:01:17,420
+So that's query equals query.
+
+16
+00:01:18,130 --> 00:01:21,100
+And set query is, of course.
+
+17
+00:01:21,810 --> 00:01:24,120
+Set while not error.
+
+18
+00:01:24,940 --> 00:01:26,140
+Set query.
+
+19
+00:01:27,310 --> 00:01:30,720
+Apparently I wrote the name of the movie Wrong here.
+
+20
+00:01:30,730 --> 00:01:32,770
+Interstellar.
+
+21
+00:01:34,190 --> 00:01:39,770
+And then also, let's get rid of this console dot log here.
+
+22
+00:01:41,880 --> 00:01:44,310
+Okay, let's reload.
+
+23
+00:01:44,340 --> 00:01:45,780
+Just to clean this up.
+
+24
+00:01:45,780 --> 00:01:49,830
+And now let's do those experiments that I was talking about.
+
+25
+00:01:50,130 --> 00:01:56,490
+So basically, I want to write a couple of effects here, and then I want you to guess in which order
+
+26
+00:01:56,490 --> 00:01:58,350
+they will be executed.
+
+27
+00:01:58,800 --> 00:02:01,680
+At least that's going to be our first experiment.
+
+28
+00:02:02,840 --> 00:02:05,690
+So let's write one effect.
+
+29
+00:02:07,310 --> 00:02:10,790
+And then as always, we need to specify a function.
+
+30
+00:02:11,510 --> 00:02:13,730
+And this one will lock to the console.
+
+31
+00:02:13,760 --> 00:02:15,230
+The string A.
+
+32
+00:02:16,880 --> 00:02:20,600
+All right, then let's get another one.
+
+33
+00:02:20,600 --> 00:02:23,960
+And notice how this one doesn't have a dependency array.
+
+34
+00:02:24,910 --> 00:02:27,070
+Well, let's actually add it to this one.
+
+35
+00:02:28,070 --> 00:02:30,860
+But the second one here won't have any.
+
+36
+00:02:31,070 --> 00:02:34,490
+So this one will just lock the string be.
+
+37
+00:02:34,670 --> 00:02:36,170
+And then finally.
+
+38
+00:02:37,330 --> 00:02:41,590
+I will simply do a console dot log right here in the top level.
+
+39
+00:02:42,190 --> 00:02:42,970
+Okay.
+
+40
+00:02:42,970 --> 00:02:49,780
+And now, without running this code, let's try to guess in which order these three strings here will
+
+41
+00:02:49,780 --> 00:02:50,980
+appear in the console.
+
+42
+00:02:51,770 --> 00:02:53,600
+So have you thought about it?
+
+43
+00:02:53,630 --> 00:02:55,310
+Well, I will now save.
+
+44
+00:02:55,310 --> 00:02:57,440
+And then we will discuss the results.
+
+45
+00:02:58,500 --> 00:02:59,180
+Okay.
+
+46
+00:02:59,180 --> 00:03:07,400
+And actually, we have a lot of renders here, a lot of results, but that's because the application
+
+47
+00:03:07,400 --> 00:03:10,520
+has rendered and re rendered a couple of times.
+
+48
+00:03:10,520 --> 00:03:12,500
+And so then we got all these logs.
+
+49
+00:03:12,500 --> 00:03:17,030
+And also keep in mind that these effects actually run twice.
+
+50
+00:03:17,030 --> 00:03:22,250
+But what matters here is that first we got C, then A and then B.
+
+51
+00:03:23,040 --> 00:03:29,220
+So why did we get C first, even though it appears later here in the code?
+
+52
+00:03:29,580 --> 00:03:36,390
+Well, the reason is that, as we just discussed before, effects actually only run after the browser
+
+53
+00:03:36,390 --> 00:03:36,990
+paint.
+
+54
+00:03:37,020 --> 00:03:43,170
+While the render logic itself runs well, as the name says during render.
+
+55
+00:03:43,170 --> 00:03:48,510
+And so then it makes sense that of course, this console dot log here is executed first.
+
+56
+00:03:48,510 --> 00:03:55,200
+So during the render of this component and then we have A and B, which comes from these two effects.
+
+57
+00:03:55,200 --> 00:04:00,960
+And so A is rendered first simply because it appears first in the code.
+
+58
+00:04:02,260 --> 00:04:06,240
+Okay, Now let's actually clear the console.
+
+59
+00:04:06,240 --> 00:04:10,130
+And now what I'm going to do is to type something here.
+
+60
+00:04:10,140 --> 00:04:12,150
+And so let's see what happens then.
+
+61
+00:04:12,540 --> 00:04:15,450
+And we get some more outputs.
+
+62
+00:04:15,630 --> 00:04:20,460
+So we get C and B, So is this what you were expecting?
+
+63
+00:04:20,790 --> 00:04:23,970
+Well, let's again analyze what just happened here.
+
+64
+00:04:24,740 --> 00:04:32,780
+So we updated the state here, which is the query state, and as a result the component was re rendered.
+
+65
+00:04:32,810 --> 00:04:36,410
+And then just like before this code here was executed.
+
+66
+00:04:36,410 --> 00:04:44,210
+And so therefore we see the letter C first and then after that we also have a B log.
+
+67
+00:04:44,210 --> 00:04:51,680
+And so that is this effect here, which has no dependency array, which remember basically means that
+
+68
+00:04:51,680 --> 00:04:54,890
+this effect is synchronized with everything.
+
+69
+00:04:54,890 --> 00:05:02,390
+And so therefore it needs to run on every render while this other effect here, this first effect is
+
+70
+00:05:02,390 --> 00:05:08,030
+synchronized with no variables at all, which is the meaning of this empty array.
+
+71
+00:05:08,030 --> 00:05:15,500
+And therefore this effect was not executed as the component was re rendered with the query state.
+
+72
+00:05:15,800 --> 00:05:24,320
+Okay, so now we can change here the strings and we can actually say that this here is during render.
+
+73
+00:05:25,940 --> 00:05:29,930
+This year is after every render.
+
+74
+00:05:30,350 --> 00:05:32,480
+And this is after.
+
+75
+00:05:33,590 --> 00:05:35,450
+The initial render.
+
+76
+00:05:38,600 --> 00:05:38,790
+No.
+
+77
+00:05:38,840 --> 00:05:39,510
+Okay.
+
+78
+00:05:39,560 --> 00:05:45,290
+And of course, this is only for you to keep as a reference here, just so we're understanding what's
+
+79
+00:05:45,320 --> 00:05:46,400
+actually happening.
+
+80
+00:05:47,410 --> 00:05:49,870
+So now let's do another one.
+
+81
+00:05:50,170 --> 00:05:56,020
+So one final experiment here, which will be yet another effect.
+
+82
+00:05:59,710 --> 00:06:00,760
+Let's call this one D.
+
+83
+00:06:00,800 --> 00:06:05,980
+Now, in here, in the dependency array, we will have the query state.
+
+84
+00:06:06,750 --> 00:06:08,340
+So give it a save.
+
+85
+00:06:08,520 --> 00:06:12,270
+And now watch what happens when I type here.
+
+86
+00:06:13,490 --> 00:06:19,160
+So you see that this one here during render, of course, always gets executed.
+
+87
+00:06:19,550 --> 00:06:24,980
+Then this one here after every render as well, and still not this one.
+
+88
+00:06:24,980 --> 00:06:30,890
+But we now have this other effect which is synchronized with the query state variable.
+
+89
+00:06:30,890 --> 00:06:37,030
+And so this query just changed and therefore this effect was executed and logged.
+
+90
+00:06:37,490 --> 00:06:42,400
+And if we keep doing this, then D keeps getting logged to the console.
+
+91
+00:06:42,410 --> 00:06:48,410
+While if we changed some of these other states here, then we would not get the logged here.
+
+92
+00:06:48,560 --> 00:06:51,140
+So we cannot really simulate that here now.
+
+93
+00:06:51,140 --> 00:06:54,140
+But you can still trust me on that one.
+
+94
+00:06:55,220 --> 00:07:01,820
+But anyway, let's now use what we just did here to our actual advantage in the application.
+
+95
+00:07:02,030 --> 00:07:03,320
+So I will now.
+
+96
+00:07:04,900 --> 00:07:06,760
+Just comment these out.
+
+97
+00:07:08,080 --> 00:07:09,510
+And reload here.
+
+98
+00:07:09,520 --> 00:07:18,100
+And so now the time has come where we actually want to use the query from here, right inside this URL
+
+99
+00:07:18,100 --> 00:07:19,840
+where we fetch the movies.
+
+100
+00:07:19,840 --> 00:07:24,910
+So basically we want to fetch movies based on the search query right here.
+
+101
+00:07:25,590 --> 00:07:29,760
+So instead of the temporary query, let's now use query here.
+
+102
+00:07:30,820 --> 00:07:31,810
+Give it a safe.
+
+103
+00:07:31,810 --> 00:07:35,410
+But of course, like this, it is not going to work.
+
+104
+00:07:35,440 --> 00:07:40,990
+So as we change this here to something, nothing is going to happen.
+
+105
+00:07:41,140 --> 00:07:42,730
+And why is that?
+
+106
+00:07:42,910 --> 00:07:48,870
+Well, it's because this effect is not yet synchronized with the query state.
+
+107
+00:07:48,880 --> 00:07:54,940
+So we are using this state variable inside the effect, but the effect doesn't know yet that it will
+
+108
+00:07:54,940 --> 00:07:58,750
+have to rerun each time that the query state changes.
+
+109
+00:07:59,080 --> 00:08:05,030
+And so to fix that, we need to include that query here in the dependency array.
+
+110
+00:08:05,050 --> 00:08:08,880
+And actually you see already that React is complaining.
+
+111
+00:08:08,890 --> 00:08:13,480
+So here as we hover, we see that this hook has a missing dependency.
+
+112
+00:08:14,490 --> 00:08:21,810
+So this error or this warning actually is really, really helpful so that we never forget to correctly
+
+113
+00:08:21,810 --> 00:08:25,350
+declare the dependencies of this effect.
+
+114
+00:08:26,070 --> 00:08:30,900
+And so as we give it a safe now, let's again reload it here.
+
+115
+00:08:30,960 --> 00:08:37,620
+Now we get this error that the movie is not found, which is because our query by default is just this
+
+116
+00:08:37,620 --> 00:08:38,600
+empty string.
+
+117
+00:08:38,610 --> 00:08:46,220
+But if we try now, let's say test then, well, it still doesn't work.
+
+118
+00:08:46,230 --> 00:08:49,680
+So let's come again to our network tab.
+
+119
+00:08:51,100 --> 00:08:57,040
+So let's just check out if actually the Http request has been correctly made.
+
+120
+00:08:58,430 --> 00:09:02,990
+And so by doing this, you're also learning about these very important developer tools here.
+
+121
+00:09:04,790 --> 00:09:08,800
+Okay, so here we see some new Http requests.
+
+122
+00:09:08,800 --> 00:09:13,390
+And as we click here, we actually do see a response.
+
+123
+00:09:13,690 --> 00:09:15,310
+So there is something there.
+
+124
+00:09:15,310 --> 00:09:19,000
+But somehow our movies are still not being shown here.
+
+125
+00:09:19,720 --> 00:09:26,620
+And I think I know the reason for that, which is that we are never resetting the error state.
+
+126
+00:09:26,740 --> 00:09:31,590
+So at some point we had some error here, but now we no longer have an error.
+
+127
+00:09:31,600 --> 00:09:36,070
+But at no point in the application we are actually resetting it.
+
+128
+00:09:36,250 --> 00:09:43,180
+So we need to also do that here in the finally or actually better yet, we should do it right here at
+
+129
+00:09:43,180 --> 00:09:44,470
+the very beginning.
+
+130
+00:09:44,470 --> 00:09:50,140
+So basically always before we start fetching for data, we reset the error.
+
+131
+00:09:50,980 --> 00:09:52,540
+So set error.
+
+132
+00:09:53,630 --> 00:09:55,580
+And then back to the empty string.
+
+133
+00:09:56,000 --> 00:09:57,310
+Give it a save.
+
+134
+00:09:57,320 --> 00:10:01,670
+And now we get some results for test.
+
+135
+00:10:03,630 --> 00:10:03,740
+No.
+
+136
+00:10:03,810 --> 00:10:04,340
+Okay.
+
+137
+00:10:04,350 --> 00:10:08,400
+And then as we delete this, then we are back to movie not found.
+
+138
+00:10:10,260 --> 00:10:12,420
+The same for Inter for some reason.
+
+139
+00:10:12,420 --> 00:10:14,220
+And then stellar.
+
+140
+00:10:15,200 --> 00:10:18,160
+And now we get some movie here.
+
+141
+00:10:18,170 --> 00:10:19,880
+It's not the same as before.
+
+142
+00:10:19,970 --> 00:10:26,270
+And the reason for that is something called a race condition, but at least something is working here.
+
+143
+00:10:26,540 --> 00:10:31,490
+So if I write this a bit slower, then it works just fine.
+
+144
+00:10:31,490 --> 00:10:38,630
+And of course, this works with any other movie as long as for now you type slow enough.
+
+145
+00:10:39,210 --> 00:10:47,040
+Now I want to fix this problem that when we have no search query here, then it tells us movie not found,
+
+146
+00:10:47,040 --> 00:10:48,960
+which is not really true.
+
+147
+00:10:49,140 --> 00:10:54,750
+I mean, it is true because the API actually searched for a movie with an empty string.
+
+148
+00:10:54,750 --> 00:11:00,570
+But in this situation where we have no query, we actually don't even want to search.
+
+149
+00:11:00,960 --> 00:11:01,950
+Right?
+
+150
+00:11:01,980 --> 00:11:05,130
+And so let's do that here in our effect.
+
+151
+00:11:05,490 --> 00:11:10,320
+And actually, let's do it before we even call this function here.
+
+152
+00:11:13,450 --> 00:11:19,360
+So we can say if there is no query dot length.
+
+153
+00:11:19,970 --> 00:11:23,180
+So it's going to be zero in this situation.
+
+154
+00:11:24,300 --> 00:11:25,710
+Then simply set.
+
+155
+00:11:26,280 --> 00:11:29,280
+Two movies back to an empty array.
+
+156
+00:11:29,520 --> 00:11:34,500
+So basically then removing all the movies from the user interface.
+
+157
+00:11:35,610 --> 00:11:37,740
+And let's also reset the error.
+
+158
+00:11:39,290 --> 00:11:41,330
+Back to nothing and then return.
+
+159
+00:11:42,090 --> 00:11:47,790
+And so in this situation, then the fetch movies function will not even be called.
+
+160
+00:11:48,090 --> 00:11:51,090
+And here we can actually go even further.
+
+161
+00:11:51,090 --> 00:11:58,830
+So we can say like if the query length is less than three, then it's not even worth searching as well.
+
+162
+00:11:59,690 --> 00:12:05,150
+So it doesn't even make sense to have a query just like this, right?
+
+163
+00:12:06,380 --> 00:12:09,320
+So there's no movies really called like that.
+
+164
+00:12:10,640 --> 00:12:13,310
+So going back again to our network tab.
+
+165
+00:12:14,380 --> 00:12:20,840
+If we just type like this, you see, then no new fetch requests were made.
+
+166
+00:12:20,860 --> 00:12:22,570
+But now if I keep writing.
+
+167
+00:12:23,230 --> 00:12:26,640
+So now we have more than three characters.
+
+168
+00:12:26,650 --> 00:12:30,640
+Then we had our first Http request to the API.
+
+169
+00:12:31,000 --> 00:12:32,700
+Then we got these results.
+
+170
+00:12:32,710 --> 00:12:36,310
+And if I type again, then you see we got another one.
+
+171
+00:12:36,430 --> 00:12:41,620
+And now when I delete all this, then it simply goes back to empty.
+
+172
+00:12:41,890 --> 00:12:46,480
+So we deleted all the movies from our state, basically.
+
+173
+00:12:47,050 --> 00:12:47,620
+Okay.
+
+174
+00:12:47,620 --> 00:12:52,060
+And so with this we have the basic functionality already implemented.
+
+175
+00:12:52,210 --> 00:12:59,650
+So let's recap what we just did here and what is going to happen whenever we type a new query here.
+
+176
+00:13:00,600 --> 00:13:05,340
+So the query is, of course, a piece of state, right?
+
+177
+00:13:05,340 --> 00:13:07,010
+So that is pretty obvious.
+
+178
+00:13:07,020 --> 00:13:13,800
+And so we are referencing that query variable a couple of times inside our effect here.
+
+179
+00:13:13,800 --> 00:13:14,700
+Right.
+
+180
+00:13:15,210 --> 00:13:22,140
+And so therefore we then included this query variable also in the dependency array of this effect.
+
+181
+00:13:22,140 --> 00:13:28,770
+And so now our use effect hook is basically like an event handler that is listening for the query to
+
+182
+00:13:28,770 --> 00:13:29,460
+change.
+
+183
+00:13:29,460 --> 00:13:36,450
+And so then when it changes, the entire effect is executed again, which in our case means that a new
+
+184
+00:13:36,450 --> 00:13:40,290
+request is going to be made to our movie's API.
+
+185
+00:13:40,500 --> 00:13:48,000
+So again, this effect that we just wrote here basically reacts to an update to this state variable,
+
+186
+00:13:48,000 --> 00:13:54,600
+which makes the entire effect basically reactive, so reactive to that state.
+
+187
+00:13:54,600 --> 00:14:00,700
+But at the same time, our effect will also be still executed during the initial render.
+
+188
+00:14:01,100 --> 00:14:02,180
+Just right now.
+
+189
+00:14:02,180 --> 00:14:07,060
+That is the empty string which we just basically told our effect to ignore.
+
+190
+00:14:07,070 --> 00:14:10,430
+So let's write another amazing movie here.
+
+191
+00:14:11,570 --> 00:14:18,980
+And so as we save this now and so as our application first loads, it will immediately fetch the data
+
+192
+00:14:18,980 --> 00:14:19,760
+right here.
+
+193
+00:14:19,970 --> 00:14:27,350
+And so indeed, as we just learned in the previous lecture, this effect basically now runs on the initial
+
+194
+00:14:27,350 --> 00:14:31,010
+render and whenever this date variable here updates.
+
+195
+00:14:31,010 --> 00:14:33,890
+So it is synchronized with this variable here.
+
+196
+00:14:33,890 --> 00:14:40,010
+And as you see, this is really, really powerful and can be used in all kinds of situations.
+
+197
+00:14:40,010 --> 00:14:46,670
+So make sure that you really understand everything that we just did here as this was a really, really
+
+198
+00:14:46,670 --> 00:14:47,990
+important lecture.
+
+199
+00:14:47,990 --> 00:14:54,920
+And then let's move on to the next video where we will finally add the ability to select one of these
+
+200
+00:14:54,920 --> 00:15:00,470
+movies so that we can then load some additional details here into the right side.
+
+201
+00:15:00,470 --> 00:15:02,840
+So that's going to be really, really fun.
+
+202
+00:15:02,840 --> 00:15:05,540
+And so I hope to see you there soon.

@@ -1,0 +1,283 @@
+1
+00:00:00,910 --> 00:00:08,260
+Let's now convert our effect to an async function instead of the basic promise handling that we're doing
+
+2
+00:00:08,260 --> 00:00:09,100
+right now.
+
+3
+00:00:10,300 --> 00:00:17,410
+So many times when we need a lot of code to handle a promise, it's a lot easier and nicer to just have
+
+4
+00:00:17,410 --> 00:00:18,820
+an async function.
+
+5
+00:00:19,210 --> 00:00:23,950
+And here I will just assume that you already know what async await is.
+
+6
+00:00:25,430 --> 00:00:33,020
+So we might think that all we need to do in order to use an async function is to place the async keyword
+
+7
+00:00:33,020 --> 00:00:37,130
+here and then use await inside of it.
+
+8
+00:00:37,160 --> 00:00:44,720
+However, we immediately get this warning from Eslint, which tells us that effect callbacks are synchronous
+
+9
+00:00:44,720 --> 00:00:46,940
+to prevent race conditions.
+
+10
+00:00:47,120 --> 00:00:55,250
+So basically the effect function that we place into use effect cannot return a promise, which is what
+
+11
+00:00:55,250 --> 00:00:56,930
+an async function does.
+
+12
+00:00:58,800 --> 00:01:03,690
+So instead of doing it directly like this, we just create a new function.
+
+13
+00:01:07,680 --> 00:01:10,710
+Net, then we place the async function in there.
+
+14
+00:01:11,920 --> 00:01:13,270
+So let's call this one.
+
+15
+00:01:14,550 --> 00:01:16,590
+Fetch movies.
+
+16
+00:01:17,610 --> 00:01:18,390
+Okay.
+
+17
+00:01:18,390 --> 00:01:23,610
+And then let's of course, adapt this function here to using the await keyword.
+
+18
+00:01:25,310 --> 00:01:30,290
+So const rez equals await and again.
+
+19
+00:01:31,610 --> 00:01:37,850
+I'm assuming that you already know how all of this works, so that converting to promises to an async
+
+20
+00:01:37,850 --> 00:01:41,480
+function is nothing new for you at this point.
+
+21
+00:01:42,340 --> 00:01:52,150
+So data will be the result of converting the response to Json, which is again an asynchronous operation.
+
+22
+00:01:53,490 --> 00:01:59,200
+And then finally, we can set the movies to data dot search.
+
+23
+00:01:59,220 --> 00:02:01,380
+So just what we had here.
+
+24
+00:02:04,420 --> 00:02:05,110
+All right.
+
+25
+00:02:05,110 --> 00:02:10,450
+But now, of course, nothing is happening because nowhere we are calling this function.
+
+26
+00:02:11,090 --> 00:02:14,330
+So that's also why this gets this yellow underline here.
+
+27
+00:02:14,360 --> 00:02:17,480
+So our effect is now this function right here.
+
+28
+00:02:18,070 --> 00:02:18,940
+Right.
+
+29
+00:02:18,940 --> 00:02:23,740
+But this function, all it's doing right now is to define yet another function.
+
+30
+00:02:23,740 --> 00:02:25,810
+So this async fetch movies.
+
+31
+00:02:25,810 --> 00:02:32,020
+And so then at the end we just call it and then it is back to working.
+
+32
+00:02:32,380 --> 00:02:39,910
+Now here I just want to extract this here for now into another variable, which I'm going to call query.
+
+33
+00:02:41,980 --> 00:02:44,080
+And this is just temporary here.
+
+34
+00:02:47,550 --> 00:02:48,320
+Okay.
+
+35
+00:02:48,320 --> 00:02:52,930
+And now what I also want to do is to log our movies here.
+
+36
+00:02:52,940 --> 00:02:58,700
+So the movies that we received from the API to the console just so I can show you something.
+
+37
+00:02:59,460 --> 00:03:02,760
+So let's first reload to get rid of the errors there.
+
+38
+00:03:02,880 --> 00:03:08,490
+And now what I want to do here again is to log our movies to the console.
+
+39
+00:03:09,290 --> 00:03:12,500
+So do you think that I can just do this?
+
+40
+00:03:12,650 --> 00:03:14,930
+So you think that this is going to work?
+
+41
+00:03:15,170 --> 00:03:16,340
+Well, let's see.
+
+42
+00:03:16,960 --> 00:03:22,300
+And let's reload to actually see the true result, which is an empty array.
+
+43
+00:03:22,720 --> 00:03:24,370
+So why is this happening?
+
+44
+00:03:24,890 --> 00:03:30,470
+Well, hopefully you learned in the previous section that setting state is a.
+
+45
+00:03:31,610 --> 00:03:39,320
+So in other words, after the state has been set here in this line of code or actually after we instructed
+
+46
+00:03:39,320 --> 00:03:43,940
+react to set the state, that doesn't mean that this happens immediately.
+
+47
+00:03:44,060 --> 00:03:48,520
+So instead, it will happen after this function here has been called.
+
+48
+00:03:48,560 --> 00:03:55,130
+And so right here in this line of code, we have stale state, which basically means that we still have
+
+49
+00:03:55,130 --> 00:03:58,100
+the old value as the state was before.
+
+50
+00:03:58,100 --> 00:04:01,430
+And in this case, before it was just the empty array.
+
+51
+00:04:01,550 --> 00:04:03,200
+So our initial state.
+
+52
+00:04:04,320 --> 00:04:09,120
+So here we can basically then use data that search again.
+
+53
+00:04:09,450 --> 00:04:13,650
+And so as we reload now, then we get here the output.
+
+54
+00:04:14,280 --> 00:04:19,160
+Now, what I wanted to talk about is why we always have these two outputs.
+
+55
+00:04:19,170 --> 00:04:23,100
+So basically why we have these two requests here happening.
+
+56
+00:04:23,370 --> 00:04:27,300
+Well, the reason for that is react's strict mode.
+
+57
+00:04:27,330 --> 00:04:35,780
+So when strict mode is activated in React 18, our effects will not run only once but actually twice.
+
+58
+00:04:35,790 --> 00:04:41,050
+So React will call our effects twice, but only in development.
+
+59
+00:04:41,070 --> 00:04:45,330
+So when our application is in production, this will no longer be happening.
+
+60
+00:04:45,330 --> 00:04:51,300
+And so this is just so that React can identify if there are any problems with our effects.
+
+61
+00:04:52,130 --> 00:04:59,990
+So if we come here quickly just to Index.js, and if we remove the strict mode from here.
+
+62
+00:05:02,660 --> 00:05:04,520
+Well, then we have this problem.
+
+63
+00:05:04,520 --> 00:05:06,320
+Let's actually remove the code.
+
+64
+00:05:07,240 --> 00:05:09,640
+Let's save and let's reload.
+
+65
+00:05:09,640 --> 00:05:16,960
+And then you see that we only get one output here, which means that there was only one Http request.
+
+66
+00:05:17,830 --> 00:05:20,020
+So the effect was only called once.
+
+67
+00:05:20,890 --> 00:05:21,720
+Indeed.
+
+68
+00:05:21,730 --> 00:05:26,260
+But let's put it back, because this is somehow a bit safer.
+
+69
+00:05:28,320 --> 00:05:29,060
+Okay.
+
+70
+00:05:29,270 --> 00:05:31,440
+And that's it for this video.
+
+71
+00:05:31,460 --> 00:05:37,580
+Next up, let's make this data fetching here a bit more complete with a loading state.

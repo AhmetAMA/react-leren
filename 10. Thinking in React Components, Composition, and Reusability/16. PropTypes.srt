@@ -1,0 +1,387 @@
+1
+00:00:00,930 --> 00:00:02,670
+To finish this component.
+
+2
+00:00:02,670 --> 00:00:08,250
+Let's now add type checking to the component's props using prop types.
+
+3
+00:00:09,460 --> 00:00:17,530
+So with prop types, we can basically specify the type of value that we expect the consumer of the component
+
+4
+00:00:17,530 --> 00:00:20,710
+to pass in for each of the props.
+
+5
+00:00:20,890 --> 00:00:28,710
+For example, we can define that this Max rating here really must be a number and nothing else.
+
+6
+00:00:28,720 --> 00:00:32,310
+And this is what we call type checking.
+
+7
+00:00:32,320 --> 00:00:38,800
+So again, checking each type of the prop and specifying what type they need to have.
+
+8
+00:00:38,950 --> 00:00:45,340
+Now, if you really care about this, you should actually just use TypeScript instead of JavaScript.
+
+9
+00:00:45,460 --> 00:00:52,510
+Now I will show you how to use React's built in prop types because it actually does make a lot of sense
+
+10
+00:00:52,510 --> 00:00:54,490
+for this reusable component.
+
+11
+00:00:54,490 --> 00:01:01,180
+But I will not do this in the rest of the course for all the components that we're going to build because
+
+12
+00:01:01,180 --> 00:01:02,770
+that just takes too much time.
+
+13
+00:01:02,770 --> 00:01:06,820
+And also developers these days don't really do this anymore.
+
+14
+00:01:07,120 --> 00:01:13,490
+Again, if this is really important for your app, you can just use TypeScript instead of JavaScript,
+
+15
+00:01:13,490 --> 00:01:20,990
+which is what many teams and many developers started doing again instead of using prop types.
+
+16
+00:01:21,520 --> 00:01:28,990
+But anyway, let's now actually use prop types and for that we import the prop types.
+
+17
+00:01:30,730 --> 00:01:31,630
+Object.
+
+18
+00:01:32,310 --> 00:01:35,400
+From the prop types package.
+
+19
+00:01:37,750 --> 00:01:44,980
+So there is no need to install this proptypes package here in this case because create React app already
+
+20
+00:01:44,980 --> 00:01:50,420
+comes with this package pre-installed, but we do need to import it here.
+
+21
+00:01:50,440 --> 00:01:56,950
+So just as we did here because it is actually a separate package from React itself.
+
+22
+00:01:57,520 --> 00:01:57,880
+Now.
+
+23
+00:01:57,880 --> 00:01:58,500
+Okay.
+
+24
+00:01:58,510 --> 00:02:04,810
+And now in order to do the type checking, let's use our component.
+
+25
+00:02:04,810 --> 00:02:06,310
+So that star rating.
+
+26
+00:02:06,310 --> 00:02:11,290
+And then on this component, we specify the prop types property.
+
+27
+00:02:11,290 --> 00:02:15,310
+And here it's important that we write it with a lower case.
+
+28
+00:02:16,130 --> 00:02:17,840
+So proptypes.
+
+29
+00:02:17,990 --> 00:02:22,640
+And then here we then assign those prop types an object.
+
+30
+00:02:23,320 --> 00:02:30,220
+So again, we imported prop types here with the capital P, but the property name here is with this
+
+31
+00:02:30,220 --> 00:02:31,330
+lowercase P.
+
+32
+00:02:32,660 --> 00:02:33,350
+Okay.
+
+33
+00:02:33,350 --> 00:02:37,490
+And now here, for each of the props, we can specify the type.
+
+34
+00:02:38,710 --> 00:02:41,170
+So let's say max rating.
+
+35
+00:02:42,240 --> 00:02:45,360
+And so that's exactly the name of the prop that we have here.
+
+36
+00:02:46,040 --> 00:02:52,500
+And then now we actually use that prop types object that we imported in the very beginning.
+
+37
+00:02:52,520 --> 00:02:58,650
+And so now all we need to do is to use one of the validators that is inside this object.
+
+38
+00:02:58,670 --> 00:03:01,490
+So here we can simply say prop types.
+
+39
+00:03:02,260 --> 00:03:03,280
+Dot number.
+
+40
+00:03:04,760 --> 00:03:06,290
+And that's it.
+
+41
+00:03:07,200 --> 00:03:15,720
+So let's say that here we import this star rating and instead of specifying a number, we specify a
+
+42
+00:03:15,720 --> 00:03:16,290
+string.
+
+43
+00:03:17,160 --> 00:03:24,780
+And so then here we get this problem or this warning here, which says invalid prop of max rating.
+
+44
+00:03:24,780 --> 00:03:30,030
+And that's because it has the type of string instead of the expected number.
+
+45
+00:03:30,910 --> 00:03:37,830
+And it is these warnings right here that will then allow other developers to catch bugs like this,
+
+46
+00:03:37,840 --> 00:03:44,590
+because, I mean, no one would specify this here on purpose, but by mistake, we might end up here
+
+47
+00:03:44,590 --> 00:03:45,600
+with a string.
+
+48
+00:03:45,610 --> 00:03:48,400
+So, for example, also this could happen.
+
+49
+00:03:48,400 --> 00:03:54,880
+So we could specify the five here but as a string and then we would still get the same problem.
+
+50
+00:03:55,120 --> 00:03:58,120
+Now the code does actually work with this here somehow.
+
+51
+00:03:58,120 --> 00:04:02,770
+So JavaScript is somehow able to coerce the types into a number.
+
+52
+00:04:02,770 --> 00:04:10,630
+But again, here we get this warning because we really should specify this not as a string but as a
+
+53
+00:04:10,630 --> 00:04:11,110
+number.
+
+54
+00:04:11,110 --> 00:04:13,540
+And so then of course this disappears.
+
+55
+00:04:15,160 --> 00:04:23,740
+Now we can also chain the is required property here, which just as the name says, will then make this
+
+56
+00:04:23,740 --> 00:04:25,000
+prop required.
+
+57
+00:04:25,820 --> 00:04:29,240
+So somewhere here we probably have one without.
+
+58
+00:04:29,690 --> 00:04:29,930
+Yeah.
+
+59
+00:04:29,930 --> 00:04:31,910
+So this one doesn't have the max rating.
+
+60
+00:04:31,910 --> 00:04:35,270
+And then immediately we get this warning down here.
+
+61
+00:04:35,900 --> 00:04:36,680
+All right.
+
+62
+00:04:36,680 --> 00:04:43,130
+But in our case, we actually have some default values for all of our props already defined.
+
+63
+00:04:43,130 --> 00:04:47,690
+And so it doesn't make sense then to mark any of them as required.
+
+64
+00:04:47,690 --> 00:04:51,070
+So by default, you shouldn't use this one.
+
+65
+00:04:51,080 --> 00:04:56,270
+So instead just use default values for all or most of your props.
+
+66
+00:04:57,070 --> 00:05:01,810
+But anyway, now let's keep going and let's make this really complete.
+
+67
+00:05:02,500 --> 00:05:05,980
+So the default rating should also be a number.
+
+68
+00:05:07,220 --> 00:05:11,600
+Then the color should be a string.
+
+69
+00:05:12,300 --> 00:05:18,810
+And so we basically have one of these validators here for all the types that we can imagine.
+
+70
+00:05:20,150 --> 00:05:22,910
+So this one is also a number.
+
+71
+00:05:25,240 --> 00:05:26,920
+Then we have the messages.
+
+72
+00:05:27,690 --> 00:05:31,830
+And so here we have prop types, dot array.
+
+73
+00:05:33,120 --> 00:05:34,890
+Let's see what else we have.
+
+74
+00:05:35,780 --> 00:05:39,380
+So we also have the class name, which is.
+
+75
+00:05:41,690 --> 00:05:42,980
+A string.
+
+76
+00:05:44,880 --> 00:05:47,120
+So here I wrote the wrong one.
+
+77
+00:05:47,130 --> 00:05:50,540
+So always use the uppercase prop types.
+
+78
+00:05:50,550 --> 00:05:52,950
+And now finally the on.
+
+79
+00:05:53,950 --> 00:05:55,630
+Set rating prop.
+
+80
+00:05:55,990 --> 00:06:01,210
+So prop types and this one is a func which stands for function.
+
+81
+00:06:02,290 --> 00:06:03,010
+Okay.
+
+82
+00:06:03,010 --> 00:06:09,820
+And besides these two, we also have a bull which stands for a Boolean.
+
+83
+00:06:09,820 --> 00:06:14,530
+So if it's a true or false value and we also have object.
+
+84
+00:06:15,070 --> 00:06:17,260
+So in this case, we have none of these.
+
+85
+00:06:18,320 --> 00:06:20,600
+And so this one is just a function.
+
+86
+00:06:21,610 --> 00:06:22,190
+Okay.
+
+87
+00:06:22,200 --> 00:06:24,840
+And that's actually all that we have to do.
+
+88
+00:06:25,200 --> 00:06:32,790
+And as you see here, adding prop types is also a nice way of documenting our components because this
+
+89
+00:06:32,790 --> 00:06:38,580
+type definition right here makes it really obvious what kind of data we are expecting.
+
+90
+00:06:38,940 --> 00:06:45,900
+But as I said in the very beginning, I will not start using this in all components from now on.
+
+91
+00:06:45,900 --> 00:06:52,440
+So this was mostly just to show you that you can use this yourself in case that you have some component
+
+92
+00:06:52,440 --> 00:06:59,640
+like this, which you want to make highly reusable across multiple applications or even just inside
+
+93
+00:06:59,640 --> 00:07:00,690
+one application.
+
+94
+00:07:00,690 --> 00:07:05,160
+And if at the same time you don't want to switch to TypeScript.
+
+95
+00:07:05,310 --> 00:07:12,780
+But in any case, with this, we finished our reusable component and we also reached the end of this
+
+96
+00:07:12,780 --> 00:07:13,470
+section.
+
+97
+00:07:13,470 --> 00:07:21,180
+All we have left to do is one final coding challenge to practice what we just learned here in this section.

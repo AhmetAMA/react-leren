@@ -1,0 +1,259 @@
+1
+00:00:00,950 --> 00:00:08,210
+In the lecture about the renderer phase, we left out one critical piece, which was the Diffing algorithm.
+
+2
+00:00:08,210 --> 00:00:11,450
+That is part of the reconciliation process.
+
+3
+00:00:11,950 --> 00:00:18,010
+So we mentioned thing back then, but we didn't really go into how Diffing works.
+
+4
+00:00:18,010 --> 00:00:22,000
+And since that's really important, let's do that now.
+
+5
+00:00:23,830 --> 00:00:29,440
+So this thing is, first of all, based on two fundamental assumptions.
+
+6
+00:00:29,470 --> 00:00:35,770
+The first one is that two elements of different types will produce different trees.
+
+7
+00:00:35,800 --> 00:00:39,820
+The second assumption is that elements with a stable key.
+
+8
+00:00:39,850 --> 00:00:45,970
+So a key that is consistent over time will stay the same across renders.
+
+9
+00:00:46,590 --> 00:00:52,830
+Now, these assumptions may seem pretty obvious, especially the first assumption, but they allow the
+
+10
+00:00:52,830 --> 00:00:56,190
+algorithm to be orders of magnitude faster.
+
+11
+00:00:56,220 --> 00:01:03,750
+Going, for example, from a billion operations per thousand processed elements to just a thousand operations.
+
+12
+00:01:04,110 --> 00:01:11,520
+Now remember that Diffing is comparing elements step by step between two renders based on their position
+
+13
+00:01:11,520 --> 00:01:12,540
+in the tree.
+
+14
+00:01:12,690 --> 00:01:17,490
+And there are basically two different situations that need to be considered.
+
+15
+00:01:17,580 --> 00:01:25,020
+First, having two different elements at the same position in the tree between two renders and second,
+
+16
+00:01:25,050 --> 00:01:29,070
+having the same element at the same position in the tree.
+
+17
+00:01:29,100 --> 00:01:32,600
+So those are the only two situations that matter.
+
+18
+00:01:32,610 --> 00:01:36,120
+And so let's now start with the first situation.
+
+19
+00:01:36,660 --> 00:01:41,280
+So let's say that at some point an application is rerendered.
+
+20
+00:01:41,280 --> 00:01:47,940
+And in the diffing process we find that an element has changed in a certain position of the tree.
+
+21
+00:01:48,270 --> 00:01:56,010
+Now here we're actually not looking at a tree, but at the JS code, which leads to that tree because
+
+22
+00:01:56,010 --> 00:01:59,250
+I find that it's a bit easier to understand this way.
+
+23
+00:01:59,640 --> 00:02:07,200
+But anyway, in the case of a Dom element changing like this, changing simply means that the type of
+
+24
+00:02:07,200 --> 00:02:08,920
+the element has changed.
+
+25
+00:02:08,940 --> 00:02:12,480
+Like in this example from a div to a header.
+
+26
+00:02:12,660 --> 00:02:20,670
+So in a situation like this, React will assume that the element itself plus all its children are no
+
+27
+00:02:20,670 --> 00:02:21,930
+longer valid.
+
+28
+00:02:22,050 --> 00:02:29,670
+Therefore all these elements will actually be destroyed and removed from the Dom and that also includes
+
+29
+00:02:29,670 --> 00:02:33,210
+their state, which is really important to remember.
+
+30
+00:02:33,750 --> 00:02:41,310
+So as we see in this example, both the div element and the search bar component will be removed from
+
+31
+00:02:41,310 --> 00:02:49,350
+the Dom and will then be rebuilt as a header with a brand new search bar component instance as a child.
+
+32
+00:02:49,990 --> 00:02:57,250
+So if the child elements stayed the same across renders, the tree will actually get rebuilt.
+
+33
+00:02:57,280 --> 00:03:01,390
+But it gets rebuilt with brand new elements.
+
+34
+00:03:01,390 --> 00:03:07,720
+And so if there were any components with state, that state will not be recovered.
+
+35
+00:03:07,750 --> 00:03:16,480
+So this effectively resets state and this has huge implications for the way that react applications
+
+36
+00:03:16,480 --> 00:03:18,400
+work in practice.
+
+37
+00:03:18,400 --> 00:03:23,980
+And that's why we will see some examples of this behavior in the next lecture.
+
+38
+00:03:24,860 --> 00:03:25,460
+Now.
+
+39
+00:03:25,460 --> 00:03:31,060
+Everything we just learned works the exact same way for React elements.
+
+40
+00:03:31,070 --> 00:03:36,590
+So basically for component instances, as we can see in this second example.
+
+41
+00:03:36,830 --> 00:03:44,870
+So here the search bar component changed to a profile menu component and therefore the search bar is
+
+42
+00:03:44,870 --> 00:03:50,990
+again completely destroyed, including its state and removed from the Dom.
+
+43
+00:03:51,850 --> 00:03:52,570
+Okay.
+
+44
+00:03:52,570 --> 00:03:55,540
+So this is the first situation.
+
+45
+00:03:55,570 --> 00:04:03,100
+The second situation is when between two renders, we have the exact same element at the same position
+
+46
+00:04:03,100 --> 00:04:04,090
+in the tree.
+
+47
+00:04:04,180 --> 00:04:08,140
+And this one is actually way more straightforward.
+
+48
+00:04:08,700 --> 00:04:16,890
+So if after a render an element at a certain position in the tree is the same as before, like in these
+
+49
+00:04:16,890 --> 00:04:24,450
+examples right here, the element will simply be kept in the Dom and that includes all child elements
+
+50
+00:04:24,450 --> 00:04:28,260
+and more importantly, the component's state.
+
+51
+00:04:28,440 --> 00:04:34,680
+Now, this may sound pretty obvious, but it actually has some important implications in practice.
+
+52
+00:04:34,860 --> 00:04:42,780
+So again, the same element at the same position in the tree stays the same and preserves state.
+
+53
+00:04:42,780 --> 00:04:47,910
+And it works like this for Dom elements and for React elements as well.
+
+54
+00:04:48,720 --> 00:04:54,180
+Now, looking at these examples, we actually see that something has changed.
+
+55
+00:04:54,390 --> 00:05:01,230
+However, it was not the element type that has changed, but simply the class name attribute in the
+
+56
+00:05:01,230 --> 00:05:05,240
+div and the weight prop in the search bar component.
+
+57
+00:05:05,250 --> 00:05:12,600
+And so what React is going to do is to simply mutate the Dom element attributes and in the case of react
+
+58
+00:05:12,600 --> 00:05:16,860
+elements, it will pass in the new props, but that's it.
+
+59
+00:05:16,890 --> 00:05:20,460
+So React tries to be as efficient as possible.
+
+60
+00:05:20,460 --> 00:05:24,110
+And so the Dom elements themselves will stay the same.
+
+61
+00:05:24,120 --> 00:05:30,570
+They are not removed from the Dom and even more importantly, the state will not be destroyed.
+
+62
+00:05:31,150 --> 00:05:38,020
+Now, sometimes we actually don't want this standard behavior, but instead to create a brand new component
+
+63
+00:05:38,020 --> 00:05:40,300
+instance with new state.
+
+64
+00:05:40,300 --> 00:05:46,840
+And so that's where the key prop comes into play as we will learn about after seeing these rules that
+
+65
+00:05:46,840 --> 00:05:49,300
+we just learned about in action.

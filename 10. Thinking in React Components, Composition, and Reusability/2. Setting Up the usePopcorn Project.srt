@@ -1,0 +1,235 @@
+1
+00:00:00,850 --> 00:00:04,250
+It's time to set up our next project.
+
+2
+00:00:04,270 --> 00:00:10,930
+So we're building a lot of projects here, which is exactly what you need to become the react developer
+
+3
+00:00:10,930 --> 00:00:12,370
+that you want to be.
+
+4
+00:00:13,680 --> 00:00:16,290
+And by now you already know the drill.
+
+5
+00:00:16,380 --> 00:00:23,100
+So just fire up your terminal or your command prompt if you are on windows and then simply navigate
+
+6
+00:00:23,100 --> 00:00:27,090
+to the folder that you want to build your next project in.
+
+7
+00:00:27,360 --> 00:00:34,500
+Then type Npx, create React app at version number five, please.
+
+8
+00:00:34,500 --> 00:00:39,150
+And then the name of the app which is Use Popcorn.
+
+9
+00:00:39,360 --> 00:00:41,570
+So what might that be?
+
+10
+00:00:41,580 --> 00:00:44,010
+That's a bit of a strange name.
+
+11
+00:00:44,130 --> 00:00:47,400
+So let's actually check it out right now.
+
+12
+00:00:48,390 --> 00:00:51,030
+So this is the use popcorn app.
+
+13
+00:00:51,030 --> 00:00:58,110
+And if you want, you can go explore it right now on your own at use Popcorn dot Netlify dot app.
+
+14
+00:00:58,760 --> 00:01:04,040
+So it's called use popcorn because this application is all about movies.
+
+15
+00:01:04,040 --> 00:01:11,120
+And maybe you see that this prefix here of the name is this keyword of use and that reminds you maybe
+
+16
+00:01:11,120 --> 00:01:13,130
+of the use state name.
+
+17
+00:01:13,130 --> 00:01:15,190
+So the name of the use state hook.
+
+18
+00:01:15,200 --> 00:01:22,490
+And so that's because we will build this project over this section and even to other sections and it
+
+19
+00:01:22,490 --> 00:01:25,340
+is going to be all about hooks, basically.
+
+20
+00:01:25,340 --> 00:01:28,850
+And so that's a hint to that here, right in the name.
+
+21
+00:01:29,600 --> 00:01:34,130
+But anyway, here in the search bar, we can now search for movies.
+
+22
+00:01:34,890 --> 00:01:39,420
+So let's say one of my all time favorite movies called Inception.
+
+23
+00:01:39,420 --> 00:01:44,160
+And this is now loading these movies here from a real API.
+
+24
+00:01:44,190 --> 00:01:46,890
+So we're doing some real data fetching here.
+
+25
+00:01:47,250 --> 00:01:53,520
+Then we can click on any of these movies which will then take us to this display overview here.
+
+26
+00:01:53,550 --> 00:01:55,470
+Then we can rate the movie.
+
+27
+00:01:55,650 --> 00:02:00,690
+So you see that we have this nice rating component and this one is definitely a ten.
+
+28
+00:02:01,670 --> 00:02:05,390
+Then it asks us if we want to add the movie to our watch list.
+
+29
+00:02:05,390 --> 00:02:07,160
+And as we say, yes.
+
+30
+00:02:07,190 --> 00:02:11,660
+Then you see that the movie has indeed been added to our watch list here.
+
+31
+00:02:12,270 --> 00:02:14,940
+Let's say we also saw this one here.
+
+32
+00:02:14,970 --> 00:02:16,680
+Maybe it was a seven.
+
+33
+00:02:16,710 --> 00:02:18,830
+Then let's also add it to our list.
+
+34
+00:02:18,840 --> 00:02:20,970
+And you see now we have both of them.
+
+35
+00:02:20,970 --> 00:02:25,020
+And up here we have some statistics about our watch list.
+
+36
+00:02:25,230 --> 00:02:27,480
+We can also delete movies from here.
+
+37
+00:02:27,480 --> 00:02:33,270
+So maybe later I remembered that I didn't actually watch this one, so let's get rid of it.
+
+38
+00:02:33,540 --> 00:02:38,370
+And yeah, so another thing is that when we click here.
+
+39
+00:02:39,140 --> 00:02:41,420
+On a movie that we already rated before.
+
+40
+00:02:41,450 --> 00:02:47,000
+Then you see that here it no longer displays that rating component, but our actual rating.
+
+41
+00:02:47,300 --> 00:02:54,170
+Then we can always go back by clicking here, or we can also just hit the escape key.
+
+42
+00:02:54,990 --> 00:02:56,410
+So that also works.
+
+43
+00:02:56,430 --> 00:02:59,190
+So that's another small feature right there.
+
+44
+00:02:59,430 --> 00:03:01,870
+And yeah, that's actually it.
+
+45
+00:03:01,890 --> 00:03:06,630
+So a very small application, but again, with real data fetching.
+
+46
+00:03:06,630 --> 00:03:11,140
+So that's going to be something really nice that we're going to do for the first time.
+
+47
+00:03:11,160 --> 00:03:15,720
+So this app here might feel already a little bit more real because of that.
+
+48
+00:03:16,320 --> 00:03:20,250
+Now, as I said, we will build this throughout three sections.
+
+49
+00:03:20,250 --> 00:03:24,820
+And so in this first section, we will only work with static data yet.
+
+50
+00:03:24,840 --> 00:03:29,190
+So this list of movies here is not yet coming from an API.
+
+51
+00:03:29,220 --> 00:03:33,510
+It's just an array of objects as we have been working with before.
+
+52
+00:03:33,600 --> 00:03:37,560
+The only thing that works here already is the state here.
+
+53
+00:03:37,560 --> 00:03:44,970
+So we can like collapse these two lists here and we can also already write something here into this
+
+54
+00:03:44,970 --> 00:03:45,860
+search bar.
+
+55
+00:03:45,870 --> 00:03:51,290
+But besides that, in this section, we are more concerned about the component part.
+
+56
+00:03:51,300 --> 00:03:57,810
+So basically creating this layout that we see here and also talking a bit about component reusability
+
+57
+00:03:57,810 --> 00:03:59,370
+and component composition.
+
+58
+00:03:59,370 --> 00:04:04,680
+And with that being said, let's actually move on to the next lecture where we will learn a bit more
+
+59
+00:04:04,680 --> 00:04:07,470
+about how to think about components.

@@ -1,0 +1,415 @@
+1
+00:00:00,900 --> 00:00:06,240
+Now, we left a small problem in one of the components that we just created earlier.
+
+2
+00:00:06,240 --> 00:00:13,140
+And so let's now go fix that problem and in the process, discover the problem of prop drilling.
+
+3
+00:00:14,710 --> 00:00:21,250
+But before we go do that, I just want to very quickly review the previous lecture by classifying each
+
+4
+00:00:21,250 --> 00:00:26,260
+of our components into one of the categories that we just looked at.
+
+5
+00:00:26,500 --> 00:00:34,060
+So I think that clearly both the app and the navbar component here are structural components.
+
+6
+00:00:34,060 --> 00:00:40,150
+So they are only responsible for the structure or for the layout of the application.
+
+7
+00:00:40,150 --> 00:00:44,410
+And the same can also be said of this main component here.
+
+8
+00:00:45,280 --> 00:00:48,550
+So those are for providing structure.
+
+9
+00:00:48,580 --> 00:00:55,300
+Then the logo here is clearly a presentational component, so it doesn't have any state and so therefore
+
+10
+00:00:55,300 --> 00:00:59,050
+it's stateless and it simply presents some content here.
+
+11
+00:00:59,290 --> 00:01:07,660
+Then the search is of course a stateful component, then numb results is just a presentational component
+
+12
+00:01:07,660 --> 00:01:08,230
+here.
+
+13
+00:01:08,870 --> 00:01:10,730
+Main we already talked about.
+
+14
+00:01:10,760 --> 00:01:15,830
+Then we have the list box, which clearly is a stateful component.
+
+15
+00:01:16,730 --> 00:01:19,550
+At the same for the movie list.
+
+16
+00:01:20,470 --> 00:01:22,660
+And for the what box?
+
+17
+00:01:22,690 --> 00:01:24,910
+So those are all stateful components.
+
+18
+00:01:24,910 --> 00:01:32,050
+While the movie simply receives this prop right here and then presents that data in the user interface.
+
+19
+00:01:32,230 --> 00:01:36,970
+So movie here is just a stateless or presentational component.
+
+20
+00:01:38,050 --> 00:01:42,070
+Then we have this one here, which is also a presentational component.
+
+21
+00:01:43,090 --> 00:01:45,820
+At the same for this one.
+
+22
+00:01:45,940 --> 00:01:49,120
+So watched movies list and watched movie.
+
+23
+00:01:50,290 --> 00:01:50,860
+All right.
+
+24
+00:01:50,860 --> 00:01:52,150
+And that's actually it.
+
+25
+00:01:52,150 --> 00:01:55,660
+I just wanted to quickly categorize each of them.
+
+26
+00:01:55,660 --> 00:02:01,780
+But now let's move on to that problem that I mentioned in the very beginning, and that is that right
+
+27
+00:02:01,780 --> 00:02:06,360
+now here we are not dynamically calculating the number of results.
+
+28
+00:02:06,370 --> 00:02:12,670
+So we are not basically taking the list of movies and reading how many there are and then displaying
+
+29
+00:02:12,670 --> 00:02:13,360
+it here.
+
+30
+00:02:13,450 --> 00:02:15,430
+So that's what we want to do.
+
+31
+00:02:15,700 --> 00:02:24,400
+But yeah, now we only have this X, So what we need basically is to get access to the movies state
+
+32
+00:02:24,400 --> 00:02:26,650
+right here in Num results.
+
+33
+00:02:27,730 --> 00:02:30,310
+Now, where does that state live right now?
+
+34
+00:02:30,550 --> 00:02:33,760
+Well, it's here inside of movies list.
+
+35
+00:02:34,030 --> 00:02:36,130
+So right here.
+
+36
+00:02:36,340 --> 00:02:41,800
+So, again, it's here, but we also need it here in num results.
+
+37
+00:02:42,070 --> 00:02:44,470
+So what's the solution to that?
+
+38
+00:02:44,500 --> 00:02:47,620
+And I really hope you already know at this point.
+
+39
+00:02:47,860 --> 00:02:53,810
+Well, the solution is to lift the state up to the closest parent component.
+
+40
+00:02:53,860 --> 00:02:56,140
+And what parent is that?
+
+41
+00:02:56,290 --> 00:02:59,460
+Well, it's the app component, right?
+
+42
+00:02:59,470 --> 00:03:04,090
+So it's not the nav bar because, of course, that's not a parent of movie list.
+
+43
+00:03:04,090 --> 00:03:06,970
+And so it is really the app component.
+
+44
+00:03:07,890 --> 00:03:15,120
+So what we need to do is to cut this from here and place it right back into the app component.
+
+45
+00:03:16,830 --> 00:03:17,640
+All right.
+
+46
+00:03:17,640 --> 00:03:22,100
+And now we need to pass it down as a prop to where we need it.
+
+47
+00:03:22,110 --> 00:03:26,670
+And so this is where the problem of prop drilling will come into play.
+
+48
+00:03:27,600 --> 00:03:34,380
+So again, we need now this state in order to make this work again inside of the movie list.
+
+49
+00:03:34,380 --> 00:03:40,260
+But this movie list is really deeply nested inside this component tree, Right?
+
+50
+00:03:40,440 --> 00:03:47,130
+So it has these two parent components, which now will also need to receive that state as a prop.
+
+51
+00:03:47,490 --> 00:03:50,880
+But instead of talking, let's actually do this.
+
+52
+00:03:51,480 --> 00:03:55,020
+So movies equals movies?
+
+53
+00:03:55,720 --> 00:03:59,570
+So now we have the movies array inside Main.
+
+54
+00:03:59,590 --> 00:04:01,030
+So let's go there.
+
+55
+00:04:02,190 --> 00:04:04,110
+And we need to receive it here.
+
+56
+00:04:05,840 --> 00:04:12,350
+Now, then we need to pass it here right into the watched box or actually into the list box.
+
+57
+00:04:12,680 --> 00:04:14,390
+So movies.
+
+58
+00:04:15,340 --> 00:04:17,350
+Equal movies.
+
+59
+00:04:18,910 --> 00:04:19,510
+Or actually here.
+
+60
+00:04:19,510 --> 00:04:19,690
+Yeah.
+
+61
+00:04:19,690 --> 00:04:20,740
+It's not Maine.
+
+62
+00:04:20,770 --> 00:04:22,690
+Of course it's movies.
+
+63
+00:04:24,080 --> 00:04:28,280
+Okay, so now we got it inside the main.
+
+64
+00:04:28,280 --> 00:04:30,710
+And now we got it inside the list box.
+
+65
+00:04:31,650 --> 00:04:34,200
+So let's come here and do it all again.
+
+66
+00:04:35,430 --> 00:04:40,020
+So accepting it here and then passing it here.
+
+67
+00:04:41,160 --> 00:04:43,440
+So movies, equal movies.
+
+68
+00:04:43,440 --> 00:04:47,970
+And so what we are doing right now is what we call prop drilling.
+
+69
+00:04:50,320 --> 00:04:54,910
+So now we finally accept it here and then it works again.
+
+70
+00:04:55,120 --> 00:05:02,050
+So basically, prop drilling means that we need to pass some prop through several nested child components
+
+71
+00:05:02,050 --> 00:05:09,190
+in order to get that data into some deeply nested component, which in this case is this one.
+
+72
+00:05:09,400 --> 00:05:14,890
+So we had to pass this movie's prop here first into the main.
+
+73
+00:05:15,690 --> 00:05:16,530
+Then.
+
+74
+00:05:17,390 --> 00:05:23,780
+Well from the main into the list box and then from the list box into the movie list.
+
+75
+00:05:23,780 --> 00:05:28,280
+And so all these components, they didn't actually even need this prop.
+
+76
+00:05:28,280 --> 00:05:32,870
+All they needed this for was to then pass it down even further the tree.
+
+77
+00:05:32,870 --> 00:05:37,850
+And so we end up with a lot of props that are really not needed at all.
+
+78
+00:05:37,850 --> 00:05:44,030
+All they are needed for is to pass the data down even further into our component tree.
+
+79
+00:05:44,240 --> 00:05:51,530
+So this is what prop drilling is and you saw that it is not a lot of fun and it could be even worse,
+
+80
+00:05:51,560 --> 00:05:55,640
+of course, if the data was nested even deeper into the tree.
+
+81
+00:05:55,730 --> 00:06:01,190
+So this was just like three levels deep, but it could be like 5 or 10 levels.
+
+82
+00:06:01,190 --> 00:06:04,370
+And so then it would become a little bit out of control.
+
+83
+00:06:05,390 --> 00:06:10,370
+So we will look at ways of fixing prop drilling a bit later in this section.
+
+84
+00:06:10,370 --> 00:06:15,890
+But for now, let's finally also make this prop.
+
+85
+00:06:16,160 --> 00:06:21,200
+So this movie's data available right here where we also need it.
+
+86
+00:06:21,930 --> 00:06:22,950
+So right here.
+
+87
+00:06:23,340 --> 00:06:24,480
+So movies.
+
+88
+00:06:25,790 --> 00:06:27,080
+Equal movies.
+
+89
+00:06:27,280 --> 00:06:34,490
+And so now we have to do some prop drilling again because here we need to again, accept this prop,
+
+90
+00:06:34,490 --> 00:06:36,080
+but we don't need it here.
+
+91
+00:06:36,440 --> 00:06:40,310
+All we need it for is to pass it down again.
+
+92
+00:06:41,260 --> 00:06:45,190
+But here it's not so bad because it's really just one level.
+
+93
+00:06:48,920 --> 00:06:49,580
+Okay.
+
+94
+00:06:49,580 --> 00:06:54,740
+And now finally, movies dot length.
+
+95
+00:06:54,920 --> 00:06:55,970
+And so.
+
+96
+00:06:55,980 --> 00:06:56,660
+Tada!
+
+97
+00:06:56,900 --> 00:06:59,120
+We got three results.
+
+98
+00:06:59,760 --> 00:07:00,650
+Nice.
+
+99
+00:07:00,660 --> 00:07:01,950
+So this works.
+
+100
+00:07:01,950 --> 00:07:08,130
+And what we just did here is a perfectly valid solution to make the application work, of course.
+
+101
+00:07:08,130 --> 00:07:15,180
+But as I mentioned, what we did was some so-called prop drilling, which is not always the best solution,
+
+102
+00:07:15,180 --> 00:07:20,760
+especially if we need to pass that prop down really, really deep into the tree.
+
+103
+00:07:20,760 --> 00:07:26,550
+And so in the next lecture, we will take a look at one of the possible solutions to this problem,
+
+104
+00:07:26,550 --> 00:07:29,070
+which is component composition.

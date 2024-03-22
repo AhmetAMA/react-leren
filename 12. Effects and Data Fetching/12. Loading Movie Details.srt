@@ -1,0 +1,1055 @@
+1
+00:00:00,830 --> 00:00:05,840
+So let's now load movie details about individual movies.
+
+2
+00:00:07,170 --> 00:00:14,310
+So essentially, whenever this movie details component here is going to mount, we will want to fetch
+
+3
+00:00:14,310 --> 00:00:17,760
+the movie corresponding to the selected ID.
+
+4
+00:00:18,120 --> 00:00:21,690
+So basically loading the currently selected movie.
+
+5
+00:00:23,170 --> 00:00:29,500
+So since we want to do that, each time that this component mounts, that means that we will want a
+
+6
+00:00:29,500 --> 00:00:30,490
+use effect.
+
+7
+00:00:33,650 --> 00:00:34,580
+Right.
+
+8
+00:00:34,760 --> 00:00:36,620
+So our effect function.
+
+9
+00:00:38,200 --> 00:00:42,660
+And then, as I just said, we want this to happen each time the component renders.
+
+10
+00:00:42,670 --> 00:00:46,150
+And so that's simply the empty dependency array.
+
+11
+00:00:47,780 --> 00:00:48,080
+Now.
+
+12
+00:00:48,080 --> 00:00:48,560
+Okay?
+
+13
+00:00:48,560 --> 00:00:50,630
+And now we want an async function.
+
+14
+00:00:50,630 --> 00:00:51,650
+And so.
+
+15
+00:00:52,670 --> 00:00:54,720
+Well, let's actually write async.
+
+16
+00:00:54,740 --> 00:00:56,720
+So async function.
+
+17
+00:00:57,490 --> 00:00:59,380
+And let's call this one get movie.
+
+18
+00:01:00,990 --> 00:01:02,130
+Details.
+
+19
+00:01:04,070 --> 00:01:04,820
+Okay.
+
+20
+00:01:04,820 --> 00:01:10,430
+And now let's actually come here to our API documentation.
+
+21
+00:01:10,430 --> 00:01:14,450
+And so now here what we want to do is to search by ID.
+
+22
+00:01:14,780 --> 00:01:16,280
+So here the parameter is.
+
+23
+00:01:16,280 --> 00:01:17,510
+Now this I.
+
+24
+00:01:18,670 --> 00:01:24,640
+Which will receive exactly this type of IMDb ID that we have been working with.
+
+25
+00:01:25,900 --> 00:01:27,610
+So let's actually grab.
+
+26
+00:01:28,470 --> 00:01:31,500
+The fetch from here because it's very similar.
+
+27
+00:01:33,820 --> 00:01:35,410
+So basically just this.
+
+28
+00:01:38,300 --> 00:01:39,320
+And.
+
+29
+00:01:40,060 --> 00:01:41,620
+Let's place it right here.
+
+30
+00:01:41,680 --> 00:01:47,800
+And so now this is why we had the key in a separate value, because here we, of course, need that
+
+31
+00:01:47,800 --> 00:01:48,580
+key again.
+
+32
+00:01:49,290 --> 00:01:50,250
+Now, here it is.
+
+33
+00:01:50,280 --> 00:01:54,420
+I and then it is here, the selected ID.
+
+34
+00:01:56,530 --> 00:01:57,300
+All right.
+
+35
+00:01:57,330 --> 00:02:05,490
+Now you see that vs code and eslint are already complaining here, but we will for now not give them
+
+36
+00:02:05,490 --> 00:02:07,350
+what they want, basically.
+
+37
+00:02:08,280 --> 00:02:10,830
+So we first want to see what's going to happen.
+
+38
+00:02:12,650 --> 00:02:21,730
+So then let's grab the data here from the response and of course, await this data.
+
+39
+00:02:21,740 --> 00:02:25,610
+And then for now, let's just log it to the console.
+
+40
+00:02:26,910 --> 00:02:27,810
+Okay.
+
+41
+00:02:27,810 --> 00:02:30,930
+And this should already be working at this point.
+
+42
+00:02:33,100 --> 00:02:34,570
+So let's reload.
+
+43
+00:02:36,340 --> 00:02:39,520
+And nothing happens, of course.
+
+44
+00:02:39,550 --> 00:02:43,690
+I mean vs code is even telling me about it by saying that I didn't.
+
+45
+00:02:44,550 --> 00:02:45,000
+A call.
+
+46
+00:02:45,000 --> 00:02:45,990
+The function there.
+
+47
+00:02:47,020 --> 00:02:48,580
+So let's try that again.
+
+48
+00:02:48,670 --> 00:02:52,600
+And immediately, actually, it loaded my movie here.
+
+49
+00:02:52,960 --> 00:02:59,890
+So we see that this time we actually get all this data about the movie, which again, we didn't get
+
+50
+00:02:59,890 --> 00:03:03,040
+simply here when we searched for the movies.
+
+51
+00:03:04,010 --> 00:03:04,640
+Okay.
+
+52
+00:03:04,640 --> 00:03:10,310
+But now we want to get some of this data here into our visible user interface.
+
+53
+00:03:10,310 --> 00:03:13,070
+So in the visible part of the component.
+
+54
+00:03:13,070 --> 00:03:14,720
+And so how do we do that?
+
+55
+00:03:14,780 --> 00:03:18,680
+Well, as always, we need a new piece of state.
+
+56
+00:03:21,370 --> 00:03:25,180
+So movie and set movie.
+
+57
+00:03:26,790 --> 00:03:32,850
+And here the default will now be an empty object because an object is exactly what we got back here
+
+58
+00:03:32,850 --> 00:03:34,470
+from this API call.
+
+59
+00:03:34,950 --> 00:03:41,820
+And so now instead of logging that to the console, let's just do set movie to the data.
+
+60
+00:03:43,040 --> 00:03:43,610
+All right.
+
+61
+00:03:43,610 --> 00:03:47,600
+And so now we should be ready to use that data here in our.
+
+62
+00:03:50,610 --> 00:03:57,380
+So actually, let's destructure now the object, because I really don't like these variable names here.
+
+63
+00:03:57,390 --> 00:03:58,500
+All uppercase.
+
+64
+00:03:58,710 --> 00:04:01,320
+I have no idea why they did it this way.
+
+65
+00:04:02,590 --> 00:04:07,780
+So we will basically now destructure data out of this movie.
+
+66
+00:04:10,050 --> 00:04:11,250
+So the title.
+
+67
+00:04:12,320 --> 00:04:15,500
+We will call title in our own code.
+
+68
+00:04:15,800 --> 00:04:17,810
+Then we will want the year.
+
+69
+00:04:18,830 --> 00:04:20,420
+Which is simply called here.
+
+70
+00:04:20,540 --> 00:04:22,460
+We will want the poster.
+
+71
+00:04:24,660 --> 00:04:27,300
+We want the runtime.
+
+72
+00:04:33,530 --> 00:04:36,560
+We want the IMDb rating as well.
+
+73
+00:04:36,560 --> 00:04:38,480
+So this one is actually correct.
+
+74
+00:04:39,600 --> 00:04:40,920
+We want the plot.
+
+75
+00:04:44,360 --> 00:04:46,040
+The released date.
+
+76
+00:04:48,030 --> 00:04:49,800
+So released like this.
+
+77
+00:04:50,280 --> 00:04:52,080
+The actors array.
+
+78
+00:04:55,630 --> 00:04:56,960
+Director.
+
+79
+00:04:58,490 --> 00:05:02,990
+And finally, also the genre of the movie.
+
+80
+00:05:04,830 --> 00:05:09,520
+Okay, so we have all these variables which you see we haven't used yet.
+
+81
+00:05:09,640 --> 00:05:16,390
+Let's just use them here in or a rendering logic just so I can see you.
+
+82
+00:05:16,420 --> 00:05:17,800
+What's going to happen?
+
+83
+00:05:18,130 --> 00:05:20,560
+So maybe the title and the year.
+
+84
+00:05:21,670 --> 00:05:23,590
+And so let's reload.
+
+85
+00:05:23,800 --> 00:05:25,420
+Let's select this one.
+
+86
+00:05:25,570 --> 00:05:29,070
+And then you see that first we get undefined, undefined.
+
+87
+00:05:29,080 --> 00:05:34,750
+And then after a second we get the indeed the title and the year.
+
+88
+00:05:34,870 --> 00:05:36,820
+So why is that?
+
+89
+00:05:37,120 --> 00:05:43,630
+Well, here in the very beginning, of course, when the component is initially mounted, then the movie
+
+90
+00:05:43,630 --> 00:05:46,060
+is still this empty object here.
+
+91
+00:05:46,090 --> 00:05:52,120
+And so then title and year read from that empty object are simply undefined.
+
+92
+00:05:53,100 --> 00:06:00,290
+So then this effect here starts and it gets the movie and will then store it into our movie state.
+
+93
+00:06:00,300 --> 00:06:02,580
+And so then the component is rerendered.
+
+94
+00:06:02,670 --> 00:06:05,610
+And then of course, this object is no longer empty.
+
+95
+00:06:05,610 --> 00:06:10,950
+And so then the rendering logic here will read all of this data out of the object.
+
+96
+00:06:10,950 --> 00:06:14,970
+And so then we successfully log that to the console over here.
+
+97
+00:06:15,870 --> 00:06:16,560
+All right.
+
+98
+00:06:16,560 --> 00:06:21,720
+But anyway, let's now actually use this right in our JS here.
+
+99
+00:06:25,070 --> 00:06:27,350
+So let's start with a header element.
+
+100
+00:06:27,590 --> 00:06:28,970
+So not.
+
+101
+00:06:29,830 --> 00:06:31,990
+A component, but really an element.
+
+102
+00:06:34,730 --> 00:06:38,540
+And in there we have an image, which is the poster.
+
+103
+00:06:40,430 --> 00:06:44,510
+And then the alt image or the alt tag, actually.
+
+104
+00:06:47,540 --> 00:06:49,580
+So poster of.
+
+105
+00:06:50,750 --> 00:06:51,590
+The movie.
+
+106
+00:06:52,610 --> 00:06:55,970
+So this is a template literal, so it works a bit differently.
+
+107
+00:07:00,580 --> 00:07:02,590
+So what's the problem here now?
+
+108
+00:07:03,770 --> 00:07:04,670
+Oh, of course.
+
+109
+00:07:04,790 --> 00:07:06,830
+I didn't close the image.
+
+110
+00:07:07,820 --> 00:07:15,920
+Next we have a div with a class of details overview and so in vs code we can actually just type dot
+
+111
+00:07:15,920 --> 00:07:21,260
+and then the class name then hit tab and well that should.
+
+112
+00:07:22,120 --> 00:07:24,490
+Uh, actually then create a div with that class.
+
+113
+00:07:24,880 --> 00:07:26,830
+So that has always worked.
+
+114
+00:07:28,120 --> 00:07:32,500
+For some reason now that's not working, so let's just do it manually then.
+
+115
+00:07:33,980 --> 00:07:36,980
+So H2 for the title.
+
+116
+00:07:37,670 --> 00:07:43,490
+And here we are typing a lot of JS and if you don't want to do that then you can just.
+
+117
+00:07:44,390 --> 00:07:48,800
+I get the code here from the final files of this lecture?
+
+118
+00:07:51,520 --> 00:07:54,010
+So here we want the run time.
+
+119
+00:07:56,900 --> 00:07:57,500
+All right.
+
+120
+00:07:57,500 --> 00:07:59,480
+Released is not defined.
+
+121
+00:07:59,510 --> 00:08:00,520
+Re.
+
+122
+00:08:01,310 --> 00:08:03,770
+Well, I didn't type that correctly.
+
+123
+00:08:06,140 --> 00:08:09,770
+Now that's already starting to look like something there.
+
+124
+00:08:10,880 --> 00:08:11,600
+Uh, yeah.
+
+125
+00:08:11,600 --> 00:08:12,770
+Let's keep going here.
+
+126
+00:08:16,140 --> 00:08:17,940
+Next up, we have the genre.
+
+127
+00:08:19,900 --> 00:08:22,000
+And then also the rating.
+
+128
+00:08:22,150 --> 00:08:25,750
+So here we're going to have like a star emoji.
+
+129
+00:08:30,840 --> 00:08:34,860
+And then here basically just the IMDb rating.
+
+130
+00:08:36,070 --> 00:08:37,730
+Let's actually write that there.
+
+131
+00:08:37,750 --> 00:08:39,190
+IMDb.
+
+132
+00:08:40,650 --> 00:08:41,550
+A rating.
+
+133
+00:08:42,910 --> 00:08:44,890
+Yeah, that's looking really nice.
+
+134
+00:08:44,900 --> 00:08:47,090
+So that's the header part here.
+
+135
+00:08:47,090 --> 00:08:48,500
+And so now let's do.
+
+136
+00:08:49,790 --> 00:08:50,870
+A section.
+
+137
+00:08:52,180 --> 00:08:53,410
+Element like this.
+
+138
+00:08:55,180 --> 00:08:57,000
+So a paragraph in there.
+
+139
+00:08:57,010 --> 00:09:01,930
+I want some emphasized text, which is going to be the movie plot.
+
+140
+00:09:06,340 --> 00:09:09,850
+Then starring the actors.
+
+141
+00:09:11,510 --> 00:09:13,100
+So this is just a string.
+
+142
+00:09:15,140 --> 00:09:19,250
+And then just directed by the director.
+
+143
+00:09:20,480 --> 00:09:21,200
+All right.
+
+144
+00:09:21,200 --> 00:09:23,120
+And there we go.
+
+145
+00:09:24,010 --> 00:09:24,880
+Nice.
+
+146
+00:09:25,030 --> 00:09:29,860
+We still have the selected ID here, which we now no longer need.
+
+147
+00:09:31,050 --> 00:09:31,740
+All right.
+
+148
+00:09:31,740 --> 00:09:34,020
+And now there's just one thing missing.
+
+149
+00:09:34,320 --> 00:09:38,820
+So if you come here, you see that we have this rating component.
+
+150
+00:09:38,820 --> 00:09:41,700
+And does this look familiar to you?
+
+151
+00:09:41,970 --> 00:09:45,630
+Well, we spent like an hour or more building that.
+
+152
+00:09:45,630 --> 00:09:49,120
+So hopefully this is still familiar to you.
+
+153
+00:09:49,140 --> 00:09:55,530
+And so let's actually now grab that star rating component that we built earlier.
+
+154
+00:09:56,190 --> 00:10:04,470
+So let's write star rating and thought that it would actually get automatically imported.
+
+155
+00:10:05,570 --> 00:10:07,190
+But let's then do it manually.
+
+156
+00:10:07,250 --> 00:10:10,850
+So I think it should be right here in the same folder.
+
+157
+00:10:10,880 --> 00:10:11,570
+Yeah.
+
+158
+00:10:13,450 --> 00:10:15,910
+So import star.
+
+159
+00:10:17,200 --> 00:10:21,460
+Reading from and then star.
+
+160
+00:10:22,550 --> 00:10:23,330
+Rating.
+
+161
+00:10:26,730 --> 00:10:27,130
+Okay.
+
+162
+00:10:27,130 --> 00:10:31,930
+Now, here we need the dot for the relative file.
+
+163
+00:10:31,930 --> 00:10:33,460
+And there it is.
+
+164
+00:10:33,880 --> 00:10:35,920
+Now it is a bit too big.
+
+165
+00:10:36,600 --> 00:10:39,850
+And also we want ten stars, not just five.
+
+166
+00:10:39,870 --> 00:10:47,370
+So on IMDb, if you know the site, then you know that their movies are rated from 1 to 10.
+
+167
+00:10:47,400 --> 00:10:50,070
+That's also why we have here the 8.8.
+
+168
+00:10:50,740 --> 00:10:57,490
+So here we can now use that API basically that we built for this component.
+
+169
+00:10:58,240 --> 00:11:06,370
+So that's max rating to ten and then the size of 24, let's say.
+
+170
+00:11:06,400 --> 00:11:09,310
+So that's half the size by default, I think.
+
+171
+00:11:09,310 --> 00:11:14,680
+And then let's also place this into a div with a class name of.
+
+172
+00:11:16,030 --> 00:11:16,900
+Rating.
+
+173
+00:11:21,030 --> 00:11:21,800
+Okay.
+
+174
+00:11:21,810 --> 00:11:22,770
+Beautiful.
+
+175
+00:11:23,750 --> 00:11:29,560
+Now, of course, for now, this rating is not being stored anyway or anywhere.
+
+176
+00:11:29,570 --> 00:11:33,230
+And so if we reload now, then of course it is gone.
+
+177
+00:11:33,230 --> 00:11:37,790
+But for now, the component here is working pretty nice, isn't it?
+
+178
+00:11:38,030 --> 00:11:42,790
+But watch what happens if I now try to select another movie here.
+
+179
+00:11:42,800 --> 00:11:44,240
+So let's say this one.
+
+180
+00:11:45,310 --> 00:11:48,400
+So nothing happened, right?
+
+181
+00:11:48,700 --> 00:11:55,360
+Now, if I close this and then open up the second one here, for example, then you see that it's working
+
+182
+00:11:55,360 --> 00:11:55,990
+fine.
+
+183
+00:11:56,380 --> 00:12:03,820
+But again, if I now click on another one, then we get the same problem or component here is not updating.
+
+184
+00:12:04,090 --> 00:12:06,310
+So why do you think that is?
+
+185
+00:12:06,490 --> 00:12:08,890
+What might be happening here?
+
+186
+00:12:09,860 --> 00:12:16,670
+Well, we told our effect here to load the movie data whenever the component first mounts.
+
+187
+00:12:16,700 --> 00:12:17,660
+Right.
+
+188
+00:12:17,690 --> 00:12:24,950
+However, when we click here on one of these other movies, this component is actually not mount again.
+
+189
+00:12:24,980 --> 00:12:30,830
+So the initial render will not happen again because the component is already mounted.
+
+190
+00:12:30,950 --> 00:12:35,090
+Now, the reason for that is the one that we learned in the previous section.
+
+191
+00:12:35,090 --> 00:12:42,290
+It is because this component here so the movie detail component is rendered in exactly the same place
+
+192
+00:12:42,290 --> 00:12:43,520
+in the component tree.
+
+193
+00:12:43,520 --> 00:12:50,180
+And so as we click here on another movie, simply another prop will be passed into the component, but
+
+194
+00:12:50,180 --> 00:12:52,760
+the component itself will not be destroyed.
+
+195
+00:12:52,760 --> 00:12:54,950
+It will stay in the component tree.
+
+196
+00:12:54,950 --> 00:13:01,790
+And so the only thing that is changing as we click on one of the other movies is the ID prop that is
+
+197
+00:13:01,820 --> 00:13:03,140
+being passed in.
+
+198
+00:13:03,140 --> 00:13:07,400
+So the selected ID prop, that's the only thing that is changing.
+
+199
+00:13:07,400 --> 00:13:14,310
+And so therefore, right now this effect here will not run again because again, it is only running
+
+200
+00:13:14,310 --> 00:13:18,390
+when the component mounts, which really only happens once.
+
+201
+00:13:18,750 --> 00:13:24,660
+Now, of course, if I close this and then go to another one, then the component has been unmounted
+
+202
+00:13:24,660 --> 00:13:27,000
+first and then it is mounting again.
+
+203
+00:13:27,000 --> 00:13:29,970
+And so therefore then it is going to work.
+
+204
+00:13:30,240 --> 00:13:32,340
+So how do we solve this?
+
+205
+00:13:32,830 --> 00:13:38,050
+Well, the answer lies again, right here in the dependency array.
+
+206
+00:13:38,350 --> 00:13:46,780
+So here if we now pass in the selected ID, which is the prop that changes, then let's see what happens.
+
+207
+00:13:47,820 --> 00:13:49,350
+So you saw that.
+
+208
+00:13:49,350 --> 00:13:51,200
+Now it did actually work.
+
+209
+00:13:51,210 --> 00:13:58,380
+And so the reason is that now as the selected ID prop changes, then the effect will indeed be executed
+
+210
+00:13:58,380 --> 00:14:05,130
+again, because remember, this dependency array is a little bit like an event listener that is listening
+
+211
+00:14:05,130 --> 00:14:08,040
+for one of the dependencies to change.
+
+212
+00:14:08,040 --> 00:14:13,200
+And so now as we click on another movie, this prop here will change.
+
+213
+00:14:13,200 --> 00:14:20,910
+And so yeah, our effect is then executed again, which gives us exactly the functionality that we were
+
+214
+00:14:20,910 --> 00:14:21,810
+looking for.
+
+215
+00:14:22,200 --> 00:14:30,090
+So that's really great and a really powerful and it's therefore also really important to understand
+
+216
+00:14:30,090 --> 00:14:33,120
+how exactly this dependency array works.
+
+217
+00:14:33,360 --> 00:14:41,010
+And now just one final thing, which is that watch what happens when I click on one of the other movies
+
+218
+00:14:41,220 --> 00:14:42,270
+actually here.
+
+219
+00:14:43,850 --> 00:14:48,020
+Well, probably you cannot really see it because you can't really see when I click.
+
+220
+00:14:48,020 --> 00:14:53,110
+But there is a visible delay between the click and something changing here.
+
+221
+00:14:53,120 --> 00:14:57,770
+And so of course, that's because in the background the movie needs to be fetched.
+
+222
+00:14:58,740 --> 00:15:05,670
+So just like before, what we want now is a quick loading indicator just to let the user know that something
+
+223
+00:15:05,670 --> 00:15:06,500
+is happening.
+
+224
+00:15:06,510 --> 00:15:09,600
+And so let's do that exactly as before.
+
+225
+00:15:11,870 --> 00:15:16,970
+So we create a new is loading state and then set is loading.
+
+226
+00:15:18,490 --> 00:15:21,010
+And we start with false.
+
+227
+00:15:22,710 --> 00:15:22,940
+Yeah.
+
+228
+00:15:22,950 --> 00:15:23,550
+Then.
+
+229
+00:15:24,430 --> 00:15:26,650
+Immediately before we start fetching.
+
+230
+00:15:27,370 --> 00:15:33,040
+We set isloading to true and as soon as it is done.
+
+231
+00:15:33,880 --> 00:15:35,530
+We set it back to false.
+
+232
+00:15:37,160 --> 00:15:38,990
+So just as simple as this.
+
+233
+00:15:39,260 --> 00:15:43,400
+And by the way, in this time here, we are not handling errors.
+
+234
+00:15:43,400 --> 00:15:47,510
+But you could do that just like we did in the beginning.
+
+235
+00:15:47,690 --> 00:15:51,230
+So if you want, you can just go ahead and copy that, basically.
+
+236
+00:15:51,230 --> 00:15:57,470
+But here, in order to save some time, I will just ignore the possibility of there being an error.
+
+237
+00:15:58,740 --> 00:16:02,160
+But anyway, let's now use that loading state.
+
+238
+00:16:02,160 --> 00:16:06,610
+And so let's do it right here.
+
+239
+00:16:06,630 --> 00:16:08,520
+So inside the details.
+
+240
+00:16:08,520 --> 00:16:11,600
+So we always want to return this div here.
+
+241
+00:16:11,610 --> 00:16:13,080
+But if.
+
+242
+00:16:13,550 --> 00:16:14,960
+We are still loading.
+
+243
+00:16:15,080 --> 00:16:16,490
+So it's loading.
+
+244
+00:16:16,640 --> 00:16:21,080
+Then we want to now use again our loader components.
+
+245
+00:16:21,380 --> 00:16:23,480
+So a reusable component.
+
+246
+00:16:24,810 --> 00:16:31,860
+But if not, then we want the header and the section and immediately you see the problem once again,
+
+247
+00:16:31,860 --> 00:16:35,760
+which is that this piece of JS has to.
+
+248
+00:16:36,500 --> 00:16:38,390
+Root elements, basically.
+
+249
+00:16:39,490 --> 00:16:42,010
+So it's the header and the section.
+
+250
+00:16:42,660 --> 00:16:44,040
+Which is not possible.
+
+251
+00:16:44,720 --> 00:16:47,240
+And so let's close that.
+
+252
+00:16:47,240 --> 00:16:49,880
+And actually here we need the JavaScript mode.
+
+253
+00:16:50,540 --> 00:16:51,590
+And yeah.
+
+254
+00:16:53,420 --> 00:16:56,780
+So you see the loading indicator there is very short.
+
+255
+00:16:56,780 --> 00:17:01,610
+But of course if our network was just a little bit.
+
+256
+00:17:02,520 --> 00:17:03,600
+Uh, slower.
+
+257
+00:17:05,040 --> 00:17:09,390
+Then it makes a lot of sense to have that loading indicator right there.
+
+258
+00:17:09,630 --> 00:17:10,500
+Great.
+
+259
+00:17:10,500 --> 00:17:17,310
+So this was another very important part of our application, and we did it pretty fast because some
+
+260
+00:17:17,310 --> 00:17:20,100
+parts were just the repetition of before.
+
+261
+00:17:20,280 --> 00:17:23,010
+And we also wrote a lot of JS here.
+
+262
+00:17:23,340 --> 00:17:29,850
+But yeah, of course the main part is here the effect and understanding how the dependency array works.
+
+263
+00:17:29,850 --> 00:17:37,500
+So make sure to really get that and then let's move on and actually make this rating here work so that
+
+264
+00:17:37,500 --> 00:17:40,410
+we can add a movie to our watch list.

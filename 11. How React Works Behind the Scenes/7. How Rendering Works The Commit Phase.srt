@@ -1,0 +1,511 @@
+1
+00:00:01,130 --> 00:00:06,410
+Welcome back to part three of how rendering works behind the scenes.
+
+2
+00:00:07,380 --> 00:00:14,730
+So we just finished learning about the render phase, which resulted in a list of Dom updates, and
+
+3
+00:00:14,730 --> 00:00:18,480
+this list will now get used in the commit phase.
+
+4
+00:00:18,840 --> 00:00:26,010
+Now, technically speaking, the current work in progress fiber tree also goes into this commit phase.
+
+5
+00:00:26,010 --> 00:00:27,910
+But let's keep it simple here.
+
+6
+00:00:27,930 --> 00:00:33,210
+So these are more conceptual diagrams so that we can understand what is happening.
+
+7
+00:00:33,210 --> 00:00:38,760
+Not a 100% accurate description of the algorithms inside react.
+
+8
+00:00:39,090 --> 00:00:39,900
+All right.
+
+9
+00:00:40,140 --> 00:00:47,250
+But anyway, as you know by now, the commit phase is where React finally writes to the Dom.
+
+10
+00:00:47,250 --> 00:00:51,990
+So it inserts, deletes and updates Dom elements.
+
+11
+00:00:52,260 --> 00:00:57,990
+You will sometimes also read that React flushes updates to the Dom in this phase.
+
+12
+00:00:58,170 --> 00:01:04,950
+So basically React goes through the effects list that was created during rendering and applies them
+
+13
+00:01:04,950 --> 00:01:10,990
+one by one to the actual Dom elements that were in the already existing dom tree.
+
+14
+00:01:11,610 --> 00:01:15,600
+Now writing to the Dom happens all in one go.
+
+15
+00:01:15,840 --> 00:01:22,800
+So we say that the commit phase is synchronous, unlike the rendering phase, which can be paused.
+
+16
+00:01:22,950 --> 00:01:26,160
+So committing cannot be interrupted.
+
+17
+00:01:26,190 --> 00:01:33,120
+And this is necessary so that the Dom never shows partial results, which ensures that the UI always
+
+18
+00:01:33,120 --> 00:01:34,470
+stays consistent.
+
+19
+00:01:34,710 --> 00:01:41,640
+In fact, that's the whole point of dividing the entire process into the render phase and the commit
+
+20
+00:01:41,640 --> 00:01:42,120
+phase.
+
+21
+00:01:42,150 --> 00:01:49,440
+In the first place, it's so that rendering can be paused, resumed and discarded, and the result of
+
+22
+00:01:49,440 --> 00:01:53,670
+all that rendering can then be flushed to the Dom in one go.
+
+23
+00:01:53,970 --> 00:02:01,440
+Then once the commit phase is completed, the work in progress fiber tree becomes the current tree for
+
+24
+00:02:01,440 --> 00:02:03,120
+the next render cycle.
+
+25
+00:02:03,270 --> 00:02:10,320
+That's because, remember, fiber trees are never discarded and never recreated from scratch.
+
+26
+00:02:10,350 --> 00:02:15,490
+Instead, they are reused in order to save precious rendering time.
+
+27
+00:02:15,700 --> 00:02:19,180
+And with that, we close up the commit phase.
+
+28
+00:02:19,210 --> 00:02:25,960
+The browser will then notice that the Dom has been changed and as a result it will repaint the screen
+
+29
+00:02:25,960 --> 00:02:28,600
+whenever it has some idle time.
+
+30
+00:02:28,810 --> 00:02:36,610
+So this is where these Dom updates are finally made visible to the user in the form of an updated user
+
+31
+00:02:36,610 --> 00:02:37,600
+interface.
+
+32
+00:02:37,870 --> 00:02:44,710
+Now, I'm not going to go into how this phase works because this is really more about how browsers work
+
+33
+00:02:44,710 --> 00:02:46,990
+internally and not react.
+
+34
+00:02:47,110 --> 00:02:51,280
+However, there is still one more thing that we need to talk about.
+
+35
+00:02:51,550 --> 00:02:58,300
+So the browser paint phase that we just mentioned is of course performed by whatever browser the user
+
+36
+00:02:58,300 --> 00:03:04,250
+is using, and the render phase is obviously performed by the React library.
+
+37
+00:03:04,270 --> 00:03:06,700
+But what about the commit phase?
+
+38
+00:03:06,730 --> 00:03:11,380
+We would think that it's also done by react, right?
+
+39
+00:03:11,500 --> 00:03:14,650
+But actually that's not true.
+
+40
+00:03:14,680 --> 00:03:21,190
+It's actually a separate library that writes to the Dom and it's called React Dom.
+
+41
+00:03:21,550 --> 00:03:25,990
+So not very creative, but that's just what it's called.
+
+42
+00:03:26,020 --> 00:03:34,360
+So in fact, React itself does never touch the Dom and it actually has no idea where the result of the
+
+43
+00:03:34,360 --> 00:03:38,230
+render phase will actually be committed and painted.
+
+44
+00:03:38,350 --> 00:03:43,430
+So react only does the render phase but not the commit phase.
+
+45
+00:03:43,450 --> 00:03:50,530
+And the reason for that is that React itself was designed to be used independently from the platform
+
+46
+00:03:50,530 --> 00:03:57,250
+where elements will actually be shown and therefore react can be used with many different so-called
+
+47
+00:03:57,250 --> 00:03:58,090
+hosts.
+
+48
+00:03:58,660 --> 00:04:05,050
+Now, up until this point, we have only ever thought of react in conjunction with the Dom because we
+
+49
+00:04:05,050 --> 00:04:07,600
+usually use it to build web application.
+
+50
+00:04:07,600 --> 00:04:12,230
+And in 90% of the cases, that's actually what we do with React.
+
+51
+00:04:12,250 --> 00:04:16,910
+But the truth is that React is used with other hosts as well.
+
+52
+00:04:16,930 --> 00:04:24,700
+For example, we can actually build native mobile applications for iOS and Android using React Native,
+
+53
+00:04:24,730 --> 00:04:32,050
+or we can build videos with React using a package called Remotion, and we can even create all kinds
+
+54
+00:04:32,050 --> 00:04:41,350
+of documents like word or PDF documents, Figma designs, and many more using different so-called renderers.
+
+55
+00:04:41,620 --> 00:04:49,060
+Now, if we think about this renderer is actually a pretty terrible name because according to React's
+
+56
+00:04:49,060 --> 00:04:56,050
+own terminology, renderers do not render, but they commit the results of the render phase.
+
+57
+00:04:56,170 --> 00:05:03,200
+But they think that this renderer name comes from a time before react, divided the render and the commit
+
+58
+00:05:03,200 --> 00:05:05,750
+phase into two separate phases.
+
+59
+00:05:05,750 --> 00:05:13,160
+And so they chose this term of renderer because it fits with the common sense definition of rendering.
+
+60
+00:05:13,610 --> 00:05:21,650
+But anyway, in all these situations, the results of the render phase is not really a list of Dom updates,
+
+61
+00:05:21,650 --> 00:05:27,950
+but a list of updates of whatever elements are used in the host that's being used.
+
+62
+00:05:28,160 --> 00:05:34,790
+So the term virtual Dom then also doesn't really make much sense when we look at it from this angle,
+
+63
+00:05:34,790 --> 00:05:41,720
+which is just one more reason why the React team prefers the more accurate name of React Element Tree.
+
+64
+00:05:42,110 --> 00:05:46,520
+Now, all these details are, of course, not really that important.
+
+65
+00:05:46,550 --> 00:05:53,390
+What I want you to retain from this slide is that the React library is not the one responsible for writing
+
+66
+00:05:53,420 --> 00:05:59,970
+to the Dom because the Dom is just one of many hosts to which React apps can be committed.
+
+67
+00:05:59,990 --> 00:06:03,230
+So to which they can be output basically.
+
+68
+00:06:03,350 --> 00:06:08,060
+And for each of these hosts, we have a different package that we can use.
+
+69
+00:06:08,060 --> 00:06:14,250
+And that's why in our Index.js file we always import both react and react.
+
+70
+00:06:14,250 --> 00:06:15,750
+Dom Right.
+
+71
+00:06:15,750 --> 00:06:19,620
+And so now you know the exact reason why we have to do that.
+
+72
+00:06:21,820 --> 00:06:22,660
+All right.
+
+73
+00:06:22,660 --> 00:06:30,880
+So after looking at all these phases in so much detail, let's do a quick recap here and summarize everything
+
+74
+00:06:30,880 --> 00:06:32,260
+that we have learned.
+
+75
+00:06:32,530 --> 00:06:40,270
+So the whole process of rendering and displaying a React application on the screen starts with a trigger,
+
+76
+00:06:40,270 --> 00:06:47,480
+which can either be the initial render of the app or a state update in one of the component instances.
+
+77
+00:06:47,500 --> 00:06:53,410
+This then triggers the render phase, which does not produce any visual output.
+
+78
+00:06:53,530 --> 00:07:01,330
+So this phase starts by rendering all component instances that need a rerender, and rendering in react
+
+79
+00:07:01,330 --> 00:07:04,460
+simply means to call the components functions.
+
+80
+00:07:04,480 --> 00:07:11,830
+This will create one or more updated react elements which will be placed in a new virtual Dom, which
+
+81
+00:07:11,860 --> 00:07:15,310
+is actually simply a tree of react elements.
+
+82
+00:07:15,910 --> 00:07:22,120
+Now, what's really important to remember about this process is that rendering a component will cause
+
+83
+00:07:22,150 --> 00:07:28,720
+all of its child components to be rendered as well, no matter if props changed or not.
+
+84
+00:07:28,870 --> 00:07:35,290
+This is because React doesn't know whether children have been affected by the parent rerendering or
+
+85
+00:07:35,290 --> 00:07:35,920
+not.
+
+86
+00:07:36,220 --> 00:07:42,410
+Now, next up, this new virtual Dom needs to be reconciled with the current fiber tree.
+
+87
+00:07:42,430 --> 00:07:49,510
+So with the representation of the element tree before the state update, this is necessary because it
+
+88
+00:07:49,510 --> 00:07:56,740
+would be slow and inefficient to destroy and rebuild the entire Dom tree each time that something on
+
+89
+00:07:56,740 --> 00:07:58,810
+the screen must be updated.
+
+90
+00:07:58,840 --> 00:08:06,490
+Instead, reconciliation tries to reuse as much of the Dom as possible by finding the smallest number
+
+91
+00:08:06,490 --> 00:08:11,320
+of Dom updates that reflect the latest state update on the screen.
+
+92
+00:08:12,120 --> 00:08:19,650
+Now this reconciliation process is done using a reconciler called fiber, which works with a mutable
+
+93
+00:08:19,650 --> 00:08:22,680
+data structure called the fiber tree.
+
+94
+00:08:22,770 --> 00:08:28,800
+And in this tree, for each react element and Dom element, there is a fiber.
+
+95
+00:08:28,800 --> 00:08:35,250
+And this fiber holds the actual component state props and a queue of work.
+
+96
+00:08:35,730 --> 00:08:37,290
+After reconciliation.
+
+97
+00:08:37,290 --> 00:08:43,080
+This queue of work will contain the Dom updates that are needed for that element.
+
+98
+00:08:43,740 --> 00:08:51,060
+Now the computation of these updates is performed by a diffing algorithm, which step by step compares
+
+99
+00:08:51,060 --> 00:08:55,750
+the elements in the new virtual Dom with the elements in the current fiber tree.
+
+100
+00:08:55,770 --> 00:08:58,350
+So to see what has changed.
+
+101
+00:08:58,840 --> 00:09:02,040
+So the final result of the render phase.
+
+102
+00:09:02,050 --> 00:09:10,150
+So basically of this reconciliation and diffing process is a second updated fiber tree as well as a
+
+103
+00:09:10,180 --> 00:09:13,210
+list of all necessary Dom updates.
+
+104
+00:09:13,510 --> 00:09:21,130
+Now it's important to note that the render phase is asynchronous, so fiber can prioritize and split
+
+105
+00:09:21,130 --> 00:09:25,990
+work into chunks and pause and resume some work later.
+
+106
+00:09:25,990 --> 00:09:33,190
+And this is necessary for concurrent features and also to prevent the JavaScript engine to be blocked
+
+107
+00:09:33,190 --> 00:09:35,500
+by complex render processes.
+
+108
+00:09:36,250 --> 00:09:39,940
+But anyway, the output of the render phase.
+
+109
+00:09:39,940 --> 00:09:47,440
+So the list of Dom updates will finally actually be written to the Dom in the commit phase.
+
+110
+00:09:47,530 --> 00:09:56,110
+So in this phase, a so-called renderer like React Dom will insert, delete and update dom elements
+
+111
+00:09:56,110 --> 00:10:02,180
+so that we end up with an updated Dom that reflects the new state of the application.
+
+112
+00:10:02,200 --> 00:10:07,150
+And unlike the render phase, the commit phase is actually synchronous.
+
+113
+00:10:07,150 --> 00:10:14,530
+So all the Dom updates are performed in one go in order to ensure a consistent over time.
+
+114
+00:10:15,390 --> 00:10:22,470
+Now, finally, once the browser realizes that the Dom has been updated, it starts a new browser paint.
+
+115
+00:10:22,500 --> 00:10:26,790
+In order to visually update the user interface on the screen.
+
+116
+00:10:27,710 --> 00:10:28,370
+Okay.
+
+117
+00:10:28,370 --> 00:10:30,320
+And there you have it.
+
+118
+00:10:30,440 --> 00:10:38,510
+This is how, in a nutshell, we go from updated react elements all the way to an updated Dom and user
+
+119
+00:10:38,510 --> 00:10:40,520
+interface on the screen.
+
+120
+00:10:40,880 --> 00:10:48,260
+So it sure was a really long process, but I hope that you have learned a lot along the way and that
+
+121
+00:10:48,260 --> 00:10:50,580
+it wasn't too overwhelming.
+
+122
+00:10:50,600 --> 00:10:57,560
+And again, keep in mind that you can build React apps without being aware that most of these things
+
+123
+00:10:57,560 --> 00:10:58,730
+even exist.
+
+124
+00:10:58,850 --> 00:11:06,140
+Now, some of these things do have practical implications and also implications for performance, but
+
+125
+00:11:06,140 --> 00:11:08,510
+we will talk about those later.
+
+126
+00:11:08,750 --> 00:11:15,140
+For now, just take a breath as this was probably the hardest part of the entire course.
+
+127
+00:11:15,860 --> 00:11:18,980
+So good job of sticking with it to the end.
+
+128
+00:11:18,980 --> 00:11:23,600
+And let me know what you think of this series of lectures in the Q&amp;A.
