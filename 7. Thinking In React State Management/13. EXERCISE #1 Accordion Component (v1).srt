@@ -1,0 +1,827 @@
+1
+00:00:01,070 --> 00:00:08,120
+It's now time for another exercise so that together we can practice date management and thinking in
+
+2
+00:00:08,120 --> 00:00:10,610
+react in general a little bit more.
+
+3
+00:00:12,010 --> 00:00:19,030
+So together we will build this very simple accordion component where we can open and close each of these
+
+4
+00:00:19,030 --> 00:00:21,130
+items of the accordion here.
+
+5
+00:00:21,400 --> 00:00:27,070
+So when it's closed and we click, it opens, and when it's open and we click, it basically closes
+
+6
+00:00:27,070 --> 00:00:27,670
+again.
+
+7
+00:00:27,820 --> 00:00:35,360
+And each of these items has the title or actually the number here, the title, and then the text itself.
+
+8
+00:00:35,380 --> 00:00:39,760
+So this is here a question and this is an answer basically.
+
+9
+00:00:39,760 --> 00:00:44,950
+And so we have some starter files again, which I have linked in this lecture.
+
+10
+00:00:44,950 --> 00:00:50,380
+And two starter files are this array of frequently asked questions.
+
+11
+00:00:50,380 --> 00:00:53,860
+And then also this CSS styles right here.
+
+12
+00:00:54,630 --> 00:00:57,120
+So as always, you have two options.
+
+13
+00:00:57,120 --> 00:00:59,780
+You can do it in your own VS code.
+
+14
+00:00:59,790 --> 00:01:04,230
+So then just go here and copy all the relevant starter data.
+
+15
+00:01:04,260 --> 00:01:09,360
+Or of course you can fork now this code sandbox.
+
+16
+00:01:09,930 --> 00:01:13,260
+So basically in order to create your own one.
+
+17
+00:01:13,680 --> 00:01:19,500
+So now I have created a new one out of the other one and so I can safely change this one.
+
+18
+00:01:20,530 --> 00:01:23,950
+So let's go back here to see what we have to build.
+
+19
+00:01:23,980 --> 00:01:27,810
+And basically, the entire thing here is the accordion component.
+
+20
+00:01:27,820 --> 00:01:31,460
+And then each of them is one accordion item.
+
+21
+00:01:31,480 --> 00:01:35,830
+And so let's start by actually building these items themselves.
+
+22
+00:01:35,830 --> 00:01:41,740
+And remember that each one gets a number, a title and some text.
+
+23
+00:01:43,870 --> 00:01:47,860
+So the accordion component has actually already been created.
+
+24
+00:01:48,070 --> 00:01:49,180
+And so now.
+
+25
+00:01:50,180 --> 00:01:53,330
+Next, let's create the accordion item.
+
+26
+00:01:57,310 --> 00:01:58,060
+Okay.
+
+27
+00:01:58,480 --> 00:02:02,260
+So remember that each item gets a number.
+
+28
+00:02:02,650 --> 00:02:06,400
+It gets the title and the text.
+
+29
+00:02:06,400 --> 00:02:08,780
+And so let's immediately write that here.
+
+30
+00:02:08,800 --> 00:02:11,370
+Basically as the props that we will receive.
+
+31
+00:02:11,380 --> 00:02:14,440
+And so then we can immediately build with these.
+
+32
+00:02:14,980 --> 00:02:20,450
+So just like before, we will start by building a static version of the app.
+
+33
+00:02:20,470 --> 00:02:27,850
+So in this case of these two components and then later we add state to the mix in order to actually
+
+34
+00:02:27,850 --> 00:02:29,530
+make the component dynamic.
+
+35
+00:02:30,610 --> 00:02:34,000
+So here we will return a div element.
+
+36
+00:02:34,890 --> 00:02:37,500
+And this div has the class name.
+
+37
+00:02:37,650 --> 00:02:42,120
+That's coming from the CSS that I provided of item.
+
+38
+00:02:44,580 --> 00:02:46,500
+And we can immediately close that.
+
+39
+00:02:46,800 --> 00:02:50,040
+And so then we have one paragraph for the number.
+
+40
+00:02:50,810 --> 00:02:52,280
+So that's class name.
+
+41
+00:02:53,310 --> 00:02:54,150
+Number.
+
+42
+00:02:55,610 --> 00:02:58,820
+And then here let's actually immediately use.
+
+43
+00:03:00,440 --> 00:03:07,430
+Again, this prop that we will receive as soon as we start including this component here anywhere.
+
+44
+00:03:08,330 --> 00:03:12,350
+But we can already use that prop as if it already existed.
+
+45
+00:03:12,680 --> 00:03:16,220
+So class name, then let's say text.
+
+46
+00:03:16,940 --> 00:03:18,680
+And again, here the same thing.
+
+47
+00:03:18,920 --> 00:03:21,440
+Let's immediately use the prop.
+
+48
+00:03:24,020 --> 00:03:25,160
+And then finally.
+
+49
+00:03:25,910 --> 00:03:28,100
+This one here for the icon.
+
+50
+00:03:31,850 --> 00:03:36,500
+And by icon, I mean this minus and plus right here.
+
+51
+00:03:36,680 --> 00:03:39,530
+So see how it toggles between plus and minus.
+
+52
+00:03:39,740 --> 00:03:42,020
+And for now, let's start with a minus there.
+
+53
+00:03:42,560 --> 00:03:44,180
+But we will change that later.
+
+54
+00:03:45,500 --> 00:03:50,370
+And then finally we then have a div which will contain the content itself.
+
+55
+00:03:50,380 --> 00:03:51,990
+So basically the text.
+
+56
+00:03:52,000 --> 00:03:55,180
+So here the class name is content.
+
+57
+00:03:56,240 --> 00:03:57,110
+Box.
+
+58
+00:03:59,270 --> 00:04:02,750
+And then this again is where the actual text goes.
+
+59
+00:04:02,750 --> 00:04:07,070
+And I see that here I have a mistake because this is actually for the title.
+
+60
+00:04:07,660 --> 00:04:11,030
+So I'm not sure why I called that text.
+
+61
+00:04:11,070 --> 00:04:12,280
+So the class.
+
+62
+00:04:12,460 --> 00:04:14,140
+But yeah, never mind.
+
+63
+00:04:15,800 --> 00:04:16,540
+Okay.
+
+64
+00:04:16,550 --> 00:04:23,390
+And now here in this accordion, all we need to do is to loop over this array of objects like we always
+
+65
+00:04:23,390 --> 00:04:23,990
+do.
+
+66
+00:04:24,080 --> 00:04:28,130
+And then for each of the objects, we want to render one of these items.
+
+67
+00:04:28,890 --> 00:04:35,760
+And actually to make this a bit more reusable, let's accept some generic data here, basically.
+
+68
+00:04:35,770 --> 00:04:37,920
+And so then here we pass that data in.
+
+69
+00:04:39,760 --> 00:04:42,890
+And as the data we use deepfakes.
+
+70
+00:04:42,910 --> 00:04:47,530
+And so then we could reuse this same accordion with different arrays.
+
+71
+00:04:49,470 --> 00:04:50,370
+Okay.
+
+72
+00:04:50,400 --> 00:04:53,100
+This one here should have the class name of.
+
+73
+00:04:53,760 --> 00:04:54,720
+Accordion.
+
+74
+00:04:56,540 --> 00:04:59,420
+And then here is where the mapping will happen.
+
+75
+00:04:59,570 --> 00:05:02,660
+So that's data dot map.
+
+76
+00:05:05,320 --> 00:05:10,570
+And then for each of these elements and we could also call them frequently asked Question But let's
+
+77
+00:05:10,570 --> 00:05:14,010
+just go for the generic element.
+
+78
+00:05:14,170 --> 00:05:20,680
+And so as we said before, we want to render one accordion item for each of them.
+
+79
+00:05:22,080 --> 00:05:24,330
+And what do we want to pass in there?
+
+80
+00:05:24,570 --> 00:05:30,390
+Well, the title will be at element dot title.
+
+81
+00:05:30,510 --> 00:05:32,700
+So that's this one here.
+
+82
+00:05:33,990 --> 00:05:35,190
+And then.
+
+83
+00:05:36,440 --> 00:05:39,770
+Also the text coming from that same object.
+
+84
+00:05:39,770 --> 00:05:42,710
+So element dot text.
+
+85
+00:05:42,830 --> 00:05:45,580
+And now we also want the number.
+
+86
+00:05:45,590 --> 00:05:50,630
+So this one here should automatically be number one, two and three.
+
+87
+00:05:51,650 --> 00:05:58,040
+So we can do that very easily by using the index that is also passed in the map.
+
+88
+00:05:58,040 --> 00:06:04,700
+And that's very easy to do because the callback here in the map actually also gets passed the current
+
+89
+00:06:04,700 --> 00:06:05,510
+index.
+
+90
+00:06:05,780 --> 00:06:09,820
+So besides the current element, it also gets the current index.
+
+91
+00:06:09,830 --> 00:06:11,900
+So as a second argument.
+
+92
+00:06:11,990 --> 00:06:13,400
+So let's call that I.
+
+93
+00:06:14,690 --> 00:06:18,890
+And so then we can pass in as numb.
+
+94
+00:06:19,640 --> 00:06:20,360
+Simply I.
+
+95
+00:06:21,170 --> 00:06:22,310
+And that's it.
+
+96
+00:06:23,990 --> 00:06:26,410
+All right, so we have something here.
+
+97
+00:06:26,420 --> 00:06:29,150
+Let's just make this a bit smaller.
+
+98
+00:06:29,390 --> 00:06:31,460
+Well, not all of it.
+
+99
+00:06:33,190 --> 00:06:35,320
+Let's maybe close down the sidebar.
+
+100
+00:06:35,740 --> 00:06:37,150
+Yeah, that's a lot better.
+
+101
+00:06:37,960 --> 00:06:40,210
+Can make it a bit smaller even.
+
+102
+00:06:41,110 --> 00:06:42,220
+And so let's compare.
+
+103
+00:06:43,410 --> 00:06:46,860
+So here we actually have like zero one.
+
+104
+00:06:47,040 --> 00:06:50,700
+And then also the text here looks a bit different.
+
+105
+00:06:51,590 --> 00:06:52,640
+So let's see.
+
+106
+00:06:52,850 --> 00:06:56,780
+But you know, the class names all look correct.
+
+107
+00:06:56,780 --> 00:06:59,780
+But now let's just quickly take care of the numbers here.
+
+108
+00:06:59,780 --> 00:07:03,740
+So here we want to have 0102 and zero three.
+
+109
+00:07:04,650 --> 00:07:07,260
+So let's do some magic here.
+
+110
+00:07:07,320 --> 00:07:15,600
+Let's say if the number is less than nine, then here, please place a zero.
+
+111
+00:07:18,130 --> 00:07:19,840
+Maintained the number plus one.
+
+112
+00:07:20,580 --> 00:07:25,920
+But if not so right here, then it's just a number plus one.
+
+113
+00:07:26,800 --> 00:07:27,020
+No.
+
+114
+00:07:27,100 --> 00:07:27,610
+Okay.
+
+115
+00:07:27,610 --> 00:07:29,080
+That looks much better.
+
+116
+00:07:29,080 --> 00:07:31,900
+And then here, let's just change this one to title.
+
+117
+00:07:31,900 --> 00:07:33,250
+So that should work.
+
+118
+00:07:33,460 --> 00:07:34,570
+And yeah.
+
+119
+00:07:35,340 --> 00:07:42,240
+And with this, let's go back to the original, because now we need to start thinking about state.
+
+120
+00:07:42,540 --> 00:07:50,070
+So remember how we can open and close each of these boxes here individually, which basically means
+
+121
+00:07:50,070 --> 00:07:53,670
+that each of these boxes holds their own state.
+
+122
+00:07:53,880 --> 00:07:59,190
+So whenever we click here, you see that the UI changes.
+
+123
+00:07:59,280 --> 00:08:05,160
+So that's the most fundamental thing that we need to think about whenever the UI changes.
+
+124
+00:08:05,190 --> 00:08:12,390
+So whenever there is some update here happening in the UI, it means that we need a piece of state.
+
+125
+00:08:12,480 --> 00:08:18,560
+Now each of these items here operates completely independently from the other ones.
+
+126
+00:08:18,570 --> 00:08:23,370
+So if I open this one here, nothing happens to the other two.
+
+127
+00:08:23,610 --> 00:08:31,260
+So I can open all of them at the same time, or I can have all of them close, meaning that again,
+
+128
+00:08:31,260 --> 00:08:38,080
+each of them really operates in an independent way, which means that each of them must hold their own
+
+129
+00:08:38,080 --> 00:08:38,860
+state.
+
+130
+00:08:38,980 --> 00:08:44,280
+So again, that's because this one can be open, but this one as well.
+
+131
+00:08:44,290 --> 00:08:50,740
+And so what that means is that we should now define a state variable in each of these items.
+
+132
+00:08:52,780 --> 00:08:54,730
+So that's right here.
+
+133
+00:08:54,940 --> 00:08:58,690
+And so then we use our friend use state.
+
+134
+00:08:59,290 --> 00:09:05,830
+So let's call our state variable is open and set is open.
+
+135
+00:09:07,840 --> 00:09:12,130
+So we use state, which was then automatically imported.
+
+136
+00:09:12,920 --> 00:09:15,020
+So this one right here.
+
+137
+00:09:15,380 --> 00:09:17,020
+Make sure you have that.
+
+138
+00:09:17,030 --> 00:09:20,510
+And then by default, it will be false.
+
+139
+00:09:20,510 --> 00:09:23,930
+So by default, we want each box to be closed.
+
+140
+00:09:24,850 --> 00:09:29,740
+So we declared our state variable and now let's use it.
+
+141
+00:09:30,480 --> 00:09:32,850
+So that's the same three step process.
+
+142
+00:09:32,850 --> 00:09:36,930
+As always, we define it, we use it, and then we update it.
+
+143
+00:09:37,290 --> 00:09:41,920
+So basically what we want to do when is open is false.
+
+144
+00:09:41,940 --> 00:09:47,340
+So when this is closed is to not display this content box down here.
+
+145
+00:09:48,490 --> 00:09:52,660
+Or in other words, we want some conditional rendering of this part.
+
+146
+00:09:52,870 --> 00:09:58,510
+So let's place it into the JavaScript mode and then let's say is open.
+
+147
+00:09:59,590 --> 00:10:02,170
+And then conditional rendering like this.
+
+148
+00:10:03,000 --> 00:10:07,440
+Now, in this case here also, this should be a plus, not a minus.
+
+149
+00:10:07,440 --> 00:10:10,020
+And so let's also come here.
+
+150
+00:10:11,750 --> 00:10:13,640
+And so is open.
+
+151
+00:10:15,660 --> 00:10:18,120
+Then show the minus.
+
+152
+00:10:19,720 --> 00:10:23,680
+And if not, then please show the plus.
+
+153
+00:10:24,700 --> 00:10:26,440
+Close the JavaScript mode.
+
+154
+00:10:26,440 --> 00:10:29,440
+And so with this we have the pluses showing.
+
+155
+00:10:31,030 --> 00:10:31,690
+All right.
+
+156
+00:10:31,720 --> 00:10:37,420
+Now, all we need to happen is that, of course, when we click here, the box should actually open.
+
+157
+00:10:38,550 --> 00:10:40,470
+So you see that with the CSS style.
+
+158
+00:10:40,470 --> 00:10:46,710
+I applied this hand cursor here to the entire div, so to the entire element.
+
+159
+00:10:46,710 --> 00:10:50,810
+And so this is where we then want to listen for the click event.
+
+160
+00:10:50,820 --> 00:10:52,830
+So right here on this div.
+
+161
+00:10:53,820 --> 00:10:55,890
+So let's say on click.
+
+162
+00:10:57,410 --> 00:11:01,430
+And then here we will pass in a function called handle.
+
+163
+00:11:02,700 --> 00:11:03,390
+Toggle.
+
+164
+00:11:04,080 --> 00:11:06,930
+And so let's go define that function.
+
+165
+00:11:07,550 --> 00:11:15,590
+So just like before, we just define an outside function with the keyword of handle here, which is
+
+166
+00:11:15,590 --> 00:11:20,930
+totally optional, but it makes it easy to understand that this is a function that will be used as an
+
+167
+00:11:20,930 --> 00:11:21,860
+event handler.
+
+168
+00:11:22,190 --> 00:11:31,460
+And so now here, let's use set is open and then we take the current one so we can just call it current
+
+169
+00:11:31,460 --> 00:11:32,390
+if we want.
+
+170
+00:11:32,600 --> 00:11:35,180
+Of course we can also call it is open.
+
+171
+00:11:35,850 --> 00:11:37,170
+Yeah, anything works.
+
+172
+00:11:37,380 --> 00:11:39,600
+And then we just want to do the opposite.
+
+173
+00:11:42,390 --> 00:11:43,560
+All right.
+
+174
+00:11:44,990 --> 00:11:47,480
+So that didn't work yet.
+
+175
+00:11:48,250 --> 00:11:49,900
+Maybe let's just reload here.
+
+176
+00:11:49,930 --> 00:11:51,640
+That is sometimes necessary.
+
+177
+00:11:51,850 --> 00:11:55,360
+And yes, that works.
+
+178
+00:11:55,540 --> 00:11:58,330
+And if I close again, it closes.
+
+179
+00:11:58,720 --> 00:11:59,920
+Beautiful.
+
+180
+00:12:00,340 --> 00:12:05,200
+Now, here we have some errors, and that's just because of the key prop.
+
+181
+00:12:05,350 --> 00:12:13,210
+So here we need to pass in a unique key prop and we could now actually use I which is unique actually.
+
+182
+00:12:13,210 --> 00:12:22,030
+So it's this zero one and two coming from the array iteration, but it's better to not rely on that
+
+183
+00:12:22,030 --> 00:12:25,330
+and instead use something that's truly unique.
+
+184
+00:12:25,360 --> 00:12:28,810
+So that's, for example, the title of each element.
+
+185
+00:12:31,340 --> 00:12:32,780
+Close this one here.
+
+186
+00:12:34,040 --> 00:12:37,370
+And indeed it works on all of them.
+
+187
+00:12:37,670 --> 00:12:45,950
+There's just one small detail missing, which is that when this is open, we get this green border here
+
+188
+00:12:45,950 --> 00:12:48,210
+and all the text becomes green.
+
+189
+00:12:48,230 --> 00:12:54,260
+So that's just one special class that gets added to the item whenever it is open.
+
+190
+00:12:56,450 --> 00:12:59,180
+So on the item that's right here.
+
+191
+00:13:00,240 --> 00:13:05,190
+So again, we want to add a second class here in case that it is open.
+
+192
+00:13:05,190 --> 00:13:12,060
+And so for that, we need some more conditional rendering basically in this case of classes.
+
+193
+00:13:12,060 --> 00:13:20,280
+So here we now need to construct a template string or a template literal which already has the item
+
+194
+00:13:20,280 --> 00:13:30,480
+string and then here based on a condition so based on is open, we either want to add open or nothing.
+
+195
+00:13:31,440 --> 00:13:32,340
+And that's it.
+
+196
+00:13:33,300 --> 00:13:35,130
+And that works.
+
+197
+00:13:35,160 --> 00:13:38,820
+Well, this kind of didn't become green for some reason.
+
+198
+00:13:39,120 --> 00:13:41,670
+Let's check out our CSS here.
+
+199
+00:13:41,700 --> 00:13:42,330
+Maybe.
+
+200
+00:13:44,330 --> 00:13:48,050
+Maybe there's something that I didn't do right?
+
+201
+00:13:49,560 --> 00:13:50,010
+Yeah.
+
+202
+00:13:50,010 --> 00:13:52,860
+So here it should be title.
+
+203
+00:13:54,510 --> 00:13:55,110
+Yes.
+
+204
+00:13:55,110 --> 00:13:56,010
+Beautiful.
+
+205
+00:13:57,230 --> 00:14:01,700
+And with this, we actually finished this accordion, at least for now.
+
+206
+00:14:02,380 --> 00:14:08,170
+So later in this section, there is the second part of this exercise where we will make it a bit more
+
+207
+00:14:08,170 --> 00:14:12,730
+realistic, where only one of these three can be opened at the same time.

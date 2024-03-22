@@ -1,0 +1,523 @@
+1
+00:00:00,790 --> 00:00:07,780
+So to practice state a little bit more, let's now implement the open and close functionality for our
+
+2
+00:00:07,780 --> 00:00:08,740
+component.
+
+3
+00:00:09,950 --> 00:00:16,010
+So looking at the demo here, what we want to implement now is this functionality that when we click
+
+4
+00:00:16,010 --> 00:00:19,880
+this button here, then this part of the component disappears.
+
+5
+00:00:19,880 --> 00:00:23,240
+And then when we click it again, then it is back.
+
+6
+00:00:23,420 --> 00:00:30,350
+So since this is something that changes on the screen, that means that we need a new piece of state.
+
+7
+00:00:30,960 --> 00:00:38,130
+Let's first comment out this other state that we have here so that we created for our experiment.
+
+8
+00:00:38,310 --> 00:00:42,120
+I will not completely delete it just to keep it as a reference here.
+
+9
+00:00:42,120 --> 00:00:45,240
+But anyway, let's now create a new piece of state.
+
+10
+00:00:45,480 --> 00:00:49,110
+So this is going to be called is open.
+
+11
+00:00:49,110 --> 00:00:55,050
+And then again, the convention for the setter is to call it set and then the name of the state.
+
+12
+00:00:55,140 --> 00:00:59,700
+So set is open, so equal use.
+
+13
+00:01:00,720 --> 00:01:04,150
+State and by default, our component should be open.
+
+14
+00:01:04,170 --> 00:01:06,470
+Therefore, we pass in the value of true.
+
+15
+00:01:06,480 --> 00:01:09,250
+So is open starts as true.
+
+16
+00:01:09,270 --> 00:01:13,890
+So that's then our default state value for the open state.
+
+17
+00:01:14,490 --> 00:01:17,190
+So that's the first part of using state.
+
+18
+00:01:17,220 --> 00:01:22,140
+The second one is to then actually use this state variable in our code.
+
+19
+00:01:22,470 --> 00:01:26,280
+So what do we want to achieve with this state variable?
+
+20
+00:01:26,580 --> 00:01:31,230
+Well, whenever it is true, we want this here to show.
+
+21
+00:01:31,230 --> 00:01:34,260
+And if it's false, we don't want it to show.
+
+22
+00:01:34,500 --> 00:01:37,800
+And whenever it's false, we don't want this to show.
+
+23
+00:01:37,830 --> 00:01:41,280
+So what this means is that we need conditional rendering.
+
+24
+00:01:42,860 --> 00:01:45,170
+So let's do that.
+
+25
+00:01:45,660 --> 00:01:50,550
+Now, we cannot wrap all of this here into JavaScript mode now.
+
+26
+00:01:51,390 --> 00:01:52,920
+But let's still try.
+
+27
+00:01:52,950 --> 00:01:58,790
+So I selected all of it, and then I will open the curly braces to enter JavaScript mode.
+
+28
+00:01:58,800 --> 00:02:04,110
+But this will not really work because this can only be done inside some element.
+
+29
+00:02:04,230 --> 00:02:08,070
+So for example, we would need a div here.
+
+30
+00:02:11,380 --> 00:02:12,340
+And so then here.
+
+31
+00:02:12,340 --> 00:02:13,090
+Close it.
+
+32
+00:02:15,680 --> 00:02:18,530
+However, React is still not happy.
+
+33
+00:02:20,090 --> 00:02:21,920
+So what do we have here?
+
+34
+00:02:22,900 --> 00:02:24,730
+R test is not defined.
+
+35
+00:02:24,910 --> 00:02:30,130
+So that's because we just removed this piece of state here from before.
+
+36
+00:02:30,460 --> 00:02:34,000
+So let's just comment this out and give it a save.
+
+37
+00:02:34,600 --> 00:02:40,420
+And again, we first needed to create this div element here outside basically to start our JS.
+
+38
+00:02:40,990 --> 00:02:47,110
+And so then inside that JS is where we can enter the JavaScript mode and we need this JavaScript mode
+
+39
+00:02:47,110 --> 00:02:51,430
+here because now we will use our is open.
+
+40
+00:02:53,190 --> 00:02:57,930
+And then as for the conditional rendering, let's simply use the end operator.
+
+41
+00:02:59,030 --> 00:03:01,610
+Give it a save and that's already it.
+
+42
+00:03:01,790 --> 00:03:06,470
+So whenever this is true, then the second part here will be returned.
+
+43
+00:03:06,470 --> 00:03:10,360
+And when it's false, then only false will be returned.
+
+44
+00:03:10,370 --> 00:03:13,880
+So that's just what we learned in the previous section.
+
+45
+00:03:14,900 --> 00:03:15,590
+All right.
+
+46
+00:03:15,620 --> 00:03:18,910
+Now, since this is true, nothing happens here.
+
+47
+00:03:18,920 --> 00:03:20,720
+So this is still visible.
+
+48
+00:03:20,720 --> 00:03:23,180
+But if we were to set it to false.
+
+49
+00:03:23,950 --> 00:03:25,990
+Then our component should disappear.
+
+50
+00:03:26,630 --> 00:03:27,320
+Yeah.
+
+51
+00:03:27,320 --> 00:03:28,670
+So it's gone.
+
+52
+00:03:28,850 --> 00:03:32,690
+And therefore, what this means is that this is working.
+
+53
+00:03:33,800 --> 00:03:36,200
+So let's set it back to true.
+
+54
+00:03:36,200 --> 00:03:40,140
+And with this, we finish the second part of using state.
+
+55
+00:03:40,160 --> 00:03:44,690
+And now the third part of using state is to actually update the state.
+
+56
+00:03:44,900 --> 00:03:51,020
+So for that, we need our button here in the corner, and for that we need to write some more.
+
+57
+00:03:51,020 --> 00:03:51,940
+JS.
+
+58
+00:03:52,280 --> 00:03:53,840
+So let's do that here.
+
+59
+00:03:55,010 --> 00:03:58,160
+Sew a button with a class name of.
+
+60
+00:03:58,820 --> 00:03:59,720
+Close.
+
+61
+00:04:00,080 --> 00:04:06,500
+And then here we can use an entity of times which will basically write an X.
+
+62
+00:04:07,370 --> 00:04:08,360
+There we go.
+
+63
+00:04:08,360 --> 00:04:10,640
+And now we need our event handler.
+
+64
+00:04:10,790 --> 00:04:15,020
+So for that, let's again use the onClick prop.
+
+65
+00:04:15,020 --> 00:04:19,250
+So to directly attach the event handler onto this element.
+
+66
+00:04:19,370 --> 00:04:23,990
+And this time, just to show you, let me actually create a function in line here.
+
+67
+00:04:23,990 --> 00:04:30,740
+So instead of creating a handler function out here like these two, I will now define the function directly
+
+68
+00:04:30,740 --> 00:04:31,350
+here.
+
+69
+00:04:31,370 --> 00:04:37,160
+So just to show you that sometimes this is also what we do, especially when we have some very simple
+
+70
+00:04:37,160 --> 00:04:37,880
+logic.
+
+71
+00:04:39,420 --> 00:04:41,370
+So we need to create a new function.
+
+72
+00:04:41,370 --> 00:04:43,500
+And now what do we want to do here?
+
+73
+00:04:43,860 --> 00:04:47,010
+Well, we want to update the is open state.
+
+74
+00:04:47,010 --> 00:04:50,550
+So set is open.
+
+75
+00:04:50,550 --> 00:04:55,560
+And then again, we need to pass in the new state so the updated state.
+
+76
+00:04:55,560 --> 00:04:57,240
+And what should that be?
+
+77
+00:04:57,420 --> 00:05:01,980
+Well, it should always be the opposite of the current state.
+
+78
+00:05:02,010 --> 00:05:04,950
+So if is open is true, it should become false.
+
+79
+00:05:04,950 --> 00:05:07,110
+And if it's false, it should become true.
+
+80
+00:05:07,110 --> 00:05:10,830
+And the way we do that is by using the not operator.
+
+81
+00:05:10,980 --> 00:05:14,790
+So again, that's just common and standard JavaScript.
+
+82
+00:05:16,120 --> 00:05:16,360
+No.
+
+83
+00:05:16,360 --> 00:05:16,990
+Okay.
+
+84
+00:05:16,990 --> 00:05:19,300
+And this should now already work.
+
+85
+00:05:19,420 --> 00:05:22,660
+So let's just reload here to get rid of that error.
+
+86
+00:05:22,810 --> 00:05:26,590
+And yes, beautiful.
+
+87
+00:05:26,770 --> 00:05:28,480
+That's working Nice.
+
+88
+00:05:28,600 --> 00:05:31,000
+So our view is updated.
+
+89
+00:05:31,000 --> 00:05:32,290
+So it's rerendered.
+
+90
+00:05:32,290 --> 00:05:37,480
+And so then after that rerender is open is no longer true, but it's false.
+
+91
+00:05:37,600 --> 00:05:43,000
+Therefore, then this entire part here of JSX is no longer rendered.
+
+92
+00:05:43,900 --> 00:05:44,440
+Right.
+
+93
+00:05:44,440 --> 00:05:50,280
+But then when we click again, this function here is called again, which will then switch.
+
+94
+00:05:50,290 --> 00:05:52,060
+It's open to the other state.
+
+95
+00:05:52,060 --> 00:05:54,790
+So from false to true in this case.
+
+96
+00:05:54,790 --> 00:05:59,380
+And so updating this piece of state will then cause react to rerender.
+
+97
+00:05:59,380 --> 00:06:02,500
+The component this time with is open to true.
+
+98
+00:06:02,800 --> 00:06:10,090
+So when react then sees this piece of code is open is true, and therefore this is then returned.
+
+99
+00:06:10,090 --> 00:06:14,950
+And so with this we update the view right here in our application.
+
+100
+00:06:15,560 --> 00:06:16,340
+Great.
+
+101
+00:06:16,370 --> 00:06:22,100
+Now, what I want you to notice about this is that let's change the state here.
+
+102
+00:06:22,340 --> 00:06:27,560
+So again, with this here, we change the step state, which right now is at number two.
+
+103
+00:06:27,800 --> 00:06:30,380
+And now if we toggle this state.
+
+104
+00:06:30,380 --> 00:06:37,430
+So if we change the state and change it again, you see that react did indeed remember the state of
+
+105
+00:06:37,430 --> 00:06:42,500
+the step, even though we did rerender this component multiple times in between.
+
+106
+00:06:42,620 --> 00:06:43,610
+Right.
+
+107
+00:06:43,730 --> 00:06:50,720
+So if we set it to three and then again, I can open and I can close, which means that this component.
+
+108
+00:06:50,750 --> 00:06:54,290
+So this view here has been re rendered two times.
+
+109
+00:06:54,290 --> 00:06:57,670
+Still it will remember this other piece of state.
+
+110
+00:06:57,680 --> 00:06:59,780
+So the three is still here.
+
+111
+00:06:59,780 --> 00:07:04,300
+And so that's why we say that state is like a memory of the component.
+
+112
+00:07:04,310 --> 00:07:10,880
+It can hold this information over time even though we render and re render it over and over again.
+
+113
+00:07:11,150 --> 00:07:11,930
+Great.
+
+114
+00:07:11,930 --> 00:07:18,450
+So with this, I hope you start seeing how we can use state in different situations and for different
+
+115
+00:07:18,450 --> 00:07:20,520
+things in practice.
+
+116
+00:07:20,730 --> 00:07:26,940
+Now just one small thing that we could change here and this has nothing to do with state is that we
+
+117
+00:07:26,940 --> 00:07:30,410
+actually don't want to return just one element here.
+
+118
+00:07:30,420 --> 00:07:35,520
+So we want to return basically both this part here and the button.
+
+119
+00:07:35,520 --> 00:07:40,260
+And so this means that this is a great use case for a react fragment here.
+
+120
+00:07:40,770 --> 00:07:43,650
+So before I do that, let's just inspect.
+
+121
+00:07:43,800 --> 00:07:48,630
+And so indeed, we have our route, which is basically everything.
+
+122
+00:07:48,630 --> 00:07:49,830
+So the entire app.
+
+123
+00:07:49,830 --> 00:07:53,640
+And then in there we have this div, which is this one.
+
+124
+00:07:53,640 --> 00:07:55,980
+But again, let's say we don't want that.
+
+125
+00:07:55,980 --> 00:08:00,390
+Let's say we just want to have the button and then this steps div.
+
+126
+00:08:01,120 --> 00:08:05,860
+So let's remove this from here and from here.
+
+127
+00:08:06,310 --> 00:08:09,250
+And so now we have, remember, a fragment.
+
+128
+00:08:09,400 --> 00:08:15,970
+So that's like the root of this JSX element here, which will then disappear in the Dom.
+
+129
+00:08:16,090 --> 00:08:22,450
+So if we take a look now, then we only have this button and the steps div.
+
+130
+00:08:22,600 --> 00:08:29,950
+So again, whenever you're in a situation like this, so where you need a piece of JSX to return to
+
+131
+00:08:29,950 --> 00:08:33,610
+elements, then the fragment is great for that.

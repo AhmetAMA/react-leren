@@ -1,0 +1,547 @@
+1
+00:00:00,940 --> 00:00:07,880
+Another very important technique that we use all the time in React development is conditional rendering.
+
+2
+00:00:07,900 --> 00:00:16,330
+So in this video and the next two, we will talk about three ways of rendering some JSX or even an entire
+
+3
+00:00:16,330 --> 00:00:22,900
+component based on a condition and starting in this lecture with the end operator.
+
+4
+00:00:23,960 --> 00:00:30,830
+So remember how way back we created This is open variable right here in the footer.
+
+5
+00:00:31,220 --> 00:00:37,670
+So basically this variable tells us if currently the restaurant is open, which happens when the current
+
+6
+00:00:37,700 --> 00:00:40,940
+hour is between 12 and 22.
+
+7
+00:00:40,940 --> 00:00:48,260
+And so now what we want to do is to basically only render something here inside of the footer if the
+
+8
+00:00:48,260 --> 00:00:50,000
+restaurant is currently open.
+
+9
+00:00:50,000 --> 00:00:53,180
+And so that's what conditional rendering is all about.
+
+10
+00:00:53,180 --> 00:00:59,720
+So it's basically rendering some piece of the UI, no matter if that's a piece of JSX or if it's an
+
+11
+00:00:59,720 --> 00:01:03,200
+entire component based on a certain condition.
+
+12
+00:01:03,200 --> 00:01:10,160
+And again, in this case, the condition is simply whether the restaurant is currently open or not.
+
+13
+00:01:11,230 --> 00:01:13,960
+So let's actually get rid of all of this.
+
+14
+00:01:13,990 --> 00:01:20,860
+And then here, since we are going to use JavaScript, let's enter JavaScript mode using this curly
+
+15
+00:01:20,860 --> 00:01:22,300
+braces once more.
+
+16
+00:01:22,450 --> 00:01:29,050
+So as I mentioned initially in this lecture, we're going to do conditional rendering with the end operator
+
+17
+00:01:29,050 --> 00:01:32,200
+and that works because of short circuiting.
+
+18
+00:01:32,290 --> 00:01:38,680
+Now, in case you're not sure what short circuiting means and how it works with the and operator, then
+
+19
+00:01:38,680 --> 00:01:43,390
+please go back to the previous section where I have one entire lecture about that.
+
+20
+00:01:43,390 --> 00:01:51,730
+But in a nutshell, if we have some true or some truthy value such as is open, and if we then use the
+
+21
+00:01:51,730 --> 00:01:55,930
+end operator, then the second part of the end operator.
+
+22
+00:01:55,990 --> 00:02:01,120
+So whatever comes here will be returned in case that the condition is true.
+
+23
+00:02:02,660 --> 00:02:05,030
+So let's just write something very simple here.
+
+24
+00:02:05,510 --> 00:02:06,830
+Just open.
+
+25
+00:02:07,190 --> 00:02:10,010
+So just like this, and let's check it out.
+
+26
+00:02:10,010 --> 00:02:12,110
+And indeed, it says open.
+
+27
+00:02:12,110 --> 00:02:16,330
+And so again, the reason for that is the way the ENT operator works.
+
+28
+00:02:16,340 --> 00:02:21,290
+So it's open is currently true, as we can see from this console dot log here.
+
+29
+00:02:21,290 --> 00:02:27,620
+And so then since this is true, the second part of the end operator will be returned.
+
+30
+00:02:27,890 --> 00:02:35,990
+Now let's just change this here to say that the restaurant open at 20 hours, then here we get false.
+
+31
+00:02:35,990 --> 00:02:39,500
+And then down here, well, we basically get nothing.
+
+32
+00:02:39,500 --> 00:02:42,170
+And so that is the short circuiting in action.
+
+33
+00:02:42,170 --> 00:02:50,090
+So short circuiting means that if this condition so if this value here is false or false, then the
+
+34
+00:02:50,090 --> 00:02:53,720
+second part of the operation will not even be executed.
+
+35
+00:02:53,720 --> 00:02:57,800
+So JavaScript will not even look at this and then nothing is rendered.
+
+36
+00:02:58,320 --> 00:03:02,460
+So the result here is then true, which is the result of this.
+
+37
+00:03:02,460 --> 00:03:07,020
+But React doesn't actually render true or false into the Dom.
+
+38
+00:03:07,020 --> 00:03:08,850
+And so that's why this works.
+
+39
+00:03:08,970 --> 00:03:12,010
+So let me show that to you actually here very quick.
+
+40
+00:03:12,030 --> 00:03:19,230
+So if we write false here, so a boolean value, then you see it's not showing up here.
+
+41
+00:03:19,230 --> 00:03:22,230
+And the same is true for true.
+
+42
+00:03:22,590 --> 00:03:24,390
+So that's not there.
+
+43
+00:03:25,910 --> 00:03:29,480
+Okay, let's just write something a bit nicer here.
+
+44
+00:03:29,480 --> 00:03:30,440
+Like.
+
+45
+00:03:34,230 --> 00:03:36,720
+Were open until.
+
+46
+00:03:37,730 --> 00:03:39,410
+And then here, let's read.
+
+47
+00:03:40,330 --> 00:03:41,650
+The close our.
+
+48
+00:03:43,240 --> 00:03:45,370
+And then format it just a little bit.
+
+49
+00:03:48,040 --> 00:03:50,680
+Come visit us or order.
+
+50
+00:03:51,930 --> 00:03:52,830
+On line.
+
+51
+00:03:52,830 --> 00:03:55,350
+And since we're already here, let's.
+
+52
+00:03:56,410 --> 00:03:59,230
+All to create this small button that we have down here.
+
+53
+00:04:00,940 --> 00:04:01,570
+All right.
+
+54
+00:04:01,600 --> 00:04:03,130
+Now here, we cannot see anything.
+
+55
+00:04:03,130 --> 00:04:07,960
+So let's put the open our back so that our restaurant is actually open.
+
+56
+00:04:09,490 --> 00:04:10,370
+Nice.
+
+57
+00:04:10,420 --> 00:04:13,690
+And now let's wrap this entire thing here into a div.
+
+58
+00:04:15,410 --> 00:04:16,250
+So if.
+
+59
+00:04:16,980 --> 00:04:18,450
+With the class name.
+
+60
+00:04:19,380 --> 00:04:20,520
+Of order.
+
+61
+00:04:21,900 --> 00:04:23,850
+Then let's wrap this here.
+
+62
+00:04:25,340 --> 00:04:29,570
+And then create a button with a class name of BTN.
+
+63
+00:04:30,910 --> 00:04:31,720
+Order.
+
+64
+00:04:31,720 --> 00:04:36,820
+And then we get all the styles from the style sheet that we included at the beginning.
+
+65
+00:04:37,060 --> 00:04:38,170
+Beautiful.
+
+66
+00:04:38,780 --> 00:04:44,420
+Now, just notice here that we're doing exactly what we learned in the lecture about the rules of JS
+
+67
+00:04:44,900 --> 00:04:53,030
+and in particular, we are inside this JavaScript mode here returning some more JS, which is perfectly
+
+68
+00:04:53,060 --> 00:04:53,540
+fine.
+
+69
+00:04:53,540 --> 00:04:57,680
+As we learned in the end, this is just a JavaScript expression as well.
+
+70
+00:04:57,680 --> 00:05:00,320
+And so this is why this thing works.
+
+71
+00:05:01,180 --> 00:05:02,050
+Nice.
+
+72
+00:05:02,380 --> 00:05:05,470
+So this is a good use case of conditional rendering.
+
+73
+00:05:05,470 --> 00:05:07,360
+Let's check out another one.
+
+74
+00:05:07,600 --> 00:05:14,380
+So let's say that we only want to render this menu here in case that we actually have some pizzas.
+
+75
+00:05:15,150 --> 00:05:18,360
+So first of all, let's actually get a.
+
+76
+00:05:19,550 --> 00:05:20,930
+Yeah, actually, it's here.
+
+77
+00:05:20,930 --> 00:05:26,540
+So basically we only want to render this list in case that we have some pizzas.
+
+78
+00:05:27,530 --> 00:05:29,480
+So to start, let's.
+
+79
+00:05:30,580 --> 00:05:37,570
+Actually create a new variable here quickly, which I will call pizzas and I will set it equal to.
+
+80
+00:05:38,170 --> 00:05:39,700
+Pizza data.
+
+81
+00:05:40,300 --> 00:05:42,430
+And then here, let's use that.
+
+82
+00:05:45,040 --> 00:05:49,660
+And then let's order pizzas and then let's do conditional rendering again.
+
+83
+00:05:50,980 --> 00:05:54,820
+So our first start in a way that's not really going to work.
+
+84
+00:05:54,820 --> 00:05:59,230
+But let's roll with it for now so we can again do pizzas.
+
+85
+00:06:00,950 --> 00:06:01,820
+And.
+
+86
+00:06:01,820 --> 00:06:02,840
+And then.
+
+87
+00:06:03,020 --> 00:06:04,370
+Well, then this.
+
+88
+00:06:04,700 --> 00:06:06,620
+So let's cut that.
+
+89
+00:06:07,530 --> 00:06:08,580
+Paste it here.
+
+90
+00:06:09,810 --> 00:06:11,270
+And there we go.
+
+91
+00:06:11,280 --> 00:06:16,170
+And so our pizzas are still here because pizzas is a truthy value.
+
+92
+00:06:16,170 --> 00:06:23,010
+And so this behavior of the end operator does not only work for true and false values, but also for
+
+93
+00:06:23,010 --> 00:06:25,440
+truthy and Falsy values.
+
+94
+00:06:26,500 --> 00:06:29,110
+Now, the problem with this is that.
+
+95
+00:06:29,110 --> 00:06:30,400
+Let's say that.
+
+96
+00:06:31,210 --> 00:06:35,380
+Actually we have no pizzas, so pizzas equals an empty array.
+
+97
+00:06:37,160 --> 00:06:40,850
+Well, then it actually appears as though this is empty here.
+
+98
+00:06:40,850 --> 00:06:44,960
+But if we inspect, we see that the list itself.
+
+99
+00:06:45,940 --> 00:06:47,290
+Should still be there.
+
+100
+00:06:48,850 --> 00:06:51,500
+So you see, we have here the empty list.
+
+101
+00:06:51,520 --> 00:06:55,630
+So it's empty because of course, we have no pizzas to loop over.
+
+102
+00:06:55,630 --> 00:07:00,460
+But Doll is still here, so this here is still being rendered.
+
+103
+00:07:00,460 --> 00:07:04,090
+And that's because an empty array is still a truthy value.
+
+104
+00:07:04,180 --> 00:07:09,250
+So what we need to do here is to basically check for the length of this array.
+
+105
+00:07:09,910 --> 00:07:13,120
+So let's do numb pizzas.
+
+106
+00:07:13,180 --> 00:07:14,200
+Equal.
+
+107
+00:07:15,000 --> 00:07:17,790
+Pizzas dot length.
+
+108
+00:07:19,410 --> 00:07:19,920
+All right.
+
+109
+00:07:19,920 --> 00:07:23,970
+And so now when there are no pizzas, then this will become zero.
+
+110
+00:07:23,970 --> 00:07:26,190
+And so if we check based on this.
+
+111
+00:07:28,070 --> 00:07:30,020
+Then this is now a falsy value.
+
+112
+00:07:30,020 --> 00:07:34,010
+And so if it's false, then this here will not get rendered.
+
+113
+00:07:34,280 --> 00:07:36,260
+So let's see what happens then.
+
+114
+00:07:36,560 --> 00:07:40,460
+And now we get this weird zero.
+
+115
+00:07:41,240 --> 00:07:42,830
+Why is that?
+
+116
+00:07:43,590 --> 00:07:46,980
+Well, it's because of short circuiting again.
+
+117
+00:07:46,980 --> 00:07:53,670
+So when the end operator short circuits, it will simply not evaluate this part, but instead the result
+
+118
+00:07:53,670 --> 00:07:55,920
+of the operation will become this one.
+
+119
+00:07:56,100 --> 00:07:57,570
+So this is zero.
+
+120
+00:07:57,570 --> 00:08:00,270
+And so therefore that's what we get in the UI.
+
+121
+00:08:00,510 --> 00:08:08,550
+That didn't happen down here because as I mentioned, React will not render true or false value, but
+
+122
+00:08:08,550 --> 00:08:10,890
+it will happily render a zero.
+
+123
+00:08:10,890 --> 00:08:12,750
+And so that's why we get a zero.
+
+124
+00:08:13,590 --> 00:08:18,660
+So as a conclusion, we should never, ever have this year as a number.
+
+125
+00:08:18,810 --> 00:08:22,530
+So we should always try to have a true or false condition here.
+
+126
+00:08:22,650 --> 00:08:23,970
+So let's do this.
+
+127
+00:08:24,000 --> 00:08:30,060
+If there are more than zero pizzas, do this and if not, well, then don't render anything.
+
+128
+00:08:30,060 --> 00:08:33,930
+And so this here is the result that we were looking for.
+
+129
+00:08:35,210 --> 00:08:37,790
+Let's put it back just to see.
+
+130
+00:08:37,910 --> 00:08:40,580
+And then our pizzas are actually back.
+
+131
+00:08:41,260 --> 00:08:48,610
+Nice now because of this behavior here that I just showed you so that sometimes a zero can show up in
+
+132
+00:08:48,610 --> 00:08:49,330
+the UI.
+
+133
+00:08:49,360 --> 00:08:55,810
+Many people say that we should actually never use the end operator to do conditional rendering.
+
+134
+00:08:56,360 --> 00:09:02,450
+Now, I don't really agree with that because sometimes it's nice to very quickly do some conditional
+
+135
+00:09:02,450 --> 00:09:03,740
+rendering with this.
+
+136
+00:09:03,740 --> 00:09:09,440
+But also usually I do prefer the ternary operator to do conditional rendering.
+
+137
+00:09:09,440 --> 00:09:13,220
+And so that operator is up next in the next lecture.

@@ -1,0 +1,327 @@
+1
+00:00:00,820 --> 00:00:07,030
+Let's now learn what a React fragment is and when exactly we might need one.
+
+2
+00:00:08,330 --> 00:00:15,200
+So let's actually come here to the final version of the application so that I can show you that we are
+
+3
+00:00:15,200 --> 00:00:17,150
+actually still missing something.
+
+4
+00:00:17,150 --> 00:00:19,640
+And that's this sentence right here.
+
+5
+00:00:19,790 --> 00:00:27,740
+So there is a paragraph of text right here that I'm just going to copy now and you can maybe pause the
+
+6
+00:00:27,740 --> 00:00:31,490
+video and type it, or you can just type something shorter.
+
+7
+00:00:32,490 --> 00:00:35,850
+So let's for now place that paragraph here.
+
+8
+00:00:36,830 --> 00:00:37,940
+Give it a save.
+
+9
+00:00:37,940 --> 00:00:39,290
+And.
+
+10
+00:00:39,950 --> 00:00:40,520
+Yeah.
+
+11
+00:00:40,610 --> 00:00:42,530
+Then it looks exactly the same.
+
+12
+00:00:42,860 --> 00:00:46,400
+But now what if we have no pizzas at all?
+
+13
+00:00:47,370 --> 00:00:52,740
+So in this case, well, then we actually don't want to show this.
+
+14
+00:00:52,890 --> 00:00:56,670
+So this sentence right here, we only want this one.
+
+15
+00:00:56,880 --> 00:01:00,360
+So the one that's coming here from our conditional rendering.
+
+16
+00:01:01,660 --> 00:01:04,390
+So let's put that back.
+
+17
+00:01:06,400 --> 00:01:13,060
+And what that means is that we only want to render this paragraph here in this situation.
+
+18
+00:01:14,080 --> 00:01:18,100
+So let's grab that paragraph and place that here.
+
+19
+00:01:19,480 --> 00:01:23,230
+Because again, we want to render this paragraph and this ul.
+
+20
+00:01:23,260 --> 00:01:24,310
+In this case.
+
+21
+00:01:24,310 --> 00:01:27,970
+But immediately react starts yelling at us.
+
+22
+00:01:27,970 --> 00:01:32,050
+So JSX expressions must have one parent element.
+
+23
+00:01:32,050 --> 00:01:37,900
+And so this is exactly what we learned in the rules of JSX lecture.
+
+24
+00:01:37,900 --> 00:01:45,760
+So a piece of JSX, no matter where it is defined, can only have in fact, one root element.
+
+25
+00:01:46,120 --> 00:01:52,120
+And this has happened to us before and the way we always solved this was by simply wrapping everything
+
+26
+00:01:52,120 --> 00:01:56,110
+in a div or some other component.
+
+27
+00:01:56,110 --> 00:01:57,760
+So let's try that.
+
+28
+00:01:58,060 --> 00:02:04,270
+You don't have to do this and this is just to show you that this will then actually mess up our formatting
+
+29
+00:02:04,270 --> 00:02:04,840
+here.
+
+30
+00:02:04,840 --> 00:02:07,600
+So this is actually not really what we want.
+
+31
+00:02:07,630 --> 00:02:15,190
+We do not want to render one element which contains these two, but we really want to render these two
+
+32
+00:02:15,190 --> 00:02:16,030
+elements here.
+
+33
+00:02:16,030 --> 00:02:22,910
+So these two elements in separate without it having one element as a parent of these two.
+
+34
+00:02:23,090 --> 00:02:24,020
+Right.
+
+35
+00:02:24,140 --> 00:02:28,940
+And so this is the case in which we need a react fragment.
+
+36
+00:02:28,940 --> 00:02:37,070
+So a react fragment basically lets us group some elements without leaving any trace in the HTML tree.
+
+37
+00:02:37,070 --> 00:02:44,300
+So in the Dom, so it looks like here we need a react fragment and that's very easy.
+
+38
+00:02:44,300 --> 00:02:48,410
+All we have to do is to basically delete everything here.
+
+39
+00:02:49,860 --> 00:02:50,980
+Just like this.
+
+40
+00:02:51,000 --> 00:02:53,100
+And so this is now a fragment.
+
+41
+00:02:53,430 --> 00:02:54,740
+So let's save.
+
+42
+00:02:54,750 --> 00:02:57,480
+And then we are back to what we had before.
+
+43
+00:02:57,600 --> 00:03:00,320
+So now let's then inspect the Dom tree.
+
+44
+00:03:00,330 --> 00:03:07,120
+As I was saying, just to show you that actually this didn't create any new element at all.
+
+45
+00:03:07,140 --> 00:03:12,930
+So here we have the header and see, we still have that footer class there.
+
+46
+00:03:13,970 --> 00:03:14,480
+Of course.
+
+47
+00:03:14,480 --> 00:03:15,830
+Let's get rid of that.
+
+48
+00:03:17,750 --> 00:03:18,470
+All right.
+
+49
+00:03:20,510 --> 00:03:24,680
+So we have our container, then we have the menu, then we have the H2.
+
+50
+00:03:24,710 --> 00:03:25,760
+So this one.
+
+51
+00:03:25,760 --> 00:03:26,660
+And then.
+
+52
+00:03:26,780 --> 00:03:31,250
+Exactly, we have the paragraph and the Ul, but in a separate.
+
+53
+00:03:31,250 --> 00:03:33,580
+So not wrapped in anything.
+
+54
+00:03:33,590 --> 00:03:39,680
+So this is completely invisible here and it's exactly what we were looking for and that's it.
+
+55
+00:03:39,680 --> 00:03:43,730
+That's all a react fragment is and it's all that it does.
+
+56
+00:03:44,320 --> 00:03:48,420
+Now, sometimes we need to add a key to a react fragment.
+
+57
+00:03:48,430 --> 00:03:54,850
+So, for example, when we are using it to render a list and so then we need to actually write it in
+
+58
+00:03:54,850 --> 00:03:56,170
+a slightly different way.
+
+59
+00:03:56,860 --> 00:04:01,240
+So first, let's make sure that we have react imported and we do.
+
+60
+00:04:01,240 --> 00:04:02,710
+So it's right here.
+
+61
+00:04:03,310 --> 00:04:07,300
+And so we can write, react.
+
+62
+00:04:09,280 --> 00:04:11,050
+Dot fragment.
+
+63
+00:04:11,050 --> 00:04:15,730
+And then down here, we need to close that react dot fragment.
+
+64
+00:04:15,730 --> 00:04:18,700
+And so then the result is exactly the same.
+
+65
+00:04:18,700 --> 00:04:22,450
+But if we need it, then here we could add a key.
+
+66
+00:04:23,560 --> 00:04:25,000
+Of just anything.
+
+67
+00:04:25,450 --> 00:04:31,480
+All right, Now, we don't need a key, so we can just go for the short version, which is, of course,
+
+68
+00:04:31,480 --> 00:04:32,680
+a lot nicer.
+
+69
+00:04:34,400 --> 00:04:37,090
+All right, let's try maybe something else.
+
+70
+00:04:37,330 --> 00:04:41,530
+Let's say that here we actually didn't want this container.
+
+71
+00:04:41,920 --> 00:04:46,900
+So maybe we just needed all our elements right here directly in the root.
+
+72
+00:04:47,260 --> 00:04:53,730
+So basically, what we wanted in this case is the app component to return three components.
+
+73
+00:04:53,740 --> 00:04:57,730
+So these three elements made out of these three components.
+
+74
+00:04:57,880 --> 00:05:00,100
+And so then that would be very simple.
+
+75
+00:05:01,370 --> 00:05:06,980
+Now, in our case, it's of course going to mess up the formatting because then we are missing the container
+
+76
+00:05:06,980 --> 00:05:07,670
+class.
+
+77
+00:05:07,940 --> 00:05:12,620
+But just as an example, this is what it would look like in the end.
+
+78
+00:05:13,150 --> 00:05:18,070
+So we would have our route with immediately these three as direct children.
+
+79
+00:05:19,720 --> 00:05:21,400
+But let's put everything back.
+
+80
+00:05:21,400 --> 00:05:25,420
+And yeah, I think that's all that you need to know about React Fragments.
+
+81
+00:05:25,450 --> 00:05:32,290
+It's a very simple concept which basically allows us to have more than just one element inside a piece
+
+82
+00:05:32,290 --> 00:05:32,770
+of JSX.

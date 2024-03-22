@@ -1,0 +1,259 @@
+1
+00:00:01,080 --> 00:00:02,040
+At this point.
+
+2
+00:00:02,040 --> 00:00:09,660
+We have used to describe the appearance of some components and we have also used some JavaScript inside
+
+3
+00:00:09,660 --> 00:00:10,260
+of them.
+
+4
+00:00:10,260 --> 00:00:16,920
+And so now that we have a tiny bit of experience in writing components, I want to take a minute and
+
+5
+00:00:16,920 --> 00:00:26,610
+go back to the fact that combines HTML, CSS and JavaScript into one single block of code, because
+
+6
+00:00:26,610 --> 00:00:32,190
+you might be wondering why did React come up with this idea in the first place?
+
+7
+00:00:32,190 --> 00:00:40,500
+So why not just keep HTML, CSS and JavaScript in separate places like we have always done before?
+
+8
+00:00:40,620 --> 00:00:47,730
+And this might sound like a trivial question, something you think is not really relevant at all, but
+
+9
+00:00:47,730 --> 00:00:54,450
+it's actually deeply relevant to understand why React was completely designed around components.
+
+10
+00:00:55,680 --> 00:00:58,920
+And let's understand this topic from the very beginning.
+
+11
+00:00:58,920 --> 00:01:06,300
+So from the rise of interactive single page applications, so before single page apps, we always had
+
+12
+00:01:06,300 --> 00:01:12,110
+one file for HTML, one for JavaScript and one for CSS.
+
+13
+00:01:12,120 --> 00:01:15,360
+So basically one technology per file.
+
+14
+00:01:15,510 --> 00:01:19,110
+That was our traditional separation of concerns.
+
+15
+00:01:19,110 --> 00:01:24,750
+And I'm pretty sure that just like me, this is how you first learned web development.
+
+16
+00:01:24,840 --> 00:01:32,190
+However, as pages got more and more interactive, they became single page applications where the JavaScript
+
+17
+00:01:32,190 --> 00:01:39,540
+started to determine the user interface and the content in general, or in other words, JavaScript
+
+18
+00:01:39,540 --> 00:01:43,200
+became more and more in charge of the HTML.
+
+19
+00:01:43,200 --> 00:01:49,860
+And we can see that here in this really small code example where the content and the presentation of
+
+20
+00:01:49,860 --> 00:01:55,840
+these HTML elements are really completely determined by the JavaScript code.
+
+21
+00:01:55,840 --> 00:01:59,200
+They are in fact tightly coupled together.
+
+22
+00:01:59,350 --> 00:02:03,970
+So the HTML doesn't even make sense without the JavaScript here.
+
+23
+00:02:04,270 --> 00:02:08,110
+Now the details of this code are really not important.
+
+24
+00:02:08,110 --> 00:02:11,680
+So if you can't read this code, that's no problem at all.
+
+25
+00:02:11,830 --> 00:02:20,350
+My point here is that if the JavaScript is in charge of the HTML anyway, so if the logic and the UI
+
+26
+00:02:20,350 --> 00:02:27,520
+are so tightly coupled together, then why should we keep them separated in these different files and
+
+27
+00:02:27,520 --> 00:02:28,900
+in different code blocks?
+
+28
+00:02:29,560 --> 00:02:34,840
+Well, the answer to that question is what gave us React components and JS.
+
+29
+00:02:36,650 --> 00:02:44,150
+So the fact that logic and UI are so coupled in modern web applications is really the reason why a react
+
+30
+00:02:44,150 --> 00:02:50,690
+component contains the data, the logic and the appearance of one piece of the UI.
+
+31
+00:02:50,930 --> 00:02:55,940
+In fact, it's the fundamental reason why React is all about components.
+
+32
+00:02:55,940 --> 00:03:01,580
+And the same is actually also true for most other modern front end frameworks.
+
+33
+00:03:02,300 --> 00:03:04,190
+Now returning to some code.
+
+34
+00:03:04,190 --> 00:03:11,900
+In this React example, we can see how JavaScript and HTML markup live very happily together in this
+
+35
+00:03:11,900 --> 00:03:13,610
+one single component.
+
+36
+00:03:13,730 --> 00:03:17,720
+So this component has some JavaScript logic, it has JSX.
+
+37
+00:03:18,230 --> 00:03:26,600
+And then inside that JSX there is yet another block of JavaScript which in turn has even more JSX inside
+
+38
+00:03:26,600 --> 00:03:27,230
+of it.
+
+39
+00:03:27,380 --> 00:03:32,250
+So everything is mixed together, but it all still works really well.
+
+40
+00:03:32,270 --> 00:03:38,900
+So content and logic are tightly coupled together and so it makes sense that they are co-located here.
+
+41
+00:03:38,900 --> 00:03:46,220
+And co-located simply means that things that change together should be located as close as possible
+
+42
+00:03:46,220 --> 00:03:46,970
+together.
+
+43
+00:03:47,120 --> 00:03:54,500
+And in the case of React apps, that means that instead of one technology per file, we have one component
+
+44
+00:03:54,500 --> 00:03:55,460
+per file.
+
+45
+00:03:55,460 --> 00:04:01,400
+So one component that contains data, logic and appearance all mixed together.
+
+46
+00:04:01,910 --> 00:04:10,220
+Now when React and JS first came out a long time ago, many, many people just hated the way that JS
+
+47
+00:04:10,490 --> 00:04:17,360
+looks like and they hate it that we are throwing separations of concerns out of the window.
+
+48
+00:04:17,510 --> 00:04:20,090
+But actually, are we really?
+
+49
+00:04:20,120 --> 00:04:23,900
+Is there really no separation of concerns in React?
+
+50
+00:04:24,580 --> 00:04:32,830
+Well, I think that the people who say that React has no separation of concerns got it all wrong because
+
+51
+00:04:32,830 --> 00:04:36,710
+React does actually have separation of concerns.
+
+52
+00:04:36,730 --> 00:04:44,140
+It's just not one concern per file as we had traditionally, but one concern per component.
+
+53
+00:04:44,380 --> 00:04:50,710
+So each component is in fact only concerned with one piece of the UI.
+
+54
+00:04:50,920 --> 00:04:58,210
+Then within each of these components, of course, we still have the three concerns of HTML, CSS and
+
+55
+00:04:58,210 --> 00:05:01,660
+JavaScript all mixed up as we have been discussing.
+
+56
+00:05:02,240 --> 00:05:09,200
+So compared to the traditional separation of concerns, this is a completely new paradigm that many
+
+57
+00:05:09,200 --> 00:05:12,500
+people were really not used to in the beginning.
+
+58
+00:05:12,500 --> 00:05:18,500
+But now, many years later, we all got used to this and it works just great.
+
+59
+00:05:18,500 --> 00:05:25,430
+So having all the information about a certain component in one single place really does work in an amazing
+
+60
+00:05:25,430 --> 00:05:25,970
+way.
+
+61
+00:05:26,880 --> 00:05:27,690
+All right.
+
+62
+00:05:27,690 --> 00:05:35,790
+So this was a long lecture, longer than I had expected just to arrive at this conclusion that React
+
+63
+00:05:35,790 --> 00:05:41,730
+does actually have separation of concerns, just a different separation of concerns.
+
+64
+00:05:41,730 --> 00:05:48,060
+But I still hope that you liked the way how we arrived at that conclusion over the course of this video,
+
+65
+00:05:48,090 --> 00:05:54,060
+because hopefully this gave you a lot of additional fundamental react knowledge.

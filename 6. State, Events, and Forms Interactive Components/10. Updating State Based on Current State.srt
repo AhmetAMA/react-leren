@@ -1,0 +1,307 @@
+1
+00:00:00,900 --> 00:00:07,800
+It's very common that we update a state variable based on the current value of that state.
+
+2
+00:00:07,800 --> 00:00:11,130
+And so let's now learn how to best do that.
+
+3
+00:00:12,460 --> 00:00:18,640
+And in fact, we are updating state based on the current state all the time here.
+
+4
+00:00:18,760 --> 00:00:25,030
+So here, for example, in set step, we take the current step and then subtract one.
+
+5
+00:00:25,270 --> 00:00:27,040
+And here the same.
+
+6
+00:00:27,040 --> 00:00:32,200
+So here we take the current is open state and toggle it basically.
+
+7
+00:00:32,200 --> 00:00:37,240
+And so this is what I mean with updating state based on the current state.
+
+8
+00:00:37,360 --> 00:00:42,460
+Now the way we are doing it right now is working just fine, right?
+
+9
+00:00:42,490 --> 00:00:44,500
+So our app works fine.
+
+10
+00:00:44,500 --> 00:00:51,730
+But now let's imagine that after a few months we come back to this app and then we want to change something.
+
+11
+00:00:51,730 --> 00:00:58,390
+So let's say that we want this handle next function here to actually move forward twice.
+
+12
+00:00:58,480 --> 00:01:03,580
+So let's say that we want to set the step state twice.
+
+13
+00:01:05,090 --> 00:01:08,120
+So there's nothing stopping us from doing that.
+
+14
+00:01:09,500 --> 00:01:12,410
+So we can do this once and duplicate it.
+
+15
+00:01:13,060 --> 00:01:14,590
+So this is perfectly fine.
+
+16
+00:01:14,590 --> 00:01:16,870
+We can call the same function twice.
+
+17
+00:01:17,820 --> 00:01:18,570
+But what?
+
+18
+00:01:18,600 --> 00:01:19,770
+What happens now?
+
+19
+00:01:19,800 --> 00:01:23,670
+So what do you think is going to happen when I click next Now?
+
+20
+00:01:23,820 --> 00:01:30,180
+So in theory, it should take the step which is currently one, add one, so two.
+
+21
+00:01:30,180 --> 00:01:33,240
+And then here it should do the same from 2 to 3.
+
+22
+00:01:33,270 --> 00:01:34,080
+Right?
+
+23
+00:01:34,080 --> 00:01:36,150
+But again, watch what happens.
+
+24
+00:01:37,120 --> 00:01:40,210
+So it only updated the state once.
+
+25
+00:01:40,240 --> 00:01:44,410
+Now we will go into detail why exactly this happens.
+
+26
+00:01:44,410 --> 00:01:50,080
+But for now, what I need you to know is that we should not update State based on the current state
+
+27
+00:01:50,080 --> 00:01:51,160
+like this.
+
+28
+00:01:51,160 --> 00:01:57,190
+So the way that we have been doing it, instead what we should do is to pass in a callback function
+
+29
+00:01:57,190 --> 00:01:57,840
+here.
+
+30
+00:01:57,850 --> 00:02:04,210
+So instead of a value, we pass a function which will receive as the argument the current value of the
+
+31
+00:02:04,210 --> 00:02:04,840
+state.
+
+32
+00:02:05,610 --> 00:02:09,180
+So let's remove this here and let's create a function.
+
+33
+00:02:09,180 --> 00:02:12,930
+And I will just create a simple arrow function here.
+
+34
+00:02:13,230 --> 00:02:18,930
+And so as I was saying, this will receive as an input the current value of the state.
+
+35
+00:02:19,110 --> 00:02:23,070
+Now, there are multiple conventions on how to call this argument.
+
+36
+00:02:23,160 --> 00:02:29,130
+So we could again call it step, but this might then be a bit confusing.
+
+37
+00:02:29,250 --> 00:02:34,920
+We can call it the current step, for example, or just s.
+
+38
+00:02:34,920 --> 00:02:37,190
+And so this is what I'm going to do now.
+
+39
+00:02:37,200 --> 00:02:39,060
+So just an abbreviation.
+
+40
+00:02:39,330 --> 00:02:43,650
+And so then here we can do s minus one just like before.
+
+41
+00:02:43,650 --> 00:02:46,590
+And so this will now work the exact same way.
+
+42
+00:02:47,700 --> 00:02:48,390
+Right.
+
+43
+00:02:48,390 --> 00:02:51,780
+So the view here was updated in the same way as before.
+
+44
+00:02:51,780 --> 00:02:56,190
+But this is a little bit more correct because if we do this here.
+
+45
+00:02:58,130 --> 00:03:05,810
+So again, receiving the current step as an input which we just call S, but it could be called anything.
+
+46
+00:03:06,630 --> 00:03:07,200
+Right.
+
+47
+00:03:07,900 --> 00:03:13,030
+And so then here we return that current step plus one and the same here.
+
+48
+00:03:14,840 --> 00:03:16,100
+Plus one.
+
+49
+00:03:16,280 --> 00:03:21,070
+And so if we run this again, then it works.
+
+50
+00:03:21,080 --> 00:03:24,110
+So then it is updating the state twice.
+
+51
+00:03:24,960 --> 00:03:27,360
+So it started at one then.
+
+52
+00:03:27,390 --> 00:03:32,550
+Therefore, this callback here received the value of one and then one plus one was two.
+
+53
+00:03:32,550 --> 00:03:38,730
+And then here in the next state up, that updated value is already passed here into this callback.
+
+54
+00:03:38,730 --> 00:03:41,520
+And so then we have two plus one, which makes three.
+
+55
+00:03:41,610 --> 00:03:47,850
+Now here we actually do not want this, of course, so we just want to move forwards by one.
+
+56
+00:03:47,850 --> 00:03:54,810
+But in order to be safe for future updates, it's a good idea to always use a callback like this when
+
+57
+00:03:54,810 --> 00:03:59,130
+we want to update state based on the current value of that state.
+
+58
+00:03:59,160 --> 00:04:01,290
+So let's do the same here.
+
+59
+00:04:01,990 --> 00:04:04,630
+So again, here we are also doing the same.
+
+60
+00:04:04,630 --> 00:04:09,190
+So we are also setting the open state based on the current one.
+
+61
+00:04:10,600 --> 00:04:12,400
+So let's just call it is.
+
+62
+00:04:13,510 --> 00:04:15,880
+And then toggle that.
+
+63
+00:04:16,550 --> 00:04:17,510
+Now, right?
+
+64
+00:04:19,230 --> 00:04:21,150
+And that works beautifully.
+
+65
+00:04:21,970 --> 00:04:28,090
+Now when we're not setting state based on the current state, then of course we can just pass in the
+
+66
+00:04:28,090 --> 00:04:29,190
+value as normal.
+
+67
+00:04:29,200 --> 00:04:31,930
+So just like we did here, for example.
+
+68
+00:04:31,930 --> 00:04:34,060
+So that also happens sometimes.
+
+69
+00:04:34,060 --> 00:04:41,650
+And so in that case we need no callback, then we just pass in the new state value as we do here and
+
+70
+00:04:41,650 --> 00:04:43,660
+as we also had here previously.
+
+71
+00:04:43,930 --> 00:04:47,710
+So again, in many situations that would work just fine.
+
+72
+00:04:48,340 --> 00:04:53,110
+So before we only had the minus one here and nothing else.
+
+73
+00:04:53,110 --> 00:04:54,870
+And so that worked as well.
+
+74
+00:04:54,880 --> 00:05:03,190
+But in order to be safe for future updates or for working with coworkers, it's best to update the state
+
+75
+00:05:03,190 --> 00:05:05,570
+in a more safe way like this.
+
+76
+00:05:05,590 --> 00:05:12,460
+And so from now on, I will do this each time that we update the state based on the current value of
+
+77
+00:05:12,460 --> 00:05:13,180
+the state.

@@ -1,0 +1,647 @@
+1
+00:00:00,910 --> 00:00:08,440
+Let's add a new feature to our application, which is to allow users to sort the items by three different
+
+2
+00:00:08,440 --> 00:00:09,430
+criteria.
+
+3
+00:00:10,480 --> 00:00:14,290
+So basically we will build this select box right here.
+
+4
+00:00:14,290 --> 00:00:19,690
+And then from there the user can choose which of these criteria they want to sort the list by.
+
+5
+00:00:19,720 --> 00:00:23,710
+So something that's very common in most web applications.
+
+6
+00:00:23,710 --> 00:00:27,790
+And so let's now build a very simple version of that.
+
+7
+00:00:28,900 --> 00:00:32,800
+So we will do this here right in the packing list component.
+
+8
+00:00:32,830 --> 00:00:39,070
+Because if we were to create a new component just for this, then we would add a little bit of extra
+
+9
+00:00:39,100 --> 00:00:41,980
+work with lifting some more state up.
+
+10
+00:00:41,980 --> 00:00:46,840
+And I want to keep it simple here and not to confuse you even further.
+
+11
+00:00:47,020 --> 00:00:53,740
+And so, yeah, it's no problem to just do it right here in the packing list right after this div right
+
+12
+00:00:53,740 --> 00:00:54,280
+here.
+
+13
+00:00:55,340 --> 00:00:59,810
+Or actually, let's do it right here after this unordered list.
+
+14
+00:01:00,590 --> 00:01:06,890
+So let's create a div with the class name that they already created called actions.
+
+15
+00:01:08,040 --> 00:01:15,060
+Because here we will have that select element and later also a button to clear the entire list.
+
+16
+00:01:16,530 --> 00:01:23,310
+So inside the select element, as always, we need the option element, which should have different
+
+17
+00:01:23,310 --> 00:01:24,120
+values.
+
+18
+00:01:24,120 --> 00:01:29,760
+And so then later, based on these values here we will calculate the ordered list.
+
+19
+00:01:30,000 --> 00:01:32,250
+So the first one is based.
+
+20
+00:01:32,990 --> 00:01:34,280
+On input.
+
+21
+00:01:34,580 --> 00:01:38,480
+And so these are just some strings that we are making up here.
+
+22
+00:01:39,160 --> 00:01:42,610
+So input is basically by the input order then.
+
+23
+00:01:42,640 --> 00:01:44,260
+Well, let's write that here first.
+
+24
+00:01:44,290 --> 00:01:48,670
+So sort by the input order.
+
+25
+00:01:49,790 --> 00:01:54,980
+So by the order in which these items were actually placed into the list.
+
+26
+00:01:55,190 --> 00:01:58,100
+Next up, we want to sort by description.
+
+27
+00:01:59,310 --> 00:02:01,710
+So sort by.
+
+28
+00:02:02,710 --> 00:02:03,610
+Description.
+
+29
+00:02:03,730 --> 00:02:05,980
+So basically alphabetically.
+
+30
+00:02:06,340 --> 00:02:13,270
+And then finally, let's also do which is very nice by the pact status.
+
+31
+00:02:13,480 --> 00:02:14,740
+So sort.
+
+32
+00:02:15,730 --> 00:02:19,000
+By Pact status.
+
+33
+00:02:20,590 --> 00:02:21,250
+Nice.
+
+34
+00:02:21,250 --> 00:02:22,480
+So there it is.
+
+35
+00:02:22,510 --> 00:02:23,770
+Looks great.
+
+36
+00:02:23,770 --> 00:02:28,600
+And so now let's see how we can actually implement this.
+
+37
+00:02:29,180 --> 00:02:33,450
+So first of all, of course, we need to know inside the component.
+
+38
+00:02:33,470 --> 00:02:38,690
+So inside our React application, what the currently selected element here is.
+
+39
+00:02:38,690 --> 00:02:44,240
+And so for that, we will once again transform this here into a controlled element.
+
+40
+00:02:45,690 --> 00:02:48,660
+So for that we need our three steps.
+
+41
+00:02:48,720 --> 00:02:51,780
+So first of all, we create a new piece of state.
+
+42
+00:02:52,590 --> 00:02:55,230
+Let's call this one sort by and set.
+
+43
+00:02:55,650 --> 00:02:57,780
+Sort by.
+
+44
+00:02:59,430 --> 00:03:00,670
+Use state.
+
+45
+00:03:00,690 --> 00:03:04,470
+And now our default will be the very first one here.
+
+46
+00:03:05,090 --> 00:03:09,380
+So we want that by default, they are sorted by input.
+
+47
+00:03:09,380 --> 00:03:15,440
+And so this input here is exactly this string that we defined here, but it could also be description
+
+48
+00:03:15,440 --> 00:03:16,580
+or packed.
+
+49
+00:03:19,230 --> 00:03:20,640
+And so now let's.
+
+50
+00:03:22,370 --> 00:03:25,460
+Use that state here as the value.
+
+51
+00:03:26,420 --> 00:03:27,680
+So sort.
+
+52
+00:03:28,410 --> 00:03:29,010
+By.
+
+53
+00:03:29,280 --> 00:03:35,280
+And if here I used packed instead, then we should already see that reflected in the UI.
+
+54
+00:03:35,520 --> 00:03:40,020
+So you see that here we now have by default sort by packed status.
+
+55
+00:03:40,020 --> 00:03:42,180
+Because now I used this string.
+
+56
+00:03:42,480 --> 00:03:44,280
+Now React is complaining.
+
+57
+00:03:44,280 --> 00:03:50,760
+And that's because we are missing the third part, which is to now attach the Onchange event handler
+
+58
+00:03:50,760 --> 00:03:55,650
+so that we can then set the state based on whatever the user selected there.
+
+59
+00:03:56,440 --> 00:03:57,970
+So on change.
+
+60
+00:04:00,510 --> 00:04:08,310
+Add this function here will automatically receive the event and then we can set sort by.
+
+61
+00:04:09,220 --> 00:04:13,180
+By using event.target dot value.
+
+62
+00:04:13,630 --> 00:04:19,600
+So at some point you will get really used to writing this kind of thing here and it will become second
+
+63
+00:04:19,600 --> 00:04:20,250
+nature.
+
+64
+00:04:20,260 --> 00:04:26,770
+So this is like a recipe that we always need to follow and it always works in the exact same way, really.
+
+65
+00:04:28,270 --> 00:04:29,410
+So let's see.
+
+66
+00:04:29,950 --> 00:04:30,820
+And.
+
+67
+00:04:31,670 --> 00:04:32,450
+Yeah, that works.
+
+68
+00:04:32,450 --> 00:04:32,960
+Nice.
+
+69
+00:04:32,960 --> 00:04:35,150
+And if we check out our component here.
+
+70
+00:04:35,950 --> 00:04:36,910
+Then.
+
+71
+00:04:38,700 --> 00:04:40,850
+We, first of all, need more space.
+
+72
+00:04:40,860 --> 00:04:48,300
+And then you see down here, we now have the sort by status inside or state inside our component.
+
+73
+00:04:48,910 --> 00:04:49,600
+Great.
+
+74
+00:04:49,600 --> 00:04:51,550
+And so now we can work with this.
+
+75
+00:04:51,880 --> 00:04:54,160
+So how do we now get react?
+
+76
+00:04:54,160 --> 00:05:02,110
+So how do we get our application to display the items here sorted by whatever criteria we selected?
+
+77
+00:05:02,260 --> 00:05:09,130
+Well, basically we will just create a new items which is then sorted by that criteria.
+
+78
+00:05:09,280 --> 00:05:13,180
+So we are not going to manipulate the original items array.
+
+79
+00:05:13,210 --> 00:05:15,820
+That state should stay unchanged.
+
+80
+00:05:15,910 --> 00:05:24,220
+Instead, we will now use again derived state because sorting one array can of course be computed based
+
+81
+00:05:24,220 --> 00:05:25,540
+on that initial array.
+
+82
+00:05:25,570 --> 00:05:28,090
+That makes total sense, right?
+
+83
+00:05:28,120 --> 00:05:34,030
+So once again, we will not create a new state variable here because that's totally unnecessary.
+
+84
+00:05:34,060 --> 00:05:38,710
+We will simply create a new variable and here actually a let variable.
+
+85
+00:05:39,980 --> 00:05:41,210
+So sort it.
+
+86
+00:05:42,310 --> 00:05:47,920
+Items and we're using a let so that now we can simply do a couple of simple if statements.
+
+87
+00:05:48,650 --> 00:05:54,260
+So if sort by is equal to input, then this is the default.
+
+88
+00:05:54,350 --> 00:05:55,190
+Right.
+
+89
+00:05:55,190 --> 00:06:02,870
+And so then in this case, we can simply say that sorted items should be just equal to the original
+
+90
+00:06:02,870 --> 00:06:03,630
+items.
+
+91
+00:06:03,650 --> 00:06:05,720
+So this is the wrong here, of course.
+
+92
+00:06:06,050 --> 00:06:12,240
+So again, in this case, the sorted items are just equal to the items themselves.
+
+93
+00:06:12,260 --> 00:06:14,650
+So the ones that we receive as a prop here.
+
+94
+00:06:14,660 --> 00:06:21,890
+And so now, of course, in the end we need to use these sorted items and that's right here.
+
+95
+00:06:22,130 --> 00:06:29,240
+So from now on, instead of rendering the original items array, we will always render the sorted items.
+
+96
+00:06:31,880 --> 00:06:32,840
+All right.
+
+97
+00:06:33,440 --> 00:06:35,180
+And let's just put.
+
+98
+00:06:36,900 --> 00:06:40,440
+Some here socks, a charger.
+
+99
+00:06:40,560 --> 00:06:42,540
+So these are quite easy to write.
+
+100
+00:06:44,020 --> 00:06:45,340
+Um, yeah.
+
+101
+00:06:45,790 --> 00:06:47,710
+Right now, only this one here works.
+
+102
+00:06:47,710 --> 00:06:53,980
+So if I do this now, then we get an error because sorted items is then just this empty variable that
+
+103
+00:06:53,980 --> 00:06:57,340
+react doesn't know how to render so well.
+
+104
+00:06:57,340 --> 00:07:00,100
+Now I will have to write everything again here.
+
+105
+00:07:00,100 --> 00:07:03,880
+So socks, a shirt and a charger.
+
+106
+00:07:04,450 --> 00:07:05,290
+All right.
+
+107
+00:07:05,470 --> 00:07:10,660
+And now let's write one if for the other two cases.
+
+108
+00:07:11,940 --> 00:07:15,060
+So if our sort by change is.
+
+109
+00:07:16,050 --> 00:07:18,390
+Uh, that's a description.
+
+110
+00:07:19,670 --> 00:07:23,510
+Then we will want to sort our items.
+
+111
+00:07:24,300 --> 00:07:27,120
+Actually so sorted items will then become.
+
+112
+00:07:27,850 --> 00:07:28,690
+Items.
+
+113
+00:07:29,580 --> 00:07:35,430
+In our first we use slice because with this we basically take a copy of the array.
+
+114
+00:07:35,430 --> 00:07:39,750
+And that's very important because the sort method is a mutating method.
+
+115
+00:07:39,750 --> 00:07:44,730
+And so if we didn't do this, then the items would actually get sorted as well.
+
+116
+00:07:44,730 --> 00:07:46,110
+So we don't want that.
+
+117
+00:07:46,110 --> 00:07:47,160
+So we use.
+
+118
+00:07:47,960 --> 00:07:50,770
+Slice dot sort.
+
+119
+00:07:50,960 --> 00:07:56,570
+And now here I will just write the code because again, I already explained exactly how this method
+
+120
+00:07:56,570 --> 00:07:59,750
+works in the review of JavaScript section.
+
+121
+00:08:00,420 --> 00:08:07,020
+Now, in this case, since we want to sort alphabetically, we can use the local compare method.
+
+122
+00:08:07,710 --> 00:08:15,540
+So we want to take a which is basically one object of the array, and then we want to take the description
+
+123
+00:08:15,540 --> 00:08:20,550
+of that, which is one of the properties of each object.
+
+124
+00:08:20,550 --> 00:08:24,720
+And then since this is a string we can call local.
+
+125
+00:08:26,560 --> 00:08:27,370
+Compare.
+
+126
+00:08:27,370 --> 00:08:33,040
+And then here we simply pass in another string, which is B dot description.
+
+127
+00:08:34,430 --> 00:08:35,330
+All right.
+
+128
+00:08:35,330 --> 00:08:36,980
+So this is going to work.
+
+129
+00:08:38,430 --> 00:08:39,600
+Hopefully, at least.
+
+130
+00:08:40,020 --> 00:08:45,120
+And then finally, let's also add the code for our last case.
+
+131
+00:08:46,160 --> 00:08:47,690
+Which is by packed.
+
+132
+00:08:47,960 --> 00:08:51,000
+And so something very similar here.
+
+133
+00:08:51,020 --> 00:08:54,710
+Sorted items is going to be equal to items.
+
+134
+00:08:55,800 --> 00:08:58,470
+Taking a copy dot sort.
+
+135
+00:08:59,980 --> 00:09:06,440
+And then A and B, which are basically two objects of the array which are being compared.
+
+136
+00:09:06,460 --> 00:09:13,480
+And then since we want to order by the pact status, which is a Boolean, we need to first convert that
+
+137
+00:09:13,480 --> 00:09:14,370
+to a number.
+
+138
+00:09:14,380 --> 00:09:16,690
+So a pact.
+
+139
+00:09:18,500 --> 00:09:19,700
+Minus number.
+
+140
+00:09:19,730 --> 00:09:22,140
+B dot packed.
+
+141
+00:09:22,160 --> 00:09:23,270
+And that's it.
+
+142
+00:09:23,360 --> 00:09:25,010
+So let's try this out.
+
+143
+00:09:26,060 --> 00:09:30,110
+So by description you see that now it's alphabetically so C.
+
+144
+00:09:30,220 --> 00:09:34,350
+S s and finally by the pact status.
+
+145
+00:09:34,370 --> 00:09:37,490
+So right now, all of them are unpacked.
+
+146
+00:09:37,490 --> 00:09:41,030
+So let's click and you see that then it moves to the end.
+
+147
+00:09:42,530 --> 00:09:43,820
+And the same thing right here.
+
+148
+00:09:43,820 --> 00:09:46,880
+Then if I remove it, it will move back here.
+
+149
+00:09:48,030 --> 00:09:48,840
+Great.
+
+150
+00:09:49,550 --> 00:09:54,170
+And of course, we also have our default, which is the input order, which is also the same.
+
+151
+00:09:54,170 --> 00:10:00,020
+That happens whenever we are in the pact status and we have none of them pact in.
+
+152
+00:10:00,970 --> 00:10:01,840
+Great.
+
+153
+00:10:01,870 --> 00:10:04,360
+So that's just amazing.
+
+154
+00:10:04,360 --> 00:10:11,140
+We just implemented this simple feature, but also a very common feature simply by using the power of
+
+155
+00:10:11,140 --> 00:10:12,550
+derived state.
+
+156
+00:10:12,910 --> 00:10:18,080
+So again, we didn't create any new piece of state for the sorted items.
+
+157
+00:10:18,100 --> 00:10:21,340
+The only state that we need is the sort by state.
+
+158
+00:10:21,340 --> 00:10:27,100
+So that React actually has at all times the value of this input field right here.
+
+159
+00:10:27,100 --> 00:10:33,190
+And then based on that, we simply create this derived state of sorted items, which then in the end
+
+160
+00:10:33,220 --> 00:10:37,000
+is what we render onto the user interface.
+
+161
+00:10:37,000 --> 00:10:43,030
+And with this, the only thing that we have left to do is to add this button here to clear the list.
+
+162
+00:10:43,030 --> 00:10:45,880
+And so that's the task of the next video.

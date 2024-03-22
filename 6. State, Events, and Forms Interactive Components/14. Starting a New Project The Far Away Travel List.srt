@@ -1,0 +1,235 @@
+1
+00:00:00,950 --> 00:00:07,910
+In the second part of this section, let's now build our first project that has some real interactivity.
+
+2
+00:00:07,910 --> 00:00:10,760
+And so let's get straight to it.
+
+3
+00:00:11,750 --> 00:00:13,830
+And by now you know the drill.
+
+4
+00:00:13,850 --> 00:00:16,900
+So if you're on windows, open up your command prompt.
+
+5
+00:00:16,910 --> 00:00:20,300
+If you're on a mac, open your terminal, please.
+
+6
+00:00:21,200 --> 00:00:25,970
+And then as always, navigate to the folder where you want to create your project.
+
+7
+00:00:27,150 --> 00:00:30,810
+So that's my desktop and then in there run NP.
+
+8
+00:00:32,460 --> 00:00:34,560
+Create react.
+
+9
+00:00:35,380 --> 00:00:35,830
+App.
+
+10
+00:00:35,830 --> 00:00:39,580
+And then please specify version number five here.
+
+11
+00:00:39,580 --> 00:00:44,920
+And then finally, the name of the project, which is going to be travel list.
+
+12
+00:00:45,880 --> 00:00:50,740
+Then hit, enter and then let create React app, do its thing.
+
+13
+00:00:50,740 --> 00:00:56,110
+And in the meantime, I will give you a quick tour of the app that we're going to build.
+
+14
+00:00:56,140 --> 00:01:03,100
+So this is the far away app, which is a simple travel list where we can add all the items that we need
+
+15
+00:01:03,100 --> 00:01:04,930
+for our next trip.
+
+16
+00:01:05,110 --> 00:01:12,940
+So, for example, let's say we need two boarding passes that we really cannot forget, and then we
+
+17
+00:01:12,940 --> 00:01:14,980
+can hit, enter or click here.
+
+18
+00:01:14,980 --> 00:01:18,430
+And so then that item gets added here to the list.
+
+19
+00:01:18,430 --> 00:01:23,500
+And also you see that down here we have the statistics that just got updated.
+
+20
+00:01:24,020 --> 00:01:27,050
+So that's already some interactivity right there.
+
+21
+00:01:27,050 --> 00:01:29,060
+But of course we can do more.
+
+22
+00:01:29,090 --> 00:01:35,090
+So, for example, let's say we don't need the charger anymore for some reason, so we can just click
+
+23
+00:01:35,090 --> 00:01:37,130
+there and it's gone.
+
+24
+00:01:37,370 --> 00:01:40,690
+We also can mark these items as completed.
+
+25
+00:01:40,700 --> 00:01:42,530
+So basically as packed.
+
+26
+00:01:42,680 --> 00:01:45,740
+So let's say we already packed that one and that one.
+
+27
+00:01:45,740 --> 00:01:49,760
+And then down here it says we already packed two, which is 50%.
+
+28
+00:01:50,360 --> 00:01:52,220
+But there is even more.
+
+29
+00:01:52,220 --> 00:01:56,340
+So we can also sort by these three things here.
+
+30
+00:01:56,360 --> 00:02:01,670
+So input order or by description or by the pact status.
+
+31
+00:02:01,670 --> 00:02:04,910
+And so then the pact items here, they appear at the end.
+
+32
+00:02:05,150 --> 00:02:11,750
+And finally, maybe once we are back from our trip and want to prepare our next one, we can just clear
+
+33
+00:02:11,750 --> 00:02:13,280
+the entire list at once.
+
+34
+00:02:13,820 --> 00:02:16,160
+So it then asks us if we are sure.
+
+35
+00:02:16,160 --> 00:02:17,900
+And yes, we are.
+
+36
+00:02:17,900 --> 00:02:22,980
+And indeed then our list becomes completely empty and that's it.
+
+37
+00:02:23,000 --> 00:02:28,910
+So I think this is a really nice little project for us to learn some more interactivity.
+
+38
+00:02:28,910 --> 00:02:33,590
+And it has all these nice but simple features that we are going to build.
+
+39
+00:02:33,590 --> 00:02:38,270
+And on top of that, I also really like this nice design here.
+
+40
+00:02:38,270 --> 00:02:43,820
+It's a bit retro, which I think really fits the vibe of this application.
+
+41
+00:02:44,090 --> 00:02:50,510
+And now before we start writing any code, let's actually take a look at how we can break up this entire
+
+42
+00:02:50,510 --> 00:02:52,760
+design into components.
+
+43
+00:02:53,790 --> 00:02:59,400
+So this first big yellow part, I think we can call this the logo of the application.
+
+44
+00:02:59,400 --> 00:03:04,650
+And so we're going to create one component called logo just for this part.
+
+45
+00:03:04,680 --> 00:03:08,310
+Then next up, we clearly have some form here.
+
+46
+00:03:08,310 --> 00:03:11,710
+And so that's where we are going to put these elements.
+
+47
+00:03:11,730 --> 00:03:13,920
+So yet another component.
+
+48
+00:03:14,620 --> 00:03:15,370
+Next.
+
+49
+00:03:15,370 --> 00:03:19,930
+Then we have this entire list, which I think can be called the packing list.
+
+50
+00:03:19,930 --> 00:03:25,120
+And then in there, each of these items is well, just called an item.
+
+51
+00:03:25,120 --> 00:03:29,770
+We could call it a packing item maybe, but we'll see once we get to the code.
+
+52
+00:03:30,040 --> 00:03:36,490
+Finally, down here, we have this other area which I think we can just call stats or statistics.
+
+53
+00:03:37,120 --> 00:03:41,620
+So this is how we are going to break up this user interface into components.
+
+54
+00:03:41,620 --> 00:03:45,210
+And we will talk a lot more about how we actually do this.
+
+55
+00:03:45,220 --> 00:03:48,070
+So how we arrive at these different components.
+
+56
+00:03:48,070 --> 00:03:51,400
+But that's not the focus of this application here.
+
+57
+00:03:51,400 --> 00:03:57,250
+We just want to work a little bit more with state, with events and also learn about how we can handle
+
+58
+00:03:57,250 --> 00:03:58,480
+form submissions.
+
+59
+00:03:58,480 --> 00:04:05,230
+So if that sounds fun, then let's quickly move on to the next lecture and start implementing this layout.

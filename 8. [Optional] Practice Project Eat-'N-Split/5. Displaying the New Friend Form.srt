@@ -1,0 +1,379 @@
+1
+00:00:00,970 --> 00:00:06,310
+Let's now conditionally display and hide the new friend form.
+
+2
+00:00:07,140 --> 00:00:13,560
+So basically the functionality that we're looking for is clicking on this button will display the form
+
+3
+00:00:13,560 --> 00:00:15,510
+and change the text to close.
+
+4
+00:00:15,540 --> 00:00:19,200
+And then when we click again, it will just hide the form again.
+
+5
+00:00:19,440 --> 00:00:21,750
+So let's think about this.
+
+6
+00:00:21,750 --> 00:00:27,570
+Something should change in the UI as we click this button, right?
+
+7
+00:00:27,600 --> 00:00:34,770
+Or in other words, the UI needs to be re rendered as a result of the event of clicking that button.
+
+8
+00:00:34,770 --> 00:00:39,960
+And so that is a very good sign that we need a new state variable.
+
+9
+00:00:41,790 --> 00:00:48,000
+So let's go back here and then let's think about where we actually need that state variable.
+
+10
+00:00:48,520 --> 00:00:55,350
+Well, basically we want to display and hide this form here based on that state variable.
+
+11
+00:00:55,360 --> 00:00:57,460
+And where do we do that?
+
+12
+00:00:57,550 --> 00:00:59,890
+So where do we display the form?
+
+13
+00:01:00,690 --> 00:01:06,210
+Well, it is right here, so right here in the app component.
+
+14
+00:01:06,210 --> 00:01:10,230
+And so this is where we now place our new piece of state.
+
+15
+00:01:12,170 --> 00:01:14,300
+So let's call it show.
+
+16
+00:01:15,650 --> 00:01:19,190
+Add friend and set.
+
+17
+00:01:19,370 --> 00:01:20,440
+Show.
+
+18
+00:01:20,450 --> 00:01:21,140
+Add.
+
+19
+00:01:21,760 --> 00:01:22,600
+Friend.
+
+20
+00:01:22,780 --> 00:01:29,290
+We could, of course, have used some shorter variable names here, but you shouldn't be afraid of making
+
+21
+00:01:29,290 --> 00:01:31,480
+your variables pretty descriptive.
+
+22
+00:01:32,880 --> 00:01:37,350
+So use state and by default, the form should be hidden.
+
+23
+00:01:37,350 --> 00:01:39,900
+And so we set this to false.
+
+24
+00:01:41,130 --> 00:01:47,940
+And once again it's important that vs code automatically imported use state from react.
+
+25
+00:01:48,030 --> 00:01:50,910
+So make sure you have that line right there.
+
+26
+00:01:51,990 --> 00:01:57,900
+So we have the first step of creating the state variable with the use state hook.
+
+27
+00:01:57,930 --> 00:02:00,180
+Next up, let's use it.
+
+28
+00:02:01,180 --> 00:02:05,220
+And we will use it to conditionally render this piece of JS.
+
+29
+00:02:05,800 --> 00:02:08,440
+So just this one component here.
+
+30
+00:02:08,530 --> 00:02:14,020
+And for that we can again use the and operator with short circuiting.
+
+31
+00:02:14,200 --> 00:02:16,450
+So show add friend.
+
+32
+00:02:17,620 --> 00:02:18,430
+And.
+
+33
+00:02:19,500 --> 00:02:20,730
+Form at friend.
+
+34
+00:02:20,820 --> 00:02:22,890
+And so now it is gone.
+
+35
+00:02:23,220 --> 00:02:24,980
+So that's no longer here.
+
+36
+00:02:24,990 --> 00:02:26,970
+But if it was true.
+
+37
+00:02:28,080 --> 00:02:29,940
+Then it should show up.
+
+38
+00:02:30,150 --> 00:02:32,040
+And indeed, there it is.
+
+39
+00:02:34,000 --> 00:02:34,860
+Okay.
+
+40
+00:02:34,980 --> 00:02:40,590
+And with that in place, let's now go to the third step, which is updating the state.
+
+41
+00:02:40,740 --> 00:02:42,990
+So when do we update the state?
+
+42
+00:02:43,020 --> 00:02:46,580
+Well, it is when we click here on the button.
+
+43
+00:02:46,650 --> 00:02:48,960
+So that's this button right here.
+
+44
+00:02:48,960 --> 00:02:52,350
+And so let's again specify the onClick handler.
+
+45
+00:02:52,900 --> 00:02:59,740
+Now, of course, this button component here doesn't have the onClick property, right?
+
+46
+00:02:59,770 --> 00:03:02,560
+Only the native HTML elements.
+
+47
+00:03:02,560 --> 00:03:08,290
+So, for example, this div here or the actual button does have the onClick property.
+
+48
+00:03:10,170 --> 00:03:16,350
+So let's actually cut it from here and place it a bit closer to the app because.
+
+49
+00:03:17,220 --> 00:03:21,420
+Or actually even before because this is our only reusable component.
+
+50
+00:03:21,450 --> 00:03:23,580
+So let's place it a bit separately.
+
+51
+00:03:23,940 --> 00:03:31,080
+But anyway, as I was saying, this button here can of course accept the onClick prop because it is
+
+52
+00:03:31,080 --> 00:03:37,110
+an HTML element, basically, not technically, but we can think of it as that.
+
+53
+00:03:37,800 --> 00:03:40,470
+So here we can say on click.
+
+54
+00:03:40,470 --> 00:03:45,540
+But again, our custom button component doesn't have that prop.
+
+55
+00:03:46,160 --> 00:03:50,270
+However, of course we still want to specify on click here.
+
+56
+00:03:53,340 --> 00:03:54,060
+Right.
+
+57
+00:03:54,060 --> 00:04:00,060
+And so what we can do is simply, well, accept that here as a prop.
+
+58
+00:04:01,960 --> 00:04:08,950
+And this is actually exactly what we did when we built our first reusable button in the steps component.
+
+59
+00:04:09,190 --> 00:04:10,330
+Remember that?
+
+60
+00:04:11,760 --> 00:04:15,810
+But anyway, now here it's as simple as then.
+
+61
+00:04:15,990 --> 00:04:18,360
+Passing that on, click right here.
+
+62
+00:04:19,910 --> 00:04:26,480
+And now all we have to do is to pass in the function that we want to be executed when the click happens.
+
+63
+00:04:27,360 --> 00:04:33,060
+So we will create a new function called handle show Add.
+
+64
+00:04:34,100 --> 00:04:35,000
+Friend.
+
+65
+00:04:35,570 --> 00:04:37,490
+So let's copy that.
+
+66
+00:04:37,640 --> 00:04:43,790
+And then, as always, let's create a new event handler function right here.
+
+67
+00:04:46,420 --> 00:04:48,430
+So what should happen here?
+
+68
+00:04:48,820 --> 00:04:55,420
+Well, we want to change the show at Friend State, and for that we use the setter function.
+
+69
+00:04:55,600 --> 00:05:02,140
+And what we want to do is to always set the show at friend to the opposite as it is right now.
+
+70
+00:05:02,440 --> 00:05:06,460
+Or in other words, the new state will depend on the current state.
+
+71
+00:05:06,460 --> 00:05:14,470
+And so as always or not always, but as many times we use a callback which gets as an input the current
+
+72
+00:05:14,470 --> 00:05:15,130
+state.
+
+73
+00:05:15,520 --> 00:05:17,620
+And I will just call it show here.
+
+74
+00:05:19,200 --> 00:05:19,830
+And then.
+
+75
+00:05:20,530 --> 00:05:23,590
+The new state will be the opposite of that.
+
+76
+00:05:24,530 --> 00:05:25,070
+Again.
+
+77
+00:05:25,070 --> 00:05:30,750
+Any name here would work, but, well, we don't have to write the entire thing here.
+
+78
+00:05:30,770 --> 00:05:32,630
+Let's just go for something short.
+
+79
+00:05:32,630 --> 00:05:34,010
+And if I click here.
+
+80
+00:05:34,220 --> 00:05:35,330
+Beautiful.
+
+81
+00:05:35,330 --> 00:05:37,250
+So that works perfectly.
+
+82
+00:05:37,250 --> 00:05:41,570
+And now all we have to change is the text here when we click.
+
+83
+00:05:41,570 --> 00:05:46,130
+So now when the form is open, it should say close.
+
+84
+00:05:46,250 --> 00:05:49,220
+And so that's just some more conditional rendering.
+
+85
+00:05:50,340 --> 00:05:52,320
+Right here in the button, actually.
+
+86
+00:05:53,250 --> 00:05:57,480
+So let's wrap this here into JavaScript mode and then.
+
+87
+00:05:59,510 --> 00:06:01,850
+Let's say show at friend.
+
+88
+00:06:02,210 --> 00:06:05,690
+If so, so if it is currently true.
+
+89
+00:06:05,870 --> 00:06:12,920
+Then we want to display close and otherwise Then this other string here which says Add friend.
+
+90
+00:06:13,580 --> 00:06:14,680
+Give it a save.
+
+91
+00:06:14,690 --> 00:06:17,390
+And yes, it says close.
+
+92
+00:06:17,420 --> 00:06:20,210
+And now back to the original Add friend.
+
+93
+00:06:20,510 --> 00:06:21,610
+Nice.
+
+94
+00:06:21,620 --> 00:06:28,100
+So we are now able to display and hide the form, but of course the form doesn't work yet.
+
+95
+00:06:28,280 --> 00:06:31,040
+So let's take care of that in the next video.

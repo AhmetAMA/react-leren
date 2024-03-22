@@ -1,0 +1,363 @@
+1
+00:00:00,980 --> 00:00:08,750
+As web developers, we rely a lot on developer tools, so things like the console or the element inspect
+
+2
+00:00:08,750 --> 00:00:10,720
+panel in our browser.
+
+3
+00:00:10,730 --> 00:00:19,130
+And so since tools are so helpful for developers, the React team built dev tools specific for React,
+
+4
+00:00:19,160 --> 00:00:23,050
+which can be extremely helpful when working with state.
+
+5
+00:00:23,060 --> 00:00:26,960
+And so since we're working with State now, let's go check them out.
+
+6
+00:00:28,120 --> 00:00:34,630
+And actually since the beginning, we got this message here in our console telling us to download these
+
+7
+00:00:34,630 --> 00:00:41,890
+dev tools so you can open up your console and then here you will find the link to the place in the React
+
+8
+00:00:41,890 --> 00:00:46,570
+documentation where we then can find the link to the dev tools.
+
+9
+00:00:47,550 --> 00:00:52,290
+So here is the link for the Chrome Web store and then for the other browsers.
+
+10
+00:00:52,290 --> 00:00:56,970
+But since we're using Google Chrome, this is the one that we want.
+
+11
+00:00:57,210 --> 00:01:05,550
+And if for some reason this link here didn't appear in your console, you can just Google Chrome react.
+
+12
+00:01:06,640 --> 00:01:07,900
+Dev tools.
+
+13
+00:01:09,120 --> 00:01:12,060
+So that's going to be this first one.
+
+14
+00:01:12,060 --> 00:01:14,220
+And so then once you're on this page.
+
+15
+00:01:15,080 --> 00:01:17,030
+Or on this one, we're just the same.
+
+16
+00:01:17,030 --> 00:01:21,970
+You can just download this extension and install it in your Google Chrome.
+
+17
+00:01:21,980 --> 00:01:26,810
+Now, I cannot do this because I'm on a guest window, so let me quickly fix that.
+
+18
+00:01:27,750 --> 00:01:32,940
+And so now here in this window, I can actually use these dev tools as well.
+
+19
+00:01:33,060 --> 00:01:35,450
+So hopefully you installed the tool.
+
+20
+00:01:35,460 --> 00:01:42,090
+So just like any other Chrome extension and then once you did down here, once you have these developer
+
+21
+00:01:42,090 --> 00:01:49,710
+tools here already open, you will see one tab which appears here or actually two which are coming from
+
+22
+00:01:49,710 --> 00:01:51,060
+the React dev tools.
+
+23
+00:01:51,060 --> 00:01:54,390
+So that's this component tab and this profiler tab.
+
+24
+00:01:54,450 --> 00:01:58,020
+And since we're going to use this all the time, we can even drag.
+
+25
+00:01:58,530 --> 00:01:59,760
+Well, actually not.
+
+26
+00:02:00,800 --> 00:02:00,980
+Yeah.
+
+27
+00:02:00,980 --> 00:02:06,050
+Now we can, like, drag it here to the beginning where it will then stay.
+
+28
+00:02:06,140 --> 00:02:10,820
+Now, here it says Loading, react element tree, which should be fast.
+
+29
+00:02:10,820 --> 00:02:12,440
+So let's try that again.
+
+30
+00:02:12,440 --> 00:02:17,990
+And actually it only worked for me after closing and reopening my browser.
+
+31
+00:02:17,990 --> 00:02:24,800
+So if you see the same error message that I had previously down here, then please go ahead and do the
+
+32
+00:02:24,800 --> 00:02:25,540
+same now.
+
+33
+00:02:25,550 --> 00:02:27,650
+But so now everything is working.
+
+34
+00:02:27,650 --> 00:02:35,300
+And so let's take a look at these dev tools and in particular of this component part of the dev tools,
+
+35
+00:02:35,300 --> 00:02:38,840
+because again, there's another part which is this profiler.
+
+36
+00:02:38,840 --> 00:02:41,060
+But we will come back to that a bit later.
+
+37
+00:02:41,570 --> 00:02:47,690
+So components basically, as the name says, is for showing a component tree.
+
+38
+00:02:48,570 --> 00:02:48,990
+Now.
+
+39
+00:02:48,990 --> 00:02:53,340
+Right now we only have one component, so only the app component.
+
+40
+00:02:53,340 --> 00:02:56,880
+And so then this is the only one that we can see here.
+
+41
+00:02:56,880 --> 00:03:03,060
+But if we had more, then all of them would be showing up down here and we could see our entire component
+
+42
+00:03:03,060 --> 00:03:03,630
+tree.
+
+43
+00:03:03,780 --> 00:03:06,750
+So I will show you this again once we have that.
+
+44
+00:03:06,840 --> 00:03:13,290
+The point here now is that we can take a look at all the state that is inside each component.
+
+45
+00:03:14,350 --> 00:03:18,610
+To make this even a bit bigger here so you can actually see.
+
+46
+00:03:20,620 --> 00:03:22,660
+Well, that's maybe too big or.
+
+47
+00:03:23,360 --> 00:03:25,700
+I can also make the entire window bigger.
+
+48
+00:03:26,670 --> 00:03:28,140
+So just like this.
+
+49
+00:03:28,500 --> 00:03:34,740
+So you see here that first we have this props, which is for all the props that the component that is
+
+50
+00:03:34,740 --> 00:03:37,140
+currently selected is receiving.
+
+51
+00:03:37,140 --> 00:03:40,530
+And in this case, we of course, are receiving no props.
+
+52
+00:03:40,560 --> 00:03:41,790
+So nothing there.
+
+53
+00:03:41,790 --> 00:03:43,920
+But then here is the interesting part.
+
+54
+00:03:43,980 --> 00:03:46,890
+So here we then have a list of all the hooks.
+
+55
+00:03:46,890 --> 00:03:52,250
+And so here we have these two entries, one for each state hook that we used.
+
+56
+00:03:52,260 --> 00:03:56,400
+So remember that we created the state with use state.
+
+57
+00:03:56,400 --> 00:03:59,460
+And these use functions are hooks.
+
+58
+00:03:59,520 --> 00:04:02,640
+Therefore they are here in the list of hooks.
+
+59
+00:04:02,880 --> 00:04:09,330
+But anyway, what's interesting is that we can now manipulate these values down here to experiment with
+
+60
+00:04:09,330 --> 00:04:09,840
+them.
+
+61
+00:04:10,460 --> 00:04:17,240
+For example, when we have a Boolean value, we here get this checkbox and so then we can toggle it,
+
+62
+00:04:17,270 --> 00:04:19,940
+which will then also toggle the value here.
+
+63
+00:04:19,940 --> 00:04:21,590
+So from true to false.
+
+64
+00:04:22,580 --> 00:04:27,470
+So basically we can do the same thing as in the UI, but here with the dev tools.
+
+65
+00:04:27,660 --> 00:04:34,370
+And so that's very useful and it's a bit similar to what we also can do with CSS here in the element
+
+66
+00:04:34,370 --> 00:04:34,820
+tab.
+
+67
+00:04:34,820 --> 00:04:37,340
+So here we can do similar things.
+
+68
+00:04:37,520 --> 00:04:39,740
+So this was inspired by that.
+
+69
+00:04:39,920 --> 00:04:43,130
+And then of course here we can also change this state.
+
+70
+00:04:43,280 --> 00:04:51,800
+So we can go from 1 to 3 directly or of course we can also try with values that we usually cannot access
+
+71
+00:04:51,800 --> 00:04:52,910
+from the UI.
+
+72
+00:04:53,330 --> 00:04:58,400
+So by clicking these buttons, we cannot set the state to ten, for example.
+
+73
+00:04:58,400 --> 00:05:04,880
+But maybe for some reason we need to see what the UI looks like with ten, and so then we can come here
+
+74
+00:05:04,880 --> 00:05:07,700
+to the dev tools and set it to this.
+
+75
+00:05:07,970 --> 00:05:10,490
+Now again, this is just a small demo example.
+
+76
+00:05:10,490 --> 00:05:12,230
+So here that wouldn't be important.
+
+77
+00:05:12,230 --> 00:05:17,780
+But in bigger and large scale applications, this might be necessary from time to time.
+
+78
+00:05:17,780 --> 00:05:24,180
+And so this is very, very important to keep in mind that you can use the dev tools for this kind of
+
+79
+00:05:24,180 --> 00:05:24,720
+thing.
+
+80
+00:05:25,970 --> 00:05:27,350
+So that's one thing.
+
+81
+00:05:27,350 --> 00:05:33,680
+And as I mentioned earlier, it's also very useful to be able to see the entire component tree right
+
+82
+00:05:33,680 --> 00:05:40,340
+here, because when we have many, many files in a project and dozens or even hundreds of components
+
+83
+00:05:40,340 --> 00:05:46,430
+in our app, maybe then it can become quickly out of hand and we can lose sight of which components
+
+84
+00:05:46,430 --> 00:05:47,090
+are aware.
+
+85
+00:05:47,090 --> 00:05:50,270
+And so then a component tree can become very handy.
+
+86
+00:05:50,270 --> 00:05:54,650
+So instead of drawing that manually, we just come here and there it is.
+
+87
+00:05:55,940 --> 00:05:56,480
+Okay.
+
+88
+00:05:56,480 --> 00:05:57,410
+And that's for now.
+
+89
+00:05:57,410 --> 00:06:00,110
+All I had to tell you about these dev tools.
+
+90
+00:06:00,110 --> 00:06:01,070
+Very handy.
+
+91
+00:06:01,100 --> 00:06:06,860
+Make sure that you install them and we will come back to them in future lectures for sure.

@@ -1,0 +1,159 @@
+1
+00:00:00,810 --> 00:00:09,270
+Many beginners get quite confused when they start using JS in their own code and in fact JS can be a
+
+2
+00:00:09,270 --> 00:00:12,470
+bit tricky to understand and to master.
+
+3
+00:00:12,480 --> 00:00:16,790
+But that's why I'm here by your side, helping you along the way.
+
+4
+00:00:16,800 --> 00:00:21,360
+And so let's quickly check out the rules of how JS works.
+
+5
+00:00:22,620 --> 00:00:30,750
+Now, there are some general rules and there are some rules about how JSX is different from HTML.
+
+6
+00:00:30,870 --> 00:00:38,820
+And starting with the general rules, you should know that JSX works essentially just like HTML.
+
+7
+00:00:38,820 --> 00:00:41,660
+So it has a very similar syntax.
+
+8
+00:00:41,670 --> 00:00:49,200
+However, we can enter a JavaScript mode by using curly braces anywhere in the markup where a value
+
+9
+00:00:49,200 --> 00:00:52,800
+like text or an attribute is expected.
+
+10
+00:00:52,920 --> 00:01:00,180
+Now into this JavaScript mode, we can place any JavaScript expression, so anything that produces a
+
+11
+00:01:00,180 --> 00:01:00,900
+value.
+
+12
+00:01:00,900 --> 00:01:08,730
+So we can reference variables, create arrays or objects, we can loop over arrays using the map method,
+
+13
+00:01:08,730 --> 00:01:12,630
+or we can use operators like the ternary operator.
+
+14
+00:01:12,720 --> 00:01:15,690
+What's not allowed are statements.
+
+15
+00:01:15,690 --> 00:01:24,940
+So in JSX, you cannot use things like an if else statement for loops a switch or any other statement.
+
+16
+00:01:25,240 --> 00:01:34,000
+Now what's super important to understand is that a piece of JSX produces a JavaScript expression, or
+
+17
+00:01:34,000 --> 00:01:40,210
+in other words, a piece of JSX is just like any other JavaScript expression.
+
+18
+00:01:40,210 --> 00:01:47,950
+And this makes sense because we already learned that JSX is simply converted to a create element function
+
+19
+00:01:47,950 --> 00:01:51,700
+call, which is in fact also an expression.
+
+20
+00:01:52,120 --> 00:01:55,910
+Now, this fact has two important implications.
+
+21
+00:01:55,930 --> 00:02:01,900
+First, it means that we can place other pieces of JSX inside the curly braces.
+
+22
+00:02:01,900 --> 00:02:04,220
+So inside the JavaScript node.
+
+23
+00:02:04,240 --> 00:02:11,970
+And again, this is only possible because we can put any JavaScript expression inside those curly braces
+
+24
+00:02:11,980 --> 00:02:15,730
+and that includes the expressions produced by JSX.
+
+25
+00:02:16,450 --> 00:02:24,760
+The second implication of the fact that JSX produces an expression is that we can write JSX anywhere
+
+26
+00:02:24,760 --> 00:02:26,170
+inside a component.
+
+27
+00:02:26,200 --> 00:02:32,530
+For example, we can assign a piece of JSX to a variable like in this code snippet.
+
+28
+00:02:32,710 --> 00:02:39,310
+We can also use it inside an if else statement, pass it into functions and many other things.
+
+29
+00:02:39,940 --> 00:02:44,950
+Finally, a piece of JS can only have one root element.
+
+30
+00:02:44,950 --> 00:02:47,740
+So basically one parent element.
+
+31
+00:02:47,770 --> 00:02:54,130
+If you need more than that, for example, when you need to return two elements from a component, you
+
+32
+00:02:54,130 --> 00:02:58,990
+can use something called a react fragment, which we will talk about later.
+
+33
+00:02:59,890 --> 00:03:00,580
+Okay.
+
+34
+00:03:00,580 --> 00:03:06,010
+And now let's see the differences between JS and regular HTML.
+
+35
+00:03:06,220 --> 00:03:12,580
+Now, I will actually not go through this entire list here at this point because these are just some
+
+36
+00:03:12,580 --> 00:03:18,240
+very simple, straightforward rules which are best explored by using code.
+
+37
+00:03:18,250 --> 00:03:24,640
+But I still wanted to include this list in this slide here so that you can keep it as a reference when
+
+38
+00:03:24,640 --> 00:03:26,530
+you download these slides.
+
+39
+00:03:27,070 --> 00:03:33,490
+So again, we will encounter these rules as we keep writing code, which is exactly what we're going
+
+40
+00:03:33,490 --> 00:03:34,360
+to do now.

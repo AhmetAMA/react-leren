@@ -1,0 +1,519 @@
+1
+00:00:00,870 --> 00:00:07,620
+It's time to introduce yet another fundamental react concept, which is perhaps.
+
+2
+00:00:08,850 --> 00:00:16,470
+And props is essentially how we pass data between components and in particular from parent components
+
+3
+00:00:16,470 --> 00:00:18,420
+to child components.
+
+4
+00:00:18,420 --> 00:00:25,830
+So we can imagine props as being like a communication channel between a parent and a child component.
+
+5
+00:00:26,160 --> 00:00:33,000
+So in practice, what we're going to do is to now customize each of these pizza components that we have
+
+6
+00:00:33,000 --> 00:00:34,110
+right here.
+
+7
+00:00:34,350 --> 00:00:41,910
+So remember how we created the pizza component, which has this image, the pizza name and the ingredients.
+
+8
+00:00:41,910 --> 00:00:49,110
+But right now, all of the pizzas are the same because, well, we didn't have a way of passing different
+
+9
+00:00:49,110 --> 00:00:52,420
+data into them to make each of them customized.
+
+10
+00:00:52,440 --> 00:00:56,460
+But now, as we learned about props, we will be able to do that.
+
+11
+00:00:57,100 --> 00:00:59,680
+So first of all, let's.
+
+12
+00:01:00,560 --> 00:01:07,190
+Grab or pizza component and cut it from here and place it right after the menu.
+
+13
+00:01:07,220 --> 00:01:09,470
+Just so we can see what's happening.
+
+14
+00:01:09,770 --> 00:01:13,970
+And then let's get rid of this repetition here for now.
+
+15
+00:01:14,740 --> 00:01:18,670
+So we only want this one pizza component here for now.
+
+16
+00:01:19,240 --> 00:01:19,780
+Okay.
+
+17
+00:01:19,780 --> 00:01:26,860
+And so now it's time to pass the data from this parent component here, which is the menu in this case,
+
+18
+00:01:26,860 --> 00:01:29,260
+to the pizza component.
+
+19
+00:01:29,350 --> 00:01:34,380
+So what we want to pass is basically this string right here.
+
+20
+00:01:34,390 --> 00:01:40,030
+So the link to the image, then the name of the pizza and the ingredients.
+
+21
+00:01:40,090 --> 00:01:43,150
+So to define props, we do it in two steps.
+
+22
+00:01:43,150 --> 00:01:50,320
+First, we pass the props into the component and then second, we receive the props in the component
+
+23
+00:01:50,350 --> 00:01:52,090
+that we pass them into.
+
+24
+00:01:52,920 --> 00:01:58,310
+So here is where we pass those props in and we write them just like this.
+
+25
+00:01:58,320 --> 00:02:01,530
+So just as if they were normal attributes.
+
+26
+00:02:03,280 --> 00:02:04,030
+So.
+
+27
+00:02:05,580 --> 00:02:07,470
+Pizza Spinazzi.
+
+28
+00:02:08,410 --> 00:02:09,670
+That's the first one.
+
+29
+00:02:09,700 --> 00:02:10,450
+Then.
+
+30
+00:02:10,970 --> 00:02:14,180
+Let's also define a prop for the ingredient.
+
+31
+00:02:15,540 --> 00:02:19,250
+And by the way, Prop simply stands for property.
+
+32
+00:02:19,260 --> 00:02:21,810
+It's just a short for.
+
+33
+00:02:22,560 --> 00:02:23,670
+Yeah, property.
+
+34
+00:02:25,260 --> 00:02:25,440
+No.
+
+35
+00:02:25,520 --> 00:02:26,130
+Okay.
+
+36
+00:02:26,160 --> 00:02:31,500
+And then finally, let's say the photo or photo name.
+
+37
+00:02:32,650 --> 00:02:34,630
+And then let's grab this one here.
+
+38
+00:02:38,010 --> 00:02:38,820
+All right.
+
+39
+00:02:38,820 --> 00:02:41,340
+And maybe let's also pass in a price.
+
+40
+00:02:43,440 --> 00:02:45,900
+And for now I will also pass it as a string.
+
+41
+00:02:45,900 --> 00:02:48,150
+But I will show you something in a minute.
+
+42
+00:02:48,480 --> 00:02:50,700
+So for now, just write it like this.
+
+43
+00:02:50,820 --> 00:02:56,040
+Give it a save and then prettier will format everything nicely like this.
+
+44
+00:02:56,040 --> 00:03:02,550
+And now we need to go to the second step, which is to actually receive the props here inside the child
+
+45
+00:03:02,550 --> 00:03:03,430
+component.
+
+46
+00:03:03,450 --> 00:03:09,540
+So right now, of course, the component has no way of knowing that these four props have been passed
+
+47
+00:03:09,540 --> 00:03:10,050
+in.
+
+48
+00:03:10,860 --> 00:03:16,590
+So the way we do that is to accept a props parameter here in this component.
+
+49
+00:03:16,890 --> 00:03:24,210
+And then for starters, let's just lock this props to the console and take a look at what's happening.
+
+50
+00:03:24,360 --> 00:03:27,870
+And we already can see something here.
+
+51
+00:03:29,030 --> 00:03:32,450
+So this props is basically this object right here.
+
+52
+00:03:32,450 --> 00:03:37,520
+And it has name, then pizza spinach, which is exactly this.
+
+53
+00:03:38,280 --> 00:03:42,730
+So what happened as React included this pizza component?
+
+54
+00:03:42,750 --> 00:03:47,610
+It basically called this function and passed in this props object.
+
+55
+00:03:47,610 --> 00:03:53,640
+And this props object is made out of these four props that we passed into the component.
+
+56
+00:03:54,260 --> 00:04:00,080
+And so now we can use this props object to replace all of these values here.
+
+57
+00:04:01,240 --> 00:04:08,380
+Now we need to take these values out of the object and therefore we need JavaScript, right?
+
+58
+00:04:08,410 --> 00:04:13,270
+So here, this is no longer a string, but we need to enter JavaScript node again.
+
+59
+00:04:13,980 --> 00:04:18,270
+So props dot photo name is this one.
+
+60
+00:04:18,630 --> 00:04:21,350
+Then here it is, the name of the pizza.
+
+61
+00:04:21,360 --> 00:04:25,200
+And again we need JavaScript mode.
+
+62
+00:04:25,470 --> 00:04:28,200
+So props dot name.
+
+63
+00:04:29,490 --> 00:04:31,260
+The same thing down here.
+
+64
+00:04:34,300 --> 00:04:35,770
+So props dot name.
+
+65
+00:04:37,410 --> 00:04:42,720
+And finally, down here, we want props, dot ingredients.
+
+66
+00:04:47,020 --> 00:04:48,640
+Or actually it's ingredient.
+
+67
+00:04:48,670 --> 00:04:50,110
+Let's fix that here.
+
+68
+00:04:50,140 --> 00:04:53,440
+Ingredients and ingredients down here.
+
+69
+00:04:54,310 --> 00:04:55,030
+Okay.
+
+70
+00:04:55,090 --> 00:05:01,510
+And of course, now everything still looks the same because the data that we had here before is exactly
+
+71
+00:05:01,510 --> 00:05:03,390
+the data that we have here.
+
+72
+00:05:03,460 --> 00:05:06,760
+But now let's actually make some magic happen.
+
+73
+00:05:08,070 --> 00:05:11,400
+So let's create another pizza component.
+
+74
+00:05:11,400 --> 00:05:16,560
+And then this is where we will see why props are so useful.
+
+75
+00:05:17,160 --> 00:05:20,310
+So let's create a pizza Funghi.
+
+76
+00:05:22,740 --> 00:05:25,980
+Let's give it some ingredients.
+
+77
+00:05:27,850 --> 00:05:31,720
+So tomato, let's say, also mushrooms.
+
+78
+00:05:31,720 --> 00:05:33,390
+And this is not important here.
+
+79
+00:05:33,400 --> 00:05:38,380
+This is just to show you that we can now fully customize our components.
+
+80
+00:05:38,940 --> 00:05:45,050
+Next, we can define the price and notice that I'm doing it now in a different order.
+
+81
+00:05:45,060 --> 00:05:47,910
+So here I had first the photo name, then the price.
+
+82
+00:05:47,910 --> 00:05:53,820
+And this is just to show you that the order in which we pass in the props is completely irrelevant.
+
+83
+00:05:56,390 --> 00:06:02,930
+So photo name is pizzas slash fungi dot j pack.
+
+84
+00:06:04,460 --> 00:06:04,940
+Okay.
+
+85
+00:06:04,940 --> 00:06:09,050
+And now we need to immediately close this component just like before.
+
+86
+00:06:09,050 --> 00:06:12,990
+And as I save it, watch what happened here.
+
+87
+00:06:13,010 --> 00:06:18,550
+And there is our second pizza component now with completely different data.
+
+88
+00:06:18,560 --> 00:06:24,770
+And so now for the first time, we have reused a component and configured it in a way that makes each
+
+89
+00:06:24,770 --> 00:06:28,220
+component unique and display their own data.
+
+90
+00:06:28,760 --> 00:06:29,390
+Okay.
+
+91
+00:06:29,390 --> 00:06:33,710
+And now let's just improve this pizza component here a little bit.
+
+92
+00:06:33,830 --> 00:06:38,810
+So for starters, in our CSS, we actually have a class name here.
+
+93
+00:06:39,550 --> 00:06:42,340
+So a class name called pizza.
+
+94
+00:06:43,910 --> 00:06:44,060
+Now.
+
+95
+00:06:44,110 --> 00:06:44,450
+Okay.
+
+96
+00:06:44,450 --> 00:06:52,070
+And then let's also place these two here inside their own div so that the data can be displayed at the
+
+97
+00:06:52,070 --> 00:06:53,630
+side of the image.
+
+98
+00:06:53,630 --> 00:06:56,060
+So just like here in our original.
+
+99
+00:06:56,240 --> 00:06:58,520
+So this is what we're going for.
+
+100
+00:06:59,390 --> 00:07:00,380
+So here we have.
+
+101
+00:07:01,320 --> 00:07:02,670
+A div.
+
+102
+00:07:03,000 --> 00:07:07,830
+And then again I'm using that trick where I simply push down that line.
+
+103
+00:07:09,920 --> 00:07:12,710
+And this is already looking a lot nicer.
+
+104
+00:07:13,520 --> 00:07:15,980
+Let's just finally also add the price here.
+
+105
+00:07:16,460 --> 00:07:18,320
+And I'm doing that as a span.
+
+106
+00:07:20,790 --> 00:07:21,780
+So props.
+
+107
+00:07:22,650 --> 00:07:24,180
+Dot price.
+
+108
+00:07:24,660 --> 00:07:26,190
+And there it is.
+
+109
+00:07:26,460 --> 00:07:31,260
+But now let's say that we wanted for some reason to add a number here.
+
+110
+00:07:31,260 --> 00:07:35,580
+So we wanted to increase all the prices by three, let's say.
+
+111
+00:07:35,580 --> 00:07:38,910
+But what what happens when we try this?
+
+112
+00:07:39,920 --> 00:07:42,230
+So all the prices plus three.
+
+113
+00:07:43,890 --> 00:07:51,930
+So what happens is that react or JavaScript basically simply added the three here to the end of this
+
+114
+00:07:51,930 --> 00:07:52,500
+number.
+
+115
+00:07:52,500 --> 00:08:00,270
+And the reason for that is that here we pass these numbers actually in as a string and we can see that
+
+116
+00:08:00,270 --> 00:08:02,250
+also here in this output.
+
+117
+00:08:02,520 --> 00:08:05,220
+So we do not want a string here.
+
+118
+00:08:05,220 --> 00:08:06,930
+Instead, we want a number.
+
+119
+00:08:06,930 --> 00:08:11,340
+And so the way we can achieve that is by entering again JavaScript mode.
+
+120
+00:08:11,430 --> 00:08:17,100
+And so in JavaScript this is now an actual number and so watch what happens.
+
+121
+00:08:17,280 --> 00:08:22,800
+Indeed, now we have 13, which is the ten we had before plus three.
+
+122
+00:08:24,840 --> 00:08:27,840
+Okay, then let's do the same thing here.
+
+123
+00:08:28,850 --> 00:08:30,430
+And that fixes this.
+
+124
+00:08:30,440 --> 00:08:36,050
+So this is very important to notice that whenever you want to pass in something that is not a string,
+
+125
+00:08:36,050 --> 00:08:43,610
+you just use, again, this JavaScript mode basically because in fact you can pass in anything as a
+
+126
+00:08:43,610 --> 00:08:44,150
+prop.
+
+127
+00:08:44,150 --> 00:08:46,580
+So it doesn't have to be a string or a number.
+
+128
+00:08:46,580 --> 00:08:51,980
+You can pass in arrays or objects or even other react components.
+
+129
+00:08:52,070 --> 00:08:59,120
+So props is really, really powerful and really one of the most fundamental things in React.
+
+130
+00:08:59,120 --> 00:09:05,750
+And now to review this concept and to go even a bit further, let's move on to the next lecture.

@@ -1,0 +1,819 @@
+1
+00:00:00,980 --> 00:00:07,010
+Welcome back to the faraway application that we started building in the previous section.
+
+2
+00:00:07,010 --> 00:00:13,640
+And now let's add some important state to the app and then also lift that state up.
+
+3
+00:00:14,850 --> 00:00:20,850
+But before we start doing that, let's recap where we left off at the end of the previous section.
+
+4
+00:00:21,460 --> 00:00:26,500
+So remember how we made our form here with these two controlled elements?
+
+5
+00:00:26,590 --> 00:00:32,710
+So the state of these two elements is controlled here inside the form component with the description
+
+6
+00:00:32,710 --> 00:00:34,450
+and the quantity state.
+
+7
+00:00:34,810 --> 00:00:40,200
+Then whenever this form here is submitted, the Submit event will fire off.
+
+8
+00:00:40,210 --> 00:00:47,290
+And so then we are handling that submit event here using the on submit prop with the handle submit function.
+
+9
+00:00:48,320 --> 00:00:50,120
+So this function right here.
+
+10
+00:00:50,120 --> 00:00:56,660
+Then, if there is a description, we create this new item object, which right now we are only logging
+
+11
+00:00:56,690 --> 00:00:57,860
+to the console.
+
+12
+00:00:59,780 --> 00:01:01,160
+So let's try that.
+
+13
+00:01:01,400 --> 00:01:08,120
+And so you see, we got an object with a description, the quantity, the pact status set to false by
+
+14
+00:01:08,120 --> 00:01:10,970
+default and some random ID right here.
+
+15
+00:01:11,660 --> 00:01:12,410
+Okay.
+
+16
+00:01:12,410 --> 00:01:17,120
+But again, right now we are only logging this piece of information.
+
+17
+00:01:17,120 --> 00:01:19,910
+So this new object here to the console.
+
+18
+00:01:19,940 --> 00:01:22,660
+But now let's do actually something else.
+
+19
+00:01:22,670 --> 00:01:25,580
+So we want to store this information somewhere.
+
+20
+00:01:25,580 --> 00:01:30,920
+And to help us with that, we can actually use the flow chart that we just looked at in the previous
+
+21
+00:01:30,920 --> 00:01:31,610
+lecture.
+
+22
+00:01:32,450 --> 00:01:37,190
+So we already know that we want to store some piece of information.
+
+23
+00:01:37,340 --> 00:01:42,830
+Now, will that data so that information change at some point in the future?
+
+24
+00:01:43,360 --> 00:01:45,530
+Well, yes, it definitely will.
+
+25
+00:01:45,550 --> 00:01:49,630
+Each time that we add a new item to the items list.
+
+26
+00:01:50,360 --> 00:01:55,190
+Now, can that data be computed from existing state or props?
+
+27
+00:01:55,220 --> 00:01:57,240
+Well, no, it cannot.
+
+28
+00:01:57,260 --> 00:01:59,930
+So therefore we cannot derive state.
+
+29
+00:02:00,260 --> 00:02:07,670
+Then the next question in our flowchart is whether this new data should actually rerender the component
+
+30
+00:02:07,670 --> 00:02:09,540
+whenever it is updated.
+
+31
+00:02:09,560 --> 00:02:13,860
+And the answer to that question is a resounding yes.
+
+32
+00:02:13,880 --> 00:02:20,150
+And so, therefore, as we already expected, the result of this first part of the flowchart is that
+
+33
+00:02:20,150 --> 00:02:25,320
+we need to create a new piece of state in the component that we are currently building.
+
+34
+00:02:25,340 --> 00:02:32,210
+And so with this, we finish the first half here of the flowchart, which is about when to create a
+
+35
+00:02:32,210 --> 00:02:33,530
+new piece of state.
+
+36
+00:02:34,340 --> 00:02:36,020
+Now back here in our code.
+
+37
+00:02:36,050 --> 00:02:37,700
+Let's actually do that.
+
+38
+00:02:39,040 --> 00:02:42,790
+So let's create a new state variable called items.
+
+39
+00:02:43,360 --> 00:02:48,880
+And then as always, we have our setter function in this case called set items.
+
+40
+00:02:49,810 --> 00:02:52,040
+And so then use state.
+
+41
+00:02:52,060 --> 00:02:56,980
+And now what do you think will be the default value for this state variable?
+
+42
+00:02:57,540 --> 00:03:04,140
+Well, remember that these items here are basically the packing items that are displayed here in the
+
+43
+00:03:04,140 --> 00:03:04,670
+UI.
+
+44
+00:03:04,680 --> 00:03:07,020
+And so this, remember, is an array.
+
+45
+00:03:07,200 --> 00:03:12,870
+And therefore our initial state for the items is just an empty array.
+
+46
+00:03:13,110 --> 00:03:19,890
+So when we open up a new packing list, so when we open up this app for the first time, of course we
+
+47
+00:03:19,890 --> 00:03:21,840
+don't want to have any items.
+
+48
+00:03:21,840 --> 00:03:25,020
+And so that's what the empty array here basically is.
+
+49
+00:03:26,350 --> 00:03:26,950
+Okay.
+
+50
+00:03:26,950 --> 00:03:33,880
+And so now let's actually use the set items function here to add our new items to the items array.
+
+51
+00:03:34,540 --> 00:03:37,300
+And actually let's do that in a separate function.
+
+52
+00:03:38,330 --> 00:03:43,110
+And let's call that handle add items.
+
+53
+00:03:43,130 --> 00:03:49,490
+And this function will receive a new item object, which it will then add to the items array.
+
+54
+00:03:50,320 --> 00:03:52,810
+So let's actually immediately call the function here.
+
+55
+00:03:54,890 --> 00:04:01,530
+So here we will call handle add items and then with the new item that we just create.
+
+56
+00:04:01,550 --> 00:04:05,000
+So for example, with an item that looks just like this.
+
+57
+00:04:06,620 --> 00:04:08,510
+So that's what we pass in here.
+
+58
+00:04:08,510 --> 00:04:12,530
+And now again, it's time to use set items.
+
+59
+00:04:13,460 --> 00:04:15,380
+To update or items array.
+
+60
+00:04:15,380 --> 00:04:23,300
+And this new items array will basically be the current items array plus the new item added to the end.
+
+61
+00:04:23,300 --> 00:04:27,800
+And so what this means is that the new state depends on the current state.
+
+62
+00:04:27,800 --> 00:04:31,430
+And therefore here we now need to pass in a callback function.
+
+63
+00:04:31,430 --> 00:04:33,380
+So not just a single value.
+
+64
+00:04:33,530 --> 00:04:38,030
+So let's call the current state here in this callback items.
+
+65
+00:04:39,330 --> 00:04:39,690
+Now, then.
+
+66
+00:04:39,690 --> 00:04:40,170
+Here.
+
+67
+00:04:40,170 --> 00:04:41,730
+Let's see what we need to do.
+
+68
+00:04:42,000 --> 00:04:49,080
+So remember that in React, we are not allowed to mutate state so we cannot do this.
+
+69
+00:04:50,440 --> 00:04:57,820
+So we can not simply push the new item into the items array, because with that we would be mutating.
+
+70
+00:04:57,820 --> 00:05:01,090
+So we would be changing this items array right here.
+
+71
+00:05:01,090 --> 00:05:04,310
+And again, that's really not allowed in React.
+
+72
+00:05:04,330 --> 00:05:06,790
+So React is all about immutability.
+
+73
+00:05:06,790 --> 00:05:13,240
+And so the solution here is to create a brand new array which contains all the current items plus the
+
+74
+00:05:13,240 --> 00:05:13,930
+new one.
+
+75
+00:05:15,130 --> 00:05:17,680
+So let's return a new array.
+
+76
+00:05:17,680 --> 00:05:26,740
+And then in there we simply spread the current items and then we add another item which is simply called
+
+77
+00:05:26,740 --> 00:05:27,370
+item.
+
+78
+00:05:27,370 --> 00:05:29,590
+So the item that we are receiving here.
+
+79
+00:05:30,770 --> 00:05:36,860
+Now, if this looks strange to you, then please go back to the review of essential JavaScript section
+
+80
+00:05:36,860 --> 00:05:42,120
+where I have a couple of videos on how to work with arrays in an immutable way.
+
+81
+00:05:42,140 --> 00:05:49,880
+So basically how to add new items, how to update and how to delete items from an array without mutating
+
+82
+00:05:49,880 --> 00:05:50,780
+the original.
+
+83
+00:05:50,810 --> 00:05:54,590
+So in React, that's something that we need to do all the time.
+
+84
+00:05:54,590 --> 00:05:59,930
+And so again, if you're not sure how that works, then please go back to that section because from
+
+85
+00:05:59,930 --> 00:06:03,290
+now on I will simply assume that you know how to do this.
+
+86
+00:06:03,920 --> 00:06:06,770
+Okay, so this is already done.
+
+87
+00:06:06,770 --> 00:06:10,480
+So we now have a way of adding new items to the state.
+
+88
+00:06:10,640 --> 00:06:12,410
+So let's immediately test that here.
+
+89
+00:06:13,090 --> 00:06:15,370
+So let's use now ten.
+
+90
+00:06:15,990 --> 00:06:17,190
+Test items.
+
+91
+00:06:18,150 --> 00:06:21,170
+And so we are still logging them to the console.
+
+92
+00:06:21,180 --> 00:06:25,080
+But now I want to draw your attention here again to the dev tools.
+
+93
+00:06:26,120 --> 00:06:30,590
+And in particular, of course, to the form component that we are working with now.
+
+94
+00:06:30,920 --> 00:06:33,800
+And so down here we already have our state.
+
+95
+00:06:34,460 --> 00:06:38,330
+Which already has this new item that we just created.
+
+96
+00:06:38,480 --> 00:06:39,500
+Nice.
+
+97
+00:06:39,920 --> 00:06:44,690
+So let's do another one for, like, boarding passes.
+
+98
+00:06:45,350 --> 00:06:50,240
+And you see immediately it got also added to our items array.
+
+99
+00:06:50,950 --> 00:06:54,160
+So our updating logic here is working just fine.
+
+100
+00:06:54,160 --> 00:06:59,860
+But of course this state is now nowhere being displayed in the UI yet.
+
+101
+00:07:00,540 --> 00:07:01,230
+Right.
+
+102
+00:07:01,230 --> 00:07:06,030
+So we are not using this items variable anywhere in our JS yet.
+
+103
+00:07:06,030 --> 00:07:12,090
+And the reason for that is that actually we do not need these items in this current component.
+
+104
+00:07:12,270 --> 00:07:18,840
+The only goal of the form component is to add new items to this array, but not to render it.
+
+105
+00:07:18,960 --> 00:07:25,080
+Instead, remember that who renders these items is actually the packing list component.
+
+106
+00:07:25,080 --> 00:07:27,570
+So that's this one here, right?
+
+107
+00:07:27,600 --> 00:07:31,110
+But with this, we now created ourselves a problem.
+
+108
+00:07:31,830 --> 00:07:34,830
+So let's take a closer look here at the component tree.
+
+109
+00:07:35,810 --> 00:07:41,690
+So right now our item state is here inside the form component, right?
+
+110
+00:07:41,690 --> 00:07:44,270
+And so this is where we update the state.
+
+111
+00:07:44,540 --> 00:07:47,480
+However, we need the state itself.
+
+112
+00:07:47,480 --> 00:07:54,650
+So we need this item, state variable here in the packing list because again, this is where it should
+
+113
+00:07:54,650 --> 00:07:57,110
+actually be rendered onto the UI.
+
+114
+00:07:57,140 --> 00:08:02,180
+And so now how do we get this state from the form to the packing list?
+
+115
+00:08:02,420 --> 00:08:09,230
+Well, we cannot pass it as a prop because the form is not a parent component of packing list.
+
+116
+00:08:09,260 --> 00:08:11,570
+It is simply a sibling component.
+
+117
+00:08:11,570 --> 00:08:14,410
+But data can only flow down the tree.
+
+118
+00:08:14,420 --> 00:08:17,690
+It cannot flow up the tree or sideways.
+
+119
+00:08:17,870 --> 00:08:24,010
+So therefore, we cannot simply pass these items to the packing list via props.
+
+120
+00:08:24,020 --> 00:08:30,890
+Instead, we now need to use a technique that I mentioned before, which is to lift up state.
+
+121
+00:08:31,160 --> 00:08:35,030
+So what we're going to do now is to take this state here.
+
+122
+00:08:35,120 --> 00:08:40,650
+So this line of code and we will move it to the closest common parent component.
+
+123
+00:08:41,250 --> 00:08:43,170
+So which one is that?
+
+124
+00:08:43,410 --> 00:08:45,720
+Well, it's simply the app component.
+
+125
+00:08:45,870 --> 00:08:46,680
+Right.
+
+126
+00:08:46,680 --> 00:08:53,130
+So this component is both a parent of the form and of the packing list, which are the two components
+
+127
+00:08:53,130 --> 00:08:55,020
+which need this state.
+
+128
+00:08:56,660 --> 00:09:03,320
+So again, let's grab this and let's move to our app and add the state right there.
+
+129
+00:09:04,320 --> 00:09:11,070
+And then, of course, we get these errors here because set items is no longer defined in the form.
+
+130
+00:09:11,400 --> 00:09:13,380
+So let's fix that in a minute.
+
+131
+00:09:13,380 --> 00:09:18,570
+But I want to start by now passing the items here into the packing list.
+
+132
+00:09:20,230 --> 00:09:26,260
+So we define a new prop called items into which we pass the items array.
+
+133
+00:09:27,660 --> 00:09:32,970
+All right, then let's come to the packing list and accept that prop there.
+
+134
+00:09:33,610 --> 00:09:40,300
+So remember, we can immediately destructure the props object here, and then instead of the initial
+
+135
+00:09:40,300 --> 00:09:44,140
+items, we will now finally render the actual items.
+
+136
+00:09:45,710 --> 00:09:51,440
+And with this we have now used the item state in our JS X, right.
+
+137
+00:09:52,990 --> 00:09:56,890
+And now let's take care here of this handle add items function.
+
+138
+00:09:57,710 --> 00:10:02,960
+So actually, I will grab this entire function and move it here.
+
+139
+00:10:04,210 --> 00:10:11,050
+And so now all we have to do in order to enable the form to update the state is to pass in this handle
+
+140
+00:10:11,050 --> 00:10:12,880
+add items function.
+
+141
+00:10:13,820 --> 00:10:14,930
+So let's do that.
+
+142
+00:10:14,930 --> 00:10:20,030
+Let's create a new prop and kind of a convention is to call this now on.
+
+143
+00:10:21,250 --> 00:10:22,420
+Add items.
+
+144
+00:10:23,930 --> 00:10:25,580
+Handle add items.
+
+145
+00:10:26,580 --> 00:10:32,640
+So we could, of course, call it the exact same prop name here so we could create a prop called handle
+
+146
+00:10:32,640 --> 00:10:35,580
+add items and then pass it the function with the same name.
+
+147
+00:10:35,580 --> 00:10:38,960
+But it's kind of a convention for it to be like this.
+
+148
+00:10:38,970 --> 00:10:45,180
+So it then becomes a bit more readable, like on add items, call handle add items.
+
+149
+00:10:45,860 --> 00:10:47,360
+So if that makes sense.
+
+150
+00:10:47,700 --> 00:10:49,490
+And then here, let's accept that.
+
+151
+00:10:51,090 --> 00:10:53,420
+On add items.
+
+152
+00:10:53,430 --> 00:10:59,040
+And finally here we now need to call, of course, the function with this prop.
+
+153
+00:11:00,030 --> 00:11:01,680
+So with this prop name.
+
+154
+00:11:02,750 --> 00:11:04,250
+On add items.
+
+155
+00:11:04,460 --> 00:11:11,750
+And with this we fixed all the errors that we had, but probably what we just did here is quite a bit
+
+156
+00:11:11,750 --> 00:11:12,750
+confusing.
+
+157
+00:11:12,770 --> 00:11:20,210
+So let me first now add a new item here just to see if it works and then I will explain what's actually
+
+158
+00:11:20,210 --> 00:11:21,680
+happening a bit better.
+
+159
+00:11:22,590 --> 00:11:24,000
+So let's see.
+
+160
+00:11:24,480 --> 00:11:26,700
+And there it is.
+
+161
+00:11:27,450 --> 00:11:29,730
+So we created a new item here.
+
+162
+00:11:29,730 --> 00:11:34,560
+It was then added into the item state, which now lives in the app.
+
+163
+00:11:35,600 --> 00:11:36,980
+Let's check that.
+
+164
+00:11:37,730 --> 00:11:39,320
+Yep, that's right.
+
+165
+00:11:39,350 --> 00:11:40,390
+Here it is.
+
+166
+00:11:40,400 --> 00:11:46,550
+And so then that state got passed down here into the packing list, which received it as a props.
+
+167
+00:11:46,550 --> 00:11:49,700
+And we can see that right here also in the dev tools.
+
+168
+00:11:49,700 --> 00:11:55,370
+So here we now have the items as a prop and then of course that gets rendered to the UI.
+
+169
+00:11:56,230 --> 00:11:57,940
+Let's try another one.
+
+170
+00:11:58,180 --> 00:12:05,800
+And immediately it got added here to the well, to this state right here, which was then passed down
+
+171
+00:12:05,800 --> 00:12:07,240
+into the packing list.
+
+172
+00:12:07,940 --> 00:12:09,970
+And now about updating the state.
+
+173
+00:12:09,980 --> 00:12:11,570
+This is what happened.
+
+174
+00:12:11,720 --> 00:12:18,710
+So we now have our handle add items function right here in the app, which is exactly where the piece
+
+175
+00:12:18,710 --> 00:12:20,480
+of state also lives.
+
+176
+00:12:20,720 --> 00:12:24,350
+So where we have the home of the items state.
+
+177
+00:12:24,440 --> 00:12:29,180
+And so all the logic about updating that state is here in the same component.
+
+178
+00:12:29,510 --> 00:12:35,210
+However, it is the form that is actually responsible for creating new items.
+
+179
+00:12:35,210 --> 00:12:42,050
+And so therefore we need to give this component so this form component here access to a function that
+
+180
+00:12:42,050 --> 00:12:43,860
+can update the state.
+
+181
+00:12:43,880 --> 00:12:47,150
+And so that function is handle at items.
+
+182
+00:12:47,330 --> 00:12:52,010
+So as I mentioned before, we can actually pass anything as a prop.
+
+183
+00:12:52,010 --> 00:12:53,990
+And so that includes functions.
+
+184
+00:12:54,110 --> 00:13:02,690
+So here we pass in handle add items as a prop and we call that prop on add items, which of course again
+
+185
+00:13:02,690 --> 00:13:06,650
+could also be called handle add items, which some people prefer.
+
+186
+00:13:06,650 --> 00:13:09,420
+But many times you will see this convention.
+
+187
+00:13:09,970 --> 00:13:18,060
+So then we come here, destructure the props, and then we call that function whenever the form is submitted
+
+188
+00:13:18,070 --> 00:13:19,220
+and that's it.
+
+189
+00:13:19,240 --> 00:13:21,980
+So this is how we lift up state.
+
+190
+00:13:22,000 --> 00:13:28,810
+So basically what that means is that whenever multiple sibling components need access to the same state,
+
+191
+00:13:28,840 --> 00:13:36,460
+we move that piece of state up to the first common parent component, which again, in our case here
+
+192
+00:13:36,460 --> 00:13:38,500
+was the app component.
+
+193
+00:13:39,710 --> 00:13:40,430
+All right.
+
+194
+00:13:40,430 --> 00:13:44,840
+And we will actually review this one more time in the next lecture.
+
+195
+00:13:44,840 --> 00:13:49,580
+But for now, let's move back to our flowchart and quickly complete it.
+
+196
+00:13:49,670 --> 00:13:56,090
+So basically, we will just review what we just did and then see how we would have arrived at that solution
+
+197
+00:13:56,090 --> 00:13:57,650
+here with the flowchart.
+
+198
+00:13:58,490 --> 00:14:05,630
+So the new state that we created, was it only used in the initial component, So only used in the form?
+
+199
+00:14:05,900 --> 00:14:07,850
+No, it was not.
+
+200
+00:14:07,940 --> 00:14:14,820
+So then we move here and we ask ourselves, is the state also needed by a child component?
+
+201
+00:14:14,840 --> 00:14:20,840
+And again, the answer is no, because instead it was needed by a sibling component.
+
+202
+00:14:20,840 --> 00:14:26,300
+And so therefore, that is how we lifted state up to the first common parent.
+
+203
+00:14:26,840 --> 00:14:27,630
+All right.
+
+204
+00:14:27,650 --> 00:14:31,850
+So make sure to take another look at the code that we just wrote.
+
+205
+00:14:31,850 --> 00:14:38,420
+And then in the next video, we will take an even closer look at this concept of lifting up state.

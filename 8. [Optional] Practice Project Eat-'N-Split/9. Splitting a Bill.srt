@@ -1,0 +1,723 @@
+1
+00:00:01,050 --> 00:00:07,620
+Welcome to the last video in this section where we will now finish up the application that we have been
+
+2
+00:00:07,620 --> 00:00:08,310
+building.
+
+3
+00:00:09,540 --> 00:00:15,600
+So in the last lecture, we already made all our elements here, controlled elements.
+
+4
+00:00:15,600 --> 00:00:22,650
+And so now all we have to do is to listen for the submit event here on this form and then handle it
+
+5
+00:00:22,650 --> 00:00:23,580
+accordingly.
+
+6
+00:00:24,560 --> 00:00:26,540
+So that's easy enough.
+
+7
+00:00:27,220 --> 00:00:29,290
+It's always in the same way.
+
+8
+00:00:29,590 --> 00:00:31,300
+So onsubmit.
+
+9
+00:00:32,520 --> 00:00:37,860
+And then typically we write a handle submit function right here.
+
+10
+00:00:38,570 --> 00:00:44,330
+So a function handle submit which will receive the event.
+
+11
+00:00:44,780 --> 00:00:48,980
+And then as always, we need to do prevent default.
+
+12
+00:00:50,260 --> 00:00:51,160
+All right.
+
+13
+00:00:51,160 --> 00:00:54,330
+And let's start by adding some guard clauses here.
+
+14
+00:00:54,340 --> 00:00:57,670
+So basically preventing this form from being submitted.
+
+15
+00:00:57,670 --> 00:01:04,810
+If there is no bill or if there is no value paid by the user.
+
+16
+00:01:05,820 --> 00:01:09,480
+So in this case, just return and do nothing.
+
+17
+00:01:10,080 --> 00:01:10,680
+Okay.
+
+18
+00:01:10,680 --> 00:01:18,210
+But if there is a bill or a value paid for the user, well, then now it's time to actually split the
+
+19
+00:01:18,210 --> 00:01:18,720
+bill.
+
+20
+00:01:18,900 --> 00:01:25,210
+Now, in practice, that means basically that the balance of the user in question will be updated.
+
+21
+00:01:25,230 --> 00:01:31,680
+So of the friend here in question, I mean, so whenever we split a bill, it means that this value
+
+22
+00:01:31,680 --> 00:01:33,730
+right here will be updated.
+
+23
+00:01:33,750 --> 00:01:34,470
+Right.
+
+24
+00:01:34,470 --> 00:01:37,530
+So something is clearly happening on the screen.
+
+25
+00:01:37,770 --> 00:01:41,850
+However, does that mean that we now need a new piece of state?
+
+26
+00:01:42,120 --> 00:01:49,530
+Well, actually, no, because we already have these friends here in our state and all we're doing is
+
+27
+00:01:49,530 --> 00:01:50,820
+to update them.
+
+28
+00:01:51,180 --> 00:01:51,960
+Right.
+
+29
+00:01:51,960 --> 00:01:58,200
+So basically, all we will do is to update this balance value that is displayed here.
+
+30
+00:01:59,230 --> 00:02:04,780
+So let's come again to the component where that state is living.
+
+31
+00:02:05,050 --> 00:02:10,480
+So this state right here and then let's write yet another handler function.
+
+32
+00:02:10,720 --> 00:02:13,090
+So function handle.
+
+33
+00:02:13,920 --> 00:02:14,850
+Split.
+
+34
+00:02:15,880 --> 00:02:19,960
+Bill, and this one will simply receive a value.
+
+35
+00:02:20,380 --> 00:02:26,950
+So in this case, there is no need to pass in the entire friend because we already know which friend
+
+36
+00:02:26,980 --> 00:02:28,480
+is going to be updated.
+
+37
+00:02:28,510 --> 00:02:32,320
+And so that's exactly the current friend, right?
+
+38
+00:02:32,940 --> 00:02:37,770
+But for now, let's actually just log this value here to the console.
+
+39
+00:02:37,770 --> 00:02:42,540
+So we will take care of this more complex updating logic at the end.
+
+40
+00:02:42,690 --> 00:02:47,430
+So for now, let's just pass this handle function here into the component.
+
+41
+00:02:48,190 --> 00:02:51,190
+So right into this component here.
+
+42
+00:02:51,370 --> 00:02:52,600
+So on.
+
+43
+00:02:53,920 --> 00:02:58,180
+Split Bill will be handled by handle.
+
+44
+00:02:58,210 --> 00:03:00,340
+Split Bill.
+
+45
+00:03:01,480 --> 00:03:02,290
+Okay.
+
+46
+00:03:03,770 --> 00:03:06,590
+Then let's come down here again.
+
+47
+00:03:07,360 --> 00:03:09,070
+And let's then receive.
+
+48
+00:03:10,030 --> 00:03:17,710
+On split Bill and then finally, we can use that here in order to update the state.
+
+49
+00:03:17,800 --> 00:03:23,350
+Well, for now, we will only log something to the console, but we will take care of updating in a
+
+50
+00:03:23,350 --> 00:03:23,980
+minute.
+
+51
+00:03:24,040 --> 00:03:31,270
+For now, we first need to figure out exactly with which value we will update the friends balance.
+
+52
+00:03:31,270 --> 00:03:37,360
+And this is actually the most confusing part of this whole application, even more confusing than all
+
+53
+00:03:37,360 --> 00:03:39,250
+the React stuff itself.
+
+54
+00:03:39,520 --> 00:03:48,760
+So remember that the bill can basically be paid either by you so the user or by the friend.
+
+55
+00:03:48,760 --> 00:03:52,660
+And so based on that, we now need to set a value.
+
+56
+00:03:54,340 --> 00:03:58,120
+So we will use the ternary operator here for that.
+
+57
+00:03:58,120 --> 00:04:01,840
+And so we say who is paying is equal.
+
+58
+00:04:02,440 --> 00:04:05,080
+To the user, which is basically you.
+
+59
+00:04:05,980 --> 00:04:11,200
+So remember that negative numbers in the balance are owned by you.
+
+60
+00:04:11,230 --> 00:04:16,870
+So by the user and positive numbers means that your friend is owing you.
+
+61
+00:04:17,050 --> 00:04:20,020
+Therefore, if this here is the situation.
+
+62
+00:04:20,020 --> 00:04:24,640
+So if you are paying, then they will be owing you their part.
+
+63
+00:04:24,640 --> 00:04:27,340
+And so therefore this is a positive number.
+
+64
+00:04:28,510 --> 00:04:32,200
+So the value here will be paid by friend.
+
+65
+00:04:33,370 --> 00:04:35,050
+And in the opposite case.
+
+66
+00:04:35,050 --> 00:04:39,940
+So if your friend is paying, then you will actually own your part.
+
+67
+00:04:39,940 --> 00:04:46,960
+So the paid by user part and it's going to be a negative value again because the negative values are
+
+68
+00:04:46,960 --> 00:04:48,490
+the ones owned by you.
+
+69
+00:04:48,730 --> 00:04:50,350
+So minus.
+
+70
+00:04:51,400 --> 00:04:53,560
+Paid by user.
+
+71
+00:04:53,560 --> 00:05:00,040
+And so then inside this function here later we will add that value that we just returned here onto the
+
+72
+00:05:00,040 --> 00:05:00,790
+balance.
+
+73
+00:05:02,130 --> 00:05:07,410
+So once we're done with all that, I promise this will be a lot easier to understand.
+
+74
+00:05:09,500 --> 00:05:12,560
+But anyway, let's now come here to our console.
+
+75
+00:05:12,590 --> 00:05:17,690
+Let's just quickly reload here and then let's just try any of these.
+
+76
+00:05:18,020 --> 00:05:28,780
+So let's say the bill is €200 and your part is 50 and Sarah's part is 150 and you are paying the bill.
+
+77
+00:05:28,790 --> 00:05:35,570
+And so the result is then a positive 150, which will be added on top of the balance.
+
+78
+00:05:35,570 --> 00:05:41,000
+So it's plus 150 because it's your friend who is owing you.
+
+79
+00:05:41,000 --> 00:05:44,120
+And so, yeah, those are the positive numbers.
+
+80
+00:05:45,350 --> 00:05:50,350
+If we change this here to Sarah, then it will become -50.
+
+81
+00:05:50,390 --> 00:05:55,160
+So that is your part, which you are then owing to your friend.
+
+82
+00:05:55,160 --> 00:05:58,390
+And so then it becomes minus and your part.
+
+83
+00:05:58,400 --> 00:05:59,900
+So -50.
+
+84
+00:06:01,060 --> 00:06:01,900
+All right.
+
+85
+00:06:02,830 --> 00:06:06,220
+So our function here is now receiving that value.
+
+86
+00:06:06,220 --> 00:06:10,100
+And so now let's update our friend state.
+
+87
+00:06:10,120 --> 00:06:13,180
+So set friends.
+
+88
+00:06:14,740 --> 00:06:21,420
+And once again, the new array that we will return here will be based on the current friends array.
+
+89
+00:06:21,430 --> 00:06:23,220
+And so here we need that callback.
+
+90
+00:06:23,230 --> 00:06:33,400
+And then what we're going to do is friends dot map because we want to return a new array with the exact
+
+91
+00:06:33,400 --> 00:06:35,470
+same length as the current one.
+
+92
+00:06:35,470 --> 00:06:39,570
+So that's how we always do it when we update an object in an array.
+
+93
+00:06:39,580 --> 00:06:42,040
+So we have done that many, many times before.
+
+94
+00:06:42,040 --> 00:06:48,160
+And so if the code I'm going to write next is a bit strange to you, then just feel free to go back
+
+95
+00:06:48,160 --> 00:06:49,600
+to one of those lectures.
+
+96
+00:06:49,900 --> 00:06:57,550
+But anyway, let's now loop actually over this array in which each of the objects is of course a friend.
+
+97
+00:06:58,400 --> 00:07:07,400
+And so let's then update the friend whenever the current friend ID is equal to the selected friend.id.
+
+98
+00:07:07,790 --> 00:07:14,660
+And so here's what I mentioned earlier, which is that we already know which of the friends is getting
+
+99
+00:07:14,660 --> 00:07:16,190
+updated, right?
+
+100
+00:07:16,190 --> 00:07:18,830
+Because we already hold that in the state.
+
+101
+00:07:20,440 --> 00:07:28,540
+So if this is the case, so if the current friend is the one that we want to update, then well, here
+
+102
+00:07:28,540 --> 00:07:33,640
+we are going to return an object which will contain all the elements.
+
+103
+00:07:34,150 --> 00:07:42,130
+So all the properties of the current rent, but we want to override the balance property and we will
+
+104
+00:07:42,130 --> 00:07:43,840
+override it with.
+
+105
+00:07:44,740 --> 00:07:46,720
+Friend dot balance.
+
+106
+00:07:46,720 --> 00:07:51,160
+So the current value plus the value that we received.
+
+107
+00:07:52,200 --> 00:07:53,360
+And that's it.
+
+108
+00:07:53,370 --> 00:07:55,800
+So I just saved here by accident.
+
+109
+00:07:55,800 --> 00:08:02,180
+And so immediately we get an error because we're missing the second part of the ternary operator.
+
+110
+00:08:02,190 --> 00:08:09,510
+So here in the second branch of the ternary operator, in case that the current trend is not the one
+
+111
+00:08:09,510 --> 00:08:14,670
+that we want to update, we simply return that friend unchanged.
+
+112
+00:08:15,000 --> 00:08:19,590
+And with this, we should now have a working application.
+
+113
+00:08:21,110 --> 00:08:26,990
+So let's again use the values that we already know so that we used before.
+
+114
+00:08:27,740 --> 00:08:31,580
+And let's actually still lock the value here to the console.
+
+115
+00:08:31,610 --> 00:08:32,540
+Just.
+
+116
+00:08:33,150 --> 00:08:36,600
+So we can better understand what is happening here.
+
+117
+00:08:38,600 --> 00:08:39,500
+All right.
+
+118
+00:08:39,950 --> 00:08:44,190
+So remember that before Sarah was owing us €20.
+
+119
+00:08:44,210 --> 00:08:46,190
+And so now see what happens.
+
+120
+00:08:46,740 --> 00:08:49,720
+Now she owes us 170.
+
+121
+00:08:49,770 --> 00:08:52,610
+So that's the 150 that we got.
+
+122
+00:08:52,620 --> 00:08:59,970
+Now, on top of the €20 that she was already owing us before and again, that's because I am paying
+
+123
+00:08:59,970 --> 00:09:01,200
+the entire bill here.
+
+124
+00:09:01,200 --> 00:09:07,950
+So it's like I'm lending her so I'm paying her €150, which is her expense.
+
+125
+00:09:07,950 --> 00:09:09,960
+So her part of the bill.
+
+126
+00:09:10,730 --> 00:09:20,540
+So if we had now a €100 bill where my expense is 90 and then she pays it, then she pays my 90 part
+
+127
+00:09:20,570 --> 00:09:21,500
+of the bill.
+
+128
+00:09:21,500 --> 00:09:27,100
+And so then this should become here 100 and or actually it should become 80.
+
+129
+00:09:27,110 --> 00:09:29,060
+So let's wait for it.
+
+130
+00:09:29,060 --> 00:09:31,250
+And indeed, now it's 80.
+
+131
+00:09:31,760 --> 00:09:34,010
+And the same logic can be applied here.
+
+132
+00:09:34,730 --> 00:09:37,810
+We just need to now reset these values here.
+
+133
+00:09:37,820 --> 00:09:47,480
+So let's say we have a bill of 20, and since Clark is owing me seven or actually you owe Clark those
+
+134
+00:09:47,480 --> 00:09:48,470
+€7.
+
+135
+00:09:48,500 --> 00:09:50,210
+Let's now use that here.
+
+136
+00:09:50,390 --> 00:09:55,130
+So here I'm using 13 so that Clark's expense is zero.
+
+137
+00:09:55,130 --> 00:09:59,270
+And then if I pay, we should be even after this.
+
+138
+00:09:59,660 --> 00:10:01,940
+And indeed, now we are even.
+
+139
+00:10:02,580 --> 00:10:03,300
+Great.
+
+140
+00:10:03,300 --> 00:10:07,440
+So this can be a bit confusing, but this is also not really what matters.
+
+141
+00:10:07,470 --> 00:10:14,160
+What matters is all the knowledge, or at least all the practice that we just gained from building this
+
+142
+00:10:14,160 --> 00:10:15,510
+amazing project.
+
+143
+00:10:15,660 --> 00:10:21,810
+There's just one small thing missing, which is that here the state is not clearing.
+
+144
+00:10:21,930 --> 00:10:23,610
+So we have two options now.
+
+145
+00:10:23,610 --> 00:10:30,900
+It's to clear the state here in the form, but even better, and which is what I actually do here,
+
+146
+00:10:30,900 --> 00:10:33,060
+is after.
+
+147
+00:10:34,410 --> 00:10:35,670
+This is done.
+
+148
+00:10:35,670 --> 00:10:40,630
+So after the bill is split, it will automatically close the form again.
+
+149
+00:10:40,650 --> 00:10:44,430
+And so that's very easy to do, right?
+
+150
+00:10:45,240 --> 00:10:46,860
+Let's just get rid of this.
+
+151
+00:10:47,010 --> 00:10:55,080
+And then here, thanks to the power of state, once again, we can just say set the selected friend
+
+152
+00:10:55,350 --> 00:10:57,210
+to null.
+
+153
+00:10:57,330 --> 00:10:59,010
+And that's going to be it.
+
+154
+00:10:59,010 --> 00:11:03,630
+So once again, very, very easy to do with the power of state.
+
+155
+00:11:03,660 --> 00:11:07,320
+Imagine doing this kind of stuff with vanilla JavaScript.
+
+156
+00:11:07,350 --> 00:11:10,650
+You would probably become crazy at some point.
+
+157
+00:11:11,540 --> 00:11:14,660
+So with this, it's super straightforward.
+
+158
+00:11:14,690 --> 00:11:16,430
+Let's just reload here.
+
+159
+00:11:16,820 --> 00:11:18,860
+Now let's use Anthony here.
+
+160
+00:11:18,890 --> 00:11:19,430
+Let's see.
+
+161
+00:11:19,430 --> 00:11:20,420
+150.
+
+162
+00:11:21,540 --> 00:11:24,960
+Our part was like this and it doesn't really matter.
+
+163
+00:11:24,960 --> 00:11:29,040
+But as I click here, you see that the form disappeared.
+
+164
+00:11:29,040 --> 00:11:31,920
+And this value here, of course, has changed.
+
+165
+00:11:32,560 --> 00:11:33,250
+Great.
+
+166
+00:11:33,250 --> 00:11:36,190
+And with this our application is feature complete.
+
+167
+00:11:36,190 --> 00:11:41,130
+And you just added one more small React app to your portfolio.
+
+168
+00:11:41,140 --> 00:11:43,300
+So very, very well done.
+
+169
+00:11:43,330 --> 00:11:45,760
+You are doing great progress here.
+
+170
+00:11:46,150 --> 00:11:53,200
+Now, in order to become even better as we finish this first part of the course, it's very, very important
+
+171
+00:11:53,200 --> 00:11:59,050
+that you build a lot of similar and small projects just like this one.
+
+172
+00:11:59,140 --> 00:12:06,430
+So it can be something like a shopping list or a simple goal tracker or something like a conference
+
+173
+00:12:06,430 --> 00:12:11,650
+speaker list where users can select which talks they want to go to.
+
+174
+00:12:11,680 --> 00:12:17,380
+So just some small app like this, it doesn't have to be super fancy or original.
+
+175
+00:12:17,410 --> 00:12:24,040
+Of course, all that matters is that you practice the skills by writing the code without following a
+
+176
+00:12:24,040 --> 00:12:24,910
+tutorial.
+
+177
+00:12:24,910 --> 00:12:28,570
+So without following anyone writing the code for you.
+
+178
+00:12:28,750 --> 00:12:35,810
+So I really advise you to not move on to part two before having built something small completely on
+
+179
+00:12:35,810 --> 00:12:36,560
+your own.
+
+180
+00:12:36,560 --> 00:12:42,860
+And then once you are done with that, no matter how long that takes, I hope to see you very soon in
+
+181
+00:12:42,890 --> 00:12:45,110
+that part two of this course.

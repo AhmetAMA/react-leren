@@ -1,0 +1,43 @@
+1
+00:00:00,750 --> 00:00:02,170
+Welcome back.
+
+2
+00:00:02,190 --> 00:00:10,290
+In the following section, we'll start looking at a core skill that every React developer needs to develop
+
+3
+00:00:10,290 --> 00:00:12,160
+right from the beginning.
+
+4
+00:00:12,210 --> 00:00:16,410
+And that core skill is to think in react.
+
+5
+00:00:16,620 --> 00:00:25,290
+Now, thinking in React encompasses many different aspects, but in this section we'll focus on state
+
+6
+00:00:25,290 --> 00:00:26,310
+management.
+
+7
+00:00:26,520 --> 00:00:35,070
+So you will learn when and where to create state variables, when and how to derive state, and also
+
+8
+00:00:35,070 --> 00:00:41,190
+how to communicate between child and parent components by lifting state up.
+
+9
+00:00:41,340 --> 00:00:48,210
+And all these new skills will be needed as we keep building our faraway application.
+
+10
+00:00:48,420 --> 00:00:53,280
+So get ready for some more foundational react knowledge.
+
+11
+00:00:53,280 --> 00:00:56,160
+And so let's dive right in.

@@ -1,0 +1,803 @@
+1
+00:00:00,880 --> 00:00:07,900
+So in this section we will start to learn about events and states by building a very simple components
+
+2
+00:00:07,900 --> 00:00:11,110
+where we can navigate through a few steps.
+
+3
+00:00:11,110 --> 00:00:17,440
+And so let's now, in this lecture, start by building out the static part of that component.
+
+4
+00:00:18,510 --> 00:00:25,080
+Now, in order to build that component, we will actually create a brand new project using Create React
+
+5
+00:00:25,080 --> 00:00:25,680
+App.
+
+6
+00:00:25,770 --> 00:00:30,120
+So if you're on Windows, go ahead and open up your command prompt.
+
+7
+00:00:30,120 --> 00:00:37,800
+And if you're on a mac, then just open your terminal and remember that in the terminal you are always
+
+8
+00:00:37,800 --> 00:00:42,870
+in a folder so you can see what folder that is here in your command prompt.
+
+9
+00:00:42,870 --> 00:00:48,450
+And then from there, just navigate to the folder where you want to create your new projects.
+
+10
+00:00:48,450 --> 00:00:51,780
+And for me that is again the desktop.
+
+11
+00:00:52,140 --> 00:00:57,170
+So remember that you can see all the folders that you can navigate to from here.
+
+12
+00:00:57,180 --> 00:01:03,210
+So I am here in this home folder basically, and so I can navigate to any one of these.
+
+13
+00:01:03,810 --> 00:01:06,060
+And so that's what I'm going to do with CD.
+
+14
+00:01:07,380 --> 00:01:11,310
+And just by the way again on windows that's the I instead of.
+
+15
+00:01:12,180 --> 00:01:15,090
+But anyway, I will now navigate to the desktop.
+
+16
+00:01:15,090 --> 00:01:19,160
+And so now here let's create our new project.
+
+17
+00:01:19,170 --> 00:01:25,620
+So that's Npx, create Dash, React app.
+
+18
+00:01:25,620 --> 00:01:33,420
+And now here remember to log in the version number five just so we are all building the same thing here.
+
+19
+00:01:33,420 --> 00:01:35,550
+So using the same versions.
+
+20
+00:01:35,550 --> 00:01:39,240
+And then I will simply name this project here.
+
+21
+00:01:39,240 --> 00:01:39,960
+Steps.
+
+22
+00:01:40,940 --> 00:01:45,320
+So then hit, enter and then create React app is doing its thing.
+
+23
+00:01:45,320 --> 00:01:50,120
+And in the meantime, let's actually check out the component that we are going to build.
+
+24
+00:01:51,330 --> 00:01:53,670
+So that's this one right here.
+
+25
+00:01:53,760 --> 00:01:57,780
+So it's basically this component where we have these three steps.
+
+26
+00:01:57,780 --> 00:02:04,120
+And as I said in the beginning, we can basically navigate through them by clicking here on these buttons.
+
+27
+00:02:04,140 --> 00:02:07,290
+So when we click next, we go to step number two.
+
+28
+00:02:07,970 --> 00:02:10,280
+And so then we get applied to jobs.
+
+29
+00:02:10,400 --> 00:02:16,850
+So first we had learn, react, then apply to jobs and then invest all your new income.
+
+30
+00:02:17,640 --> 00:02:19,950
+So we can click this buttons here.
+
+31
+00:02:19,950 --> 00:02:26,850
+So we have some interactivity here and we can then also close and open up this component again.
+
+32
+00:02:27,740 --> 00:02:28,460
+All right.
+
+33
+00:02:28,460 --> 00:02:34,420
+So again, in this lecture, we will start by building out the static part of this component.
+
+34
+00:02:34,430 --> 00:02:38,930
+So just the component basically without any interactivity.
+
+35
+00:02:38,930 --> 00:02:40,790
+So just writing the JS.
+
+36
+00:02:42,180 --> 00:02:45,390
+But anyway, Create React app has now finished.
+
+37
+00:02:45,660 --> 00:02:53,960
+I will just quickly again rename the folder here and then let's drag and drop it here onto VS code.
+
+38
+00:02:53,970 --> 00:02:57,600
+And as always, you can also open it right here.
+
+39
+00:02:58,860 --> 00:03:03,090
+Okay, so let's clean up our starter files a little bit.
+
+40
+00:03:03,330 --> 00:03:06,780
+And in fact, I will delete almost everything here.
+
+41
+00:03:07,020 --> 00:03:11,760
+So we will just leave App.js and Index.js.
+
+42
+00:03:15,520 --> 00:03:17,700
+So all of them can go to the trash.
+
+43
+00:03:17,710 --> 00:03:20,470
+And now let's open up Index.js.
+
+44
+00:03:20,650 --> 00:03:26,320
+Now, this time we will actually not write all of this year again by hand, because now you already
+
+45
+00:03:26,320 --> 00:03:27,550
+know how that works.
+
+46
+00:03:27,550 --> 00:03:34,560
+And so we can basically keep the code here that create React app, put there for us.
+
+47
+00:03:34,570 --> 00:03:39,040
+We just need to get rid of this part and also of this import.
+
+48
+00:03:39,740 --> 00:03:43,480
+Now, we also got rid of the Index.css file.
+
+49
+00:03:43,490 --> 00:03:50,480
+So this import right now doesn't work, but I do actually have a CSS file in the starter files.
+
+50
+00:03:51,420 --> 00:03:56,180
+So let's open up the files that we downloaded in the beginning.
+
+51
+00:03:56,190 --> 00:04:00,900
+Then here in the Steps starter files, we have these two.
+
+52
+00:04:01,840 --> 00:04:03,010
+So let's copy them.
+
+53
+00:04:05,610 --> 00:04:10,110
+And then in steps, let's place them here in the source.
+
+54
+00:04:10,110 --> 00:04:14,880
+And then let's also just move this vanilla dot HTML into the public.
+
+55
+00:04:15,580 --> 00:04:19,150
+So we're going to check out later what that is.
+
+56
+00:04:21,010 --> 00:04:29,140
+Okay, then going back here, notice how we are importing this app from this file App.js.
+
+57
+00:04:29,170 --> 00:04:30,610
+And so that's this one.
+
+58
+00:04:31,970 --> 00:04:38,630
+But here, let's clean everything and let's once again start from scratch by creating a new component.
+
+59
+00:04:38,630 --> 00:04:42,500
+And as always, that component will be the app component.
+
+60
+00:04:43,010 --> 00:04:45,260
+So function app.
+
+61
+00:04:45,260 --> 00:04:52,370
+And so you see that usually we use a component called app as the root component of our application.
+
+62
+00:04:52,370 --> 00:04:58,070
+So basically as the component that is the parent component of all the other components.
+
+63
+00:04:59,090 --> 00:05:01,670
+Let's just return something here.
+
+64
+00:05:04,050 --> 00:05:05,220
+Hello, React.
+
+65
+00:05:05,430 --> 00:05:10,470
+And finally, all we have to do is to export this function from here.
+
+66
+00:05:11,420 --> 00:05:12,500
+So export.
+
+67
+00:05:13,630 --> 00:05:20,850
+Default so that now index.js can import it here and render it into the Dom.
+
+68
+00:05:20,860 --> 00:05:26,410
+So just again, like we wrote before by hand, but now we will just leave the code here.
+
+69
+00:05:26,440 --> 00:05:29,590
+Of course, we don't always have to do everything manually.
+
+70
+00:05:29,980 --> 00:05:33,450
+Now let's come here to our integrated vs code terminal.
+
+71
+00:05:33,460 --> 00:05:40,570
+So just by clicking here and as you see, this is already automatically in our project folder, or at
+
+72
+00:05:40,570 --> 00:05:41,740
+least it should be.
+
+73
+00:05:41,740 --> 00:05:44,370
+So now there's no need to navigate anywhere.
+
+74
+00:05:44,380 --> 00:05:50,260
+All we need to do to start the project is to run npm start.
+
+75
+00:05:50,800 --> 00:05:54,700
+So this will then automatically open up a new browser tab.
+
+76
+00:05:54,970 --> 00:05:57,010
+And yeah, here it is.
+
+77
+00:05:57,160 --> 00:06:00,760
+So this is the content of our app Dot JS.
+
+78
+00:06:02,320 --> 00:06:03,180
+All right.
+
+79
+00:06:03,190 --> 00:06:05,950
+Just giving ourselves a bit more space here.
+
+80
+00:06:06,310 --> 00:06:12,160
+And so you notice that the file name here, App.js, is exactly the name of the component.
+
+81
+00:06:12,160 --> 00:06:16,030
+And so this is going to be a pattern that we will see throughout the course.
+
+82
+00:06:16,790 --> 00:06:23,270
+But anyway, let's now together write the JS here so that we end up with something like this.
+
+83
+00:06:23,300 --> 00:06:26,180
+Again, just without the interactivity.
+
+84
+00:06:27,830 --> 00:06:33,530
+So we actually start with a div that has the class name of steps.
+
+85
+00:06:35,050 --> 00:06:41,140
+And if you're interested in the CSS, then of course make sure to check out the CSS file that we just
+
+86
+00:06:41,140 --> 00:06:42,010
+included.
+
+87
+00:06:42,580 --> 00:06:45,970
+And now this div here has three child elements.
+
+88
+00:06:46,860 --> 00:06:48,030
+So it has a div.
+
+89
+00:06:49,060 --> 00:06:51,760
+With the class of numbers.
+
+90
+00:06:54,470 --> 00:06:57,350
+And so here we will have these numbers.
+
+91
+00:06:57,350 --> 00:06:58,820
+One, two, three.
+
+92
+00:06:59,760 --> 00:07:05,940
+And now to make this a bit faster, I would just duplicate the code here, which, as I explained to
+
+93
+00:07:05,940 --> 00:07:11,190
+you before, we can simply do with this command here.
+
+94
+00:07:11,190 --> 00:07:12,750
+So copy line down.
+
+95
+00:07:12,960 --> 00:07:16,310
+I think I actually personalized this command right here.
+
+96
+00:07:16,320 --> 00:07:21,150
+So for you it is probably another one, but you should see which one it is right here.
+
+97
+00:07:21,210 --> 00:07:26,370
+And if you want, you can also personalize all your shortcuts right here.
+
+98
+00:07:28,870 --> 00:07:29,560
+Okay.
+
+99
+00:07:29,800 --> 00:07:33,000
+But anyway, let's now move on to the next one.
+
+100
+00:07:33,010 --> 00:07:35,140
+And here we actually want a paragraph.
+
+101
+00:07:35,350 --> 00:07:37,000
+So a paragraph with the class.
+
+102
+00:07:37,000 --> 00:07:38,260
+Name of message.
+
+103
+00:07:42,350 --> 00:07:44,480
+Let's just use a placeholder for now.
+
+104
+00:07:44,780 --> 00:07:47,570
+And then finally a div again.
+
+105
+00:07:48,360 --> 00:07:50,430
+For the buttons.
+
+106
+00:07:52,570 --> 00:07:55,450
+So here we then will have one button element.
+
+107
+00:07:56,400 --> 00:07:57,540
+Let's see.
+
+108
+00:07:58,860 --> 00:08:01,320
+Yeah, this first one says previous.
+
+109
+00:08:04,030 --> 00:08:06,370
+And then another one which says.
+
+110
+00:08:07,650 --> 00:08:08,630
+Next.
+
+111
+00:08:08,640 --> 00:08:13,950
+So here basically we have the numbers, then the message and the buttons.
+
+112
+00:08:14,040 --> 00:08:18,300
+And so what we have here is already looking pretty close to that.
+
+113
+00:08:18,690 --> 00:08:24,510
+Now, the buttons here are not purple like in the demo, and that's because we will later have another
+
+114
+00:08:24,510 --> 00:08:28,140
+button which should not have that background color.
+
+115
+00:08:28,140 --> 00:08:32,540
+And so let's add those stylings here directly to the two buttons.
+
+116
+00:08:32,550 --> 00:08:40,440
+And so with this, we can then also practice again how we add styles to some individual elements.
+
+117
+00:08:41,130 --> 00:08:47,550
+So remember that we do that by passing in basically the style prop into this element.
+
+118
+00:08:48,170 --> 00:08:54,110
+So then we enter JavaScript mode, and then here we can define our object of styles.
+
+119
+00:08:55,010 --> 00:08:56,450
+So background color.
+
+120
+00:08:58,530 --> 00:09:05,100
+And here the color is 7950F2.
+
+121
+00:09:05,940 --> 00:09:07,470
+And also the text color.
+
+122
+00:09:07,470 --> 00:09:12,630
+Let's set it to white, which is F and it needs to be a string.
+
+123
+00:09:12,660 --> 00:09:16,260
+Of course, since again, this is just a JavaScript object.
+
+124
+00:09:16,960 --> 00:09:22,630
+Now, in case you're wondering why these colors are so nicely highlighted, that simply because I have
+
+125
+00:09:22,630 --> 00:09:26,110
+this extension called color highlight.
+
+126
+00:09:26,140 --> 00:09:29,890
+So a very popular one with 5 million installs.
+
+127
+00:09:29,890 --> 00:09:33,820
+And so if you want to replicate the way this looks.
+
+128
+00:09:34,460 --> 00:09:36,410
+Then you can just also install it.
+
+129
+00:09:36,990 --> 00:09:39,450
+But here, let's just copy all of this.
+
+130
+00:09:40,250 --> 00:09:41,750
+To make it faster.
+
+131
+00:09:43,440 --> 00:09:44,340
+Next.
+
+132
+00:09:46,230 --> 00:09:49,710
+And yeah, that's looking pretty close.
+
+133
+00:09:49,740 --> 00:09:53,780
+All we are missing now is the highlight here of the current step.
+
+134
+00:09:53,790 --> 00:09:58,980
+So here we are in step number one and therefore it's now highlighted with this purple color.
+
+135
+00:09:59,250 --> 00:10:02,040
+And for that we have yet another class name.
+
+136
+00:10:02,830 --> 00:10:05,020
+So class of.
+
+137
+00:10:06,670 --> 00:10:07,360
+Active.
+
+138
+00:10:08,080 --> 00:10:08,800
+Okay.
+
+139
+00:10:09,250 --> 00:10:13,060
+Now, finally, let's also add the message here.
+
+140
+00:10:13,060 --> 00:10:17,770
+And those messages are actually in the CSS file that I provided for you.
+
+141
+00:10:19,150 --> 00:10:22,960
+So I placed this JavaScript object here as a comment.
+
+142
+00:10:26,670 --> 00:10:31,410
+And so let's paste that out here outside of the component.
+
+143
+00:10:31,650 --> 00:10:35,760
+So this data doesn't depend on anything that is inside the component.
+
+144
+00:10:35,760 --> 00:10:41,940
+And so it should be located outside because otherwise each time that this function here is executed,
+
+145
+00:10:41,940 --> 00:10:42,960
+this data.
+
+146
+00:10:42,990 --> 00:10:46,110
+So this array will be created again.
+
+147
+00:10:46,990 --> 00:10:50,560
+But we will learn all about that a bit later, of course.
+
+148
+00:10:50,560 --> 00:10:55,990
+So when objects are created and when these functions are executed and so on.
+
+149
+00:10:55,990 --> 00:11:02,860
+So right now we are only learning really how we use these react features, but not yet how they work
+
+150
+00:11:02,860 --> 00:11:03,940
+behind the scenes.
+
+151
+00:11:03,940 --> 00:11:07,450
+So the mechanics of React are still a bit hidden to us.
+
+152
+00:11:07,450 --> 00:11:11,260
+We are only just learning how we use the different features.
+
+153
+00:11:12,100 --> 00:11:12,910
+Right.
+
+154
+00:11:13,870 --> 00:11:18,490
+So now we need this message here, basically.
+
+155
+00:11:18,490 --> 00:11:24,310
+So the first element of the array right here, but we're not going to just copy it, right?
+
+156
+00:11:24,310 --> 00:11:26,650
+So we want to read it dynamically.
+
+157
+00:11:26,650 --> 00:11:33,550
+And so let's here inside this component define a variable which will tell us which step we are currently
+
+158
+00:11:33,550 --> 00:11:34,000
+in.
+
+159
+00:11:36,470 --> 00:11:41,210
+So let's do const step and let's just set it to one.
+
+160
+00:11:41,360 --> 00:11:47,930
+And by the way, it is this step here that we will want to update later as we click on these buttons.
+
+161
+00:11:47,930 --> 00:11:53,690
+But for now, we are just building here the static part, so we are just manually setting it to one.
+
+162
+00:11:55,090 --> 00:12:00,220
+So then let's right step and then the number of the step.
+
+163
+00:12:02,610 --> 00:12:06,840
+And then let's read the value out of the array.
+
+164
+00:12:07,140 --> 00:12:11,160
+So that's messages at position step.
+
+165
+00:12:11,760 --> 00:12:16,200
+And we need the minus one here because of course, the array is zero based.
+
+166
+00:12:17,680 --> 00:12:18,520
+All right.
+
+167
+00:12:18,770 --> 00:12:20,080
+Ah, beautiful.
+
+168
+00:12:20,750 --> 00:12:26,530
+So if we now manually change it here to two, then that will then change the message here.
+
+169
+00:12:26,540 --> 00:12:32,990
+But what didn't change is that this step number two was not marked as active.
+
+170
+00:12:33,260 --> 00:12:39,050
+So basically, we need to now set the styles here on these elements conditionally.
+
+171
+00:12:40,590 --> 00:12:45,840
+So if we just add the class name active to all of them, then they would always be active.
+
+172
+00:12:45,870 --> 00:12:47,520
+But that's not what we want.
+
+173
+00:12:47,640 --> 00:12:51,960
+So we need to basically determine the string here based on a condition.
+
+174
+00:12:51,960 --> 00:12:54,720
+So just like we learned in the previous section.
+
+175
+00:12:55,340 --> 00:13:00,050
+So let's enter JavaScript mode so that we can write a template literal.
+
+176
+00:13:00,050 --> 00:13:04,190
+And so here we will then produce either active or nothing.
+
+177
+00:13:04,430 --> 00:13:11,750
+So let's enter the JavaScript mode basically of the template literal, and then let's just ask if the
+
+178
+00:13:11,750 --> 00:13:17,300
+step is greater or equal one and if so.
+
+179
+00:13:18,200 --> 00:13:22,160
+Then the result of the operation should be the string of active.
+
+180
+00:13:22,280 --> 00:13:23,420
+And if not.
+
+181
+00:13:23,980 --> 00:13:25,450
+Well, then, just nothing.
+
+182
+00:13:27,660 --> 00:13:31,620
+So you see that this one here already became purple.
+
+183
+00:13:31,620 --> 00:13:35,220
+And so that's, of course, because two is greater than one.
+
+184
+00:13:38,010 --> 00:13:38,940
+All right.
+
+185
+00:13:38,940 --> 00:13:40,650
+But let's add this.
+
+186
+00:13:41,390 --> 00:13:42,560
+To all of them.
+
+187
+00:13:46,040 --> 00:13:48,530
+But then here, of course, we need to adapt.
+
+188
+00:13:49,620 --> 00:13:51,540
+And yeah, nice.
+
+189
+00:13:51,540 --> 00:13:53,010
+That's working.
+
+190
+00:13:53,010 --> 00:13:58,470
+So if we had number three, then all three of them would become active.
+
+191
+00:14:00,730 --> 00:14:01,420
+All right.
+
+192
+00:14:01,420 --> 00:14:04,150
+And let's just quickly check this out.
+
+193
+00:14:04,300 --> 00:14:10,930
+So you see now this one has the class of active and these ones still have the class attribute because
+
+194
+00:14:10,930 --> 00:14:15,450
+we specified it here, but then there is no string to it.
+
+195
+00:14:15,460 --> 00:14:20,860
+So that's basically just this empty string that we return in these two cases.
+
+196
+00:14:21,530 --> 00:14:22,220
+Great.
+
+197
+00:14:22,220 --> 00:14:25,460
+So that's the static part of the application.
+
+198
+00:14:25,460 --> 00:14:29,900
+But of course we want to now navigate here by clicking on these buttons.
+
+199
+00:14:29,900 --> 00:14:35,210
+So not changing manually here, this step variable, right?
+
+200
+00:14:35,210 --> 00:14:41,660
+And so that means that it's now time to learn how we can handle the click events on these buttons.
+
+201
+00:14:41,660 --> 00:14:45,380
+And so that's what the next lecture is going to be all about.

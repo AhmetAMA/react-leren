@@ -1,0 +1,163 @@
+1
+00:00:00,990 --> 00:00:06,960
+A very common beginner question or sometimes even an interview question is this.
+
+2
+00:00:07,050 --> 00:00:10,590
+What's the difference between state and props?
+
+3
+00:00:10,890 --> 00:00:16,260
+Well, we actually already learned almost everything to answer that question.
+
+4
+00:00:16,260 --> 00:00:22,920
+But let's still make the difference between state and props crystal clear in this lecture, which will
+
+5
+00:00:22,920 --> 00:00:26,550
+also serve as a nice summary to this entire section.
+
+6
+00:00:28,240 --> 00:00:32,410
+So as we already know, state is internal data.
+
+7
+00:00:32,410 --> 00:00:36,640
+So data that is owned by the component in which it is declared.
+
+8
+00:00:36,640 --> 00:00:41,530
+And we can see that nicely in this small example with two components.
+
+9
+00:00:41,710 --> 00:00:45,550
+Now on the other hand, props is external data.
+
+10
+00:00:45,550 --> 00:00:52,120
+So data that is owned by the parent component and you can think of props as function parameters.
+
+11
+00:00:52,120 --> 00:01:00,310
+So as a communication channel between parent and child components where parents can pass data into children,
+
+12
+00:01:00,310 --> 00:01:06,640
+State, on the other hand, can be thought of as the components memory because it can hold data over
+
+13
+00:01:06,640 --> 00:01:07,240
+time.
+
+14
+00:01:07,240 --> 00:01:13,840
+So across multiple rerenders now state can be updated by the component itself.
+
+15
+00:01:13,840 --> 00:01:19,900
+And as we already know, this will then cause the component to be rerendered by react.
+
+16
+00:01:19,930 --> 00:01:25,090
+Therefore, we use this mechanism of state to make components interactive.
+
+17
+00:01:25,120 --> 00:01:32,180
+On the other side, props work very differently if they are read only, so they cannot be modified by
+
+18
+00:01:32,180 --> 00:01:34,610
+the component that is receiving them.
+
+19
+00:01:34,790 --> 00:01:41,570
+However, and this is something that we haven't learned before when the child component receives new
+
+20
+00:01:41,570 --> 00:01:46,790
+updated props that will actually also cause the component to rerender.
+
+21
+00:01:46,790 --> 00:01:50,540
+And let's actually analyze that here in this code example.
+
+22
+00:01:50,720 --> 00:01:58,910
+So one of the props that was passed to question is called upvotes, and that upvotes variable is actually
+
+23
+00:01:58,910 --> 00:02:01,880
+state in the parent component, right?
+
+24
+00:02:01,880 --> 00:02:07,850
+It's created using the use state hook and therefore upvotes is in fact state.
+
+25
+00:02:08,090 --> 00:02:14,960
+Now if this piece of state is updated, of course the question component who owns the state will be
+
+26
+00:02:14,960 --> 00:02:15,830
+rerendered.
+
+27
+00:02:15,830 --> 00:02:23,210
+But it makes sense that the child component who basically receives that state as props should also be
+
+28
+00:02:23,210 --> 00:02:23,990
+rerendered.
+
+29
+00:02:23,990 --> 00:02:24,770
+Right.
+
+30
+00:02:24,800 --> 00:02:32,390
+Because how else would the button component be kept in sync with the state that it received as a prop?
+
+31
+00:02:32,980 --> 00:02:40,960
+So in conclusion, whenever a piece of state is passed as a prop, when that state updates, both components
+
+32
+00:02:40,960 --> 00:02:42,270
+are re rendered.
+
+33
+00:02:42,280 --> 00:02:48,370
+So both the component owning the state and the component receiving the state as a prop.
+
+34
+00:02:48,370 --> 00:02:55,030
+And so this is a very important connection between state and props that you should keep in mind.
+
+35
+00:02:55,240 --> 00:03:02,740
+Now finally, while state is used by developers to make components, interactive props are used to give
+
+36
+00:03:02,740 --> 00:03:07,390
+the parent component the ability to configure their child components.
+
+37
+00:03:07,540 --> 00:03:15,040
+So basically, props can be seen as settings in child components, which the parent component can define
+
+38
+00:03:15,040 --> 00:03:16,210
+as they wish.
+
+39
+00:03:16,480 --> 00:03:18,430
+And that's it.
+
+40
+00:03:18,460 --> 00:03:25,300
+So if you ever get asked the difference between state and props in a job interview, I sure hope that
+
+41
+00:03:25,300 --> 00:03:26,740
+you are going to nail it.

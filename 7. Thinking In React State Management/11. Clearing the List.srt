@@ -1,0 +1,295 @@
+1
+00:00:00,960 --> 00:00:08,760
+Let's now make our application feature complete by adding a button to clear up the entire list at once.
+
+2
+00:00:10,060 --> 00:00:18,070
+And so to do that, let's come down here and after the select, we're going to add a simple button.
+
+3
+00:00:18,620 --> 00:00:24,710
+So not like that, but button clear list.
+
+4
+00:00:25,070 --> 00:00:26,500
+So there it is.
+
+5
+00:00:26,510 --> 00:00:33,170
+And now, as always, we need to add the onClick event handler, and then we need a function that basically
+
+6
+00:00:33,170 --> 00:00:36,740
+deletes all of these elements here at once.
+
+7
+00:00:36,980 --> 00:00:40,200
+Now, I think that this might be a nice challenge for you.
+
+8
+00:00:40,220 --> 00:00:46,160
+So creating that function, that deletes everything and then passing that function down to this component
+
+9
+00:00:46,160 --> 00:00:48,440
+and adding it here onto the button.
+
+10
+00:00:48,440 --> 00:00:50,860
+So that shouldn't be all too hard.
+
+11
+00:00:50,870 --> 00:00:54,200
+And so please go ahead and pause the video right now.
+
+12
+00:00:54,200 --> 00:01:00,080
+So try this on your own, really, as this is a really nice learning experience and then I see you back
+
+13
+00:01:00,080 --> 00:01:04,610
+here in a minute or five once you are finished with that task.
+
+14
+00:01:06,530 --> 00:01:07,490
+Okay.
+
+15
+00:01:08,910 --> 00:01:13,890
+So I will create a function close to all the other functions.
+
+16
+00:01:14,580 --> 00:01:22,320
+So we have handle add items, delete and toggle, and so we simply add just another one.
+
+17
+00:01:23,010 --> 00:01:25,380
+So handle clear.
+
+18
+00:01:26,490 --> 00:01:29,460
+List, which doesn't need anything, really.
+
+19
+00:01:31,550 --> 00:01:39,350
+And then all we need to do here is to simply say set items back to the original value, which was,
+
+20
+00:01:39,350 --> 00:01:41,480
+of course, this empty array.
+
+21
+00:01:42,360 --> 00:01:43,170
+And that's it.
+
+22
+00:01:43,320 --> 00:01:45,750
+So that's almost too simple.
+
+23
+00:01:46,450 --> 00:01:52,870
+But now we just need to connect this function to the button so that button is in the packing list.
+
+24
+00:01:52,900 --> 00:01:55,850
+So that's where we pass this into a prop.
+
+25
+00:01:55,870 --> 00:01:57,160
+So on.
+
+26
+00:01:58,100 --> 00:01:59,870
+Clear list.
+
+27
+00:02:00,740 --> 00:02:01,700
+Will be.
+
+28
+00:02:02,640 --> 00:02:04,680
+Handle clear list.
+
+29
+00:02:05,500 --> 00:02:07,780
+And so now let's get that.
+
+30
+00:02:10,570 --> 00:02:14,680
+So this packing list really receives a lot of props.
+
+31
+00:02:16,830 --> 00:02:19,320
+And so then here.
+
+32
+00:02:20,740 --> 00:02:22,120
+The onClick prop.
+
+33
+00:02:22,120 --> 00:02:24,970
+And here we don't even need to create a new function.
+
+34
+00:02:24,970 --> 00:02:27,720
+All we have to do is to pass this one in.
+
+35
+00:02:27,730 --> 00:02:32,230
+So on clear list.
+
+36
+00:02:32,260 --> 00:02:33,370
+Give it a save.
+
+37
+00:02:33,370 --> 00:02:35,080
+And that should be it.
+
+38
+00:02:35,110 --> 00:02:39,130
+So clear list and yes, everything is gone.
+
+39
+00:02:39,610 --> 00:02:40,600
+Great.
+
+40
+00:02:42,320 --> 00:02:46,130
+So I'm hoping that you did this as well.
+
+41
+00:02:47,120 --> 00:02:53,030
+And now just one more thing here is that here in this demo app is that here we prevent the user from
+
+42
+00:02:53,030 --> 00:02:55,030
+accidentally deleting everything.
+
+43
+00:02:55,040 --> 00:03:02,150
+So here when they click on clear list, first we get if we want to delete all the items and only then
+
+44
+00:03:02,150 --> 00:03:05,570
+if we click on okay, everything will get deleted.
+
+45
+00:03:06,680 --> 00:03:08,990
+So you see, now it is empty.
+
+46
+00:03:09,970 --> 00:03:11,860
+So let's quickly do the same thing here.
+
+47
+00:03:11,860 --> 00:03:16,990
+And that's pretty easy because that's just a standard dumb function.
+
+48
+00:03:16,990 --> 00:03:22,690
+So that's a function that's not really part of JavaScript, but it's part of the web API.
+
+49
+00:03:22,960 --> 00:03:25,990
+But anyway, here we can create.
+
+50
+00:03:26,750 --> 00:03:34,190
+Some variable, let's say confirmed, and then that confirmed will be defined by window dot.
+
+51
+00:03:34,940 --> 00:03:35,870
+Confirm.
+
+52
+00:03:36,080 --> 00:03:38,660
+So here we can then pass in any string.
+
+53
+00:03:40,100 --> 00:03:43,340
+So that's going to be the the message that the user will see.
+
+54
+00:03:43,520 --> 00:03:44,930
+So are you sure?
+
+55
+00:03:45,920 --> 00:03:49,190
+You want to delete all items?
+
+56
+00:03:50,260 --> 00:03:57,520
+And then when the user clicks on, okay, confirmed will become true and in the case they click cancel,
+
+57
+00:03:57,520 --> 00:03:58,810
+then it will be false.
+
+58
+00:03:58,810 --> 00:04:01,270
+And so now we can do this conditionally.
+
+59
+00:04:01,600 --> 00:04:03,400
+So we just say if.
+
+60
+00:04:05,010 --> 00:04:06,000
+Confirmed.
+
+61
+00:04:06,030 --> 00:04:08,850
+Then set items to the empty array.
+
+62
+00:04:09,880 --> 00:04:11,830
+Just to make sure let's reload.
+
+63
+00:04:11,950 --> 00:04:15,730
+And shorts and a charger.
+
+64
+00:04:16,060 --> 00:04:18,130
+And now when I clear the list.
+
+65
+00:04:18,930 --> 00:04:22,740
+Then, yes, we got the confirm and it works beautifully.
+
+66
+00:04:22,950 --> 00:04:27,810
+Now, maybe you got a little bit annoyed at all the scrolling that we had to do here.
+
+67
+00:04:27,810 --> 00:04:31,730
+Now lately, because our components were getting bigger and bigger.
+
+68
+00:04:31,740 --> 00:04:38,790
+So whenever we wanted like to pass in something here, then we had to scroll all the way down here to
+
+69
+00:04:38,790 --> 00:04:41,820
+then accept, for example, these props right here.
+
+70
+00:04:41,820 --> 00:04:48,660
+And so that's why I said in the very beginning that in real world applications we usually have one component
+
+71
+00:04:48,660 --> 00:04:49,620
+per file.
+
+72
+00:04:49,620 --> 00:04:56,880
+And so in the next lecture, I will show you a trick of how we can basically divide this one file into
+
+73
+00:04:56,880 --> 00:04:58,110
+multiple files.
+
+74
+00:04:58,110 --> 00:05:00,330
+So one file per component.

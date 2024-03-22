@@ -1,0 +1,515 @@
+1
+00:00:00,830 --> 00:00:07,220
+So now that we know what state is, let's try to implement it in our small project.
+
+2
+00:00:08,360 --> 00:00:15,410
+And just as a quick reminder, what we want to happen is that when we click this next and this previous
+
+3
+00:00:15,410 --> 00:00:18,480
+button, we basically want the step to change.
+
+4
+00:00:18,500 --> 00:00:25,390
+So the step here is currently set to one, but we want this step variable basically to be dynamic.
+
+5
+00:00:25,480 --> 00:00:30,530
+And so for that, we now need to add a new piece of state to our component.
+
+6
+00:00:30,830 --> 00:00:36,200
+So let's get rid of this and add that new piece of state.
+
+7
+00:00:36,760 --> 00:00:42,420
+So in order to use state in practice in a component, we do it in three steps.
+
+8
+00:00:42,430 --> 00:00:48,940
+First, we add a new state variable, then we use it in the code and usually in JSX.
+
+9
+00:00:49,540 --> 00:00:54,040
+And third, we then update the piece of state in some event.
+
+10
+00:00:54,070 --> 00:01:00,160
+Handler And so let's start with the first step, which is to actually create the state variable.
+
+11
+00:01:00,160 --> 00:01:05,710
+And we do so using the use state function that react provides to us.
+
+12
+00:01:05,950 --> 00:01:08,830
+So that's use state.
+
+13
+00:01:08,980 --> 00:01:16,510
+And if now I hit enter on my keyboard as this use state here is selected in the vs code, autocomplete
+
+14
+00:01:16,720 --> 00:01:21,910
+vs code will automatically import the use state function from react.
+
+15
+00:01:21,910 --> 00:01:23,950
+So this line of code right here.
+
+16
+00:01:24,130 --> 00:01:30,580
+Now if for some reason that didn't happen in your code editor, then make sure that you import the use
+
+17
+00:01:30,580 --> 00:01:33,340
+state function from react in that way.
+
+18
+00:01:33,580 --> 00:01:36,980
+So the use state function is a function.
+
+19
+00:01:36,980 --> 00:01:38,990
+And so it takes an argument.
+
+20
+00:01:38,990 --> 00:01:45,350
+And the argument that we need to specify here is the default value of this state variable.
+
+21
+00:01:45,470 --> 00:01:48,500
+So that's in our case, step number one.
+
+22
+00:01:48,740 --> 00:01:53,720
+Right now, this use state function here will return an array.
+
+23
+00:01:53,720 --> 00:01:54,710
+And so.
+
+24
+00:01:56,680 --> 00:02:01,210
+Actually, let's just call it array for now and then log it to the console.
+
+25
+00:02:01,940 --> 00:02:03,710
+So just so you see.
+
+26
+00:02:04,600 --> 00:02:07,930
+And so, yeah, now step is no longer defined.
+
+27
+00:02:07,960 --> 00:02:10,720
+Let's just put that back for a minute.
+
+28
+00:02:10,990 --> 00:02:13,330
+Step equals one.
+
+29
+00:02:14,120 --> 00:02:16,970
+And then open up our console here.
+
+30
+00:02:19,850 --> 00:02:21,230
+So this is the array.
+
+31
+00:02:21,320 --> 00:02:24,220
+And so you see it has two values here.
+
+32
+00:02:24,230 --> 00:02:30,920
+So this first value, so this number one is the default value that we want for our state.
+
+33
+00:02:30,920 --> 00:02:32,090
+So this one here.
+
+34
+00:02:32,090 --> 00:02:37,580
+And then the second one is a function that we can use to update our state variable.
+
+35
+00:02:37,940 --> 00:02:42,920
+So what we usually do is to then immediately destructure this array right here.
+
+36
+00:02:44,390 --> 00:02:49,940
+So first we have step, which again is this first right here.
+
+37
+00:02:50,180 --> 00:02:53,360
+And so this will be our state variable itself.
+
+38
+00:02:53,360 --> 00:02:55,820
+And then second again, we have the function.
+
+39
+00:02:55,820 --> 00:03:00,590
+And so this one we usually call set and then the name of the state variable.
+
+40
+00:03:00,590 --> 00:03:02,960
+So set step in this case.
+
+41
+00:03:03,550 --> 00:03:05,500
+Now we can get rid of this.
+
+42
+00:03:06,210 --> 00:03:11,430
+And if we now reload, we see that our app is already using that piece of state.
+
+43
+00:03:11,430 --> 00:03:16,800
+So that step variable, because this is exactly the variable name that we had before.
+
+44
+00:03:17,130 --> 00:03:25,110
+So we are already using this step in our JS here and here and also here for this class name.
+
+45
+00:03:26,860 --> 00:03:34,040
+Okay, so we have completed the first step of defining the state variable using the state function and
+
+46
+00:03:34,040 --> 00:03:38,580
+the second step in which we use the state variable.
+
+47
+00:03:38,600 --> 00:03:42,170
+So this step piece of state in our code.
+
+48
+00:03:42,170 --> 00:03:47,030
+And so now the third step is to actually update the state in an event handler.
+
+49
+00:03:48,680 --> 00:03:52,460
+So let's get rid of this alert, which was just a placeholder.
+
+50
+00:03:52,760 --> 00:03:55,070
+Or actually, let's start with this one.
+
+51
+00:03:55,190 --> 00:03:56,630
+So with the next one.
+
+52
+00:03:57,990 --> 00:04:02,070
+So now it's time to use this set step function here.
+
+53
+00:04:02,490 --> 00:04:03,360
+So.
+
+54
+00:04:05,150 --> 00:04:09,260
+We use set step to update the step state variable.
+
+55
+00:04:09,260 --> 00:04:12,080
+And so what do we want the step to be?
+
+56
+00:04:12,140 --> 00:04:15,290
+Well, basically just the current step.
+
+57
+00:04:16,600 --> 00:04:17,770
+Plus one.
+
+58
+00:04:18,530 --> 00:04:19,220
+Right.
+
+59
+00:04:19,220 --> 00:04:23,450
+So when we click the next button, the step should go one up.
+
+60
+00:04:23,450 --> 00:04:26,450
+And so that's the current step plus one.
+
+61
+00:04:26,450 --> 00:04:29,060
+And so now we are ready to test this.
+
+62
+00:04:29,240 --> 00:04:30,470
+So let's see.
+
+63
+00:04:30,980 --> 00:04:33,440
+And yeah, that works.
+
+64
+00:04:33,770 --> 00:04:42,350
+So our component is now dynamic and so congratulations, you just unlocked the power of state and the
+
+65
+00:04:42,350 --> 00:04:43,760
+power of React.
+
+66
+00:04:44,300 --> 00:04:50,960
+So what happened here as we clicked on this button was that the handle next event handler function was
+
+67
+00:04:50,960 --> 00:05:00,050
+called and this event handler then updated the step state and so then react automatically rendered this
+
+68
+00:05:00,050 --> 00:05:02,150
+new component view for us.
+
+69
+00:05:02,990 --> 00:05:04,760
+So that's just amazing.
+
+70
+00:05:05,090 --> 00:05:09,710
+Now let's go back here and implement also the handle previous function.
+
+71
+00:05:09,710 --> 00:05:12,620
+And here we basically want the opposite.
+
+72
+00:05:12,680 --> 00:05:17,300
+So set, step and then step minus one.
+
+73
+00:05:18,110 --> 00:05:19,130
+So let's see.
+
+74
+00:05:19,430 --> 00:05:21,770
+And yeah, that works.
+
+75
+00:05:22,160 --> 00:05:29,330
+However, right now we have a small bug in our app because watch what happens when I keep clicking here.
+
+76
+00:05:30,430 --> 00:05:35,750
+So you see step zero and step minus one and so on and the same here.
+
+77
+00:05:35,770 --> 00:05:40,870
+So if I keep going, then of course we have no more elements in our array to show.
+
+78
+00:05:41,710 --> 00:05:43,570
+So the array only has three elements.
+
+79
+00:05:43,570 --> 00:05:48,670
+And so step five or anything below step zero doesn't make any sense.
+
+80
+00:05:48,670 --> 00:05:54,620
+And so here in the handler function, we can simply add a condition in order to prevent that.
+
+81
+00:05:54,640 --> 00:05:57,760
+So let's just say if the step.
+
+82
+00:05:58,660 --> 00:06:00,550
+Is greater than one.
+
+83
+00:06:00,910 --> 00:06:03,160
+Only then set this step.
+
+84
+00:06:03,250 --> 00:06:06,110
+And then here, something similar.
+
+85
+00:06:06,130 --> 00:06:11,260
+So if the step is less than three.
+
+86
+00:06:12,160 --> 00:06:13,180
+So let's see.
+
+87
+00:06:13,210 --> 00:06:14,690
+Let's reload this.
+
+88
+00:06:14,710 --> 00:06:17,730
+And so now if I click next.
+
+89
+00:06:17,740 --> 00:06:19,750
+So right now the step is three.
+
+90
+00:06:19,990 --> 00:06:21,970
+So this one here is no longer true.
+
+91
+00:06:21,970 --> 00:06:24,960
+And so now then this part should not be executed.
+
+92
+00:06:24,970 --> 00:06:26,080
+And indeed.
+
+93
+00:06:27,050 --> 00:06:28,010
+That works.
+
+94
+00:06:28,010 --> 00:06:34,370
+So we fixed that small bug and now our component is working just as we want it.
+
+95
+00:06:34,670 --> 00:06:35,720
+Great.
+
+96
+00:06:36,620 --> 00:06:41,550
+Now, just a few more things about the creation of the state variable here.
+
+97
+00:06:41,570 --> 00:06:44,210
+So first of all, this use state function.
+
+98
+00:06:44,210 --> 00:06:47,240
+Here is what we call a hook in React.
+
+99
+00:06:47,240 --> 00:06:52,600
+And we can identify hooks because they start with this use keyword here.
+
+100
+00:06:52,610 --> 00:07:00,320
+So all the react functions that start with use like this, for example, use effect or use reducer.
+
+101
+00:07:00,320 --> 00:07:07,250
+And of course this use state are react hooks and we will learn in detail what a react hook is a bit
+
+102
+00:07:07,250 --> 00:07:07,820
+later.
+
+103
+00:07:07,820 --> 00:07:14,420
+But for now what you need to know is that we can only call hooks like use state on the top level of
+
+104
+00:07:14,420 --> 00:07:15,290
+the function.
+
+105
+00:07:15,380 --> 00:07:18,620
+So of this component function right here.
+
+106
+00:07:18,620 --> 00:07:26,300
+So only here is it allowed to call use state, not inside an if statement or inside another function
+
+107
+00:07:26,300 --> 00:07:27,680
+or inside a loop.
+
+108
+00:07:27,680 --> 00:07:31,100
+So for example, we could not do this.
+
+109
+00:07:31,100 --> 00:07:38,160
+So immediately react would then tell us that the use state hook was called in a function that is not
+
+110
+00:07:38,160 --> 00:07:40,020
+a react function component.
+
+111
+00:07:40,770 --> 00:07:42,990
+So we can only do that right here.
+
+112
+00:07:43,950 --> 00:07:46,950
+So also not in an if statement.
+
+113
+00:07:47,690 --> 00:07:50,660
+So let's say, if true, for example.
+
+114
+00:07:53,040 --> 00:07:54,040
+Then let's see.
+
+115
+00:07:54,060 --> 00:08:00,420
+And again, you see immediately that we get this error saying that the state was called conditionally.
+
+116
+00:08:00,420 --> 00:08:07,230
+And before it actually gets to this dramatic error here, we can even see in this overlay in vs code
+
+117
+00:08:07,230 --> 00:08:10,200
+that react took was called conditionally.
+
+118
+00:08:10,200 --> 00:08:13,470
+And this one here is coming from Eslint, by the way.
+
+119
+00:08:13,470 --> 00:08:17,400
+And that's why it was so important to set up Eslint in the beginning.
+
+120
+00:08:19,130 --> 00:08:19,690
+Okay.
+
+121
+00:08:19,700 --> 00:08:22,040
+But anyway, let's remove all of this.
+
+122
+00:08:22,070 --> 00:08:29,150
+And now the other important thing about state is that we should really only update state using this
+
+123
+00:08:29,150 --> 00:08:30,590
+setter function right here.
+
+124
+00:08:30,590 --> 00:08:32,150
+So not manually.
+
+125
+00:08:32,180 --> 00:08:40,550
+Now, just to finish, I just noticed that here we actually don't need this when we use our step here.
+
+126
+00:08:41,390 --> 00:08:47,780
+So there is no need for a template literal here because here we are not really creating a new string.
+
+127
+00:08:47,810 --> 00:08:54,180
+We are just basically outputting a new string based here on this ternary operator.
+
+128
+00:08:54,230 --> 00:09:01,580
+But anyway, we now have this nice dynamic component, all without the imperative Dom manipulations
+
+129
+00:09:01,580 --> 00:09:04,040
+that we need in vanilla JavaScript.

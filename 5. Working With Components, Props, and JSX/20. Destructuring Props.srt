@@ -1,0 +1,279 @@
+1
+00:00:00,840 --> 00:00:07,380
+So now that we know what props are, let's make our lives a little bit easier when working with props
+
+2
+00:00:07,380 --> 00:00:08,640
+in practice.
+
+3
+00:00:09,690 --> 00:00:16,590
+So as we already know, each time that we pass some props into a component, that component will then
+
+4
+00:00:16,590 --> 00:00:23,610
+automatically receive this object of props, which will contain all the props that we passed in.
+
+5
+00:00:24,150 --> 00:00:28,560
+And actually all components receive this props object.
+
+6
+00:00:29,340 --> 00:00:33,540
+So even here in footer where we don't pass any props in.
+
+7
+00:00:33,570 --> 00:00:37,710
+We can define that and we can log it to the console.
+
+8
+00:00:38,540 --> 00:00:40,490
+So it will be empty then.
+
+9
+00:00:41,920 --> 00:00:42,700
+So let's see.
+
+10
+00:00:43,240 --> 00:00:43,930
+Yeah.
+
+11
+00:00:44,080 --> 00:00:47,200
+So it is empty, but it always exists.
+
+12
+00:00:47,590 --> 00:00:48,130
+All right.
+
+13
+00:00:48,130 --> 00:00:51,880
+So that just as a side note here.
+
+14
+00:00:52,580 --> 00:01:00,680
+So what we want to do now is to avoid having to write this props, dot whatever else all the time in
+
+15
+00:01:00,680 --> 00:01:01,760
+our component.
+
+16
+00:01:01,850 --> 00:01:09,260
+So wouldn't it be nice to directly receive this pizza object here into the component instead of just
+
+17
+00:01:09,260 --> 00:01:10,190
+this props?
+
+18
+00:01:10,400 --> 00:01:14,270
+Well, we can actually do that with destructuring.
+
+19
+00:01:14,480 --> 00:01:21,170
+And again, if Destructuring is a strange concept to you, then please go back to the previous review
+
+20
+00:01:21,170 --> 00:01:21,950
+section.
+
+21
+00:01:22,480 --> 00:01:29,730
+But anyway, now here, instead of directly receiving these props, we can immediately destructure them.
+
+22
+00:01:29,740 --> 00:01:36,610
+And so here we can write pizza object, which needs to match exactly the name of the prop that's being
+
+23
+00:01:36,610 --> 00:01:37,480
+passed in.
+
+24
+00:01:37,630 --> 00:01:40,870
+So this one here and then from there on.
+
+25
+00:01:41,680 --> 00:01:44,380
+All of these props here can go.
+
+26
+00:01:44,960 --> 00:01:51,800
+So I will select them all here, one after the other, which I'm doing using the select next occurrence.
+
+27
+00:01:52,040 --> 00:01:54,470
+So that's this shortcut right here.
+
+28
+00:01:54,470 --> 00:01:59,390
+So you can just go ahead and use the shortcut that you see right here for you.
+
+29
+00:02:01,290 --> 00:02:02,790
+So let's get rid of that.
+
+30
+00:02:02,790 --> 00:02:09,870
+And this will now create a small problem, which is that here we are still trying to log to the console
+
+31
+00:02:09,900 --> 00:02:16,980
+these props, but the props object now no longer exists because, well, we immediately destructured
+
+32
+00:02:16,980 --> 00:02:18,570
+it right here.
+
+33
+00:02:19,150 --> 00:02:24,460
+So now if we wanted to take a look at what we receive, we would have to do it like this.
+
+34
+00:02:24,460 --> 00:02:28,060
+But the props object itself no longer exists.
+
+35
+00:02:28,060 --> 00:02:35,380
+But this is really, really nice because right now all we have to do is to look at this line right here
+
+36
+00:02:35,380 --> 00:02:40,150
+in order to know which props this component will actually receive.
+
+37
+00:02:40,240 --> 00:02:43,540
+So before this, all we had was the generic props.
+
+38
+00:02:43,540 --> 00:02:49,540
+And then if we wanted to know what kind of props we will receive here, eventually we would have to
+
+39
+00:02:49,540 --> 00:02:52,840
+go to the place where the props are actually passed in.
+
+40
+00:02:52,990 --> 00:02:54,990
+But now not anymore.
+
+41
+00:02:55,000 --> 00:03:00,640
+So now, right here in this component definition, we can immediately see that we will receive a pizza
+
+42
+00:03:00,670 --> 00:03:01,390
+object.
+
+43
+00:03:01,390 --> 00:03:06,550
+And so that's the second really big advantage of immediately Destructuring props.
+
+44
+00:03:08,080 --> 00:03:09,850
+So let's do the same down here.
+
+45
+00:03:11,050 --> 00:03:16,810
+So again, not props, but exactly the name of the prop that we pass in.
+
+46
+00:03:17,970 --> 00:03:22,440
+So close our and then here we can get rid of that.
+
+47
+00:03:22,560 --> 00:03:28,200
+And of course, if we were passing in multiple props and let's try that.
+
+48
+00:03:31,190 --> 00:03:33,320
+So let's also pass in the open our.
+
+49
+00:03:35,250 --> 00:03:37,590
+And then here, open our.
+
+50
+00:03:38,470 --> 00:03:43,150
+And so here all we have to do is to add open our den.
+
+51
+00:03:43,900 --> 00:03:45,820
+So here, let's say we're open.
+
+52
+00:03:47,370 --> 00:03:48,300
+From.
+
+53
+00:03:49,750 --> 00:03:51,550
+Then open our.
+
+54
+00:03:54,340 --> 00:03:55,960
+To this.
+
+55
+00:03:57,430 --> 00:03:57,930
+Yep.
+
+56
+00:03:57,940 --> 00:03:59,680
+And that worked just fine.
+
+57
+00:04:00,360 --> 00:04:04,500
+Now we can actually really define anything we want here.
+
+58
+00:04:04,530 --> 00:04:05,940
+Let's write test.
+
+59
+00:04:07,430 --> 00:04:09,820
+Let's add that here, for example.
+
+60
+00:04:09,820 --> 00:04:12,410
+And this will then simply be nothing.
+
+61
+00:04:12,430 --> 00:04:18,520
+So if we try to destructure a property here that doesn't exist, it's simply undefined.
+
+62
+00:04:19,540 --> 00:04:20,320
+Right.
+
+63
+00:04:22,050 --> 00:04:23,790
+So let's get rid of that here.
+
+64
+00:04:24,510 --> 00:04:26,540
+But this was just to show you.
+
+65
+00:04:26,550 --> 00:04:32,060
+So from now on, for the rest of the course, we will always receive props like this here.
+
+66
+00:04:32,070 --> 00:04:38,670
+Just make sure to never, ever forget the curly braces, because then, of course, everything will
+
+67
+00:04:38,700 --> 00:04:39,300
+break.
+
+68
+00:04:39,300 --> 00:04:41,580
+So that's a common beginner mistake.
+
+69
+00:04:42,040 --> 00:04:44,220
+So yeah, you have been warned.
+
+70
+00:04:44,250 --> 00:04:49,290
+Never forget that because only with the curly braces we are actually destructuring.

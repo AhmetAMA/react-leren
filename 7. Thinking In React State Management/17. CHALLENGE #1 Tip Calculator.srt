@@ -1,0 +1,1195 @@
+1
+00:00:00,890 --> 00:00:07,910
+Let's once again finish a section with a nice coding challenge so that we can practice everything that
+
+2
+00:00:07,910 --> 00:00:09,830
+we learned in this section.
+
+3
+00:00:09,830 --> 00:00:14,390
+And I can't stress enough how important these challenges are.
+
+4
+00:00:14,420 --> 00:00:18,380
+So please, please don't skip this video right now.
+
+5
+00:00:19,650 --> 00:00:24,260
+So we are going to build this very simple tip calculator.
+
+6
+00:00:24,270 --> 00:00:28,350
+So here you can input how much the bill was.
+
+7
+00:00:28,350 --> 00:00:37,080
+So let's say $100 and then you can say how satisfied or dissatisfied you were with the service and your
+
+8
+00:00:37,080 --> 00:00:37,700
+friend.
+
+9
+00:00:37,710 --> 00:00:44,940
+So let's say that two people were out for dinner and then basically together you decide how much the
+
+10
+00:00:44,940 --> 00:00:45,930
+tip should be.
+
+11
+00:00:45,930 --> 00:00:50,610
+So for example, if you say it was good, that can be 10%.
+
+12
+00:00:51,390 --> 00:00:54,030
+But your friend says 0%.
+
+13
+00:00:54,030 --> 00:01:00,770
+And so then the average between the two of you is 5%, which is indeed these $5 here.
+
+14
+00:01:00,780 --> 00:01:07,170
+And so the final bill is $105, which is 100 plus the $5 tip.
+
+15
+00:01:07,500 --> 00:01:14,610
+And of course, if your friend found it absolutely amazing, then here the average between the two of
+
+16
+00:01:14,610 --> 00:01:18,540
+you is 15 and therefore it is a $15 tip.
+
+17
+00:01:18,690 --> 00:01:24,300
+And as you change the value here, of course, it keeps updating down here.
+
+18
+00:01:24,870 --> 00:01:31,350
+You also have this reset button that you can click, which will set everything back to the initial values.
+
+19
+00:01:31,500 --> 00:01:37,590
+Now, as you build this, I want you to create one separate component for each of these pieces.
+
+20
+00:01:37,680 --> 00:01:40,710
+So this one here should be one component.
+
+21
+00:01:40,710 --> 00:01:43,920
+For example, it can be called the bill input.
+
+22
+00:01:43,950 --> 00:01:51,270
+Then you should have one component for this, for example, called select percentage and then reuse
+
+23
+00:01:51,270 --> 00:01:53,190
+that component here again.
+
+24
+00:01:53,460 --> 00:01:56,670
+So with some different text, but it should be the same component.
+
+25
+00:01:56,700 --> 00:02:03,600
+Then here you have some output component for displaying this text and then a reset component just for
+
+26
+00:02:03,600 --> 00:02:04,380
+this button.
+
+27
+00:02:05,200 --> 00:02:05,890
+Okay.
+
+28
+00:02:06,340 --> 00:02:10,600
+Now, these three inputs here, they are of course, controlled elements.
+
+29
+00:02:10,600 --> 00:02:17,380
+And so you can start by adding their state value into the component itself, but you will soon notice
+
+30
+00:02:17,380 --> 00:02:23,680
+that you actually need this state in the parent component because you will need it to calculate this
+
+31
+00:02:23,680 --> 00:02:24,960
+output right here.
+
+32
+00:02:24,970 --> 00:02:28,930
+So then you will have to use the technique of lifting state up.
+
+33
+00:02:28,930 --> 00:02:35,020
+And so hopefully you remember all the logic of how that works and why we have to do that.
+
+34
+00:02:35,050 --> 00:02:40,990
+And in case there is still some doubt, you can always go back and check out the lectures where we talked
+
+35
+00:02:40,990 --> 00:02:47,050
+about lifting up state and of course all the other things that you need here in this challenge.
+
+36
+00:02:47,230 --> 00:02:53,860
+So I'm aware that this challenge is not super easy, but that's what many students actually want.
+
+37
+00:02:53,890 --> 00:02:59,230
+So last time I asked, the large majority wanted really hard challenges.
+
+38
+00:02:59,500 --> 00:03:04,390
+So this is not really hard, I think, but it can be a bit challenging.
+
+39
+00:03:04,390 --> 00:03:07,880
+So it's not just 100% straightforward.
+
+40
+00:03:07,910 --> 00:03:12,800
+Therefore, if you run into any issues, that's no problem at all.
+
+41
+00:03:12,800 --> 00:03:17,510
+So just write the part that you can and then the rest watch my solution.
+
+42
+00:03:17,510 --> 00:03:19,250
+That's 100% fine.
+
+43
+00:03:19,280 --> 00:03:25,580
+The most important part is that you start writing at least some code and that you try it on your own.
+
+44
+00:03:25,820 --> 00:03:27,320
+And that's enough talk.
+
+45
+00:03:27,350 --> 00:03:32,360
+I see you here in 5 or 10 or whatever time that you need.
+
+46
+00:03:34,200 --> 00:03:34,950
+All right.
+
+47
+00:03:34,950 --> 00:03:39,570
+So we have a lot of code to write, so let's get straight into it.
+
+48
+00:03:41,580 --> 00:03:52,590
+So I will start with the function called tip calculator, which we will then call basically right here.
+
+49
+00:03:52,830 --> 00:03:56,340
+So we need no styles for this app at all.
+
+50
+00:03:57,980 --> 00:04:01,790
+So that's why I didn't provide any CSS starter files.
+
+51
+00:04:03,370 --> 00:04:10,330
+Okay, let's close down the sidebar here and then let's start by writing out all our components.
+
+52
+00:04:10,630 --> 00:04:13,270
+So the next one is called Bill.
+
+53
+00:04:14,000 --> 00:04:14,870
+Input.
+
+54
+00:04:17,680 --> 00:04:19,960
+Then let's create a select.
+
+55
+00:04:20,740 --> 00:04:21,970
+Percentage.
+
+56
+00:04:22,060 --> 00:04:26,050
+And of course, your component names here can be completely different.
+
+57
+00:04:27,210 --> 00:04:28,710
+Then we have function.
+
+58
+00:04:30,840 --> 00:04:31,740
+Output.
+
+59
+00:04:32,850 --> 00:04:36,090
+And finally for reset.
+
+60
+00:04:38,290 --> 00:04:41,950
+All right, now let's build them out one by one.
+
+61
+00:04:42,400 --> 00:04:49,030
+And we can actually start here in the tip calculator, because all that's going to happen here is that
+
+62
+00:04:49,030 --> 00:04:52,390
+I will basically include all the other ones.
+
+63
+00:04:52,780 --> 00:04:54,880
+So let's just create a div here.
+
+64
+00:04:56,750 --> 00:04:59,360
+Then I will want the bill input.
+
+65
+00:05:00,110 --> 00:05:03,320
+I will want to select percentages.
+
+66
+00:05:09,710 --> 00:05:13,940
+And of course we will later on then pass the props into here.
+
+67
+00:05:13,940 --> 00:05:19,340
+I'm just again building the static parts without any data at all.
+
+68
+00:05:20,030 --> 00:05:24,200
+So then we will have the output and we will have.
+
+69
+00:05:25,660 --> 00:05:28,690
+Our reset button.
+
+70
+00:05:30,250 --> 00:05:32,260
+Okay, let's start with this one.
+
+71
+00:05:39,920 --> 00:05:40,700
+Okay.
+
+72
+00:05:41,600 --> 00:05:43,880
+Then I will place this one into a label.
+
+73
+00:05:44,330 --> 00:05:47,300
+How much was the bill?
+
+74
+00:05:50,850 --> 00:05:55,830
+And then finally, we have our first input of the type.
+
+75
+00:05:58,460 --> 00:05:59,210
+Text.
+
+76
+00:06:00,480 --> 00:06:02,910
+And let's add a.
+
+77
+00:06:03,920 --> 00:06:07,280
+Place holder as well, which is always nice.
+
+78
+00:06:09,650 --> 00:06:12,980
+And so yeah, here we got already some.
+
+79
+00:06:13,880 --> 00:06:16,070
+Uh, well, something on the UI.
+
+80
+00:06:16,600 --> 00:06:20,740
+I was just thinking of getting rid this class.
+
+81
+00:06:20,750 --> 00:06:25,700
+And so then we get rid of basically all the styling altogether.
+
+82
+00:06:26,310 --> 00:06:29,340
+You can just come here to the CSS if we want.
+
+83
+00:06:33,960 --> 00:06:40,800
+And just like this, just to make the font family a bit nicer on the eyes.
+
+84
+00:06:42,340 --> 00:06:46,720
+But anyway, here, let's again return a div.
+
+85
+00:06:51,300 --> 00:06:54,870
+And then we have a select element.
+
+86
+00:06:58,560 --> 00:07:03,810
+And as you already know, then inside the select, we have our different options.
+
+87
+00:07:04,790 --> 00:07:07,160
+So zero is for.
+
+88
+00:07:08,120 --> 00:07:13,250
+This said this fight, which is 0%.
+
+89
+00:07:17,110 --> 00:07:20,050
+Then let's just copy this over a few times.
+
+90
+00:07:20,050 --> 00:07:21,310
+Five.
+
+91
+00:07:21,310 --> 00:07:22,150
+Ten.
+
+92
+00:07:23,520 --> 00:07:24,930
+And 20.
+
+93
+00:07:27,420 --> 00:07:31,230
+It was okay is 5%.
+
+94
+00:07:32,300 --> 00:07:42,200
+Then it was good is 10% and then 20% is for absolutely amazing.
+
+95
+00:07:46,190 --> 00:07:48,530
+Now, we also want some text here.
+
+96
+00:07:48,530 --> 00:07:56,120
+And so we could pass that here in as a prop, but I believe it's a lot nicer to.
+
+97
+00:07:56,920 --> 00:07:58,860
+Write it right here directly.
+
+98
+00:07:58,870 --> 00:08:03,760
+So how did you like the service?
+
+99
+00:08:05,350 --> 00:08:06,670
+Then close that.
+
+100
+00:08:06,880 --> 00:08:11,890
+And so basically including the content between the opening and the closing tag.
+
+101
+00:08:13,500 --> 00:08:20,220
+How did your friend friend like the service?
+
+102
+00:08:23,660 --> 00:08:24,740
+All right.
+
+103
+00:08:24,740 --> 00:08:29,850
+And now I hope you remember how we get this text here.
+
+104
+00:08:29,870 --> 00:08:33,230
+So this content into select percentage.
+
+105
+00:08:34,010 --> 00:08:35,270
+And that's right.
+
+106
+00:08:35,270 --> 00:08:40,400
+It gets automatically passed in here as the children prop.
+
+107
+00:08:41,580 --> 00:08:46,830
+And so let's create a paragraph or maybe a label.
+
+108
+00:08:48,740 --> 00:08:49,550
+Width.
+
+109
+00:08:49,910 --> 00:08:51,080
+Exactly that.
+
+110
+00:08:54,320 --> 00:08:55,250
+There you go.
+
+111
+00:08:55,280 --> 00:08:57,110
+That looks a lot better.
+
+112
+00:08:57,920 --> 00:08:59,450
+So let's move on here.
+
+113
+00:09:00,200 --> 00:09:01,280
+Return.
+
+114
+00:09:01,280 --> 00:09:03,560
+And here we will have an H three.
+
+115
+00:09:04,010 --> 00:09:07,100
+You pay X.
+
+116
+00:09:08,920 --> 00:09:12,430
+Which is some dollars, I'd say a.
+
+117
+00:09:13,780 --> 00:09:14,800
+Plus.
+
+118
+00:09:17,470 --> 00:09:18,640
+Before the tip.
+
+119
+00:09:18,640 --> 00:09:24,610
+So just some placeholders here for now because we are building still the static version.
+
+120
+00:09:26,050 --> 00:09:31,930
+And now finally here a button that says reset.
+
+121
+00:09:33,310 --> 00:09:33,910
+Okay.
+
+122
+00:09:33,910 --> 00:09:37,330
+So that took us some time just to build the static part.
+
+123
+00:09:37,330 --> 00:09:39,220
+And now let's add some state.
+
+124
+00:09:39,250 --> 00:09:46,510
+And the best way to start is to create one piece of state for each of these three controlled elements
+
+125
+00:09:46,510 --> 00:09:47,740
+that we need here.
+
+126
+00:09:48,980 --> 00:09:55,130
+Now, as I started by saying in the very beginning, you could have started by creating local state
+
+127
+00:09:55,130 --> 00:09:56,970
+right here in the component.
+
+128
+00:09:56,990 --> 00:10:03,980
+So basically, like we learned before, however, you would then quickly discover that you need this
+
+129
+00:10:04,010 --> 00:10:10,850
+input value here, for example, right here in the tip calculator component, because it's here where
+
+130
+00:10:10,850 --> 00:10:17,840
+you will later calculate this tip value right here so that you can then display it so you can pass it
+
+131
+00:10:17,840 --> 00:10:20,480
+into output and then render it there.
+
+132
+00:10:21,220 --> 00:10:28,450
+Therefore, I will actually basically immediately lift that state up and not even write it in the bill
+
+133
+00:10:28,450 --> 00:10:29,170
+input.
+
+134
+00:10:33,120 --> 00:10:35,790
+So Bill and set Bill.
+
+135
+00:10:36,870 --> 00:10:38,460
+Or equal to use.
+
+136
+00:10:39,440 --> 00:10:43,010
+State and for some reason sometimes.
+
+137
+00:10:43,790 --> 00:10:47,810
+This doesn't really work with the importing.
+
+138
+00:10:48,780 --> 00:10:50,340
+So then let's do it manually.
+
+139
+00:10:50,370 --> 00:10:53,070
+Use state from.
+
+140
+00:10:54,110 --> 00:10:55,250
+React.
+
+141
+00:10:56,230 --> 00:10:57,140
+Nice.
+
+142
+00:10:57,160 --> 00:11:01,030
+And actually here, let's start with an empty string.
+
+143
+00:11:02,840 --> 00:11:03,560
+Okay.
+
+144
+00:11:04,160 --> 00:11:11,840
+And then we need to pass both of them in because, of course, we will want to update that state each
+
+145
+00:11:11,840 --> 00:11:15,500
+time that the change event is fired here on the input.
+
+146
+00:11:15,530 --> 00:11:16,610
+Remember that.
+
+147
+00:11:16,610 --> 00:11:19,740
+So that's just how controlled elements work.
+
+148
+00:11:19,760 --> 00:11:23,120
+It's always the same recipe, always the same thing.
+
+149
+00:11:23,120 --> 00:11:29,150
+No matter if the state lives right in this component or in another parent component.
+
+150
+00:11:29,150 --> 00:11:32,990
+But the idea is the same as you will see again in a minute.
+
+151
+00:11:34,020 --> 00:11:42,990
+So let's pass in a prop called bill with a value of bill and then let's again use our UN prefix.
+
+152
+00:11:42,990 --> 00:11:44,120
+So on set.
+
+153
+00:11:44,130 --> 00:11:47,550
+Bill will be set bill.
+
+154
+00:11:47,970 --> 00:11:53,610
+But of course it would be just as valid to pass in a prop with exactly this name.
+
+155
+00:11:56,270 --> 00:11:59,300
+So here we receive Bill and.
+
+156
+00:12:00,560 --> 00:12:02,420
+On set, Bill.
+
+157
+00:12:03,380 --> 00:12:04,400
+And.
+
+158
+00:12:04,990 --> 00:12:07,330
+Let's then use these values here.
+
+159
+00:12:09,680 --> 00:12:16,790
+So the value of this input field should be bill and when it changes.
+
+160
+00:12:20,980 --> 00:12:26,470
+Then we want to basically set the bill based on e dot target.
+
+161
+00:12:27,200 --> 00:12:29,390
+Dot value and.
+
+162
+00:12:30,610 --> 00:12:34,510
+We need to convert that whole thing to a number.
+
+163
+00:12:37,040 --> 00:12:37,810
+Okay.
+
+164
+00:12:37,820 --> 00:12:43,160
+Now, unfortunately, the dev tools don't work as we experienced a few times already.
+
+165
+00:12:44,160 --> 00:12:50,340
+But in order to see it, we can actually pass it in here into the output.
+
+166
+00:12:52,120 --> 00:12:53,080
+So, Bill.
+
+167
+00:12:54,410 --> 00:13:00,260
+Is Bill, because remember how we actually display that bill value right here.
+
+168
+00:13:00,260 --> 00:13:02,690
+So that's exactly this ad right there.
+
+169
+00:13:04,230 --> 00:13:06,180
+So let's then receive it here.
+
+170
+00:13:09,380 --> 00:13:11,840
+So that's this first value right here.
+
+171
+00:13:13,430 --> 00:13:15,020
+So let's see.
+
+172
+00:13:16,140 --> 00:13:17,850
+Nadia, That works beautifully.
+
+173
+00:13:18,090 --> 00:13:23,790
+So just like any normal controlled component or controlled element.
+
+174
+00:13:25,270 --> 00:13:31,660
+With the difference that the state doesn't live in the component itself, but in the parent component.
+
+175
+00:13:31,810 --> 00:13:37,360
+And now let's use the exact same logic for these select percentage components.
+
+176
+00:13:38,950 --> 00:13:42,850
+So let's create two pieces of state, one for each of them.
+
+177
+00:13:45,090 --> 00:13:49,320
+So that's going to be percentage one and set.
+
+178
+00:13:50,210 --> 00:13:51,800
+Percentage one.
+
+179
+00:13:54,300 --> 00:13:57,750
+And the default here is zero.
+
+180
+00:13:57,930 --> 00:14:00,540
+And then let's just copy paste.
+
+181
+00:14:04,040 --> 00:14:09,050
+And so this one here will take the value of percentage one.
+
+182
+00:14:11,510 --> 00:14:19,220
+So the percentage prop that this one will receive will be equal to the percentage one state, while
+
+183
+00:14:19,220 --> 00:14:20,210
+this other one.
+
+184
+00:14:21,750 --> 00:14:23,790
+So this one also gets a.
+
+185
+00:14:25,670 --> 00:14:32,180
+Percentage prop, of course, but here the value will be given by this other state.
+
+186
+00:14:32,180 --> 00:14:37,670
+And so with this, we can use the same component to set these two different state values.
+
+187
+00:14:40,080 --> 00:14:40,530
+Okay.
+
+188
+00:14:40,530 --> 00:14:41,310
+And now.
+
+189
+00:14:42,280 --> 00:14:48,760
+Also the onselect handler and this one will be set percentage one.
+
+190
+00:14:49,960 --> 00:14:53,770
+While again here on select will be.
+
+191
+00:14:55,640 --> 00:14:56,390
+Set.
+
+192
+00:14:57,420 --> 00:14:59,520
+Percentage to.
+
+193
+00:15:00,830 --> 00:15:02,540
+All right, then.
+
+194
+00:15:02,540 --> 00:15:04,440
+Down here we can receive them.
+
+195
+00:15:04,460 --> 00:15:06,020
+Besides the children.
+
+196
+00:15:06,410 --> 00:15:07,820
+So the percentage.
+
+197
+00:15:08,670 --> 00:15:11,190
+And on select.
+
+198
+00:15:11,760 --> 00:15:16,170
+And so now all we have to do is value.
+
+199
+00:15:18,210 --> 00:15:20,810
+Is equal to the percentage that we receive.
+
+200
+00:15:20,820 --> 00:15:23,220
+And then on change.
+
+201
+00:15:26,880 --> 00:15:28,470
+And then on select.
+
+202
+00:15:29,990 --> 00:15:32,690
+So we can immediately convert to a number.
+
+203
+00:15:32,900 --> 00:15:36,660
+E dot target dot value.
+
+204
+00:15:36,680 --> 00:15:39,050
+It's always the same recipe.
+
+205
+00:15:41,090 --> 00:15:44,930
+So now we will not be able to immediately see it here.
+
+206
+00:15:44,930 --> 00:15:48,350
+But it seems to be working, both of them.
+
+207
+00:15:49,630 --> 00:15:50,320
+All right.
+
+208
+00:15:50,320 --> 00:15:53,230
+And so now we have all our state that we need.
+
+209
+00:15:53,230 --> 00:15:58,030
+And so based on this, we now can already calculate the tip.
+
+210
+00:15:58,560 --> 00:16:00,250
+So how do we do that?
+
+211
+00:16:00,270 --> 00:16:03,990
+Should we create a new piece of state for the tip here?
+
+212
+00:16:04,350 --> 00:16:11,100
+Well, there is actually no need and it makes no sense to do so, because the tip can be completely
+
+213
+00:16:11,100 --> 00:16:15,090
+calculated from the bill and the percentages.
+
+214
+00:16:15,090 --> 00:16:18,810
+And so we are in the presence of derived state.
+
+215
+00:16:20,200 --> 00:16:22,930
+So the tip is simply the bill.
+
+216
+00:16:23,590 --> 00:16:27,550
+Times the average of the two percentages.
+
+217
+00:16:29,300 --> 00:16:31,220
+So that's percentage one.
+
+218
+00:16:31,310 --> 00:16:36,680
+Plus percentage two divided by two.
+
+219
+00:16:36,680 --> 00:16:45,440
+And then the whole thing divided by 100, because here the percentages are these actual values.
+
+220
+00:16:45,440 --> 00:16:47,500
+So between 0 and 100.
+
+221
+00:16:47,510 --> 00:16:50,840
+But then we need to calculate them between 0 and 1.
+
+222
+00:16:52,030 --> 00:16:52,990
+Because.
+
+223
+00:16:53,200 --> 00:16:56,950
+Well, that's how we calculate percentages here.
+
+224
+00:16:57,160 --> 00:17:01,240
+I don't really agree with this parenthesis here.
+
+225
+00:17:01,450 --> 00:17:04,000
+Let's place that right here.
+
+226
+00:17:06,740 --> 00:17:12,680
+So with this, we calculate the average percentage and convert it to a number between 0 and 1.
+
+227
+00:17:12,680 --> 00:17:18,050
+And then simply by multiplying it with the bill, we get the amount of the tip.
+
+228
+00:17:18,200 --> 00:17:23,750
+And so now we are ready to also pass that here into the output.
+
+229
+00:17:24,750 --> 00:17:27,540
+I mean, here we receive it to pass it.
+
+230
+00:17:27,780 --> 00:17:29,550
+It's actually here.
+
+231
+00:17:30,600 --> 00:17:33,780
+So tip equal tip.
+
+232
+00:17:35,620 --> 00:17:36,910
+And so.
+
+233
+00:17:37,700 --> 00:17:39,830
+Can already display that here.
+
+234
+00:17:41,360 --> 00:17:42,260
+And then here.
+
+235
+00:17:42,990 --> 00:17:47,640
+It's as simple as adding the two together.
+
+236
+00:17:50,530 --> 00:17:52,690
+So let's say 100.
+
+237
+00:17:53,980 --> 00:17:55,830
+And one was dissatisfied.
+
+238
+00:17:55,840 --> 00:17:57,700
+The other one was amazing.
+
+239
+00:17:57,700 --> 00:18:02,020
+And so the average is 10%, which is exactly those $10.
+
+240
+00:18:04,530 --> 00:18:04,940
+Yep.
+
+241
+00:18:04,950 --> 00:18:09,420
+Then it becomes 20, which together makes 120.
+
+242
+00:18:09,810 --> 00:18:11,850
+Just make the dollar sign there.
+
+243
+00:18:14,790 --> 00:18:18,360
+And so, yeah, this seems to be working just fine.
+
+244
+00:18:18,570 --> 00:18:22,560
+All we have to do now is to make this reset button work.
+
+245
+00:18:23,010 --> 00:18:25,770
+But that is fortunately very simple.
+
+246
+00:18:28,630 --> 00:18:32,080
+So function handle reset.
+
+247
+00:18:32,080 --> 00:18:36,250
+And here all we need to do is really to set all of the values.
+
+248
+00:18:38,370 --> 00:18:40,470
+Back to those initial states.
+
+249
+00:18:41,900 --> 00:18:46,490
+So set percentage one back to zero.
+
+250
+00:18:49,090 --> 00:18:51,670
+And here the same thing.
+
+251
+00:18:51,760 --> 00:18:55,740
+And then we just pass it right here.
+
+252
+00:18:55,750 --> 00:19:00,400
+So on reset should become handle reset.
+
+253
+00:19:01,850 --> 00:19:04,820
+Like this and.
+
+254
+00:19:10,370 --> 00:19:12,950
+And then, of course, the onClick event handler.
+
+255
+00:19:13,980 --> 00:19:15,090
+On reset.
+
+256
+00:19:16,000 --> 00:19:17,860
+And let's see.
+
+257
+00:19:18,520 --> 00:19:19,990
+And beautiful.
+
+258
+00:19:21,100 --> 00:19:23,470
+So everything back to normal.
+
+259
+00:19:23,470 --> 00:19:30,550
+And now what we should do is to not display the button at this output whenever there is actually no
+
+260
+00:19:30,550 --> 00:19:31,180
+tip.
+
+261
+00:19:31,420 --> 00:19:35,100
+So then it makes no sense to display that.
+
+262
+00:19:35,110 --> 00:19:35,800
+Right.
+
+263
+00:19:35,800 --> 00:19:37,660
+So these two things right here.
+
+264
+00:19:38,310 --> 00:19:43,770
+So let's wrap them into the JavaScript mode and then let's say.
+
+265
+00:19:44,570 --> 00:19:46,550
+Bill greater than zero.
+
+266
+00:19:46,680 --> 00:19:47,870
+End to end.
+
+267
+00:19:48,030 --> 00:19:56,390
+And now here we get a problem because we have one piece of JS, which has basically two top level elements
+
+268
+00:19:56,390 --> 00:20:00,980
+which is not allowed, so they can only be one parent element.
+
+269
+00:20:02,040 --> 00:20:07,560
+And so once again, our fragment here is a very nice option.
+
+270
+00:20:08,520 --> 00:20:10,350
+We don't need these.
+
+271
+00:20:11,190 --> 00:20:12,180
+Give it a safe.
+
+272
+00:20:12,180 --> 00:20:13,830
+And, yeah, now they're gone.
+
+273
+00:20:14,830 --> 00:20:15,040
+It.
+
+274
+00:20:15,040 --> 00:20:19,930
+As soon as we start writing here, we have a tip value.
+
+275
+00:20:20,140 --> 00:20:21,160
+And then.
+
+276
+00:20:23,150 --> 00:20:26,150
+Then we can see the output there and the button.
+
+277
+00:20:26,510 --> 00:20:27,370
+Great.
+
+278
+00:20:27,380 --> 00:20:29,280
+And that's actually it.
+
+279
+00:20:29,300 --> 00:20:37,640
+So I believe the hard part here was to have all the state living in the tip calculator, but then having
+
+280
+00:20:37,640 --> 00:20:42,970
+these two components here needing that state and also updating that state.
+
+281
+00:20:42,980 --> 00:20:46,310
+So there's a lot of state passing around.
+
+282
+00:20:47,380 --> 00:20:49,240
+Here with all of these props.
+
+283
+00:20:50,470 --> 00:20:50,980
+Yeah.
+
+284
+00:20:50,980 --> 00:20:53,200
+And then also here, the tip itself.
+
+285
+00:20:53,200 --> 00:20:59,740
+So realizing that this indeed needs to be derived state, because otherwise you would have to calculate
+
+286
+00:20:59,740 --> 00:21:06,820
+this tip all over the place in order to keep it in sync with the bill and these both percentages.
+
+287
+00:21:06,820 --> 00:21:08,500
+So that would be a lot of work.
+
+288
+00:21:08,500 --> 00:21:15,580
+And instead by having it as derived state each time that the component re renders as the state is updated,
+
+289
+00:21:15,580 --> 00:21:21,910
+this value will be calculated again and can then also be rendered here onto the UI.
+
+290
+00:21:22,180 --> 00:21:24,370
+Great, but that's enough talk.
+
+291
+00:21:24,400 --> 00:21:31,570
+The video is running long enough already and so yeah, I just hope that you did at least part of this
+
+292
+00:21:31,570 --> 00:21:38,110
+coding challenge and any questions that you have, just post them in the Q&amp;A along with your solution
+
+293
+00:21:38,110 --> 00:21:39,100
+if you'd like.
+
+294
+00:21:39,100 --> 00:21:45,280
+So it's always nice to see different approaches resulting in the same working application.
+
+295
+00:21:45,280 --> 00:21:50,930
+And with this we then actually reach the end of the section, but also of part one.
+
+296
+00:21:50,930 --> 00:21:56,930
+Basically, all we have to do, if you want, is now a complete practice project.
+
+297
+00:21:56,930 --> 00:21:58,700
+That is coming up next.
+
+298
+00:21:58,700 --> 00:22:01,520
+So it's a really cool project once again.
+
+299
+00:22:01,520 --> 00:22:06,920
+And so I highly encourage you to not skip it and meet me there as soon as possible.

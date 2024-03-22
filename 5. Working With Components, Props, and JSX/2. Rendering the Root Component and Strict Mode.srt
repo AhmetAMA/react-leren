@@ -1,0 +1,415 @@
+1
+00:00:00,830 --> 00:00:05,930
+Welcome to the Pizza Menu Project that we're going to build throughout this section.
+
+2
+00:00:05,930 --> 00:00:11,930
+And in this lecture, I actually want to start to build this project from complete scratch.
+
+3
+00:00:13,040 --> 00:00:14,750
+And with complete scratch.
+
+4
+00:00:14,750 --> 00:00:21,200
+I mean that we are going to delete all of these files that we have here that we don't really need and
+
+5
+00:00:21,200 --> 00:00:24,620
+start a project from scratch, as I just said.
+
+6
+00:00:25,200 --> 00:00:32,730
+So let's close this one and this one and even the index.html, which we will not delete and recreate.
+
+7
+00:00:32,730 --> 00:00:36,990
+But all of these feel free to ignore them and to delete them.
+
+8
+00:00:37,170 --> 00:00:41,700
+So delete and let's start from scratch.
+
+9
+00:00:42,030 --> 00:00:48,900
+So here we have our first error and notice that I placed the browser here on one side and our code editor
+
+10
+00:00:48,900 --> 00:00:53,430
+on the left side so that we can always see the output at the same time.
+
+11
+00:00:53,640 --> 00:01:00,180
+So you see that our application is kind of looking for this file right here, but of course it doesn't
+
+12
+00:01:00,180 --> 00:01:02,910
+exist anymore because we just deleted it.
+
+13
+00:01:04,830 --> 00:01:06,510
+So let's start from scratch.
+
+14
+00:01:07,040 --> 00:01:13,160
+And we're going to create our first file inside of this folder and it's going to be called Index Dot
+
+15
+00:01:13,160 --> 00:01:20,900
+JS and it really needs to be called Index.js because Webpack, which is the module bundler in this project,
+
+16
+00:01:20,900 --> 00:01:24,890
+expects the entry point to be called Index.js.
+
+17
+00:01:25,550 --> 00:01:26,360
+All right.
+
+18
+00:01:26,360 --> 00:01:30,110
+But anyway, let's now start by importing React.
+
+19
+00:01:33,330 --> 00:01:34,580
+From React.
+
+20
+00:01:34,590 --> 00:01:38,030
+And again, this is just simple JavaScript here.
+
+21
+00:01:38,040 --> 00:01:48,720
+So importing modules is part of JavaScript and specifically since ES6, then let's also import React
+
+22
+00:01:48,720 --> 00:01:49,440
+Dom.
+
+23
+00:01:50,460 --> 00:01:51,270
+From.
+
+24
+00:01:52,290 --> 00:01:53,250
+React.
+
+25
+00:01:53,370 --> 00:01:57,300
+Dash dom slash client.
+
+26
+00:01:58,050 --> 00:01:58,560
+All right.
+
+27
+00:01:58,560 --> 00:02:02,570
+And as I keep saving, somehow it keeps moving the file here.
+
+28
+00:02:02,580 --> 00:02:04,080
+But never mind.
+
+29
+00:02:04,690 --> 00:02:07,000
+So we just imported these two libraries.
+
+30
+00:02:07,000 --> 00:02:14,500
+And again, remember how we imported basically these exact two same libraries in the Pure React lecture.
+
+31
+00:02:14,500 --> 00:02:19,420
+And in fact, I want to open up that file here so that we can compare it.
+
+32
+00:02:19,600 --> 00:02:20,920
+So open.
+
+33
+00:02:21,340 --> 00:02:26,380
+And then on the desktop, pure react, then index.html.
+
+34
+00:02:27,690 --> 00:02:33,770
+And so remember here we imported also react and react Dom using these script tags.
+
+35
+00:02:33,780 --> 00:02:40,320
+But again, here these were installed using NPM and here we are now importing them into our project
+
+36
+00:02:40,320 --> 00:02:44,610
+using the import syntax which is coming directly from JavaScript.
+
+37
+00:02:44,640 --> 00:02:48,360
+Next up, let's actually create our app component again.
+
+38
+00:02:49,240 --> 00:02:53,970
+So function app and it wouldn't have to be called app.
+
+39
+00:02:53,980 --> 00:02:56,650
+This is just a convention, right?
+
+40
+00:02:56,800 --> 00:03:01,270
+What is necessary is that this component starts with an uppercase here.
+
+41
+00:03:02,190 --> 00:03:08,160
+So now let's return here again the same thing that we returned before, which is just.
+
+42
+00:03:08,880 --> 00:03:09,600
+Hello?
+
+43
+00:03:09,600 --> 00:03:10,560
+React.
+
+44
+00:03:10,920 --> 00:03:14,600
+And now all we need to do is to render this to the Dom.
+
+45
+00:03:14,610 --> 00:03:19,050
+And so, once again, this is going to be similar to what we did here.
+
+46
+00:03:19,350 --> 00:03:24,660
+So we could even copy paste all of this here into our app that we already have.
+
+47
+00:03:25,850 --> 00:03:28,790
+But let's write it by hand.
+
+48
+00:03:28,940 --> 00:03:32,530
+So, of course, in the future we will not be writing all of this by hand.
+
+49
+00:03:32,540 --> 00:03:37,730
+But at least once I want you to write all of this by hand so that you actually know what is going on
+
+50
+00:03:37,730 --> 00:03:38,300
+here.
+
+51
+00:03:38,570 --> 00:03:39,320
+All right.
+
+52
+00:03:40,760 --> 00:03:43,940
+So let's now create a so-called root.
+
+53
+00:03:46,000 --> 00:03:52,480
+And for that we use the React Dom library on which there is a create root method.
+
+54
+00:03:52,510 --> 00:03:54,310
+And so now we select.
+
+55
+00:03:55,170 --> 00:03:56,970
+This root element.
+
+56
+00:03:57,330 --> 00:04:00,600
+Well, not here, of course, but in our public folder.
+
+57
+00:04:01,970 --> 00:04:06,380
+So here you have all this stuff like this strange URL here.
+
+58
+00:04:06,380 --> 00:04:09,310
+And again, Webpack will take care of all of this.
+
+59
+00:04:09,320 --> 00:04:12,350
+Like it will replace this URL right there.
+
+60
+00:04:13,640 --> 00:04:17,390
+But what we're looking for here is this div with this ID.
+
+61
+00:04:17,690 --> 00:04:18,970
+So ID route.
+
+62
+00:04:18,980 --> 00:04:25,280
+So we are going to select this element so that react can render our application inside of this div.
+
+63
+00:04:27,500 --> 00:04:30,950
+So document dot get element by ID.
+
+64
+00:04:33,510 --> 00:04:34,290
+Okay.
+
+65
+00:04:34,290 --> 00:04:38,670
+And then let's do root dot render.
+
+66
+00:04:38,670 --> 00:04:41,820
+And we could also have written it all in one line.
+
+67
+00:04:41,820 --> 00:04:48,180
+So without storing this here as an intermediary variable, but like this, it's a bit cleaner.
+
+68
+00:04:48,960 --> 00:04:49,470
+Okay.
+
+69
+00:04:49,500 --> 00:04:52,560
+And then here we place our app.
+
+70
+00:04:53,810 --> 00:04:54,680
+Give it a safe.
+
+71
+00:04:54,680 --> 00:04:56,960
+And there it is.
+
+72
+00:04:57,140 --> 00:04:57,860
+Hello.
+
+73
+00:04:57,860 --> 00:05:01,520
+React, which is or a nice app component right here.
+
+74
+00:05:02,280 --> 00:05:06,570
+So this is how we write react from scratch, basically.
+
+75
+00:05:06,810 --> 00:05:14,520
+Now, I just want to draw your attention that this is the way that we render the route so that we basically
+
+76
+00:05:14,520 --> 00:05:18,180
+render our app in the Dom in React version 18.
+
+77
+00:05:19,410 --> 00:05:22,280
+So React version 18.
+
+78
+00:05:22,290 --> 00:05:28,380
+But if you're seeing an older code base that is before React 18 this worked in a different way, so
+
+79
+00:05:28,380 --> 00:05:30,030
+it looked a little bit different.
+
+80
+00:05:30,030 --> 00:05:32,580
+So let's just exemplify that here.
+
+81
+00:05:32,580 --> 00:05:34,710
+And you don't need to write.
+
+82
+00:05:35,510 --> 00:05:38,430
+Now, this code here, I just want to quickly show it to you.
+
+83
+00:05:38,450 --> 00:05:41,540
+So before React 18, we would simply do.
+
+84
+00:05:42,200 --> 00:05:48,500
+React, dot render and then place the app in there.
+
+85
+00:05:50,080 --> 00:05:50,830
+All right.
+
+86
+00:05:50,830 --> 00:05:55,000
+And another change that we would have to do is to get rid of this.
+
+87
+00:05:55,120 --> 00:06:00,070
+So this would be a React 17 app, but with these changes.
+
+88
+00:06:00,190 --> 00:06:07,570
+So with having React Dom slash client and with rendering this way, we made our app ready for React
+
+89
+00:06:07,570 --> 00:06:13,120
+18 So we can now comment this one out and I will just leave it here as a reference.
+
+90
+00:06:13,270 --> 00:06:17,740
+Now just one final thing that I want to talk about here is strict mode.
+
+91
+00:06:17,980 --> 00:06:25,270
+So we can simply activate strict mode by instead of directly rendering the app component as a root component,
+
+92
+00:06:25,300 --> 00:06:28,990
+wrapping this here into a strict mode component.
+
+93
+00:06:29,380 --> 00:06:32,050
+So let's write react.
+
+94
+00:06:32,870 --> 00:06:34,340
+Not strict mode.
+
+95
+00:06:34,580 --> 00:06:42,110
+And so this strict mode is basically a component that is part of react and that we can take from React.
+
+96
+00:06:42,930 --> 00:06:47,280
+And so you see that automatically vs code then closes this component.
+
+97
+00:06:47,870 --> 00:06:52,680
+So let's copy or cut this from here and place it here.
+
+98
+00:06:52,700 --> 00:06:53,990
+Give it a save.
+
+99
+00:06:54,020 --> 00:06:57,910
+And so the app is now wrapped inside of this strict mode.
+
+100
+00:06:57,920 --> 00:07:00,780
+And strict mode is really not a big deal.
+
+101
+00:07:00,800 --> 00:07:07,400
+The only thing that it does is that during development it will render or components twice in order to
+
+102
+00:07:07,400 --> 00:07:14,390
+find certain bugs and also react will check if we're using outdated parts of the React API.
+
+103
+00:07:14,420 --> 00:07:20,960
+So strict mode is nothing groundbreaking, but it's still a good idea to always activate it when we
+
+104
+00:07:20,960 --> 00:07:22,940
+develop react applications.

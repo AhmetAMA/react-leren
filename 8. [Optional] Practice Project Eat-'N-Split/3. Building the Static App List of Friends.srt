@@ -1,0 +1,667 @@
+1
+00:00:01,040 --> 00:00:05,630
+Okay, so let's begin by rendering the list of friends.
+
+2
+00:00:06,940 --> 00:00:12,130
+And to start, let's again come here to our starter files.
+
+3
+00:00:12,250 --> 00:00:19,930
+And then inside the Eden split folder, let's get App.js and Index.css.
+
+4
+00:00:20,290 --> 00:00:22,660
+So both of them copy them.
+
+5
+00:00:23,650 --> 00:00:27,280
+And I will just as always change the name here.
+
+6
+00:00:27,880 --> 00:00:31,300
+And then inside the source, let's paste them.
+
+7
+00:00:31,300 --> 00:00:36,130
+And so here we need to replace both of them because they already existed.
+
+8
+00:00:36,130 --> 00:00:39,640
+And then let's delete all the junk files.
+
+9
+00:00:40,630 --> 00:00:44,770
+So all of these so that we end up only with App.js.
+
+10
+00:00:44,800 --> 00:00:48,550
+Index.css and Index.js.
+
+11
+00:00:48,760 --> 00:00:54,850
+And so now let's get started by opening up this folder in vs code.
+
+12
+00:00:59,100 --> 00:01:00,780
+So index.js.
+
+13
+00:01:00,810 --> 00:01:04,410
+Here we need to, as always, clean up a little bit.
+
+14
+00:01:06,560 --> 00:01:11,300
+And then also remove these files that no longer exist.
+
+15
+00:01:12,520 --> 00:01:12,910
+Yeah.
+
+16
+00:01:12,910 --> 00:01:13,780
+And that's it.
+
+17
+00:01:14,490 --> 00:01:20,310
+So we have our index dot CSS file, which is always please feel free to explore it.
+
+18
+00:01:20,580 --> 00:01:24,990
+But our main work is going to happen in App.js.
+
+19
+00:01:28,180 --> 00:01:36,730
+And in fact, let's start by creating the app component, which is as always or main parent component.
+
+20
+00:01:36,820 --> 00:01:39,460
+And here this one we need to export.
+
+21
+00:01:40,700 --> 00:01:46,460
+Default because this is the component that index.js imports.
+
+22
+00:01:48,150 --> 00:01:51,660
+Okay, so let's just return some div here.
+
+23
+00:01:52,290 --> 00:01:53,130
+Hello.
+
+24
+00:01:54,130 --> 00:01:55,240
+But give it a safe.
+
+25
+00:01:55,240 --> 00:02:01,960
+And then let's open up the integrated terminal so that we can start up this app.
+
+26
+00:02:02,110 --> 00:02:10,030
+Just make sure that you are in the correct folder here and then just type NPM start, which should then
+
+27
+00:02:10,030 --> 00:02:12,730
+open a new tab over here.
+
+28
+00:02:13,290 --> 00:02:14,940
+So let's wait for that.
+
+29
+00:02:15,090 --> 00:02:17,730
+And indeed, here it is.
+
+30
+00:02:19,700 --> 00:02:27,320
+And yeah, we got our hello, which is nicely centered and that is because of the CSS that I provided
+
+31
+00:02:27,320 --> 00:02:33,320
+and which is as always, automatically included right here already.
+
+32
+00:02:33,440 --> 00:02:37,730
+So Index.js is importing our index dot CSS.
+
+33
+00:02:37,850 --> 00:02:41,720
+So that's why these styles are now automatically applied.
+
+34
+00:02:45,890 --> 00:02:52,400
+Now, back here in our code, we see that we have this initial friends array, which as always is simply
+
+35
+00:02:52,400 --> 00:02:54,290
+an array of objects.
+
+36
+00:02:54,290 --> 00:03:00,320
+And in this case of some friends where each of them has an ID, a name, an image, which is coming
+
+37
+00:03:00,320 --> 00:03:04,610
+from this URL here, and then the balance that we saw before.
+
+38
+00:03:05,360 --> 00:03:08,900
+And more about what these numbers here mean in a minute.
+
+39
+00:03:09,170 --> 00:03:14,390
+But for now, let's then start building that list of friends component.
+
+40
+00:03:15,990 --> 00:03:22,440
+And here let's again build all the components right into just one file so that we don't have to jump
+
+41
+00:03:22,440 --> 00:03:23,790
+around all the time.
+
+42
+00:03:24,940 --> 00:03:26,050
+So, friends.
+
+43
+00:03:26,710 --> 00:03:27,700
+List.
+
+44
+00:03:30,460 --> 00:03:36,190
+And then here, let's return a list which for now will only contain list.
+
+45
+00:03:36,340 --> 00:03:42,160
+And so now we will then include this component right here in the app.
+
+46
+00:03:44,760 --> 00:03:47,700
+So friends list and no props.
+
+47
+00:03:47,790 --> 00:03:57,030
+And here we will now place this into this div with a class name of app which has been provided in the
+
+48
+00:03:57,030 --> 00:03:58,110
+CSS file.
+
+49
+00:03:58,380 --> 00:04:01,590
+And then also this should be inside a sidebar.
+
+50
+00:04:02,290 --> 00:04:05,170
+So another div class name.
+
+51
+00:04:06,170 --> 00:04:07,160
+Sidebar.
+
+52
+00:04:11,950 --> 00:04:12,670
+Okay.
+
+53
+00:04:13,030 --> 00:04:17,080
+As always, it's a good idea to have the terminal open.
+
+54
+00:04:17,350 --> 00:04:22,210
+And for now, all I'm doing here is to inspect the layout, basically.
+
+55
+00:04:22,760 --> 00:04:27,050
+So here is that div with the app which you can see is a grid container.
+
+56
+00:04:27,050 --> 00:04:33,980
+And then we have the sidebar and in there we have the Ul, which you can also see is automatically a
+
+57
+00:04:33,980 --> 00:04:35,060
+flex container.
+
+58
+00:04:37,640 --> 00:04:43,910
+So all this layout stuff, of course, I already did it in advance so that we can focus exclusively
+
+59
+00:04:43,910 --> 00:04:44,990
+on React.
+
+60
+00:04:45,050 --> 00:04:50,630
+But when you build your own applications in the future, then of course you will have to do all of that
+
+61
+00:04:50,630 --> 00:04:51,260
+as well.
+
+62
+00:04:51,290 --> 00:04:59,480
+But since this is not a CS course, well, I already wrote it beforehand so that this is a lot faster.
+
+63
+00:05:00,660 --> 00:05:07,260
+But anyway, let's now here actually render these friends that are in this array right here.
+
+64
+00:05:08,240 --> 00:05:10,490
+So let's for now create a.
+
+65
+00:05:11,120 --> 00:05:12,860
+Variable called friends.
+
+66
+00:05:14,950 --> 00:05:21,280
+Which we will simply set to the initial friends and later on we will then change this here.
+
+67
+00:05:21,280 --> 00:05:24,970
+But for now, this is the array that we want to render.
+
+68
+00:05:25,240 --> 00:05:26,140
+So.
+
+69
+00:05:26,990 --> 00:05:30,860
+Let's say friends dot map.
+
+70
+00:05:30,890 --> 00:05:34,730
+And by now you should be pretty familiar with this syntax.
+
+71
+00:05:36,040 --> 00:05:39,630
+So each of the objects is a friend.
+
+72
+00:05:39,640 --> 00:05:44,920
+And then for now, let's just render a list element and then simply here.
+
+73
+00:05:46,550 --> 00:05:49,340
+With friend dot name.
+
+74
+00:05:50,360 --> 00:05:54,950
+And indeed, immediately we get Clark, Sarah and Anthony.
+
+75
+00:05:55,280 --> 00:05:57,800
+So those are our three friends.
+
+76
+00:05:59,420 --> 00:06:04,010
+At least the ones that we want to share a meal with here in this example.
+
+77
+00:06:04,430 --> 00:06:12,380
+Now, we could of course, write the JS right here inside this loop, but since we will have a lot of
+
+78
+00:06:12,380 --> 00:06:17,660
+code for each of the friends, we should actually move that into a separate component.
+
+79
+00:06:17,810 --> 00:06:20,360
+And so let's do that.
+
+80
+00:06:21,570 --> 00:06:23,640
+And simply call it for rent.
+
+81
+00:06:24,780 --> 00:06:26,730
+Well, not like this.
+
+82
+00:06:27,600 --> 00:06:32,250
+And so this friend should then probably receive the current friend object.
+
+83
+00:06:32,430 --> 00:06:33,330
+Right?
+
+84
+00:06:33,880 --> 00:06:37,540
+And so therefore, we accept that here as a prop.
+
+85
+00:06:39,810 --> 00:06:40,440
+Okay.
+
+86
+00:06:40,440 --> 00:06:44,310
+And now basically we can move that here.
+
+87
+00:06:46,910 --> 00:06:50,440
+And then here what we want to render is that friend.
+
+88
+00:06:50,450 --> 00:06:57,470
+And into that friend we pass the friend prop with the value of friend.
+
+89
+00:06:59,250 --> 00:07:00,420
+Close it down.
+
+90
+00:07:00,420 --> 00:07:04,550
+And then we should also, of course, specify the key prop.
+
+91
+00:07:04,560 --> 00:07:09,600
+So this unique value that each of the elements in a list needs to have.
+
+92
+00:07:09,780 --> 00:07:13,530
+And so for that we actually have friend.
+
+93
+00:07:14,300 --> 00:07:15,560
+Dot ID.
+
+94
+00:07:16,640 --> 00:07:20,180
+And so as we reload, it looks exactly the same as before.
+
+95
+00:07:20,180 --> 00:07:23,800
+But we have each friend inside its own component.
+
+96
+00:07:23,810 --> 00:07:27,770
+And so then we start seeing here our component tree.
+
+97
+00:07:28,400 --> 00:07:30,830
+So here we still have the error from before.
+
+98
+00:07:31,470 --> 00:07:32,880
+But now it's gone.
+
+99
+00:07:33,850 --> 00:07:37,780
+So we already have a small component tree with app friends list.
+
+100
+00:07:37,780 --> 00:07:41,140
+And then in there each friend with their unique key.
+
+101
+00:07:42,260 --> 00:07:49,730
+But now let's keep moving here and let's actually build this list item here, so to make it a bit more
+
+102
+00:07:49,730 --> 00:07:50,480
+complete.
+
+103
+00:07:51,210 --> 00:07:56,940
+So first we have the image of the friend, which is at.
+
+104
+00:07:58,100 --> 00:08:00,620
+Friend dot image.
+
+105
+00:08:00,770 --> 00:08:04,430
+And then we should also not forget the alt tag.
+
+106
+00:08:04,640 --> 00:08:08,480
+So here, let's just use the name of the friend.
+
+107
+00:08:12,090 --> 00:08:17,490
+Okay, then we're using an H three element for the name of the friend.
+
+108
+00:08:21,490 --> 00:08:25,870
+And so that's looking already close to the demo right here.
+
+109
+00:08:26,170 --> 00:08:30,340
+The only thing that's missing is this button and then this text here.
+
+110
+00:08:31,090 --> 00:08:36,730
+Let me actually just reload this so that you can see that we have basically these three colors here.
+
+111
+00:08:36,970 --> 00:08:40,630
+So whenever you owe your friend, then the text will be red.
+
+112
+00:08:40,660 --> 00:08:42,760
+If they owe you, it will be green.
+
+113
+00:08:42,760 --> 00:08:46,270
+And if you are even, then there is no styling applied.
+
+114
+00:08:46,570 --> 00:08:48,960
+So let's implement that here.
+
+115
+00:08:48,970 --> 00:08:52,420
+And so let's see what these numbers here actually mean.
+
+116
+00:08:52,870 --> 00:08:59,440
+So here we have this balance property, and if that's a negative value, that means that you owe your
+
+117
+00:08:59,440 --> 00:09:00,040
+friend.
+
+118
+00:09:00,070 --> 00:09:02,890
+So in this case, you owe Clark seven.
+
+119
+00:09:02,890 --> 00:09:09,070
+But if the balance between the two friends is positive like here, then that means that the friend owes
+
+120
+00:09:09,070 --> 00:09:09,640
+you.
+
+121
+00:09:10,590 --> 00:09:17,190
+And so let's now use that knowledge here to do this conditional styling and also this conditional text,
+
+122
+00:09:17,190 --> 00:09:19,890
+because they are, in fact different.
+
+123
+00:09:20,490 --> 00:09:22,920
+So let's do friend.
+
+124
+00:09:23,570 --> 00:09:26,020
+Dot balance.
+
+125
+00:09:26,060 --> 00:09:28,790
+So if that is negative.
+
+126
+00:09:30,870 --> 00:09:36,240
+Then let's render a paragraph with the class name of red.
+
+127
+00:09:37,320 --> 00:09:38,880
+Saying you.
+
+128
+00:09:40,480 --> 00:09:42,940
+Oh, and then the name of the friend.
+
+129
+00:09:44,020 --> 00:09:45,400
+Dot name.
+
+130
+00:09:46,790 --> 00:09:47,420
+But then.
+
+131
+00:09:48,130 --> 00:09:50,860
+Friend dot balance.
+
+132
+00:09:52,000 --> 00:09:55,900
+And then zero, which I don't really know how to type.
+
+133
+00:09:56,850 --> 00:09:59,070
+On the keyboard that I'm using.
+
+134
+00:09:59,070 --> 00:10:01,130
+And so let's just copy it from here.
+
+135
+00:10:01,140 --> 00:10:07,800
+Or of course you can also use the dollar sign like this, so that doesn't really matter.
+
+136
+00:10:08,010 --> 00:10:11,910
+But what matters is that now we have this text here.
+
+137
+00:10:12,550 --> 00:10:12,880
+Here.
+
+138
+00:10:12,880 --> 00:10:15,240
+We just want to remove that negative sign.
+
+139
+00:10:15,250 --> 00:10:16,810
+So let's actually do.
+
+140
+00:10:19,090 --> 00:10:24,610
+Math dot apps, which stands for Absolute, and that's a bit nicer.
+
+141
+00:10:25,660 --> 00:10:26,230
+Okay.
+
+142
+00:10:26,230 --> 00:10:29,230
+And now let's copy this three times.
+
+143
+00:10:30,290 --> 00:10:37,370
+And so here I decided to basically use three times the end operator for conditional rendering instead
+
+144
+00:10:37,370 --> 00:10:39,010
+of a nested ternary.
+
+145
+00:10:39,020 --> 00:10:43,640
+So we could also have done this condition right here with a ternary operator.
+
+146
+00:10:43,640 --> 00:10:49,580
+And then in the else branch we could have another ternary operator for these two cases here.
+
+147
+00:10:49,700 --> 00:10:55,880
+So friends balance greater than zero or equal zero.
+
+148
+00:10:55,880 --> 00:11:03,740
+But since these three cases are mutually exclusive, it's easier to simply have three times this end.
+
+149
+00:11:03,740 --> 00:11:06,560
+And so then only one of these will apply.
+
+150
+00:11:07,450 --> 00:11:10,840
+But anyway, here it is, green.
+
+151
+00:11:10,990 --> 00:11:13,240
+And here we have no class at all.
+
+152
+00:11:13,240 --> 00:11:15,850
+So no special styling.
+
+153
+00:11:17,800 --> 00:11:20,380
+And here, let's say you and.
+
+154
+00:11:21,280 --> 00:11:22,390
+Your friend.
+
+155
+00:11:23,720 --> 00:11:25,130
+Or even.
+
+156
+00:11:26,690 --> 00:11:27,200
+Okay.
+
+157
+00:11:27,200 --> 00:11:31,880
+And now here we need to also change the text to your friend.
+
+158
+00:11:34,630 --> 00:11:37,050
+Owes you €20.
+
+159
+00:11:37,060 --> 00:11:40,300
+And so that's, in fact, exactly what we have here.
+
+160
+00:11:41,400 --> 00:11:45,300
+Now all we are missing is the button here on the right side.
+
+161
+00:11:45,630 --> 00:11:47,220
+And that's easy enough.
+
+162
+00:11:47,660 --> 00:11:49,370
+Just button with the class.
+
+163
+00:11:49,370 --> 00:11:51,650
+Name of button.
+
+164
+00:11:52,580 --> 00:11:53,270
+And then.
+
+165
+00:11:54,080 --> 00:11:55,040
+Select.
+
+166
+00:11:55,460 --> 00:11:56,800
+And there we go.
+
+167
+00:11:56,810 --> 00:11:59,000
+That's our list of friends.

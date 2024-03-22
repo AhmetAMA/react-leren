@@ -1,0 +1,571 @@
+1
+00:00:00,970 --> 00:00:06,760
+Let's now take everything that we learned throughout this section in order to make the accordion that
+
+2
+00:00:06,760 --> 00:00:11,650
+we started building earlier a bit better and a bit more real world.
+
+3
+00:00:12,720 --> 00:00:14,110
+And here it is.
+
+4
+00:00:14,130 --> 00:00:19,410
+So just like before, when I click on one of the items, then it will open.
+
+5
+00:00:19,410 --> 00:00:26,610
+But when I click on another one, then only this one stays open and all the other ones are closed.
+
+6
+00:00:26,910 --> 00:00:34,200
+So basically what this means is that now each of the items no longer controls whether there are open
+
+7
+00:00:34,200 --> 00:00:34,950
+or not.
+
+8
+00:00:34,980 --> 00:00:37,290
+Instead, it is now the accordion.
+
+9
+00:00:37,290 --> 00:00:45,100
+Who knows which of the items are opened and then only that item basically is allowed to be open.
+
+10
+00:00:45,120 --> 00:00:52,860
+So, for example, if item number three is the one that's currently opened, then number one, two and
+
+11
+00:00:52,860 --> 00:00:55,020
+23 need to be closed.
+
+12
+00:00:55,200 --> 00:01:01,440
+So again, all of these items here need to know which is the currently open item.
+
+13
+00:01:01,440 --> 00:01:09,390
+And so that means that we now need to move our state from the item onto here, the accordion.
+
+14
+00:01:12,070 --> 00:01:20,020
+Now, I still have the code here from the part one of the exercise and to let me now fork this so I
+
+15
+00:01:20,020 --> 00:01:22,990
+can basically leave the other part unchanged.
+
+16
+00:01:22,990 --> 00:01:26,740
+But you can totally also work on top of version one.
+
+17
+00:01:27,440 --> 00:01:29,540
+So then you only have that one.
+
+18
+00:01:30,760 --> 00:01:37,480
+So let's now remove this piece of state, because again, now each item no longer controls whether it
+
+19
+00:01:37,480 --> 00:01:38,710
+is open or not.
+
+20
+00:01:39,910 --> 00:01:42,310
+And then we get a bunch of errors.
+
+21
+00:01:42,310 --> 00:01:46,900
+But that's not a problem for now at least.
+
+22
+00:01:47,980 --> 00:01:54,970
+So here, let's now create that piece of state I was talking about which will be current open.
+
+23
+00:01:55,580 --> 00:02:00,260
+And so here we will store the number of the item that is currently open.
+
+24
+00:02:00,890 --> 00:02:03,080
+Set is open.
+
+25
+00:02:03,780 --> 00:02:07,260
+Use state and we will start with Null.
+
+26
+00:02:07,260 --> 00:02:10,260
+So then none of them will be open in the beginning.
+
+27
+00:02:11,420 --> 00:02:17,030
+So again, this open state variable will basically hold the number.
+
+28
+00:02:17,300 --> 00:02:21,620
+So this number right here of the item that is currently open.
+
+29
+00:02:21,620 --> 00:02:29,630
+And so then we pass that open into the accordion item and then from there it can calculate whether it
+
+30
+00:02:29,630 --> 00:02:31,730
+is currently open or not.
+
+31
+00:02:32,990 --> 00:02:35,150
+So let's do that.
+
+32
+00:02:35,180 --> 00:02:36,200
+Let's pass.
+
+33
+00:02:36,560 --> 00:02:37,400
+Open in.
+
+34
+00:02:40,640 --> 00:02:43,970
+So we use a prop called open to pass that in.
+
+35
+00:02:43,970 --> 00:02:51,110
+And then we also need to pass this setter function in so that then down here in the item, we can set
+
+36
+00:02:51,110 --> 00:02:54,140
+the current item to the one that has been clicked.
+
+37
+00:02:55,600 --> 00:03:02,030
+And here let's use the convention we used before, which is to start with the on prefix.
+
+38
+00:03:02,050 --> 00:03:04,240
+So let's say on open.
+
+39
+00:03:04,950 --> 00:03:07,710
+Set is open.
+
+40
+00:03:09,370 --> 00:03:12,970
+And now here, let's then receive those props.
+
+41
+00:03:13,650 --> 00:03:16,950
+So cut open and on.
+
+42
+00:03:18,310 --> 00:03:19,000
+Open.
+
+43
+00:03:20,930 --> 00:03:21,350
+Here.
+
+44
+00:03:21,350 --> 00:03:26,420
+Let's for now just comment this out to get rid of this error right there.
+
+45
+00:03:26,570 --> 00:03:32,630
+And then here, as I was saying, we can basically calculate whether this item is currently opened or
+
+46
+00:03:32,630 --> 00:03:33,260
+not.
+
+47
+00:03:33,620 --> 00:03:36,370
+So we can say again is open.
+
+48
+00:03:36,380 --> 00:03:39,170
+So bringing back the variable name from before.
+
+49
+00:03:39,350 --> 00:03:41,660
+And then if the number.
+
+50
+00:03:42,710 --> 00:03:47,600
+So if the number of this item is equal to the currently open one.
+
+51
+00:03:49,630 --> 00:03:56,860
+So in that case is open will be true, and then it will be well displayed as open.
+
+52
+00:03:57,800 --> 00:04:01,850
+So let's change this here from null to one.
+
+53
+00:04:02,680 --> 00:04:04,630
+And so that works.
+
+54
+00:04:05,360 --> 00:04:07,940
+So remember that this one add one.
+
+55
+00:04:07,940 --> 00:04:10,060
+And so this is zero one and two.
+
+56
+00:04:10,070 --> 00:04:11,660
+So if I set to.
+
+57
+00:04:12,390 --> 00:04:13,680
+Then that one is open.
+
+58
+00:04:13,680 --> 00:04:14,670
+And then.
+
+59
+00:04:15,340 --> 00:04:15,720
+What?
+
+60
+00:04:15,730 --> 00:04:16,300
+Zero.
+
+61
+00:04:16,330 --> 00:04:17,800
+The first one is open.
+
+62
+00:04:18,690 --> 00:04:19,500
+Great.
+
+63
+00:04:19,770 --> 00:04:22,800
+So we created a state variable.
+
+64
+00:04:22,800 --> 00:04:29,580
+We used it in the UI this time by passing it into the item and then using it to compute whether the
+
+65
+00:04:29,580 --> 00:04:33,480
+item is currently the open one or if it's not.
+
+66
+00:04:34,970 --> 00:04:41,360
+All right, let's set this back to Null because, of course, now we want to update the state by clicking
+
+67
+00:04:41,360 --> 00:04:43,100
+on each of these.
+
+68
+00:04:43,940 --> 00:04:45,590
+So that's right here.
+
+69
+00:04:46,190 --> 00:04:48,950
+So let's get rid of all that and then let's.
+
+70
+00:04:49,920 --> 00:04:52,920
+I use our on open function.
+
+71
+00:04:52,920 --> 00:04:54,950
+And here it's very simple.
+
+72
+00:04:54,960 --> 00:04:58,770
+All we want to do is to pass in the number.
+
+73
+00:04:59,310 --> 00:05:07,740
+So, for example, if we are here in item number one, then when we click on open, we'll run with number
+
+74
+00:05:07,740 --> 00:05:08,310
+one.
+
+75
+00:05:08,310 --> 00:05:17,190
+And remember that on open is basically set is open, which should be called set current open.
+
+76
+00:05:19,020 --> 00:05:19,740
+All right.
+
+77
+00:05:19,860 --> 00:05:21,900
+So we run it with number one.
+
+78
+00:05:21,900 --> 00:05:25,020
+And so then the state cur open becomes one.
+
+79
+00:05:25,230 --> 00:05:30,540
+And then what happens down here again is that one is equal to one.
+
+80
+00:05:30,540 --> 00:05:36,270
+And so then that item will become open and all the other ones will stay closed.
+
+81
+00:05:36,300 --> 00:05:38,550
+For example, this one here, item zero.
+
+82
+00:05:38,700 --> 00:05:41,880
+Well, item zero is different than one.
+
+83
+00:05:41,880 --> 00:05:44,220
+So is open is false.
+
+84
+00:05:46,800 --> 00:05:49,350
+And that works beautifully.
+
+85
+00:05:50,110 --> 00:05:50,860
+Great.
+
+86
+00:05:51,190 --> 00:05:57,730
+And I know this can be pretty confusing because we're passing state up and down, but this is basically
+
+87
+00:05:57,730 --> 00:06:00,190
+just the idea of lifting up state.
+
+88
+00:06:00,490 --> 00:06:06,730
+So before we had the state right here in each item, but then suddenly all of them need to know about
+
+89
+00:06:06,730 --> 00:06:07,660
+the current state.
+
+90
+00:06:07,660 --> 00:06:12,460
+And so therefore, we can say that we lifted state up to the closest parent.
+
+91
+00:06:14,170 --> 00:06:14,800
+All right.
+
+92
+00:06:14,800 --> 00:06:21,500
+So after this exercise is done, please take some time to analyze the data flow here in great detail.
+
+93
+00:06:21,520 --> 00:06:25,690
+I'm just moving a bit faster here because we already learned about all of this.
+
+94
+00:06:25,690 --> 00:06:27,940
+And this is just an exercise.
+
+95
+00:06:29,400 --> 00:06:35,550
+Okay, Now, next up, what I want to do is to use our knowledge about the children prop.
+
+96
+00:06:36,130 --> 00:06:44,350
+So instead of passing the text in here like this, it's actually a lot nicer to define the text basically
+
+97
+00:06:44,350 --> 00:06:45,520
+as content.
+
+98
+00:06:46,610 --> 00:06:48,950
+So let's pass that text in here.
+
+99
+00:06:50,240 --> 00:06:51,620
+So l dot text.
+
+100
+00:06:53,010 --> 00:06:54,440
+And let's close this.
+
+101
+00:06:54,450 --> 00:06:58,260
+And indeed, now the text is temporarily gone.
+
+102
+00:06:59,440 --> 00:07:06,310
+So we no longer need this prop here, but we need the children prop, which I'd like to add either to
+
+103
+00:07:06,310 --> 00:07:08,770
+the end or to the beginning of this list.
+
+104
+00:07:09,350 --> 00:07:14,180
+And then here, that's no longer text but children.
+
+105
+00:07:15,420 --> 00:07:16,800
+Yeah, that works great.
+
+106
+00:07:16,800 --> 00:07:22,890
+And with this, we are a lot more flexible when it comes to the kind of content that should be displayed
+
+107
+00:07:22,890 --> 00:07:24,480
+in each of the items.
+
+108
+00:07:25,260 --> 00:07:27,600
+So let's add one manually here.
+
+109
+00:07:28,340 --> 00:07:32,990
+And so that's where that 23 comes from in the demo that I showed you earlier.
+
+110
+00:07:34,330 --> 00:07:42,640
+So outside this loop, let's now create just one, one test, one here, test one.
+
+111
+00:07:43,120 --> 00:07:45,550
+And this should actually be a string, I guess.
+
+112
+00:07:47,460 --> 00:07:49,290
+The number, let's say 22.
+
+113
+00:07:54,350 --> 00:07:54,530
+Here.
+
+114
+00:07:54,530 --> 00:07:56,060
+Let's again repeat the title.
+
+115
+00:07:56,240 --> 00:08:01,850
+And as for the content, let's just come here and copy this.
+
+116
+00:08:03,800 --> 00:08:09,080
+You can write it by hand if you want, or you can just write really whatever you want.
+
+117
+00:08:12,050 --> 00:08:13,570
+So just wrapping this here in a.
+
+118
+00:08:17,340 --> 00:08:19,140
+This one in a Ul.
+
+119
+00:08:23,340 --> 00:08:26,310
+And each of these here simply one lie.
+
+120
+00:08:28,980 --> 00:08:33,810
+So just I mean, this is not really necessary.
+
+121
+00:08:34,440 --> 00:08:35,940
+This is just to show you.
+
+122
+00:08:40,900 --> 00:08:41,890
+Okay.
+
+123
+00:08:42,280 --> 00:08:49,750
+And so if we click here now, you see that we are able to pass in this entire JSX as the content.
+
+124
+00:08:49,750 --> 00:08:52,930
+And so that's again thanks to the children prop.
+
+125
+00:08:53,110 --> 00:09:02,230
+So here of course we only have text, but yeah, here we have this entire piece of HTML basically.
+
+126
+00:09:02,230 --> 00:09:08,980
+And of course our entire functionality here of the accordion still works just like before, so we can
+
+127
+00:09:08,980 --> 00:09:11,920
+only have one of them open at the same time.
+
+128
+00:09:12,340 --> 00:09:19,570
+Now there's just one small thing missing, which is that when we click here on an opened one, it doesn't
+
+129
+00:09:19,570 --> 00:09:21,130
+close, right?
+
+130
+00:09:21,710 --> 00:09:24,690
+So probably you can see that for yourself.
+
+131
+00:09:24,710 --> 00:09:33,680
+And so what we need to do now is to basically set the state to null whenever it is opened already.
+
+132
+00:09:33,710 --> 00:09:37,400
+So when we click here and it is already open.
+
+133
+00:09:38,980 --> 00:09:39,670
+Then.
+
+134
+00:09:40,320 --> 00:09:41,550
+The new state.
+
+135
+00:09:41,670 --> 00:09:48,630
+So the new current open should become null and only otherwise it should be the number.
+
+136
+00:09:48,930 --> 00:09:51,690
+And so that will fix it.
+
+137
+00:09:51,690 --> 00:09:52,500
+Indeed.
+
+138
+00:09:52,920 --> 00:09:53,910
+Great.
+
+139
+00:09:53,910 --> 00:09:57,210
+So that exercise is finished as well.
+
+140
+00:09:57,210 --> 00:09:58,950
+And I hope you found it useful.
+
+141
+00:09:58,950 --> 00:10:05,760
+And now, as I said before, please take some time to analyze the code and the data flow right here
+
+142
+00:10:05,760 --> 00:10:06,960
+in this component.
+
+143
+00:10:06,960 --> 00:10:12,780
+And then once you're done, you are ready for the mandatory coding challenge in this section.

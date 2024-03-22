@@ -1,0 +1,287 @@
+1
+00:00:00,860 --> 00:00:07,820
+So we just created an important piece of state and lifted it up to a parent component that is common
+
+2
+00:00:07,820 --> 00:00:12,630
+to both components that need to use or to update that state.
+
+3
+00:00:12,650 --> 00:00:13,490
+Right.
+
+4
+00:00:13,760 --> 00:00:22,190
+However, this whole idea might still be a bit confusing because in fact, it can seem quite counterintuitive.
+
+5
+00:00:22,190 --> 00:00:29,240
+And so let's now look at another example and some diagrams to really understand how lifting up state
+
+6
+00:00:29,240 --> 00:00:32,030
+works and why it's so important.
+
+7
+00:00:33,470 --> 00:00:40,310
+And as an example, let's use the checkout part of the Udemy interface that we have seen in a previous
+
+8
+00:00:40,310 --> 00:00:41,120
+lecture.
+
+9
+00:00:41,150 --> 00:00:48,140
+And let's say that we started by building this promotions component where the user can input coupon
+
+10
+00:00:48,140 --> 00:00:52,580
+codes that will then be added to a list of applied coupons.
+
+11
+00:00:52,880 --> 00:00:59,510
+So that sounds like we need a piece of state called coupons right here, right.
+
+12
+00:00:59,690 --> 00:01:07,430
+So that coupon state is now local to the promotions component along with a set coupons function coming
+
+13
+00:01:07,430 --> 00:01:08,810
+from use state.
+
+14
+00:01:08,900 --> 00:01:17,000
+Now next, we set out to build the total component, but here we quickly realize that the total component
+
+15
+00:01:17,000 --> 00:01:20,120
+also needs access to the coupon state.
+
+16
+00:01:20,240 --> 00:01:26,990
+Otherwise, without knowing which coupons have been applied, how would the total component know what
+
+17
+00:01:26,990 --> 00:01:30,650
+discounts to apply and what price to display?
+
+18
+00:01:30,800 --> 00:01:33,540
+And so here we encounter a problem.
+
+19
+00:01:33,780 --> 00:01:38,520
+How do we give the total component access to the coupon state?
+
+20
+00:01:38,550 --> 00:01:42,390
+Because in React we have one way data flow.
+
+21
+00:01:42,390 --> 00:01:49,230
+So data can only flow down from parents to children, but not sideways to sibling components.
+
+22
+00:01:49,320 --> 00:01:55,560
+Therefore, we cannot simply pass the coupons data as props to the total component.
+
+23
+00:01:55,650 --> 00:01:57,840
+That's just not possible.
+
+24
+00:01:57,840 --> 00:02:05,550
+And so we need a way of sharing state with other components that are further up or sideways in the component
+
+25
+00:02:05,550 --> 00:02:06,090
+tree.
+
+26
+00:02:06,420 --> 00:02:14,100
+But luckily for us, we already did exactly that in the last lecture with the item state by lifting
+
+27
+00:02:14,100 --> 00:02:14,730
+it up.
+
+28
+00:02:14,730 --> 00:02:21,420
+And so we already know that lifting up state is the technique that will solve this problem.
+
+29
+00:02:21,660 --> 00:02:25,560
+But what does that mean and how exactly does it work?
+
+30
+00:02:25,860 --> 00:02:34,260
+Well, lifting state up simply means to place some state in a component that is a parent of both components
+
+31
+00:02:34,310 --> 00:02:37,280
+that need the piece of state in question.
+
+32
+00:02:37,520 --> 00:02:45,750
+So in this example, we would remove the coupon state from promotions and place it in the checkout component.
+
+33
+00:02:45,770 --> 00:02:54,470
+And just like this, we have lifted state up to the closest common parent of both total and promotions.
+
+34
+00:02:54,470 --> 00:03:02,420
+And now giving both these components access to the state is as easy as passing it down using props.
+
+35
+00:03:02,510 --> 00:03:03,950
+And that's it.
+
+36
+00:03:03,980 --> 00:03:11,180
+So by lifting State up, we have just successfully shared one piece of state with multiple components
+
+37
+00:03:11,180 --> 00:03:17,540
+in different positions in the component tree, which is something that we need to do all the time in
+
+38
+00:03:17,540 --> 00:03:18,530
+React apps.
+
+39
+00:03:18,530 --> 00:03:24,980
+And so it's really important that you get used to this pattern and remember that we need this pattern
+
+40
+00:03:24,980 --> 00:03:30,650
+in the first place as a direct consequence of react's one way data flow.
+
+41
+00:03:31,500 --> 00:03:37,410
+But anyway, all this now seems to be working just fine at this point.
+
+42
+00:03:37,440 --> 00:03:43,500
+But now what happens when we want to add a new coupon to the coupon state?
+
+43
+00:03:43,770 --> 00:03:50,700
+Or in other words, what happens when the user inputs a new coupon and clicks on the apply button?
+
+44
+00:03:50,970 --> 00:03:54,950
+Well, we want to update the coupon state, right.
+
+45
+00:03:54,960 --> 00:03:57,060
+But how do we do that now?
+
+46
+00:03:57,090 --> 00:04:02,280
+Because after lifting the state up, it now lives in the parent component.
+
+47
+00:04:02,280 --> 00:04:05,280
+So not in the promotions component anymore.
+
+48
+00:04:05,430 --> 00:04:09,090
+Promotions only receive this data via props.
+
+49
+00:04:09,090 --> 00:04:12,750
+But as you know, we cannot mutate props.
+
+50
+00:04:12,750 --> 00:04:15,930
+So that's one of the hard rules of react.
+
+51
+00:04:16,610 --> 00:04:24,560
+So what we're asking here is if we have one way data flow, so if data can only flow from parents to
+
+52
+00:04:24,560 --> 00:04:31,790
+children, then how can the child component promotions update the state that lives in the parent component
+
+53
+00:04:31,790 --> 00:04:32,690
+checkout?
+
+54
+00:04:33,390 --> 00:04:37,080
+Well, actually, the solution is quite simple.
+
+55
+00:04:37,110 --> 00:04:44,370
+All we have to do is to also pass the set coupons function down as a prop to the components who need
+
+56
+00:04:44,370 --> 00:04:45,810
+to update the state.
+
+57
+00:04:45,900 --> 00:04:53,130
+And so now that we have these set coupons function in promotions, once a new coupon is added, we can
+
+58
+00:04:53,130 --> 00:04:59,040
+simply use set coupons to update the state that lives in the parent component.
+
+59
+00:04:59,160 --> 00:05:06,060
+And this is actually exactly what we also did in the previous lecture with the difference that we didn't
+
+60
+00:05:06,060 --> 00:05:13,800
+directly pass set items, but a function that uses set items to update the items, which is essentially
+
+61
+00:05:13,800 --> 00:05:14,940
+the same thing.
+
+62
+00:05:15,600 --> 00:05:22,590
+But anyway, we can call this technique of passing down a setter function child to parent communication
+
+63
+00:05:22,590 --> 00:05:29,550
+or also inverse data flow inverse, because usually data only flows down.
+
+64
+00:05:29,550 --> 00:05:36,570
+But here we basically have a trick that allows us to basically have the data flowing up as well.
+
+65
+00:05:36,810 --> 00:05:44,010
+Now, of course, this is not truly flowing up, but this workaround of passing down the setter function
+
+66
+00:05:44,010 --> 00:05:51,270
+and use it to update the parent state is pretty close to actually having data flowing up the tree.
+
+67
+00:05:51,860 --> 00:05:58,220
+Now, when I first learned about this technique years ago, it actually took me quite some time to wrap
+
+68
+00:05:58,220 --> 00:06:03,680
+my head around this whole idea because this can actually be quite confusing.
+
+69
+00:06:03,680 --> 00:06:10,970
+And so that's why I created an extra lecture with all these diagrams for you, hoping that you will
+
+70
+00:06:10,970 --> 00:06:15,230
+have an easier time understanding child to parent communication.
+
+71
+00:06:15,470 --> 00:06:17,400
+But that's enough talk.
+
+72
+00:06:17,420 --> 00:06:22,130
+Let's now go back to our code and use this in practice a few more times.

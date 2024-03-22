@@ -1,0 +1,443 @@
+1
+00:00:00,850 --> 00:00:04,990
+So we just learned what child to parent communication means.
+
+2
+00:00:04,990 --> 00:00:10,960
+And so let's now do some more of it in order to delete items from our list.
+
+3
+00:00:12,530 --> 00:00:19,160
+So the idea here is that whenever we click on one of these crosses here next to an item, it will then
+
+4
+00:00:19,160 --> 00:00:23,930
+delete the item from the state and therefore from the user interface.
+
+5
+00:00:24,200 --> 00:00:29,180
+Now, since this click here will happen inside the item component.
+
+6
+00:00:30,090 --> 00:00:33,510
+So remember, each of them is actually an item component.
+
+7
+00:00:33,510 --> 00:00:35,520
+And so the click to delete.
+
+8
+00:00:35,550 --> 00:00:43,530
+So on each of these crosses will happen inside of the item, but the state actually lives in the app.
+
+9
+00:00:43,530 --> 00:00:49,890
+So in the parent component and therefore this is another case of child to parent communication.
+
+10
+00:00:51,250 --> 00:00:55,930
+So let's now go back here to our app, which is where our state lives.
+
+11
+00:00:55,930 --> 00:01:04,240
+And then all we're going to do is to create a new function right here called handle delete item.
+
+12
+00:01:05,490 --> 00:01:12,150
+Now, in order to delete an item, we need to know which item it actually is that should be deleted.
+
+13
+00:01:12,980 --> 00:01:21,020
+So in order to do that, so to tell this function which item it is, we will pass in the ID whenever
+
+14
+00:01:21,020 --> 00:01:23,180
+we later call this function.
+
+15
+00:01:23,480 --> 00:01:31,040
+So remember that each of these items here has an ID and so we can then use that ID to remove the corresponding
+
+16
+00:01:31,040 --> 00:01:33,380
+object from the items array.
+
+17
+00:01:33,620 --> 00:01:40,160
+Now, about the delete operation itself, we will of course delete the item from the user interface
+
+18
+00:01:40,160 --> 00:01:41,960
+by updating state.
+
+19
+00:01:42,730 --> 00:01:45,220
+So we call set items.
+
+20
+00:01:45,220 --> 00:01:51,400
+And now here in set items, we need the new array after the item has been deleted.
+
+21
+00:01:52,210 --> 00:01:57,190
+Now, once again, this new items array will be based on the current one.
+
+22
+00:01:57,190 --> 00:02:03,870
+And so we need a callback function which receives the current item as its input.
+
+23
+00:02:03,880 --> 00:02:07,510
+And so now let's say items.
+
+24
+00:02:08,130 --> 00:02:14,940
+Dot filter, which will loop over the array, and in each iteration it will get access to the items
+
+25
+00:02:14,970 --> 00:02:15,840
+object.
+
+26
+00:02:16,080 --> 00:02:23,940
+And so now basically all we want to do is to filter out the item that has the ID that we got here.
+
+27
+00:02:24,240 --> 00:02:25,080
+Right?
+
+28
+00:02:25,720 --> 00:02:31,630
+So item.id is different from the ID.
+
+29
+00:02:31,990 --> 00:02:33,790
+So the ID that we passed in.
+
+30
+00:02:34,120 --> 00:02:39,320
+So whenever this condition here is true, the item will end up in the new array.
+
+31
+00:02:39,340 --> 00:02:43,370
+So of the array of the items that have not been deleted.
+
+32
+00:02:43,390 --> 00:02:45,090
+But when this is false.
+
+33
+00:02:45,100 --> 00:02:53,040
+So when item ID is equal, the ID, then that element will no longer be part of the final array.
+
+34
+00:02:53,050 --> 00:02:54,830
+And so that's how we remove.
+
+35
+00:02:54,850 --> 00:02:57,900
+So how we delete elements from arrays.
+
+36
+00:02:57,910 --> 00:03:02,680
+And once again, if this is strange, please go back to the section where I review.
+
+37
+00:03:02,710 --> 00:03:04,690
+Essential JavaScript concepts.
+
+38
+00:03:05,230 --> 00:03:08,530
+So there I teach in detail about how this works.
+
+39
+00:03:08,650 --> 00:03:14,050
+And now all we have to do is to call this function whenever the click here happens.
+
+40
+00:03:14,660 --> 00:03:17,270
+So how do we get that there?
+
+41
+00:03:17,570 --> 00:03:23,390
+Well, we now need to pass the function as a prop also into the packing list.
+
+42
+00:03:23,950 --> 00:03:28,930
+So enter the packing list because the items are called inside the packing list.
+
+43
+00:03:29,110 --> 00:03:32,380
+So on delete item.
+
+44
+00:03:32,380 --> 00:03:35,350
+And so I'm using the same.
+
+45
+00:03:36,320 --> 00:03:42,530
+Uh, naming convention as before, where I call the prop on delete item and then pass in the function
+
+46
+00:03:42,530 --> 00:03:44,090
+handle delete item.
+
+47
+00:03:44,620 --> 00:03:49,600
+And so now let's receive this prop here inside the packing list.
+
+48
+00:03:51,860 --> 00:03:53,510
+So we already have items.
+
+49
+00:03:53,780 --> 00:03:56,140
+So let's add this one here to the list.
+
+50
+00:03:56,150 --> 00:04:02,300
+And again, this is so helpful because now we know immediately what props the packing list will receive.
+
+51
+00:04:03,680 --> 00:04:08,540
+And then remember that the click actually happens here on this button.
+
+52
+00:04:08,720 --> 00:04:10,880
+So inside the item component.
+
+53
+00:04:10,880 --> 00:04:15,770
+And so here we also will need access to this prop.
+
+54
+00:04:15,800 --> 00:04:20,120
+Therefore, we now need to pass it in along the item right here.
+
+55
+00:04:21,140 --> 00:04:25,070
+So on the lead item equals on the lead item.
+
+56
+00:04:25,070 --> 00:04:30,920
+And so we're basically passing now this prop through the packing list into the item.
+
+57
+00:04:31,160 --> 00:04:37,780
+So it moves here from app to packing list and then to each of these items.
+
+58
+00:04:37,790 --> 00:04:43,610
+So packing list itself doesn't really need it, but of course this is the only place where we can receive
+
+59
+00:04:43,610 --> 00:04:48,440
+it because we cannot pass it directly from app to item.
+
+60
+00:04:49,560 --> 00:04:49,940
+Right.
+
+61
+00:04:49,940 --> 00:04:51,590
+So that would not be possible.
+
+62
+00:04:53,260 --> 00:04:53,770
+Okay.
+
+63
+00:04:53,770 --> 00:04:54,850
+And now here.
+
+64
+00:04:55,870 --> 00:05:00,280
+We use the onClick prop and then we specify our handler function.
+
+65
+00:05:00,610 --> 00:05:07,870
+Now, if we do just this on delete item, then this is not going to work.
+
+66
+00:05:08,610 --> 00:05:09,660
+So let's see why.
+
+67
+00:05:09,690 --> 00:05:11,190
+So let's test this here.
+
+68
+00:05:12,040 --> 00:05:14,080
+And so you see that nothing happens.
+
+69
+00:05:14,440 --> 00:05:20,290
+So we can see that here also in app when we try to log the ID.
+
+70
+00:05:21,870 --> 00:05:30,210
+And so now you will see that, well, nothing happens because what we get in here instead of an ID is
+
+71
+00:05:30,210 --> 00:05:31,350
+this event.
+
+72
+00:05:32,270 --> 00:05:33,770
+So what's going on here?
+
+73
+00:05:35,210 --> 00:05:42,230
+Well, when we simply specify the function here like this, then React will call the function as the
+
+74
+00:05:42,230 --> 00:05:46,730
+event happens, and it does so by passing in the event object.
+
+75
+00:05:46,940 --> 00:05:50,660
+So we actually used this to our advantage in the form.
+
+76
+00:05:51,790 --> 00:05:54,780
+So right here where we then received the event.
+
+77
+00:05:54,790 --> 00:06:01,570
+But right now we do not want to receive the event, but instead the ID of the current item.
+
+78
+00:06:01,570 --> 00:06:04,960
+And so we need to create a new function here.
+
+79
+00:06:05,980 --> 00:06:11,590
+And then we pass in the current ID, so item.id.
+
+80
+00:06:12,530 --> 00:06:19,640
+And once more, it's really important that you don't forget this, because otherwise react will just
+
+81
+00:06:19,640 --> 00:06:23,240
+immediately call the function, which is not what we want.
+
+82
+00:06:23,270 --> 00:06:30,500
+We want a function here really, so that React can then call this function only when the event happens.
+
+83
+00:06:32,080 --> 00:06:33,670
+And this is actually it.
+
+84
+00:06:33,670 --> 00:06:35,680
+So this should do the job.
+
+85
+00:06:35,830 --> 00:06:36,880
+Let's see.
+
+86
+00:06:37,030 --> 00:06:39,090
+And beautiful.
+
+87
+00:06:39,100 --> 00:06:40,480
+So that's gone.
+
+88
+00:06:40,510 --> 00:06:44,350
+You see here also the ID that we logged to the console.
+
+89
+00:06:45,420 --> 00:06:50,580
+And so it was based on that ID that the new items array was set.
+
+90
+00:06:51,460 --> 00:06:58,150
+So the state was updated which forced react to rerender the component or in other words, to rerender
+
+91
+00:06:58,150 --> 00:06:59,540
+the components view.
+
+92
+00:06:59,560 --> 00:07:01,420
+So to be a bit more specific.
+
+93
+00:07:02,660 --> 00:07:03,920
+So let's try that again.
+
+94
+00:07:04,040 --> 00:07:06,440
+And yeah, then we cleaned everything.
+
+95
+00:07:07,310 --> 00:07:14,030
+Now, let's also, since we're already here, get rid of these initial items because now we are getting
+
+96
+00:07:14,030 --> 00:07:17,030
+this eslint warning that this is never used.
+
+97
+00:07:17,270 --> 00:07:20,330
+So again, really helpful here from Eslint.
+
+98
+00:07:20,510 --> 00:07:27,470
+And yeah, just by the way, we could of course also have used these initial items here as our initial
+
+99
+00:07:27,470 --> 00:07:28,240
+state.
+
+100
+00:07:28,250 --> 00:07:31,340
+And so then whenever we would reload.
+
+101
+00:07:32,540 --> 00:07:33,770
+Well, not this.
+
+102
+00:07:34,710 --> 00:07:39,390
+So whenever we would reload here, then we would get these three as the default.
+
+103
+00:07:39,390 --> 00:07:44,850
+So they would then get added into our state and then everything would work the same.
+
+104
+00:07:44,850 --> 00:07:46,710
+So we could also delete them here.
+
+105
+00:07:47,040 --> 00:07:50,180
+And as we reload it, then they would be back.
+
+106
+00:07:50,190 --> 00:07:52,500
+But that's not what we want.
+
+107
+00:07:53,080 --> 00:07:55,810
+So let's just get rid of all this.
+
+108
+00:07:56,600 --> 00:07:57,460
+Beautiful.
+
+109
+00:07:57,470 --> 00:08:03,730
+And now all we have to do here for the final operation is to implement this functionality.
+
+110
+00:08:03,740 --> 00:08:08,630
+So where we click here and then it will mark the item as packed.
+
+111
+00:08:08,630 --> 00:08:11,810
+So that's going to be our topic for the next lecture.

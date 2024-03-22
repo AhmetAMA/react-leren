@@ -1,0 +1,975 @@
+1
+00:00:00,930 --> 00:00:08,160
+Welcome to the very first coding challenge of this course, where you will now for the first time practice
+
+2
+00:00:08,160 --> 00:00:12,390
+all the skills that you have already learned in this course on your own.
+
+3
+00:00:13,540 --> 00:00:20,470
+So the goal of this challenge is to build a developer profile card just like this one.
+
+4
+00:00:20,470 --> 00:00:23,320
+So we have like an avatar image here.
+
+5
+00:00:23,350 --> 00:00:29,890
+Then the name of the developer, a short bio, and finally a list of skills.
+
+6
+00:00:30,160 --> 00:00:34,140
+Now to actually build this project, you have two options.
+
+7
+00:00:34,150 --> 00:00:41,410
+First, you can simply create a new Create React app on your own computer and then build the project
+
+8
+00:00:41,410 --> 00:00:44,430
+there, just like we have been doing in this section.
+
+9
+00:00:44,440 --> 00:00:52,210
+Or second, you can use the CodeSandbox app that we used for the very first app that we built in the
+
+10
+00:00:52,210 --> 00:00:52,870
+course.
+
+11
+00:00:52,870 --> 00:01:00,610
+So this is basically an online editor, which makes it very easy to quickly try out some new small projects.
+
+12
+00:01:00,610 --> 00:01:04,510
+And so this is what I'm actually going to use to build this challenge.
+
+13
+00:01:04,600 --> 00:01:10,600
+Now, in case you want to do the same, I advise you to create a new account here and then once you're
+
+14
+00:01:10,600 --> 00:01:14,630
+done, you can simply create a new react app here.
+
+15
+00:01:14,630 --> 00:01:18,770
+So just click up here to create and then react.
+
+16
+00:01:18,860 --> 00:01:24,530
+And again, maybe by the time you're watching this, CodeSandbox looks completely different.
+
+17
+00:01:24,530 --> 00:01:28,520
+But just find the button somewhere to create a new React app.
+
+18
+00:01:28,520 --> 00:01:37,010
+Or alternatively, as I showed you also before, you can simply do React dot new and this will then
+
+19
+00:01:37,010 --> 00:01:45,620
+also scaffold a new React app and actually it does use under the hood also create React app.
+
+20
+00:01:45,680 --> 00:01:48,740
+It's a bit different here in terms of the file structure.
+
+21
+00:01:49,010 --> 00:01:54,620
+But yeah, it also allows us to very quickly build a small React app.
+
+22
+00:01:54,620 --> 00:02:01,730
+Now before you actually start coding, I have a few pieces of advice for you because this probably seems
+
+23
+00:02:01,730 --> 00:02:02,780
+a bit daunting.
+
+24
+00:02:02,780 --> 00:02:09,110
+So building all of this here from scratch as a complete beginner might be a bit difficult.
+
+25
+00:02:09,110 --> 00:02:11,210
+So let me give you a few hints.
+
+26
+00:02:12,110 --> 00:02:16,460
+So here I already have basically the app component.
+
+27
+00:02:16,490 --> 00:02:19,430
+And so let's together look at the structure here.
+
+28
+00:02:20,340 --> 00:02:25,170
+So in this app we return a div with the class name of Cart.
+
+29
+00:02:25,290 --> 00:02:32,010
+And by the way, you can get all of these styles right here from this file which is available at this
+
+30
+00:02:32,040 --> 00:02:32,820
+URL.
+
+31
+00:02:33,000 --> 00:02:40,980
+So at this starter for this challenge, which of course I will attach to the lecture on Udemy as always.
+
+32
+00:02:40,980 --> 00:02:46,290
+So make sure to check out that link and from there you can then get this CSS.
+
+33
+00:02:47,990 --> 00:02:54,530
+But anyway, going back here, what I want you to do is to create this div, which is the entire cart.
+
+34
+00:02:55,860 --> 00:02:59,760
+So basically the container for all this with this black border.
+
+35
+00:03:01,180 --> 00:03:05,680
+And then in there we have an avatar component, which will be for the image.
+
+36
+00:03:05,710 --> 00:03:08,470
+And then we have this div for the data.
+
+37
+00:03:08,500 --> 00:03:13,170
+Then in the data we have the intro, which is for this heading here and for this bio.
+
+38
+00:03:13,180 --> 00:03:16,540
+And then we have here a list of skills.
+
+39
+00:03:16,540 --> 00:03:19,120
+So a component called skill list.
+
+40
+00:03:19,120 --> 00:03:26,410
+And in the skill list you should have one skill component for each web development skill that you have.
+
+41
+00:03:26,410 --> 00:03:30,700
+And in order to customize each of these skills, you will use props.
+
+42
+00:03:30,700 --> 00:03:33,130
+So just as we learned previously.
+
+43
+00:03:33,400 --> 00:03:41,230
+So going back here, for example, I created one skill for each of these six web dev skills that I have,
+
+44
+00:03:41,230 --> 00:03:48,610
+and so into each of them I passed the skill itself, then the emoji here, and then also the background
+
+45
+00:03:48,610 --> 00:03:49,270
+color.
+
+46
+00:03:49,270 --> 00:03:53,380
+And this background color is probably the most challenging part here.
+
+47
+00:03:53,380 --> 00:03:56,530
+So maybe don't worry too much about that part.
+
+48
+00:03:56,560 --> 00:04:02,870
+What matters to me here is that you pass in the emoji and the skill name itself.
+
+49
+00:04:02,870 --> 00:04:09,740
+And so basically with that you can already customize the skill component pretty nicely.
+
+50
+00:04:09,830 --> 00:04:16,850
+Now as for the image, you can actually upload the image so your avatar image or any other image that
+
+51
+00:04:16,850 --> 00:04:20,110
+you wish right here into code Sandbox.
+
+52
+00:04:20,120 --> 00:04:25,960
+So you can just open this public folder and then drag and drop an image right into this.
+
+53
+00:04:25,970 --> 00:04:31,820
+So this will then upload the image right into the sandbox and you can then reference that image just
+
+54
+00:04:31,820 --> 00:04:35,570
+like we have been doing in our app throughout this section.
+
+55
+00:04:36,080 --> 00:04:36,620
+Okay.
+
+56
+00:04:36,620 --> 00:04:43,520
+And I think these instructions should get you going and in case you need some more, then you can just
+
+57
+00:04:43,520 --> 00:04:45,500
+start watching my solution.
+
+58
+00:04:45,500 --> 00:04:47,540
+That is of course no problem at all.
+
+59
+00:04:47,540 --> 00:04:53,990
+It's really, really no problem if you're not able to do all of this on your own, on your first try.
+
+60
+00:04:54,020 --> 00:04:57,890
+So if you need to watch my solution, that's 100% fine.
+
+61
+00:04:58,720 --> 00:05:05,950
+Now make sure also to read here through this styles.css, because this will then give you the hints
+
+62
+00:05:05,950 --> 00:05:08,830
+for which class names you should use.
+
+63
+00:05:08,860 --> 00:05:15,400
+For example, for the Avatar image, this is the class that you need here for the skills list and so
+
+64
+00:05:15,400 --> 00:05:15,940
+on.
+
+65
+00:05:16,830 --> 00:05:20,190
+So please go ahead, pause the video now and then.
+
+66
+00:05:20,220 --> 00:05:21,510
+Do as much as you can.
+
+67
+00:05:21,510 --> 00:05:26,240
+And once you're done with that, I will meet you back here with my solution.
+
+68
+00:05:26,250 --> 00:05:31,680
+And probably I should leave this one here up on the screen so you can see what you actually need to
+
+69
+00:05:31,680 --> 00:05:32,280
+build.
+
+70
+00:05:32,490 --> 00:05:35,550
+So good luck with that and see you in a minute.
+
+71
+00:05:37,540 --> 00:05:38,290
+Okay.
+
+72
+00:05:38,290 --> 00:05:40,030
+So how did you do?
+
+73
+00:05:40,120 --> 00:05:43,120
+Well, let's try to tackle this one together.
+
+74
+00:05:44,640 --> 00:05:48,180
+So I'm creating here a brand new React app.
+
+75
+00:05:48,180 --> 00:05:52,290
+So the one that I actually created before with React New.
+
+76
+00:05:52,470 --> 00:06:00,840
+And then let's get rid of this file here as we will once again do it all inside Index.js.
+
+77
+00:06:04,870 --> 00:06:07,480
+Okay, so let's create.
+
+78
+00:06:08,240 --> 00:06:10,130
+The app component right here.
+
+79
+00:06:11,310 --> 00:06:14,970
+And actually just to make it a bit quicker, I will already.
+
+80
+00:06:16,080 --> 00:06:19,170
+Uh, copy and the code that I already had before.
+
+81
+00:06:21,320 --> 00:06:24,560
+So this way we're speeding up the video a little bit.
+
+82
+00:06:26,680 --> 00:06:28,080
+So just like this.
+
+83
+00:06:28,090 --> 00:06:32,830
+And I will also, of course, get these starter styles.
+
+84
+00:06:38,860 --> 00:06:39,610
+Okay.
+
+85
+00:06:39,700 --> 00:06:43,480
+And so now let's just create these additional components.
+
+86
+00:06:44,490 --> 00:06:46,620
+So function avatar.
+
+87
+00:06:51,770 --> 00:06:53,270
+Then the intro.
+
+88
+00:06:55,570 --> 00:06:57,610
+And finally, also the.
+
+89
+00:06:58,450 --> 00:07:02,260
+Skill list and the skill itself.
+
+90
+00:07:02,850 --> 00:07:09,300
+So again, we're going to have one skill component for each of our web development skills.
+
+91
+00:07:09,450 --> 00:07:12,150
+And now let's start with the easiest one.
+
+92
+00:07:14,050 --> 00:07:19,090
+So the avatar is basically just an image with a source.
+
+93
+00:07:19,180 --> 00:07:26,050
+Let's leave this one empty for now and let's add the alt tag with my name.
+
+94
+00:07:27,950 --> 00:07:28,850
+Okay.
+
+95
+00:07:28,850 --> 00:07:32,180
+And now let's grab the image and drag and drop it here.
+
+96
+00:07:32,210 --> 00:07:34,340
+So I have it in my downloads folder.
+
+97
+00:07:36,950 --> 00:07:41,420
+So this will quickly upload the file and then I can just write here in the source.
+
+98
+00:07:42,060 --> 00:07:44,720
+Jonas Dot J.
+
+99
+00:07:44,980 --> 00:07:45,720
+Pack.
+
+100
+00:07:46,320 --> 00:07:49,800
+So if I save this now, then let's see if something happens.
+
+101
+00:07:50,620 --> 00:07:51,460
+Well.
+
+102
+00:07:52,250 --> 00:07:57,710
+We have some errors here, so let's just reload this internal browser.
+
+103
+00:07:58,610 --> 00:08:00,050
+Let's just fix it.
+
+104
+00:08:00,170 --> 00:08:02,000
+And there we go.
+
+105
+00:08:02,240 --> 00:08:03,920
+So this is way too large.
+
+106
+00:08:03,920 --> 00:08:08,930
+And that's simply because I forgot the appropriate class name here.
+
+107
+00:08:08,930 --> 00:08:11,930
+So that's just class name.
+
+108
+00:08:15,540 --> 00:08:16,440
+Avatar.
+
+109
+00:08:17,380 --> 00:08:17,980
+Yeah.
+
+110
+00:08:18,010 --> 00:08:18,970
+Beautiful.
+
+111
+00:08:19,180 --> 00:08:22,390
+So that's already our first part right there.
+
+112
+00:08:23,400 --> 00:08:24,610
+It's just closed down.
+
+113
+00:08:24,630 --> 00:08:26,250
+Yeah, just like that.
+
+114
+00:08:26,430 --> 00:08:28,410
+So next up, we have the intro.
+
+115
+00:08:38,050 --> 00:08:40,060
+Which is just some div here.
+
+116
+00:08:40,210 --> 00:08:40,990
+And then.
+
+117
+00:08:41,890 --> 00:08:43,480
+One primary heading.
+
+118
+00:08:47,790 --> 00:08:51,180
+And then here with a paragraph for the bio.
+
+119
+00:08:53,700 --> 00:08:56,760
+And here I will just grab it from here.
+
+120
+00:08:57,590 --> 00:09:01,130
+And of course you are hopefully going to write your own one.
+
+121
+00:09:02,130 --> 00:09:03,270
+Give it a safe.
+
+122
+00:09:03,870 --> 00:09:05,870
+So that's the next part.
+
+123
+00:09:05,910 --> 00:09:10,080
+And now here comes the hardest part, which is the skill list.
+
+124
+00:09:10,200 --> 00:09:15,600
+So before we tackle the skill list, let's actually build the skill itself.
+
+125
+00:09:18,260 --> 00:09:19,910
+So return.
+
+126
+00:09:22,990 --> 00:09:30,670
+It's a div with the class name of skill and hopefully you got this one simply by looking at the CSS
+
+127
+00:09:30,700 --> 00:09:31,390
+file.
+
+128
+00:09:34,830 --> 00:09:35,700
+Let's close it.
+
+129
+00:09:35,700 --> 00:09:38,820
+And for now, let's just write something in here.
+
+130
+00:09:41,220 --> 00:09:43,410
+And also just some emoji.
+
+131
+00:09:46,420 --> 00:09:47,170
+Okay.
+
+132
+00:09:47,170 --> 00:09:48,130
+And then.
+
+133
+00:09:53,350 --> 00:09:55,930
+Let's hear also create a div.
+
+134
+00:09:56,420 --> 00:10:02,210
+And if I'm going a bit too fast for you, it's simply because I don't want this video to take forever.
+
+135
+00:10:02,750 --> 00:10:03,380
+Okay.
+
+136
+00:10:03,710 --> 00:10:09,740
+And I will also explain the important parts, of course, after the code is written.
+
+137
+00:10:10,500 --> 00:10:16,110
+But anyway, we see that we already included or very first skill right here.
+
+138
+00:10:16,950 --> 00:10:24,180
+However, if I now copy and paste this, then we have the same problem as we had before with our pizzas,
+
+139
+00:10:24,180 --> 00:10:27,090
+which is that they are all the same.
+
+140
+00:10:27,090 --> 00:10:32,610
+And so now we need to again reach for props in order to customize these skills.
+
+141
+00:10:34,080 --> 00:10:35,910
+So into the skills component.
+
+142
+00:10:35,910 --> 00:10:38,760
+Let's pass in a prop called skill.
+
+143
+00:10:40,140 --> 00:10:42,210
+And I will call it react.
+
+144
+00:10:45,630 --> 00:10:48,780
+And then let's also pass in an emoji.
+
+145
+00:10:52,580 --> 00:10:55,430
+So this one, for example.
+
+146
+00:10:57,510 --> 00:10:58,310
+Okay.
+
+147
+00:10:58,320 --> 00:11:02,940
+And now here, just like before we receive the props object.
+
+148
+00:11:02,940 --> 00:11:08,430
+So as an argument or as a parameter to this skill's component function.
+
+149
+00:11:08,610 --> 00:11:12,420
+And so here we can now use exactly that.
+
+150
+00:11:15,190 --> 00:11:17,680
+So let's maybe actually create one span.
+
+151
+00:11:17,710 --> 00:11:22,390
+So one element for the skill itself and then one for the emoji.
+
+152
+00:11:22,480 --> 00:11:26,590
+So here all we have to do is to now write props.
+
+153
+00:11:26,830 --> 00:11:34,690
+So props again is that object that react will automatically pass into the component when we define some
+
+154
+00:11:34,690 --> 00:11:35,740
+props on it.
+
+155
+00:11:35,950 --> 00:11:43,120
+And so now we have on props, props, skill and prop dot emoji, because these are the two props that
+
+156
+00:11:43,120 --> 00:11:44,620
+we passed in right here.
+
+157
+00:11:44,950 --> 00:11:53,770
+So again, think of a prop as a communication channel between this skill list component, which is calling
+
+158
+00:11:53,770 --> 00:11:58,960
+so, which is including this skill component and the child component.
+
+159
+00:11:58,960 --> 00:12:01,160
+So the component itself.
+
+160
+00:12:01,180 --> 00:12:06,190
+So these two can now basically communicate by passing in some data.
+
+161
+00:12:06,890 --> 00:12:09,740
+But anyway, let's now use this prop.
+
+162
+00:12:09,740 --> 00:12:12,290
+So props dot skill.
+
+163
+00:12:14,770 --> 00:12:16,240
+And then let's use.
+
+164
+00:12:16,990 --> 00:12:18,250
+Another span here.
+
+165
+00:12:18,860 --> 00:12:19,970
+For props.
+
+166
+00:12:20,870 --> 00:12:22,310
+Dot emoji.
+
+167
+00:12:24,870 --> 00:12:26,490
+And let's see what happens.
+
+168
+00:12:28,350 --> 00:12:29,820
+So we have the skill.
+
+169
+00:12:29,820 --> 00:12:30,690
+But here.
+
+170
+00:12:32,060 --> 00:12:33,890
+Of course, that cannot work.
+
+171
+00:12:34,160 --> 00:12:35,990
+And there we go.
+
+172
+00:12:36,380 --> 00:12:37,490
+Beautiful.
+
+173
+00:12:39,240 --> 00:12:40,590
+So let's keep going.
+
+174
+00:12:41,070 --> 00:12:42,900
+So let's say skill.
+
+175
+00:12:44,210 --> 00:12:44,990
+HTML.
+
+176
+00:12:45,930 --> 00:12:46,530
+Plus.
+
+177
+00:12:48,130 --> 00:12:50,440
+And the emoji, let's say, is the same.
+
+178
+00:12:50,680 --> 00:12:54,520
+So also some strong skills right there.
+
+179
+00:12:54,520 --> 00:12:58,410
+And so now, indeed, we got two different components here.
+
+180
+00:12:58,420 --> 00:13:01,740
+So two skill components with different data.
+
+181
+00:13:01,750 --> 00:13:05,200
+And now let's add just another skill.
+
+182
+00:13:05,470 --> 00:13:06,840
+What do we have here?
+
+183
+00:13:06,850 --> 00:13:15,850
+So we have, uh, let's say svelte then with this baby emoji because, well, I'm not very good at svelte.
+
+184
+00:13:16,580 --> 00:13:19,580
+I just tried it out once for a few hours.
+
+185
+00:13:20,110 --> 00:13:23,770
+So I can say that I'm good with svelte.
+
+186
+00:13:26,480 --> 00:13:27,380
+All right.
+
+187
+00:13:27,410 --> 00:13:35,120
+Here, we actually need to add the class name of skill list, I believe.
+
+188
+00:13:35,820 --> 00:13:36,210
+Yeah.
+
+189
+00:13:36,240 --> 00:13:38,690
+This then places them nicely side by side.
+
+190
+00:13:38,700 --> 00:13:41,100
+And let's actually just add one more.
+
+191
+00:13:42,180 --> 00:13:44,880
+Just so they wrap onto the next line.
+
+192
+00:13:46,410 --> 00:13:48,210
+Let's say JavaScript here.
+
+193
+00:13:51,910 --> 00:13:52,480
+All right.
+
+194
+00:13:52,480 --> 00:13:55,390
+So we are already almost done here.
+
+195
+00:13:55,390 --> 00:14:02,470
+So the only thing that is missing and which I told you is not really mandatory because it is quite confusing,
+
+196
+00:14:02,470 --> 00:14:05,170
+is the background color here?
+
+197
+00:14:06,020 --> 00:14:08,540
+So how do we do the background color?
+
+198
+00:14:08,690 --> 00:14:13,640
+Well, first of all, I will pass in a string with the name of the color.
+
+199
+00:14:14,810 --> 00:14:17,210
+So let's call that prop color.
+
+200
+00:14:17,330 --> 00:14:20,060
+And then for react, the color that I want.
+
+201
+00:14:20,610 --> 00:14:23,610
+While I'm not really sure, let's just use blue.
+
+202
+00:14:25,090 --> 00:14:29,500
+So it could, of course, also do some hexadecimal value right here.
+
+203
+00:14:31,260 --> 00:14:33,090
+So Will just leave that there for now.
+
+204
+00:14:35,530 --> 00:14:37,180
+So HTML, CSS.
+
+205
+00:14:37,210 --> 00:14:41,440
+Let's do orange red for this one.
+
+206
+00:14:43,360 --> 00:14:44,320
+Then here.
+
+207
+00:14:44,440 --> 00:14:45,490
+Yellow.
+
+208
+00:14:48,760 --> 00:14:51,880
+And while svelte is also kind of orange.
+
+209
+00:14:52,090 --> 00:14:53,770
+So let's do that.
+
+210
+00:14:54,950 --> 00:14:56,800
+Okay, so we passed in a color.
+
+211
+00:14:56,810 --> 00:14:59,090
+Now it's time to use it here.
+
+212
+00:14:59,330 --> 00:15:04,010
+So what we want to do is to add it here as a background color.
+
+213
+00:15:04,800 --> 00:15:10,940
+So basically we want to add an individual style to each of these skill components.
+
+214
+00:15:10,950 --> 00:15:13,470
+And do you remember how we can do that?
+
+215
+00:15:13,590 --> 00:15:21,150
+Well, we can just use the style property or actually the style prop as we now know it is called.
+
+216
+00:15:21,420 --> 00:15:24,540
+So each of these is called a prop even here.
+
+217
+00:15:24,540 --> 00:15:30,750
+So like even this class name in JSX and also this style is called a prop.
+
+218
+00:15:31,550 --> 00:15:38,090
+So we enter JavaScript mode and then we create an object with the property of.
+
+219
+00:15:38,920 --> 00:15:40,960
+Background color.
+
+220
+00:15:41,140 --> 00:15:45,640
+And then here all we do is to use that prop that we passed in.
+
+221
+00:15:46,430 --> 00:15:48,890
+So that's props, Dot.
+
+222
+00:15:49,960 --> 00:15:50,710
+Color.
+
+223
+00:15:50,860 --> 00:15:54,070
+Give it a safe and beautiful.
+
+224
+00:15:54,860 --> 00:15:56,950
+So that worked.
+
+225
+00:15:56,990 --> 00:15:59,180
+So maybe you also got this.
+
+226
+00:15:59,180 --> 00:16:02,250
+And if you did, then really congratulations.
+
+227
+00:16:02,270 --> 00:16:04,240
+This year was the trickiest part.
+
+228
+00:16:04,250 --> 00:16:11,270
+But my main concern here was actually to get you writing these components here on your own and have
+
+229
+00:16:11,270 --> 00:16:17,450
+all of them return some JSX and then of course, apply your new knowledge about props.
+
+230
+00:16:17,630 --> 00:16:23,170
+So having these two components here basically communicate with one another.
+
+231
+00:16:23,180 --> 00:16:27,740
+So this is really, really important that you understood what is happening here.
+
+232
+00:16:28,380 --> 00:16:31,050
+Just make this a little bit prettier here.
+
+233
+00:16:33,540 --> 00:16:33,970
+Let's do it.
+
+234
+00:16:33,990 --> 00:16:36,600
+Actually, this one orange and this other one orange.
+
+235
+00:16:36,600 --> 00:16:37,380
+Red.
+
+236
+00:16:37,620 --> 00:16:43,980
+And even though these colors are not perfect, there are at least a bit better than they were before.
+
+237
+00:16:44,430 --> 00:16:45,120
+All right.
+
+238
+00:16:45,120 --> 00:16:52,200
+So hopefully you found this challenge useful and hopefully it helped you really to understand this concept
+
+239
+00:16:52,200 --> 00:16:54,420
+of props here even better.
+
+240
+00:16:54,420 --> 00:17:00,390
+And again, if for some reason you weren't able to do all of this on your own, then please, really,
+
+241
+00:17:00,390 --> 00:17:01,590
+really don't worry.
+
+242
+00:17:01,590 --> 00:17:08,190
+There's plenty of time to learn all of this stuff throughout the course and I'm 100% that by the end
+
+243
+00:17:08,190 --> 00:17:15,330
+of it, or even after a few sections already, you will start to get really good at React.
+
+244
+00:17:15,420 --> 00:17:22,560
+But now let's keep going and keep learning about some more fundamental react principles and techniques.

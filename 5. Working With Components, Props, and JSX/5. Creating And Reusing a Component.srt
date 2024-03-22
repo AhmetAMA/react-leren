@@ -1,0 +1,531 @@
+1
+00:00:00,910 --> 00:00:08,020
+Let's continue building our application by creating a brand new component and by taking a first look
+
+2
+00:00:08,020 --> 00:00:09,550
+at reusability.
+
+3
+00:00:10,330 --> 00:00:17,770
+But first, let's get the starter files for this project from the files that we downloaded from GitHub.
+
+4
+00:00:18,040 --> 00:00:26,740
+So right here in the starter folder, take these three copy and then go into your project folder and
+
+5
+00:00:26,740 --> 00:00:30,310
+I will copy them for now here into the public folder.
+
+6
+00:00:31,490 --> 00:00:34,230
+So we have this folder of pizza images.
+
+7
+00:00:34,250 --> 00:00:44,270
+We have this starter data and this index dot CSS, which we should probably move into this source folder.
+
+8
+00:00:44,570 --> 00:00:49,070
+So make sure that you have these two files here after including the starter files.
+
+9
+00:00:50,740 --> 00:00:57,130
+And now let's come back here and let's create that brand new component that I was talking about.
+
+10
+00:00:58,160 --> 00:01:02,780
+So in React, we write new components using functions.
+
+11
+00:01:04,480 --> 00:01:06,030
+So function.
+
+12
+00:01:06,040 --> 00:01:11,530
+And I'm calling this one pizza because it will contain some data about a pizza.
+
+13
+00:01:11,770 --> 00:01:16,060
+And then here, for now, we have no parameters to this function.
+
+14
+00:01:16,360 --> 00:01:18,760
+And then the function body.
+
+15
+00:01:18,970 --> 00:01:24,320
+Now in React, there are two important rules when we write components as functions.
+
+16
+00:01:24,340 --> 00:01:29,230
+First, the function name needs to start with an uppercase letter like this.
+
+17
+00:01:29,230 --> 00:01:33,230
+And second, the function needs to return some markup.
+
+18
+00:01:33,250 --> 00:01:38,260
+So usually in the form of JSX, but we can even return nothing.
+
+19
+00:01:38,890 --> 00:01:40,480
+Like returning null.
+
+20
+00:01:40,630 --> 00:01:45,910
+But here, let's just return some H2 element, for example.
+
+21
+00:01:46,800 --> 00:01:48,690
+And then let's just write pizza.
+
+22
+00:01:48,720 --> 00:01:50,430
+So give it a save.
+
+23
+00:01:50,460 --> 00:01:54,150
+But of course, nothing will appear here in the user interface.
+
+24
+00:01:54,150 --> 00:01:58,170
+And that's because we're not including this new component anywhere.
+
+25
+00:01:58,170 --> 00:02:01,860
+And even Eslint is warning us about that here.
+
+26
+00:02:01,860 --> 00:02:06,580
+So this yellow line which says pizza is defined but never used.
+
+27
+00:02:06,600 --> 00:02:13,350
+So again, we're not including this pizza component into our app component, which is the component
+
+28
+00:02:13,350 --> 00:02:15,780
+that is currently being rendered on the screen.
+
+29
+00:02:16,680 --> 00:02:20,850
+So we can use our component here just like this.
+
+30
+00:02:21,680 --> 00:02:22,640
+So pizza.
+
+31
+00:02:22,790 --> 00:02:27,110
+And then we immediately close the element like this.
+
+32
+00:02:27,640 --> 00:02:30,250
+This, however, will give us an error.
+
+33
+00:02:30,950 --> 00:02:33,670
+So right here, which we already saw before.
+
+34
+00:02:33,680 --> 00:02:41,300
+And the reason for this error is that each component can only return exactly one element, not two elements,
+
+35
+00:02:41,300 --> 00:02:42,380
+as we have here.
+
+36
+00:02:44,130 --> 00:02:50,370
+So let's wrap this here into a div and sometimes it can become a bit annoying.
+
+37
+00:02:51,220 --> 00:02:54,910
+That vs code automatically closes these elements for us.
+
+38
+00:02:56,030 --> 00:03:00,470
+But anyway, now we get our pizza in the UI.
+
+39
+00:03:00,500 --> 00:03:06,860
+And so that's because we now nested this pizza component inside this app component.
+
+40
+00:03:06,980 --> 00:03:13,400
+And with nesting, I mean that we basically used or called this component here inside app.
+
+41
+00:03:13,490 --> 00:03:20,360
+What's very, very important to notice is that by nesting we do not mean that we write the function
+
+42
+00:03:20,360 --> 00:03:22,550
+inside this other function.
+
+43
+00:03:23,370 --> 00:03:28,650
+So what we should never do is to nest the component declaration itself.
+
+44
+00:03:29,710 --> 00:03:30,690
+So like this.
+
+45
+00:03:30,700 --> 00:03:33,340
+This still works, actually.
+
+46
+00:03:33,340 --> 00:03:38,440
+But it's a very, very bad idea for reasons that we will learn about later.
+
+47
+00:03:38,590 --> 00:03:45,460
+So never nest the function declarations, but always declare all your components in the top level.
+
+48
+00:03:45,610 --> 00:03:47,110
+So just like this.
+
+49
+00:03:47,110 --> 00:03:54,790
+So again, when we say nesting components, what we mean is that we call so we include one component
+
+50
+00:03:54,790 --> 00:03:57,710
+into another like this now.
+
+51
+00:03:57,870 --> 00:04:04,210
+Okay, so let's now make this pizza component here just a little bit more interesting.
+
+52
+00:04:04,210 --> 00:04:07,900
+And for that we are going to use our starter data here.
+
+53
+00:04:08,020 --> 00:04:17,680
+So let's open up data.js and all we need is for is to select everything, then copy it and then let's
+
+54
+00:04:17,680 --> 00:04:19,450
+just paste it here.
+
+55
+00:04:20,680 --> 00:04:21,370
+Okay.
+
+56
+00:04:21,820 --> 00:04:27,990
+So as you see right now, we are doing all the development of this application in one big file.
+
+57
+00:04:28,000 --> 00:04:34,620
+While in the real world, we divide our code into modules and then include these modules into one another.
+
+58
+00:04:34,630 --> 00:04:38,890
+But here I just want to keep it simple so we're not going to do that yet.
+
+59
+00:04:39,730 --> 00:04:42,820
+So actually we can then delete this data.
+
+60
+00:04:43,180 --> 00:04:43,990
+JS.
+
+61
+00:04:44,860 --> 00:04:46,150
+And close this down.
+
+62
+00:04:46,450 --> 00:04:50,220
+So for now, we will simply use this here as an example.
+
+63
+00:04:50,230 --> 00:04:52,060
+So I will now copy paste.
+
+64
+00:04:52,780 --> 00:04:55,540
+Let's say this pizza here.
+
+65
+00:04:57,250 --> 00:04:58,810
+And use that here.
+
+66
+00:04:59,810 --> 00:05:00,890
+Yes, the name.
+
+67
+00:05:01,040 --> 00:05:03,440
+And then let's also grab the ingredients.
+
+68
+00:05:04,500 --> 00:05:10,700
+Let's just copy and paste all of this text and notice that I'm really only interested in the text.
+
+69
+00:05:10,730 --> 00:05:17,000
+We don't need, of course, these quotes because again, this is just like writing HTML.
+
+70
+00:05:17,000 --> 00:05:19,640
+And there you also don't need quotes, right?
+
+71
+00:05:19,880 --> 00:05:27,650
+So here, let's create a paragraph and then immediately you see we get this red underline here, which
+
+72
+00:05:27,650 --> 00:05:33,530
+is because again, we are trying to return two elements here, which is not allowed.
+
+73
+00:05:34,290 --> 00:05:36,090
+Okay, so here, what I'd like to do.
+
+74
+00:05:37,350 --> 00:05:42,090
+Is to then move up this line here using a shortcut.
+
+75
+00:05:42,180 --> 00:05:44,050
+So let's see what that is for you.
+
+76
+00:05:44,070 --> 00:05:46,170
+So it's this move line up.
+
+77
+00:05:46,170 --> 00:05:49,890
+So you should probably get used to this shortcut and this one.
+
+78
+00:05:49,890 --> 00:05:52,430
+So where we move lines up and down.
+
+79
+00:05:52,440 --> 00:05:55,100
+So like this, for example.
+
+80
+00:05:55,110 --> 00:05:56,640
+So that's very, very helpful.
+
+81
+00:05:56,640 --> 00:05:58,440
+And we're going to do that all the time.
+
+82
+00:05:58,440 --> 00:06:05,940
+We just need to get rid of this semicolon that we have here, which was right there.
+
+83
+00:06:07,510 --> 00:06:09,520
+Okay, so we have some text.
+
+84
+00:06:09,550 --> 00:06:14,710
+Now, let's also actually use this image that we have in the public folder.
+
+85
+00:06:15,380 --> 00:06:16,340
+So.
+
+86
+00:06:16,970 --> 00:06:18,620
+Yeah, this one right here.
+
+87
+00:06:18,830 --> 00:06:24,920
+So remember how I mentioned in the beginning that all the assets of the app will go into this public
+
+88
+00:06:24,920 --> 00:06:31,880
+folder because Webpack so the module bundler will then basically automatically get them from there.
+
+89
+00:06:32,900 --> 00:06:35,190
+And so we can now write an image here.
+
+90
+00:06:35,210 --> 00:06:37,310
+So again, just like HTML.
+
+91
+00:06:38,660 --> 00:06:44,180
+And then if we write a path to the image like this.
+
+92
+00:06:44,210 --> 00:06:47,810
+Spinazzi dot jpeg.
+
+93
+00:06:49,130 --> 00:06:52,760
+Then Webpack will automatically get that here from this folder.
+
+94
+00:06:52,760 --> 00:06:54,320
+And let's see if that works.
+
+95
+00:06:54,320 --> 00:06:58,070
+And indeed, there goes our image.
+
+96
+00:06:58,790 --> 00:07:01,880
+Now we get these yellow underline here.
+
+97
+00:07:01,880 --> 00:07:07,520
+And that's because an eslint rule which says that images always should have an alt prop.
+
+98
+00:07:07,640 --> 00:07:10,160
+So let's just add that here.
+
+99
+00:07:10,980 --> 00:07:13,380
+So to make it a little bit more accessible.
+
+100
+00:07:15,130 --> 00:07:15,880
+That's just.
+
+101
+00:07:16,620 --> 00:07:20,130
+Put the name of the pizza here and then Eslint is happy.
+
+102
+00:07:20,990 --> 00:07:22,880
+So we have this component here.
+
+103
+00:07:22,880 --> 00:07:26,780
+And now let's talk about the idea of reusing this component.
+
+104
+00:07:26,870 --> 00:07:32,990
+And for now, all we're going to do to reuse this component is to basically use it several times.
+
+105
+00:07:35,050 --> 00:07:38,770
+So let's do three times just so you can see that.
+
+106
+00:07:38,770 --> 00:07:44,850
+Now this piece of UI, which is the pizza component, will be included three times.
+
+107
+00:07:44,860 --> 00:07:48,970
+So three times this delicious spinach pizza.
+
+108
+00:07:50,110 --> 00:07:51,010
+Nice.
+
+109
+00:07:51,100 --> 00:07:56,950
+Now, of course, the data here in all of them is now the same because we didn't customize that data
+
+110
+00:07:56,950 --> 00:07:57,400
+yet.
+
+111
+00:07:57,400 --> 00:07:58,630
+But we will do that later.
+
+112
+00:07:58,660 --> 00:08:04,600
+Of course, when we talk about props, for now, I just want you to get this really important concept
+
+113
+00:08:04,600 --> 00:08:11,680
+that we can call each piece of the UI or in other words, each component multiple times here in order
+
+114
+00:08:11,680 --> 00:08:12,730
+to reuse it.
+
+115
+00:08:12,730 --> 00:08:16,990
+And that's a fundamental concept of writing React applications.
+
+116
+00:08:17,760 --> 00:08:23,610
+Now, just one final thing here, and this has nothing to do with code is that maybe you have noticed
+
+117
+00:08:23,610 --> 00:08:27,720
+that we get all these colored lines here in the sidebar.
+
+118
+00:08:28,810 --> 00:08:30,290
+And even down here.
+
+119
+00:08:30,310 --> 00:08:37,180
+Now, the reason for this is that when we create a new project with Create React App, it will actually
+
+120
+00:08:37,180 --> 00:08:41,140
+automatically set up this project as a GitHub repo.
+
+121
+00:08:41,440 --> 00:08:45,160
+That's why you also get all these different colors here.
+
+122
+00:08:46,360 --> 00:08:51,090
+And also here you see all the changes that we have made to the different files.
+
+123
+00:08:51,100 --> 00:08:52,930
+So here we deleted some stuff.
+
+124
+00:08:52,930 --> 00:08:55,600
+We modified some stuff in here.
+
+125
+00:08:55,630 --> 00:08:58,120
+These images are still untracked.
+
+126
+00:08:58,830 --> 00:09:03,990
+Now, since we're not really going to use GitHub as we build these small projects, I actually just
+
+127
+00:09:03,990 --> 00:09:09,450
+want to remove these colored lines here from the gutter.
+
+128
+00:09:09,450 --> 00:09:17,370
+So from this place and for that we can go to our settings and then just search for diff.
+
+129
+00:09:19,420 --> 00:09:20,920
+Decorations.
+
+130
+00:09:21,600 --> 00:09:23,690
+So here the default is all.
+
+131
+00:09:23,700 --> 00:09:25,440
+So let's set it to none.
+
+132
+00:09:25,740 --> 00:09:32,960
+And so then our editor will look just a little bit cleaner here and we can close down the sidebar.
+
+133
+00:09:32,970 --> 00:09:37,200
+And with this we finish this lecture and are ready to move on.

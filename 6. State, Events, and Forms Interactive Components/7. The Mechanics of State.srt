@@ -1,0 +1,227 @@
+1
+00:00:01,090 --> 00:00:01,660
+Okay.
+
+2
+00:00:01,660 --> 00:00:07,180
+So we have just seen the power of state by using the use state function.
+
+3
+00:00:07,180 --> 00:00:13,060
+But now let's get a better understanding of how exactly state works in React.
+
+4
+00:00:14,020 --> 00:00:19,960
+And let's start from a fundamental react principle that we have already discussed earlier.
+
+5
+00:00:20,260 --> 00:00:23,530
+So remember how we learned that in React?
+
+6
+00:00:23,560 --> 00:00:30,310
+We do not manipulate the Dom directly when we want to update a component's view, Right?
+
+7
+00:00:30,340 --> 00:00:34,270
+So React is declarative, not imperative.
+
+8
+00:00:34,270 --> 00:00:37,510
+And so we never touch the Dom in our code.
+
+9
+00:00:37,540 --> 00:00:43,840
+But if that's the case, then this leads us to the question of how do we update the component on the
+
+10
+00:00:43,840 --> 00:00:51,010
+screen whenever some data changes or whenever we need to respond to some event like a click.
+
+11
+00:00:51,100 --> 00:00:57,040
+Now, we already know that the answer to this question is state, but here we are trying to derive it
+
+12
+00:00:57,040 --> 00:00:58,930
+from first principles.
+
+13
+00:00:59,200 --> 00:01:06,730
+So anyway, to answer that question, we need to understand another fundamental react principle, which
+
+14
+00:01:06,760 --> 00:01:15,410
+is the fact that React updates a component view by re rendering that entire component whenever the underlying
+
+15
+00:01:15,410 --> 00:01:16,670
+data changes.
+
+16
+00:01:16,700 --> 00:01:23,450
+Now, as soon as we will reach the section about how React works behind the scenes, we will learn exactly
+
+17
+00:01:23,480 --> 00:01:28,160
+what actually happens inside React when a component renders.
+
+18
+00:01:28,190 --> 00:01:35,210
+But for now, just know that re rendering basically means that react calls the component function again
+
+19
+00:01:35,210 --> 00:01:38,360
+so each time the component is rendered.
+
+20
+00:01:38,630 --> 00:01:45,950
+So conceptually, we can imagine this as react removing the entire view and replacing it with a new
+
+21
+00:01:45,950 --> 00:01:49,600
+one each time a re render needs to happen.
+
+22
+00:01:49,610 --> 00:01:53,570
+But again, we will learn exactly what happens later.
+
+23
+00:01:54,030 --> 00:01:58,440
+Now react preserves the component state throughout Rerenders.
+
+24
+00:01:58,440 --> 00:02:05,640
+And so even though a component can be rendered and re rendered time and time again, the state will
+
+25
+00:02:05,640 --> 00:02:13,620
+not be reset unless the component disappears from the UI entirely, which is what we call unmounting.
+
+26
+00:02:14,180 --> 00:02:21,860
+Now, speaking of state, it is when state is updated that a component is automatically re rendered.
+
+27
+00:02:22,380 --> 00:02:29,220
+So let's imagine that there is an event handler in the view, for example, on a button that the user
+
+28
+00:02:29,220 --> 00:02:30,180
+can click.
+
+29
+00:02:30,330 --> 00:02:38,040
+So the moment that button is clicked, we can update a piece of state in our component using the set
+
+30
+00:02:38,040 --> 00:02:40,690
+function coming from the use state hook.
+
+31
+00:02:40,710 --> 00:02:44,400
+So just like we did in the last lecture, right?
+
+32
+00:02:44,580 --> 00:02:51,480
+Then when React sees that the state has been changed, it will automatically rerender the component
+
+33
+00:02:51,480 --> 00:02:56,400
+which will result in an updated view for this component.
+
+34
+00:02:56,610 --> 00:03:04,410
+Or as a more real example, we can look at the simple advice app that we built right in the first lecture
+
+35
+00:03:04,410 --> 00:03:05,460
+of the course.
+
+36
+00:03:05,640 --> 00:03:13,410
+So in that application, each time we click the Get advice button, a new piece of advice is fetched
+
+37
+00:03:13,410 --> 00:03:14,760
+from the API.
+
+38
+00:03:14,880 --> 00:03:20,310
+Then when that data arrives, we store the data in the advice state variable.
+
+39
+00:03:20,310 --> 00:03:23,050
+So we update the advice state.
+
+40
+00:03:23,580 --> 00:03:29,040
+So let's imagine that the new advice is quality beats, quantity.
+
+41
+00:03:29,310 --> 00:03:37,140
+React will notice this state change and rerender the component so it will remove the old one and display
+
+42
+00:03:37,140 --> 00:03:40,560
+a new updated component view on the screen.
+
+43
+00:03:40,680 --> 00:03:46,950
+And with this I hope that the mechanics of state in React are now really clear to you.
+
+44
+00:03:47,310 --> 00:03:54,810
+So the conclusion of all this is that as React developers, whenever we want to update a component view,
+
+45
+00:03:54,840 --> 00:03:56,670
+we update its state.
+
+46
+00:03:56,670 --> 00:04:01,230
+And so React will then react to that update and do its thing.
+
+47
+00:04:01,380 --> 00:04:09,660
+And in fact, this whole mechanism is so fundamental to react that it's actually the reason why react
+
+48
+00:04:09,660 --> 00:04:12,390
+is called react in the first place.
+
+49
+00:04:12,570 --> 00:04:20,520
+So on a high level, moving from the component level to the application level now, React reacts to
+
+50
+00:04:20,520 --> 00:04:22,830
+state changes by Rerendering.
+
+51
+00:04:22,830 --> 00:04:24,500
+The user interface.
+
+52
+00:04:24,520 --> 00:04:26,860
+That's the main thing that it does.
+
+53
+00:04:26,890 --> 00:04:31,270
+And therefore it was decided to call this library react.
+
+54
+00:04:31,630 --> 00:04:37,960
+And with this, we have come full circle from the first lecture about why frameworks exist.
+
+55
+00:04:37,990 --> 00:04:45,400
+There we learned that frameworks exist to keep UI in sync with data and so now we have learned a bit
+
+56
+00:04:45,400 --> 00:04:45,910
+better.
+
+57
+00:04:45,910 --> 00:04:48,130
+How react does that?

@@ -1,0 +1,35 @@
+1
+00:00:00,780 --> 00:00:04,050
+To finish part one of this course.
+
+2
+00:00:04,050 --> 00:00:11,760
+So the React fundamentals will review everything we have learned up until this point by building this
+
+3
+00:00:11,760 --> 00:00:15,000
+brand new project called Eaton Split.
+
+4
+00:00:15,210 --> 00:00:23,400
+Now, since this is a bonus practice project, it doesn't introduce any new concepts, and so you can
+
+5
+00:00:23,400 --> 00:00:26,670
+safely skip it if you're pressed for time.
+
+6
+00:00:26,910 --> 00:00:36,450
+However, in my experience, practicing these fundamentals of state props and events is absolutely crucial
+
+7
+00:00:36,450 --> 00:00:43,920
+for your progress and also to understand all the content that follows in the rest of the course.
+
+8
+00:00:44,100 --> 00:00:51,990
+So if you can make sure to build this project together with me now, or you can even try it completely
+
+9
+00:00:51,990 --> 00:00:52,890
+on your own.

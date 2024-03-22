@@ -1,0 +1,535 @@
+1
+00:00:00,890 --> 00:00:07,250
+From now on, you will start coding on your own computer and it's pretty much guaranteed that errors
+
+2
+00:00:07,250 --> 00:00:10,790
+will happen and that some things simply won't work.
+
+3
+00:00:10,820 --> 00:00:18,140
+And so right off the bat, I want to show you a few techniques for dealing with these errors and problems.
+
+4
+00:00:18,140 --> 00:00:23,120
+So this is a really important lecture, so please don't skip it.
+
+5
+00:00:24,310 --> 00:00:30,340
+So let's say that you're doing some change here in your code and save it and then you want to see the
+
+6
+00:00:30,340 --> 00:00:31,050
+output.
+
+7
+00:00:31,060 --> 00:00:35,200
+But imagine that for some reason your page didn't update here.
+
+8
+00:00:35,380 --> 00:00:37,090
+So what do you do?
+
+9
+00:00:37,120 --> 00:00:43,780
+So when that happens, don't panic, but instead try out a few solutions which will tell you now.
+
+10
+00:00:43,780 --> 00:00:49,210
+And the first one is to make sure that the application is actually running.
+
+11
+00:00:49,210 --> 00:00:52,750
+And believe me or not, this has actually happened to me before.
+
+12
+00:00:52,750 --> 00:00:59,470
+So I thought the app should be running and I was doing some updates to the code changing something and
+
+13
+00:00:59,470 --> 00:01:02,170
+I was wondering why the app was not reloading.
+
+14
+00:01:02,260 --> 00:01:09,910
+But then at some point I noticed that, well, I actually hadn't even started the app, so this is actually
+
+15
+00:01:09,910 --> 00:01:11,170
+something that can happen.
+
+16
+00:01:11,170 --> 00:01:14,470
+So if you don't have the app running, of course.
+
+17
+00:01:14,470 --> 00:01:21,730
+So if you didn't use NPM, start like I showed you earlier, then, well, of course your app cannot
+
+18
+00:01:21,730 --> 00:01:27,650
+reload in the browser, but if you're sure that it is actually running but still not updating, then
+
+19
+00:01:27,650 --> 00:01:31,820
+one solution can be to stop the app and restart it.
+
+20
+00:01:32,420 --> 00:01:37,370
+So here is the tab in the terminal where I currently have the app running.
+
+21
+00:01:37,370 --> 00:01:41,300
+And so in order to stop it, we use control C.
+
+22
+00:01:41,940 --> 00:01:48,300
+So on the Mac, that's Control C and on Windows, it's also just control C, Then on Windows, I think
+
+23
+00:01:48,300 --> 00:01:53,490
+it might ask you if you actually want to stop and then you can just type Y and hit enter.
+
+24
+00:01:53,490 --> 00:01:57,420
+So with this you have it stopped and then you can restart.
+
+25
+00:01:57,420 --> 00:02:00,870
+So that's then again, npm start.
+
+26
+00:02:01,610 --> 00:02:04,100
+Which then open up a new tab.
+
+27
+00:02:05,300 --> 00:02:06,920
+And yeah, there we go.
+
+28
+00:02:06,920 --> 00:02:09,860
+And so, yeah, here it is.
+
+29
+00:02:12,080 --> 00:02:15,890
+And if I change something now, then it should be reflected immediately.
+
+30
+00:02:16,310 --> 00:02:17,810
+So there it is.
+
+31
+00:02:17,900 --> 00:02:23,170
+And actually, it's more common than you might think that you have to do these kinds of things.
+
+32
+00:02:23,180 --> 00:02:27,490
+And that's why I really wanted to include this lecture early on.
+
+33
+00:02:27,500 --> 00:02:33,800
+And what's also pretty common is that sometimes all you have to do is to do a hard reload here in the
+
+34
+00:02:33,800 --> 00:02:34,310
+browser.
+
+35
+00:02:34,310 --> 00:02:41,570
+So just click this reloading button because this automatic reload, so the hot module replacement actually
+
+36
+00:02:41,570 --> 00:02:43,820
+breaks all the time for some reason.
+
+37
+00:02:43,820 --> 00:02:47,960
+And so then one of the solutions is to just hard reload the browser.
+
+38
+00:02:48,110 --> 00:02:53,990
+Now another good tip that I can give you is to always keep the terminal open here at all times, and
+
+39
+00:02:53,990 --> 00:02:55,790
+the same here for the dev tools.
+
+40
+00:02:57,010 --> 00:02:58,270
+Uh, in the browser.
+
+41
+00:02:58,660 --> 00:03:01,600
+Well, it's not so inspecting.
+
+42
+00:03:01,900 --> 00:03:05,200
+And then here, that's a bit too big.
+
+43
+00:03:06,240 --> 00:03:06,420
+Yeah.
+
+44
+00:03:06,420 --> 00:03:08,760
+Then here having the console open.
+
+45
+00:03:09,000 --> 00:03:14,100
+Also there's something called the React Dev Tools, but we will talk about that a little bit later.
+
+46
+00:03:14,890 --> 00:03:20,560
+So it's good to keep these open because then in case there are some unexpected errors, they will show
+
+47
+00:03:20,560 --> 00:03:23,890
+up here in this console and also down here.
+
+48
+00:03:23,980 --> 00:03:28,750
+And also, if you have this open, you can always be sure that the app is running.
+
+49
+00:03:29,140 --> 00:03:34,960
+You can just maybe make it a little bit smaller because, well, the window here is so small already.
+
+50
+00:03:34,990 --> 00:03:37,600
+Otherwise, we almost can't see our code.
+
+51
+00:03:37,840 --> 00:03:44,080
+Now, I was talking about error messages before, and so sometimes these appear when you do something
+
+52
+00:03:44,080 --> 00:03:44,690
+wrong.
+
+53
+00:03:44,710 --> 00:03:52,870
+So create React app actually has some internal thing which will automatically display errors right here
+
+54
+00:03:52,870 --> 00:03:53,560
+on top.
+
+55
+00:03:53,560 --> 00:03:55,420
+So like on top on the window.
+
+56
+00:03:55,420 --> 00:03:59,080
+And also all of here, we show that to you.
+
+57
+00:03:59,910 --> 00:04:05,000
+So I will just write something here which will create an error.
+
+58
+00:04:05,010 --> 00:04:07,440
+And so indeed, we have the error here.
+
+59
+00:04:08,140 --> 00:04:09,430
+Well, actually not here.
+
+60
+00:04:09,430 --> 00:04:12,640
+But sometimes important errors do pop up here.
+
+61
+00:04:12,640 --> 00:04:18,070
+But we have this overlay over the entire app which gives us this error message.
+
+62
+00:04:18,070 --> 00:04:24,490
+And so it's a good idea to then take a look at this error message and maybe try to understand what exactly
+
+63
+00:04:24,490 --> 00:04:25,330
+went wrong.
+
+64
+00:04:25,900 --> 00:04:28,690
+So usually this first part here is not really important.
+
+65
+00:04:28,690 --> 00:04:34,150
+But then here it tells us adjacent elements must be wrapped in an enclosing tag.
+
+66
+00:04:34,210 --> 00:04:36,700
+Did you want a fragment?
+
+67
+00:04:36,910 --> 00:04:43,060
+And maybe if you don't really understand this, you can just take this copy, open a new tab and Google
+
+68
+00:04:43,060 --> 00:04:43,610
+it.
+
+69
+00:04:43,630 --> 00:04:46,240
+And so this is now the power of React.
+
+70
+00:04:46,240 --> 00:04:53,230
+Huge community because hundreds, if not thousands of people before you have had the same problem and
+
+71
+00:04:53,230 --> 00:04:58,120
+have Googled it or have like asked a question on StackOverflow.
+
+72
+00:04:58,120 --> 00:05:00,670
+And so you will find your answer there.
+
+73
+00:05:02,330 --> 00:05:04,340
+So this one is a little bit older.
+
+74
+00:05:04,820 --> 00:05:07,490
+I saw earlier it's from 20.
+
+75
+00:05:08,140 --> 00:05:08,980
+16.
+
+76
+00:05:09,010 --> 00:05:09,370
+Yeah.
+
+77
+00:05:09,610 --> 00:05:12,850
+So you should usually find something a bit more recent.
+
+78
+00:05:12,880 --> 00:05:14,980
+Like this one here from 2020.
+
+79
+00:05:15,740 --> 00:05:19,250
+But yeah, so here we are, not trying to solve a specific problem.
+
+80
+00:05:19,250 --> 00:05:25,490
+I was just mentioning that it's many times a good idea to google these error messages right here.
+
+81
+00:05:26,010 --> 00:05:30,750
+So in this case, it's really not allowed to return more than one element.
+
+82
+00:05:31,050 --> 00:05:35,970
+So here we are returning the H one and the P, and that's not allowed in React.
+
+83
+00:05:36,600 --> 00:05:40,140
+So just delete that and then the error will disappear.
+
+84
+00:05:40,350 --> 00:05:44,760
+Another important tip is to always work with Eslint.
+
+85
+00:05:44,790 --> 00:05:48,120
+So Eslint is enabled by default.
+
+86
+00:05:48,690 --> 00:05:56,820
+For example, if you do this like const X equals Jonas and give it a save, then immediately you get
+
+87
+00:05:56,820 --> 00:05:57,900
+this warning here.
+
+88
+00:05:57,910 --> 00:06:04,170
+So then you can hover and it will warn you that X is declared, but its value is never read.
+
+89
+00:06:04,170 --> 00:06:11,010
+And this is just one of countless examples and situations in which Eslint can warn you that you're about
+
+90
+00:06:11,010 --> 00:06:12,810
+to do something that you're not supposed to.
+
+91
+00:06:12,840 --> 00:06:19,140
+Because if you have a variable that you're not using, it means that probably somewhere else you declared
+
+92
+00:06:19,140 --> 00:06:22,110
+the wrong variable that you actually didn't want to.
+
+93
+00:06:23,230 --> 00:06:23,860
+Right.
+
+94
+00:06:24,690 --> 00:06:30,010
+And by the way, these problems, they also appear down here in this problems tab.
+
+95
+00:06:30,030 --> 00:06:32,440
+So this is also very useful down here.
+
+96
+00:06:32,460 --> 00:06:38,160
+So whenever you have some issue like this, so these yellow lines under some of your code, you should
+
+97
+00:06:38,160 --> 00:06:40,740
+probably check out what's going on there.
+
+98
+00:06:42,090 --> 00:06:46,590
+Now we're talking here about this tabs down here.
+
+99
+00:06:47,010 --> 00:06:50,820
+Sometimes the prettier extension stops working for some reason.
+
+100
+00:06:50,820 --> 00:06:55,590
+And when that happens, it's a good idea to come here to this output tab.
+
+101
+00:06:55,590 --> 00:07:01,080
+And then here you can select one of these processes that is running inside your VS code.
+
+102
+00:07:01,230 --> 00:07:04,530
+For example, as I was saying, prettier.
+
+103
+00:07:06,320 --> 00:07:13,550
+So here it looks as if everything is working fine, but sometimes it will show you an error here and
+
+104
+00:07:13,550 --> 00:07:15,250
+then you can try to fix that.
+
+105
+00:07:15,260 --> 00:07:17,590
+And the same is true for Eslint.
+
+106
+00:07:17,600 --> 00:07:23,450
+So if you notice that Eslint for some reason stopped working, you can come here and check out if there
+
+107
+00:07:23,450 --> 00:07:24,560
+is any problem.
+
+108
+00:07:26,660 --> 00:07:29,510
+So this here even looks as though there is some problem.
+
+109
+00:07:30,600 --> 00:07:32,520
+Yeah, there was an error here, but.
+
+110
+00:07:32,530 --> 00:07:33,910
+Well, it still works.
+
+111
+00:07:34,150 --> 00:07:37,960
+So, yeah, we don't need to worry about that in this case.
+
+112
+00:07:38,920 --> 00:07:44,500
+Okay, But let's come back to our terminal, which is the one that we want open most of the time.
+
+113
+00:07:45,710 --> 00:07:52,340
+So if everything looks correct in your code and if you did everything that I told you, but still your
+
+114
+00:07:52,340 --> 00:07:58,400
+code is not working, it probably means that you have some bug in your code because it is different
+
+115
+00:07:58,400 --> 00:08:00,570
+than the one that I'm showing you in the video.
+
+116
+00:08:00,590 --> 00:08:07,130
+And so in that case, the best thing to do is to open up the final code for each of the projects.
+
+117
+00:08:07,130 --> 00:08:14,360
+So the one that we downloaded in the beginning and then simply try to compare that with my code and
+
+118
+00:08:14,360 --> 00:08:19,100
+doing so should then enable you to find the bug that you have in your code.
+
+119
+00:08:19,280 --> 00:08:26,570
+And speaking of bugs, actually I introduced a bug here in this render part here.
+
+120
+00:08:26,780 --> 00:08:32,570
+So the way that we render it before React 18 remember is this react dot render.
+
+121
+00:08:32,570 --> 00:08:38,090
+But nowhere we are telling here where to render the app component.
+
+122
+00:08:38,270 --> 00:08:45,290
+So again, we need to select that root element and actually place that here as a second argument.
+
+123
+00:08:46,470 --> 00:08:48,540
+So just to fix this here.
+
+124
+00:08:48,540 --> 00:08:54,120
+But again, you are not going to write this yourself, but maybe you will work on an older code base
+
+125
+00:08:54,120 --> 00:08:57,600
+at some point, which uses an older version of React.
+
+126
+00:08:57,600 --> 00:09:04,290
+And so then this is how that project will render the root element into your application.
+
+127
+00:09:04,380 --> 00:09:10,200
+And by the way, you can see which React version you're using right here in the dependencies array.
+
+128
+00:09:10,200 --> 00:09:15,420
+And so in this case we are using React 18.2, or at least I am.
+
+129
+00:09:15,420 --> 00:09:21,030
+So if you're watching this far in the future, then probably some other version has already come out.
+
+130
+00:09:21,030 --> 00:09:27,720
+But all of this, what we're talking about here will of course apply to probably most of the future
+
+131
+00:09:27,720 --> 00:09:28,530
+versions.
+
+132
+00:09:29,090 --> 00:09:31,130
+And that's actually it.
+
+133
+00:09:31,160 --> 00:09:38,210
+So that's the list of tips that I have for you for dealing with problems that will sooner or later arrive
+
+134
+00:09:38,240 --> 00:09:43,760
+as you start writing your own React applications and even while you follow this course.

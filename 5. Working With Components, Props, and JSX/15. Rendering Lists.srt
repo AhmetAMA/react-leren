@@ -1,0 +1,667 @@
+1
+00:00:00,880 --> 00:00:08,330
+Rendering lists is one of the most common things that we do in basically all React applications.
+
+2
+00:00:08,350 --> 00:00:12,580
+You will probably do it like 100 times throughout this course.
+
+3
+00:00:12,580 --> 00:00:16,690
+And so let's now learn how to render lists in React.
+
+4
+00:00:17,820 --> 00:00:22,110
+But first of all, what do we actually mean by rendering lists?
+
+5
+00:00:22,140 --> 00:00:28,650
+Well, basically, rendering a list is when we have an array and we want to create one component for
+
+6
+00:00:28,650 --> 00:00:30,660
+each element of the array.
+
+7
+00:00:30,690 --> 00:00:34,800
+So, for example, here we have our starter data.
+
+8
+00:00:34,950 --> 00:00:35,940
+Remember?
+
+9
+00:00:36,030 --> 00:00:41,730
+So here we have an array of these objects where each object is one pizza.
+
+10
+00:00:41,730 --> 00:00:46,650
+And so as you can imagine, now we want to basically render this list.
+
+11
+00:00:46,650 --> 00:00:49,170
+So basically we want to take this array.
+
+12
+00:00:49,170 --> 00:00:56,310
+And for each of these pizza objects, we want to automatically create one pizza component here in our
+
+13
+00:00:56,310 --> 00:00:57,600
+user interface.
+
+14
+00:00:58,760 --> 00:01:06,530
+So instead of calling or of using here the pizza component manually one by one, we want to do it all
+
+15
+00:01:06,530 --> 00:01:08,170
+at once, dynamically.
+
+16
+00:01:08,180 --> 00:01:14,210
+So if we have like four pizzas in the array, then we want four components to be rendered.
+
+17
+00:01:14,210 --> 00:01:21,170
+But if we have like 6 or 10, then we want ten components to show up here in our app.
+
+18
+00:01:22,170 --> 00:01:25,530
+Okay, so let's now learn how to do this.
+
+19
+00:01:25,560 --> 00:01:32,610
+Now the beauty of React is that for many things, all we need really is the JavaScript knowledge that
+
+20
+00:01:32,610 --> 00:01:33,960
+we already have.
+
+21
+00:01:33,990 --> 00:01:39,480
+So, for example, for rendering lists, there's nothing new about react that we need to learn.
+
+22
+00:01:39,480 --> 00:01:44,580
+So it doesn't give us like a list element that we can use or something like this.
+
+23
+00:01:44,610 --> 00:01:51,690
+All we need is the JavaScript knowledge that we already have, and in this case all we need is the map
+
+24
+00:01:51,690 --> 00:01:52,470
+method.
+
+25
+00:01:53,530 --> 00:01:57,010
+So let me show you how after all this talk.
+
+26
+00:01:57,400 --> 00:01:59,350
+So let's create a new div here.
+
+27
+00:01:59,350 --> 00:02:03,640
+And later we will convert this to an actual list element.
+
+28
+00:02:03,640 --> 00:02:06,460
+But let's just start out with any element here.
+
+29
+00:02:06,460 --> 00:02:08,260
+It doesn't really matter which one.
+
+30
+00:02:09,480 --> 00:02:14,580
+And for starters, let's also comment out this code right here.
+
+31
+00:02:15,500 --> 00:02:22,420
+And maybe you noticed here, by the way, that a comment in JS is simply again entering JavaScript mode.
+
+32
+00:02:22,430 --> 00:02:27,040
+So with these curly braces and then this is just a JavaScript comment.
+
+33
+00:02:27,050 --> 00:02:34,430
+So this is one of the rules of JS that was actually in one of the slides or actually in the only slide
+
+34
+00:02:34,430 --> 00:02:35,810
+in the previous lecture.
+
+35
+00:02:36,110 --> 00:02:39,710
+So if you read that then you're already familiar with this.
+
+36
+00:02:39,950 --> 00:02:44,480
+But anyway, let's now render our pizza list.
+
+37
+00:02:45,360 --> 00:02:46,430
+Let's remember.
+
+38
+00:02:46,440 --> 00:02:48,900
+Yeah, it's called pizza data.
+
+39
+00:02:51,120 --> 00:02:58,680
+So let's enter a JavaScript mode here and then let's take our pizza data which remember is just an array
+
+40
+00:02:58,800 --> 00:02:59,760
+and then.
+
+41
+00:03:00,720 --> 00:03:02,670
+Let's map over it.
+
+42
+00:03:02,790 --> 00:03:07,740
+So with map, we basically loop over this array and create a brand new array.
+
+43
+00:03:07,920 --> 00:03:12,090
+So in this pizza data, each element is a pizza.
+
+44
+00:03:13,570 --> 00:03:17,530
+So let's do this and what we want in this new array.
+
+45
+00:03:17,560 --> 00:03:25,060
+So in the new array that will be the result of map is for each pizza, a pizza component.
+
+46
+00:03:25,240 --> 00:03:30,280
+And now we can simply pass all of these props in dynamically here.
+
+47
+00:03:31,520 --> 00:03:34,040
+Let's first close it like this.
+
+48
+00:03:35,810 --> 00:03:42,680
+So we can now say pizza dot and I think it is name but let's check.
+
+49
+00:03:42,950 --> 00:03:43,400
+Yeah.
+
+50
+00:03:43,400 --> 00:03:48,110
+So we have name ingredients, price photo data and even this other property.
+
+51
+00:03:49,260 --> 00:03:54,650
+So if I give it a save right now, we should already see the six components over there.
+
+52
+00:03:54,660 --> 00:03:55,950
+And indeed.
+
+53
+00:03:56,910 --> 00:03:57,900
+Beautiful.
+
+54
+00:03:58,900 --> 00:03:59,950
+There they are.
+
+55
+00:03:59,980 --> 00:04:04,120
+They are missing here the image and the prices, I guess.
+
+56
+00:04:04,120 --> 00:04:06,760
+But in principle, it's already working.
+
+57
+00:04:07,060 --> 00:04:12,790
+So you see here that we now get these console logs here for each of the pizzas.
+
+58
+00:04:13,090 --> 00:04:13,660
+Exactly.
+
+59
+00:04:13,660 --> 00:04:15,220
+With the names we have here.
+
+60
+00:04:15,490 --> 00:04:23,440
+And so now we are effectively already rendering a list, so a list based on this pizza data.
+
+61
+00:04:23,560 --> 00:04:31,960
+Now, we could keep going here and basically add another property now for the photo name, for example.
+
+62
+00:04:32,170 --> 00:04:39,050
+So we can do pizza dot photo name and so on and so forth.
+
+63
+00:04:39,070 --> 00:04:41,560
+But usually this is not how we do it.
+
+64
+00:04:41,590 --> 00:04:47,640
+Usually what we do is to pass in the entire object into the more specific component.
+
+65
+00:04:47,650 --> 00:04:49,450
+So that's pizza in this case.
+
+66
+00:04:49,450 --> 00:04:56,950
+And then inside of that component, we would then take the information that we want out of the object.
+
+67
+00:04:57,460 --> 00:05:02,890
+So let's now change the way we pass props into this pizza and simply pass.
+
+68
+00:05:04,380 --> 00:05:12,420
+Pizza and let's maybe say pizza object just to make it slightly less confusing and then or JavaScript
+
+69
+00:05:12,420 --> 00:05:12,990
+mode.
+
+70
+00:05:13,790 --> 00:05:15,950
+And then the current pizza object.
+
+71
+00:05:17,950 --> 00:05:18,670
+All right.
+
+72
+00:05:18,670 --> 00:05:21,820
+And now it all breaks here because we need to adapt.
+
+73
+00:05:21,850 --> 00:05:23,260
+Of course, our pizza.
+
+74
+00:05:23,620 --> 00:05:25,840
+So now here we have props.
+
+75
+00:05:27,020 --> 00:05:30,830
+Dot pizza object Dot Photo name.
+
+76
+00:05:31,620 --> 00:05:32,490
+Right.
+
+77
+00:05:32,700 --> 00:05:33,570
+And so let's.
+
+78
+00:05:35,380 --> 00:05:36,690
+Paste this here.
+
+79
+00:05:36,700 --> 00:05:37,900
+Everywhere.
+
+80
+00:05:37,900 --> 00:05:39,100
+And here.
+
+81
+00:05:39,100 --> 00:05:41,650
+And here and here.
+
+82
+00:05:41,800 --> 00:05:46,030
+And a bit later, we will make our lives a bit easier with some additional techniques.
+
+83
+00:05:46,030 --> 00:05:48,040
+But for now, let's roll with this.
+
+84
+00:05:48,250 --> 00:05:49,870
+And there you have it.
+
+85
+00:05:50,050 --> 00:05:56,470
+There you have a list of all the pizzas based on our pizza data array.
+
+86
+00:05:56,770 --> 00:05:58,150
+Let's just get rid of this.
+
+87
+00:05:58,150 --> 00:06:02,110
+And of course, if we now remove something from here.
+
+88
+00:06:03,290 --> 00:06:06,530
+Then that last pizza over there is going to disappear.
+
+89
+00:06:08,070 --> 00:06:08,700
+You see.
+
+90
+00:06:08,970 --> 00:06:11,160
+But let's put it back.
+
+91
+00:06:12,410 --> 00:06:14,180
+And yeah, there it is.
+
+92
+00:06:14,510 --> 00:06:18,620
+Now notice how we have like an error here in the console.
+
+93
+00:06:18,620 --> 00:06:21,630
+So let's scroll up a little bit and see what we get.
+
+94
+00:06:21,650 --> 00:06:27,740
+So we have this warning saying that each child in a list should have a unique key property.
+
+95
+00:06:27,770 --> 00:06:33,320
+So basically what this means is that each time we render a list like this.
+
+96
+00:06:34,900 --> 00:06:35,950
+Where is it?
+
+97
+00:06:36,400 --> 00:06:36,880
+Yeah.
+
+98
+00:06:36,880 --> 00:06:43,480
+So each time we render a list with the map method, each of the items that gets rendered needs a unique
+
+99
+00:06:43,480 --> 00:06:44,640
+key property.
+
+100
+00:06:44,650 --> 00:06:52,570
+So key is basically a prop that is internal to react, which it needs in order for some performance
+
+101
+00:06:52,570 --> 00:06:53,680
+optimizations.
+
+102
+00:06:53,680 --> 00:06:59,710
+And for now it's not really important what that means as we will learn later what exactly this key property
+
+103
+00:06:59,710 --> 00:07:01,380
+is and what it does.
+
+104
+00:07:01,390 --> 00:07:06,760
+For now, what matters is that we pass something here that is unique to each element.
+
+105
+00:07:07,870 --> 00:07:11,380
+So to each pizza in this case, and that is the name.
+
+106
+00:07:11,380 --> 00:07:15,090
+So the name in this example is always unique.
+
+107
+00:07:15,100 --> 00:07:18,280
+So we can use that one as the unique key.
+
+108
+00:07:18,280 --> 00:07:20,440
+And so then the warning here is gone.
+
+109
+00:07:21,540 --> 00:07:22,260
+Okay.
+
+110
+00:07:22,530 --> 00:07:28,140
+Now, next, what I want to do is to convert this year from a simple div to a Ul.
+
+111
+00:07:28,170 --> 00:07:30,090
+So an unordered list.
+
+112
+00:07:32,450 --> 00:07:38,960
+And then each of these pizzas themselves should be a list element or a list item.
+
+113
+00:07:38,960 --> 00:07:39,920
+So an li.
+
+114
+00:07:40,280 --> 00:07:46,340
+So it's very important that we write semantic markup like this, which many courses somehow overlook,
+
+115
+00:07:46,340 --> 00:07:48,380
+but I believe it's quite important.
+
+116
+00:07:48,500 --> 00:07:55,760
+And here we are also missing an important class name to finally apply some more styling here.
+
+117
+00:07:56,350 --> 00:07:58,600
+Which is just pizzas.
+
+118
+00:07:58,630 --> 00:08:05,110
+And so this then puts the pizzas like nicely in this grid and makes this look even nicer.
+
+119
+00:08:05,230 --> 00:08:07,420
+So I'm really happy here with this design.
+
+120
+00:08:08,860 --> 00:08:15,310
+Like this and it's already starting to look like very familiar to what we have here.
+
+121
+00:08:15,760 --> 00:08:16,630
+Right.
+
+122
+00:08:16,660 --> 00:08:18,420
+We have just missing this button.
+
+123
+00:08:18,430 --> 00:08:24,450
+The text here is a bit different and we have some special styling here when a pizza is sold out.
+
+124
+00:08:24,460 --> 00:08:27,790
+And so we will actually talk about this here pretty soon.
+
+125
+00:08:28,090 --> 00:08:32,920
+But for now, let's quickly review what we did in this lecture.
+
+126
+00:08:32,920 --> 00:08:36,700
+And so that is fundamentally this part right here.
+
+127
+00:08:36,790 --> 00:08:44,380
+So the goal was to render one pizza element for each of the objects that are inside the pizza data array.
+
+128
+00:08:44,380 --> 00:08:49,990
+And the way we do that in React is by simply using the map method on this array.
+
+129
+00:08:49,990 --> 00:08:55,870
+And in case you're not entirely sure what the map method does, please go back to the previous section
+
+130
+00:08:55,870 --> 00:09:01,090
+where I will introduce you to all the most important array methods that we use all the time.
+
+131
+00:09:01,090 --> 00:09:03,910
+And this one here is probably the most important.
+
+132
+00:09:04,060 --> 00:09:06,490
+So it will create a new array.
+
+133
+00:09:06,490 --> 00:09:12,110
+And in this array in each position, there will be a new pizza component.
+
+134
+00:09:12,260 --> 00:09:18,650
+And into each of these pizza components we pass as a prop the current pizza object.
+
+135
+00:09:19,250 --> 00:09:20,060
+Right.
+
+136
+00:09:20,060 --> 00:09:25,580
+So we then receive that here as a prop, and from there we read all the data that we are interested
+
+137
+00:09:25,580 --> 00:09:26,000
+in.
+
+138
+00:09:27,930 --> 00:09:28,680
+All right.
+
+139
+00:09:28,710 --> 00:09:33,270
+Now, of course, we could also not even have this component.
+
+140
+00:09:33,360 --> 00:09:35,640
+Let me quickly show that to you as well.
+
+141
+00:09:37,020 --> 00:09:39,030
+So let's copy this.
+
+142
+00:09:40,060 --> 00:09:43,660
+And Well, then we can simply replace it here.
+
+143
+00:09:44,520 --> 00:09:45,570
+Paste that there.
+
+144
+00:09:45,690 --> 00:09:48,690
+And then, of course, we need to get rid.
+
+145
+00:09:49,690 --> 00:09:50,920
+Of all this.
+
+146
+00:09:52,330 --> 00:09:54,940
+So I'm just replacing all of them at the same time.
+
+147
+00:09:54,940 --> 00:09:58,930
+And please don't follow this code here, so you don't need to do this.
+
+148
+00:09:59,110 --> 00:10:04,990
+I just want to show you that we could have done it also without, like, the intermediary component.
+
+149
+00:10:05,650 --> 00:10:13,210
+So all that matters here is that we return some JSX X so we can directly write the JSX here.
+
+150
+00:10:13,210 --> 00:10:18,250
+But usually what we do is to place that JSX in another component.
+
+151
+00:10:20,810 --> 00:10:22,490
+So let's go back.
+
+152
+00:10:22,730 --> 00:10:24,230
+And there we go.
+
+153
+00:10:25,000 --> 00:10:30,900
+Now, you might have thought maybe that here we use a for each because it sounds a bit more logical.
+
+154
+00:10:30,910 --> 00:10:37,330
+Like maybe we want it to render one pizza for each of these, but that wouldn't really work.
+
+155
+00:10:39,800 --> 00:10:41,090
+Let's try that.
+
+156
+00:10:41,210 --> 00:10:42,110
+And you see that?
+
+157
+00:10:42,110 --> 00:10:43,600
+Then nothing happened.
+
+158
+00:10:43,610 --> 00:10:51,080
+And so that's because here inside this Ul, we actually need some JS and the only way we get that JS
+
+159
+00:10:51,650 --> 00:10:54,050
+is by creating a new array.
+
+160
+00:10:54,050 --> 00:10:55,970
+And so that's what map does.
+
+161
+00:10:55,970 --> 00:11:01,640
+So it creates a new array which will in this case contain these six pizzas.
+
+162
+00:11:01,640 --> 00:11:08,360
+And so then here we will have this array with all these pizzas and then react knows how to render that.
+
+163
+00:11:10,460 --> 00:11:10,850
+Okay.
+
+164
+00:11:10,850 --> 00:11:12,940
+So very, very important technique.
+
+165
+00:11:12,950 --> 00:11:14,890
+Make sure that you memorize this.
+
+166
+00:11:14,900 --> 00:11:20,870
+Or if you don't want to memorize, don't worry, because you will do this dozens of time throughout
+
+167
+00:11:20,870 --> 00:11:21,650
+the course.

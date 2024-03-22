@@ -1,0 +1,847 @@
+1
+00:00:00,860 --> 00:00:06,890
+Welcome to the next coding challenge, which, as you can imagine, is all about state.
+
+2
+00:00:07,950 --> 00:00:13,110
+So what I want you to build in this challenge is this very simple date counter.
+
+3
+00:00:13,200 --> 00:00:19,110
+So here we have the current date, but then when we click here on the plus icon, you see that the count
+
+4
+00:00:19,110 --> 00:00:22,700
+increases to one and then it says One day from now.
+
+5
+00:00:22,710 --> 00:00:27,720
+It is Tuesday, June 22nd, while before it was 21.
+
+6
+00:00:27,930 --> 00:00:34,290
+So then when we keep going up, it basically keeps adding this number of days to the current date.
+
+7
+00:00:35,120 --> 00:00:36,890
+We can also go back in time.
+
+8
+00:00:37,220 --> 00:00:40,970
+So like six days ago, it was this date.
+
+9
+00:00:41,850 --> 00:00:43,620
+So that's the most basic thing.
+
+10
+00:00:43,620 --> 00:00:46,320
+But then here we can also adjust the step.
+
+11
+00:00:46,470 --> 00:00:53,190
+So, for example, if the step is five, then each time we click on the plus button, it increases by
+
+12
+00:00:53,190 --> 00:00:53,780
+five.
+
+13
+00:00:53,790 --> 00:00:55,350
+So no longer by one.
+
+14
+00:00:55,350 --> 00:00:58,470
+So ten, 15, 20 and so on and so forth.
+
+15
+00:00:58,470 --> 00:01:01,740
+And the calculation then here, of course, is still the same.
+
+16
+00:01:02,620 --> 00:01:04,420
+So that's what we're going to build.
+
+17
+00:01:05,160 --> 00:01:12,870
+So open up a new code sandbox with React New Or of course, as always, you can also build this challenge
+
+18
+00:01:12,870 --> 00:01:14,640
+on your local computer.
+
+19
+00:01:14,640 --> 00:01:19,740
+So for that you can just create a new React app just like we have been doing before.
+
+20
+00:01:20,900 --> 00:01:25,330
+Now here just to make sure you can see I will make this a bit bigger.
+
+21
+00:01:25,340 --> 00:01:27,020
+Maybe not that big.
+
+22
+00:01:27,910 --> 00:01:32,770
+And then I will actually just start writing a little bit of code here.
+
+23
+00:01:33,670 --> 00:01:35,710
+So just to show you what I actually want.
+
+24
+00:01:35,740 --> 00:01:39,430
+So I want you to create this counter.
+
+25
+00:01:40,520 --> 00:01:41,270
+Function.
+
+26
+00:01:42,540 --> 00:01:44,430
+Which for now will just.
+
+27
+00:01:45,400 --> 00:01:47,410
+Return test.
+
+28
+00:01:49,980 --> 00:01:53,820
+And then all we want to do is to include that counter right here.
+
+29
+00:01:57,990 --> 00:01:59,250
+And that's it.
+
+30
+00:01:59,460 --> 00:02:02,710
+So you can leave everything else the same, even the styles.
+
+31
+00:02:02,730 --> 00:02:07,530
+Let's just leave them here and just focus on this counter functionality.
+
+32
+00:02:07,650 --> 00:02:11,720
+Now, this part here with the dates can be a little bit tricky.
+
+33
+00:02:11,730 --> 00:02:17,010
+So what I want you to focus on the most is actually the counter functionality here.
+
+34
+00:02:17,040 --> 00:02:22,830
+So if the dates are a bit too tricky, then just leave that until the end and you can just print the
+
+35
+00:02:22,830 --> 00:02:24,990
+current count value down here.
+
+36
+00:02:24,990 --> 00:02:30,180
+Or you can also just Google for example, JavaScript add days to date.
+
+37
+00:02:30,660 --> 00:02:30,990
+Okay.
+
+38
+00:02:30,990 --> 00:02:36,960
+So I will leave this up here so you can see what you are supposed to build and then I'll meet you back
+
+39
+00:02:36,960 --> 00:02:39,510
+here in a minute with my solution.
+
+40
+00:02:41,420 --> 00:02:42,170
+All right.
+
+41
+00:02:42,170 --> 00:02:43,330
+So welcome back.
+
+42
+00:02:43,340 --> 00:02:46,250
+Hopefully you had some success with this.
+
+43
+00:02:46,400 --> 00:02:52,430
+So there's actually a lot of moving parts here with handling the events and all the state.
+
+44
+00:02:52,640 --> 00:02:59,180
+So hopefully the lectures that we had previously were enough for you to understand how this works.
+
+45
+00:02:59,180 --> 00:03:03,090
+But if not, there's really no problem with that at all.
+
+46
+00:03:03,110 --> 00:03:08,990
+So hopefully you just did anything, even if just the very simple counter, that's also fine.
+
+47
+00:03:09,320 --> 00:03:14,930
+But anyway, we know that we want this count value here to update in the UI.
+
+48
+00:03:15,110 --> 00:03:21,350
+So the view of this component should update whenever we click on one of these buttons.
+
+49
+00:03:21,620 --> 00:03:25,850
+So that's a good sign that we need some state, right?
+
+50
+00:03:26,690 --> 00:03:29,780
+So let's start by creating the current state.
+
+51
+00:03:30,740 --> 00:03:31,910
+So const.
+
+52
+00:03:32,870 --> 00:03:36,140
+Count and set count.
+
+53
+00:03:38,570 --> 00:03:40,390
+Is use state.
+
+54
+00:03:40,400 --> 00:03:44,150
+And now for some reason the use state didn't automatically get import.
+
+55
+00:03:44,270 --> 00:03:46,160
+So we need to do that by hand.
+
+56
+00:03:48,040 --> 00:03:50,770
+From React.
+
+57
+00:03:51,810 --> 00:03:52,590
+Nice.
+
+58
+00:03:53,210 --> 00:03:58,270
+And now, well, we need to show this count on the screen and then we need to update it.
+
+59
+00:03:58,280 --> 00:04:00,770
+So as always, the same three steps.
+
+60
+00:04:00,770 --> 00:04:06,470
+So first, declaring the state variable, then use it in the JSX and then update it.
+
+61
+00:04:06,590 --> 00:04:09,620
+So here we are, missing the default of zero.
+
+62
+00:04:10,750 --> 00:04:18,730
+And then let's just create one div with these two buttons and also with the value of the counter itself.
+
+63
+00:04:19,860 --> 00:04:21,960
+So starting with that value, actually.
+
+64
+00:04:23,170 --> 00:04:24,490
+Let's just count.
+
+65
+00:04:24,580 --> 00:04:27,190
+And then the count.
+
+66
+00:04:28,100 --> 00:04:28,910
+Value.
+
+67
+00:04:29,330 --> 00:04:30,650
+Oh, what's that?
+
+68
+00:04:34,440 --> 00:04:35,970
+So count is zero.
+
+69
+00:04:36,000 --> 00:04:37,170
+That's correct.
+
+70
+00:04:37,170 --> 00:04:38,790
+And now we need some buttons.
+
+71
+00:04:39,510 --> 00:04:40,680
+So button.
+
+72
+00:04:43,970 --> 00:04:45,680
+And on click.
+
+73
+00:04:46,460 --> 00:04:52,220
+And here I will actually not create the event handler function separately, but instead I will just
+
+74
+00:04:52,220 --> 00:04:53,680
+define them inline here.
+
+75
+00:04:53,690 --> 00:04:57,530
+But if you did it separately, that's of course no problem at all.
+
+76
+00:04:58,700 --> 00:05:00,570
+So what do we want to do here?
+
+77
+00:05:00,590 --> 00:05:03,200
+So this one here is to decreasing the value.
+
+78
+00:05:03,820 --> 00:05:05,680
+So set count.
+
+79
+00:05:06,330 --> 00:05:10,440
+And we want the new count to be the current count minus one.
+
+80
+00:05:10,590 --> 00:05:16,350
+So what that means is that we want to update the count state based on the current state.
+
+81
+00:05:16,350 --> 00:05:20,290
+And therefore, here we now should pass in a callback function.
+
+82
+00:05:20,310 --> 00:05:21,420
+Remember that.
+
+83
+00:05:21,600 --> 00:05:24,810
+So I'm going to write C for count.
+
+84
+00:05:24,840 --> 00:05:26,400
+So this stands for count.
+
+85
+00:05:26,400 --> 00:05:30,810
+And remember, it is the current value of the count state.
+
+86
+00:05:31,120 --> 00:05:34,620
+So then we want to return that count minus one.
+
+87
+00:05:35,840 --> 00:05:37,820
+And that should already be it.
+
+88
+00:05:38,890 --> 00:05:41,260
+Let's just use this here for the minus sign.
+
+89
+00:05:42,310 --> 00:05:43,570
+All right, then.
+
+90
+00:05:43,570 --> 00:05:44,260
+Let's copy.
+
+91
+00:05:44,260 --> 00:05:44,980
+Paste.
+
+92
+00:05:47,750 --> 00:05:51,590
+Well, let's actually just close down this sidebar.
+
+93
+00:05:53,070 --> 00:05:54,810
+So copy and paste.
+
+94
+00:05:54,810 --> 00:05:56,400
+And here, just plus one.
+
+95
+00:05:57,210 --> 00:06:03,060
+So give it a safe and well, let's just adjust here the output a bit.
+
+96
+00:06:03,450 --> 00:06:05,690
+And beautiful.
+
+97
+00:06:05,700 --> 00:06:07,410
+That's working already.
+
+98
+00:06:07,410 --> 00:06:11,940
+So the component view is being updated as we update the state.
+
+99
+00:06:12,550 --> 00:06:13,210
+Great.
+
+100
+00:06:13,210 --> 00:06:17,410
+And so now let's just also display the date down there.
+
+101
+00:06:18,420 --> 00:06:24,360
+So for that, let's create a paragraph or first let's actually calculate that date.
+
+102
+00:06:25,440 --> 00:06:28,800
+So maybe you googled how to do this as I advised you to.
+
+103
+00:06:30,630 --> 00:06:35,190
+So let's just define a variable called date and then new date.
+
+104
+00:06:35,340 --> 00:06:41,580
+And of course, you can just leave it like this or you can just pass in a string, for example.
+
+105
+00:06:42,300 --> 00:06:44,290
+To define any other date that you want.
+
+106
+00:06:44,310 --> 00:06:48,580
+For example, June 21st, 2027.
+
+107
+00:06:48,600 --> 00:06:49,740
+So just for fun.
+
+108
+00:06:50,250 --> 00:06:51,570
+So that's not a date.
+
+109
+00:06:51,600 --> 00:06:53,340
+Today, as you can imagine.
+
+110
+00:06:54,510 --> 00:07:00,750
+But anyway, now here we can on the date object call the set date method.
+
+111
+00:07:00,750 --> 00:07:06,570
+And so then here we can do date plus get the current date.
+
+112
+00:07:08,030 --> 00:07:09,380
+Well, what's that?
+
+113
+00:07:10,100 --> 00:07:11,010
+Uh, yeah.
+
+114
+00:07:11,240 --> 00:07:12,380
+Date Dot.
+
+115
+00:07:13,130 --> 00:07:20,480
+So getting the current date and then adding a value so that value can be the count.
+
+116
+00:07:21,900 --> 00:07:22,800
+All right.
+
+117
+00:07:22,800 --> 00:07:28,200
+So we're using now our count to add that count to the current date, basically.
+
+118
+00:07:28,210 --> 00:07:31,350
+And so then that's what we can output down here.
+
+119
+00:07:33,250 --> 00:07:36,650
+But again, this part was kind of optional here, really.
+
+120
+00:07:36,680 --> 00:07:39,100
+So this is not what I was concerned about.
+
+121
+00:07:39,130 --> 00:07:42,040
+What matters is that you got the state part right.
+
+122
+00:07:42,800 --> 00:07:43,490
+So.
+
+123
+00:07:43,790 --> 00:07:49,810
+But anyway, here, let's now log the date and then convert it to a nice readable string.
+
+124
+00:07:49,820 --> 00:07:51,800
+So to date string.
+
+125
+00:07:53,410 --> 00:08:02,040
+All right, Now here we got some problems and that's because yeah, right now or has two root elements.
+
+126
+00:08:02,050 --> 00:08:06,850
+That's because I by mistake placed this outside the div.
+
+127
+00:08:07,410 --> 00:08:08,670
+But there we go.
+
+128
+00:08:09,850 --> 00:08:12,160
+So you see, that's already working.
+
+129
+00:08:12,520 --> 00:08:13,360
+Nice.
+
+130
+00:08:13,390 --> 00:08:18,100
+Now we are missing that part here that says the 30 days from now.
+
+131
+00:08:19,070 --> 00:08:22,630
+For example, or today or ten days ago.
+
+132
+00:08:22,640 --> 00:08:24,620
+So let's do that.
+
+133
+00:08:26,590 --> 00:08:31,540
+And so to do this, let's add maybe another span.
+
+134
+00:08:31,840 --> 00:08:34,300
+Let's wrap this one into a span element.
+
+135
+00:08:36,390 --> 00:08:38,610
+And then let's create a span.
+
+136
+00:08:38,610 --> 00:08:41,190
+So just for some inline text.
+
+137
+00:08:41,780 --> 00:08:42,500
+And now here.
+
+138
+00:08:42,500 --> 00:08:45,440
+Then let's create that part of the string.
+
+139
+00:08:45,680 --> 00:08:50,270
+So if the count is zero, then it is today.
+
+140
+00:08:51,720 --> 00:08:54,300
+So then here we can output the string.
+
+141
+00:08:54,330 --> 00:08:56,220
+Today is.
+
+142
+00:08:57,570 --> 00:09:00,960
+And if not for now, let's return nothing.
+
+143
+00:09:01,560 --> 00:09:02,850
+And here we have a problem.
+
+144
+00:09:02,940 --> 00:09:05,400
+And that's because here we need a colon.
+
+145
+00:09:06,510 --> 00:09:07,350
+All right.
+
+146
+00:09:07,930 --> 00:09:11,980
+So count is not zero right now, but now it is.
+
+147
+00:09:12,280 --> 00:09:14,740
+So today is this date.
+
+148
+00:09:15,040 --> 00:09:16,270
+So that's correct.
+
+149
+00:09:16,270 --> 00:09:21,550
+But now, as an alternative here, we need to also account for the past and for the future.
+
+150
+00:09:22,290 --> 00:09:25,380
+So we actually need two more different values here.
+
+151
+00:09:25,380 --> 00:09:28,090
+And so here we need another ternary operator.
+
+152
+00:09:28,110 --> 00:09:33,930
+Now, using nested ternaries is quite ugly and can be quite unreadable.
+
+153
+00:09:33,930 --> 00:09:40,530
+So usually I advise against using that, but well, here, let's just break that rule.
+
+154
+00:09:41,430 --> 00:09:44,100
+So basically here we have the else branch.
+
+155
+00:09:44,670 --> 00:09:50,580
+And so in here we can ask if the count is greater than zero, then the string should be.
+
+156
+00:09:51,860 --> 00:09:53,360
+Let's use a template literal.
+
+157
+00:09:54,950 --> 00:09:56,030
+Then to count.
+
+158
+00:09:57,040 --> 00:10:00,210
+Days from today is.
+
+159
+00:10:00,930 --> 00:10:02,070
+And else.
+
+160
+00:10:08,240 --> 00:10:10,220
+Count days.
+
+161
+00:10:11,600 --> 00:10:13,280
+A goal was.
+
+162
+00:10:15,060 --> 00:10:16,350
+Not like this.
+
+163
+00:10:16,740 --> 00:10:17,490
+All right.
+
+164
+00:10:17,490 --> 00:10:20,580
+So Pradier took care of formatting it for us.
+
+165
+00:10:21,510 --> 00:10:23,940
+So it's at least a little bit more readable.
+
+166
+00:10:25,710 --> 00:10:26,980
+So that works.
+
+167
+00:10:27,000 --> 00:10:29,340
+Five is here.
+
+168
+00:10:29,340 --> 00:10:31,350
+We're missing the space.
+
+169
+00:10:32,070 --> 00:10:33,540
+And now for the past.
+
+170
+00:10:34,450 --> 00:10:37,000
+So minus four days ago was.
+
+171
+00:10:37,890 --> 00:10:43,410
+So let's quickly do a math dot absolute here.
+
+172
+00:10:45,320 --> 00:10:47,110
+And yeah, that fixes it.
+
+173
+00:10:47,120 --> 00:10:50,060
+So we have now this main counter working.
+
+174
+00:10:50,270 --> 00:10:54,650
+So basically this part here is working and now let's worry about the step.
+
+175
+00:10:55,430 --> 00:10:58,070
+And the step is going to be quite similar.
+
+176
+00:11:00,580 --> 00:11:01,750
+So const.
+
+177
+00:11:02,360 --> 00:11:04,100
+Step and set.
+
+178
+00:11:05,000 --> 00:11:06,640
+Step into here.
+
+179
+00:11:06,650 --> 00:11:12,470
+I need to learn how to write step apparently, and then use state again.
+
+180
+00:11:12,470 --> 00:11:14,800
+And here the step by default is one.
+
+181
+00:11:14,810 --> 00:11:20,240
+So because by default, when we click here, we just want the counter to go up by one.
+
+182
+00:11:21,640 --> 00:11:22,290
+All right.
+
+183
+00:11:22,290 --> 00:11:27,690
+And now we can just like copy paste this because it's going to look very similar.
+
+184
+00:11:28,730 --> 00:11:31,460
+But here, then we have the step.
+
+185
+00:11:32,800 --> 00:11:39,400
+Then here also the step and here also set step in both.
+
+186
+00:11:40,260 --> 00:11:41,670
+These places.
+
+187
+00:11:42,560 --> 00:11:43,580
+So let's see.
+
+188
+00:11:43,880 --> 00:11:46,280
+And yes, that's working.
+
+189
+00:11:46,430 --> 00:11:52,070
+However, of course, if we now click here, then that step is not being applied here.
+
+190
+00:11:52,070 --> 00:11:56,480
+So we are still simply adding one or subtracting one.
+
+191
+00:11:57,090 --> 00:12:00,030
+So how do we now put these two together?
+
+192
+00:12:00,360 --> 00:12:06,170
+Well, as I was just saying, by default, we are just subtracting or adding one.
+
+193
+00:12:06,180 --> 00:12:07,970
+But that's no longer what we want.
+
+194
+00:12:07,980 --> 00:12:11,670
+Instead, we want to add or subtract the step.
+
+195
+00:12:12,400 --> 00:12:14,260
+So just replace the one here.
+
+196
+00:12:16,250 --> 00:12:17,060
+Step.
+
+197
+00:12:18,120 --> 00:12:19,470
+And.
+
+198
+00:12:20,380 --> 00:12:22,930
+Yes, that's working.
+
+199
+00:12:25,330 --> 00:12:26,170
+Nice.
+
+200
+00:12:27,420 --> 00:12:29,460
+And we can even go negative here.
+
+201
+00:12:29,550 --> 00:12:33,420
+I think maybe we should change that, but never mind.
+
+202
+00:12:33,570 --> 00:12:34,680
+That's too much work.
+
+203
+00:12:34,680 --> 00:12:38,100
+So now if we add three, we are actually going into the past.
+
+204
+00:12:39,160 --> 00:12:40,480
+But yeah, that's no problem.
+
+205
+00:12:40,840 --> 00:12:41,470
+Great.
+
+206
+00:12:41,470 --> 00:12:43,960
+So that wraps up this challenge.
+
+207
+00:12:43,960 --> 00:12:48,530
+It works exactly as what we had set out to build.
+
+208
+00:12:48,550 --> 00:12:51,070
+So hopefully you had some fun with this.
+
+209
+00:12:51,100 --> 00:12:53,920
+Hopefully you also did have some success.
+
+210
+00:12:53,920 --> 00:12:56,830
+And so, yeah, let's keep going in this section.
+
+211
+00:12:56,830 --> 00:13:03,550
+And actually we will just in the next lecture, create a brand new, very, very nice project.
+
+212
+00:13:03,550 --> 00:13:06,340
+So I hope to see you there as soon as possible.

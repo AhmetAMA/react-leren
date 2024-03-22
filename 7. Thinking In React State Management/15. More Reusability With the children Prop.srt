@@ -1,0 +1,503 @@
+1
+00:00:00,900 --> 00:00:07,170
+Let's now build another reusable component by leveraging the children prop once again.
+
+2
+00:00:08,340 --> 00:00:09,290
+At this time.
+
+3
+00:00:09,290 --> 00:00:13,040
+Let's say that we wanted a component to display a message.
+
+4
+00:00:13,040 --> 00:00:17,580
+And so that message will always be this paragraph element.
+
+5
+00:00:17,600 --> 00:00:21,180
+It will also always contain this step here.
+
+6
+00:00:21,200 --> 00:00:24,440
+For example, in an H three element.
+
+7
+00:00:25,920 --> 00:00:29,280
+And then it will contain in an H three element.
+
+8
+00:00:29,520 --> 00:00:30,720
+So like this.
+
+9
+00:00:30,810 --> 00:00:33,610
+And then it will contain something that we pass in.
+
+10
+00:00:33,630 --> 00:00:37,620
+So some content such as this message right here.
+
+11
+00:00:38,660 --> 00:00:44,900
+So let's once again use the children prop in order to create such a component.
+
+12
+00:00:46,110 --> 00:00:48,690
+So this component I'm going to call.
+
+13
+00:00:49,390 --> 00:00:51,460
+The step message.
+
+14
+00:00:52,690 --> 00:00:54,280
+So step message.
+
+15
+00:00:56,910 --> 00:00:58,290
+And then I will.
+
+16
+00:00:58,290 --> 00:01:00,180
+For now, just copy this.
+
+17
+00:01:03,200 --> 00:01:04,820
+The sole copy, all of this.
+
+18
+00:01:05,060 --> 00:01:12,950
+And so, as I said, we want basically always to display the current step and then here whatever content
+
+19
+00:01:12,950 --> 00:01:14,030
+that we get.
+
+20
+00:01:14,210 --> 00:01:17,380
+So we need to receive two props here.
+
+21
+00:01:17,390 --> 00:01:19,370
+First is this step.
+
+22
+00:01:21,660 --> 00:01:29,130
+And then again, the children prop which each component remember automatically receives as soon as we
+
+23
+00:01:29,130 --> 00:01:34,290
+pass in some content between the opening and the closing tag when we call.
+
+24
+00:01:34,320 --> 00:01:36,330
+So when we use the component.
+
+25
+00:01:37,840 --> 00:01:39,310
+So now we got the step.
+
+26
+00:01:39,310 --> 00:01:45,010
+And then right after that step, let's simply display whatever children that we receive.
+
+27
+00:01:45,830 --> 00:01:51,290
+So this part here is then that empty hole that we talked about in the last lecture.
+
+28
+00:01:51,290 --> 00:01:56,150
+And this empty hole can then, of course be filled with whatever we pass in.
+
+29
+00:01:56,150 --> 00:02:02,900
+And again, whatever we pass in between the opening and the closing tag of step message.
+
+30
+00:02:04,390 --> 00:02:09,940
+So here in the button, that whole was basically all the content of the button.
+
+31
+00:02:09,940 --> 00:02:14,500
+So the button here only displays exactly what was passed in.
+
+32
+00:02:14,500 --> 00:02:18,880
+But here we will also in addition, always display this part.
+
+33
+00:02:18,910 --> 00:02:21,940
+So the H3 with the step itself.
+
+34
+00:02:23,510 --> 00:02:24,200
+Okay.
+
+35
+00:02:24,200 --> 00:02:26,050
+And now let's.
+
+36
+00:02:26,720 --> 00:02:27,710
+Where is that?
+
+37
+00:02:28,720 --> 00:02:29,220
+Oh, yeah.
+
+38
+00:02:29,230 --> 00:02:33,970
+So let's now replace this message right here with this.
+
+39
+00:02:34,270 --> 00:02:35,050
+Message.
+
+40
+00:02:37,150 --> 00:02:42,100
+Now the step, of course, we have to pass in just like any other prop.
+
+41
+00:02:44,080 --> 00:02:44,880
+Not span.
+
+42
+00:02:45,610 --> 00:02:46,270
+Step.
+
+43
+00:02:48,060 --> 00:02:48,740
+Okay.
+
+44
+00:02:48,740 --> 00:02:53,660
+And now here, between the opening and closing tag, we basically define.
+
+45
+00:02:54,680 --> 00:02:56,030
+Dear children prop.
+
+46
+00:02:57,050 --> 00:02:59,900
+So this year will then become the children prop.
+
+47
+00:02:59,900 --> 00:03:02,390
+And if you get rid of all this.
+
+48
+00:03:03,270 --> 00:03:04,860
+Then let's see what happens.
+
+49
+00:03:05,570 --> 00:03:07,880
+Well, nothing really happened.
+
+50
+00:03:08,740 --> 00:03:10,310
+Uh, of course.
+
+51
+00:03:10,580 --> 00:03:17,570
+I mean, we didn't really return anything here, so we just wrote some JS, but we didn't return it.
+
+52
+00:03:17,600 --> 00:03:25,760
+We also get some warning here that the H3 cannot be inside of a P, so let's then replace this P just
+
+53
+00:03:25,760 --> 00:03:26,540
+with a div.
+
+54
+00:03:29,210 --> 00:03:30,170
+Give it a save.
+
+55
+00:03:30,170 --> 00:03:32,240
+And there it is.
+
+56
+00:03:32,270 --> 00:03:33,380
+Beautiful.
+
+57
+00:03:34,210 --> 00:03:36,280
+So it always displays the current step.
+
+58
+00:03:36,280 --> 00:03:40,600
+And of course, the message that we had before because we passed that in.
+
+59
+00:03:41,850 --> 00:03:42,750
+Right here.
+
+60
+00:03:42,750 --> 00:03:46,530
+And so that is exactly what we had before as well.
+
+61
+00:03:46,530 --> 00:03:50,310
+And now, of course, we could reuse this anywhere we want it.
+
+62
+00:03:51,130 --> 00:03:58,330
+So let's say that here after the steps, we want it somewhere else in the app also to have a step message.
+
+63
+00:03:59,040 --> 00:04:01,260
+Let's say step number one.
+
+64
+00:04:02,730 --> 00:04:05,600
+And then here, maybe the content is passe.
+
+65
+00:04:06,290 --> 00:04:07,580
+In content.
+
+66
+00:04:09,050 --> 00:04:12,740
+Let's do another paragraph with some emoji here.
+
+67
+00:04:13,400 --> 00:04:16,430
+It does not matter at all what we have here.
+
+68
+00:04:18,480 --> 00:04:23,940
+And so then here we have step one like this, and we can do as many as we want.
+
+69
+00:04:24,150 --> 00:04:26,070
+So let's copy paste that.
+
+70
+00:04:26,250 --> 00:04:28,260
+Let's say, for example, step two.
+
+71
+00:04:30,710 --> 00:04:31,550
+Read.
+
+72
+00:04:33,070 --> 00:04:35,200
+Children prop.
+
+73
+00:04:36,740 --> 00:04:38,780
+That, then maybe some other emoji.
+
+74
+00:04:40,200 --> 00:04:41,280
+Give it a safe.
+
+75
+00:04:41,310 --> 00:04:48,000
+And so now we have again created a reusable component here that we can use anywhere in our application
+
+76
+00:04:48,000 --> 00:04:50,430
+and give it any content that we want.
+
+77
+00:04:50,430 --> 00:04:56,490
+And it will always, as you see, displayed this step here with the number that we gave it and then
+
+78
+00:04:56,490 --> 00:04:59,630
+whatever content that we passed into it.
+
+79
+00:04:59,640 --> 00:05:02,550
+So into the component itself.
+
+80
+00:05:05,780 --> 00:05:07,550
+Let's come back here and here.
+
+81
+00:05:07,550 --> 00:05:11,840
+I just thought that maybe we could use our button again.
+
+82
+00:05:12,770 --> 00:05:13,790
+So why not?
+
+83
+00:05:15,180 --> 00:05:20,130
+And then it makes even more sense to have these different props because now we can.
+
+84
+00:05:20,870 --> 00:05:23,030
+Basically customize them in a different way.
+
+85
+00:05:24,570 --> 00:05:30,180
+So let's say here we wanted a different background color and a different text color.
+
+86
+00:05:30,900 --> 00:05:32,400
+These should be strings.
+
+87
+00:05:33,600 --> 00:05:34,620
+Like this.
+
+88
+00:05:35,880 --> 00:05:39,480
+And we're missing the onClick event handler.
+
+89
+00:05:39,600 --> 00:05:42,990
+And so here, let's just define an inline function.
+
+90
+00:05:43,320 --> 00:05:47,010
+And the emphasis is, again, on defining a function.
+
+91
+00:05:47,010 --> 00:05:50,850
+So here we need to pass in a function, not call a function.
+
+92
+00:05:51,600 --> 00:05:54,820
+Let's just alert something here.
+
+93
+00:05:54,840 --> 00:05:56,130
+It doesn't really matter.
+
+94
+00:05:56,130 --> 00:05:59,430
+So let's say learn how.
+
+95
+00:05:59,980 --> 00:06:02,800
+Two, and then we can just.
+
+96
+00:06:04,420 --> 00:06:05,620
+Use this here.
+
+97
+00:06:06,640 --> 00:06:10,900
+Just so that it's related to each of the steps.
+
+98
+00:06:12,260 --> 00:06:14,150
+So we opened the button.
+
+99
+00:06:14,180 --> 00:06:18,530
+Then we have the closing tag, and now we can pass whatever we want in here.
+
+100
+00:06:20,390 --> 00:06:25,280
+And of course, this thing that we pass can also just be regular text.
+
+101
+00:06:26,470 --> 00:06:27,790
+So I'll give it a save.
+
+102
+00:06:27,790 --> 00:06:30,100
+And there is our button.
+
+103
+00:06:31,530 --> 00:06:32,610
+It still works.
+
+104
+00:06:32,610 --> 00:06:37,650
+So we are successfully passing in the onClick handler and then using it.
+
+105
+00:06:37,830 --> 00:06:43,380
+The styling looks a little bit off, but I guess that's because I styled those one here.
+
+106
+00:06:44,310 --> 00:06:46,620
+Uh, well, let's see, actually.
+
+107
+00:06:47,680 --> 00:06:49,600
+Just to make sure there's nothing wrong.
+
+108
+00:06:52,350 --> 00:06:52,710
+Now.
+
+109
+00:06:52,710 --> 00:06:58,920
+In fact, these buttons get these styles because they are a children of some element with the buttons
+
+110
+00:06:58,920 --> 00:06:59,700
+class.
+
+111
+00:07:01,880 --> 00:07:02,120
+No.
+
+112
+00:07:02,120 --> 00:07:02,810
+Right.
+
+113
+00:07:02,930 --> 00:07:04,440
+But that doesn't really matter.
+
+114
+00:07:04,460 --> 00:07:08,870
+We could of course, wrap this in a div with the class of.
+
+115
+00:07:09,480 --> 00:07:15,750
+Buttons that might work, or maybe that will then mess up some other styling.
+
+116
+00:07:15,900 --> 00:07:20,040
+Well, that didn't really work, but also because its buttons.
+
+117
+00:07:21,170 --> 00:07:21,650
+Yeah.
+
+118
+00:07:21,650 --> 00:07:22,180
+Nice.
+
+119
+00:07:22,190 --> 00:07:23,780
+That looks better, actually.
+
+120
+00:07:23,990 --> 00:07:30,860
+And so with this, we can see that we were really able to customize once again our button here, some
+
+121
+00:07:30,860 --> 00:07:38,020
+parts with normal props like these three, and then the content itself here with the children prop.
+
+122
+00:07:38,030 --> 00:07:44,000
+So if we always just want to pass in a string, this could of course also be a normal prop.
+
+123
+00:07:44,000 --> 00:07:51,950
+But since sometimes we want some other content like here with some actual JS like this span element
+
+124
+00:07:51,950 --> 00:07:59,300
+here, well then we should really take advantage of the children prop and now to really drive this message
+
+125
+00:07:59,300 --> 00:08:04,460
+home so that you really understand how to work with this important children prop.
+
+126
+00:08:04,490 --> 00:08:10,220
+Let's go back to our accordion component exercise and use it there as well.

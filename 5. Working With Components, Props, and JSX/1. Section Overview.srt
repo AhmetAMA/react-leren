@@ -1,0 +1,35 @@
+1
+00:00:00,840 --> 00:00:09,330
+In this section, we're going to explore three core concepts of building React apps, components, props
+
+2
+00:00:09,330 --> 00:00:18,510
+and JS X, so we'll learn how components are the building blocks of React applications and how to create
+
+3
+00:00:18,510 --> 00:00:22,920
+and reuse them using the powerful JS syntax.
+
+4
+00:00:23,040 --> 00:00:30,540
+We're also going to share data between components using props and learn about rendering lists, conditional
+
+5
+00:00:30,540 --> 00:00:36,570
+rendering and more, all while building this first beautiful project.
+
+6
+00:00:37,080 --> 00:00:44,550
+Along the way, you will start practicing react on your own by building a developer profile card using
+
+7
+00:00:44,550 --> 00:00:46,560
+these fundamental skills.
+
+8
+00:00:46,710 --> 00:00:46,980
+Now.
+
+9
+00:00:47,120 --> 00:00:52,170
+Okay, so let's go start this React journey right now.

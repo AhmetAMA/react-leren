@@ -1,0 +1,615 @@
+1
+00:00:00,920 --> 00:00:06,050
+Of course, let's now use the idea of derived state in practice.
+
+2
+00:00:06,820 --> 00:00:11,210
+And in particular, we now want to calculate our statistics here.
+
+3
+00:00:11,230 --> 00:00:17,440
+So calculating the number of items on the list, how many we already have packed, and then the percentage
+
+4
+00:00:17,440 --> 00:00:18,250
+of that.
+
+5
+00:00:18,550 --> 00:00:25,180
+Now, if we think about these numbers, for example, the number of items in the list, that number
+
+6
+00:00:25,180 --> 00:00:29,710
+can be directly computed from the items array itself.
+
+7
+00:00:29,740 --> 00:00:30,630
+Right?
+
+8
+00:00:30,640 --> 00:00:34,390
+And so derived state is perfect for this.
+
+9
+00:00:34,570 --> 00:00:39,400
+But before we use derived state, I will show you how not to do this.
+
+10
+00:00:41,180 --> 00:00:45,350
+So the way we should not do it is to use state.
+
+11
+00:00:46,160 --> 00:00:51,830
+So let's say we created a piece of state called num items and then set.
+
+12
+00:00:52,450 --> 00:00:53,530
+Num items.
+
+13
+00:00:54,970 --> 00:00:58,540
+And by the way, you don't need to write this code right here.
+
+14
+00:00:58,870 --> 00:00:59,590
+All right.
+
+15
+00:00:59,590 --> 00:01:02,530
+So this is just to show you how not to do it.
+
+16
+00:01:02,740 --> 00:01:06,100
+So initially, we start with zero items.
+
+17
+00:01:06,130 --> 00:01:12,550
+Now, the problem with this is, as I said before, is that we now have to also update this piece of
+
+18
+00:01:12,550 --> 00:01:13,240
+state.
+
+19
+00:01:13,540 --> 00:01:20,230
+So whenever, for example, one new item is added, besides setting the items, we also need to make
+
+20
+00:01:20,230 --> 00:01:23,050
+sure to increase this number here.
+
+21
+00:01:23,230 --> 00:01:30,520
+So set num items and then the number and then num plus one.
+
+22
+00:01:30,730 --> 00:01:35,710
+So with this, we would ensure that these two pieces of state stay in sync.
+
+23
+00:01:35,890 --> 00:01:40,000
+But that's, of course, a lot of additional work that we might forget to do.
+
+24
+00:01:40,000 --> 00:01:46,390
+And also it can cause multiple rerenders where at least one of them here is unnecessary.
+
+25
+00:01:46,420 --> 00:01:49,830
+Now in React 18, these should be batched.
+
+26
+00:01:49,840 --> 00:01:53,820
+So these two should happen at the same time, but more about that later.
+
+27
+00:01:53,830 --> 00:01:56,430
+But in any case, this is a terrible idea.
+
+28
+00:01:56,450 --> 00:02:04,610
+So instead we can just define a new variable called also num items, but we can simply derive it so
+
+29
+00:02:04,610 --> 00:02:08,000
+we can calculate it based on the items array.
+
+30
+00:02:08,150 --> 00:02:12,110
+So that simply items dot length.
+
+31
+00:02:12,320 --> 00:02:21,230
+And so this works because as soon as the items are updated, so as soon as this piece of state is updated,
+
+32
+00:02:21,230 --> 00:02:23,240
+the component will rerender.
+
+33
+00:02:23,240 --> 00:02:29,540
+And when the component rerenders, that means that the function here is called again, and therefore
+
+34
+00:02:29,570 --> 00:02:32,570
+then this piece of code here will run again.
+
+35
+00:02:32,570 --> 00:02:37,160
+And so if a new item has been added, then now the item state.
+
+36
+00:02:37,160 --> 00:02:41,780
+So this array is different and therefore the length will also be different.
+
+37
+00:02:41,900 --> 00:02:48,470
+Now this num items variable, we actually don't need it right here in the app component, but in the
+
+38
+00:02:48,470 --> 00:02:49,990
+stats component.
+
+39
+00:02:50,000 --> 00:02:51,440
+So this one right here.
+
+40
+00:02:51,680 --> 00:02:53,920
+So we have two options now.
+
+41
+00:02:53,930 --> 00:02:59,090
+The first one is to keep num items here and pass it as a prop into stats.
+
+42
+00:02:59,090 --> 00:03:03,800
+But I think what makes more sense is to actually calculate this state here.
+
+43
+00:03:03,980 --> 00:03:11,780
+So this derived state inside the stats itself also because we will actually calculate three values.
+
+44
+00:03:11,780 --> 00:03:18,020
+And so if we were to calculate them here, then we would have to pass three props, which doesn't make
+
+45
+00:03:18,020 --> 00:03:18,990
+a lot of sense.
+
+46
+00:03:19,010 --> 00:03:24,740
+So let's just cut that from here and paste it here into the items.
+
+47
+00:03:25,130 --> 00:03:28,670
+Well, actually, no, that's not correct.
+
+48
+00:03:28,790 --> 00:03:30,620
+We want to paste it right here.
+
+49
+00:03:30,620 --> 00:03:35,090
+But now, as soon as I save this, we will get an error, right?
+
+50
+00:03:35,090 --> 00:03:38,770
+And so the reason for that is that now, of course, we don't know.
+
+51
+00:03:38,780 --> 00:03:43,460
+So this stats component doesn't know anything about what this items is.
+
+52
+00:03:43,760 --> 00:03:48,470
+So we now have another component that needs the item state.
+
+53
+00:03:48,910 --> 00:03:51,940
+So we just pass it down as a prop.
+
+54
+00:03:54,760 --> 00:03:58,630
+Just like we passed it also into the packing list.
+
+55
+00:03:58,870 --> 00:04:02,080
+Now, of course, we need to accept that prop down here.
+
+56
+00:04:05,870 --> 00:04:07,670
+And so this solves the problem.
+
+57
+00:04:07,670 --> 00:04:11,090
+And so here we can now already use that value.
+
+58
+00:04:12,130 --> 00:04:15,970
+So you have num items on your list.
+
+59
+00:04:16,760 --> 00:04:18,980
+And so, yeah, indeed, right now that's zero.
+
+60
+00:04:18,980 --> 00:04:26,090
+But if we add some socks here and maybe a shirt, then you see as soon as we add new items here, the
+
+61
+00:04:26,090 --> 00:04:26,980
+array grows.
+
+62
+00:04:26,990 --> 00:04:30,620
+And so then this number here also gets updated.
+
+63
+00:04:31,400 --> 00:04:34,130
+So watch what happens when I hit enter.
+
+64
+00:04:34,310 --> 00:04:37,820
+And immediately this changed from 2 to 3.
+
+65
+00:04:38,180 --> 00:04:42,230
+Let's just quickly remove those console logs there.
+
+66
+00:04:44,790 --> 00:04:46,230
+So that's much better.
+
+67
+00:04:46,230 --> 00:04:49,680
+And so now let's derive our other pieces of state.
+
+68
+00:04:49,920 --> 00:04:57,090
+So of course, this one here, so the ones that are already packed and the percentage both depend on
+
+69
+00:04:57,090 --> 00:04:59,070
+the items themselves.
+
+70
+00:05:00,150 --> 00:05:02,730
+So number of packed.
+
+71
+00:05:03,670 --> 00:05:10,480
+Is simply the items array filtered by the items that are already packed.
+
+72
+00:05:11,160 --> 00:05:13,740
+So item dot packed.
+
+73
+00:05:14,430 --> 00:05:15,690
+So that's a new array.
+
+74
+00:05:15,720 --> 00:05:18,840
+And so then we can take the length of that one.
+
+75
+00:05:19,750 --> 00:05:22,390
+So you have already packed number.
+
+76
+00:05:24,120 --> 00:05:25,110
+Of pact.
+
+77
+00:05:25,110 --> 00:05:27,330
+And so that immediately becomes zero.
+
+78
+00:05:27,330 --> 00:05:31,860
+But then when we mark one of them as pact are beautiful.
+
+79
+00:05:33,430 --> 00:05:34,300
+So two.
+
+80
+00:05:34,300 --> 00:05:36,250
+And then all of them.
+
+81
+00:05:38,250 --> 00:05:39,060
+Great.
+
+82
+00:05:39,300 --> 00:05:43,800
+And now, finally, just the percentage, which should be pretty easy.
+
+83
+00:05:46,470 --> 00:05:53,970
+So that's just the number of packed divided by the number of items times 100.
+
+84
+00:05:55,150 --> 00:05:58,510
+And then let's grab all of that and round it.
+
+85
+00:05:59,790 --> 00:06:02,190
+So math dot round.
+
+86
+00:06:02,940 --> 00:06:05,130
+And so here then we can replace that.
+
+87
+00:06:10,000 --> 00:06:12,090
+Nice that also works.
+
+88
+00:06:12,100 --> 00:06:14,770
+And now it hits 100%.
+
+89
+00:06:14,770 --> 00:06:20,830
+And in that case, so whenever we have 100%, I would like to display an entirely different message
+
+90
+00:06:20,830 --> 00:06:21,280
+here.
+
+91
+00:06:21,280 --> 00:06:24,400
+So telling them basically that they are done.
+
+92
+00:06:24,730 --> 00:06:26,860
+So watch what happens here in the demo.
+
+93
+00:06:27,340 --> 00:06:28,450
+Yeah, that's it.
+
+94
+00:06:28,780 --> 00:06:30,370
+So let's write that here.
+
+95
+00:06:30,370 --> 00:06:33,730
+And so for that we need some more conditional rendering.
+
+96
+00:06:34,410 --> 00:06:40,710
+So actually, we will just conditionally define what is here inside this element.
+
+97
+00:06:41,460 --> 00:06:50,520
+So let's enter our JavaScript mode and say that whenever the percentage is equal to 100, then the content
+
+98
+00:06:50,520 --> 00:06:52,620
+should be this string right here.
+
+99
+00:06:53,790 --> 00:06:55,890
+You got everything?
+
+100
+00:06:57,620 --> 00:06:59,180
+Ready to.
+
+101
+00:07:00,000 --> 00:07:00,570
+Go.
+
+102
+00:07:01,360 --> 00:07:04,090
+Now let's add a plain emoji here as well.
+
+103
+00:07:06,690 --> 00:07:08,540
+And now else.
+
+104
+00:07:09,820 --> 00:07:10,660
+And so.
+
+105
+00:07:11,540 --> 00:07:12,800
+Let's move that here.
+
+106
+00:07:12,800 --> 00:07:17,900
+And so now instead of this text that we had here, we now need a string.
+
+107
+00:07:18,110 --> 00:07:20,780
+And so let's make a template literal here.
+
+108
+00:07:20,780 --> 00:07:24,980
+And then we need to add, of course, these.
+
+109
+00:07:28,050 --> 00:07:33,750
+And in case we didn't want to create this template literal, we could of course also have simply rendered
+
+110
+00:07:33,780 --> 00:07:37,080
+one m for each of these cases.
+
+111
+00:07:37,850 --> 00:07:40,170
+Now this looks not correct.
+
+112
+00:07:40,190 --> 00:07:42,620
+Maybe it's because of this right here.
+
+113
+00:07:46,010 --> 00:07:51,230
+Yeah, but it looks as though it works even though we are in the wrong app.
+
+114
+00:07:51,470 --> 00:07:54,800
+Ah, but here we already have our correct message.
+
+115
+00:07:54,950 --> 00:07:56,850
+Let's uncheck one of those.
+
+116
+00:07:56,870 --> 00:07:59,780
+And now you have three items on your list.
+
+117
+00:08:00,170 --> 00:08:01,160
+Great.
+
+118
+00:08:01,520 --> 00:08:04,910
+Now let's remove this one and this one as well.
+
+119
+00:08:04,910 --> 00:08:07,430
+And so now we have already packed zero.
+
+120
+00:08:07,610 --> 00:08:12,740
+And also in this case, I want to display something else as well.
+
+121
+00:08:12,740 --> 00:08:14,490
+So also another message.
+
+122
+00:08:14,510 --> 00:08:21,020
+So if this is the case, if there are not even any items in the array, then it's not even necessary
+
+123
+00:08:21,020 --> 00:08:26,000
+actually to perform all these calculations because they will just be zero anyway.
+
+124
+00:08:26,770 --> 00:08:33,610
+So what I want to do now here is to show you a good use case of an early return as conditional rendering.
+
+125
+00:08:33,940 --> 00:08:38,110
+So what we're going to do is to say, if there is no.
+
+126
+00:08:39,020 --> 00:08:39,890
+Items.
+
+127
+00:08:41,140 --> 00:08:42,280
+Dot length.
+
+128
+00:08:42,980 --> 00:08:44,540
+Then simply return.
+
+129
+00:08:45,230 --> 00:08:51,440
+So let's return a paragraph with the class of footer.
+
+130
+00:08:52,070 --> 00:08:56,840
+And then here also an M, and then start.
+
+131
+00:08:57,710 --> 00:09:01,190
+Adding some items to your.
+
+132
+00:09:02,090 --> 00:09:03,110
+Packing list.
+
+133
+00:09:03,380 --> 00:09:07,070
+And again, some nice emoji here, like this rocket.
+
+134
+00:09:10,000 --> 00:09:16,930
+And so now let's reload this here so that we then have no items.
+
+135
+00:09:16,930 --> 00:09:18,760
+And so, yeah, here we go.
+
+136
+00:09:18,880 --> 00:09:22,720
+Now here the class name is not footer but stats.
+
+137
+00:09:23,050 --> 00:09:25,870
+So basically the same as here.
+
+138
+00:09:26,020 --> 00:09:28,000
+And so yeah, then we got this.
+
+139
+00:09:28,150 --> 00:09:34,270
+So this text that we defined right here, so this paragraph and again that's because in this case it
+
+140
+00:09:34,270 --> 00:09:37,180
+doesn't even make sense to then do these calculations.
+
+141
+00:09:37,180 --> 00:09:42,820
+So if there are no elements anyway in the array, then don't even bother with all of this here.
+
+142
+00:09:43,640 --> 00:09:49,700
+Now, in this case, of course, it would have been no problem to still do these calculations as they
+
+143
+00:09:49,700 --> 00:09:54,680
+are not a lot of work and we could then have some conditional rendering in here.
+
+144
+00:09:54,680 --> 00:09:59,810
+But this was just to show you that the option of an early return is sometimes also nice.
+
+145
+00:09:59,810 --> 00:10:03,320
+So it's also quite legible here, if you ask me.
+
+146
+00:10:03,320 --> 00:10:09,350
+So when you arrive at this component, maybe you have never seen it before because one of your coworkers
+
+147
+00:10:09,350 --> 00:10:17,420
+wrote it, then you can right away see that if there are no items, well then just return this and in
+
+148
+00:10:17,420 --> 00:10:22,070
+all other cases then perform the rest of the logic of the component.
+
+149
+00:10:22,490 --> 00:10:23,360
+Great.
+
+150
+00:10:23,360 --> 00:10:25,310
+So hopefully that made sense.
+
+151
+00:10:25,310 --> 00:10:32,540
+And so next up, let's see another use case of derived state, which will be to implement this sorting
+
+152
+00:10:32,540 --> 00:10:33,860
+functionality here.
+
+153
+00:10:34,130 --> 00:10:37,790
+So that will make this application look even more real life.
+
+154
+00:10:37,790 --> 00:10:40,220
+And so I think this is going to be really fun.

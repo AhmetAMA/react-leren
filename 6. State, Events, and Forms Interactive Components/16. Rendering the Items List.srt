@@ -1,0 +1,487 @@
+1
+00:00:00,840 --> 00:00:07,980
+Remember how I said earlier how rendering lists is one of the most common tasks in React development?
+
+2
+00:00:08,190 --> 00:00:11,580
+Well, this application is no exception.
+
+3
+00:00:11,580 --> 00:00:15,720
+And so let's now render the list of packing items.
+
+4
+00:00:16,840 --> 00:00:26,200
+And first of all, let's go to our CSS file because that's again, where I pasted this array of initial
+
+5
+00:00:26,200 --> 00:00:26,890
+items.
+
+6
+00:00:27,700 --> 00:00:29,680
+So let's grab that.
+
+7
+00:00:31,980 --> 00:00:36,720
+We can also close Index.js and I will paste it here at the very top.
+
+8
+00:00:39,850 --> 00:00:44,620
+So you see that we have once again an array with a few objects.
+
+9
+00:00:44,620 --> 00:00:49,000
+And in this case, each object describes one item to be packed.
+
+10
+00:00:49,090 --> 00:00:52,510
+So each of them has an ID, a description quantity.
+
+11
+00:00:52,510 --> 00:00:58,780
+And here the packed property, which tells us whether this one has been packed or not.
+
+12
+00:00:59,110 --> 00:01:03,130
+So based on this, we will then display the item a little bit differently.
+
+13
+00:01:03,460 --> 00:01:06,580
+So here well, here we don't have any.
+
+14
+00:01:06,970 --> 00:01:08,620
+So here in the demo app.
+
+15
+00:01:09,320 --> 00:01:15,890
+So you see right now it's not packed, but if it is packed, then you see it is like strike through.
+
+16
+00:01:17,360 --> 00:01:23,660
+Okay, so let's now take these items here and render them as a list into our UI.
+
+17
+00:01:24,980 --> 00:01:29,150
+So as the name says, we're going to do that in the packing list.
+
+18
+00:01:29,990 --> 00:01:36,830
+So first of all, let's again use semantic HTML and convert this div into a Ul.
+
+19
+00:01:37,480 --> 00:01:39,790
+So into an unordered list.
+
+20
+00:01:41,830 --> 00:01:42,550
+All right.
+
+21
+00:01:42,550 --> 00:01:49,540
+And then immediately here we enter JavaScript mode because remember how we render lists in React.
+
+22
+00:01:49,690 --> 00:01:55,120
+Well, we simply use the map method that we already know on the array.
+
+23
+00:01:56,300 --> 00:02:03,140
+So initial items and later on we will, of course, then when we make this dynamic, use another array
+
+24
+00:02:03,140 --> 00:02:03,590
+here.
+
+25
+00:02:03,590 --> 00:02:07,070
+But again, for now, here we just want to render something.
+
+26
+00:02:07,070 --> 00:02:08,630
+So just to make this work.
+
+27
+00:02:10,850 --> 00:02:11,450
+Okay.
+
+28
+00:02:11,450 --> 00:02:17,510
+Then inside the map method, each of the elements will be, let's say an item.
+
+29
+00:02:19,570 --> 00:02:20,170
+All right.
+
+30
+00:02:20,170 --> 00:02:24,580
+And then for each item, what we want to render is an item component.
+
+31
+00:02:25,170 --> 00:02:30,330
+So let's immediately write that here and we will then create the item component in a minute.
+
+32
+00:02:31,240 --> 00:02:36,160
+So item and then we pass in as a prop the entire item.
+
+33
+00:02:37,920 --> 00:02:41,100
+So item and then item again.
+
+34
+00:02:41,910 --> 00:02:43,860
+Let's close this here.
+
+35
+00:02:44,160 --> 00:02:46,710
+So you see we have a lot of items here.
+
+36
+00:02:47,130 --> 00:02:53,490
+So the name of the component, the name of the prop, and then here, the object itself, which remember,
+
+37
+00:02:53,490 --> 00:02:59,250
+is the argument of this callback function in each iteration over this array.
+
+38
+00:02:59,400 --> 00:03:01,830
+So nothing new here at this point, I hope.
+
+39
+00:03:02,400 --> 00:03:03,690
+So I'll give this a save.
+
+40
+00:03:03,720 --> 00:03:08,670
+But of course, item is not defined, so let's quickly take care of that.
+
+41
+00:03:09,280 --> 00:03:11,620
+And now here we need to accept the props.
+
+42
+00:03:12,420 --> 00:03:13,230
+Right.
+
+43
+00:03:13,440 --> 00:03:15,420
+So we can do it like this.
+
+44
+00:03:15,450 --> 00:03:16,380
+Remember?
+
+45
+00:03:16,380 --> 00:03:23,160
+But even better, we can immediately destructure this and then give it the name here of the prop that
+
+46
+00:03:23,160 --> 00:03:25,470
+we passed in, which is item.
+
+47
+00:03:25,470 --> 00:03:27,420
+And again, it could be anything.
+
+48
+00:03:27,420 --> 00:03:32,430
+It could be object like OBJ or X or anything.
+
+49
+00:03:32,430 --> 00:03:37,500
+But yeah, it's easier to just call it item here because that's what it is.
+
+50
+00:03:37,530 --> 00:03:40,590
+It's just a pecking item, so to say.
+
+51
+00:03:42,090 --> 00:03:46,620
+So here this item should be now an li element.
+
+52
+00:03:46,620 --> 00:03:54,660
+So a list item because that's usually what direct children of the UI or of the Ul element should be.
+
+53
+00:03:54,660 --> 00:04:00,180
+And then just to start, just to see if it's working, let's simply render.
+
+54
+00:04:01,050 --> 00:04:02,670
+I think it's called description.
+
+55
+00:04:02,820 --> 00:04:04,350
+Yes, that's it.
+
+56
+00:04:04,560 --> 00:04:06,240
+We'll just copy that actually.
+
+57
+00:04:06,450 --> 00:04:09,630
+So item dot description, give it a save.
+
+58
+00:04:09,780 --> 00:04:11,430
+And there it is.
+
+59
+00:04:11,610 --> 00:04:13,950
+So we have passports and socks.
+
+60
+00:04:13,950 --> 00:04:16,800
+Now the styling here is a little bit off.
+
+61
+00:04:17,190 --> 00:04:23,190
+And the reason for that is that here I actually did a mistake in the HTML.
+
+62
+00:04:23,970 --> 00:04:27,540
+So here let's actually create a div.
+
+63
+00:04:29,100 --> 00:04:33,690
+And then it's this div that is supposed to have the list class.
+
+64
+00:04:35,330 --> 00:04:36,170
+All right.
+
+65
+00:04:36,170 --> 00:04:42,110
+And the reason for that is that later on, we will have another element in here for these filters.
+
+66
+00:04:42,200 --> 00:04:46,010
+So we will have a div for these two things down here.
+
+67
+00:04:47,920 --> 00:04:48,490
+All right.
+
+68
+00:04:48,490 --> 00:04:53,770
+So, of course, for me, that's easy to see now because I already built the app beforehand.
+
+69
+00:04:53,770 --> 00:04:58,780
+But once you start building your apps on your own, there will be a lot more back and forth, which
+
+70
+00:04:58,810 --> 00:05:03,310
+of course, I cannot do here in this course because then it would take just forever.
+
+71
+00:05:04,820 --> 00:05:05,420
+Okay.
+
+72
+00:05:05,420 --> 00:05:09,190
+But anyway, let's now add some more here.
+
+73
+00:05:09,200 --> 00:05:11,690
+So we don't just want the description.
+
+74
+00:05:11,720 --> 00:05:13,250
+We also want.
+
+75
+00:05:14,710 --> 00:05:17,080
+Uh, this icon here for the leading.
+
+76
+00:05:17,080 --> 00:05:21,580
+And later, we will want this checkbox, but let's leave that for later, actually.
+
+77
+00:05:22,610 --> 00:05:26,390
+So here let's create a span element.
+
+78
+00:05:26,420 --> 00:05:27,800
+So for the text.
+
+79
+00:05:28,500 --> 00:05:30,000
+Let's grab that.
+
+80
+00:05:30,750 --> 00:05:31,890
+Paste that here.
+
+81
+00:05:32,220 --> 00:05:36,210
+And then we also want the item dot.
+
+82
+00:05:37,110 --> 00:05:40,050
+Let's see, it's the item dot quantity.
+
+83
+00:05:40,080 --> 00:05:41,160
+Exactly.
+
+84
+00:05:41,370 --> 00:05:44,100
+So item dot quantity.
+
+85
+00:05:44,250 --> 00:05:52,020
+And notice how sometimes prettier creates like these empty strings here in our JS x so many times this
+
+86
+00:05:52,020 --> 00:05:53,130
+is not necessary.
+
+87
+00:05:53,130 --> 00:05:55,380
+So just get rid of that.
+
+88
+00:05:55,560 --> 00:05:58,290
+And now finally we need that delete button.
+
+89
+00:06:00,670 --> 00:06:07,390
+And for now, we won't attach any event handler here, but we will just place an icon here in the form
+
+90
+00:06:07,390 --> 00:06:08,410
+of an emoji.
+
+91
+00:06:08,680 --> 00:06:10,780
+So maybe like that.
+
+92
+00:06:11,500 --> 00:06:18,010
+So this X right here and again, if you can't make this work, then you can just write the X like this.
+
+93
+00:06:18,760 --> 00:06:20,200
+Or also.
+
+94
+00:06:21,390 --> 00:06:22,170
+Like this.
+
+95
+00:06:22,170 --> 00:06:24,150
+So that would work as well.
+
+96
+00:06:26,430 --> 00:06:27,300
+All right.
+
+97
+00:06:27,300 --> 00:06:31,380
+So this has now been rendered here based off this list.
+
+98
+00:06:31,380 --> 00:06:37,680
+And if we duplicate this and add something else here, like a charger.
+
+99
+00:06:38,690 --> 00:06:41,450
+One charger, then there it is.
+
+100
+00:06:41,480 --> 00:06:45,860
+Now to finish, let's just mark one of them as packed.
+
+101
+00:06:46,860 --> 00:06:51,570
+Make this one true so that we can add some additional styling here.
+
+102
+00:06:51,570 --> 00:06:55,020
+So we want to basically have some strikethrough there.
+
+103
+00:06:56,000 --> 00:06:57,650
+So that's simple stuff.
+
+104
+00:06:58,370 --> 00:07:03,860
+So let's come here to the item and here we will now conditionally add some styling.
+
+105
+00:07:04,250 --> 00:07:11,090
+So instead of conditionally adding a class here, I want to conditionally simply add some style.
+
+106
+00:07:11,120 --> 00:07:16,070
+So let's write style and then it immediately enters JavaScript mode.
+
+107
+00:07:16,100 --> 00:07:21,360
+But now I will not immediately write the object of CSS properties.
+
+108
+00:07:21,380 --> 00:07:29,480
+Instead, let's actually use the ternary operator to decide which object the style should actually receive.
+
+109
+00:07:30,190 --> 00:07:38,290
+So if item is packed and here we don't really need a condition because this is already a boolean.
+
+110
+00:07:38,870 --> 00:07:45,890
+So if it is packed, then we want an object which will contain some CSS for the strikethrough.
+
+111
+00:07:46,190 --> 00:07:52,340
+But if not so, if the item is not packed, then we will want to return this empty object.
+
+112
+00:07:52,340 --> 00:07:55,040
+And so then no styles are going to be applied.
+
+113
+00:07:56,570 --> 00:08:01,040
+So the property that we're looking for is called text.
+
+114
+00:08:02,270 --> 00:08:03,350
+Decoration.
+
+115
+00:08:04,150 --> 00:08:06,400
+And let's set it to line.
+
+116
+00:08:08,700 --> 00:08:10,170
+Through like this.
+
+117
+00:08:10,530 --> 00:08:13,050
+And that worked quite nice.
+
+118
+00:08:14,500 --> 00:08:19,300
+All right, so let's try another one just for fun.
+
+119
+00:08:19,600 --> 00:08:23,770
+And yeah, immediately, you see that it gets strikethrough as well.
+
+120
+00:08:24,450 --> 00:08:30,900
+So this was yet another way of using the ternary operator to conditionally set some style here.
+
+121
+00:08:30,900 --> 00:08:33,630
+So you see that we have a lot of freedom in React.
+
+122
+00:08:33,630 --> 00:08:39,510
+And again, we simply use the JavaScript tools that we already have for this kind of stuff.

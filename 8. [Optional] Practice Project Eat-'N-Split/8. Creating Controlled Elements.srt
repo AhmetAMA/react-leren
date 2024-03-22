@@ -1,0 +1,571 @@
+1
+00:00:00,820 --> 00:00:07,690
+The next step to making our form work is to take the input elements that we already have and make them
+
+2
+00:00:07,690 --> 00:00:13,600
+controlled elements so elements that are entirely controlled by react components.
+
+3
+00:00:14,900 --> 00:00:21,770
+And since we already know how that works as we have done it so many times already, let's get right
+
+4
+00:00:21,770 --> 00:00:22,370
+to it.
+
+5
+00:00:25,670 --> 00:00:28,940
+So the first one is for the bill itself.
+
+6
+00:00:30,000 --> 00:00:31,140
+So said Bill.
+
+7
+00:00:32,920 --> 00:00:42,070
+And we use use state with an empty string and we are using an empty string because these are input text
+
+8
+00:00:42,070 --> 00:00:42,910
+elements.
+
+9
+00:00:43,180 --> 00:00:45,370
+And so this is how it needs to work.
+
+10
+00:00:46,090 --> 00:00:50,410
+Next up, we have one for the expense paid by the user.
+
+11
+00:00:53,760 --> 00:00:57,270
+So let's call this one paid by user.
+
+12
+00:00:58,810 --> 00:01:02,380
+And then set paid by user.
+
+13
+00:01:03,790 --> 00:01:07,480
+Use state again empty.
+
+14
+00:01:07,570 --> 00:01:11,500
+And then also one for this select here.
+
+15
+00:01:12,080 --> 00:01:13,280
+So const.
+
+16
+00:01:14,030 --> 00:01:15,770
+Who is?
+
+17
+00:01:16,770 --> 00:01:18,510
+Paying and said.
+
+18
+00:01:19,360 --> 00:01:21,580
+Who is paying?
+
+19
+00:01:23,500 --> 00:01:24,610
+Use state.
+
+20
+00:01:24,610 --> 00:01:32,290
+And here we start with the default of user, which is one of the values that we have here in our two
+
+21
+00:01:32,290 --> 00:01:33,040
+options.
+
+22
+00:01:33,190 --> 00:01:38,490
+Right now it would be a bit more elegant to use a true false value here.
+
+23
+00:01:38,500 --> 00:01:44,860
+For example, we could call it is paid by user and then that could be either true or false, but that's
+
+24
+00:01:44,860 --> 00:01:49,200
+a little bit difficult to implement with the values coming from here.
+
+25
+00:01:49,210 --> 00:01:52,180
+So we can't really pass true or false here.
+
+26
+00:01:52,270 --> 00:01:53,740
+That doesn't really work.
+
+27
+00:01:53,800 --> 00:01:55,750
+So we just do it like this.
+
+28
+00:01:56,320 --> 00:01:56,920
+Okay.
+
+29
+00:01:56,920 --> 00:02:00,760
+And now once again, we will wire everything up.
+
+30
+00:02:00,760 --> 00:02:03,490
+So I will do it here as fast as I can.
+
+31
+00:02:05,010 --> 00:02:08,310
+And you could even pause the video if you wanted.
+
+32
+00:02:10,980 --> 00:02:12,810
+And just do it yourself.
+
+33
+00:02:13,350 --> 00:02:15,360
+So E dot target.
+
+34
+00:02:16,450 --> 00:02:18,070
+Dot value.
+
+35
+00:02:19,020 --> 00:02:19,770
+Okay.
+
+36
+00:02:19,770 --> 00:02:24,390
+And now why not just copy and paste this here?
+
+37
+00:02:26,830 --> 00:02:31,240
+So value is now paid by user.
+
+38
+00:02:31,240 --> 00:02:32,200
+And then.
+
+39
+00:02:33,010 --> 00:02:37,900
+Said paid by user and the same thing.
+
+40
+00:02:37,900 --> 00:02:39,910
+Well, not here, but.
+
+41
+00:02:40,810 --> 00:02:41,500
+Here.
+
+42
+00:02:42,340 --> 00:02:48,460
+So here it's who is paying and then set who is paying.
+
+43
+00:02:49,060 --> 00:02:50,020
+All right.
+
+44
+00:02:51,110 --> 00:02:52,580
+So let's.
+
+45
+00:02:53,210 --> 00:02:54,560
+Write something here.
+
+46
+00:02:56,620 --> 00:03:04,690
+And then we should see it here in our component tree that the state is exactly what we expected or actually
+
+47
+00:03:04,690 --> 00:03:07,510
+we should convert these two here to numbers.
+
+48
+00:03:09,410 --> 00:03:12,890
+So let's select this one and actually also the next one.
+
+49
+00:03:15,310 --> 00:03:17,440
+So we can do everything at the same time.
+
+50
+00:03:17,890 --> 00:03:20,350
+And if I then reload here.
+
+51
+00:03:25,510 --> 00:03:26,320
+Then.
+
+52
+00:03:26,650 --> 00:03:27,310
+Yeah.
+
+53
+00:03:28,150 --> 00:03:31,480
+Oh, well, only this one has been converted and.
+
+54
+00:03:31,480 --> 00:03:32,380
+Oh, okay.
+
+55
+00:03:32,950 --> 00:03:34,810
+I did a mistake here.
+
+56
+00:03:36,680 --> 00:03:40,400
+So just to see that it's normal that this happens.
+
+57
+00:03:44,110 --> 00:03:46,350
+So I selected the wrong one there.
+
+58
+00:03:46,360 --> 00:03:53,560
+So let's try that one more time, because of course, this is really important that we get numbers here
+
+59
+00:03:53,560 --> 00:03:54,610
+and not strings.
+
+60
+00:03:55,870 --> 00:03:57,400
+And yeah, that's correct.
+
+61
+00:03:57,400 --> 00:04:00,640
+And if I select this one, then it is the friend.
+
+62
+00:04:01,380 --> 00:04:03,810
+But now what about this one here?
+
+63
+00:04:03,900 --> 00:04:06,000
+So why is there no value here?
+
+64
+00:04:06,300 --> 00:04:12,990
+Well, here we actually don't need a state because we cannot write anything here into this field.
+
+65
+00:04:13,690 --> 00:04:21,220
+Also, this expense of the friend can actually easily be computed from the bill value minus the expense
+
+66
+00:04:21,220 --> 00:04:22,990
+of the user himself.
+
+67
+00:04:26,600 --> 00:04:30,380
+So that sounds like derived state, right?
+
+68
+00:04:30,890 --> 00:04:37,570
+And I'm placing it right here after paid by user just so they are in the same order as in the UI.
+
+69
+00:04:37,580 --> 00:04:39,470
+So paid by.
+
+70
+00:04:40,290 --> 00:04:41,070
+Friend.
+
+71
+00:04:42,690 --> 00:04:48,870
+Is simply the build value minus what has been paid by user.
+
+72
+00:04:48,960 --> 00:04:55,080
+But actually, we should be careful with this because in the beginning the bill is just a string, so
+
+73
+00:04:55,080 --> 00:04:56,430
+this doesn't really work.
+
+74
+00:04:56,460 --> 00:04:57,390
+So.
+
+75
+00:04:58,220 --> 00:05:01,190
+Let's first ask if there is a bill.
+
+76
+00:05:01,220 --> 00:05:04,380
+Well, then the result of the operation should be this.
+
+77
+00:05:04,400 --> 00:05:07,610
+And if not, then let's also make it an empty string.
+
+78
+00:05:07,820 --> 00:05:11,990
+And now we just need to go down here and use it.
+
+79
+00:05:14,930 --> 00:05:16,730
+Well, right here.
+
+80
+00:05:18,310 --> 00:05:22,870
+So here we will only specify the value but not the handler.
+
+81
+00:05:22,870 --> 00:05:27,670
+So paid by friend and nice.
+
+82
+00:05:27,700 --> 00:05:36,190
+There is our 150 and if we change this, let's say to 150, then of course each time that the state
+
+83
+00:05:36,190 --> 00:05:37,240
+is updated.
+
+84
+00:05:37,240 --> 00:05:42,610
+So each time that we write something new, the state is updated and then the component rerenders.
+
+85
+00:05:42,610 --> 00:05:47,080
+So this function will get executed again and then this derived state.
+
+86
+00:05:47,080 --> 00:05:50,860
+So this variable here will be reset as well.
+
+87
+00:05:50,860 --> 00:05:57,850
+So it will take these values here again, calculate its thing and then store the value in this variable.
+
+88
+00:05:57,850 --> 00:06:00,370
+So then that gets displayed here.
+
+89
+00:06:00,940 --> 00:06:06,340
+But now there's just one problem with this, because let's say we write 1500.
+
+90
+00:06:06,730 --> 00:06:12,280
+So that's not really correct, because then here Clark's expense is negative.
+
+91
+00:06:13,060 --> 00:06:20,080
+So basically we need to ensure that our expense is at most equal to the bill value itself, but never
+
+92
+00:06:20,080 --> 00:06:21,100
+greater than it.
+
+93
+00:06:22,220 --> 00:06:26,750
+So let's come down here and do that right here.
+
+94
+00:06:28,020 --> 00:06:32,220
+So we could actually extract this into its own function.
+
+95
+00:06:32,220 --> 00:06:34,290
+But let's just do it all in line here.
+
+96
+00:06:34,800 --> 00:06:36,630
+So we have the number here.
+
+97
+00:06:36,630 --> 00:06:41,940
+So the paid value basically, let's copy this because we will need it again.
+
+98
+00:06:42,840 --> 00:06:47,730
+But for now, let's test if this value is greater than the bill.
+
+99
+00:06:49,720 --> 00:06:54,160
+So if it is, then we basically don't want to change the state.
+
+100
+00:06:54,160 --> 00:06:58,000
+So we can just use then the current paid by user again.
+
+101
+00:07:01,200 --> 00:07:07,800
+But otherwise then we actually want the new state to become, well, what we have written there.
+
+102
+00:07:07,800 --> 00:07:10,470
+So that's e dot target dot value.
+
+103
+00:07:11,040 --> 00:07:11,670
+Okay.
+
+104
+00:07:11,670 --> 00:07:18,390
+So again, we check in the new value that has been written into the field and we compare it with the
+
+105
+00:07:18,390 --> 00:07:18,900
+bill.
+
+106
+00:07:18,900 --> 00:07:25,200
+And if it's larger than the bill, then we will just basically reset the value here to paid by user,
+
+107
+00:07:25,200 --> 00:07:28,160
+which is already the value that was in there before.
+
+108
+00:07:28,170 --> 00:07:33,080
+But if not so, if it's a valid value, then we just use it here.
+
+109
+00:07:33,090 --> 00:07:35,490
+So this will then become the new state.
+
+110
+00:07:35,610 --> 00:07:41,190
+And so now let's just quickly reload here, let's say 200.
+
+111
+00:07:41,520 --> 00:07:47,910
+And so now as I type some other number here, you cannot see it, but I am typing it, then this value
+
+112
+00:07:47,910 --> 00:07:49,740
+here is not updated.
+
+113
+00:07:50,160 --> 00:07:50,970
+Great.
+
+114
+00:07:50,970 --> 00:07:58,260
+So we converted our form here into a basically controlled form where all the elements are now controlled
+
+115
+00:07:58,260 --> 00:07:59,100
+elements.
+
+116
+00:07:59,220 --> 00:08:05,770
+So what we need to do next is to add the logic of actually splitting the bill and then updating the
+
+117
+00:08:05,770 --> 00:08:08,200
+balance between the two friends.
+
+118
+00:08:08,440 --> 00:08:11,530
+So updating the value that we can see right here.
+
+119
+00:08:11,560 --> 00:08:13,870
+Now that's a bit more work.
+
+120
+00:08:13,870 --> 00:08:16,960
+And so let's actually leave that for the next video.
+
+121
+00:08:17,080 --> 00:08:22,780
+But before we go there, I actually want to quickly show you what happens when we click on one of these
+
+122
+00:08:22,780 --> 00:08:23,800
+other friends.
+
+123
+00:08:23,800 --> 00:08:31,000
+So let's click here and you see that the state has not been reset, right?
+
+124
+00:08:31,000 --> 00:08:37,570
+So the state that we had here before is exactly the same When we click on other friends now with the
+
+125
+00:08:37,570 --> 00:08:44,590
+knowledge we have at this point, we are not yet ready to fix this and also not really ready to understand
+
+126
+00:08:44,590 --> 00:08:45,040
+it.
+
+127
+00:08:45,040 --> 00:08:51,730
+All I can say for now is that this happens because this component is rendered in exactly the same place
+
+128
+00:08:51,730 --> 00:08:54,570
+in the component tree as before.
+
+129
+00:08:54,580 --> 00:09:01,360
+I mean, when I click here again, then the same component is rendered again in exactly the same position.
+
+130
+00:09:01,480 --> 00:09:04,570
+So the component doesn't disappear in the meantime.
+
+131
+00:09:04,570 --> 00:09:07,510
+And so therefore it is not really re rendered.
+
+132
+00:09:07,510 --> 00:09:10,780
+And so that means that the state then stays the same.
+
+133
+00:09:10,930 --> 00:09:16,900
+Of course, if I close this and select the same friend again, then since the component has disappeared
+
+134
+00:09:16,900 --> 00:09:20,290
+and then appeared again, then the state is reset.
+
+135
+00:09:20,620 --> 00:09:27,310
+But again, if I do this and select another one, then the component doesn't really completely rerender,
+
+136
+00:09:27,310 --> 00:09:29,380
+at least not the state in it.
+
+137
+00:09:29,380 --> 00:09:32,230
+So the state is not reset in this case.
+
+138
+00:09:32,230 --> 00:09:38,170
+But don't worry about that for now as we will fix this later once we have a bit more knowledge about
+
+139
+00:09:38,170 --> 00:09:41,170
+some deep fundamental things that happen inside.
+
+140
+00:09:41,170 --> 00:09:42,700
+React now.
+
+141
+00:09:42,700 --> 00:09:43,180
+Right?
+
+142
+00:09:43,180 --> 00:09:49,630
+So just wanted to show you this, but now let's move on to the next video and actually finish up this
+
+143
+00:09:49,630 --> 00:09:50,470
+project.

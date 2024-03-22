@@ -1,0 +1,295 @@
+1
+00:00:00,810 --> 00:00:08,370
+By the end of the last lecture I said that we should only update state using the setter function, but
+
+2
+00:00:08,370 --> 00:00:10,330
+don't just trust me on that.
+
+3
+00:00:10,350 --> 00:00:15,440
+So instead, let's actually explore this and break react.
+
+4
+00:00:15,450 --> 00:00:20,520
+So just to see what happens when we try to update state manually.
+
+5
+00:00:21,900 --> 00:00:22,410
+Now.
+
+6
+00:00:22,410 --> 00:00:27,630
+Right now, we have this step state here defined as a const variable.
+
+7
+00:00:27,630 --> 00:00:30,320
+And so we would not be able to even change it.
+
+8
+00:00:30,330 --> 00:00:33,120
+So let's change this to a let.
+
+9
+00:00:33,300 --> 00:00:36,260
+And so then we can actually break this.
+
+10
+00:00:36,300 --> 00:00:43,110
+So let's say that here in Handle next, instead of updating the state in the correct way, we would
+
+11
+00:00:43,110 --> 00:00:44,670
+do it like this.
+
+12
+00:00:46,940 --> 00:00:50,720
+So step equal, step plus one.
+
+13
+00:00:50,840 --> 00:00:56,210
+That would be a perfectly normal way of updating a variable defined with let.
+
+14
+00:00:56,300 --> 00:00:57,170
+Right.
+
+15
+00:00:57,170 --> 00:01:00,010
+And so right now this is a let variable.
+
+16
+00:01:00,020 --> 00:01:02,090
+So a variable that we can update.
+
+17
+00:01:02,090 --> 00:01:08,000
+And so again, this would be a perfectly normal way of updating variables in JavaScript.
+
+18
+00:01:08,000 --> 00:01:10,910
+But let's see what now happens when we click this button.
+
+19
+00:01:11,690 --> 00:01:14,060
+Well, simply nothing happens.
+
+20
+00:01:14,060 --> 00:01:18,920
+So we don't get any error from React, but simply nothing happens.
+
+21
+00:01:18,920 --> 00:01:26,270
+And so the reason for that is that React has no way of knowing that this is actually trying to update
+
+22
+00:01:26,270 --> 00:01:27,090
+the state.
+
+23
+00:01:27,110 --> 00:01:34,250
+So React has no magic way of knowing that this here is the state variable and that this operation is
+
+24
+00:01:34,250 --> 00:01:35,750
+basically updating it.
+
+25
+00:01:35,780 --> 00:01:38,480
+So again, React doesn't know about that.
+
+26
+00:01:38,480 --> 00:01:45,680
+And that's why React provided us with this setter function here, which is a functional way of updating
+
+27
+00:01:45,680 --> 00:01:53,530
+the state value, but without mutating it, because here we are directly mutating Now this step variable,
+
+28
+00:01:53,540 --> 00:01:54,200
+right?
+
+29
+00:01:54,200 --> 00:01:56,780
+But react is all about immutability.
+
+30
+00:01:56,780 --> 00:02:02,840
+And so therefore we can only update the state using the tools that react gives us.
+
+31
+00:02:02,840 --> 00:02:06,680
+So in this case, this set step function.
+
+32
+00:02:06,680 --> 00:02:12,240
+And so this setter function is actually tied to this state variable right here.
+
+33
+00:02:12,330 --> 00:02:19,200
+So when we use this functional way of updating the state, then React does know that this is the state
+
+34
+00:02:19,200 --> 00:02:21,120
+variable that should be updated.
+
+35
+00:02:23,400 --> 00:02:23,850
+Okay.
+
+36
+00:02:23,850 --> 00:02:25,460
+So never do this mistake.
+
+37
+00:02:25,470 --> 00:02:29,490
+Just always use const and always use the setter function.
+
+38
+00:02:32,470 --> 00:02:38,860
+Okay, Now another way in which this could happen, which might be a little bit less obvious, is when
+
+39
+00:02:38,860 --> 00:02:42,010
+we use an object or an array for state.
+
+40
+00:02:43,150 --> 00:02:45,310
+So let's just do a quick experiment here.
+
+41
+00:02:46,050 --> 00:02:47,430
+So let's just say.
+
+42
+00:02:48,390 --> 00:02:50,070
+Test, for example.
+
+43
+00:02:51,010 --> 00:02:55,870
+And then you state and here as a default, we pass in an object.
+
+44
+00:02:56,750 --> 00:02:59,990
+And let's give it some property of name.
+
+45
+00:03:01,260 --> 00:03:06,900
+Now notice that here in the destructuring I only took out the state variable itself, so I don't even
+
+46
+00:03:06,900 --> 00:03:08,750
+have the setter function now.
+
+47
+00:03:08,760 --> 00:03:12,180
+And so here, let's say that I wanted to update this name.
+
+48
+00:03:13,720 --> 00:03:16,420
+Well, let's first actually also print it here.
+
+49
+00:03:16,630 --> 00:03:19,300
+So test dot name.
+
+50
+00:03:20,100 --> 00:03:21,780
+So then we get Jonas there.
+
+51
+00:03:23,380 --> 00:03:28,270
+And then here we might think that this is how we update that state.
+
+52
+00:03:28,570 --> 00:03:30,460
+So test dot name.
+
+53
+00:03:30,490 --> 00:03:33,820
+And now let's use Fred, for example.
+
+54
+00:03:34,090 --> 00:03:35,710
+So just some other name.
+
+55
+00:03:35,890 --> 00:03:39,670
+And yeah, watch what happens when I click next now.
+
+56
+00:03:39,790 --> 00:03:42,600
+And that did actually work.
+
+57
+00:03:42,610 --> 00:03:49,810
+So mutating the object like this did actually trigger a new rerender of the component view.
+
+58
+00:03:49,990 --> 00:03:55,330
+However, mutating objects like this is a really, really bad practice.
+
+59
+00:03:56,860 --> 00:03:59,980
+So React really doesn't want you to do this.
+
+60
+00:03:59,980 --> 00:04:05,600
+And that's because sometimes in more complex situations, this actually won't work.
+
+61
+00:04:05,620 --> 00:04:12,430
+And in general, it's really just a bad practice of mutating objects like this, especially in a framework
+
+62
+00:04:12,430 --> 00:04:17,830
+like React, which is all about immutability and functional state updates.
+
+63
+00:04:18,040 --> 00:04:20,240
+So never do this.
+
+64
+00:04:20,260 --> 00:04:28,720
+So if you really wanted to update this object here, we would again create a setter function here.
+
+65
+00:04:30,050 --> 00:04:36,920
+So not creating, but basically taking this setter function out of the result of viewstate.
+
+66
+00:04:36,920 --> 00:04:39,710
+And then here we would call that.
+
+67
+00:04:40,980 --> 00:04:42,360
+A setter function.
+
+68
+00:04:43,370 --> 00:04:46,160
+Net, then pass in the complete new object.
+
+69
+00:04:46,460 --> 00:04:49,760
+So the name should now be thread.
+
+70
+00:04:50,450 --> 00:04:53,150
+So it's back to what we had before now.
+
+71
+00:04:53,150 --> 00:05:00,320
+And now if we click next that still updates the name to Fred, but it does so in the correct way.
+
+72
+00:05:00,470 --> 00:05:08,300
+So always treat state as immutable in react so as something that you cannot change directly, but that
+
+73
+00:05:08,300 --> 00:05:12,080
+you can only change using the tools that react gives us.
+
+74
+00:05:12,080 --> 00:05:14,810
+So using the state setter function.

@@ -1,0 +1,135 @@
+1
+00:00:00,850 --> 00:00:05,770
+Another aspect that I mentioned in the state management lecture was derived.
+
+2
+00:00:05,770 --> 00:00:10,960
+State sounds complicated, but it's actually pretty straightforward.
+
+3
+00:00:12,110 --> 00:00:20,210
+So essentially derived state is simply state that is computed from another existing piece of state or
+
+4
+00:00:20,210 --> 00:00:21,520
+also from props.
+
+5
+00:00:21,530 --> 00:00:24,530
+But let's look at some actual code.
+
+6
+00:00:24,560 --> 00:00:31,160
+So here we have three pieces of state, as we can see by the three use state function calls.
+
+7
+00:00:31,310 --> 00:00:38,570
+However, if we analyze these states, it actually doesn't make much sense that all of them exist because
+
+8
+00:00:38,570 --> 00:00:43,430
+num items and total price depend entirely on the card.
+
+9
+00:00:43,460 --> 00:00:51,170
+So num items is simply the number of items in the cart and total price is the sum of all the prices
+
+10
+00:00:51,170 --> 00:00:52,160
+in the cart.
+
+11
+00:00:52,160 --> 00:00:58,550
+And so all the data for these two pieces of state is actually already in the cart.
+
+12
+00:00:58,580 --> 00:01:05,810
+So there is no need to create these additional state variables and doing so is actually quite problematic
+
+13
+00:01:05,810 --> 00:01:10,340
+first because now we have to keep all these states in sync.
+
+14
+00:01:10,340 --> 00:01:14,250
+So we need to be careful to always update them together.
+
+15
+00:01:14,340 --> 00:01:20,670
+So in this situation, whenever we update the cart, we would also need to manually update the number
+
+16
+00:01:20,670 --> 00:01:22,830
+of items and the total price.
+
+17
+00:01:22,920 --> 00:01:25,860
+Otherwise, our states would get out of sync.
+
+18
+00:01:25,860 --> 00:01:32,670
+But updating these three states separately creates a second problem because that will then rerender
+
+19
+00:01:32,670 --> 00:01:38,250
+the component three times, which is absolutely unnecessary in this example.
+
+20
+00:01:38,400 --> 00:01:46,170
+Instead, we can simply derive the Num items and total price state from the cart and therefore solve
+
+21
+00:01:46,170 --> 00:01:51,480
+all these problems because the cart already contains all the data that we need.
+
+22
+00:01:51,660 --> 00:01:59,250
+So here we simply calculate num items as the cart length and total price as the sum of all prices and
+
+23
+00:01:59,250 --> 00:02:01,580
+store them in regular variables.
+
+24
+00:02:01,590 --> 00:02:07,200
+There is no use state required here which will cause no unnecessary rerenders.
+
+25
+00:02:07,200 --> 00:02:14,340
+The Cart state acts as a single source of truth for these related pieces of state, making sure that
+
+26
+00:02:14,340 --> 00:02:17,160
+everything will always stay in sync.
+
+27
+00:02:17,160 --> 00:02:23,730
+And this works because updating the cart will rerender the component, which means that the function
+
+28
+00:02:23,730 --> 00:02:24,990
+is called again.
+
+29
+00:02:24,990 --> 00:02:33,570
+And so then as all the code is executed again, num items and total price will also automatically get
+
+30
+00:02:33,570 --> 00:02:34,830
+recalculated.
+
+31
+00:02:35,160 --> 00:02:42,240
+Now, of course, most of the time we cannot derive state, but whenever you have a situation like this
+
+32
+00:02:42,240 --> 00:02:49,140
+one where one state can easily be computed from another, always prefer derived state.
+
+33
+00:02:49,170 --> 00:02:54,560
+So don't create two state variables if you actually only need one.
+
+34
+00:02:54,570 --> 00:02:59,760
+That's a very common beginner mistake, but now you will be able to avoid it.

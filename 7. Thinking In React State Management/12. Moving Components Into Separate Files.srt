@@ -1,0 +1,519 @@
+1
+00:00:00,800 --> 00:00:06,410
+So let's now split up our app.js file into multiple component files.
+
+2
+00:00:07,360 --> 00:00:13,660
+And this will just be a very simple exercise of taking each of these components and placing them into
+
+3
+00:00:13,660 --> 00:00:14,740
+their own file.
+
+4
+00:00:14,740 --> 00:00:17,340
+So you can even do that on your own if you want.
+
+5
+00:00:17,350 --> 00:00:25,510
+But anyway, let's just grab this code here, cut it and then create a new file inside source.
+
+6
+00:00:25,510 --> 00:00:34,180
+So inside this source folder, create logo dot JS, which is the name of this component, right?
+
+7
+00:00:35,840 --> 00:00:36,740
+All right.
+
+8
+00:00:36,740 --> 00:00:41,480
+But now, of course, we also have to export this function from here.
+
+9
+00:00:41,480 --> 00:00:45,680
+And remember that in JavaScript we can export in two ways.
+
+10
+00:00:45,680 --> 00:00:49,750
+So we can have named exports, which would simply be this.
+
+11
+00:00:49,760 --> 00:00:56,390
+So with this we would create an export called logo, which we would then have to import with exactly
+
+12
+00:00:56,390 --> 00:00:58,850
+that name into the other file.
+
+13
+00:00:58,850 --> 00:01:00,650
+So into the file where we need it.
+
+14
+00:01:00,650 --> 00:01:05,660
+But usually in React apps, what we do is to use a default export.
+
+15
+00:01:05,660 --> 00:01:09,530
+So export default just like this.
+
+16
+00:01:09,620 --> 00:01:16,610
+And then of course now if we try to reload this, we will get an error that well, not this one.
+
+17
+00:01:16,820 --> 00:01:17,230
+Yeah.
+
+18
+00:01:17,270 --> 00:01:18,050
+Right here.
+
+19
+00:01:18,050 --> 00:01:20,630
+So we see that the logo is not defined.
+
+20
+00:01:20,630 --> 00:01:24,740
+And so of course that's because now we have to import it right here.
+
+21
+00:01:26,270 --> 00:01:27,580
+So import.
+
+22
+00:01:27,590 --> 00:01:30,410
+And here actually we can use any name that we want.
+
+23
+00:01:30,410 --> 00:01:36,200
+So because we used a default export, but of course we will still call it logo here.
+
+24
+00:01:36,200 --> 00:01:39,800
+So import logo from and then simply the path.
+
+25
+00:01:40,770 --> 00:01:42,450
+To dead file.
+
+26
+00:01:43,670 --> 00:01:44,630
+And yes.
+
+27
+00:01:44,840 --> 00:01:48,960
+And again, we could indeed change the name here to X.
+
+28
+00:01:49,930 --> 00:01:51,760
+For example, and then here as well.
+
+29
+00:01:52,180 --> 00:01:53,110
+Give it a save.
+
+30
+00:01:53,110 --> 00:01:55,020
+And you see that it still works.
+
+31
+00:01:55,030 --> 00:01:58,150
+But again, this is, of course, not advisable.
+
+32
+00:01:58,240 --> 00:02:03,280
+This is just to show you how named and how default exports work.
+
+33
+00:02:04,590 --> 00:02:05,550
+All right.
+
+34
+00:02:06,370 --> 00:02:08,110
+Now let's take the next one.
+
+35
+00:02:08,110 --> 00:02:13,870
+And by the way, the first one here will, of course, stay in this file because it is called app.
+
+36
+00:02:13,870 --> 00:02:17,410
+And this file is also already called App.js.
+
+37
+00:02:18,410 --> 00:02:20,480
+So let's grab the next one here.
+
+38
+00:02:22,430 --> 00:02:24,050
+Okay, cut it.
+
+39
+00:02:25,070 --> 00:02:28,520
+New file form dot JS.
+
+40
+00:02:28,670 --> 00:02:30,710
+Paste it here and then again.
+
+41
+00:02:30,890 --> 00:02:33,470
+Export default.
+
+42
+00:02:35,670 --> 00:02:38,730
+Coming back here, then we need to import.
+
+43
+00:02:41,240 --> 00:02:42,890
+Form from.
+
+44
+00:02:46,030 --> 00:02:47,440
+Just like this.
+
+45
+00:02:47,470 --> 00:02:54,280
+Now, here we will still get an error because we haven't imported use state in that other component.
+
+46
+00:02:54,910 --> 00:03:00,400
+So let's quickly grab this line of code here, move into the form, which is where we are using use
+
+47
+00:03:00,400 --> 00:03:01,060
+state.
+
+48
+00:03:01,150 --> 00:03:04,240
+And then we also need to import that hook.
+
+49
+00:03:04,270 --> 00:03:11,830
+So this use state function here into this file, of course, because this file here does use that function.
+
+50
+00:03:11,830 --> 00:03:14,560
+So it's not enough to just include it one time.
+
+51
+00:03:14,560 --> 00:03:20,950
+Anywhere in the code, you really have to include the parts of react that you need in each single component
+
+52
+00:03:20,950 --> 00:03:21,550
+file.
+
+53
+00:03:22,980 --> 00:03:24,960
+So let's close this one and this one.
+
+54
+00:03:25,200 --> 00:03:32,070
+And now that we have done it two times manually, it's actually time to do it automatically.
+
+55
+00:03:32,710 --> 00:03:34,960
+So let's again select all of this.
+
+56
+00:03:35,340 --> 00:03:39,100
+We can even click this triangle here to collapse the function.
+
+57
+00:03:39,310 --> 00:03:41,170
+And so then we can select all of it.
+
+58
+00:03:41,170 --> 00:03:43,630
+And then right click here.
+
+59
+00:03:44,520 --> 00:03:46,700
+And then click on refactor.
+
+60
+00:03:46,710 --> 00:03:51,630
+And so now here, this gives us the option to move this function into a new file.
+
+61
+00:03:52,360 --> 00:04:00,700
+So let's click that and you see that a brand new file with the name of Packing List was created.
+
+62
+00:04:01,890 --> 00:04:09,150
+So vs code automatically took this function here and then created a new file with this exact same name
+
+63
+00:04:09,150 --> 00:04:14,340
+and it also automatically imported all the parts that we need inside this function.
+
+64
+00:04:14,520 --> 00:04:18,090
+So we have used state and we also have item.
+
+65
+00:04:18,420 --> 00:04:25,530
+Well, this actually doesn't make a lot of sense at this point because the item is still here.
+
+66
+00:04:25,800 --> 00:04:28,260
+So that's actually not ideal.
+
+67
+00:04:28,260 --> 00:04:30,150
+But we will fix that in a moment.
+
+68
+00:04:30,790 --> 00:04:37,810
+So what matters here for now is that VS code automatically created this new file placed this new component
+
+69
+00:04:37,810 --> 00:04:40,330
+here and also exported it.
+
+70
+00:04:40,510 --> 00:04:44,830
+Now it's actually using a named export.
+
+71
+00:04:47,250 --> 00:04:50,360
+So you can see here that it's importing it in this other way.
+
+72
+00:04:50,370 --> 00:04:52,620
+So this is how you do a named import.
+
+73
+00:04:52,620 --> 00:04:56,910
+But again, we usually in React development do default exports.
+
+74
+00:04:57,030 --> 00:05:00,000
+But of course the other way is also perfectly fine.
+
+75
+00:05:00,270 --> 00:05:02,040
+So we'll just change it here.
+
+76
+00:05:03,060 --> 00:05:04,440
+Export default.
+
+77
+00:05:05,190 --> 00:05:08,430
+And then here I need to change the way I import it.
+
+78
+00:05:08,640 --> 00:05:12,090
+So getting rid of these curly braces.
+
+79
+00:05:12,760 --> 00:05:16,630
+And now let's also create a new component for this item here.
+
+80
+00:05:16,990 --> 00:05:19,150
+So let's just remove this export.
+
+81
+00:05:21,430 --> 00:05:22,990
+Select everything.
+
+82
+00:05:23,640 --> 00:05:24,930
+Refactor.
+
+83
+00:05:25,830 --> 00:05:27,690
+And move to a new file.
+
+84
+00:05:28,450 --> 00:05:30,980
+So again, item was created.
+
+85
+00:05:31,000 --> 00:05:33,370
+And here we need to actually write export.
+
+86
+00:05:34,540 --> 00:05:36,900
+Default, give it a save.
+
+87
+00:05:36,910 --> 00:05:43,960
+And now we need to change that in the pecking list because now this component is no longer in app but
+
+88
+00:05:43,960 --> 00:05:45,040
+inside.
+
+89
+00:05:45,870 --> 00:05:47,840
+Well instead of items.
+
+90
+00:05:48,610 --> 00:05:52,050
+It's again a default export.
+
+91
+00:05:52,050 --> 00:05:55,860
+So we need to import it basically as a default import.
+
+92
+00:05:57,900 --> 00:05:58,620
+All right.
+
+93
+00:05:58,620 --> 00:06:05,700
+So this small thing here happened because we first exported the packing list, which depended on the
+
+94
+00:06:05,700 --> 00:06:06,330
+item.
+
+95
+00:06:09,790 --> 00:06:13,300
+But in any case, usually we do this immediately.
+
+96
+00:06:13,310 --> 00:06:19,480
+So usually when we build some app, we do immediately create a new file for when we need a new component.
+
+97
+00:06:20,490 --> 00:06:22,980
+So let's do that one final time.
+
+98
+00:06:25,810 --> 00:06:26,950
+So stats.
+
+99
+00:06:26,980 --> 00:06:28,780
+Let's change it again to export.
+
+100
+00:06:29,460 --> 00:06:31,830
+Default just to stay consistent.
+
+101
+00:06:33,130 --> 00:06:36,460
+And then fix it here as well.
+
+102
+00:06:36,580 --> 00:06:43,270
+And with this, we now have one component per file which makes our component here a little bit easier
+
+103
+00:06:43,270 --> 00:06:43,990
+to manage.
+
+104
+00:06:43,990 --> 00:06:50,320
+So then there's not so much scrolling up and down, but instead, well, we can develop basically each
+
+105
+00:06:50,320 --> 00:06:53,350
+component in isolation in its separate file.
+
+106
+00:06:54,500 --> 00:07:01,280
+Now, taking it one step further, we can also move each of the components into a new components folder.
+
+107
+00:07:02,360 --> 00:07:03,740
+So components.
+
+108
+00:07:03,890 --> 00:07:06,920
+And then let's select all of them, actually.
+
+109
+00:07:08,570 --> 00:07:14,990
+So everything except for Index.js, which is not a component and our CSS file.
+
+110
+00:07:16,550 --> 00:07:24,530
+Grab them here and now we only have one problem, which is the app file cannot be found here in Index.js.
+
+111
+00:07:24,530 --> 00:07:27,860
+So here we need to now fix this path to.
+
+112
+00:07:28,760 --> 00:07:31,460
+Components slash app.
+
+113
+00:07:32,250 --> 00:07:34,350
+And with this we are finished.
+
+114
+00:07:34,380 --> 00:07:37,200
+So all the other files still work the same.
+
+115
+00:07:38,540 --> 00:07:40,310
+Or actually this one here.
+
+116
+00:07:40,760 --> 00:07:47,270
+So here the imports still work because all the components are still in the same folder as App.js.
+
+117
+00:07:47,420 --> 00:07:51,000
+And with this, we actually finished this project.
+
+118
+00:07:51,020 --> 00:07:58,550
+So once again, congratulations for finishing your first a bit more real React project.
+
+119
+00:07:58,550 --> 00:08:01,370
+So a project that actually does something.
+
+120
+00:08:01,580 --> 00:08:08,270
+So I think this was a really great practice project, quite straightforward, but it had all the most
+
+121
+00:08:08,270 --> 00:08:12,300
+important fundamentals that you needed to know at this stage.
+
+122
+00:08:12,320 --> 00:08:18,440
+Now, of course this is not a real world application, but in large scale apps you actually have many
+
+123
+00:08:18,440 --> 00:08:22,010
+smaller parts in which you will need exactly these skills.
+
+124
+00:08:22,010 --> 00:08:26,110
+And so everything that you are learning here is really, really important.
+
+125
+00:08:26,120 --> 00:08:32,870
+It will lay the foundation so that later you can build those large and real world applications.
+
+126
+00:08:32,990 --> 00:08:39,060
+Now, next up in this section, we have a nice exercise where together we're going to build an accordion
+
+127
+00:08:39,060 --> 00:08:39,860
+component.
+
+128
+00:08:39,870 --> 00:08:45,120
+And then I just want to show you one other very important part of React.
+
+129
+00:08:45,120 --> 00:08:47,250
+So that's going to be the children prop.
+
+130
+00:08:47,280 --> 00:08:50,490
+And so, yeah, stay tuned for that.

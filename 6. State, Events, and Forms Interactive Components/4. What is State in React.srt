@@ -1,0 +1,287 @@
+1
+00:00:00,860 --> 00:00:07,340
+So we learned how to use event handlers, but now we want them to actually do something useful.
+
+2
+00:00:07,370 --> 00:00:08,260
+Right.
+
+3
+00:00:08,270 --> 00:00:11,210
+So we want to make the component interactive.
+
+4
+00:00:11,210 --> 00:00:15,560
+And for that, as I have mentioned already, we need state.
+
+5
+00:00:16,650 --> 00:00:22,170
+Now, without a doubt, state is the most important concept in React.
+
+6
+00:00:22,200 --> 00:00:26,850
+So everything basically revolves around state in React.
+
+7
+00:00:26,850 --> 00:00:31,650
+And so we will keep learning about state throughout the entire course.
+
+8
+00:00:31,950 --> 00:00:38,640
+Therefore, let's start with an overview of what exactly you will learn about State while going through
+
+9
+00:00:38,640 --> 00:00:39,540
+this course.
+
+10
+00:00:39,810 --> 00:00:47,310
+First, we will learn what state actually is, what it does and why we need it, which is what this
+
+11
+00:00:47,310 --> 00:00:49,410
+section is all about.
+
+12
+00:00:49,440 --> 00:00:57,000
+Then we need to learn how to actually use state in practice using the use state or Usereducer hooks,
+
+13
+00:00:57,030 --> 00:01:01,800
+the context API or even external tools like Redux.
+
+14
+00:01:01,950 --> 00:01:07,050
+We will also need to deeply understand how to think about State in React.
+
+15
+00:01:07,050 --> 00:01:10,470
+And so these are topics for future sections.
+
+16
+00:01:10,980 --> 00:01:11,580
+Okay.
+
+17
+00:01:11,580 --> 00:01:16,780
+And with this out of the way, we're now ready to learn what state actually is.
+
+18
+00:01:17,980 --> 00:01:25,600
+So we have learned how to pass data into a component by using props, which remember is data that's
+
+19
+00:01:25,600 --> 00:01:28,430
+coming from outside the component.
+
+20
+00:01:28,450 --> 00:01:35,500
+But what if a component needs to actually hold its own data and also hold it over time?
+
+21
+00:01:35,620 --> 00:01:43,120
+Also, what if we actually want to make our app interactive, changing the UI as a result of an action?
+
+22
+00:01:43,330 --> 00:01:47,770
+Well, that's where finally State comes into play.
+
+23
+00:01:48,040 --> 00:01:55,850
+So state is basically data that a component can hold over time, and we use it for information that
+
+24
+00:01:55,850 --> 00:01:59,800
+the component needs to remember throughout its lifecycle.
+
+25
+00:01:59,830 --> 00:02:04,900
+Therefore, we can think of state as being the memory of a component.
+
+26
+00:02:04,930 --> 00:02:08,200
+So that can be quite a helpful analogy, I think.
+
+27
+00:02:08,440 --> 00:02:16,120
+Now, examples of state can be simple things like a notification count, the text content of an input
+
+28
+00:02:16,120 --> 00:02:20,150
+field or the active tab in a tabbed component.
+
+29
+00:02:20,180 --> 00:02:26,420
+It can also be a bit more complex data, for example, the content of a shopping cart.
+
+30
+00:02:26,450 --> 00:02:33,290
+Now what all these pieces of state have in common is that in the application the user can easily change
+
+31
+00:02:33,290 --> 00:02:34,230
+these values.
+
+32
+00:02:34,250 --> 00:02:40,460
+For example, when they read a notification, the count will go down by one, or when they click on
+
+33
+00:02:40,460 --> 00:02:43,590
+another tab, that tab will become active.
+
+34
+00:02:43,610 --> 00:02:49,640
+And therefore, each of these components needs to be able to hold this data over time.
+
+35
+00:02:49,640 --> 00:02:52,910
+So over the lifecycle of the application.
+
+36
+00:02:52,910 --> 00:02:59,030
+And for that reason, each of these pieces of information is a piece of state.
+
+37
+00:02:59,210 --> 00:03:07,070
+And notice how I use the term piece of state here, because just the term state itself is more of a
+
+38
+00:03:07,070 --> 00:03:08,180
+general term.
+
+39
+00:03:08,180 --> 00:03:16,220
+So a piece of state or a state variable is just one single actual variable in the component that we
+
+40
+00:03:16,220 --> 00:03:18,050
+can define in our code.
+
+41
+00:03:18,080 --> 00:03:25,190
+On the other hand, the term state itself is more about the entire state that the component is in,
+
+42
+00:03:25,190 --> 00:03:29,090
+like the entire condition at a certain point in time.
+
+43
+00:03:29,270 --> 00:03:34,880
+So basically the general term state is all the pieces of state together.
+
+44
+00:03:35,030 --> 00:03:41,990
+And if this sounds confusing, don't worry, these are just some minor differences in terminology.
+
+45
+00:03:42,020 --> 00:03:49,550
+In practice, we usually use the terms state piece of state and state variable quite interchangeably.
+
+46
+00:03:49,700 --> 00:03:57,350
+But anyway, let's now move on to the most important aspect of state, which is the fact that updating
+
+47
+00:03:57,350 --> 00:04:01,550
+state triggers react to rerender the component.
+
+48
+00:04:01,700 --> 00:04:09,980
+So again, whenever we update a piece of state in a component, this will make react rerender that component
+
+49
+00:04:09,980 --> 00:04:11,690
+in the user interface.
+
+50
+00:04:11,690 --> 00:04:16,220
+So it will create a new updated view for that component.
+
+51
+00:04:16,220 --> 00:04:22,310
+And a component view is basically just the component visually rendered on the screen.
+
+52
+00:04:22,310 --> 00:04:24,410
+So in the user interface.
+
+53
+00:04:24,680 --> 00:04:31,820
+Now, up until this point, I have always just used the generic term user interface, but now we are
+
+54
+00:04:31,820 --> 00:04:34,520
+actually talking about a single component.
+
+55
+00:04:34,520 --> 00:04:39,070
+And when one single component is rendered, we call that a view.
+
+56
+00:04:39,080 --> 00:04:44,960
+And so all the views combined together then make up the final user interface.
+
+57
+00:04:45,170 --> 00:04:51,950
+Now, do you remember this small diagram that we saw right at the beginning of the course when we first
+
+58
+00:04:51,950 --> 00:04:57,170
+talked about how React automatically keeps data in sync with the UI?
+
+59
+00:04:57,500 --> 00:05:01,400
+Well, state is how react does that.
+
+60
+00:05:01,430 --> 00:05:06,660
+So state is how react keeps the user interface in sync with data.
+
+61
+00:05:06,680 --> 00:05:08,360
+We change the state.
+
+62
+00:05:08,390 --> 00:05:09,980
+We change the UI.
+
+63
+00:05:10,340 --> 00:05:16,450
+So summarizing state allows developers to do two important things.
+
+64
+00:05:16,460 --> 00:05:22,460
+First, state allows us to update the component's view by rerendering the component.
+
+65
+00:05:22,490 --> 00:05:26,180
+So it gives us a way to change parts of the UI.
+
+66
+00:05:26,360 --> 00:05:34,190
+Second State allows developers to persist local variables between multiple renders and rerenders.
+
+67
+00:05:34,400 --> 00:05:42,170
+So if you think about this state is basically a tool and in fact it's the most powerful tool that we
+
+68
+00:05:42,170 --> 00:05:44,270
+have in the world of React.
+
+69
+00:05:44,360 --> 00:05:48,250
+So understanding how state works and what it does.
+
+70
+00:05:48,260 --> 00:05:54,320
+So understanding the mechanics of state will unlock the power of react development for you.
+
+71
+00:05:54,650 --> 00:06:01,370
+But before we go, understand the mechanics of state, let's actually first go back to our code and
+
+72
+00:06:01,370 --> 00:06:05,300
+use this powerful tool in practice for the first time.

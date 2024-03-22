@@ -1,0 +1,275 @@
+1
+00:00:00,890 --> 00:00:05,960
+So let's check out how we can do the same thing with the ternary operator.
+
+2
+00:00:07,170 --> 00:00:14,400
+So instead of the end operator here, let's now use the ternary operator to do conditional rendering.
+
+3
+00:00:14,400 --> 00:00:21,210
+And again, in case you are not familiar with this ternary operator, please go check out the previous
+
+4
+00:00:21,210 --> 00:00:25,350
+section with the review of JavaScript needed for React.
+
+5
+00:00:25,590 --> 00:00:31,290
+So the ternary operator has three parts and the first part is a condition.
+
+6
+00:00:31,290 --> 00:00:40,620
+And if this condition is true, then the result of the operation will be this second part of the operator,
+
+7
+00:00:40,620 --> 00:00:44,730
+which right now is all of this, right?
+
+8
+00:00:45,470 --> 00:00:51,930
+But then the ternary operator also needs a third part, which is basically like the else branch.
+
+9
+00:00:51,950 --> 00:00:57,230
+And so if we want to reproduce the same thing we had before here, we can just write null.
+
+10
+00:00:58,040 --> 00:00:59,180
+So give it a save.
+
+11
+00:00:59,180 --> 00:01:02,840
+And you see, we get exactly the same result as before.
+
+12
+00:01:04,050 --> 00:01:07,590
+So again, the ternary operator has three parts.
+
+13
+00:01:07,680 --> 00:01:09,090
+So first, a condition.
+
+14
+00:01:09,090 --> 00:01:14,520
+And if this is true, then this first branch here will become the result of the operation.
+
+15
+00:01:14,520 --> 00:01:16,700
+So of using the operator.
+
+16
+00:01:16,710 --> 00:01:19,830
+But if it's false, then this last part here.
+
+17
+00:01:19,830 --> 00:01:22,680
+So this third part will become the result.
+
+18
+00:01:22,680 --> 00:01:26,580
+And so that's what is rendered then in this case.
+
+19
+00:01:27,820 --> 00:01:29,170
+Let's check that out.
+
+20
+00:01:29,170 --> 00:01:31,810
+And indeed, that's what happens.
+
+21
+00:01:32,080 --> 00:01:37,930
+Now, the advantage of using the ternary operator is that then we can display some alternative.
+
+22
+00:01:39,280 --> 00:01:40,780
+So let's write some more.
+
+23
+00:01:40,780 --> 00:01:41,890
+JS Here.
+
+24
+00:01:42,900 --> 00:01:48,090
+And let's say we're still working on our menu.
+
+25
+00:01:49,420 --> 00:01:51,190
+Please come.
+
+26
+00:01:52,750 --> 00:01:53,680
+Like later.
+
+27
+00:01:54,470 --> 00:01:55,550
+For example.
+
+28
+00:01:55,670 --> 00:01:57,260
+So then we get this.
+
+29
+00:01:57,290 --> 00:02:02,780
+So this is in some situations a bit nicer than simply displaying nothing.
+
+30
+00:02:04,410 --> 00:02:05,700
+But let's go back.
+
+31
+00:02:06,060 --> 00:02:07,590
+And here we go.
+
+32
+00:02:08,630 --> 00:02:14,300
+So you might be wondering why we cannot simply use an if else statement right here.
+
+33
+00:02:14,330 --> 00:02:21,260
+Well, the reason is, once again, because of what we learned in the lecture on the rules of JS, which
+
+34
+00:02:21,260 --> 00:02:26,660
+is that inside this JavaScript mode we cannot write any JavaScript.
+
+35
+00:02:26,690 --> 00:02:33,200
+What we need to do here is to write something that actually produces a value and an if else statement
+
+36
+00:02:33,230 --> 00:02:35,160
+does not produce a value.
+
+37
+00:02:35,180 --> 00:02:38,760
+So let's just experiment something fictional.
+
+38
+00:02:38,800 --> 00:02:41,060
+So let's say we wrote if.
+
+39
+00:02:42,510 --> 00:02:45,870
+Num pizzas greater than zero.
+
+40
+00:02:46,670 --> 00:02:48,230
+Then this.
+
+41
+00:02:50,530 --> 00:02:51,900
+So let's try that.
+
+42
+00:02:51,940 --> 00:02:55,060
+But yeah, that's not really going to happen.
+
+43
+00:02:55,270 --> 00:03:00,580
+And we even get this big error here and it simply says unexpected token.
+
+44
+00:03:01,440 --> 00:03:03,500
+Well, that's that's all it says.
+
+45
+00:03:03,510 --> 00:03:09,360
+And yeah, the reason here is that doing this does not produce a value.
+
+46
+00:03:09,810 --> 00:03:13,500
+And so it's the same as just having this in the end.
+
+47
+00:03:14,890 --> 00:03:15,720
+Now, right?
+
+48
+00:03:15,730 --> 00:03:23,530
+So the ternary operator, when used like this, is really nice and I do greatly prefer it over just
+
+49
+00:03:23,530 --> 00:03:25,850
+the end operator that we were using.
+
+50
+00:03:25,870 --> 00:03:31,300
+And so let's go back down here and also replace it in this situation here.
+
+51
+00:03:32,120 --> 00:03:32,660
+So.
+
+52
+00:03:33,640 --> 00:03:34,890
+Let's replace that here.
+
+53
+00:03:35,100 --> 00:03:38,430
+And then also, let's print an alternative here.
+
+54
+00:03:39,860 --> 00:03:41,210
+So another piece of.
+
+55
+00:03:43,520 --> 00:03:48,380
+We're happy to welcome you between.
+
+56
+00:03:50,380 --> 00:03:52,780
+Let's just grab this from here.
+
+57
+00:03:56,260 --> 00:03:59,170
+So here we have the open our.
+
+58
+00:04:02,230 --> 00:04:02,920
+Okay.
+
+59
+00:04:05,030 --> 00:04:06,800
+Let's change it again to 20.
+
+60
+00:04:08,680 --> 00:04:09,040
+And.
+
+61
+00:04:09,040 --> 00:04:09,610
+Yeah.
+
+62
+00:04:10,120 --> 00:04:11,020
+Nice.
+
+63
+00:04:11,630 --> 00:04:16,370
+So the ternary operator is a really important tool in your React toolbox.
+
+64
+00:04:16,370 --> 00:04:20,270
+And once again, we are just using JavaScript here.
+
+65
+00:04:20,270 --> 00:04:26,420
+There's nothing react specific that you need to learn or to memorize in order to do conditional rendering.
+
+66
+00:04:26,420 --> 00:04:29,510
+It's all already part of the JavaScript language.
+
+67
+00:04:29,510 --> 00:04:32,660
+You just need to know that this is how you use it.
+
+68
+00:04:32,660 --> 00:04:39,230
+So basically inside these curly braces to enter JavaScript mode and then, well then you just use the
+
+69
+00:04:39,230 --> 00:04:42,800
+operator just like you would do in vanilla JavaScript.

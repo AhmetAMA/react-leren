@@ -1,0 +1,727 @@
+1
+00:00:00,860 --> 00:00:06,470
+So at this point, we know that React components can also contain CSS styles.
+
+2
+00:00:06,470 --> 00:00:12,830
+And so let's now learn about some simple ways of applying CSS to React applications.
+
+3
+00:00:13,890 --> 00:00:21,060
+So in React, we have many different ways of styling our components and React doesn't really care about
+
+4
+00:00:21,060 --> 00:00:22,070
+how we do that.
+
+5
+00:00:22,080 --> 00:00:24,630
+It doesn't have an opinion about styling.
+
+6
+00:00:24,630 --> 00:00:31,020
+And the reason for that is that just as we learned in the very beginning, React is actually more of
+
+7
+00:00:31,020 --> 00:00:32,940
+a library than a framework.
+
+8
+00:00:32,940 --> 00:00:39,730
+So it doesn't have a preferred way of how we should style or components and in the end, our applications.
+
+9
+00:00:39,750 --> 00:00:43,260
+Therefore, we can choose between many different options.
+
+10
+00:00:43,260 --> 00:00:51,180
+For example, we can use inline styling, we can use external CSS or even Sass files, we can use CSS
+
+11
+00:00:51,180 --> 00:00:54,570
+modules, styled components or even tailwind.
+
+12
+00:00:54,570 --> 00:00:57,810
+CSS is an option to style our components.
+
+13
+00:00:58,050 --> 00:01:03,810
+Now in this lecture, we will not go into all of these, of course, but we will talk about many of
+
+14
+00:01:03,810 --> 00:01:04,560
+them later.
+
+15
+00:01:04,560 --> 00:01:11,070
+For now I just want to use inline CSS and then also later include an external CSS file.
+
+16
+00:01:11,280 --> 00:01:17,710
+So as you might know in HTML, we can actually style elements using the style attribute.
+
+17
+00:01:18,470 --> 00:01:19,550
+So just.
+
+18
+00:01:20,920 --> 00:01:21,730
+Like this.
+
+19
+00:01:21,760 --> 00:01:26,770
+And then in HTML, we write those styles in a string like this.
+
+20
+00:01:26,950 --> 00:01:30,560
+However, in JS, that's not how it works.
+
+21
+00:01:30,580 --> 00:01:36,340
+So in JS we actually need to define inline styles using a JavaScript object.
+
+22
+00:01:36,370 --> 00:01:42,160
+So if we need to write a JavaScript object, we first need to enter a JavaScript mode.
+
+23
+00:01:42,370 --> 00:01:45,100
+So that's what the curly braces are for.
+
+24
+00:01:45,130 --> 00:01:48,260
+But then we need another set of curly braces.
+
+25
+00:01:48,280 --> 00:01:51,650
+And so that is again to now create an object.
+
+26
+00:01:51,670 --> 00:01:54,880
+And so here we can now define some properties.
+
+27
+00:01:55,270 --> 00:02:02,800
+So let's say we want to style this text, so this H1 text with a red color.
+
+28
+00:02:03,190 --> 00:02:05,140
+And so now as I give it a save.
+
+29
+00:02:06,010 --> 00:02:06,970
+There it is.
+
+30
+00:02:07,000 --> 00:02:08,320
+There it changed.
+
+31
+00:02:08,950 --> 00:02:11,610
+And so with this, you have the easiest way.
+
+32
+00:02:11,620 --> 00:02:16,810
+So the most straightforward way to style components in JSX.
+
+33
+00:02:17,440 --> 00:02:22,570
+So simply using the style attribute that is also available in HTML.
+
+34
+00:02:22,570 --> 00:02:26,380
+Now in HTML, we basically never, ever use this.
+
+35
+00:02:26,410 --> 00:02:31,480
+And that's because of the separation of concerns that we talked about in the previous lecture.
+
+36
+00:02:31,480 --> 00:02:37,660
+So where we always had the CSS in a separate file and never mixed together with the markup.
+
+37
+00:02:37,660 --> 00:02:43,450
+But here in React, as we just discovered, doing that is completely fine and natural.
+
+38
+00:02:44,850 --> 00:02:46,230
+Let's try another one.
+
+39
+00:02:48,160 --> 00:02:53,230
+So now font size which in CSS you would write like this.
+
+40
+00:02:53,260 --> 00:02:53,980
+Right.
+
+41
+00:02:53,980 --> 00:02:55,930
+So font size.
+
+42
+00:02:55,930 --> 00:03:02,740
+But in JavaScript that's not a valid property name and therefore all the CSS property names have been
+
+43
+00:03:02,740 --> 00:03:07,270
+converted basically in JS to this camelcase notation.
+
+44
+00:03:07,270 --> 00:03:10,330
+So you need to write font size like this.
+
+45
+00:03:11,140 --> 00:03:13,330
+Let's say 32 pixels.
+
+46
+00:03:13,330 --> 00:03:18,820
+And so since we're writing an object, then also this value always needs to be a string.
+
+47
+00:03:21,080 --> 00:03:21,290
+Now.
+
+48
+00:03:21,290 --> 00:03:22,850
+Well, that didn't change anything.
+
+49
+00:03:22,850 --> 00:03:25,150
+Maybe that's already the size.
+
+50
+00:03:25,160 --> 00:03:27,650
+Let's see what happens with 48.
+
+51
+00:03:28,460 --> 00:03:29,000
+Yeah.
+
+52
+00:03:29,000 --> 00:03:30,770
+So now it's a bigger.
+
+53
+00:03:31,590 --> 00:03:33,660
+And let's try another one.
+
+54
+00:03:34,400 --> 00:03:35,720
+Text transform.
+
+55
+00:03:35,720 --> 00:03:40,820
+And you see that as always vs code already shows you here the available options.
+
+56
+00:03:42,990 --> 00:03:49,260
+So make sure to always write these property values then basically here as strings, because again,
+
+57
+00:03:49,260 --> 00:03:54,540
+this is in the end just a JavaScript object and you could even extract this out here.
+
+58
+00:03:54,870 --> 00:03:56,940
+So just cutting this.
+
+59
+00:03:57,830 --> 00:03:59,420
+Let's create a variable here.
+
+60
+00:04:00,400 --> 00:04:01,690
+Concert style.
+
+61
+00:04:03,200 --> 00:04:06,020
+And it could be any variable name, of course.
+
+62
+00:04:07,460 --> 00:04:11,600
+Then let's place that here and it all still looks the same.
+
+63
+00:04:11,720 --> 00:04:12,500
+Great.
+
+64
+00:04:12,500 --> 00:04:17,360
+So this is the easiest way of adding some styling to individual components.
+
+65
+00:04:17,570 --> 00:04:23,780
+However, when the application gets just a little bit bigger, it can get out of hand and can be a lot
+
+66
+00:04:23,780 --> 00:04:26,370
+of work to write our styles like this.
+
+67
+00:04:26,390 --> 00:04:32,630
+So like creating an object for each of these components, it's perfectly doable, but you don't see
+
+68
+00:04:32,630 --> 00:04:35,030
+many people doing that in the real world.
+
+69
+00:04:35,270 --> 00:04:41,210
+Now, one thing that we can do is to actually include an external CSS files, just like we have been
+
+70
+00:04:41,210 --> 00:04:43,670
+doing all the time in our applications.
+
+71
+00:04:43,670 --> 00:04:49,790
+And so that is the easiest way, I would say, to style React applications, which is basically the
+
+72
+00:04:49,790 --> 00:04:52,370
+same as styling any other web page.
+
+73
+00:04:52,460 --> 00:04:59,930
+Now in that case, we're not really mixing concern with the JavaScript and HTML concerns in the way
+
+74
+00:04:59,930 --> 00:05:01,850
+that we learned in the last lecture.
+
+75
+00:05:01,850 --> 00:05:04,400
+But that's of course not a problem.
+
+76
+00:05:04,400 --> 00:05:10,710
+And also we will learn how to do that a little bit later, again using something called styled components.
+
+77
+00:05:11,070 --> 00:05:18,960
+But for now, let's take a look at the CSS file that we included here in the very beginning of this
+
+78
+00:05:18,960 --> 00:05:19,710
+lecture.
+
+79
+00:05:19,800 --> 00:05:26,390
+And so this is, well, a very pretty standard CSS file with some classes here.
+
+80
+00:05:26,400 --> 00:05:33,180
+And so now we need to add these class names to the JS elements so that these classes then get applied.
+
+81
+00:05:34,540 --> 00:05:41,890
+So let's go back and before we do any of that, so before we add the classes, we need to first import
+
+82
+00:05:41,890 --> 00:05:43,710
+this CSS file.
+
+83
+00:05:43,720 --> 00:05:50,230
+So right now, our application has no way of knowing that this CSS file exists in the project.
+
+84
+00:05:50,380 --> 00:05:54,820
+So what we need to do here is to simply import that file.
+
+85
+00:05:54,970 --> 00:06:01,270
+And so once again, it is actually Webpack that will take care of then taking the styles out of the
+
+86
+00:06:01,270 --> 00:06:04,840
+CSS file and injecting them into our application.
+
+87
+00:06:05,710 --> 00:06:09,220
+So index dot CSS.
+
+88
+00:06:10,730 --> 00:06:11,600
+All right.
+
+89
+00:06:11,750 --> 00:06:14,830
+And you see already things changed here.
+
+90
+00:06:14,840 --> 00:06:17,300
+So the background color is different.
+
+91
+00:06:17,330 --> 00:06:20,180
+The font family has changed.
+
+92
+00:06:21,350 --> 00:06:22,850
+Yeah, for now, I think that's all.
+
+93
+00:06:22,970 --> 00:06:27,530
+And we also get this nice yellow border at the bottom of the page.
+
+94
+00:06:27,800 --> 00:06:33,860
+So you see that immediately Webpack included these styles now in our application.
+
+95
+00:06:35,730 --> 00:06:38,230
+Okay, but now let's add the classes.
+
+96
+00:06:39,940 --> 00:06:43,720
+So you see that we have one container, We have a header.
+
+97
+00:06:45,900 --> 00:06:49,110
+We have menu and we probably have footer.
+
+98
+00:06:50,590 --> 00:06:50,890
+Yeah.
+
+99
+00:06:50,890 --> 00:06:53,290
+So just very straightforward.
+
+100
+00:06:55,040 --> 00:07:00,540
+So here, let's add the class of container and let me first do it in the wrong way.
+
+101
+00:07:00,560 --> 00:07:04,250
+So I will just write class as we would do in HTML.
+
+102
+00:07:06,050 --> 00:07:08,360
+But then react will actually warn us.
+
+103
+00:07:09,780 --> 00:07:13,440
+So you see here invalid Dom property class.
+
+104
+00:07:13,440 --> 00:07:15,090
+Did you mean classname?
+
+105
+00:07:15,090 --> 00:07:18,270
+And so this is one of the important rules of JSX.
+
+106
+00:07:18,930 --> 00:07:24,690
+So in JSX we cannot use class, but instead class name.
+
+107
+00:07:25,380 --> 00:07:28,290
+Okay, so this is a common beginner mistake.
+
+108
+00:07:28,290 --> 00:07:30,210
+But now you have been warned.
+
+109
+00:07:30,240 --> 00:07:33,090
+It still does work here somehow.
+
+110
+00:07:33,090 --> 00:07:40,980
+But we are really not supposed to use class in JSX and that's probably because class is already a reserved
+
+111
+00:07:40,980 --> 00:07:43,050
+keyword in JavaScript.
+
+112
+00:07:43,620 --> 00:07:46,230
+Okay, but let's keep going here.
+
+113
+00:07:46,920 --> 00:07:49,920
+So again, let's add Classname here.
+
+114
+00:07:51,840 --> 00:07:53,190
+Of header.
+
+115
+00:07:55,140 --> 00:07:56,090
+All right.
+
+116
+00:07:56,100 --> 00:07:58,320
+And now this didn't really change a lot.
+
+117
+00:07:58,410 --> 00:08:03,830
+That's because we still have this style here applied, so we probably don't want that.
+
+118
+00:08:03,840 --> 00:08:09,810
+And so just to keep this here, I will duplicate this one, comment it out, and then I will just make
+
+119
+00:08:09,810 --> 00:08:11,220
+this an empty object.
+
+120
+00:08:12,080 --> 00:08:15,490
+Well, and that didn't really change a lot now.
+
+121
+00:08:15,500 --> 00:08:17,300
+And I know why that is.
+
+122
+00:08:17,330 --> 00:08:23,420
+It is because here we are actually supposed to have a header element first.
+
+123
+00:08:26,510 --> 00:08:27,410
+All right.
+
+124
+00:08:27,410 --> 00:08:30,110
+And so that class should go there.
+
+125
+00:08:32,090 --> 00:08:36,170
+So this is a little bit just of semantic HTML right here.
+
+126
+00:08:36,380 --> 00:08:43,610
+Or let's say semantic markup where the header element is a bit better suited here than simply having
+
+127
+00:08:43,610 --> 00:08:44,510
+the H1.
+
+128
+00:08:45,390 --> 00:08:47,220
+And here we have some problem.
+
+129
+00:08:47,880 --> 00:08:48,990
+Let's maybe.
+
+130
+00:08:50,100 --> 00:08:52,020
+Change something here very quickly.
+
+131
+00:08:55,060 --> 00:08:58,260
+So here we have this 12 rim of width.
+
+132
+00:08:58,270 --> 00:08:59,800
+Let's change that to four.
+
+133
+00:09:01,780 --> 00:09:08,440
+So that's a bit better, even though it's not perfect yet because of course this page is very narrow.
+
+134
+00:09:09,410 --> 00:09:10,460
+But never mind.
+
+135
+00:09:10,490 --> 00:09:12,920
+We will fix that in a moment.
+
+136
+00:09:13,840 --> 00:09:17,470
+Next up here, let's add the class of menu.
+
+137
+00:09:17,860 --> 00:09:18,700
+And again.
+
+138
+00:09:19,890 --> 00:09:21,360
+That's class name.
+
+139
+00:09:21,570 --> 00:09:23,790
+And then just a simple string.
+
+140
+00:09:24,090 --> 00:09:25,220
+So menu.
+
+141
+00:09:25,230 --> 00:09:31,560
+And here, since we were talking about semantic markup, let's actually use the main tag.
+
+142
+00:09:31,560 --> 00:09:33,680
+So the main HTML element.
+
+143
+00:09:33,690 --> 00:09:36,120
+And then of course we need to close.
+
+144
+00:09:36,920 --> 00:09:38,480
+It correctly as well.
+
+145
+00:09:39,710 --> 00:09:40,900
+Are beautiful.
+
+146
+00:09:40,910 --> 00:09:41,690
+So you see that?
+
+147
+00:09:41,690 --> 00:09:46,070
+Now we get this nice styling here on the menu.
+
+148
+00:09:48,990 --> 00:09:50,010
+Okay.
+
+149
+00:09:52,460 --> 00:09:57,380
+Next up, we have this class name here, which will just be footer.
+
+150
+00:09:59,630 --> 00:10:00,500
+All right.
+
+151
+00:10:01,510 --> 00:10:02,920
+So let's see what we get.
+
+152
+00:10:04,180 --> 00:10:10,210
+Uh, here we have this weird styling applied to these titles, which is not supposed to be happening.
+
+153
+00:10:10,960 --> 00:10:15,520
+And so let's just make them H3, not H2.
+
+154
+00:10:18,510 --> 00:10:18,910
+Yep.
+
+155
+00:10:19,200 --> 00:10:21,060
+And so here we have the footer.
+
+156
+00:10:22,010 --> 00:10:22,850
+Nice.
+
+157
+00:10:23,550 --> 00:10:28,230
+So with this, we actually have some styling applied to our application right now.
+
+158
+00:10:28,230 --> 00:10:35,340
+And as I mentioned, we are getting these styles now from this external CSS style sheet which remember
+
+159
+00:10:35,340 --> 00:10:42,390
+we simply imported here using this import syntax which will make Webpack import the styles into our
+
+160
+00:10:42,390 --> 00:10:43,350
+application.
+
+161
+00:10:44,000 --> 00:10:51,290
+Then here, remember that we used class name and not class because class is a reserved keyword in JavaScript
+
+162
+00:10:51,290 --> 00:10:52,010
+already.
+
+163
+00:10:52,340 --> 00:10:58,520
+And by the way, there are a few more rules like this which we will talk about a little bit later in
+
+164
+00:10:58,520 --> 00:10:59,360
+this section.
+
+165
+00:10:59,390 --> 00:11:06,230
+For now, just notice that the styles that we included here are global styles, so they are not scoped
+
+166
+00:11:06,230 --> 00:11:10,400
+to each particular component and that's very easy to show.
+
+167
+00:11:10,430 --> 00:11:12,740
+For example, we could.
+
+168
+00:11:13,520 --> 00:11:17,090
+At the header class also here.
+
+169
+00:11:17,900 --> 00:11:22,250
+And while that looks kind of the same, let's try something else.
+
+170
+00:11:22,520 --> 00:11:26,480
+Let's add maybe the footer class also to the header.
+
+171
+00:11:27,350 --> 00:11:27,620
+Yeah.
+
+172
+00:11:27,620 --> 00:11:29,900
+And again, it doesn't change a lot.
+
+173
+00:11:30,730 --> 00:11:33,040
+But if we inspect the element here.
+
+174
+00:11:35,430 --> 00:11:36,330
+Is so.
+
+175
+00:11:37,640 --> 00:11:38,720
+Right here.
+
+176
+00:11:40,930 --> 00:11:43,450
+Then, of course, both of these classes here.
+
+177
+00:11:43,480 --> 00:11:50,280
+So all of these styles will be applied to this same element and in the end to the same component.
+
+178
+00:11:50,290 --> 00:11:57,760
+And so again, each component does not really contain its own styles, but simply uses the global styles
+
+179
+00:11:57,760 --> 00:12:00,780
+that are in index.css.
+
+180
+00:12:00,790 --> 00:12:07,660
+And this works fine for small apps, but we will also use something called styled components later in
+
+181
+00:12:07,660 --> 00:12:08,650
+another project.
+
+182
+00:12:08,650 --> 00:12:14,470
+And so then we will have CSS that really only belongs to one single component.

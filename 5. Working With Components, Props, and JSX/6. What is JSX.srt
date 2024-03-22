@@ -1,0 +1,279 @@
+1
+00:00:00,760 --> 00:00:07,240
+We have written some pieces of JS in this course already, but what actually is JS?
+
+2
+00:00:07,660 --> 00:00:10,690
+And why is it such a big deal in React?
+
+3
+00:00:11,900 --> 00:00:18,590
+Well, when we first talked about components, we talked about how a component contains its own data,
+
+4
+00:00:18,620 --> 00:00:20,750
+logic and appearance.
+
+5
+00:00:20,750 --> 00:00:22,970
+And that makes sense, right?
+
+6
+00:00:22,970 --> 00:00:29,840
+Because if a component is a piece of the user interface, it means that we must be able to describe
+
+7
+00:00:29,840 --> 00:00:32,660
+exactly what that component looks like.
+
+8
+00:00:32,660 --> 00:00:36,200
+And so that's where JSX comes into play.
+
+9
+00:00:36,380 --> 00:00:45,260
+So JSX is a declarative syntax that we use to describe what components look like and how they work based
+
+10
+00:00:45,260 --> 00:00:47,360
+on their data and logic.
+
+11
+00:00:47,360 --> 00:00:50,480
+So it's all about the components appearance.
+
+12
+00:00:50,540 --> 00:00:58,010
+In practice, this means that each component must return one block of JSX, which react will then use
+
+13
+00:00:58,010 --> 00:01:00,530
+to render the component on the UI.
+
+14
+00:01:00,920 --> 00:01:07,160
+Now, looking at this code, this JSX looks a lot like HTML, right?
+
+15
+00:01:07,160 --> 00:01:17,940
+But in fact JSX is an extension of JavaScript which allows us to combine parts of HTML, CSS and JavaScript
+
+16
+00:01:17,940 --> 00:01:20,490
+all into one block of code.
+
+17
+00:01:20,760 --> 00:01:28,560
+So basically we can write HTML and embed some pieces of JavaScript where necessary, for example, to
+
+18
+00:01:28,560 --> 00:01:35,340
+reference some JavaScript variables and we can even reference other react components so that we can
+
+19
+00:01:35,370 --> 00:01:39,510
+then combine nest and reuse multiple components.
+
+20
+00:01:39,600 --> 00:01:46,770
+But now you might be thinking if React is a JavaScript framework, then how will it understand this
+
+21
+00:01:47,010 --> 00:01:48,810
+HTML looking code?
+
+22
+00:01:49,140 --> 00:01:57,120
+Well, remember that JSX is just an extension of JavaScript, which means that there is a simple way
+
+23
+00:01:57,120 --> 00:02:00,690
+of converting JSX to JavaScript.
+
+24
+00:02:00,870 --> 00:02:07,890
+This is done by a tool called Babel, which was automatically included in our application by Create
+
+25
+00:02:07,890 --> 00:02:09,060
+React app.
+
+26
+00:02:09,180 --> 00:02:16,500
+And the result of this conversion looks something like this code on the right where each element was
+
+27
+00:02:16,500 --> 00:02:20,970
+converted to a react.createelement function call.
+
+28
+00:02:21,210 --> 00:02:23,490
+And does this look familiar?
+
+29
+00:02:23,790 --> 00:02:31,230
+Well, I hope it does because this is exactly what we returned from the app component in the pure React
+
+30
+00:02:31,230 --> 00:02:31,950
+lecture.
+
+31
+00:02:31,950 --> 00:02:38,100
+So in that lecture where we couldn't use JSX because we didn't have that Babel tool.
+
+32
+00:02:38,610 --> 00:02:45,180
+But anyway, this conversion is necessary because browsers of course do not understand js.
+
+33
+00:02:45,750 --> 00:02:48,300
+They only understand HTML.
+
+34
+00:02:48,390 --> 00:02:57,180
+So behind the scenes, all the JS that we write is converted into many nested react.createelement function
+
+35
+00:02:57,180 --> 00:02:57,780
+calls.
+
+36
+00:02:57,780 --> 00:03:04,860
+And these function calls are what in the end create the HTML elements that we see on the screen.
+
+37
+00:03:05,190 --> 00:03:11,730
+Now what this means is that we could actually use React without JS at all.
+
+38
+00:03:11,880 --> 00:03:17,430
+So we could just manually write these create element functions instead of JS.
+
+39
+00:03:18,060 --> 00:03:21,660
+But that doesn't look like a lot of fun, right?
+
+40
+00:03:21,810 --> 00:03:25,920
+It also makes the code really hard to read and to understand.
+
+41
+00:03:25,920 --> 00:03:29,940
+And so actually everyone just uses JS.
+
+42
+00:03:30,600 --> 00:03:31,410
+All right.
+
+43
+00:03:31,410 --> 00:03:39,460
+So now that we know what JS is all about, let's go back to that first paragraph where I say that JS
+
+44
+00:03:39,910 --> 00:03:42,150
+is a declarative syntax.
+
+45
+00:03:42,160 --> 00:03:44,200
+So what does it actually mean?
+
+46
+00:03:44,200 --> 00:03:46,900
+That JS is declarative?
+
+47
+00:03:47,670 --> 00:03:54,930
+Well, before we can understand what declarative means, we first have to review what imperative means.
+
+48
+00:03:55,200 --> 00:04:03,600
+So when we try to build UIs using vanilla JavaScript, we will by default use an imperative approach.
+
+49
+00:04:03,630 --> 00:04:11,250
+This means that we manually select elements, traverse the Dom and attach event handlers to elements.
+
+50
+00:04:11,280 --> 00:04:17,670
+Then each time something happens in the app, like a click on a button, we give the browser a step
+
+51
+00:04:17,670 --> 00:04:25,620
+by step instructions on how to mutate those Dom elements until we reach the desired updated UI.
+
+52
+00:04:26,160 --> 00:04:32,700
+So in the imperative approach, we basically tell the browser exactly how to do things.
+
+53
+00:04:32,730 --> 00:04:39,540
+However, doing this in a complex app is completely unfeasible for all the reasons that we have learned
+
+54
+00:04:39,540 --> 00:04:40,650
+about before.
+
+55
+00:04:40,800 --> 00:04:47,580
+And remember that that's the reason why frameworks like React exist in the first place, and it's why
+
+56
+00:04:47,580 --> 00:04:53,280
+React chose to use a declarative approach to building user interfaces.
+
+57
+00:04:53,950 --> 00:05:01,540
+So a declarative approach is to simply describe what the UI should look like at all times, always based
+
+58
+00:05:01,540 --> 00:05:04,470
+on the current data that's in the component.
+
+59
+00:05:04,480 --> 00:05:09,310
+And we will soon learn that this data is props and state.
+
+60
+00:05:09,430 --> 00:05:17,820
+And so again, basically we use to describe the UI based on props and state.
+
+61
+00:05:17,830 --> 00:05:25,570
+So the data that's currently in the component and all that happens without any Dom manipulation at all.
+
+62
+00:05:25,570 --> 00:05:33,130
+So there are no query selectors, no Add event listeners, no classlist, no text content properties
+
+63
+00:05:33,130 --> 00:05:42,220
+anywhere to be seen here because in fact React is basically a huge abstraction away from the Dom so
+
+64
+00:05:42,220 --> 00:05:46,210
+that we developers never have to touch the Dom directly.
+
+65
+00:05:46,330 --> 00:05:54,350
+Instead, we think of the UI as a reflection of the current data and let react automatically synchronize
+
+66
+00:05:54,350 --> 00:05:56,780
+the UI with that data.
+
+67
+00:05:57,740 --> 00:06:04,760
+So in essence, the difference between imperative and declarative is that in the declarative approach
+
+68
+00:06:04,760 --> 00:06:12,500
+we use JSX to tell react what we want to see on the screen, but not how to achieve it step by step.
+
+69
+00:06:12,530 --> 00:06:20,180
+React can figure that out on its own, basically, and this has many, many advantages, as we will
+
+70
+00:06:20,180 --> 00:06:21,950
+see throughout the course.

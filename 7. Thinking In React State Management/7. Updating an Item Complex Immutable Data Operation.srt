@@ -1,0 +1,411 @@
+1
+00:00:00,910 --> 00:00:07,000
+Next up, let's take care of updating items by toggling their pact status.
+
+2
+00:00:07,890 --> 00:00:13,650
+So basically that's the functionality that I showed you by the end of the previous lecture.
+
+3
+00:00:13,830 --> 00:00:14,670
+Right.
+
+4
+00:00:14,670 --> 00:00:17,850
+So this is what we want to implement in our app now.
+
+5
+00:00:17,850 --> 00:00:22,770
+And so to start, we actually need to create those checkboxes there.
+
+6
+00:00:24,240 --> 00:00:27,480
+So right now, we don't even have that checkbox.
+
+7
+00:00:27,480 --> 00:00:32,850
+And so let's go here to our item and before the span.
+
+8
+00:00:33,600 --> 00:00:34,680
+Let's now add.
+
+9
+00:00:35,310 --> 00:00:37,710
+An input of the type.
+
+10
+00:00:38,700 --> 00:00:40,680
+And here we want a string.
+
+11
+00:00:43,530 --> 00:00:45,480
+So of the type checkbox.
+
+12
+00:00:47,420 --> 00:00:49,090
+So that's something.
+
+13
+00:00:49,100 --> 00:00:52,640
+So we can actually already toggle this one here on and off now.
+
+14
+00:00:52,640 --> 00:00:55,430
+But of course it's not going to do anything.
+
+15
+00:00:55,430 --> 00:01:02,150
+So basically we want to also transform this element right here into a controlled element.
+
+16
+00:01:02,150 --> 00:01:08,720
+And remember, a controlled element means that the element has the value defined by some state, and
+
+17
+00:01:08,720 --> 00:01:14,120
+it also has an event handler which listens for the change and updates the state accordingly.
+
+18
+00:01:16,570 --> 00:01:19,050
+So let's do those two things.
+
+19
+00:01:19,060 --> 00:01:25,870
+And first the value will be given by the item dot checked status.
+
+20
+00:01:26,050 --> 00:01:30,070
+And so this checked here is always a true or false value.
+
+21
+00:01:30,070 --> 00:01:35,770
+And so that is exactly the type of value that we need to pass into the value of a checkbox.
+
+22
+00:01:35,890 --> 00:01:41,770
+And actually here it should be packed and not checked, which maybe you had already noticed.
+
+23
+00:01:42,100 --> 00:01:44,770
+But anyway, now let's keep going here.
+
+24
+00:01:44,770 --> 00:01:48,820
+And so now next up, we need to add Onchange handler.
+
+25
+00:01:49,120 --> 00:01:55,180
+So we need to listen for the change event, which basically happens each time that we click here on
+
+26
+00:01:55,180 --> 00:01:56,230
+the checkbox.
+
+27
+00:01:56,500 --> 00:02:01,450
+Now here for now, let's actually specify just an empty function.
+
+28
+00:02:01,630 --> 00:02:04,030
+So a function that doesn't do anything.
+
+29
+00:02:04,840 --> 00:02:06,550
+And here we're missing this.
+
+30
+00:02:06,820 --> 00:02:07,480
+All right.
+
+31
+00:02:07,480 --> 00:02:13,300
+And so the reason for that is that, of course, this function here that we are eventually going to
+
+32
+00:02:13,300 --> 00:02:18,610
+specify here is going to change the packed value of the item state.
+
+33
+00:02:18,730 --> 00:02:19,510
+Right.
+
+34
+00:02:19,510 --> 00:02:25,050
+And so that function will once again be placed where the state actually lives.
+
+35
+00:02:25,060 --> 00:02:32,080
+So inside of app and then we will pass it down using a prop just like we did with on delete item.
+
+36
+00:02:32,620 --> 00:02:34,120
+So this is something similar.
+
+37
+00:02:34,120 --> 00:02:38,740
+So instead of deleting an item, we will simply now update one item.
+
+38
+00:02:38,860 --> 00:02:44,260
+And so again, that updates happens each time that we click here on the checkbox.
+
+39
+00:02:45,180 --> 00:02:47,910
+So let's now write that function here.
+
+40
+00:02:49,290 --> 00:02:56,790
+So function and again, starting with the handle keyword and then toggle item.
+
+41
+00:02:56,910 --> 00:03:01,220
+And that's because here we will only toggle the packed property.
+
+42
+00:03:01,230 --> 00:03:08,160
+So not allow anyone to update the entire object, but only really to change the value of that packed
+
+43
+00:03:08,160 --> 00:03:09,000
+property.
+
+44
+00:03:09,900 --> 00:03:17,280
+So in order to know which object we actually need to change, we need to again pass in the ID And so
+
+45
+00:03:17,280 --> 00:03:17,820
+then.
+
+46
+00:03:18,900 --> 00:03:26,070
+Let's again set the items and then we need to pass in a new array, which just like before, will depend
+
+47
+00:03:26,100 --> 00:03:27,690
+on the current array.
+
+48
+00:03:28,230 --> 00:03:30,450
+So we have our callback function here.
+
+49
+00:03:30,780 --> 00:03:38,370
+And so now in order to update one of the objects in the array, we will simply loop over the entire
+
+50
+00:03:38,370 --> 00:03:45,330
+items array using the map property, which will then in the end return a brand new array with the same
+
+51
+00:03:45,330 --> 00:03:48,290
+length of the initial items array.
+
+52
+00:03:48,300 --> 00:03:52,110
+But one of the objects will then of course have been updated.
+
+53
+00:03:52,110 --> 00:03:57,090
+So in the iteration each of the elements is called an item.
+
+54
+00:03:57,090 --> 00:03:59,190
+And then here is what we're going to do.
+
+55
+00:03:59,550 --> 00:04:08,100
+So whenever the item has the ID that is equal to the ID that we passed in, so which means that this
+
+56
+00:04:08,100 --> 00:04:13,530
+is the object that we want to actually update, then we create a brand new object.
+
+57
+00:04:14,200 --> 00:04:16,720
+Based on the current item.
+
+58
+00:04:16,870 --> 00:04:19,630
+And then we set packed.
+
+59
+00:04:20,340 --> 00:04:22,980
+To the opposite of packed.
+
+60
+00:04:23,740 --> 00:04:27,520
+So if item dot packed and that's it.
+
+61
+00:04:27,520 --> 00:04:33,220
+And if else so for all the other objects we will simply return the current item.
+
+62
+00:04:35,270 --> 00:04:39,650
+And just once again, I want to emphasize that I covered exactly that.
+
+63
+00:04:39,650 --> 00:04:46,760
+This is how we update an object in an array in great depth in the section where we review essential
+
+64
+00:04:46,760 --> 00:04:48,350
+JavaScript for React.
+
+65
+00:04:48,350 --> 00:04:51,860
+So please go there in case that this looks strange.
+
+66
+00:04:52,440 --> 00:04:56,460
+But for everyone else, let's just keep going here.
+
+67
+00:04:57,620 --> 00:05:05,000
+And now also add this function here into the packing list so that the packing list can then edit into
+
+68
+00:05:05,000 --> 00:05:05,690
+the item.
+
+69
+00:05:06,350 --> 00:05:10,820
+So we use once again the props basically as a communication channel here.
+
+70
+00:05:11,760 --> 00:05:15,240
+So on toggle items.
+
+71
+00:05:17,270 --> 00:05:19,580
+Handle toggle item.
+
+72
+00:05:20,800 --> 00:05:28,060
+So on toggle item right here and now, let's just copy this edit here to the list of props.
+
+73
+00:05:28,780 --> 00:05:33,940
+Exactly like this, and then we pass it into the item itself.
+
+74
+00:05:35,060 --> 00:05:36,320
+Let's do that here.
+
+75
+00:05:39,730 --> 00:05:40,330
+All right.
+
+76
+00:05:40,330 --> 00:05:42,550
+And finally, we receive it here.
+
+77
+00:05:44,220 --> 00:05:50,880
+So again, we need to use the packing list here as an intermediary step in order to reach the item itself.
+
+78
+00:05:50,880 --> 00:05:59,220
+And so now here we can then replace this empty function with calling on toggle item with just like before
+
+79
+00:05:59,250 --> 00:06:04,650
+the current ID so that we actually know which is the object that we need to change.
+
+80
+00:06:05,730 --> 00:06:06,360
+All right.
+
+81
+00:06:06,360 --> 00:06:08,550
+And that's actually it.
+
+82
+00:06:08,640 --> 00:06:10,410
+Or at least it should be.
+
+83
+00:06:10,650 --> 00:06:12,360
+So let's see if that works.
+
+84
+00:06:12,360 --> 00:06:14,160
+So one sucks.
+
+85
+00:06:14,370 --> 00:06:17,690
+Let's say one shirt and one charger.
+
+86
+00:06:17,700 --> 00:06:20,660
+And now as we click here.
+
+87
+00:06:20,670 --> 00:06:22,560
+Yeah, beautiful.
+
+88
+00:06:22,740 --> 00:06:29,010
+So it updates or checkbox and you see that it also updates here the strikethrough.
+
+89
+00:06:29,010 --> 00:06:35,640
+So that's coming exactly here from when the item is packed and the same of course works for all the
+
+90
+00:06:35,640 --> 00:06:41,400
+other ones because if we click on this one then the item ID will be another one.
+
+91
+00:06:41,400 --> 00:06:48,780
+And so therefore then this function here receives another value which will then update another object.
+
+92
+00:06:48,780 --> 00:06:51,780
+And deleting here of course also works.
+
+93
+00:06:51,900 --> 00:06:59,070
+And so yeah, we are done with building these two operations that we can perform on items.
+
+94
+00:06:59,340 --> 00:07:07,390
+So toggling their packed status and deleting them now before moving on, please just make sure to review
+
+95
+00:07:07,390 --> 00:07:09,310
+the code that we wrote here.
+
+96
+00:07:09,310 --> 00:07:14,980
+So just to make sure that you understand basically everything that's happening here, why we are doing
+
+97
+00:07:14,980 --> 00:07:15,880
+it this way.
+
+98
+00:07:15,880 --> 00:07:23,410
+And yeah, the way we then pass in these functions as props all the way down until the components that
+
+99
+00:07:23,410 --> 00:07:24,580
+actually need them.
+
+100
+00:07:24,580 --> 00:07:29,950
+So this is again child to parent communication, which is something that we're going to use all the
+
+101
+00:07:29,950 --> 00:07:30,400
+time.
+
+102
+00:07:30,400 --> 00:07:36,430
+And so make sure that you really understand this concept as well as lifting up state until you move
+
+103
+00:07:36,430 --> 00:07:40,930
+on to the next lecture, which is going to be about derived state.

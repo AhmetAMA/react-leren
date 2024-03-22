@@ -1,0 +1,291 @@
+1
+00:00:00,840 --> 00:00:09,000
+The third way in which we can conditionally render some JS or some component is by using multiple returns.
+
+2
+00:00:10,310 --> 00:00:17,700
+So up until this point, all our components only ever had exactly one return keyword, right?
+
+3
+00:00:17,720 --> 00:00:24,260
+But there is nothing stopping us from adding another return keyword based on some condition.
+
+4
+00:00:24,380 --> 00:00:32,030
+So of course each component still can only return one block of JS, but that return can depend on a
+
+5
+00:00:32,030 --> 00:00:32,780
+condition.
+
+6
+00:00:33,670 --> 00:00:37,060
+So in other words, we can do, for example, this.
+
+7
+00:00:38,210 --> 00:00:44,330
+So right here we are outside of X, so we are simply inside the component.
+
+8
+00:00:44,330 --> 00:00:47,080
+And so here we can write any JavaScript we want.
+
+9
+00:00:47,090 --> 00:00:50,270
+So we can now easily use the If keyword.
+
+10
+00:00:50,840 --> 00:00:54,230
+So we can say if is not open.
+
+11
+00:00:54,790 --> 00:00:56,320
+Then return.
+
+12
+00:00:56,440 --> 00:00:58,720
+For example, this message right here.
+
+13
+00:00:59,650 --> 00:01:00,340
+So this.
+
+14
+00:01:02,220 --> 00:01:03,570
+So paste that here.
+
+15
+00:01:03,840 --> 00:01:05,880
+And that's actually it.
+
+16
+00:01:07,170 --> 00:01:11,930
+So if the restaurant is not open, then this will be returned.
+
+17
+00:01:11,940 --> 00:01:18,570
+But if it is opened, then all of this here is not executed and then our normal return will simply be
+
+18
+00:01:18,570 --> 00:01:19,500
+executed.
+
+19
+00:01:19,740 --> 00:01:24,270
+What's important here is that these two returns cannot happen at the same time.
+
+20
+00:01:24,270 --> 00:01:25,590
+But that's right.
+
+21
+00:01:25,590 --> 00:01:26,820
+Now, in short, here.
+
+22
+00:01:27,760 --> 00:01:30,940
+So let's again put it to 20.
+
+23
+00:01:32,870 --> 00:01:35,660
+And so now we get this.
+
+24
+00:01:36,390 --> 00:01:38,310
+It's exactly this message right here.
+
+25
+00:01:38,400 --> 00:01:40,170
+So it's not coming from here.
+
+26
+00:01:40,380 --> 00:01:42,690
+So we could replace this.
+
+27
+00:01:42,690 --> 00:01:46,170
+But I will leave it here and I will explain in a second why.
+
+28
+00:01:47,100 --> 00:01:50,520
+But anyway, now this is actually coming from here.
+
+29
+00:01:50,520 --> 00:01:57,270
+And we could, of course, do anything here just to make sure it is really coming from there.
+
+30
+00:01:57,510 --> 00:02:05,310
+And yeah, now, the problem in this case is that we are now no longer rendering the filter element
+
+31
+00:02:05,610 --> 00:02:07,010
+around this pier.
+
+32
+00:02:07,290 --> 00:02:13,200
+So if we wanted to do the exact same thing, we would also have to copy the filter here, right?
+
+33
+00:02:13,290 --> 00:02:17,730
+Otherwise the filter would only be rendered in case the restaurant is open.
+
+34
+00:02:17,730 --> 00:02:20,970
+But if not, then no filter would exist.
+
+35
+00:02:21,090 --> 00:02:24,600
+So this is actually, in this case, not what we want.
+
+36
+00:02:24,930 --> 00:02:25,650
+All right.
+
+37
+00:02:26,290 --> 00:02:33,880
+So usually this early return, like we did here, is more useful when we want to render entire components
+
+38
+00:02:33,880 --> 00:02:37,150
+conditionally, but not just some pieces of JSX.
+
+39
+00:02:39,540 --> 00:02:42,330
+So let's try something else here, maybe.
+
+40
+00:02:42,660 --> 00:02:46,440
+And what I'm looking for is actually this pizza component.
+
+41
+00:02:47,550 --> 00:02:52,620
+So remember how the pizza has a property of sold out?
+
+42
+00:02:52,710 --> 00:02:55,050
+So we can see that here in the props.
+
+43
+00:02:55,710 --> 00:02:57,840
+So each pizza receives.
+
+44
+00:02:58,540 --> 00:03:02,320
+This pizza object now as a prop and then we have sold out.
+
+45
+00:03:02,620 --> 00:03:06,430
+So what we can do here as an early return is to say.
+
+46
+00:03:07,470 --> 00:03:08,280
+If.
+
+47
+00:03:09,220 --> 00:03:12,490
+Props dot pizza object.
+
+48
+00:03:13,300 --> 00:03:14,740
+Dot sold out.
+
+49
+00:03:15,370 --> 00:03:17,860
+Then return nothing.
+
+50
+00:03:17,980 --> 00:03:24,430
+And so with this, then the pizza that is sold out will not appear on the user interface.
+
+51
+00:03:24,610 --> 00:03:27,550
+And indeed, there was one pizza.
+
+52
+00:03:29,330 --> 00:03:32,080
+So that's this one here, pizza Salamino.
+
+53
+00:03:32,090 --> 00:03:34,220
+And that's no longer here now.
+
+54
+00:03:34,340 --> 00:03:37,910
+And so that's because here we have this early return.
+
+55
+00:03:38,000 --> 00:03:44,210
+So that's sometimes a pretty common technique that we can use, which is to simply return null.
+
+56
+00:03:44,240 --> 00:03:48,770
+So nothing in case there is a certain condition that's true.
+
+57
+00:03:48,770 --> 00:03:51,320
+And so in this case, this can be quite useful.
+
+58
+00:03:51,320 --> 00:03:53,240
+So for now, let's leave this here.
+
+59
+00:03:53,240 --> 00:03:57,470
+Even though later we will do something even nicer with this property.
+
+60
+00:03:57,560 --> 00:04:04,880
+So as a conclusion of these three lectures on conditional rendering, my recommendation is to use the
+
+61
+00:04:04,880 --> 00:04:10,700
+ternary operator whenever you need to return some piece of JSX based on a condition.
+
+62
+00:04:10,730 --> 00:04:14,030
+So just for example, like this here.
+
+63
+00:04:14,030 --> 00:04:20,450
+So this we are going to use all the time, but also sometimes you just want to do something like this.
+
+64
+00:04:20,450 --> 00:04:26,900
+So you want to return something entirely different, no matter if that's nothing or if that's just some
+
+65
+00:04:26,930 --> 00:04:28,070
+other component.
+
+66
+00:04:28,070 --> 00:04:32,820
+So for example, we could also say here something that doesn't make any sense.
+
+67
+00:04:33,710 --> 00:04:35,510
+But let's just try this.
+
+68
+00:04:36,780 --> 00:04:38,840
+So we could do this.
+
+69
+00:04:38,850 --> 00:04:43,050
+So in case it sold out, we return the header in this place.
+
+70
+00:04:43,530 --> 00:04:48,090
+So again here, that makes no sense at all, but that would be a possibility.
+
+71
+00:04:49,000 --> 00:04:50,530
+Although not a very good one.
+
+72
+00:04:50,530 --> 00:04:57,040
+So throughout this course you will learn which of these options is the best simply by practicing and
+
+73
+00:04:57,040 --> 00:05:00,340
+using them in different situations over and over again.

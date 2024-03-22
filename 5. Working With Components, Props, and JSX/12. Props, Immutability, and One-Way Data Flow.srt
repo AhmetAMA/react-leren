@@ -1,0 +1,315 @@
+1
+00:00:00,860 --> 00:00:07,970
+So now that we already know what props are and how we use them in practice, let's quickly review them
+
+2
+00:00:07,970 --> 00:00:12,470
+and even learn some important additional things about props.
+
+3
+00:00:14,500 --> 00:00:22,410
+So as we just learned, we use props in React to pass data from parent components to child components.
+
+4
+00:00:22,420 --> 00:00:27,170
+So essentially to pass information down the component tree.
+
+5
+00:00:27,190 --> 00:00:34,510
+This means that essentially we use props to communicate between parent and child components.
+
+6
+00:00:34,600 --> 00:00:42,670
+Therefore, props are an essential react tool to configure and also to customize components.
+
+7
+00:00:42,850 --> 00:00:50,320
+So we can imagine props as settings that we can use to make a parent component control how its child
+
+8
+00:00:50,320 --> 00:00:53,500
+component should look like and how it should work.
+
+9
+00:00:53,770 --> 00:01:00,580
+So in that regard, props are just like arguments passed to regular JavaScript functions.
+
+10
+00:01:00,940 --> 00:01:05,920
+Also, we can pass anything into JavaScript functions, right?
+
+11
+00:01:05,920 --> 00:01:09,900
+And so the same is actually true for props.
+
+12
+00:01:09,910 --> 00:01:13,690
+So we can pass any type of value as a prop.
+
+13
+00:01:13,690 --> 00:01:21,230
+So we can pass single values, arrays, objects, functions and even other React components, which
+
+14
+00:01:21,260 --> 00:01:25,250
+is a really powerful technique that we will explore a bit later.
+
+15
+00:01:25,780 --> 00:01:29,470
+So those are the fundamentals of props in React.
+
+16
+00:01:29,470 --> 00:01:32,770
+But now let's go dig a little bit deeper.
+
+17
+00:01:34,110 --> 00:01:38,340
+But before we do that, we need to first take a step back.
+
+18
+00:01:38,940 --> 00:01:46,070
+So at this point of the course, we have already learned about the components appearance and its logic.
+
+19
+00:01:46,080 --> 00:01:51,330
+So by writing both JSX and JavaScript logic inside components.
+
+20
+00:01:51,930 --> 00:01:58,350
+Now, I've also been saying since the beginning of the course that React renders a component based on
+
+21
+00:01:58,350 --> 00:02:04,260
+its current data and that the UI will always be kept in sync with that data.
+
+22
+00:02:04,290 --> 00:02:05,210
+Right.
+
+23
+00:02:05,220 --> 00:02:11,850
+But now it's time to get a bit more specific about what that data actually is.
+
+24
+00:02:12,060 --> 00:02:19,680
+So this data that React uses to render a component is made out of props and state.
+
+25
+00:02:19,830 --> 00:02:23,400
+And actually there are even more types of data.
+
+26
+00:02:23,400 --> 00:02:26,940
+But what matters for now are props and state.
+
+27
+00:02:27,180 --> 00:02:34,180
+Now, state is basically internal component data that can be updated by the component's logic.
+
+28
+00:02:34,200 --> 00:02:41,670
+So by the component itself, while props on the other hand, is data that is coming from the parent
+
+29
+00:02:41,670 --> 00:02:42,360
+component.
+
+30
+00:02:42,360 --> 00:02:45,150
+So from the outside basically.
+
+31
+00:02:45,790 --> 00:02:49,270
+So it's the parent component who owns that data.
+
+32
+00:02:49,270 --> 00:02:53,620
+And so therefore it cannot be modified by the child component.
+
+33
+00:02:53,650 --> 00:02:58,770
+Instead, props can only be updated by the parent component itself.
+
+34
+00:02:58,780 --> 00:03:06,460
+And this brings us to one of the few strict rules that React gives us, which is that props are immutable
+
+35
+00:03:06,460 --> 00:03:08,230
+so they cannot be changed.
+
+36
+00:03:08,260 --> 00:03:10,120
+They are read only.
+
+37
+00:03:10,120 --> 00:03:17,920
+And if at any point you feel like you need to mutate props, actually what you need is state because
+
+38
+00:03:17,920 --> 00:03:22,930
+state is for data that changes over time as we will learn soon.
+
+39
+00:03:23,170 --> 00:03:28,390
+But why is that actually why are props immutable in React?
+
+40
+00:03:28,540 --> 00:03:32,560
+Well, to start props are just an object.
+
+41
+00:03:32,590 --> 00:03:39,430
+Therefore, if you change the props object in your component, you would also affect the parent component
+
+42
+00:03:39,430 --> 00:03:43,260
+because that's just how objects work in JavaScript.
+
+43
+00:03:43,270 --> 00:03:49,700
+So when you copy an object and mutate the copy, the original object will also be mutated.
+
+44
+00:03:50,000 --> 00:03:57,140
+Now if you change an object that is located outside of the component function, that function has then
+
+45
+00:03:57,140 --> 00:03:59,870
+created a so-called side effect.
+
+46
+00:04:00,200 --> 00:04:07,430
+So in general, a side effect happens whenever you change some data that's located outside of the current
+
+47
+00:04:07,430 --> 00:04:08,150
+function.
+
+48
+00:04:08,390 --> 00:04:16,010
+React, however, is all about pure functions, so functions without side effects, at least when it's
+
+49
+00:04:16,010 --> 00:04:17,990
+about a component's data.
+
+50
+00:04:18,200 --> 00:04:25,520
+So components have to be pure in terms of their props and state because this allows react to optimize
+
+51
+00:04:25,520 --> 00:04:32,510
+your application and it avoids some strange bugs that can appear when you manipulate external data.
+
+52
+00:04:32,660 --> 00:04:39,130
+And in fact we can extend this idea of immutability to react development in general.
+
+53
+00:04:39,140 --> 00:04:46,910
+So a component should never mutate any data that we write outside of its function scope like in this
+
+54
+00:04:46,910 --> 00:04:47,840
+example here.
+
+55
+00:04:49,370 --> 00:04:56,570
+And now to finish, it's important to understand that React uses a so called one way data flow.
+
+56
+00:04:56,720 --> 00:04:59,780
+Now, what does that have to do with props?
+
+57
+00:04:59,930 --> 00:05:07,910
+Well, in simple terms, one way data flow means that in React applications, data can only be passed
+
+58
+00:05:07,910 --> 00:05:13,250
+from parent to child components, which happens by using props.
+
+59
+00:05:13,340 --> 00:05:20,240
+So in other words, data can flow from parents to children, but never the opposite way.
+
+60
+00:05:20,270 --> 00:05:27,890
+And therefore we have a one way data flow, so only from top to bottom of the component tree.
+
+61
+00:05:28,550 --> 00:05:36,200
+Now, this may sound obvious to you, but other frameworks such as Angular actually employ a two way
+
+62
+00:05:36,200 --> 00:05:37,210
+data flow.
+
+63
+00:05:37,220 --> 00:05:42,770
+So if you know one of those frameworks already, this might be quite a change for you.
+
+64
+00:05:42,980 --> 00:05:50,780
+But there is actually a reason or multiple reasons why React uses a one way data flow like this.
+
+65
+00:05:50,810 --> 00:05:57,950
+The first is that it makes applications way more predictable and way easier to understand for developers
+
+66
+00:05:57,950 --> 00:06:04,610
+because it is just a lot easier to understand where the data is coming from if it only flows in one
+
+67
+00:06:04,610 --> 00:06:05,540
+direction.
+
+68
+00:06:05,750 --> 00:06:10,250
+In a similar vein, it makes applications way easier to debug.
+
+69
+00:06:10,280 --> 00:06:17,120
+Again, because we have way more control over the data and we understand exactly how that data flows
+
+70
+00:06:17,120 --> 00:06:17,930
+around.
+
+71
+00:06:18,140 --> 00:06:25,640
+And finally, two way data binding is usually less efficient, so it's less performant to implement.
+
+72
+00:06:26,090 --> 00:06:33,450
+Okay, so that sounds great, but you might be wondering what if I actually wanted to pass some data,
+
+73
+00:06:33,450 --> 00:06:37,740
+for example, some state up to a parent component?
+
+74
+00:06:38,040 --> 00:06:41,760
+Well, there is actually a very clever way to do that.
+
+75
+00:06:41,760 --> 00:06:48,560
+But as so often we will learn about that a bit later and actually in the next section to be specific.
+
+76
+00:06:48,570 --> 00:06:50,700
+So it's not far away.
+
+77
+00:06:50,790 --> 00:06:57,810
+There are just so many moving pieces in learning a whole library like React that of course you can't
+
+78
+00:06:57,810 --> 00:07:04,860
+learn it all at once, but trust me, you will get there and then everything will fall nicely into place
+
+79
+00:07:04,860 --> 00:07:05,790
+at the end.

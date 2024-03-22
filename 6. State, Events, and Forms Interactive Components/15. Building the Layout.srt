@@ -1,0 +1,523 @@
+1
+00:00:00,880 --> 00:00:08,080
+So with our project now installed, let's start by building the static layout of the application.
+
+2
+00:00:08,960 --> 00:00:16,400
+And as always, let's start by getting the starter files, which in this case is just this CSS file.
+
+3
+00:00:16,460 --> 00:00:20,510
+So of course that we don't have to write any styles or selves.
+
+4
+00:00:20,870 --> 00:00:23,450
+Then place that here into source.
+
+5
+00:00:23,540 --> 00:00:27,560
+Now there will already be one, so just replace that.
+
+6
+00:00:28,300 --> 00:00:33,310
+And since we're already here, we can get rid of all the junk that we don't need.
+
+7
+00:00:35,380 --> 00:00:36,710
+So all of these.
+
+8
+00:00:36,730 --> 00:00:42,550
+So in the end, we just have App.js, Index.js and index.js.
+
+9
+00:00:43,760 --> 00:00:47,930
+Okay, then just renaming this here once again.
+
+10
+00:00:48,020 --> 00:00:53,000
+And then let's drag and drop it onto the VS code icon.
+
+11
+00:00:55,990 --> 00:00:56,800
+Okay.
+
+12
+00:00:58,550 --> 00:01:00,950
+So here we already have our files.
+
+13
+00:01:01,040 --> 00:01:06,320
+As always, we need to clean this one here because we are importing some files that.
+
+14
+00:01:07,010 --> 00:01:09,080
+We no longer have, basically.
+
+15
+00:01:10,130 --> 00:01:11,200
+But that's it.
+
+16
+00:01:11,210 --> 00:01:17,750
+And once again, if you feel like it, you can actually delete all of this and write the code yourself
+
+17
+00:01:17,750 --> 00:01:22,970
+just to practice how we can set up this React app from complete scratch.
+
+18
+00:01:22,970 --> 00:01:29,450
+But I will just leave this here because in the end, when you build your own applications, you will
+
+19
+00:01:29,450 --> 00:01:32,200
+always just leave this here as well.
+
+20
+00:01:32,210 --> 00:01:35,180
+You're not always going to write everything from scratch.
+
+21
+00:01:35,180 --> 00:01:39,320
+But here I actually want to delete everything and start from scratch.
+
+22
+00:01:40,040 --> 00:01:42,620
+So export default.
+
+23
+00:01:43,240 --> 00:01:44,320
+Function.
+
+24
+00:01:45,560 --> 00:01:46,040
+Yep.
+
+25
+00:01:46,520 --> 00:01:49,790
+So this is usually always the same as well here.
+
+26
+00:01:49,790 --> 00:01:55,400
+So you always have your app parent component, which will include all the other components.
+
+27
+00:01:55,400 --> 00:01:58,700
+And let's actually start with these other components.
+
+28
+00:01:58,700 --> 00:02:02,720
+So just the components that we talked about in the previous lecture.
+
+29
+00:02:04,630 --> 00:02:08,890
+So that's a function logo.
+
+30
+00:02:10,270 --> 00:02:13,960
+And now I will just quickly duplicate this code here.
+
+31
+00:02:17,010 --> 00:02:19,530
+Just to make this a little bit faster.
+
+32
+00:02:23,250 --> 00:02:24,720
+So packing list.
+
+33
+00:02:26,430 --> 00:02:28,730
+And then we also have or stats.
+
+34
+00:02:28,740 --> 00:02:32,940
+So these are the four big components that we identified in the last lecture.
+
+35
+00:02:32,980 --> 00:02:34,080
+Remember that?
+
+36
+00:02:34,170 --> 00:02:40,370
+And so let's now write a little bit of JS for each of them, starting with the logo.
+
+37
+00:02:40,380 --> 00:02:45,690
+So the logo is many times an image, but in this case we will just have a primary heading.
+
+38
+00:02:47,140 --> 00:02:49,120
+And we will say far away.
+
+39
+00:02:49,210 --> 00:02:51,670
+And then let's add some emoji here.
+
+40
+00:02:51,970 --> 00:02:59,650
+Now, the way we write emojis on the Mac is by hitting control command spacebar and on Windows, the
+
+41
+00:02:59,650 --> 00:03:03,040
+shortcut is Windows plus period.
+
+42
+00:03:03,340 --> 00:03:04,960
+So like this.
+
+43
+00:03:04,960 --> 00:03:06,250
+So the windows key.
+
+44
+00:03:06,250 --> 00:03:08,020
+And then plus this dot.
+
+45
+00:03:09,250 --> 00:03:10,270
+All right, then.
+
+46
+00:03:10,270 --> 00:03:12,820
+Here, let's use a palm tree.
+
+47
+00:03:13,120 --> 00:03:14,620
+So this one here.
+
+48
+00:03:16,100 --> 00:03:17,480
+And then a back.
+
+49
+00:03:21,920 --> 00:03:23,420
+Just like this.
+
+50
+00:03:23,420 --> 00:03:29,600
+And in case you can't get these emojis to work, you can always just copy them from the final files
+
+51
+00:03:29,600 --> 00:03:30,740
+of this project.
+
+52
+00:03:30,740 --> 00:03:33,930
+Or you can, of course, just ignore them as well.
+
+53
+00:03:33,950 --> 00:03:37,160
+So these are just to make the design a little bit nicer.
+
+54
+00:03:38,440 --> 00:03:40,720
+Okay, that's enough for the logo.
+
+55
+00:03:42,030 --> 00:03:47,760
+So we will just write some very simple starter JS here for each component as we are.
+
+56
+00:03:47,760 --> 00:03:50,280
+Scaffolding basically this layout.
+
+57
+00:03:51,820 --> 00:03:56,890
+So here, let's just return a div with the class of ad form.
+
+58
+00:03:59,340 --> 00:04:06,810
+And again, you can of course, explore the CSS file and see all the CSS that I wrote for these class
+
+59
+00:04:06,810 --> 00:04:09,330
+names that we are going to import here.
+
+60
+00:04:11,330 --> 00:04:19,040
+So in here later, we will have these form elements like the select box, the input box and that button.
+
+61
+00:04:19,040 --> 00:04:21,410
+But for now we will just write the text.
+
+62
+00:04:21,620 --> 00:04:24,050
+So what do you need?
+
+63
+00:04:25,380 --> 00:04:26,700
+For your trip.
+
+64
+00:04:26,970 --> 00:04:28,980
+And here we also had some emoji.
+
+65
+00:04:29,010 --> 00:04:30,600
+Let's add that as well.
+
+66
+00:04:31,020 --> 00:04:32,880
+And it's actually already down here.
+
+67
+00:04:35,610 --> 00:04:36,710
+Okay.
+
+68
+00:04:36,720 --> 00:04:42,020
+And notice how Eslint is complaining that we are not using these variables here.
+
+69
+00:04:42,030 --> 00:04:47,730
+But of course we will do that soon by including all of them here in the global parent component.
+
+70
+00:04:47,730 --> 00:04:49,260
+So here in this app.
+
+71
+00:04:50,960 --> 00:04:53,290
+But again, let's leave that for later.
+
+72
+00:04:53,300 --> 00:04:54,770
+So we do that in the end.
+
+73
+00:04:54,950 --> 00:04:58,490
+For now, we just write the static part of all the components.
+
+74
+00:05:02,760 --> 00:05:04,560
+And this one is the list.
+
+75
+00:05:07,890 --> 00:05:08,670
+So again.
+
+76
+00:05:10,750 --> 00:05:12,760
+Just like a placeholder there.
+
+77
+00:05:13,090 --> 00:05:15,820
+And let's make this one here a footer element.
+
+78
+00:05:15,850 --> 00:05:20,260
+So remember how this stats is really at the bottom of the page.
+
+79
+00:05:20,260 --> 00:05:22,930
+And so a footer seems like a good fit here.
+
+80
+00:05:23,080 --> 00:05:23,950
+So.
+
+81
+00:05:24,960 --> 00:05:26,040
+So let's write.
+
+82
+00:05:26,070 --> 00:05:27,180
+You have.
+
+83
+00:05:27,330 --> 00:05:29,860
+And then here in the end, we will have a number.
+
+84
+00:05:29,880 --> 00:05:31,920
+So let's just use an X for now.
+
+85
+00:05:32,690 --> 00:05:39,350
+Items on your list and you already packed.
+
+86
+00:05:39,350 --> 00:05:43,760
+And then again an X, which is X percent of the total.
+
+87
+00:05:43,910 --> 00:05:46,670
+Then here we also had some emoji.
+
+88
+00:05:48,890 --> 00:05:50,810
+Like this other bag here.
+
+89
+00:05:52,630 --> 00:05:53,200
+And.
+
+90
+00:05:53,200 --> 00:05:53,800
+Yeah.
+
+91
+00:05:54,790 --> 00:05:56,920
+I think this one was also formatted.
+
+92
+00:05:57,920 --> 00:06:00,400
+Uh, so let's use emphasize here.
+
+93
+00:06:00,410 --> 00:06:01,550
+So m.
+
+94
+00:06:05,940 --> 00:06:12,330
+And now with that, let's come here to our app component and use all of them here in our layout.
+
+95
+00:06:12,330 --> 00:06:16,680
+And if you want, you can actually pause the video here and do that as a challenge.
+
+96
+00:06:16,680 --> 00:06:23,490
+So just create one div element with the class of app and then include the four components in there if
+
+97
+00:06:23,490 --> 00:06:24,240
+you'd like.
+
+98
+00:06:25,910 --> 00:06:29,270
+So this is how you do that?
+
+99
+00:06:31,390 --> 00:06:34,030
+So with the class of EP.
+
+100
+00:06:35,330 --> 00:06:40,010
+And then one by one, one after the other, we just include them here.
+
+101
+00:06:40,280 --> 00:06:43,460
+So first the logo, then the form.
+
+102
+00:06:44,420 --> 00:06:47,840
+So actually exactly in the way that we define them in our code.
+
+103
+00:06:49,730 --> 00:06:52,190
+And by the way, in more real apps.
+
+104
+00:06:52,190 --> 00:06:58,460
+And also a bit later in the course, we will start placing each of these components here into one individual
+
+105
+00:06:58,460 --> 00:06:59,080
+file.
+
+106
+00:06:59,090 --> 00:07:06,680
+So we will then have one file called App.js for this component, one called logo JS for this one and
+
+107
+00:07:06,680 --> 00:07:07,930
+so on and so forth.
+
+108
+00:07:07,940 --> 00:07:13,730
+But here, since we are still learning, I think it's easier to build all of them here in the same file
+
+109
+00:07:13,760 --> 00:07:18,500
+because otherwise we are jumping around all the times through these files.
+
+110
+00:07:18,500 --> 00:07:24,020
+And so that then makes everything a lot more confusing, especially when we get into topics such as
+
+111
+00:07:24,020 --> 00:07:26,030
+child to parent communication.
+
+112
+00:07:27,330 --> 00:07:30,660
+But yeah, more about that very soon.
+
+113
+00:07:32,470 --> 00:07:36,160
+So to finish the stats and that's it.
+
+114
+00:07:36,340 --> 00:07:40,060
+So no component is yellow here anymore.
+
+115
+00:07:40,060 --> 00:07:42,880
+And so that means that we didn't forget any.
+
+116
+00:07:43,240 --> 00:07:46,010
+And yeah, with this we are done.
+
+117
+00:07:46,030 --> 00:07:49,870
+So let's open up our integrated terminal.
+
+118
+00:07:50,810 --> 00:07:57,140
+Like this and we are already in the correct folder, so npm start.
+
+119
+00:08:00,650 --> 00:08:02,900
+And let's wait for it.
+
+120
+00:08:04,620 --> 00:08:05,700
+Beautiful.
+
+121
+00:08:06,670 --> 00:08:10,990
+Well, here, it seems we missed some class.
+
+122
+00:08:12,110 --> 00:08:14,390
+Let's make this smaller again.
+
+123
+00:08:17,660 --> 00:08:18,770
+All right.
+
+124
+00:08:18,890 --> 00:08:24,860
+And so this footer here needs the class of stats.
+
+125
+00:08:25,720 --> 00:08:26,340
+Yeah.
+
+126
+00:08:26,350 --> 00:08:27,190
+Wonderful.
+
+127
+00:08:27,190 --> 00:08:31,830
+So this is what it's supposed to look like, and it looks exactly like our demo.
+
+128
+00:08:31,840 --> 00:08:37,810
+Well, except, of course, for these details right here, which we will take care of starting in the
+
+129
+00:08:37,810 --> 00:08:38,710
+next lecture.
+
+130
+00:08:38,710 --> 00:08:46,570
+So next up, we will start rendering some static items here so we will not yet dynamically add new items
+
+131
+00:08:46,570 --> 00:08:51,880
+to the list, but we will render some static items from an array here in the UI.

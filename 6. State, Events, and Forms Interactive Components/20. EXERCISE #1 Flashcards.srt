@@ -1,0 +1,775 @@
+1
+00:00:00,830 --> 00:00:08,750
+From my experience, it's not super hard to understand how state works in React, but it can actually
+
+2
+00:00:08,750 --> 00:00:15,130
+be quite tricky to understand how exactly to use it in practice in different situations.
+
+3
+00:00:15,140 --> 00:00:22,430
+But the thing is that this is the number one skill that you need to have as a react developer, and
+
+4
+00:00:22,430 --> 00:00:29,300
+that's why I decided to create this extra exercise that we're going to build together now to give you
+
+5
+00:00:29,300 --> 00:00:33,260
+more situations and more opportunities to practice.
+
+6
+00:00:33,410 --> 00:00:35,390
+So let's go.
+
+7
+00:00:36,470 --> 00:00:41,960
+And here is the exercise that we're going to build, and it's actually a small project.
+
+8
+00:00:41,960 --> 00:00:49,220
+Even so, this is a flash card project where a flash card is basically a question on one side.
+
+9
+00:00:49,220 --> 00:00:52,990
+And then when you click it, you get the answer on the other side.
+
+10
+00:00:53,000 --> 00:01:00,440
+So imagine that you can like rotate each of these cards here, which is what many people use to study.
+
+11
+00:01:01,040 --> 00:01:05,780
+So if I click here now again, then it will basically turn the card around again.
+
+12
+00:01:06,110 --> 00:01:08,480
+If I click here, then it opens this one.
+
+13
+00:01:08,480 --> 00:01:14,660
+And while this is open and I click on another one, then you see that one closes and this one opens.
+
+14
+00:01:15,530 --> 00:01:16,330
+All right.
+
+15
+00:01:16,340 --> 00:01:22,910
+So this is going to be a small, fun exercise, which maybe looks very complex to you right now.
+
+16
+00:01:22,910 --> 00:01:28,040
+But actually all we need is one piece of state to control all of this.
+
+17
+00:01:28,190 --> 00:01:32,440
+Now, I added a starter file to the link of this lecture.
+
+18
+00:01:32,450 --> 00:01:35,000
+So that's this code sandbox here.
+
+19
+00:01:35,000 --> 00:01:39,440
+And so here we already have an array with all the questions.
+
+20
+00:01:39,440 --> 00:01:43,040
+And once again, that's an array of objects.
+
+21
+00:01:44,170 --> 00:01:44,740
+All right.
+
+22
+00:01:44,740 --> 00:01:48,220
+And so what we're going to build is this flashcards right here.
+
+23
+00:01:48,520 --> 00:01:56,230
+So all you have to do is to fork now this CodeSandbox, or you can just also copy paste this entire
+
+24
+00:01:56,230 --> 00:02:00,140
+code into your own code editor on your computer.
+
+25
+00:02:00,160 --> 00:02:01,830
+So that's your choice.
+
+26
+00:02:01,840 --> 00:02:08,500
+But what I will do is to now fork this, which will basically create a copy in my own code sandbox.
+
+27
+00:02:09,780 --> 00:02:10,420
+All right.
+
+28
+00:02:10,420 --> 00:02:17,650
+And so let's get started at the first part is to actually render out these different flash cards.
+
+29
+00:02:18,600 --> 00:02:19,350
+Like this.
+
+30
+00:02:19,350 --> 00:02:23,670
+So basically only the front part, which contains all the questions.
+
+31
+00:02:24,300 --> 00:02:28,920
+So you'll see that each one has an ID, a question and an answer.
+
+32
+00:02:28,920 --> 00:02:32,370
+But of course, by default, only the questions are visible.
+
+33
+00:02:33,980 --> 00:02:37,640
+So we already know how to render lists, right?
+
+34
+00:02:37,670 --> 00:02:39,410
+We just entered JavaScript mode.
+
+35
+00:02:39,440 --> 00:02:43,910
+Then we take our questions array and map over it.
+
+36
+00:02:44,120 --> 00:02:46,700
+So each of them is a question.
+
+37
+00:02:47,850 --> 00:02:50,490
+And then here we can render some JS x.
+
+38
+00:02:50,610 --> 00:02:54,600
+Now, many times what we do here is to create an extra component.
+
+39
+00:02:54,600 --> 00:03:01,080
+So just like we did in the Faraway Travel List app that we're currently building, but we don't have
+
+40
+00:03:01,080 --> 00:03:01,380
+to.
+
+41
+00:03:01,410 --> 00:03:05,190
+So we can also just return some JS X here.
+
+42
+00:03:05,290 --> 00:03:07,290
+And so that's what we're going to do now.
+
+43
+00:03:07,560 --> 00:03:09,330
+So just another div.
+
+44
+00:03:10,720 --> 00:03:14,890
+And then in there a paragraph with the question.
+
+45
+00:03:15,310 --> 00:03:17,080
+So that's question.
+
+46
+00:03:18,050 --> 00:03:20,510
+Dot question, actually.
+
+47
+00:03:21,170 --> 00:03:26,060
+Then let's close that and close the div as well.
+
+48
+00:03:27,210 --> 00:03:29,310
+And there we have it.
+
+49
+00:03:29,580 --> 00:03:32,940
+Now, what's missing here is the class name.
+
+50
+00:03:34,680 --> 00:03:35,430
+Of.
+
+51
+00:03:39,680 --> 00:03:40,970
+Flashcards.
+
+52
+00:03:40,970 --> 00:03:48,950
+So as you see, I already created some CSS, so if you copied the code into your own computer, then
+
+53
+00:03:48,950 --> 00:03:52,550
+make sure to also copy the contents of this style.
+
+54
+00:03:52,550 --> 00:03:53,780
+Dot CSS.
+
+55
+00:03:57,680 --> 00:04:02,420
+Okay, now we see that here we have some problems which are related to the key.
+
+56
+00:04:03,260 --> 00:04:03,920
+Exactly.
+
+57
+00:04:03,920 --> 00:04:07,040
+So each one needs a unique key, and so.
+
+58
+00:04:07,040 --> 00:04:09,260
+Well, we can just put that here.
+
+59
+00:04:11,110 --> 00:04:11,860
+So key.
+
+60
+00:04:11,860 --> 00:04:16,720
+And then let's use question ID, because these are unique values.
+
+61
+00:04:16,720 --> 00:04:23,680
+And as you know, each element that we render here inside the map, so as a list needs a unique key.
+
+62
+00:04:24,350 --> 00:04:27,890
+So if I reload now, then these errors will be gone.
+
+63
+00:04:28,780 --> 00:04:29,440
+Okay.
+
+64
+00:04:29,440 --> 00:04:32,650
+So we have now our static parts all built out.
+
+65
+00:04:32,680 --> 00:04:39,310
+Now what we need to do is something to happen whenever we click on one of these components here or actually
+
+66
+00:04:39,310 --> 00:04:41,050
+each of these elements.
+
+67
+00:04:41,200 --> 00:04:43,750
+So how are we going to do this?
+
+68
+00:04:43,870 --> 00:04:51,250
+Well, as I said initially, all we need is actually one piece of state, and that piece of state will
+
+69
+00:04:51,250 --> 00:04:56,170
+keep track of which question ID is currently the active question.
+
+70
+00:04:56,170 --> 00:04:59,890
+And if that sounds confusing, then let's just write the code.
+
+71
+00:05:01,270 --> 00:05:01,750
+So.
+
+72
+00:05:03,420 --> 00:05:10,380
+Let's call this the selected ID and then set selected ID.
+
+73
+00:05:12,050 --> 00:05:13,640
+Use state.
+
+74
+00:05:14,210 --> 00:05:21,230
+And then here we will want to start with Null, because by default, we want none of the questions to
+
+75
+00:05:21,230 --> 00:05:22,850
+be open in the beginning.
+
+76
+00:05:22,850 --> 00:05:25,400
+So to be selected in the beginning.
+
+77
+00:05:25,400 --> 00:05:27,080
+And so that's what Null is for.
+
+78
+00:05:27,080 --> 00:05:31,640
+So Null is basically just nothing, right?
+
+79
+00:05:31,880 --> 00:05:34,100
+So now here we need to import.
+
+80
+00:05:35,040 --> 00:05:35,730
+A use.
+
+81
+00:05:37,010 --> 00:05:39,200
+State from React.
+
+82
+00:05:43,090 --> 00:05:44,050
+All right.
+
+83
+00:05:46,950 --> 00:05:53,310
+And now let's remember the three steps of using state, which I like to always come back to, because
+
+84
+00:05:53,310 --> 00:05:57,990
+I think this makes it a bit more helpful to understand how we should approach this.
+
+85
+00:05:58,810 --> 00:06:03,070
+So the first step is to define the state variable, which we already did.
+
+86
+00:06:03,100 --> 00:06:08,320
+Second is to then use that state variable, and third is to update it.
+
+87
+00:06:08,350 --> 00:06:12,250
+So as for the second point, let's now do that.
+
+88
+00:06:12,250 --> 00:06:16,210
+So let's use this selected ID here for something.
+
+89
+00:06:16,480 --> 00:06:20,760
+But well, this time this is a bit tricky, right?
+
+90
+00:06:20,770 --> 00:06:24,670
+Like what do we actually need this selected ID for?
+
+91
+00:06:25,270 --> 00:06:32,890
+Well, let's maybe make it easier by instead of using null here using one of these.
+
+92
+00:06:32,950 --> 00:06:35,050
+So one of the actual IDs.
+
+93
+00:06:35,050 --> 00:06:37,600
+So 9103.
+
+94
+00:06:38,200 --> 00:06:40,950
+So if this is the state.
+
+95
+00:06:40,960 --> 00:06:45,890
+So let's imagine that we just clicked on this one here.
+
+96
+00:06:45,910 --> 00:06:47,950
+So how to give components memory.
+
+97
+00:06:47,980 --> 00:06:51,660
+Let's say that we just clicked here and so that this is then the state.
+
+98
+00:06:51,670 --> 00:06:54,160
+So how do we want to use this state?
+
+99
+00:06:54,830 --> 00:07:01,550
+Well, basically here, instead of displaying the question, we want to display the answer.
+
+100
+00:07:02,260 --> 00:07:04,270
+So we can do that.
+
+101
+00:07:04,300 --> 00:07:13,810
+We can say question.id equals the selected ID, and if it is display.
+
+102
+00:07:15,070 --> 00:07:16,870
+Question, dot answer.
+
+103
+00:07:17,140 --> 00:07:18,310
+And if not.
+
+104
+00:07:18,990 --> 00:07:21,990
+Well, then of course, the question that question.
+
+105
+00:07:21,990 --> 00:07:26,130
+And so now here we actually this time got the answer.
+
+106
+00:07:26,860 --> 00:07:28,570
+So that's the use state hook.
+
+107
+00:07:30,550 --> 00:07:33,220
+And so that's already working.
+
+108
+00:07:33,920 --> 00:07:42,620
+So let's do the same thing for the styling, because here actually this gets like with this red background.
+
+109
+00:07:42,620 --> 00:07:47,900
+And so we can use a class that I created for that and add it here to this div.
+
+110
+00:07:48,930 --> 00:07:51,030
+So let's do something similar then.
+
+111
+00:07:52,130 --> 00:07:53,540
+So class name.
+
+112
+00:07:55,210 --> 00:07:59,050
+Enter a JavaScript mode and then we do the same thing.
+
+113
+00:07:59,050 --> 00:08:04,000
+So if the current question ID is equal to the selected ID.
+
+114
+00:08:04,920 --> 00:08:07,200
+Then here the class name should be.
+
+115
+00:08:08,550 --> 00:08:09,570
+Selected.
+
+116
+00:08:10,700 --> 00:08:12,890
+And if not, then nothing.
+
+117
+00:08:13,010 --> 00:08:14,490
+And there we go.
+
+118
+00:08:14,510 --> 00:08:16,100
+So beautiful.
+
+119
+00:08:17,140 --> 00:08:21,380
+Just make sure that you actually understand what is going on here.
+
+120
+00:08:21,400 --> 00:08:28,690
+So as we loop over this array here, each of these elements is one of these divs, right?
+
+121
+00:08:28,690 --> 00:08:35,950
+And in each of these divs we have access to the current question object, and then each of them has
+
+122
+00:08:35,950 --> 00:08:37,000
+one ID.
+
+123
+00:08:37,720 --> 00:08:45,700
+And so what we can then do is to compare that ID with the selected ID, so the one that we have currently
+
+124
+00:08:45,700 --> 00:08:51,460
+selected and if that is the same then well, it's just what we have written here.
+
+125
+00:08:51,460 --> 00:08:59,020
+So if it is the selected question, so if the selected ID is equal to the one that is in the object,
+
+126
+00:08:59,020 --> 00:09:01,360
+then simply display the answer.
+
+127
+00:09:01,360 --> 00:09:07,060
+And otherwise in all other cases, well then the display the question itself.
+
+128
+00:09:07,060 --> 00:09:08,500
+So not the answer.
+
+129
+00:09:10,250 --> 00:09:11,030
+All right.
+
+130
+00:09:11,030 --> 00:09:14,210
+And now let's set it back to null.
+
+131
+00:09:14,210 --> 00:09:17,450
+And now all we have to do is to set the state.
+
+132
+00:09:17,450 --> 00:09:18,950
+So that's the third step.
+
+133
+00:09:19,980 --> 00:09:23,310
+So when do we want to update the state?
+
+134
+00:09:23,340 --> 00:09:25,150
+It's whenever we click here.
+
+135
+00:09:25,170 --> 00:09:30,880
+So in one of these divs and so that's where we place the onClick handler.
+
+136
+00:09:30,930 --> 00:09:35,340
+So as you see, it doesn't even have to be a button or anything like that.
+
+137
+00:09:35,910 --> 00:09:36,570
+Okay.
+
+138
+00:09:36,780 --> 00:09:40,920
+And now what we are going to do is to create a function here.
+
+139
+00:09:42,180 --> 00:09:44,880
+So just to make our code a bit easier to understand.
+
+140
+00:09:45,730 --> 00:09:48,040
+So let's call it Handleclick.
+
+141
+00:09:50,010 --> 00:09:52,560
+So for now, just the name of the function.
+
+142
+00:09:53,430 --> 00:09:58,620
+So here we need to now then pass in that function, right?
+
+143
+00:09:58,830 --> 00:10:09,090
+However, that is not really enough because well, here we will now call set selected ID, but as the
+
+144
+00:10:09,090 --> 00:10:12,180
+name says, we now actually need the ID of the question.
+
+145
+00:10:12,180 --> 00:10:15,570
+That should become the selected question, right?
+
+146
+00:10:15,570 --> 00:10:23,640
+And so what this means is that this function needs to receive that ID so that we can then set it here.
+
+147
+00:10:25,110 --> 00:10:29,760
+So now we need to call this handleclick function with that ID.
+
+148
+00:10:32,190 --> 00:10:41,280
+So simple enough question ID, but don't make the mistake of thinking that this is finished and actually
+
+149
+00:10:41,280 --> 00:10:43,560
+react already gave us an error.
+
+150
+00:10:43,710 --> 00:10:50,730
+So remember that here we need to pass in an actual function and not a function call like we have here.
+
+151
+00:10:50,730 --> 00:10:54,090
+So this is calling Handleclick immediately.
+
+152
+00:10:54,690 --> 00:10:56,070
+That's not what we want.
+
+153
+00:10:56,430 --> 00:11:02,970
+We want to pass in a function so that react can then call the function as soon as the event happens.
+
+154
+00:11:04,500 --> 00:11:05,040
+Okay.
+
+155
+00:11:05,040 --> 00:11:08,640
+And that should already be enough, at least for now.
+
+156
+00:11:09,680 --> 00:11:12,800
+So that worked great.
+
+157
+00:11:14,130 --> 00:11:18,510
+And as I click on another one, then of course, this one becomes the active one.
+
+158
+00:11:18,750 --> 00:11:26,190
+And let's check out the React Dev tools, because CodeSandbox actually also has the React tools integrated.
+
+159
+00:11:27,460 --> 00:11:36,460
+So when we come here to the app or actually flashcards, notice that the state is now 9103 which is
+
+160
+00:11:36,460 --> 00:11:40,330
+exactly this ID When we click here it becomes.
+
+161
+00:11:41,450 --> 00:11:47,990
+Well, that should have updated, but apparently it doesn't work that great, so.
+
+162
+00:11:48,020 --> 00:11:48,890
+Yeah, well, maybe.
+
+163
+00:11:48,890 --> 00:11:49,700
+Never mind.
+
+164
+00:11:50,120 --> 00:11:51,680
+Let's just close this down again.
+
+165
+00:11:51,680 --> 00:11:55,610
+What matters is that it is working, at least kind of.
+
+166
+00:11:55,640 --> 00:11:59,000
+Because watch what happens when I click here again.
+
+167
+00:11:59,910 --> 00:12:02,910
+So nothing happens, of course, because.
+
+168
+00:12:03,630 --> 00:12:10,950
+Well, because here we are simply passing in that ID and then we are setting that ID as the selected
+
+169
+00:12:10,980 --> 00:12:11,250
+ID.
+
+170
+00:12:11,520 --> 00:12:18,510
+So just as expected, but as we see here, as we click again, it actually closes the card again.
+
+171
+00:12:19,450 --> 00:12:25,930
+So this functionality we already have of changing between cards, but when we click on it that we don't
+
+172
+00:12:25,930 --> 00:12:26,680
+have yet.
+
+173
+00:12:27,310 --> 00:12:29,140
+So let's do that.
+
+174
+00:12:29,410 --> 00:12:31,240
+And that's not too hard.
+
+175
+00:12:31,270 --> 00:12:36,670
+Basically, what we want to do here is to set this ID based on a condition.
+
+176
+00:12:37,490 --> 00:12:44,120
+So we want to say if the question ID is different from the currently selected one.
+
+177
+00:12:46,000 --> 00:12:46,720
+Then.
+
+178
+00:12:48,030 --> 00:12:51,600
+The result here should be the ID, And if not.
+
+179
+00:12:52,270 --> 00:12:54,040
+Well, then set it back to null.
+
+180
+00:12:55,710 --> 00:12:57,270
+Now, here, there's some problem.
+
+181
+00:12:57,960 --> 00:12:59,280
+Yeah, I have one equal.
+
+182
+00:12:59,280 --> 00:13:00,060
+Too much.
+
+183
+00:13:01,440 --> 00:13:02,220
+All right.
+
+184
+00:13:02,220 --> 00:13:10,320
+So, again, if the question ID is different from the already selected ID, then set the ID, And so
+
+185
+00:13:10,320 --> 00:13:12,900
+that's exactly this behavior.
+
+186
+00:13:12,900 --> 00:13:13,640
+Right.
+
+187
+00:13:13,650 --> 00:13:20,790
+But if not so basically, if the question ID is already equal to the selected ID, then set it back
+
+188
+00:13:20,790 --> 00:13:24,720
+to null and so with null, then none of them will be active.
+
+189
+00:13:24,900 --> 00:13:28,020
+And yeah, that works.
+
+190
+00:13:28,020 --> 00:13:31,500
+And I think it makes sense as well, right?
+
+191
+00:13:32,260 --> 00:13:37,600
+So this usage of state tier was quite a bit different from what we had before.
+
+192
+00:13:37,600 --> 00:13:44,200
+And so that's why I decided again to include this exercise here by the end of this section.
+
+193
+00:13:44,200 --> 00:13:48,260
+So please make sure to study exactly what is happening here.
+
+194
+00:13:48,280 --> 00:13:53,770
+And then after that, I think you are ready for the final coding challenge of this section.

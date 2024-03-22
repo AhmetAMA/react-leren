@@ -1,0 +1,631 @@
+1
+00:00:00,920 --> 00:00:07,700
+Let's wrap up this section by continuing to work on the date counter challenge that we started earlier.
+
+2
+00:00:08,740 --> 00:00:16,750
+So in this part two of the challenge, we will upgrade the date counter that we built before so we can
+
+3
+00:00:16,750 --> 00:00:21,040
+still click here on these buttons to move forward in the date.
+
+4
+00:00:21,040 --> 00:00:26,860
+But now we can also directly go to a date by defining a count here.
+
+5
+00:00:26,980 --> 00:00:34,570
+So for example, a thousand days from now is well, this one here or 10,000 or 100,000.
+
+6
+00:00:34,570 --> 00:00:36,040
+And you can keep going.
+
+7
+00:00:36,040 --> 00:00:37,060
+As you wish.
+
+8
+00:00:38,750 --> 00:00:40,880
+So let's put it back to one.
+
+9
+00:00:41,120 --> 00:00:44,750
+And so that is the upgrade here for the counter.
+
+10
+00:00:44,750 --> 00:00:47,110
+And the step is also different.
+
+11
+00:00:47,120 --> 00:00:53,600
+So instead of these buttons that we had before, so similar to these ones, we now have this slider.
+
+12
+00:00:53,930 --> 00:00:58,700
+And so now if we click here, we move up these seven here.
+
+13
+00:00:58,700 --> 00:01:02,480
+But the seven was now defined using this nice slider.
+
+14
+00:01:02,480 --> 00:01:08,000
+And this slider is actually just another type of input element.
+
+15
+00:01:08,000 --> 00:01:10,250
+But I will show you that here in a minute.
+
+16
+00:01:10,430 --> 00:01:14,150
+Finally, what we also have is that we can reset.
+
+17
+00:01:14,330 --> 00:01:19,700
+So when we click reset, it goes back to zero here and back to one in this step.
+
+18
+00:01:19,700 --> 00:01:24,140
+And this button is only visible when one of these two changes.
+
+19
+00:01:25,070 --> 00:01:28,760
+So let's go back and let's do that.
+
+20
+00:01:29,120 --> 00:01:35,060
+So here I still have the code from the previous challenge, and what I'm going to do now is to fork
+
+21
+00:01:35,060 --> 00:01:35,720
+this.
+
+22
+00:01:35,990 --> 00:01:39,770
+So this will basically create a copy out of that other one.
+
+23
+00:01:39,770 --> 00:01:44,780
+And so now I can keep writing the code here without changing the initial one.
+
+24
+00:01:45,050 --> 00:01:49,550
+So what I wanted to quickly show you here is that slider.
+
+25
+00:01:50,820 --> 00:01:53,280
+So we can use the input.
+
+26
+00:01:54,130 --> 00:02:03,040
+So as I said, this is now an input and the type is of range and then we set a minimum value.
+
+27
+00:02:04,660 --> 00:02:09,550
+You can set that to zero and a max value to ten.
+
+28
+00:02:11,580 --> 00:02:12,480
+Let's see.
+
+29
+00:02:13,250 --> 00:02:14,720
+And there we go.
+
+30
+00:02:15,950 --> 00:02:19,300
+So now this is, of course, an uncontrolled element now.
+
+31
+00:02:19,310 --> 00:02:24,280
+So right now, React is not in charge of controlling this value.
+
+32
+00:02:24,290 --> 00:02:31,040
+And so what you need to do, as you can imagine, is now make this input element a controlled element.
+
+33
+00:02:31,400 --> 00:02:33,750
+And then also this one right here.
+
+34
+00:02:33,770 --> 00:02:38,420
+So with this, you will practice what we just learned a little bit earlier.
+
+35
+00:02:38,540 --> 00:02:39,380
+Right.
+
+36
+00:02:39,380 --> 00:02:45,260
+And in case you have any doubt, you can just go back to that lecture and check out the code that you
+
+37
+00:02:45,260 --> 00:02:45,980
+wrote there.
+
+38
+00:02:46,100 --> 00:02:48,740
+So let me just show you here the result.
+
+39
+00:02:48,740 --> 00:02:50,350
+So you know what you have to build.
+
+40
+00:02:50,360 --> 00:02:52,340
+So good luck with this challenge.
+
+41
+00:02:52,340 --> 00:02:56,750
+And I see you back here in a few minutes once you are ready.
+
+42
+00:02:58,680 --> 00:02:59,520
+All right.
+
+43
+00:02:59,520 --> 00:03:06,300
+Let's now quickly supercharge basically our counter component.
+
+44
+00:03:06,600 --> 00:03:10,200
+So most of the things are actually not going to change here.
+
+45
+00:03:10,870 --> 00:03:13,760
+So we already have the step state.
+
+46
+00:03:13,780 --> 00:03:16,240
+All we have to do is to connect it now.
+
+47
+00:03:16,570 --> 00:03:18,580
+So with this input element.
+
+48
+00:03:19,310 --> 00:03:25,760
+So the value of this element should be, of course, controlled by that step state.
+
+49
+00:03:26,120 --> 00:03:29,960
+And then we need the onchange handler just like before.
+
+50
+00:03:30,260 --> 00:03:36,890
+So we get the current event and then we set the step based on that event.
+
+51
+00:03:36,920 --> 00:03:44,990
+So event.target dot value, and then we can get rid here of this button.
+
+52
+00:03:47,820 --> 00:03:49,350
+And let's see.
+
+53
+00:03:50,380 --> 00:03:52,510
+Yeah, that works already.
+
+54
+00:03:53,710 --> 00:03:54,760
+And indeed.
+
+55
+00:03:54,790 --> 00:03:58,160
+Well, that doesn't really work, does it?
+
+56
+00:03:58,210 --> 00:04:01,090
+So it is adding the ten as a string.
+
+57
+00:04:01,180 --> 00:04:03,700
+So we have a bug in our code.
+
+58
+00:04:04,230 --> 00:04:10,200
+So the problem, as you can see, is that this value here is taken as a string.
+
+59
+00:04:10,500 --> 00:04:16,320
+So that's actually the problem that we had before and that we detected using the React dev tools.
+
+60
+00:04:16,590 --> 00:04:20,010
+And in fact, the dev tools are also available here.
+
+61
+00:04:20,160 --> 00:04:23,160
+So we could see the same thing here.
+
+62
+00:04:23,160 --> 00:04:25,510
+So the state is ten.
+
+63
+00:04:25,530 --> 00:04:27,030
+So ten is a string.
+
+64
+00:04:28,210 --> 00:04:35,830
+So we just do what we did before, which is to convert this value to a number before we then place it
+
+65
+00:04:35,830 --> 00:04:36,940
+into the state.
+
+66
+00:04:37,590 --> 00:04:39,600
+So let's reload that here.
+
+67
+00:04:41,400 --> 00:04:42,480
+Take some time.
+
+68
+00:04:43,370 --> 00:04:46,190
+And let's set it to something.
+
+69
+00:04:47,400 --> 00:04:48,840
+And that's working now.
+
+70
+00:04:49,020 --> 00:04:51,090
+And you see here that we have.
+
+71
+00:04:51,360 --> 00:04:53,400
+Well, that's not correct, really.
+
+72
+00:04:53,950 --> 00:04:55,210
+For some reason.
+
+73
+00:04:55,450 --> 00:04:58,390
+But what matters is that here it's actually working.
+
+74
+00:04:58,780 --> 00:05:02,950
+So maybe the integration here in Code Sandbox is not as good.
+
+75
+00:05:03,220 --> 00:05:04,600
+But yeah, never mind.
+
+76
+00:05:04,780 --> 00:05:07,600
+What matters is that this part is working already.
+
+77
+00:05:07,600 --> 00:05:12,370
+And now all we have to do is to create an input element here as well.
+
+78
+00:05:13,530 --> 00:05:16,620
+So that should also not be so hard.
+
+79
+00:05:16,950 --> 00:05:22,020
+So we no longer need this span, but instead we will use an input.
+
+80
+00:05:24,380 --> 00:05:25,730
+Of the type.
+
+81
+00:05:26,700 --> 00:05:27,630
+Text.
+
+82
+00:05:28,840 --> 00:05:34,120
+The value here is count and then on change.
+
+83
+00:05:34,330 --> 00:05:37,960
+Basically, we want almost the same thing as before.
+
+84
+00:05:39,590 --> 00:05:44,090
+So we get the current event and then set count.
+
+85
+00:05:44,240 --> 00:05:49,130
+And then this time we're not going to forget the conversion part.
+
+86
+00:05:49,820 --> 00:05:51,590
+So we convert to a number.
+
+87
+00:05:51,620 --> 00:05:55,610
+E dot target dot value.
+
+88
+00:05:56,470 --> 00:06:00,370
+And now all we need to do is to close down this element.
+
+89
+00:06:01,370 --> 00:06:02,750
+Give it a safe.
+
+90
+00:06:02,750 --> 00:06:05,240
+And yeah, this all looks correct to me.
+
+91
+00:06:05,630 --> 00:06:06,710
+Let's see.
+
+92
+00:06:07,540 --> 00:06:08,590
+Well, something's happening here.
+
+93
+00:06:08,590 --> 00:06:10,900
+Let's close down the React tools.
+
+94
+00:06:10,900 --> 00:06:11,650
+Maybe.
+
+95
+00:06:13,940 --> 00:06:14,270
+Yeah.
+
+96
+00:06:14,270 --> 00:06:17,300
+Anyway, let's just reload here, just to be sure.
+
+97
+00:06:20,400 --> 00:06:21,870
+So this works.
+
+98
+00:06:21,870 --> 00:06:23,870
+And now if we input a value here.
+
+99
+00:06:23,880 --> 00:06:24,560
+Yeah.
+
+100
+00:06:24,570 --> 00:06:25,500
+Nice.
+
+101
+00:06:26,870 --> 00:06:29,030
+So that's really, really nice.
+
+102
+00:06:29,300 --> 00:06:35,210
+So with this, we have a bit more control over the component and we can calculate dates from now, which
+
+103
+00:06:35,210 --> 00:06:36,680
+is quite helpful.
+
+104
+00:06:38,340 --> 00:06:42,120
+But yeah, let's just review quickly what we did here.
+
+105
+00:06:42,330 --> 00:06:49,050
+So these two input elements are now controlled elements for the same reason that we already saw before.
+
+106
+00:06:49,440 --> 00:06:54,390
+So we have a piece of state and we then connect that piece of state.
+
+107
+00:06:54,390 --> 00:06:57,960
+For example, here, the step with the input element.
+
+108
+00:06:57,960 --> 00:07:03,930
+So we force this input field to take the value of the step piece of state.
+
+109
+00:07:03,930 --> 00:07:09,990
+But that alone is of course not enough, because with that we would not be able to then change here
+
+110
+00:07:09,990 --> 00:07:10,680
+the value.
+
+111
+00:07:10,680 --> 00:07:18,720
+And so we then need to handle the event of actually trying to change so of sliding here basically.
+
+112
+00:07:18,720 --> 00:07:22,080
+So each time we slide, the change event is fired off.
+
+113
+00:07:22,080 --> 00:07:29,330
+And so then each time that happens, we want to set the step with the current value of the element.
+
+114
+00:07:29,340 --> 00:07:31,920
+So that's e dot target dot value.
+
+115
+00:07:33,380 --> 00:07:34,240
+Nice.
+
+116
+00:07:34,250 --> 00:07:38,770
+And finally, the only thing that's missing is that reset.
+
+117
+00:07:38,780 --> 00:07:40,610
+So that button right here.
+
+118
+00:07:42,190 --> 00:07:46,120
+So let's then create a button down here.
+
+119
+00:07:47,470 --> 00:07:50,890
+Let's create another div where we place that button into.
+
+120
+00:07:52,250 --> 00:07:53,680
+So reset.
+
+121
+00:07:53,690 --> 00:07:54,860
+Close that.
+
+122
+00:07:55,570 --> 00:07:56,860
+And close the div.
+
+123
+00:07:58,610 --> 00:08:01,430
+So we want something to happen on the click.
+
+124
+00:08:01,460 --> 00:08:03,680
+So we use the on click prop.
+
+125
+00:08:04,010 --> 00:08:10,910
+And now here, let's actually do this as a separate function because here we will need to set two pieces
+
+126
+00:08:10,910 --> 00:08:11,660
+of state.
+
+127
+00:08:12,560 --> 00:08:15,680
+So let's call this handle reset.
+
+128
+00:08:16,600 --> 00:08:19,090
+Now that does, of course, not exist.
+
+129
+00:08:19,480 --> 00:08:21,400
+So we get this complaint.
+
+130
+00:08:23,070 --> 00:08:25,110
+So let's fix that handle.
+
+131
+00:08:25,290 --> 00:08:26,400
+Reset.
+
+132
+00:08:26,960 --> 00:08:28,980
+And so what's going to happen here?
+
+133
+00:08:29,000 --> 00:08:36,320
+Well, all we have to do is to set these two back to their initial state using their setter functions.
+
+134
+00:08:36,500 --> 00:08:42,260
+So set count will go back to zero and the step will go back to one.
+
+135
+00:08:44,480 --> 00:08:45,590
+So.
+
+136
+00:08:46,970 --> 00:08:48,450
+Yeah, that works.
+
+137
+00:08:48,470 --> 00:08:54,260
+The only thing that's different between the demo that I showed you is that we should not display this
+
+138
+00:08:54,260 --> 00:08:57,530
+reset button when there's actually nothing to reset.
+
+139
+00:08:58,830 --> 00:09:04,690
+So basically what we want to do is to conditionally render this part here.
+
+140
+00:09:04,710 --> 00:09:14,070
+So let's wrap it into a JavaScript block and then we can say if count is equal to zero.
+
+141
+00:09:15,210 --> 00:09:17,010
+Or if step.
+
+142
+00:09:20,030 --> 00:09:20,540
+Is.
+
+143
+00:09:21,420 --> 00:09:22,980
+Different than one.
+
+144
+00:09:23,310 --> 00:09:27,260
+So count different from zero or step different from one.
+
+145
+00:09:27,270 --> 00:09:31,980
+So zero is the default for count and one is the default for step.
+
+146
+00:09:31,980 --> 00:09:37,700
+And so if one of these defaults is different, then we want to conditionally render this part.
+
+147
+00:09:37,710 --> 00:09:40,350
+So for that we can again use the end operator.
+
+148
+00:09:40,350 --> 00:09:44,820
+Or maybe just why not let's this time use the ternary operator.
+
+149
+00:09:45,580 --> 00:09:51,070
+So in this case, maybe we should just put a parenthesis around this.
+
+150
+00:09:51,950 --> 00:09:55,970
+So just to make sure that this is one condition that gets evaluated first.
+
+151
+00:09:56,120 --> 00:10:02,990
+So in this case, render this and else render nothing.
+
+152
+00:10:04,600 --> 00:10:05,410
+All right.
+
+153
+00:10:05,410 --> 00:10:11,140
+So as soon as we change this, we get the button or as soon as we change this the same.
+
+154
+00:10:11,930 --> 00:10:12,670
+Beautiful.
+
+155
+00:10:12,680 --> 00:10:15,230
+So that's exactly what we wanted to build.
+
+156
+00:10:15,230 --> 00:10:20,450
+And so we are finished with the challenge and we are finished with the section.
+
+157
+00:10:20,450 --> 00:10:27,470
+And so let's waste no time and let's keep working on the far away list right in the next lecture of
+
+158
+00:10:27,470 --> 00:10:28,580
+the next section.

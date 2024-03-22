@@ -1,0 +1,871 @@
+1
+00:00:00,950 --> 00:00:07,280
+Now, in order to make our form work, the first thing that we need to do is to add the ability of the
+
+2
+00:00:07,280 --> 00:00:09,380
+user selecting a friend.
+
+3
+00:00:10,530 --> 00:00:17,430
+So whenever we click here on Select, it will then open up the form with the information about this
+
+4
+00:00:17,430 --> 00:00:18,150
+user.
+
+5
+00:00:18,390 --> 00:00:20,790
+So here is the name of the user.
+
+6
+00:00:21,150 --> 00:00:23,850
+And yeah, well, that's really all that we need.
+
+7
+00:00:24,030 --> 00:00:30,900
+And then here you also see that the selected friend is marked here with this orange background and the
+
+8
+00:00:30,900 --> 00:00:32,890
+button text changes to close.
+
+9
+00:00:32,910 --> 00:00:38,700
+And then if we click on another one, then the information of this friend is passed in here.
+
+10
+00:00:38,850 --> 00:00:46,470
+So basically what we want is that whenever we click select on one of the friends here in this list component,
+
+11
+00:00:46,500 --> 00:00:51,810
+we want that information to pass here into this form component.
+
+12
+00:00:51,990 --> 00:00:54,060
+So how do we do that?
+
+13
+00:00:54,180 --> 00:00:58,330
+Well, basically, we want this component right here.
+
+14
+00:00:58,350 --> 00:01:05,070
+So this friend component, we want it to communicate with this form component, right?
+
+15
+00:01:05,070 --> 00:01:07,870
+So to basically pass it some data.
+
+16
+00:01:07,890 --> 00:01:15,070
+But as we can see here in our own component tree, those are actually sibling components.
+
+17
+00:01:19,220 --> 00:01:25,790
+And actually even worse than sibling components because the friends are inside the friend list and friend
+
+18
+00:01:25,790 --> 00:01:29,660
+list itself is then a sibling component of the form.
+
+19
+00:01:29,810 --> 00:01:34,790
+But in any case, since these two now need to share some state.
+
+20
+00:01:34,820 --> 00:01:40,270
+So basically they need to share this friend object that was selected here.
+
+21
+00:01:40,280 --> 00:01:43,490
+We need again, some lifted up state.
+
+22
+00:01:43,730 --> 00:01:48,650
+And so the first common parent is again, the app component.
+
+23
+00:01:48,650 --> 00:01:53,810
+And so let's in here create a new piece of state called Selected Friend.
+
+24
+00:01:58,270 --> 00:02:02,520
+And then set selected friend.
+
+25
+00:02:02,530 --> 00:02:06,580
+And here by default we will have null.
+
+26
+00:02:06,580 --> 00:02:12,120
+So basically no object at all, which means that no friend is selected.
+
+27
+00:02:12,130 --> 00:02:19,300
+And now let's start using this new piece of state here, because when there is no friend selected,
+
+28
+00:02:19,300 --> 00:02:25,750
+which is currently the case, since this is null, then we don't even want this form here to show up.
+
+29
+00:02:25,750 --> 00:02:26,560
+Right?
+
+30
+00:02:26,560 --> 00:02:30,400
+So let's go here into our JSX and.
+
+31
+00:02:31,060 --> 00:02:39,430
+Let's conditionally render this form so based off the state, let's say selected friend and then the
+
+32
+00:02:39,430 --> 00:02:39,970
+form.
+
+33
+00:02:40,240 --> 00:02:47,260
+So right now, selected friend is null and so the end operator will short circuit and will not display
+
+34
+00:02:47,260 --> 00:02:47,980
+anything.
+
+35
+00:02:49,250 --> 00:02:51,080
+And so then it's gone.
+
+36
+00:02:53,080 --> 00:02:53,890
+Great.
+
+37
+00:02:54,130 --> 00:02:55,650
+So we created the state.
+
+38
+00:02:55,660 --> 00:03:00,460
+We used it already a little bit and now we need a way of updating it.
+
+39
+00:03:00,460 --> 00:03:05,080
+And so that of course, is going to happen whenever this button here is clicked.
+
+40
+00:03:06,310 --> 00:03:13,390
+So let's actually create a handler function again right here in the component that actually owns that
+
+41
+00:03:13,390 --> 00:03:14,050
+state.
+
+42
+00:03:16,010 --> 00:03:22,760
+So a function that we will then pass down via props as we have been doing also with the other functions.
+
+43
+00:03:23,370 --> 00:03:25,620
+So let's call this one handle.
+
+44
+00:03:26,820 --> 00:03:28,320
+The selection.
+
+45
+00:03:28,650 --> 00:03:32,400
+And so this one should receive a friend object.
+
+46
+00:03:34,330 --> 00:03:43,060
+So all this will do is to set the selected friend to the friend object that it will receive.
+
+47
+00:03:44,160 --> 00:03:44,850
+All right.
+
+48
+00:03:44,850 --> 00:03:49,650
+And so this is the function that will get called whenever we click on this button.
+
+49
+00:03:49,650 --> 00:03:56,940
+And so then whatever button is clicked, the Associated Friend object will be set as the currently selected
+
+50
+00:03:56,940 --> 00:03:57,570
+friend.
+
+51
+00:03:58,910 --> 00:03:59,600
+All right.
+
+52
+00:03:59,600 --> 00:04:01,600
+So let's pass that down.
+
+53
+00:04:01,610 --> 00:04:04,070
+And here this is getting a bit confusing.
+
+54
+00:04:04,220 --> 00:04:07,280
+Let's just add some spacing between all of these.
+
+55
+00:04:07,520 --> 00:04:11,870
+And so let's pass, let's say on selection.
+
+56
+00:04:12,760 --> 00:04:13,750
+Will be.
+
+57
+00:04:14,630 --> 00:04:18,440
+Handled with handle selection.
+
+58
+00:04:19,330 --> 00:04:19,890
+Okay.
+
+59
+00:04:19,900 --> 00:04:21,180
+And now in the friends list.
+
+60
+00:04:21,190 --> 00:04:22,600
+We need to receive that.
+
+61
+00:04:24,000 --> 00:04:31,620
+So on selection, but it is actually not even this component that needs this, but the friend itself.
+
+62
+00:04:31,620 --> 00:04:40,920
+So here we can just pass it through this component by saying on selection as a new prop here should
+
+63
+00:04:40,950 --> 00:04:43,650
+then be passed here into the friend.
+
+64
+00:04:45,600 --> 00:04:46,290
+All right.
+
+65
+00:04:46,290 --> 00:04:50,250
+And so now this is where we will use this function.
+
+66
+00:04:52,060 --> 00:04:54,400
+So let's right here on this button.
+
+67
+00:04:55,210 --> 00:04:56,890
+So on click.
+
+68
+00:04:56,920 --> 00:05:02,080
+And then let's specify our function here because we want to call now.
+
+69
+00:05:02,320 --> 00:05:03,550
+Well, not this.
+
+70
+00:05:04,900 --> 00:05:08,110
+So we want to call on selection.
+
+71
+00:05:08,910 --> 00:05:11,970
+And pass in the current friend.
+
+72
+00:05:13,180 --> 00:05:14,020
+And that's it.
+
+73
+00:05:14,760 --> 00:05:18,380
+So whatever button here is now going to be clicked.
+
+74
+00:05:18,390 --> 00:05:24,450
+It will take the current friend and it will save it into the selected friend state.
+
+75
+00:05:27,020 --> 00:05:30,890
+So that's the same logic as before with some lifted up state.
+
+76
+00:05:31,100 --> 00:05:37,550
+Then we create a handler function which updates that state, and then we pass that handler function
+
+77
+00:05:37,550 --> 00:05:39,110
+down via props.
+
+78
+00:05:39,110 --> 00:05:46,280
+And so now when we click here, that should actually immediately open up the form and indeed it does.
+
+79
+00:05:47,000 --> 00:05:47,840
+All right.
+
+80
+00:05:48,170 --> 00:05:52,100
+Now there's still some things missing, but this is already great.
+
+81
+00:05:52,400 --> 00:05:58,880
+Now what we need to do next is to then actually pass that selected friend object here into the form
+
+82
+00:05:58,880 --> 00:06:02,240
+so that then here we can display the correct name.
+
+83
+00:06:02,920 --> 00:06:06,160
+So that doesn't sound too difficult.
+
+84
+00:06:07,050 --> 00:06:08,820
+And so it's right here.
+
+85
+00:06:08,970 --> 00:06:14,940
+So selected friend should be equal to selected friend.
+
+86
+00:06:17,110 --> 00:06:18,700
+Then let's come down here.
+
+87
+00:06:23,480 --> 00:06:28,850
+Let's receive that selected friend and then we can use that here.
+
+88
+00:06:29,630 --> 00:06:32,330
+So selected friend dot name.
+
+89
+00:06:33,810 --> 00:06:36,390
+And immediately you see Sarah there.
+
+90
+00:06:36,720 --> 00:06:38,460
+So that's great.
+
+91
+00:06:39,190 --> 00:06:42,220
+Let's just use it here in the other places.
+
+92
+00:06:42,370 --> 00:06:46,840
+So that's right here and right here.
+
+93
+00:06:49,700 --> 00:06:50,690
+Nice.
+
+94
+00:06:50,690 --> 00:06:53,750
+And if we click another one, watch what happens.
+
+95
+00:06:54,020 --> 00:06:56,900
+Yes, it changes to Anthony.
+
+96
+00:06:57,740 --> 00:07:01,850
+Or to Clark or whatever other friends that we have in our list.
+
+97
+00:07:02,590 --> 00:07:03,360
+Beautiful.
+
+98
+00:07:03,370 --> 00:07:05,140
+So that's working already.
+
+99
+00:07:05,140 --> 00:07:06,130
+Really nice.
+
+100
+00:07:06,160 --> 00:07:13,600
+Now the next step is to then basically mark this one here also as selected and change the button text
+
+101
+00:07:13,600 --> 00:07:14,620
+here to close.
+
+102
+00:07:14,920 --> 00:07:16,650
+So just as we have here.
+
+103
+00:07:16,660 --> 00:07:22,750
+So you see that here we have this nice background and yeah, the text has changed as well.
+
+104
+00:07:23,320 --> 00:07:28,570
+So how do we know inside of each friend if it is currently selected?
+
+105
+00:07:29,440 --> 00:07:34,000
+Well, first of all, we will have to pass in the currently selected friend.
+
+106
+00:07:34,000 --> 00:07:37,450
+And so then we can compare that with each friend.
+
+107
+00:07:37,480 --> 00:07:39,220
+So with the friend itself.
+
+108
+00:07:39,860 --> 00:07:42,380
+But that's easier to understand in code.
+
+109
+00:07:43,250 --> 00:07:51,260
+So as I said, let's come here into the app and let's pass the currently selected friend in as well.
+
+110
+00:07:53,180 --> 00:07:57,650
+So selected friend equals selected friend.
+
+111
+00:07:57,920 --> 00:08:03,290
+And now as we save prettier puts each of these props into its own line.
+
+112
+00:08:03,290 --> 00:08:06,740
+So this makes it a lot easier to see what's going on here.
+
+113
+00:08:08,080 --> 00:08:12,220
+But anyway, the friends list now receives the selected friend.
+
+114
+00:08:13,300 --> 00:08:14,080
+So.
+
+115
+00:08:14,910 --> 00:08:16,110
+Let's add that here.
+
+116
+00:08:16,470 --> 00:08:22,770
+And then once again, we don't need that directly here in the list, but we will need it inside the
+
+117
+00:08:22,770 --> 00:08:23,340
+friend.
+
+118
+00:08:23,370 --> 00:08:25,770
+So we just pass that through here.
+
+119
+00:08:28,010 --> 00:08:32,000
+Selected friend equals selected friend.
+
+120
+00:08:32,000 --> 00:08:37,910
+And by the way, whenever this happens, so whenever we have a component that doesn't actually need
+
+121
+00:08:37,910 --> 00:08:43,610
+the prop, but all it does with the prop is to pass it down into one of its children.
+
+122
+00:08:43,610 --> 00:08:46,190
+We say that we are prop drilling.
+
+123
+00:08:47,090 --> 00:08:49,070
+So in this case, that's not a big problem.
+
+124
+00:08:49,070 --> 00:08:54,050
+But sometimes we need to pass some prop through like 5 or 6 levels.
+
+125
+00:08:54,200 --> 00:08:58,130
+So then it becomes really problematic and we then need to solve that problem.
+
+126
+00:08:58,430 --> 00:09:01,100
+But here, that's no issue.
+
+127
+00:09:01,250 --> 00:09:05,810
+I just wanted to already prepare you for what's ahead, basically.
+
+128
+00:09:05,810 --> 00:09:08,780
+So at some point we will talk about that in detail.
+
+129
+00:09:09,440 --> 00:09:16,610
+But anyway, now here we can compare that selected friend with the current friend, basically.
+
+130
+00:09:18,000 --> 00:09:21,090
+So let's say is selected.
+
+131
+00:09:21,270 --> 00:09:32,970
+And so here we want a Boolean and so we can simply do selected friend.id equal to friend.id and that's
+
+132
+00:09:32,970 --> 00:09:33,420
+it.
+
+133
+00:09:34,440 --> 00:09:38,820
+So now we can use this to conditionally define a class name here.
+
+134
+00:09:40,930 --> 00:09:47,800
+And here let's now use JavaScript mode again so that we can say is selected.
+
+135
+00:09:47,890 --> 00:09:53,650
+Then add the class of selected and if not, then no class at all.
+
+136
+00:09:55,370 --> 00:09:56,030
+All right.
+
+137
+00:09:56,030 --> 00:10:03,080
+And you see, well, actually, you don't see this is the demo app, but you see it here.
+
+138
+00:10:03,230 --> 00:10:06,380
+So this already got now the nice background color.
+
+139
+00:10:06,380 --> 00:10:11,170
+And if we select this one, then it changes here to this other friend.
+
+140
+00:10:11,180 --> 00:10:18,230
+And so that's simply because this ID here of this friend is now exactly the same ID of the one that
+
+141
+00:10:18,230 --> 00:10:19,310
+we have selected.
+
+142
+00:10:19,400 --> 00:10:23,780
+And now all we need to do is to change that text there for closing.
+
+143
+00:10:24,630 --> 00:10:25,890
+And so that's down here.
+
+144
+00:10:30,040 --> 00:10:37,390
+So is selected, and if so, it should be close and otherwise select.
+
+145
+00:10:37,690 --> 00:10:40,180
+And yeah, there it is.
+
+146
+00:10:40,950 --> 00:10:41,820
+Great.
+
+147
+00:10:43,360 --> 00:10:44,980
+So that's working.
+
+148
+00:10:44,980 --> 00:10:50,680
+But what's not working is that when we click here again is that this is not closed.
+
+149
+00:10:50,860 --> 00:10:57,700
+And that makes sense because nowhere we are saying that when we click here again that the state should
+
+150
+00:10:57,700 --> 00:10:58,990
+be back to null.
+
+151
+00:10:59,970 --> 00:11:02,190
+And so that's what we need to do next.
+
+152
+00:11:02,790 --> 00:11:08,250
+So here where we handle the selection, basically when there is already a friend selected.
+
+153
+00:11:08,250 --> 00:11:10,710
+So which means that this here is open.
+
+154
+00:11:10,740 --> 00:11:16,540
+Then when we click here again, we want to change the selected friend back to null.
+
+155
+00:11:16,560 --> 00:11:19,280
+So back to the initial state, basically.
+
+156
+00:11:19,290 --> 00:11:22,350
+And so here now we need to do something else.
+
+157
+00:11:22,890 --> 00:11:24,990
+Let's just comment it out.
+
+158
+00:11:27,450 --> 00:11:30,780
+And so now this will actually depend on the current state.
+
+159
+00:11:30,960 --> 00:11:34,170
+So let's just call this the selected.
+
+160
+00:11:34,750 --> 00:11:40,210
+So the currently selected here in this callback is just called selected so that we don't have to write
+
+161
+00:11:40,210 --> 00:11:40,960
+so much.
+
+162
+00:11:41,730 --> 00:11:46,650
+Then here we can say if the selected ID is equal.
+
+163
+00:11:47,490 --> 00:11:50,970
+The friend ID that we're passing in.
+
+164
+00:11:51,750 --> 00:11:58,260
+Then let's set it back to null and otherwise, then set it to the past in front.
+
+165
+00:11:59,870 --> 00:12:00,440
+All right.
+
+166
+00:12:00,440 --> 00:12:05,270
+So whenever the currently selected let's actually change this here to.
+
+167
+00:12:06,940 --> 00:12:08,890
+Tucker which stands for Current.
+
+168
+00:12:09,040 --> 00:12:17,140
+So if the currently selected ID is equal to the friended, so the friend that is passed in, then that
+
+169
+00:12:17,140 --> 00:12:21,970
+means that it is actually open so that right now the form is being displayed.
+
+170
+00:12:22,000 --> 00:12:24,580
+So in that case, we want to actually close it.
+
+171
+00:12:24,580 --> 00:12:26,920
+And so then we set it back to null.
+
+172
+00:12:27,830 --> 00:12:28,640
+Right.
+
+173
+00:12:28,640 --> 00:12:30,170
+So let's try that.
+
+174
+00:12:31,020 --> 00:12:31,560
+And.
+
+175
+00:12:31,710 --> 00:12:33,480
+Well, we got a bug.
+
+176
+00:12:34,760 --> 00:12:36,410
+So let's see what that is.
+
+177
+00:12:36,440 --> 00:12:39,050
+And yes, this is what I was expecting.
+
+178
+00:12:39,050 --> 00:12:42,170
+So we cannot read the properties of null.
+
+179
+00:12:43,150 --> 00:12:45,670
+Right here in the front.
+
+180
+00:12:46,030 --> 00:12:47,800
+So right here.
+
+181
+00:12:47,800 --> 00:12:52,660
+And so that is because right now the selected friend is null, isn't it?
+
+182
+00:12:52,660 --> 00:12:53,650
+And so on.
+
+183
+00:12:53,650 --> 00:12:54,070
+Null.
+
+184
+00:12:54,070 --> 00:12:56,140
+We do not have the ID property.
+
+185
+00:12:56,140 --> 00:12:58,600
+And so therefore then this breaks.
+
+186
+00:12:58,840 --> 00:13:05,530
+But fortunately for us in modern JavaScript, we have optional chaining and so this is very easy to
+
+187
+00:13:05,530 --> 00:13:06,190
+solve.
+
+188
+00:13:06,310 --> 00:13:12,100
+And if you're not familiar with the syntax, then just go back to the section where I review essential
+
+189
+00:13:12,100 --> 00:13:13,000
+JavaScript.
+
+190
+00:13:13,840 --> 00:13:16,420
+Now hear this friend will always exist.
+
+191
+00:13:16,420 --> 00:13:18,970
+And so here we don't need optional chaining.
+
+192
+00:13:18,970 --> 00:13:21,610
+So we will never run into problems there.
+
+193
+00:13:21,610 --> 00:13:25,000
+But let's do the same up here as well.
+
+194
+00:13:25,390 --> 00:13:29,620
+Because again, the currently selected does not always exist.
+
+195
+00:13:29,740 --> 00:13:32,410
+I mean, sometimes it's null and then.
+
+196
+00:13:32,990 --> 00:13:34,310
+This doesn't work.
+
+197
+00:13:35,580 --> 00:13:38,400
+Okay, so we select it.
+
+198
+00:13:38,700 --> 00:13:40,110
+Then we select this.
+
+199
+00:13:40,110 --> 00:13:45,810
+And if I click again, which is what we just implemented, then beautiful.
+
+200
+00:13:45,840 --> 00:13:47,500
+The form disappeared.
+
+201
+00:13:47,520 --> 00:13:51,720
+We have no bugs here and everything is back to normal.
+
+202
+00:13:51,930 --> 00:13:52,770
+Great.
+
+203
+00:13:52,770 --> 00:13:56,820
+And now just to finish, let's handle one small edge case.
+
+204
+00:13:56,970 --> 00:14:02,520
+So let's say that we decided to add a friend, but then for some reason, we.
+
+205
+00:14:02,520 --> 00:14:03,120
+We don't.
+
+206
+00:14:03,150 --> 00:14:04,890
+We're not interested anymore in this.
+
+207
+00:14:04,920 --> 00:14:08,220
+And then we click here to open up this form.
+
+208
+00:14:08,310 --> 00:14:12,840
+So then we have both of them open at the same time, which looks a bit weird.
+
+209
+00:14:12,840 --> 00:14:17,700
+And so let's automatically close this form here whenever we open this one.
+
+210
+00:14:17,700 --> 00:14:22,140
+And so this will then again show you the huge power of state.
+
+211
+00:14:22,910 --> 00:14:28,040
+So all we need is one line of code right here where we handle this click.
+
+212
+00:14:28,970 --> 00:14:34,100
+So all we have to do here in handle selection is to select the friend first.
+
+213
+00:14:34,100 --> 00:14:40,520
+And then we set show at friend always to false.
+
+214
+00:14:41,950 --> 00:14:43,900
+So let's reload that.
+
+215
+00:14:45,280 --> 00:14:48,310
+So I open the form, then I select Anthony.
+
+216
+00:14:48,310 --> 00:14:52,720
+And so that closes this one and opens the one that we're interested in.
+
+217
+00:14:53,140 --> 00:14:53,920
+Great.
+
+218
+00:14:53,920 --> 00:14:59,710
+And with this, we are now ready to actually make this form here dynamic right in the next video.

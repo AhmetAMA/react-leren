@@ -1,0 +1,1143 @@
+1
+00:00:00,840 --> 00:00:08,220
+Let's now implement the first feature of our app, which is the ability to add new friends to the list.
+
+2
+00:00:10,010 --> 00:00:13,080
+So let's come here to the form.
+
+3
+00:00:13,100 --> 00:00:17,330
+Add friend component, which is where that is going to happen.
+
+4
+00:00:17,510 --> 00:00:24,390
+So the first thing is that we need to get the value of these input fields into our application.
+
+5
+00:00:24,410 --> 00:00:26,540
+So right here into this component.
+
+6
+00:00:26,570 --> 00:00:28,280
+And how do we do that?
+
+7
+00:00:28,370 --> 00:00:35,210
+Well, as we already know, we use controlled elements where we will have one piece of state for each
+
+8
+00:00:35,210 --> 00:00:36,050
+of the inputs.
+
+9
+00:00:36,050 --> 00:00:43,850
+And then as the user types, something here that value here of the input field will be synced with that
+
+10
+00:00:43,850 --> 00:00:44,570
+state.
+
+11
+00:00:46,190 --> 00:00:48,410
+So let's do that.
+
+12
+00:00:48,560 --> 00:00:53,300
+And let's write name and set name.
+
+13
+00:00:55,710 --> 00:00:55,860
+That.
+
+14
+00:00:55,860 --> 00:00:58,590
+Then, as always, we call our state.
+
+15
+00:00:59,260 --> 00:01:03,820
+And let's immediately do the same thing also for the image.
+
+16
+00:01:06,830 --> 00:01:12,590
+And now all we have to do is to wire up these states to our input fields.
+
+17
+00:01:13,170 --> 00:01:15,890
+And we have done this many times at this point.
+
+18
+00:01:15,900 --> 00:01:18,120
+So this is hopefully nothing new for you.
+
+19
+00:01:18,510 --> 00:01:24,240
+So again, we first define the state, then we set the value to that state.
+
+20
+00:01:24,330 --> 00:01:27,480
+So basically controlling that input field.
+
+21
+00:01:27,480 --> 00:01:32,760
+And then we listen to the change event with the On Change listener.
+
+22
+00:01:32,970 --> 00:01:36,090
+And what we do is to take the event.
+
+23
+00:01:37,070 --> 00:01:38,360
+And then update.
+
+24
+00:01:39,520 --> 00:01:46,450
+The state using that event dot target dot value.
+
+25
+00:01:47,610 --> 00:01:48,600
+All right.
+
+26
+00:01:48,780 --> 00:01:50,220
+And let's see.
+
+27
+00:01:52,720 --> 00:01:54,710
+That should already be working.
+
+28
+00:01:54,730 --> 00:01:57,100
+Let's come here to the.
+
+29
+00:01:58,390 --> 00:02:01,000
+Well, so too the form itself.
+
+30
+00:02:02,030 --> 00:02:04,460
+And then we should see the state down there.
+
+31
+00:02:05,240 --> 00:02:07,460
+Well, somehow that doesn't really work.
+
+32
+00:02:09,360 --> 00:02:11,280
+Let's try that again.
+
+33
+00:02:15,470 --> 00:02:16,460
+And well.
+
+34
+00:02:21,160 --> 00:02:22,320
+Yeah, here it is.
+
+35
+00:02:22,330 --> 00:02:23,680
+So that's the state.
+
+36
+00:02:23,800 --> 00:02:26,500
+Simply my name written wrong.
+
+37
+00:02:28,020 --> 00:02:32,400
+But yeah, let's not do the same thing here in this other input field.
+
+38
+00:02:32,790 --> 00:02:37,980
+So value image and then onchange.
+
+39
+00:02:40,090 --> 00:02:40,540
+E.
+
+40
+00:02:41,860 --> 00:02:46,990
+Set image to e dot target dot value.
+
+41
+00:02:49,570 --> 00:02:50,630
+All right.
+
+42
+00:02:50,650 --> 00:02:53,370
+Then we get some error here for some reason.
+
+43
+00:02:53,380 --> 00:02:55,060
+So let's just reload.
+
+44
+00:02:56,710 --> 00:02:58,300
+Get some more space here.
+
+45
+00:03:02,430 --> 00:03:03,180
+And then.
+
+46
+00:03:04,570 --> 00:03:09,010
+We should, of course, see this date already in the component.
+
+47
+00:03:09,010 --> 00:03:10,240
+And there it is.
+
+48
+00:03:10,540 --> 00:03:11,590
+Nice.
+
+49
+00:03:11,830 --> 00:03:15,610
+Now, actually, here, I want some default already.
+
+50
+00:03:16,430 --> 00:03:19,430
+So let me show you what exactly that is.
+
+51
+00:03:19,640 --> 00:03:24,320
+So by default, we already want this part here of the image URL.
+
+52
+00:03:24,410 --> 00:03:26,030
+So let's copy that.
+
+53
+00:03:26,180 --> 00:03:27,170
+And then.
+
+54
+00:03:28,080 --> 00:03:29,850
+Let's come down here.
+
+55
+00:03:30,470 --> 00:03:33,230
+And so by default, this will be our image.
+
+56
+00:03:33,230 --> 00:03:39,020
+And then when we actually create the new friend, we will add something to it in order to make it unique.
+
+57
+00:03:39,020 --> 00:03:46,060
+But anyway, now the next step is here to listen for the Onsubmit event.
+
+58
+00:03:46,070 --> 00:03:48,680
+So again, just like we have been doing before.
+
+59
+00:03:48,680 --> 00:03:56,060
+So this submit event will get fired whenever we submit the form by clicking there on that button or
+
+60
+00:03:56,060 --> 00:03:59,240
+hitting enter while we are in one of these fields.
+
+61
+00:03:59,360 --> 00:04:05,810
+And so then that submit event gets fired off and then we call the function, which will be.
+
+62
+00:04:06,580 --> 00:04:07,180
+Handle.
+
+63
+00:04:08,240 --> 00:04:09,050
+Submit.
+
+64
+00:04:11,600 --> 00:04:13,580
+So then let's create that function.
+
+65
+00:04:14,840 --> 00:04:16,070
+Handle submit.
+
+66
+00:04:16,400 --> 00:04:21,770
+And remember that this function here gets called by React with the event object.
+
+67
+00:04:21,770 --> 00:04:28,490
+And so then the first thing that we have to do is to prevent the default action, which would be to
+
+68
+00:04:28,490 --> 00:04:35,030
+reload the entire page, which is not what we want in a single page application like we are building.
+
+69
+00:04:35,030 --> 00:04:38,150
+And so the event handler function for a form.
+
+70
+00:04:38,150 --> 00:04:43,130
+So on an Onsubmit always needs the event.preventdefault.
+
+71
+00:04:43,880 --> 00:04:51,200
+And now let's create a new friend object so that we can then add that to our array.
+
+72
+00:04:52,450 --> 00:04:54,670
+So that should have name.
+
+73
+00:04:55,570 --> 00:04:57,730
+Image and the balance.
+
+74
+00:04:59,350 --> 00:05:01,300
+Should start at zero, of course.
+
+75
+00:05:01,300 --> 00:05:03,970
+So no one owes anyone anything.
+
+76
+00:05:04,150 --> 00:05:05,680
+We also want an ID.
+
+77
+00:05:07,560 --> 00:05:15,570
+And let's create the ID using the built in browser crypto dot random Uuid.
+
+78
+00:05:15,900 --> 00:05:21,440
+And so this is a very good way of generating random IDs right in the browser.
+
+79
+00:05:21,450 --> 00:05:26,280
+So this is not an external packages, but it won't work in older browsers.
+
+80
+00:05:26,280 --> 00:05:28,050
+But here we don't care about that.
+
+81
+00:05:28,080 --> 00:05:30,180
+We just want to make this work.
+
+82
+00:05:30,180 --> 00:05:33,600
+And so with this we have a new friend.
+
+83
+00:05:33,630 --> 00:05:39,660
+Let's log it to the console here for now just to see that everything is working correctly.
+
+84
+00:05:41,730 --> 00:05:42,780
+Give it a save.
+
+85
+00:05:42,810 --> 00:05:44,580
+Let's reload here.
+
+86
+00:05:47,610 --> 00:05:50,220
+And now in the console, we should see that object.
+
+87
+00:05:50,220 --> 00:05:52,020
+And indeed, there it is.
+
+88
+00:05:52,670 --> 00:05:53,750
+So balance.
+
+89
+00:05:53,890 --> 00:06:00,830
+And here I didn't call the function I just passed in the function, which of course is not correct.
+
+90
+00:06:01,010 --> 00:06:02,540
+Let's try that again.
+
+91
+00:06:02,540 --> 00:06:04,230
+And now here it is.
+
+92
+00:06:04,250 --> 00:06:06,810
+So this is the random ID that was generated.
+
+93
+00:06:06,830 --> 00:06:10,610
+Here is the image and the name and the balance.
+
+94
+00:06:10,850 --> 00:06:16,340
+Now, as I was saying, I actually want to now add something to this image.
+
+95
+00:06:16,340 --> 00:06:19,340
+So to this string that we already have as a default.
+
+96
+00:06:19,610 --> 00:06:22,880
+So let's create a template literal here.
+
+97
+00:06:24,610 --> 00:06:25,480
+And so now.
+
+98
+00:06:26,210 --> 00:06:28,130
+I want to do equal.
+
+99
+00:06:29,550 --> 00:06:30,990
+And then did.
+
+100
+00:06:33,150 --> 00:06:35,170
+Well, now, of course, we cannot do that.
+
+101
+00:06:35,190 --> 00:06:36,390
+So let's.
+
+102
+00:06:37,240 --> 00:06:40,150
+Uh, create this here outside as another variable.
+
+103
+00:06:40,420 --> 00:06:43,240
+So const id equals this.
+
+104
+00:06:43,910 --> 00:06:45,110
+And then down here.
+
+105
+00:06:45,810 --> 00:06:46,860
+Just like this.
+
+106
+00:06:48,130 --> 00:06:55,150
+So the way that this works and the reason why we are adding this ID here is that this string here,
+
+107
+00:06:55,330 --> 00:07:03,430
+this URL, if we open it, it will basically give us a small image with the size of 48.
+
+108
+00:07:04,200 --> 00:07:08,720
+But when we reload, it will each time give us a different image.
+
+109
+00:07:08,730 --> 00:07:10,530
+But of course we don't want that.
+
+110
+00:07:10,530 --> 00:07:14,370
+So we want each image to be fixed basically to the person.
+
+111
+00:07:14,370 --> 00:07:19,710
+And the way we can do that is to attach something here so it doesn't matter what string.
+
+112
+00:07:19,710 --> 00:07:25,530
+But now each time that we open this URL, we will always get the exact same image.
+
+113
+00:07:25,530 --> 00:07:28,560
+So it will always be this one here.
+
+114
+00:07:28,560 --> 00:07:31,260
+And as I reload, we should get exactly the same.
+
+115
+00:07:31,620 --> 00:07:34,050
+Well, that didn't work actually.
+
+116
+00:07:34,050 --> 00:07:37,830
+But maybe that's just because someone else has already used this.
+
+117
+00:07:39,070 --> 00:07:44,710
+But yeah, this year should be pretty unique and then we should always get the same image.
+
+118
+00:07:45,010 --> 00:07:48,370
+Now there's just some small changes that we should do here.
+
+119
+00:07:49,060 --> 00:07:50,200
+Of course not here.
+
+120
+00:07:50,790 --> 00:07:51,780
+But here.
+
+121
+00:07:52,630 --> 00:07:58,420
+So first, after we submit the form, then we should go back here to the defaults.
+
+122
+00:07:59,540 --> 00:08:00,890
+So let's do that.
+
+123
+00:08:03,120 --> 00:08:04,530
+So set the name.
+
+124
+00:08:05,260 --> 00:08:06,400
+Back to empty.
+
+125
+00:08:07,000 --> 00:08:12,040
+And set the image back to well, to just this here.
+
+126
+00:08:15,850 --> 00:08:20,110
+Because of course the user could want to input some other URL.
+
+127
+00:08:20,140 --> 00:08:21,850
+Here it doesn't have to be this one.
+
+128
+00:08:21,850 --> 00:08:26,830
+It's just the default that we're using so that we don't have to write this manually each time.
+
+129
+00:08:26,980 --> 00:08:31,240
+So if we try this again, then you see that it gets empty.
+
+130
+00:08:32,120 --> 00:08:35,900
+And here it would then also go back to the default.
+
+131
+00:08:36,780 --> 00:08:43,350
+Now, if we submit this right now without anything, then of course something will still get logged
+
+132
+00:08:43,350 --> 00:08:44,270
+to the console.
+
+133
+00:08:44,280 --> 00:08:49,680
+So all of this here, all this code is still executed, but we actually don't want that.
+
+134
+00:08:50,010 --> 00:08:59,520
+So let's add some guard clause here saying that if we have no name or we have no image, then return
+
+135
+00:08:59,520 --> 00:09:00,300
+immediately.
+
+136
+00:09:00,300 --> 00:09:03,300
+And so in this case, nothing is going to happen.
+
+137
+00:09:04,090 --> 00:09:05,500
+So with this, nothing happens.
+
+138
+00:09:05,500 --> 00:09:09,250
+But if we have a name, then of course the code works.
+
+139
+00:09:10,890 --> 00:09:15,600
+Okay, so the form now works, but now comes the harder part.
+
+140
+00:09:15,690 --> 00:09:21,750
+So how do we now actually get this object that we logged here onto our friends list?
+
+141
+00:09:22,050 --> 00:09:24,060
+Well, let's think about it.
+
+142
+00:09:24,090 --> 00:09:30,030
+So each time that we add a new friend, we want that friend immediately added here to the list.
+
+143
+00:09:30,030 --> 00:09:33,030
+So to that UI right here.
+
+144
+00:09:33,300 --> 00:09:39,300
+So we want something to happen in the UI or in other words, we want the UI to render.
+
+145
+00:09:39,300 --> 00:09:43,500
+And so once again, that's a clear sign that we need some state.
+
+146
+00:09:43,620 --> 00:09:45,240
+So that is pretty clear.
+
+147
+00:09:45,240 --> 00:09:48,890
+But now we need to figure out where to place that piece of state.
+
+148
+00:09:48,900 --> 00:09:53,670
+And for that, let's take a look at our component tree here once again.
+
+149
+00:09:56,060 --> 00:09:56,230
+Yeah.
+
+150
+00:09:56,270 --> 00:09:56,720
+Let's see.
+
+151
+00:09:56,720 --> 00:09:57,470
+All of it.
+
+152
+00:09:58,460 --> 00:10:05,000
+So our friends list component here is the one that is going to display the friends, right?
+
+153
+00:10:05,180 --> 00:10:12,590
+However, it is the form at Friend where we want to update that list of friends because well, of course
+
+154
+00:10:12,590 --> 00:10:14,420
+this is where we add a new friend.
+
+155
+00:10:14,720 --> 00:10:16,370
+So the update happens here.
+
+156
+00:10:16,370 --> 00:10:20,660
+But the state itself is needed here in the sibling component.
+
+157
+00:10:21,240 --> 00:10:23,340
+So what does that sound like?
+
+158
+00:10:23,520 --> 00:10:29,820
+Well, it sounds as though we have to lift the friend's state up here into the app.
+
+159
+00:10:29,970 --> 00:10:30,720
+Right?
+
+160
+00:10:30,720 --> 00:10:38,730
+Because this way both of these components or actually all of them can get access to that friend state.
+
+161
+00:10:39,980 --> 00:10:41,660
+So let's do that.
+
+162
+00:10:42,510 --> 00:10:43,770
+And first of all.
+
+163
+00:10:45,080 --> 00:10:47,350
+Uh, let's go to the friends list itself.
+
+164
+00:10:47,360 --> 00:10:51,890
+Where right now we have this friends here set to initial friends.
+
+165
+00:10:51,890 --> 00:10:54,380
+And so now let's get rid of this part.
+
+166
+00:10:54,470 --> 00:11:01,880
+And instead, let's create a lifted up state variable in the parent component, which is, in this case,
+
+167
+00:11:01,880 --> 00:11:02,960
+just app.
+
+168
+00:11:05,140 --> 00:11:05,890
+So.
+
+169
+00:11:06,570 --> 00:11:09,840
+Friends and set.
+
+170
+00:11:10,480 --> 00:11:13,300
+Friends and then use state.
+
+171
+00:11:13,330 --> 00:11:16,060
+And what should the initial value be now?
+
+172
+00:11:16,330 --> 00:11:21,640
+Well, not just an empty array because we actually want these three friends here to be visible at the
+
+173
+00:11:21,640 --> 00:11:22,600
+very beginning.
+
+174
+00:11:23,080 --> 00:11:28,960
+I mean, it probably doesn't make a lot of sense for all the users to have these three friends.
+
+175
+00:11:28,960 --> 00:11:32,910
+But let's just say that this is how it works.
+
+176
+00:11:32,920 --> 00:11:38,800
+So let's just say that these friends are basically the default friends of everyone.
+
+177
+00:11:39,750 --> 00:11:42,150
+Because this is just a demo anyway.
+
+178
+00:11:42,540 --> 00:11:48,240
+Now, here then, of course, immediately get the problem that inside the friends list friends is no
+
+179
+00:11:48,240 --> 00:11:49,290
+longer defined.
+
+180
+00:11:49,560 --> 00:11:52,470
+So we need to fix that by now.
+
+181
+00:11:52,470 --> 00:11:54,450
+Passing in friends as a prop.
+
+182
+00:11:58,490 --> 00:12:03,590
+So we're giving this component access to the state by passing it down as a prop.
+
+183
+00:12:03,600 --> 00:12:05,450
+And so here we receive that.
+
+184
+00:12:06,860 --> 00:12:08,760
+And then the component will be happy.
+
+185
+00:12:08,780 --> 00:12:13,220
+So it's back to having this array and then everything works again.
+
+186
+00:12:13,610 --> 00:12:14,510
+Great.
+
+187
+00:12:14,840 --> 00:12:16,640
+So that's one part.
+
+188
+00:12:16,640 --> 00:12:22,610
+And now we need to give this form here the ability to add new friends.
+
+189
+00:12:22,850 --> 00:12:25,310
+So to update that friends array.
+
+190
+00:12:25,310 --> 00:12:33,050
+And we could do that in two ways so we could directly pass the set friends function into the.
+
+191
+00:12:33,870 --> 00:12:34,860
+Uh, where is it?
+
+192
+00:12:35,780 --> 00:12:36,110
+Yeah.
+
+193
+00:12:36,110 --> 00:12:36,500
+Here.
+
+194
+00:12:36,500 --> 00:12:38,870
+So right here into this form.
+
+195
+00:12:38,870 --> 00:12:42,410
+But let's keep all the event handler functions right here.
+
+196
+00:12:43,160 --> 00:12:47,210
+And so let's instead create a function called handle.
+
+197
+00:12:49,080 --> 00:12:50,250
+And friend.
+
+198
+00:12:51,430 --> 00:12:57,760
+And then this function here will use that set friends function and then we pass this one here down instead.
+
+199
+00:12:58,790 --> 00:13:01,930
+Okay, so let's use set friends.
+
+200
+00:13:01,940 --> 00:13:07,300
+And of course this function here then needs to receive a friend object.
+
+201
+00:13:07,310 --> 00:13:12,460
+So that's the new friend that we created down there in that component.
+
+202
+00:13:12,470 --> 00:13:16,700
+And then here all we do is to take the current friends.
+
+203
+00:13:17,960 --> 00:13:21,460
+Which again could be called anything here in this new function.
+
+204
+00:13:21,620 --> 00:13:28,550
+Then we create a brand new array, spread the current friends in there, and add the new one at the
+
+205
+00:13:28,550 --> 00:13:29,060
+end.
+
+206
+00:13:30,210 --> 00:13:37,140
+So again, we do it like this, basically creating a brand new array instead of using like the push
+
+207
+00:13:37,140 --> 00:13:42,480
+function because that would mutate the original array so it wouldn't create a new one.
+
+208
+00:13:42,480 --> 00:13:45,800
+And so react in that case would not rerender.
+
+209
+00:13:45,810 --> 00:13:51,960
+I mean, sometimes it might actually work, but it's not supposed to because in many situations it will
+
+210
+00:13:51,960 --> 00:13:53,220
+actually not work.
+
+211
+00:13:53,220 --> 00:13:54,780
+So don't do that.
+
+212
+00:13:54,810 --> 00:14:00,230
+Don't mutate original arrays because React is all about immutability.
+
+213
+00:14:00,240 --> 00:14:04,310
+That's also the reason why we are not allowed to mutate props.
+
+214
+00:14:04,320 --> 00:14:05,460
+Remember that.
+
+215
+00:14:05,490 --> 00:14:08,190
+So always creating new arrays here.
+
+216
+00:14:08,220 --> 00:14:14,520
+And the way we do that for adding a new element to an array is by creating a brand new one like this,
+
+217
+00:14:14,520 --> 00:14:19,650
+spreading all the current elements, and then adding the new one to the end like this.
+
+218
+00:14:19,650 --> 00:14:21,840
+So just like we have been doing.
+
+219
+00:14:22,430 --> 00:14:24,770
+And now let's pass that in here.
+
+220
+00:14:25,160 --> 00:14:27,920
+So on Add, friend.
+
+221
+00:14:28,620 --> 00:14:29,700
+Like this.
+
+222
+00:14:30,060 --> 00:14:33,060
+We pass in handle add friend.
+
+223
+00:14:34,260 --> 00:14:42,060
+So again, we are using this UN prefix here just like react does it for the events like on click on
+
+224
+00:14:42,060 --> 00:14:44,370
+change on mouse over.
+
+225
+00:14:44,370 --> 00:14:48,870
+And so here we create our own basically like on Add friend.
+
+226
+00:14:48,870 --> 00:14:51,390
+So as if this was also an event.
+
+227
+00:14:51,900 --> 00:14:53,940
+Okay let's copy this.
+
+228
+00:14:54,240 --> 00:14:56,460
+So this should already be working now.
+
+229
+00:14:56,580 --> 00:14:59,910
+And so then let's come down here.
+
+230
+00:15:00,890 --> 00:15:01,940
+Pass that in.
+
+231
+00:15:02,840 --> 00:15:05,840
+And instead of logging it to the console.
+
+232
+00:15:06,840 --> 00:15:12,480
+We now want to call this function with the new friend, and this should now work actually.
+
+233
+00:15:12,480 --> 00:15:15,480
+So we have wired up everything correctly.
+
+234
+00:15:15,510 --> 00:15:18,200
+So we have our shared state here.
+
+235
+00:15:18,210 --> 00:15:25,410
+So our lifted up state, which is now available to the friends list and we then update that state down
+
+236
+00:15:25,410 --> 00:15:26,160
+here.
+
+237
+00:15:27,100 --> 00:15:28,180
+In this component.
+
+238
+00:15:28,210 --> 00:15:30,820
+Well, not this one, but.
+
+239
+00:15:32,020 --> 00:15:36,460
+Ah, it's not in the tree, of course, but now it will be in the tree.
+
+240
+00:15:36,460 --> 00:15:39,340
+So this was actually a good learning moment.
+
+241
+00:15:39,340 --> 00:15:45,550
+So basically seeing that the component that was not in the UI is of course also not in the component
+
+242
+00:15:45,550 --> 00:15:46,300
+tree here.
+
+243
+00:15:47,240 --> 00:15:47,840
+Right.
+
+244
+00:15:47,840 --> 00:15:48,680
+So now it is.
+
+245
+00:15:48,680 --> 00:15:52,220
+But when I close it, you see that it disappears from here.
+
+246
+00:15:53,870 --> 00:15:54,350
+Okay.
+
+247
+00:15:54,350 --> 00:15:55,700
+But now it is back.
+
+248
+00:15:55,730 --> 00:16:03,380
+And so again, this is where we will update the friends state and in a way do some child to parent communication.
+
+249
+00:16:03,380 --> 00:16:05,690
+So the parent being the app component.
+
+250
+00:16:05,690 --> 00:16:12,260
+And so then as soon as that state is updated, it's again passed down into the list, which will then
+
+251
+00:16:12,260 --> 00:16:13,160
+rerender.
+
+252
+00:16:14,120 --> 00:16:15,290
+So let's try.
+
+253
+00:16:15,620 --> 00:16:17,290
+And there it is.
+
+254
+00:16:17,300 --> 00:16:19,520
+You and Jonas are even.
+
+255
+00:16:19,730 --> 00:16:22,120
+So this should now create some image there.
+
+256
+00:16:22,130 --> 00:16:28,700
+It always takes some time for some reason, but, yeah, that worked beautifully.
+
+257
+00:16:29,940 --> 00:16:32,250
+And we can keep adding more and more.
+
+258
+00:16:32,850 --> 00:16:38,870
+And then this updates the state exactly in the way that I have explained before.
+
+259
+00:16:38,880 --> 00:16:45,510
+Here we update then that propagates the update basically to the app component, which will then pass
+
+260
+00:16:45,510 --> 00:16:48,900
+it down in the list which will rerender as a result.
+
+261
+00:16:49,610 --> 00:16:50,510
+Nice.
+
+262
+00:16:50,540 --> 00:16:56,870
+There's just one small thing that we want to do, which is each time that we add a new friend so that
+
+263
+00:16:56,870 --> 00:17:01,130
+this form is submitted, we then want to immediately close that form.
+
+264
+00:17:01,130 --> 00:17:02,750
+So make it disappear again.
+
+265
+00:17:03,570 --> 00:17:05,520
+So that's easy enough.
+
+266
+00:17:06,640 --> 00:17:08,890
+But let's think about it a little bit.
+
+267
+00:17:08,920 --> 00:17:11,860
+So do you think that we should do that here?
+
+268
+00:17:12,070 --> 00:17:17,620
+So in this component here, is this where we should close the form after we're done?
+
+269
+00:17:17,950 --> 00:17:25,030
+Well, not really, because this part here, this form is actually not responsible for showing itself
+
+270
+00:17:25,030 --> 00:17:25,990
+or not.
+
+271
+00:17:26,020 --> 00:17:31,720
+So as long as this component is actually included in the component tree, it will be visible.
+
+272
+00:17:32,570 --> 00:17:33,290
+Right.
+
+273
+00:17:33,290 --> 00:17:40,280
+So instead, who controls whether this component is visible or not is the app component by using this
+
+274
+00:17:40,280 --> 00:17:41,000
+state?
+
+275
+00:17:41,330 --> 00:17:42,220
+Right.
+
+276
+00:17:42,230 --> 00:17:51,050
+And so we can use this handler function to not only set the new friend state, but also to hide the
+
+277
+00:17:51,050 --> 00:17:51,950
+form again.
+
+278
+00:17:52,500 --> 00:17:58,770
+So all we have to do is set, show, add, friend and set that to false.
+
+279
+00:17:59,070 --> 00:18:02,410
+So here the state doesn't depend on the previous state.
+
+280
+00:18:02,430 --> 00:18:05,850
+So here we simply want to always set it to false.
+
+281
+00:18:08,640 --> 00:18:13,380
+And yeah, we got the new friend and the form is hidden.
+
+282
+00:18:13,380 --> 00:18:16,560
+And so this actually completes this feature.
+
+283
+00:18:16,830 --> 00:18:22,900
+So just make sure that you take now a minute to review the code that we wrote here.
+
+284
+00:18:22,920 --> 00:18:27,930
+So in particular the lifting up state and how we then wired everything together.
+
+285
+00:18:27,930 --> 00:18:34,110
+And then once that done, we will start working on actually making this main part of the application
+
+286
+00:18:34,110 --> 00:18:35,220
+work as well.

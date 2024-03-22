@@ -1,0 +1,311 @@
+1
+00:00:00,980 --> 00:00:07,970
+As we finish this first dive into state, I want to share a few more important thoughts or ideas about
+
+2
+00:00:07,970 --> 00:00:11,390
+state as well as some practical guidelines.
+
+3
+00:00:13,190 --> 00:00:20,000
+So first of all, there is one important technical detail that you should be aware of, and this might
+
+4
+00:00:20,000 --> 00:00:22,940
+seem obvious, but it's still worth mentioning.
+
+5
+00:00:23,060 --> 00:00:31,040
+So what I'm talking about is the fact that each component really has and manages its own state.
+
+6
+00:00:31,070 --> 00:00:38,750
+So even if we render the same component multiple times on one page, each of these component instances
+
+7
+00:00:38,780 --> 00:00:42,630
+will operate independently from all the other ones.
+
+8
+00:00:42,650 --> 00:00:49,940
+So in this example, the three counter components all start with a piece of state called Score, which
+
+9
+00:00:49,940 --> 00:00:52,370
+is set initially to zero.
+
+10
+00:00:52,400 --> 00:01:00,590
+Then if one of the buttons is clicked, that increases the score by one for each click, but only in
+
+11
+00:01:00,590 --> 00:01:01,940
+that component.
+
+12
+00:01:01,970 --> 00:01:05,870
+The state in all the other components stays the same.
+
+13
+00:01:05,900 --> 00:01:12,920
+So again, if we change the state in one of the components that won't affect the other components at
+
+14
+00:01:13,020 --> 00:01:13,610
+all.
+
+15
+00:01:13,620 --> 00:01:20,400
+And so the same thing, of course, is going to happen when we click one of the other buttons or even
+
+16
+00:01:20,400 --> 00:01:24,840
+when one of the components is removed from the UI entirely.
+
+17
+00:01:25,020 --> 00:01:29,790
+So state really is isolated inside of each component.
+
+18
+00:01:30,560 --> 00:01:36,920
+Now, if we analyze everything that we just learned about state, we can come to the conclusion that
+
+19
+00:01:36,920 --> 00:01:40,470
+we can basically think of the entire application view.
+
+20
+00:01:40,490 --> 00:01:45,560
+So the entire user interface as a function of state.
+
+21
+00:01:45,590 --> 00:01:54,170
+Or in other words, the entire UI is always a representation of all the current states in all components.
+
+22
+00:01:54,380 --> 00:02:01,880
+And taking this idea even one step further, a React application is fundamentally all about changing
+
+23
+00:02:01,880 --> 00:02:08,610
+state over time and of course also correctly displaying that state at all times.
+
+24
+00:02:08,630 --> 00:02:15,710
+And this is really what the declarative approach to building user interfaces is all about.
+
+25
+00:02:15,740 --> 00:02:24,650
+So instead of viewing a UI as explicit Dom manipulations with state, we now view a UI as a reflection
+
+26
+00:02:24,650 --> 00:02:26,930
+of data changing over time.
+
+27
+00:02:27,080 --> 00:02:34,860
+And as you know by now, we describe that reflection of data using state event handlers and JSX.
+
+28
+00:02:35,550 --> 00:02:39,750
+So we describe the UI, react does the rest.
+
+29
+00:02:40,020 --> 00:02:46,290
+Now, this might all sound a bit philosophical at this point in your journey, but trust me, as you
+
+30
+00:02:46,290 --> 00:02:53,100
+become more and more experienced in building React apps and working with State, you will truly and
+
+31
+00:02:53,100 --> 00:02:56,010
+deeply understand everything I just said here.
+
+32
+00:02:57,250 --> 00:02:57,370
+Now.
+
+33
+00:02:57,450 --> 00:02:57,970
+Okay.
+
+34
+00:02:57,970 --> 00:03:04,310
+And now to finish, let me give you a few guidelines on how to use state in practice.
+
+35
+00:03:04,330 --> 00:03:08,740
+So practical guidelines is always what students like the most.
+
+36
+00:03:08,740 --> 00:03:13,750
+And here, this also kind of serves as a summary of state in general.
+
+37
+00:03:14,300 --> 00:03:18,020
+And these guidelines are for you to keep as a reference.
+
+38
+00:03:18,020 --> 00:03:22,800
+So there is a lot of text here that I will just quickly go over now.
+
+39
+00:03:22,820 --> 00:03:30,080
+So first of all, you should create a new state variable for any data that a component should keep track
+
+40
+00:03:30,080 --> 00:03:31,430
+of over time.
+
+41
+00:03:31,580 --> 00:03:38,450
+And the easy way of figuring this out is to think of variables that need to change at some point in
+
+42
+00:03:38,450 --> 00:03:39,320
+the future.
+
+43
+00:03:39,620 --> 00:03:46,600
+So if you're used to building apps in vanilla JavaScript, those would be variables defined with Let
+
+44
+00:03:46,610 --> 00:03:53,810
+or with Var or also an array or object that you mutate over the application's lifecycle.
+
+45
+00:03:53,840 --> 00:03:57,200
+So in React, you use state for those.
+
+46
+00:03:57,650 --> 00:04:04,640
+Another way of figuring out when you need state is this Whenever you want something in a component to
+
+47
+00:04:04,640 --> 00:04:11,960
+be dynamic, create a piece of state related to that thing and then update the state when the thing
+
+48
+00:04:11,990 --> 00:04:13,160
+should change.
+
+49
+00:04:13,190 --> 00:04:16,950
+Or in other words, when you need it to be dynamic.
+
+50
+00:04:17,040 --> 00:04:25,290
+Now, since this thing is a bit abstract, let's think of a modal window that can be either open or
+
+51
+00:04:25,290 --> 00:04:26,100
+closed.
+
+52
+00:04:26,220 --> 00:04:33,600
+So for a modal window we can create a state variable called is open that will keep track of whether
+
+53
+00:04:33,600 --> 00:04:36,840
+the modal is currently open or not.
+
+54
+00:04:36,960 --> 00:04:43,920
+Then when is open is true, we display the window on the screen and if it's false, we hide it.
+
+55
+00:04:44,070 --> 00:04:45,660
+Simple, right?
+
+56
+00:04:46,020 --> 00:04:53,370
+So whenever you want to change the way a component looks like or the data that it displays, just update
+
+57
+00:04:53,370 --> 00:04:57,870
+its state, which you usually do inside an event handler function.
+
+58
+00:04:58,260 --> 00:05:04,230
+Now, when you're actually building your components, it's going to be useful to always imagine the
+
+59
+00:05:04,230 --> 00:05:05,620
+components view.
+
+60
+00:05:05,640 --> 00:05:12,780
+So the component rendered on the screen as a reflection of state changing and evolving over time.
+
+61
+00:05:13,490 --> 00:05:20,810
+Finally, there is one common mistake that many beginners make, which is to use state for every single
+
+62
+00:05:20,810 --> 00:05:23,500
+variable that you need in a component.
+
+63
+00:05:23,510 --> 00:05:26,070
+But that's really not necessary.
+
+64
+00:05:26,090 --> 00:05:31,550
+So do not use state for variables that should not trigger a rerender.
+
+65
+00:05:31,700 --> 00:05:32,350
+Okay.
+
+66
+00:05:32,360 --> 00:05:38,320
+Because that will just cause unnecessary rerenders which can cause performance issues.
+
+67
+00:05:38,330 --> 00:05:42,620
+So it's very common to need some variables that are not state.
+
+68
+00:05:42,620 --> 00:05:47,360
+And so for those you can just use regular variables defined with const.
+
+69
+00:05:47,360 --> 00:05:50,570
+But we will come back to this in the next section.
+
+70
+00:05:51,270 --> 00:05:51,900
+All right.
+
+71
+00:05:51,900 --> 00:05:58,420
+So this is my first set of guidelines about state, which should be more than enough for now.
+
+72
+00:05:58,440 --> 00:06:05,310
+So if you truly internalize these, then building react applications in the future should be a lot easier
+
+73
+00:06:05,310 --> 00:06:06,140
+for you.
+
+74
+00:06:06,180 --> 00:06:13,650
+And I say this because I really believe that mastering state is the most difficult part of learning
+
+75
+00:06:13,650 --> 00:06:14,310
+react.
+
+76
+00:06:14,310 --> 00:06:21,420
+But once you overcome this hurdle and truly internalize when you need state and how it all works, it
+
+77
+00:06:21,420 --> 00:06:24,270
+will unlock react development for you.
+
+78
+00:06:24,270 --> 00:06:29,760
+And so that's why I spent so much time here showing you how state works.

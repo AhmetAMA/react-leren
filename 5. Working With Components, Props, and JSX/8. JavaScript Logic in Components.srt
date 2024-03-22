@@ -1,0 +1,263 @@
+1
+00:00:00,860 --> 00:00:07,040
+Let's now take a quick first look at writing logic inside of React components.
+
+2
+00:00:08,060 --> 00:00:15,710
+Now we have already written some JavaScript logic before, but we always did it just inside the JS that
+
+3
+00:00:15,710 --> 00:00:16,700
+is returned.
+
+4
+00:00:16,880 --> 00:00:19,520
+So just like here, right?
+
+5
+00:00:19,520 --> 00:00:26,630
+But since components are just JavaScript functions, we can of course do any JavaScript in them that
+
+6
+00:00:26,630 --> 00:00:32,260
+we want and that code is then simply executed as soon as the function is called.
+
+7
+00:00:32,270 --> 00:00:35,630
+So as soon as the component is initialized.
+
+8
+00:00:35,900 --> 00:00:40,790
+So for example, here we can create any new variable that we want.
+
+9
+00:00:41,690 --> 00:00:42,980
+Let's say our.
+
+10
+00:00:45,860 --> 00:00:48,230
+And here I will again create a new date.
+
+11
+00:00:49,630 --> 00:00:55,150
+And then let's say get ours and then we can lock that to the console.
+
+12
+00:00:55,150 --> 00:01:00,130
+And now we're going to use that snippet for the first time that we set up earlier.
+
+13
+00:01:00,700 --> 00:01:06,280
+So here we can just write cl hit enter and then our.
+
+14
+00:01:08,570 --> 00:01:10,490
+So let's check out our console.
+
+15
+00:01:10,490 --> 00:01:13,820
+And so here, yeah, we have the number nine.
+
+16
+00:01:13,820 --> 00:01:15,890
+So that's currently the our.
+
+17
+00:01:16,010 --> 00:01:22,640
+And now what I want to do here is to basically display an alert in the app whether the restaurant is
+
+18
+00:01:22,640 --> 00:01:24,350
+currently open or not.
+
+19
+00:01:26,040 --> 00:01:29,040
+So let's define a few more variables for that.
+
+20
+00:01:32,390 --> 00:01:33,580
+So open our.
+
+21
+00:01:33,590 --> 00:01:43,040
+So let's say that the pizzeria actually opens at 12 p.m. and closes at 10 p.m. So that's a 12 and 22
+
+22
+00:01:43,160 --> 00:01:44,660
+for the close hour.
+
+23
+00:01:45,350 --> 00:01:46,430
+So close.
+
+24
+00:01:46,610 --> 00:01:49,700
+Hour equals 22.
+
+25
+00:01:49,820 --> 00:01:54,130
+And so now again, we can use any JavaScript in here.
+
+26
+00:01:54,140 --> 00:01:58,460
+So let's just write a simple if else statement saying.
+
+27
+00:01:59,430 --> 00:02:05,340
+That if the hour is greater or equal, the open hour and.
+
+28
+00:02:06,180 --> 00:02:09,150
+The hour is less or equal.
+
+29
+00:02:10,020 --> 00:02:11,130
+To close our.
+
+30
+00:02:13,330 --> 00:02:14,860
+Then just alert.
+
+31
+00:02:17,510 --> 00:02:18,650
+We're currently.
+
+32
+00:02:19,520 --> 00:02:20,120
+Open.
+
+33
+00:02:20,980 --> 00:02:24,820
+So alert is just a built in JavaScript function.
+
+34
+00:02:25,580 --> 00:02:27,470
+So that you should be familiar with.
+
+35
+00:02:28,320 --> 00:02:35,010
+Maybe we'll just use this here as a demonstration that we can write some simple JavaScript in here.
+
+36
+00:02:36,440 --> 00:02:37,520
+So alert.
+
+37
+00:02:37,910 --> 00:02:38,990
+Sorry.
+
+38
+00:02:39,630 --> 00:02:42,090
+Were closed.
+
+39
+00:02:42,360 --> 00:02:47,400
+And here we need some double quotes like this.
+
+40
+00:02:48,340 --> 00:02:49,890
+And here we have some bug.
+
+41
+00:02:49,900 --> 00:02:54,550
+So probably JavaScript wants us to include the semicolon here.
+
+42
+00:02:54,970 --> 00:02:56,470
+And there it is.
+
+43
+00:02:56,590 --> 00:02:58,810
+So sorry, we are closed.
+
+44
+00:02:58,810 --> 00:03:02,350
+And that's because right now it is nine in the morning.
+
+45
+00:03:04,750 --> 00:03:06,700
+And you saw that it happened here twice.
+
+46
+00:03:06,700 --> 00:03:10,430
+And that's because of the strict mode that I was telling you before.
+
+47
+00:03:10,450 --> 00:03:14,200
+So in strict mode, our components are usually rendered twice.
+
+48
+00:03:14,200 --> 00:03:17,500
+And so that's why we got that alert twice as well.
+
+49
+00:03:18,180 --> 00:03:23,130
+Now, if we change the open hour here, let's say to eight and rerender.
+
+50
+00:03:23,370 --> 00:03:25,740
+Then it says we are currently open.
+
+51
+00:03:26,870 --> 00:03:33,200
+Now, right now, this alert function is actually blocking JavaScript and so that's why it runs in the
+
+52
+00:03:33,200 --> 00:03:35,360
+beginning, but nothing else happens.
+
+53
+00:03:36,210 --> 00:03:41,520
+And so, of course, this is really not ideal and we wouldn't use this in a real app, but this was
+
+54
+00:03:41,520 --> 00:03:43,890
+just a short demo here anyway.
+
+55
+00:03:44,250 --> 00:03:52,680
+So let's just comment all of this out and just to use this code here because it will actually become
+
+56
+00:03:52,680 --> 00:03:53,670
+useful later.
+
+57
+00:03:53,700 --> 00:03:58,140
+Let's create a variable here called is open.
+
+58
+00:03:58,830 --> 00:04:04,830
+And so that will then simply become a true or false value, depending on whether this condition is true
+
+59
+00:04:04,830 --> 00:04:05,610
+or false.
+
+60
+00:04:06,740 --> 00:04:09,140
+Let's lock that then to the console.
+
+61
+00:04:10,990 --> 00:04:12,110
+Like this.
+
+62
+00:04:12,130 --> 00:04:13,450
+Well, what's happening here?
+
+63
+00:04:15,530 --> 00:04:16,670
+Yeah, that's better.
+
+64
+00:04:16,670 --> 00:04:18,860
+And you see that right now it's open.
+
+65
+00:04:19,010 --> 00:04:22,280
+Let's set that back to 12.
+
+66
+00:04:22,580 --> 00:04:23,870
+And there we go.
