@@ -1,0 +1,655 @@
+1
+00:00:01,070 --> 00:00:02,400
+Welcome back.
+
+2
+00:00:02,420 --> 00:00:09,740
+So now that we know that we want to use Create, React app for small course projects, let's actually
+
+3
+00:00:09,740 --> 00:00:11,810
+set up our very first project.
+
+4
+00:00:11,840 --> 00:00:15,170
+Now with the Create React App tool.
+
+5
+00:00:16,410 --> 00:00:20,760
+Now Create React app is a command line interface tool.
+
+6
+00:00:20,760 --> 00:00:26,610
+And so now we need actually a terminal or a command prompt as it's called, on windows.
+
+7
+00:00:26,700 --> 00:00:30,930
+So if you're on Windows, go ahead and open up your command prompt.
+
+8
+00:00:30,930 --> 00:00:35,280
+And if you're on a mac, then open up your terminal.
+
+9
+00:00:37,110 --> 00:00:40,110
+Okay, let's make this a bit bigger.
+
+10
+00:00:40,470 --> 00:00:44,490
+And there's not a lot of things that you need to know about the terminal.
+
+11
+00:00:44,490 --> 00:00:51,270
+So all you need to know is that in the terminal or also in the command prompt, which I'm just going
+
+12
+00:00:51,270 --> 00:00:57,360
+to use interchangeably, you're always in a folder and that folder is usually displayed here in the
+
+13
+00:00:57,360 --> 00:00:58,560
+command prompt.
+
+14
+00:00:58,800 --> 00:01:00,870
+Now this command prompt here.
+
+15
+00:01:00,870 --> 00:01:06,120
+So this thing probably looks very different for you than it looks for me, but that's just because I
+
+16
+00:01:06,120 --> 00:01:09,480
+have this kind of extension here installed.
+
+17
+00:01:09,480 --> 00:01:11,790
+So for you, it's probably just all black.
+
+18
+00:01:11,790 --> 00:01:15,900
+And most likely you will see the folder that you're currently in here.
+
+19
+00:01:15,900 --> 00:01:21,480
+So I'm currently in this folder, which is basically just the home folder and you can see the contents
+
+20
+00:01:21,480 --> 00:01:23,880
+of the folder by writing.
+
+21
+00:01:23,910 --> 00:01:25,830
+LS on the Mac.
+
+22
+00:01:26,420 --> 00:01:27,530
+And on windows.
+
+23
+00:01:27,530 --> 00:01:31,030
+The same thing is Der, which stands for directory.
+
+24
+00:01:31,040 --> 00:01:35,180
+So again, with this you can see the contents of the current directory.
+
+25
+00:01:35,300 --> 00:01:42,080
+So what I want to do now is to navigate to another directory, which is where I ultimately want to run
+
+26
+00:01:42,080 --> 00:01:44,330
+the Create React app tool.
+
+27
+00:01:44,540 --> 00:01:47,120
+So for me that's the desktop again.
+
+28
+00:01:47,150 --> 00:01:52,990
+And so I can write CD and then the name of the folder and hit enter.
+
+29
+00:01:53,000 --> 00:01:56,720
+And this command is actually the exact same on Windows.
+
+30
+00:01:56,720 --> 00:01:57,830
+So that's also CD.
+
+31
+00:01:58,160 --> 00:02:03,140
+And so make sure that you navigate to the folder in which you want to create the new project.
+
+32
+00:02:03,170 --> 00:02:09,080
+So again, for me, that's on the desktop and just to make sure these are the two folders that are on
+
+33
+00:02:09,080 --> 00:02:12,710
+my desktop, which are exactly these two, right.
+
+34
+00:02:13,440 --> 00:02:19,380
+Now, later on we will actually use the terminal that is integrated into VS code, for example, to
+
+35
+00:02:19,380 --> 00:02:21,330
+start and stop the application.
+
+36
+00:02:21,330 --> 00:02:27,330
+But to create an application, we will always keep using this terminal here because the terminal that's
+
+37
+00:02:27,330 --> 00:02:31,320
+in VS code is usually tied to the project folder itself.
+
+38
+00:02:31,320 --> 00:02:33,850
+But here we don't have a project folder yet.
+
+39
+00:02:33,870 --> 00:02:37,980
+Instead we will now create it using create React app.
+
+40
+00:02:38,100 --> 00:02:48,000
+Once you're in the folder where you want to create the new project, type NP and then create React app
+
+41
+00:02:48,000 --> 00:02:51,330
+and then the name of the app that you want to build.
+
+42
+00:02:52,010 --> 00:02:59,840
+Now, in our case, that's going to be pizza dash menu because this is our very first project that we're
+
+43
+00:02:59,840 --> 00:03:02,660
+going to build in this course in the next section.
+
+44
+00:03:02,990 --> 00:03:10,250
+However, we're not really ready to run this yet because I want you to actually use the version five
+
+45
+00:03:10,250 --> 00:03:11,990
+of Create React app.
+
+46
+00:03:11,990 --> 00:03:19,340
+So please write this at and then five to lock in version five of Create React app.
+
+47
+00:03:19,340 --> 00:03:25,490
+And that's important because this tool will most likely change in the future and then it might work
+
+48
+00:03:25,490 --> 00:03:28,910
+in a slightly different way than the one that I'm showing you here.
+
+49
+00:03:28,910 --> 00:03:34,820
+But in order not to run into any problems, let's just fix this on version five for the rest of the
+
+50
+00:03:34,820 --> 00:03:35,480
+course.
+
+51
+00:03:35,570 --> 00:03:40,670
+And then later, if you want to build your own projects outside of the course, you of course no longer
+
+52
+00:03:40,670 --> 00:03:41,540
+need this.
+
+53
+00:03:41,630 --> 00:03:45,710
+Then you will just run, create, React app like this without the version number.
+
+54
+00:03:45,710 --> 00:03:47,530
+But here, let's do it like this.
+
+55
+00:03:47,540 --> 00:03:55,500
+So once you have it written like this, just hit enter and this will then take a long time to download.
+
+56
+00:03:55,620 --> 00:04:03,990
+Well actually, first it asks me if I want to proceed, so just type Y and then enter or return.
+
+57
+00:04:03,990 --> 00:04:11,790
+And so yeah, now it is starting to download like thousands of packages, which will take a lot of time,
+
+58
+00:04:11,790 --> 00:04:17,190
+but you see it already created the folder with the name of the app that we specified here.
+
+59
+00:04:17,190 --> 00:04:18,420
+So Pizza menu.
+
+60
+00:04:18,690 --> 00:04:24,780
+So go ahead and pause the video right now and I will be back here once downloading all of these packages
+
+61
+00:04:24,780 --> 00:04:25,890
+has finished.
+
+62
+00:04:27,320 --> 00:04:27,920
+Okay.
+
+63
+00:04:27,920 --> 00:04:30,170
+And it's done installing all the packages.
+
+64
+00:04:30,170 --> 00:04:35,510
+And so now we can actually close up this terminal or the command prompt.
+
+65
+00:04:36,060 --> 00:04:42,000
+Now, before I open up this folder here, I will quickly rename this folder just so they stay in the
+
+66
+00:04:42,000 --> 00:04:43,530
+order that I want them to be.
+
+67
+00:04:43,560 --> 00:04:45,630
+But this is totally optional.
+
+68
+00:04:46,170 --> 00:04:49,200
+So number two will be for the next section.
+
+69
+00:04:49,500 --> 00:04:51,240
+That's why this one is number three.
+
+70
+00:04:51,940 --> 00:04:52,540
+Okay.
+
+71
+00:04:52,570 --> 00:04:57,460
+And now we're ready to open up this project as our project folder in vs code.
+
+72
+00:04:57,520 --> 00:05:03,190
+So once again, I will drag and drop it onto the VS code icon down here.
+
+73
+00:05:03,190 --> 00:05:11,440
+Or optionally, you can also just open a new vs code window and then open up the project folder right
+
+74
+00:05:11,440 --> 00:05:11,980
+here.
+
+75
+00:05:12,250 --> 00:05:19,630
+But anyway, let's now explore the file structure that has been created for us by Create React App.
+
+76
+00:05:19,750 --> 00:05:27,370
+And we can already see that this is actually just a regular NPM project that we could also have manually
+
+77
+00:05:27,370 --> 00:05:30,610
+created using the NPM init command.
+
+78
+00:05:30,640 --> 00:05:38,680
+So we have a package.json file here which contains the name of the app, the version, the dependencies
+
+79
+00:05:38,680 --> 00:05:41,260
+and also the NPM scripts.
+
+80
+00:05:42,770 --> 00:05:43,490
+Right.
+
+81
+00:05:43,490 --> 00:05:50,030
+And we also have the node modules folder, which is where all the NPM packages have been installed and
+
+82
+00:05:50,030 --> 00:05:54,020
+you see that there are hundreds, maybe thousands of them.
+
+83
+00:05:54,020 --> 00:05:57,110
+But I'm just looking for the React ones here.
+
+84
+00:05:57,380 --> 00:05:59,870
+And yeah, here they are.
+
+85
+00:05:59,900 --> 00:06:04,400
+So here is the React package and here the React Dom package.
+
+86
+00:06:04,400 --> 00:06:11,600
+And remember that these two are exactly the ones that we also included into our file in the pure React
+
+87
+00:06:11,600 --> 00:06:12,280
+lecture.
+
+88
+00:06:12,290 --> 00:06:13,070
+Right?
+
+89
+00:06:13,070 --> 00:06:19,700
+But we did it back then using the script tag and of course not using NPM install.
+
+90
+00:06:20,620 --> 00:06:21,370
+Right.
+
+91
+00:06:21,890 --> 00:06:29,390
+Now if this whole concept here of the NPM project, so this node modules and the package.json is a bit
+
+92
+00:06:29,390 --> 00:06:33,770
+strange for you, then don't worry, you don't really need to understand all that.
+
+93
+00:06:33,770 --> 00:06:41,090
+But if you want you can just try to read something on it or watch a video or I also explain it all in
+
+94
+00:06:41,090 --> 00:06:43,100
+my complete JavaScript course.
+
+95
+00:06:43,100 --> 00:06:45,730
+But again, it's not really necessary.
+
+96
+00:06:45,740 --> 00:06:52,580
+Just know that this is a very, very standard and basically all modern JavaScript projects that have
+
+97
+00:06:52,580 --> 00:06:54,530
+a build tool associated.
+
+98
+00:06:55,100 --> 00:06:55,760
+Okay.
+
+99
+00:06:56,000 --> 00:07:00,920
+But anyway, let's now check out these other folders that have been created for us.
+
+100
+00:07:01,160 --> 00:07:09,110
+Now most of our development work, or basically all development will happen here inside the source folder.
+
+101
+00:07:09,260 --> 00:07:15,590
+So here we have a bunch of files where most of them we actually don't need and so we will get rid of
+
+102
+00:07:15,590 --> 00:07:16,370
+them soon.
+
+103
+00:07:16,370 --> 00:07:20,180
+But for now, let's just leave everything here as it is.
+
+104
+00:07:21,080 --> 00:07:24,500
+And checking out the other folder, which is the public folder.
+
+105
+00:07:24,500 --> 00:07:31,240
+And this is where basically all the assets that will end up in the final application go.
+
+106
+00:07:31,250 --> 00:07:38,930
+So all the images like the fav icon and also the index.html file.
+
+107
+00:07:39,350 --> 00:07:46,520
+And if we open that up, we have a bunch of stuff here and well, all of these comments here which you
+
+108
+00:07:46,520 --> 00:07:53,000
+can read if you want, but I just wanted to draw your attention to this div with the ID of root.
+
+109
+00:07:53,270 --> 00:07:55,370
+So is that familiar to you?
+
+110
+00:07:56,070 --> 00:08:02,730
+Yeah, we wrote exactly the same thing in the Pure React lecture and used this as the root of our app.
+
+111
+00:08:02,730 --> 00:08:08,220
+And so exactly the same convention has been used here by Create React app.
+
+112
+00:08:08,520 --> 00:08:14,820
+So create React app created this index.html file already for us.
+
+113
+00:08:14,820 --> 00:08:24,030
+And then if we open index.js, you see that here, it also selects that route, that root element.
+
+114
+00:08:24,030 --> 00:08:31,440
+So the element with the ID of root and then it creates the root using react dom dot create root and
+
+115
+00:08:31,440 --> 00:08:34,050
+then renders the app into it.
+
+116
+00:08:34,050 --> 00:08:37,410
+So exactly like we did in the pure React lecture.
+
+117
+00:08:37,650 --> 00:08:44,070
+But more about all this at the beginning of the next section when we actually start building this project.
+
+118
+00:08:44,070 --> 00:08:48,150
+For now, I just want to explore the file structure here a little bit.
+
+119
+00:08:48,240 --> 00:08:55,020
+Now what I do want to say in this video is that all of these files and this entire file structure here
+
+120
+00:08:55,020 --> 00:09:02,770
+has been created by Create React App in a way that its developers thought was best, but it could be
+
+121
+00:09:02,770 --> 00:09:10,210
+all completely different, like this index.html could be out here or it could be inside here, or we
+
+122
+00:09:10,210 --> 00:09:16,030
+could maybe have no folders at all because React really doesn't care about any of that.
+
+123
+00:09:16,030 --> 00:09:22,710
+And the proof for that is that in the pure React lecture, we didn't need any of this, right?
+
+124
+00:09:22,720 --> 00:09:29,800
+All we had was one index.html with some JavaScript in which we basically had this.
+
+125
+00:09:29,950 --> 00:09:37,660
+So this part here is actual react and it's this part which takes care of rendering this app component
+
+126
+00:09:37,660 --> 00:09:39,220
+into the Dom.
+
+127
+00:09:39,370 --> 00:09:46,090
+So this app component is here inside this app file, but we will open up all of these files and clean
+
+128
+00:09:46,090 --> 00:09:46,480
+them up.
+
+129
+00:09:46,480 --> 00:09:49,810
+Also once we start actually building the app.
+
+130
+00:09:49,810 --> 00:09:56,260
+For now, I just wanted to explore this a little bit and also I actually wanted to now start this app.
+
+131
+00:09:56,990 --> 00:10:04,000
+So to start a Create React app, we can use this NPM script right here.
+
+132
+00:10:04,010 --> 00:10:06,740
+So this NPM run start.
+
+133
+00:10:07,670 --> 00:10:10,310
+So let's open up the terminal again.
+
+134
+00:10:10,310 --> 00:10:17,840
+But as I said in the beginning now we will actually use the integrated terminal that comes with VS code.
+
+135
+00:10:18,050 --> 00:10:25,250
+So for that open up terminal right here and now, the big advantage here is that we are already automatically
+
+136
+00:10:25,250 --> 00:10:27,170
+inside our project folder.
+
+137
+00:10:27,260 --> 00:10:35,420
+So if we run LHS here or dir on Windows, then you will see exactly the same files and folders that
+
+138
+00:10:35,420 --> 00:10:37,400
+we have here in the sidebar.
+
+139
+00:10:37,640 --> 00:10:46,880
+But anyway, now to start the project, all we need to do is to run npm run start because this is how
+
+140
+00:10:46,880 --> 00:10:49,040
+you run these commands right here.
+
+141
+00:10:49,040 --> 00:10:54,470
+So you write NPM run and then the name of one of these four in this case.
+
+142
+00:10:54,470 --> 00:10:58,280
+And we could also create our own, but we don't need to.
+
+143
+00:10:58,430 --> 00:11:03,440
+Now, in the case of the Start command, we actually don't even need to write run.
+
+144
+00:11:03,470 --> 00:11:10,950
+We can just type NPM, start, hit, enter and that will then start up our application and even open
+
+145
+00:11:10,950 --> 00:11:12,540
+up a new browser tab.
+
+146
+00:11:14,030 --> 00:11:15,170
+And there it is.
+
+147
+00:11:15,170 --> 00:11:23,060
+So Create React app created a web server for us and made our application run here on localhost port
+
+148
+00:11:23,060 --> 00:11:24,470
+3000.
+
+149
+00:11:25,700 --> 00:11:33,380
+Okay, Now let's just one more time, come back here and open up this app component.
+
+150
+00:11:33,380 --> 00:11:37,370
+So this app component here is inside the app file.
+
+151
+00:11:38,710 --> 00:11:45,970
+And so let's well, let's just take everything here and just very quickly, type one.
+
+152
+00:11:46,270 --> 00:11:49,870
+Hello, react, give it a save.
+
+153
+00:11:49,870 --> 00:11:55,970
+And then once we go back, it should automatically have updated and indeed it did.
+
+154
+00:11:55,990 --> 00:12:00,640
+So this was one of the things that we were missing in the pure React lecture.
+
+155
+00:12:00,640 --> 00:12:07,060
+But now here we are actually using a web server and so we get hot module replacement with that.
+
+156
+00:12:07,670 --> 00:12:08,510
+Great.
+
+157
+00:12:08,510 --> 00:12:10,280
+So congratulations.
+
+158
+00:12:10,280 --> 00:12:15,470
+You just created your very first Create React app application.
+
+159
+00:12:15,560 --> 00:12:21,120
+And with this we actually reach the end of the first look at React section.
+
+160
+00:12:21,140 --> 00:12:26,900
+Now, the next section is a quick review of the essential JavaScript that you need for react.
+
+161
+00:12:26,900 --> 00:12:30,620
+And so you can see if you need any of those lectures.
+
+162
+00:12:30,620 --> 00:12:37,640
+But if not, then just move on right to the next section where we will then start building this pizza
+
+163
+00:12:37,640 --> 00:12:42,740
+menu that we started here to learn all the fundamentals of React.
+
+164
+00:12:42,740 --> 00:12:45,590
+So hopefully I see you there very soon.

@@ -1,0 +1,299 @@
+1
+00:00:00,900 --> 00:00:08,640
+So as we just learned in the real world, we don't just write React apps in a single JavaScript file
+
+2
+00:00:08,640 --> 00:00:10,620
+without any tooling.
+
+3
+00:00:10,740 --> 00:00:18,060
+So let's now learn about the options that we have to set up a brand new React project.
+
+4
+00:00:19,870 --> 00:00:29,200
+And for now, the two most important options are the Create React app tool or a build tool called Vite.
+
+5
+00:00:29,320 --> 00:00:38,470
+So first, Create React app is basically a complete starter kit for React applications that was developed
+
+6
+00:00:38,470 --> 00:00:39,790
+many years ago.
+
+7
+00:00:39,790 --> 00:00:46,350
+In order to make it really easy for developers to scaffold new React apps.
+
+8
+00:00:46,360 --> 00:00:53,110
+And what's really nice about this is that all the common development tools are already pre-configured
+
+9
+00:00:53,110 --> 00:00:56,800
+out of the box specifically for React.
+
+10
+00:00:56,950 --> 00:01:05,620
+So an app created with Create React app automatically comes with a development server, Webpack for
+
+11
+00:01:05,620 --> 00:01:13,390
+module bundling and of course important developer tools which include a linter like Eslint, a code
+
+12
+00:01:13,390 --> 00:01:22,460
+formatter like prettier, a testing library like jest and of course Babel for enabling the latest JavaScript
+
+13
+00:01:22,460 --> 00:01:23,420
+features.
+
+14
+00:01:23,630 --> 00:01:31,670
+Now this all sounds great, but the problem with Create React app is that, as I said in the beginning,
+
+15
+00:01:31,670 --> 00:01:39,920
+it was developed many years ago and so it uses some slow and kind of outdated technologies under the
+
+16
+00:01:39,920 --> 00:01:43,730
+hood and in particular the Webpack bundler.
+
+17
+00:01:43,940 --> 00:01:52,580
+So the team behind Create React App has really stopped innovating and therefore, right now the recommendation
+
+18
+00:01:52,580 --> 00:01:58,220
+is to not use create, React app for real world projects anymore.
+
+19
+00:01:58,340 --> 00:02:07,580
+It is, however, still a perfectly fine way to get started quickly with a new React app for tutorials
+
+20
+00:02:07,580 --> 00:02:10,550
+courses or simple experiments.
+
+21
+00:02:10,550 --> 00:02:17,210
+And so therefore we will actually use create React app for most of the course.
+
+22
+00:02:17,210 --> 00:02:22,070
+So for all the small learning projects that we're going to build together.
+
+23
+00:02:22,310 --> 00:02:30,410
+So you might have read all the articles saying that Create React app is dead and that you should never
+
+24
+00:02:30,410 --> 00:02:31,490
+use it again.
+
+25
+00:02:31,490 --> 00:02:37,310
+But that's only true for building real apps again, for learning.
+
+26
+00:02:37,310 --> 00:02:45,500
+It's still 100% fine because you will not encounter the problems that a large scale apps will face like
+
+27
+00:02:45,500 --> 00:02:47,300
+slow refresh times.
+
+28
+00:02:47,570 --> 00:02:55,460
+Now if you do want to build real world applications with React, as we will do by the end of the course,
+
+29
+00:02:55,460 --> 00:02:58,700
+then V8 is the perfect choice.
+
+30
+00:02:59,390 --> 00:03:07,340
+Now, Veit is actually quite different from Create React app as it's basically simply a modern build
+
+31
+00:03:07,370 --> 00:03:15,320
+tool, so a bit like a modern Webpack, but which happens to also contain a starter template for setting
+
+32
+00:03:15,320 --> 00:03:18,260
+up brand new React applications.
+
+33
+00:03:18,380 --> 00:03:25,970
+However, in a React app created with Vite, you will have to manually set up many important developer
+
+34
+00:03:25,970 --> 00:03:31,970
+tools such as Eslint, Prettier, a testing library and so on.
+
+35
+00:03:31,970 --> 00:03:39,550
+And the most annoying and painful of those is setting up Eslint to play nice with React.
+
+36
+00:03:39,560 --> 00:03:43,490
+So that can be a bit of work and it can go wrong.
+
+37
+00:03:43,490 --> 00:03:51,410
+And so this is the reason why I still recommend using create React app for tutorials when we just want
+
+38
+00:03:51,410 --> 00:03:54,530
+to get up and running as quickly as possible.
+
+39
+00:03:54,830 --> 00:04:02,190
+Now, if we have all this additional work to set up our tools, then why even use Vite in the first
+
+40
+00:04:02,190 --> 00:04:02,850
+place?
+
+41
+00:04:03,120 --> 00:04:11,640
+Well, the reason is that it's just extremely fast to automatically refresh the page when the code changes,
+
+42
+00:04:11,640 --> 00:04:15,540
+which is what we call hot module replacement.
+
+43
+00:04:15,780 --> 00:04:24,540
+Also, bundling is extremely fast too, which for large scale applications can really make a difference
+
+44
+00:04:24,540 --> 00:04:32,190
+because when you have to wait 1 or 2 seconds for each page refresh, it can become really, really annoying
+
+45
+00:04:32,190 --> 00:04:33,240
+over time.
+
+46
+00:04:33,240 --> 00:04:40,920
+But with Vite, the page will update almost instantly each time that we save our code and want to see
+
+47
+00:04:40,920 --> 00:04:42,930
+the changes on the screen.
+
+48
+00:04:43,260 --> 00:04:51,720
+So in summary, we will use Create React app for most small apps in this course and then move to Vite
+
+49
+00:04:51,720 --> 00:04:58,980
+for the last 2 or 3 projects to make them a bit more real world and more modern as well.
+
+50
+00:05:00,410 --> 00:05:07,610
+Now, if you have spent any time looking at the React documentation, you might have read that the React
+
+51
+00:05:07,640 --> 00:05:17,960
+team now advises developers to use a so-called React framework like Next.js or remix to build new projects.
+
+52
+00:05:18,140 --> 00:05:26,240
+So in fact, we have even more options to set up a new React project than the ones that we just talked
+
+53
+00:05:26,240 --> 00:05:26,960
+about.
+
+54
+00:05:27,780 --> 00:05:31,390
+Now we're going to talk about what React frameworks are.
+
+55
+00:05:31,410 --> 00:05:32,820
+Throughout the course.
+
+56
+00:05:32,820 --> 00:05:40,590
+But for now, all you need to know is that a framework like Next.js contains solutions for things like
+
+57
+00:05:40,590 --> 00:05:44,460
+routing, data fetching and server side rendering.
+
+58
+00:05:44,460 --> 00:05:50,190
+So things that react itself does not provide easily out of the box.
+
+59
+00:05:50,520 --> 00:05:59,310
+So essentially a React framework is a framework built on top of the React library and which is going
+
+60
+00:05:59,310 --> 00:06:05,980
+to make it even easier to build applications then with just vanilla react itself.
+
+61
+00:06:06,000 --> 00:06:08,940
+And this sounds great, right?
+
+62
+00:06:09,120 --> 00:06:15,180
+Well, yeah, it kind of does, but only for some applications.
+
+63
+00:06:15,420 --> 00:06:23,880
+However many people and that include me, think that telling developers to always immediately go for
+
+64
+00:06:23,880 --> 00:06:29,680
+a React framework is not the best idea and not always necessary.
+
+65
+00:06:29,710 --> 00:06:37,870
+Vanilla react apps so apps built only using react still have a very important place too.
+
+66
+00:06:37,870 --> 00:06:43,120
+And so forcing this opinion on everyone seems kind of strange.
+
+67
+00:06:43,150 --> 00:06:46,810
+But again, we will discuss this later on.
+
+68
+00:06:47,170 --> 00:06:55,060
+Now, in any case, this advice only makes sense for building actual production ready products, but
+
+69
+00:06:55,060 --> 00:07:01,630
+not for learning React, which is of course what we are trying to do in this course.
+
+70
+00:07:01,750 --> 00:07:09,880
+So even if at some point you want to learn next.js as well, of course you still need to learn react
+
+71
+00:07:09,880 --> 00:07:11,620
+itself first.
+
+72
+00:07:11,920 --> 00:07:18,850
+So all this is to say that you should not worry about this recommendation for now.
+
+73
+00:07:18,940 --> 00:07:27,130
+For now, let's just learn, react and set up new projects with Create React app first and then with
+
+74
+00:07:27,160 --> 00:07:29,560
+Vite in the bigger projects.
+
+75
+00:07:29,710 --> 00:07:38,470
+And with all this being said, let's now actually go create or very first real React application.

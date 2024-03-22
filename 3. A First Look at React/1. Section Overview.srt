@@ -1,0 +1,31 @@
+1
+00:00:00,930 --> 00:00:03,480
+Welcome to our first section.
+
+2
+00:00:03,660 --> 00:00:08,400
+In this section, we'll take a very first look at React.
+
+3
+00:00:08,850 --> 00:00:14,130
+So we're going to talk about why we need something like React in the first place.
+
+4
+00:00:14,160 --> 00:00:19,950
+What exactly React is and how it compares to vanilla JavaScript.
+
+5
+00:00:20,040 --> 00:00:27,000
+Then to finish, we're going to discuss different options for setting up a new React application and
+
+6
+00:00:27,000 --> 00:00:33,450
+then use a tool called Create React app to build our very first React project.
+
+7
+00:00:33,540 --> 00:00:35,430
+So are you ready?
+
+8
+00:00:35,460 --> 00:00:37,470
+Then let's get started.

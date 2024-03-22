@@ -1,0 +1,827 @@
+1
+00:00:00,830 --> 00:00:08,450
+Now, just for fun, I want to show you how we can write React code without any modern tooling and any
+
+2
+00:00:08,450 --> 00:00:09,230
+build step.
+
+3
+00:00:09,230 --> 00:00:12,520
+So right inside a regular HTML file.
+
+4
+00:00:12,530 --> 00:00:19,580
+So this is what I call pure react and it will show you why the tools that we will talk about next are
+
+5
+00:00:19,580 --> 00:00:20,600
+so helpful.
+
+6
+00:00:21,810 --> 00:00:28,200
+So to start, let's create our very first project folder, which I'm doing right here on the desktop,
+
+7
+00:00:28,200 --> 00:00:33,750
+where I also have the GitHub files that we downloaded in the first section of the course.
+
+8
+00:00:33,930 --> 00:00:41,400
+But of course you can do this anywhere you want and I'm simply going to call this first 101 pure.
+
+9
+00:00:42,950 --> 00:00:43,880
+React.
+
+10
+00:00:44,900 --> 00:00:45,620
+All right.
+
+11
+00:00:45,620 --> 00:00:51,320
+And now all we have to do is to open up this folder as a project folder in vs code.
+
+12
+00:00:51,710 --> 00:00:58,760
+And one way of doing that is to drag and drop this folder onto the VS code icon down here.
+
+13
+00:00:59,120 --> 00:01:05,870
+Or of course, you can open up the project folder here from this menu or simply here.
+
+14
+00:01:06,020 --> 00:01:07,790
+So here open folder.
+
+15
+00:01:09,750 --> 00:01:12,300
+So right now we have an empty folder.
+
+16
+00:01:12,330 --> 00:01:22,740
+So let's create index dot HTML and to scaffold an empty HTML structure in vs code, we can simply write
+
+17
+00:01:22,770 --> 00:01:24,360
+the exclamation mark.
+
+18
+00:01:24,390 --> 00:01:28,710
+Hit enter and then we have an empty HTML structure.
+
+19
+00:01:30,090 --> 00:01:31,920
+So let's give it a title.
+
+20
+00:01:32,220 --> 00:01:34,760
+Hello, React.
+
+21
+00:01:34,770 --> 00:01:36,060
+And then here in the body.
+
+22
+00:01:36,060 --> 00:01:41,580
+All I will do for now is to create a div with the ID of root.
+
+23
+00:01:41,580 --> 00:01:48,810
+And it could be any ID here of course, but root is the standard for react and we will place nothing
+
+24
+00:01:48,810 --> 00:01:49,440
+in here.
+
+25
+00:01:50,160 --> 00:01:51,270
+So we'll give it a save.
+
+26
+00:01:51,270 --> 00:01:56,370
+And maybe you noticed how prettier automatically formatted the code as I saved it.
+
+27
+00:01:56,850 --> 00:02:00,300
+Okay, so let's now add react to this file.
+
+28
+00:02:00,300 --> 00:02:07,740
+And the way we do that when we write Pure React is by simply including the React library as a script.
+
+29
+00:02:07,980 --> 00:02:15,360
+Now, to get the URL of those scripts, we can actually check out react's official documentation.
+
+30
+00:02:15,540 --> 00:02:23,280
+So to do that, let's head over to our browser and then check out react.dev.
+
+31
+00:02:23,930 --> 00:02:30,080
+So that's the official React website and we will explore it a little bit in a future video.
+
+32
+00:02:30,080 --> 00:02:38,330
+But for now, let's just come here to this learn part and then right here let's select installation.
+
+33
+00:02:39,420 --> 00:02:41,130
+So right on this page.
+
+34
+00:02:41,130 --> 00:02:46,860
+Then you will find this small part here which says Try react locally.
+
+35
+00:02:46,860 --> 00:02:47,940
+And then here.
+
+36
+00:02:47,940 --> 00:02:53,430
+Let's click on this link here that says Download this HTML page.
+
+37
+00:02:54,320 --> 00:03:01,310
+Now, if for some reason that link there doesn't exist anymore in the future, then you can just try
+
+38
+00:03:01,340 --> 00:03:08,600
+to write these two things here by hand, because it is these two scripts that were now going to add
+
+39
+00:03:08,600 --> 00:03:10,610
+to our HTML file.
+
+40
+00:03:11,270 --> 00:03:17,870
+Okay, so let's move back to VS code and paste them right here.
+
+41
+00:03:18,080 --> 00:03:23,990
+And with this, we have actually included react into this, let's say, project.
+
+42
+00:03:24,080 --> 00:03:30,920
+Now, again, usually when we write react, we do not do this, but instead we use a modern build tool
+
+43
+00:03:30,920 --> 00:03:33,950
+such as the ones that we are going to talk about next.
+
+44
+00:03:33,950 --> 00:03:39,800
+But for now, we're doing it the pure way, just so you see why we actually need those tools.
+
+45
+00:03:39,890 --> 00:03:46,100
+Now, in case you're wondering why we have two libraries here, it's because this first one here is
+
+46
+00:03:46,100 --> 00:03:48,860
+basically the core React library.
+
+47
+00:03:48,860 --> 00:03:52,580
+So this one is the one that works with Component's state.
+
+48
+00:03:52,580 --> 00:03:55,190
+And really all the React stuff.
+
+49
+00:03:55,200 --> 00:03:59,760
+So this is basically the interface of how to interact with React.
+
+50
+00:03:59,760 --> 00:04:01,230
+And then this other one here.
+
+51
+00:04:01,230 --> 00:04:08,070
+So React Dom is basically the rendering layer which can render react components into the Dom.
+
+52
+00:04:08,070 --> 00:04:14,340
+And so since we want to render in the browser, we need to use React Dom, but react can actually be
+
+53
+00:04:14,340 --> 00:04:20,220
+rendered in other environments, for example as native applications using React Native.
+
+54
+00:04:20,310 --> 00:04:27,930
+But anyway, let's now create our very first component and of course that also needs to happen inside
+
+55
+00:04:27,930 --> 00:04:30,990
+a script because that is also JavaScript.
+
+56
+00:04:30,990 --> 00:04:38,250
+And so after these two scripts here where we include the React library, let's open up another script.
+
+57
+00:04:38,920 --> 00:04:45,790
+And then in there we can create a function and I will call it app just like this.
+
+58
+00:04:45,880 --> 00:04:52,000
+So remember from the very first app that we built that React is based on components and a component
+
+59
+00:04:52,000 --> 00:04:56,710
+is basically just a function that starts with an uppercase like this.
+
+60
+00:04:57,970 --> 00:05:02,830
+And so now from this function here, we can return whatever we want to see on the UI.
+
+61
+00:05:02,980 --> 00:05:07,400
+Now, in that first application that we built, we returned some JS code.
+
+62
+00:05:07,420 --> 00:05:08,500
+Remember that.
+
+63
+00:05:08,530 --> 00:05:15,160
+However, that is not going to work here because well, we don't have the tooling that can convert JS
+
+64
+00:05:15,610 --> 00:05:17,440
+back to JavaScript.
+
+65
+00:05:17,440 --> 00:05:21,130
+And so here we need to use the create element function.
+
+66
+00:05:22,730 --> 00:05:24,980
+So let's do return.
+
+67
+00:05:25,580 --> 00:05:28,220
+React dot create.
+
+68
+00:05:29,340 --> 00:05:33,300
+Element and then simply the name of the HTML element.
+
+69
+00:05:33,420 --> 00:05:35,220
+So let's say we want a header.
+
+70
+00:05:36,430 --> 00:05:41,900
+So this React object here is the one that's coming from this script right here.
+
+71
+00:05:41,920 --> 00:05:45,400
+So this script will give us this React object.
+
+72
+00:05:45,400 --> 00:05:49,830
+And so from there, we can then use this create element method.
+
+73
+00:05:49,840 --> 00:05:53,850
+And if all this is really confusing to you right now, then please don't worry.
+
+74
+00:05:53,860 --> 00:05:57,910
+So again, the goal here is to really not for you to understand react.
+
+75
+00:05:57,910 --> 00:06:04,570
+At this point, we're just doing some experiments and just getting a first look at React here, but
+
+76
+00:06:04,570 --> 00:06:06,580
+we are not really learning it yet.
+
+77
+00:06:06,730 --> 00:06:07,390
+All right.
+
+78
+00:06:07,390 --> 00:06:12,820
+So I'm really just trying to demonstrate here how we write pure react without a build tool.
+
+79
+00:06:13,550 --> 00:06:21,890
+But anyway, let's now actually go back to that folder here and open index.html in Google Chrome.
+
+80
+00:06:23,120 --> 00:06:26,930
+Just to see what happens and let's inspect.
+
+81
+00:06:28,450 --> 00:06:30,430
+And close down.
+
+82
+00:06:30,430 --> 00:06:34,170
+This will make it just a bit bigger here for you.
+
+83
+00:06:34,180 --> 00:06:38,410
+And so this is just to show you that right now, actually, nothing happened.
+
+84
+00:06:38,620 --> 00:06:43,570
+So we still only have this root div and then of course our scripts.
+
+85
+00:06:43,570 --> 00:06:50,080
+So the reason why that header that we created is not here yet is because we didn't tell React to actually
+
+86
+00:06:50,080 --> 00:06:52,240
+render it onto the page.
+
+87
+00:06:52,240 --> 00:06:55,570
+So basically to place that header into the Dom.
+
+88
+00:06:55,570 --> 00:06:58,330
+And so let's now go back and do that.
+
+89
+00:06:58,330 --> 00:07:00,880
+And we do this here right at the very end.
+
+90
+00:07:00,880 --> 00:07:02,560
+So after the component.
+
+91
+00:07:04,890 --> 00:07:07,410
+So let's create a so-called root.
+
+92
+00:07:08,240 --> 00:07:13,870
+And so here now we need that react Dom library that I mentioned before.
+
+93
+00:07:13,880 --> 00:07:15,140
+So this one here.
+
+94
+00:07:15,140 --> 00:07:20,660
+So from react Dom we now do create root.
+
+95
+00:07:22,040 --> 00:07:25,990
+And now we simply need to select this div element right here.
+
+96
+00:07:26,000 --> 00:07:31,820
+So this div here, this element will become the root of our application, which means that the application
+
+97
+00:07:31,820 --> 00:07:35,050
+will be rendered inside of this element.
+
+98
+00:07:35,060 --> 00:07:36,590
+So basically right here.
+
+99
+00:07:37,840 --> 00:07:39,040
+So let's simply.
+
+100
+00:07:39,920 --> 00:07:48,470
+Select that with document dot get element by ID, which is just normal Dom manipulation or in this case
+
+101
+00:07:48,470 --> 00:07:52,400
+just normal selecting elements using Dom methods.
+
+102
+00:07:52,700 --> 00:07:58,610
+So we created our route and now we can do route dot render.
+
+103
+00:07:59,850 --> 00:08:03,930
+And then again react dot create element.
+
+104
+00:08:05,530 --> 00:08:05,790
+Yep.
+
+105
+00:08:06,700 --> 00:08:10,100
+So here is where our app component comes into play.
+
+106
+00:08:10,120 --> 00:08:15,730
+So we render basically creating a new element out of this app component.
+
+107
+00:08:15,910 --> 00:08:19,330
+And once again, please don't memorize any of this.
+
+108
+00:08:19,360 --> 00:08:19,990
+All right.
+
+109
+00:08:19,990 --> 00:08:21,970
+This is just to show you.
+
+110
+00:08:23,920 --> 00:08:26,620
+So if you want it, you didn't even have to write this code.
+
+111
+00:08:26,620 --> 00:08:28,960
+It would be perfectly fine just watching me.
+
+112
+00:08:28,960 --> 00:08:33,970
+But still, I think it's probably a good idea to just start typing a bit of code.
+
+113
+00:08:34,390 --> 00:08:39,340
+But anyway, when I reload this now we should see a header element here.
+
+114
+00:08:40,480 --> 00:08:43,390
+So remember, it's inside this route.
+
+115
+00:08:44,880 --> 00:08:47,190
+And yeah, there it is.
+
+116
+00:08:47,370 --> 00:08:52,200
+Now it's empty because we didn't actually place any content in it.
+
+117
+00:08:52,200 --> 00:08:55,620
+But React did render this header right here.
+
+118
+00:08:55,620 --> 00:09:01,530
+So this header element inside or Dom and so let's now actually add something in there.
+
+119
+00:09:01,770 --> 00:09:04,200
+Now the way this works is a bit confusing.
+
+120
+00:09:05,040 --> 00:09:11,550
+So this create element function does not only accept the name of the HTML element, but also so-called
+
+121
+00:09:11,550 --> 00:09:13,940
+props, which in this case are null.
+
+122
+00:09:13,950 --> 00:09:20,220
+And then as a third argument, the children of this element and in this case, let's just write it as
+
+123
+00:09:20,220 --> 00:09:20,970
+a string.
+
+124
+00:09:21,180 --> 00:09:22,350
+Let's just do.
+
+125
+00:09:22,530 --> 00:09:23,490
+Hello.
+
+126
+00:09:24,770 --> 00:09:25,820
+React.
+
+127
+00:09:26,270 --> 00:09:27,500
+Give it a save.
+
+128
+00:09:27,530 --> 00:09:28,760
+Let's go back.
+
+129
+00:09:29,580 --> 00:09:33,060
+And yeah, there we go.
+
+130
+00:09:33,630 --> 00:09:34,750
+Beautiful.
+
+131
+00:09:34,770 --> 00:09:35,310
+So now this.
+
+132
+00:09:35,310 --> 00:09:35,580
+Hello.
+
+133
+00:09:35,580 --> 00:09:39,630
+React is basically a child node of this header node right here.
+
+134
+00:09:40,710 --> 00:09:47,220
+But let's go back and yeah, as I mentioned before, we used to write this and then we wouldn't have
+
+135
+00:09:47,220 --> 00:09:49,550
+to write this weird thing right here.
+
+136
+00:09:49,560 --> 00:09:52,860
+We would just write it as HTML basically.
+
+137
+00:09:52,860 --> 00:09:54,330
+But that doesn't work here.
+
+138
+00:09:54,330 --> 00:10:01,830
+And so that's one more reason why we do not write pure react like this in a real development environment.
+
+139
+00:10:01,830 --> 00:10:08,250
+But anyway, right here in this function, we can of course just write any normal JavaScript logic.
+
+140
+00:10:09,000 --> 00:10:13,380
+So let's, for example, create a string of the current time.
+
+141
+00:10:14,270 --> 00:10:16,790
+So that's new date.
+
+142
+00:10:16,820 --> 00:10:19,400
+And of course, this has nothing to do with React.
+
+143
+00:10:20,500 --> 00:10:21,820
+Two local.
+
+144
+00:10:22,610 --> 00:10:24,020
+Time string.
+
+145
+00:10:24,820 --> 00:10:30,640
+And then let's add that here into the string and we can just use a template literal for that.
+
+146
+00:10:31,720 --> 00:10:37,030
+And in case you're not familiar with that, for some reason, there is the next section in which I will
+
+147
+00:10:37,030 --> 00:10:40,750
+explain all the essential JavaScript that we need for react.
+
+148
+00:10:41,970 --> 00:10:42,570
+All right.
+
+149
+00:10:42,570 --> 00:10:44,940
+But here, let's just place now.
+
+150
+00:10:44,940 --> 00:10:48,210
+This time, let's say it's.
+
+151
+00:10:48,450 --> 00:10:54,210
+And then whatever the time is right now, let's go back and you see that we always have to manually
+
+152
+00:10:54,210 --> 00:10:55,230
+reload the page.
+
+153
+00:10:55,230 --> 00:11:00,360
+And of course, that also will disappear as soon as we start using some modern tooling.
+
+154
+00:11:00,660 --> 00:11:03,120
+But anyway, here now we have our time.
+
+155
+00:11:03,120 --> 00:11:09,480
+And as a last small thing in this application, what I want to do is to now update this every second
+
+156
+00:11:09,480 --> 00:11:14,550
+with the new time, which then basically will make this function as a clock.
+
+157
+00:11:16,190 --> 00:11:18,920
+So let's go back and let's do that.
+
+158
+00:11:18,930 --> 00:11:21,690
+And for that we need the concept of state.
+
+159
+00:11:21,710 --> 00:11:28,100
+So maybe you remember from the first app that we built that state is necessary whenever we want to update
+
+160
+00:11:28,100 --> 00:11:29,360
+something on the screen.
+
+161
+00:11:29,360 --> 00:11:35,160
+But of course, we will go really deep into what state is and how it works a bit later in the course.
+
+162
+00:11:35,180 --> 00:11:40,640
+For now, let's just create a new piece of state and then we don't need this anymore actually.
+
+163
+00:11:41,880 --> 00:11:50,250
+So let's say const and again calling it time and then set time, which is a function with which we can
+
+164
+00:11:50,250 --> 00:11:52,110
+update that time state.
+
+165
+00:11:52,200 --> 00:11:56,820
+So then we need to say react dot use state.
+
+166
+00:11:56,880 --> 00:12:02,730
+And again, the React object is that big object that we got here from this script.
+
+167
+00:12:02,880 --> 00:12:06,090
+And then here we need to set the default value.
+
+168
+00:12:06,090 --> 00:12:08,160
+And so that's then going to be this.
+
+169
+00:12:09,760 --> 00:12:10,990
+Let's paste that here.
+
+170
+00:12:11,020 --> 00:12:11,930
+Give it a save.
+
+171
+00:12:11,950 --> 00:12:15,220
+And if we update now, it will look just exactly the same.
+
+172
+00:12:15,220 --> 00:12:17,140
+So there is no updating yet.
+
+173
+00:12:18,160 --> 00:12:21,580
+So it, of course, simply reflects the current time now.
+
+174
+00:12:23,210 --> 00:12:23,350
+Now.
+
+175
+00:12:23,390 --> 00:12:23,630
+Okay.
+
+176
+00:12:23,630 --> 00:12:27,380
+So let's go back and basically have it update every second.
+
+177
+00:12:29,870 --> 00:12:32,780
+So for that, we need something called an effect.
+
+178
+00:12:33,480 --> 00:12:36,390
+So react use effect.
+
+179
+00:12:37,180 --> 00:12:39,250
+And we also did that in the first app.
+
+180
+00:12:42,280 --> 00:12:48,730
+And now in here, inside this effect, we will simply use the JavaScript setinterval function.
+
+181
+00:12:48,730 --> 00:12:54,640
+So this is not a react function, but it's simply a JavaScript function that we're going to use to set
+
+182
+00:12:54,640 --> 00:12:59,860
+up a timer that every second will update this time state here.
+
+183
+00:12:59,980 --> 00:13:03,340
+So Setinterval also needs a function.
+
+184
+00:13:05,180 --> 00:13:09,740
+And we could use arrow functions here to make it a bit shorter, but never mind.
+
+185
+00:13:10,590 --> 00:13:14,280
+So this function should run every 1000 milliseconds.
+
+186
+00:13:14,280 --> 00:13:18,060
+So once a second and what should happen each time.
+
+187
+00:13:18,180 --> 00:13:23,550
+So each time that this function here will be executed is that the time should be set.
+
+188
+00:13:25,550 --> 00:13:32,270
+So set time and then again this because this will then always be the new current time.
+
+189
+00:13:33,560 --> 00:13:35,450
+So paste that here and now.
+
+190
+00:13:35,450 --> 00:13:42,740
+Finally, here we need to define this empty array and this will all make sense once we start learning
+
+191
+00:13:42,740 --> 00:13:43,910
+about effects.
+
+192
+00:13:44,440 --> 00:13:46,900
+But for now, just copy the code like this.
+
+193
+00:13:47,080 --> 00:13:49,560
+And this should now already work.
+
+194
+00:13:49,570 --> 00:13:51,250
+So let's check it out.
+
+195
+00:13:52,030 --> 00:13:56,920
+Of course we need to again manually update and yeah.
+
+196
+00:13:57,810 --> 00:13:58,410
+Beautiful.
+
+197
+00:13:58,410 --> 00:14:02,730
+So we have a working clock that we coded only with React.
+
+198
+00:14:03,060 --> 00:14:07,980
+You see down here that the Dom is actually updated in this place once every second.
+
+199
+00:14:07,980 --> 00:14:10,440
+And so that's the work of React.
+
+200
+00:14:11,330 --> 00:14:12,230
+Nice.
+
+201
+00:14:12,350 --> 00:14:15,800
+Now, this, of course, is all very bare bones.
+
+202
+00:14:15,800 --> 00:14:22,420
+And yeah, as I said, this is really, really not how we use react in the real world.
+
+203
+00:14:22,430 --> 00:14:24,350
+So we have no modules here.
+
+204
+00:14:24,350 --> 00:14:32,150
+We have no way of converting JS X, we have no Http server which automatically reloads the application
+
+205
+00:14:32,150 --> 00:14:33,140
+and so on.
+
+206
+00:14:33,140 --> 00:14:40,550
+But again, I still believe that it was quite useful to shortly explore this pure react in this lecture.
+
+207
+00:14:40,550 --> 00:14:46,460
+But of course now it's time to move on to a more robust and real world setup.

@@ -1,0 +1,459 @@
+1
+00:00:00,840 --> 00:00:07,170
+Now before we start coding and learn all about React, let's quickly set up our development environment
+
+2
+00:00:07,170 --> 00:00:08,550
+in this lecture.
+
+3
+00:00:09,730 --> 00:00:15,610
+Now, since you're taking this course, I'm assuming that you already did some coding before and therefore
+
+4
+00:00:15,610 --> 00:00:19,810
+you will already have some code editor installed on your computer.
+
+5
+00:00:19,810 --> 00:00:24,400
+And if that code editor is vs code, then congratulations.
+
+6
+00:00:24,400 --> 00:00:27,970
+You're already using the best code editor out there.
+
+7
+00:00:27,970 --> 00:00:35,380
+But if you're using some other code editor, then I would highly recommend you to download vs code simply
+
+8
+00:00:35,380 --> 00:00:41,620
+by downloading the installer from here and then installing it just like any other application.
+
+9
+00:00:41,620 --> 00:00:47,830
+And by doing so you can then customize the editor just like I do in this course, which will make it
+
+10
+00:00:47,830 --> 00:00:50,410
+a little bit easier for you to follow everything.
+
+11
+00:00:50,530 --> 00:00:56,800
+Next up, of course, we need a web browser to actually run the applications that we are going to build,
+
+12
+00:00:56,800 --> 00:00:59,020
+and I'm using Google Chrome for that.
+
+13
+00:00:59,020 --> 00:01:05,170
+And so I highly encourage you to use the same browser so that our results are going to look the same.
+
+14
+00:01:05,170 --> 00:01:09,980
+So if you don't have it installed yet, then make sure to do that right now.
+
+15
+00:01:10,190 --> 00:01:15,380
+And finally, we are going to need to install NodeJS on our system.
+
+16
+00:01:15,380 --> 00:01:21,620
+And this is not because we will do some NodeJS development, but it's simply because all the tools that
+
+17
+00:01:21,620 --> 00:01:24,260
+we're going to use run on NodeJS.
+
+18
+00:01:24,260 --> 00:01:28,430
+And it's important that you use at least Node version 18.
+
+19
+00:01:28,430 --> 00:01:34,580
+And so if you're not sure about which version you are currently running or if maybe you never installed
+
+20
+00:01:34,580 --> 00:01:39,860
+NodeJS before, then please go ahead and download it here from this first button.
+
+21
+00:01:39,860 --> 00:01:48,470
+And it doesn't matter if it's Node 18 or 20 or 22 or whatever because of course this node version will
+
+22
+00:01:48,470 --> 00:01:49,970
+change in the future.
+
+23
+00:01:49,970 --> 00:01:54,080
+But what matters is that it is at least version 18.
+
+24
+00:01:54,620 --> 00:01:55,100
+Okay.
+
+25
+00:01:55,100 --> 00:01:59,870
+And with these three tools in place, let's now configure vs code a little bit.
+
+26
+00:02:00,590 --> 00:02:05,400
+So open up a new VS code window which will then look something like this.
+
+27
+00:02:05,420 --> 00:02:10,510
+So it might have changed a bit in the future, but basically it will look something like this.
+
+28
+00:02:10,520 --> 00:02:15,620
+And so here from the left sidebar, let's now install two essential extensions.
+
+29
+00:02:15,650 --> 00:02:19,480
+The first one is Eslint, which is a code Linter.
+
+30
+00:02:19,490 --> 00:02:26,600
+So basically a program that will automatically find errors in our code or find some best practices that
+
+31
+00:02:26,600 --> 00:02:27,620
+were violating.
+
+32
+00:02:27,620 --> 00:02:33,080
+And maybe you have already used this linter before, but if not really, make sure to download it.
+
+33
+00:02:33,110 --> 00:02:37,250
+It's really popular with over 25 million installs.
+
+34
+00:02:37,520 --> 00:02:45,170
+Then another extension that we really need is prettier because prettier will automatically format our
+
+35
+00:02:45,170 --> 00:02:49,370
+code, for example, to remove empty lines and stuff like that.
+
+36
+00:02:49,370 --> 00:02:55,010
+And this is really important for you to follow this course because it will make your code look exactly
+
+37
+00:02:55,010 --> 00:02:57,140
+the same as my code in the videos.
+
+38
+00:02:57,140 --> 00:03:01,280
+And so that will help you find any bugs that you might have created.
+
+39
+00:03:01,290 --> 00:03:04,710
+So please go ahead and download this extension here.
+
+40
+00:03:04,710 --> 00:03:10,530
+And if we need any more extensions throughout the course, we will then just install them as we go.
+
+41
+00:03:10,770 --> 00:03:16,670
+Now about the color theme that I'm using here, it is called one Mono Chi.
+
+42
+00:03:18,010 --> 00:03:19,880
+So that's this one down here.
+
+43
+00:03:19,900 --> 00:03:26,590
+So again, if you want your editor to look just like mine, then just go ahead, download it here and
+
+44
+00:03:26,590 --> 00:03:28,420
+then set the color theme.
+
+45
+00:03:28,870 --> 00:03:31,840
+You can also do that down here.
+
+46
+00:03:32,640 --> 00:03:33,410
+All right.
+
+47
+00:03:34,010 --> 00:03:40,550
+Now, besides this overall color theme, I also use a theme for the file icons in the file tree.
+
+48
+00:03:40,580 --> 00:03:44,660
+And so that one is called material icons.
+
+49
+00:03:44,900 --> 00:03:51,500
+And so make sure to download this one as well and then set this file icon theme, which again, you
+
+50
+00:03:51,500 --> 00:03:53,990
+can also do it down here.
+
+51
+00:03:55,550 --> 00:03:56,000
+All right.
+
+52
+00:03:56,000 --> 00:04:00,800
+So with this, we tweaked the appearance of our VS code a little bit.
+
+53
+00:04:00,800 --> 00:04:06,230
+And of course you can go ahead and install as many extensions as you'd like, but I will now move on
+
+54
+00:04:06,230 --> 00:04:08,570
+to set some settings.
+
+55
+00:04:08,960 --> 00:04:11,420
+So that's very important as well.
+
+56
+00:04:11,420 --> 00:04:14,450
+And the first one is the autosave setting.
+
+57
+00:04:14,720 --> 00:04:20,690
+So you can just search that here and probably this is already the default, but I'm not really sure.
+
+58
+00:04:20,690 --> 00:04:27,470
+So just make sure to set autosave to on focus change, which will ensure that your code gets saved each
+
+59
+00:04:27,470 --> 00:04:31,220
+time that you go to a different tab or to a different window.
+
+60
+00:04:32,110 --> 00:04:32,920
+Next time.
+
+61
+00:04:32,920 --> 00:04:38,470
+We need to now set the prettier extension that we installed as our default.
+
+62
+00:04:41,210 --> 00:04:43,130
+A four metre.
+
+63
+00:04:46,980 --> 00:04:48,900
+So that's this setting right here.
+
+64
+00:04:48,900 --> 00:04:53,070
+So make sure to set it here to prettier code formatter.
+
+65
+00:04:53,250 --> 00:04:59,130
+So otherwise sometimes vs code doesn't know how to activate prettier.
+
+66
+00:04:59,460 --> 00:05:04,860
+And then also we want to tell vs code to do this formatting on save.
+
+67
+00:05:05,100 --> 00:05:12,450
+So let's search for the setting format on save and then let's simply turn this on right here.
+
+68
+00:05:13,130 --> 00:05:21,830
+Then about Eslint, we can set the Eslint run setting here and set it to on save.
+
+69
+00:05:21,950 --> 00:05:28,640
+So basically by default, Eslint will run each time that you type a new character, which might be a
+
+70
+00:05:28,640 --> 00:05:29,550
+bit too much.
+
+71
+00:05:29,570 --> 00:05:35,300
+And so by setting this here, Eslint will only check our code each time that we save it, which usually
+
+72
+00:05:35,300 --> 00:05:36,580
+is more than enough.
+
+73
+00:05:36,590 --> 00:05:41,390
+But of course if you want, you can also leave the default which is on type.
+
+74
+00:05:43,320 --> 00:05:46,480
+Okay, so that's all the settings that we need.
+
+75
+00:05:46,780 --> 00:05:52,030
+Next up, let's quickly make sure that you actually have NodeJS installed now.
+
+76
+00:05:52,030 --> 00:05:58,000
+And so for that, let's open up a new terminal, which I like to do using this shortcut that you should
+
+77
+00:05:58,000 --> 00:05:59,950
+see up here on the screen.
+
+78
+00:06:00,670 --> 00:06:08,650
+And so then to check your node version, just type node dash V and so make sure again that your node
+
+79
+00:06:08,650 --> 00:06:11,020
+version is at least version 18.
+
+80
+00:06:11,020 --> 00:06:14,200
+And if not, just go ahead and install it once again.
+
+81
+00:06:14,920 --> 00:06:15,490
+All right.
+
+82
+00:06:15,490 --> 00:06:18,880
+And now to finish, let's just set up some snippets.
+
+83
+00:06:18,880 --> 00:06:26,650
+So snippets are basically some pieces of predefined code that we can use to greatly speed up development.
+
+84
+00:06:26,980 --> 00:06:34,180
+So I actually prepared a file of three snippets that we're going to use a lot, and they are here in
+
+85
+00:06:34,180 --> 00:06:38,620
+the starter files that we downloaded from GitHub right in the first section.
+
+86
+00:06:39,420 --> 00:06:41,160
+So make sure to open it up.
+
+87
+00:06:41,160 --> 00:06:45,240
+And this file is right here in the very first folder called Setup.
+
+88
+00:06:46,040 --> 00:06:53,290
+So let's open this file here, for example, by dragging and dropping it here onto this vs code icon.
+
+89
+00:06:53,300 --> 00:06:59,810
+But if for some reason that doesn't work for you, you can of course always just open it here the normal
+
+90
+00:06:59,810 --> 00:07:00,320
+way.
+
+91
+00:07:01,420 --> 00:07:05,360
+Right, Then just select everything and copy it.
+
+92
+00:07:05,380 --> 00:07:10,960
+So copy this entire code and then come down here to user snippets.
+
+93
+00:07:12,180 --> 00:07:12,470
+No.
+
+94
+00:07:12,480 --> 00:07:13,050
+Right.
+
+95
+00:07:13,050 --> 00:07:17,220
+And then it might be that you already have some snippets file.
+
+96
+00:07:17,220 --> 00:07:20,250
+And so in that case you can just open one of them.
+
+97
+00:07:20,250 --> 00:07:26,010
+But if not, just go ahead and create a new snippets file by clicking here on this option.
+
+98
+00:07:26,220 --> 00:07:33,630
+So I will just use this one that I already have, and let's just pretend that it's empty so I will just
+
+99
+00:07:33,630 --> 00:07:39,330
+empty it out and then I will copy paste that code from here to here.
+
+100
+00:07:39,950 --> 00:07:42,670
+So what we have here are three snippets.
+
+101
+00:07:42,680 --> 00:07:46,160
+This one is to easily create a console dot log.
+
+102
+00:07:46,190 --> 00:07:49,980
+This one is to create a react functional component.
+
+103
+00:07:50,000 --> 00:07:53,000
+So that's what this RFC stands for.
+
+104
+00:07:53,180 --> 00:07:59,030
+And this one is for React styled component and we will see what these do later.
+
+105
+00:07:59,760 --> 00:08:05,580
+So, for example, this first one here to just print to the console will be activated each time that
+
+106
+00:08:05,580 --> 00:08:15,600
+we type in a JavaScript, a TypeScript or a React file, and it will then replace that with this console
+
+107
+00:08:15,600 --> 00:08:21,840
+dot log and it will also then place the cursor between these parentheses, which is going to be really
+
+108
+00:08:21,840 --> 00:08:22,530
+useful.
+
+109
+00:08:23,820 --> 00:08:26,070
+So this is really powerful stuff.
+
+110
+00:08:26,070 --> 00:08:30,150
+And again, we will come back to these other two and use them later.
+
+111
+00:08:31,810 --> 00:08:32,350
+Okay.
+
+112
+00:08:32,350 --> 00:08:34,120
+And with this, we're actually done.
+
+113
+00:08:34,120 --> 00:08:41,050
+So we're all set up to now move on to finally start learning, react, and to start writing our own
+
+114
+00:08:41,050 --> 00:08:41,660
+code.
+
+115
+00:08:41,680 --> 00:08:44,590
+So hopefully I see you soon in the next lecture.

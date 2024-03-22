@@ -1,0 +1,467 @@
+1
+00:00:00,880 --> 00:00:07,260
+Now, before we start learning about React, let's actually ask ourselves one very important question
+
+2
+00:00:07,270 --> 00:00:12,640
+Why do front end frameworks like React actually exist in the first place?
+
+3
+00:00:12,670 --> 00:00:16,780
+Why not simply use vanilla JavaScript to build our apps?
+
+4
+00:00:16,810 --> 00:00:20,560
+Well, let's answer that question in this lecture.
+
+5
+00:00:21,690 --> 00:00:27,750
+And we're going to start at the very beginning by reviewing how websites used to be built in the past.
+
+6
+00:00:27,780 --> 00:00:33,930
+How we transitioned to a new way and how that lead to the rise of front end frameworks.
+
+7
+00:00:34,200 --> 00:00:41,850
+So back in the day before, around 2010, all websites were always rendered on the server.
+
+8
+00:00:42,000 --> 00:00:47,360
+So in server side rendering, a website is basically assembled on the back end.
+
+9
+00:00:47,370 --> 00:00:56,010
+So on a web server based on data and templates, the resulting HTML, CSS and JavaScript code is then
+
+10
+00:00:56,010 --> 00:01:01,140
+sent to the client side, so to the web browser that requested the page.
+
+11
+00:01:01,320 --> 00:01:07,320
+The browser then simply takes this code and basically paints it onto the screen.
+
+12
+00:01:07,320 --> 00:01:13,830
+And a typical example of server side rendered websites are all websites built with WordPress.
+
+13
+00:01:14,070 --> 00:01:20,610
+Now the JavaScript that used to be included in these websites was initially only to add some simple
+
+14
+00:01:20,610 --> 00:01:26,770
+dynamics to the page, like simple animations, hover effects and other stuff like that.
+
+15
+00:01:26,770 --> 00:01:33,970
+And usually a very popular library at the time called jQuery was used for this because it made JavaScript
+
+16
+00:01:33,970 --> 00:01:37,960
+work the exact same way across all browsers back then.
+
+17
+00:01:38,410 --> 00:01:45,430
+However, over time developers started writing more and more JavaScript code to be executed by the browser
+
+18
+00:01:45,430 --> 00:01:53,620
+until at some point these became fully fledged web applications, which then led to the rise of so-called
+
+19
+00:01:53,620 --> 00:01:55,850
+single page applications.
+
+20
+00:01:55,870 --> 00:02:01,270
+So these are basically web pages that are rendered on the client, not on the server.
+
+21
+00:02:01,480 --> 00:02:08,200
+So in client side rendering, basically the work of rendering a web page is shifted from the server
+
+22
+00:02:08,200 --> 00:02:09,750
+to the client.
+
+23
+00:02:09,760 --> 00:02:15,100
+And so now we don't call these Web pages anymore, but web applications.
+
+24
+00:02:15,250 --> 00:02:22,620
+Now, a web application still needs data, which usually comes from the back end in the form of an API.
+
+25
+00:02:22,620 --> 00:02:27,180
+And I'm sure you have already worked with APIs like that, right?
+
+26
+00:02:27,450 --> 00:02:34,900
+So the application consumes this API data and renders a screen for each view of the application.
+
+27
+00:02:34,950 --> 00:02:42,630
+And these single page applications essentially feel as if you were using a native desktop or phone application,
+
+28
+00:02:42,630 --> 00:02:48,000
+so you can click on links or submit forms without the page ever reloading.
+
+29
+00:02:48,030 --> 00:02:53,370
+So you're technically always on the same page and therefore the name single page app.
+
+30
+00:02:53,930 --> 00:03:00,020
+Now, just before leaving this slide, I want to quickly mention that server side rendering is actually
+
+31
+00:03:00,020 --> 00:03:01,990
+making a comeback right now.
+
+32
+00:03:02,000 --> 00:03:09,140
+So it's slowly getting modern again, driven by frameworks that are built on top of modern client side
+
+33
+00:03:09,140 --> 00:03:14,420
+rendering frameworks such as Next.js remix and many others.
+
+34
+00:03:14,420 --> 00:03:21,080
+But in either case, we still need to learn how to build single page applications, of course, but
+
+35
+00:03:21,080 --> 00:03:24,080
+do we want to do so with vanilla JavaScript?
+
+36
+00:03:24,850 --> 00:03:32,110
+Well, actually, no, we do not want that because there are actually several problems with using vanilla
+
+37
+00:03:32,110 --> 00:03:37,080
+JavaScript to build large scale applications, as we will see in a moment.
+
+38
+00:03:37,090 --> 00:03:44,050
+But first, let's establish that building any front end application is really all about handling data
+
+39
+00:03:44,050 --> 00:03:48,420
+and then displaying that data in a nice user interface.
+
+40
+00:03:48,430 --> 00:03:51,250
+That's basically all a web application does.
+
+41
+00:03:51,280 --> 00:03:52,660
+If you think about it.
+
+42
+00:03:52,660 --> 00:03:59,800
+So it receives data, changes the data as the user uses the app and it always displays the current data
+
+43
+00:03:59,800 --> 00:04:00,850
+on the screen.
+
+44
+00:04:00,880 --> 00:04:07,750
+What this means is that the most important task of a single page app and really of any application and
+
+45
+00:04:07,750 --> 00:04:15,460
+website is to keep the user interface in sync with the data, or in other words, is to make sure that
+
+46
+00:04:15,460 --> 00:04:19,390
+the UI always displays the current state of the data.
+
+47
+00:04:19,720 --> 00:04:27,110
+Now, as it turns out, displaying the correct data and making sure that it stays correct over time
+
+48
+00:04:27,110 --> 00:04:30,590
+is actually a really hard problem to solve.
+
+49
+00:04:30,590 --> 00:04:32,600
+And to understand why that is.
+
+50
+00:04:32,600 --> 00:04:36,020
+Let's take a look at this Airbnb application.
+
+51
+00:04:36,320 --> 00:04:41,060
+So in this interface we can identify a few pieces of data.
+
+52
+00:04:41,150 --> 00:04:44,240
+First, we have this list of apartment.
+
+53
+00:04:44,420 --> 00:04:46,600
+Then we have a search bar.
+
+54
+00:04:46,610 --> 00:04:50,600
+We have some data about the filters that are being applied.
+
+55
+00:04:50,600 --> 00:04:56,840
+And we also have this piece of data here which indicates whether the search should be updated as the
+
+56
+00:04:56,840 --> 00:04:58,280
+user moves the map.
+
+57
+00:04:58,400 --> 00:05:02,900
+And all this is data that the app depends on, right?
+
+58
+00:05:02,990 --> 00:05:09,310
+And actually, in the real world Airbnb application, there is just so much data.
+
+59
+00:05:09,320 --> 00:05:12,860
+So this list here is not even all of it.
+
+60
+00:05:12,890 --> 00:05:20,840
+But anyway, as we know, all of this data needs to be always kept in sync with the user interface and
+
+61
+00:05:20,840 --> 00:05:26,390
+also with the other pieces of data because they're all kind of interconnected.
+
+62
+00:05:26,480 --> 00:05:33,230
+For example, when we change the data about location or dates, then the UI needs to show those new
+
+63
+00:05:33,230 --> 00:05:37,250
+dates and also the list of apartments needs to be updated.
+
+64
+00:05:37,490 --> 00:05:42,470
+Or another example, the map needs to show the location of the apartments.
+
+65
+00:05:42,470 --> 00:05:48,500
+And so therefore, when the apartments change, the map must also change and the same thing should happen
+
+66
+00:05:48,500 --> 00:05:49,590
+the other way around.
+
+67
+00:05:49,610 --> 00:05:56,690
+So when the map is moved, the list of apartments should change as well, but only when the user has
+
+68
+00:05:56,690 --> 00:05:59,700
+previously clicked on the green checkbox.
+
+69
+00:05:59,720 --> 00:06:05,720
+So these pieces of data here are even more interconnected and it can become a real mess.
+
+70
+00:06:05,900 --> 00:06:13,880
+Now, just as a side note, in a real world app, we call each of these pieces of data a piece of state.
+
+71
+00:06:14,060 --> 00:06:20,570
+So based on these examples I showed you, I would say that without a framework, it would be virtually
+
+72
+00:06:20,570 --> 00:06:26,810
+impossible to keep this huge amount of data in sync with this super complex UI.
+
+73
+00:06:27,260 --> 00:06:30,230
+But still, you might be wondering why.
+
+74
+00:06:30,260 --> 00:06:35,120
+Why would it be so hard to build something like this with vanilla JavaScript?
+
+75
+00:06:36,640 --> 00:06:40,270
+Well, it comes down to two big aspects.
+
+76
+00:06:40,300 --> 00:06:46,870
+The first is that building a complex front end with vanilla JavaScript alone requires large amounts
+
+77
+00:06:46,870 --> 00:06:49,960
+of direct dom traversing and manipulation.
+
+78
+00:06:50,110 --> 00:06:57,640
+Like in this code right here where we have manual element selection, class toggling, Dom traversing
+
+79
+00:06:57,640 --> 00:07:01,600
+and even manipulation of text and CSS styles.
+
+80
+00:07:01,600 --> 00:07:09,280
+And this is guaranteed to become an absolute nightmare in a complex app like Airbnb because our code
+
+81
+00:07:09,280 --> 00:07:16,300
+would be extremely complex and really hard to understand and we would probably just end up with a huge
+
+82
+00:07:16,300 --> 00:07:19,090
+mess of entangled spaghetti code.
+
+83
+00:07:19,650 --> 00:07:22,480
+So this is the first problem.
+
+84
+00:07:22,500 --> 00:07:30,450
+The second big problem is that in typical vanilla JavaScript apps state such as simple text or numbers
+
+85
+00:07:30,480 --> 00:07:34,130
+are oftentimes simply stored right in the Dom.
+
+86
+00:07:34,140 --> 00:07:40,890
+So right in the HTML elements themselves rather than in a central place in the application.
+
+87
+00:07:40,980 --> 00:07:48,000
+The result is that we end up with many parts of the app accessing and changing that Dom state directly,
+
+88
+00:07:48,000 --> 00:07:51,660
+which makes the spaghetti code even harder to understand.
+
+89
+00:07:51,660 --> 00:08:00,330
+And even worse, it will most certainly introduce many bugs into our application and no one wants bugs,
+
+90
+00:08:00,330 --> 00:08:01,080
+right?
+
+91
+00:08:01,880 --> 00:08:07,520
+Now, of course, you could try to solve these problems on your own, but then you will just end up
+
+92
+00:08:07,520 --> 00:08:14,450
+creating your own framework, which will most likely be way worse than all the well-established frameworks
+
+93
+00:08:14,450 --> 00:08:16,040
+that already exist.
+
+94
+00:08:16,250 --> 00:08:22,340
+So at this point, you might as well just use a battle tested framework like React.
+
+95
+00:08:22,790 --> 00:08:23,450
+All right.
+
+96
+00:08:23,450 --> 00:08:30,530
+So now that we know why it's so hard to write a single page app with just JavaScript, we can answer
+
+97
+00:08:30,530 --> 00:08:33,950
+the fundamental question that we asked in the beginning.
+
+98
+00:08:34,490 --> 00:08:38,570
+So why do front end frameworks actually exist?
+
+99
+00:08:38,900 --> 00:08:44,180
+Well, we kind of already answered that question over the course of this lecture.
+
+100
+00:08:44,360 --> 00:08:51,590
+So the big fundamental reason why these frameworks exist is because keeping a user interface in sync
+
+101
+00:08:51,590 --> 00:08:56,270
+with data is really hard, and it's a lot of work too.
+
+102
+00:08:56,300 --> 00:09:04,640
+So basically frameworks like Angular, React or Vue take this hard work of synchronizing data with the
+
+103
+00:09:04,640 --> 00:09:07,900
+user interface away from US developers.
+
+104
+00:09:07,910 --> 00:09:15,230
+So they solve this really hard problem so that we developers can focus only on the data and on building
+
+105
+00:09:15,230 --> 00:09:17,690
+our user interfaces themselves.
+
+106
+00:09:17,720 --> 00:09:23,660
+Now different frameworks have different approaches to doing this, but they are all similar in the fact
+
+107
+00:09:23,660 --> 00:09:27,320
+that they keep UI and data in sync over time.
+
+108
+00:09:27,440 --> 00:09:34,550
+Now another extremely valuable thing that frameworks give us is the fact that they basically enforce
+
+109
+00:09:34,650 --> 00:09:38,280
+a correct way of structuring and writing code.
+
+110
+00:09:38,610 --> 00:09:46,320
+So essentially the authors of each of these frameworks came up with a good way of structuring applications
+
+111
+00:09:46,320 --> 00:09:53,040
+so that other developers can then follow these conventions as well to build better applications with
+
+112
+00:09:53,040 --> 00:09:56,370
+hopefully a lot less spaghetti code.
+
+113
+00:09:56,490 --> 00:10:04,420
+Finally, frameworks give developers and especially teams a consistent way of building web applications.
+
+114
+00:10:04,440 --> 00:10:11,370
+This way, everyone on the team will build their part of the app in the exact same style as everyone
+
+115
+00:10:11,370 --> 00:10:16,680
+else, which will in the end create a more consistent code, base and product.
+
+116
+00:10:17,150 --> 00:10:18,570
+And there you go.
+
+117
+00:10:18,590 --> 00:10:23,600
+This is why modern web development is all about JavaScript frameworks.
