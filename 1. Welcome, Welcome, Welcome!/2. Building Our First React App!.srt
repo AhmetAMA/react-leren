@@ -1,0 +1,1123 @@
+1
+00:00:00,850 --> 00:00:07,510
+Now before learning anything about React and even before setting up our development environment, let's
+
+2
+00:00:07,510 --> 00:00:10,840
+build our very first small React app.
+
+3
+00:00:10,870 --> 00:00:18,010
+It's a tiny app, but you will already meet many of the fundamental ingredients that all react applications
+
+4
+00:00:18,010 --> 00:00:19,320
+are built upon.
+
+5
+00:00:19,330 --> 00:00:22,210
+So this is going to be a lot of fun already.
+
+6
+00:00:22,210 --> 00:00:24,220
+And so let's get started.
+
+7
+00:00:25,340 --> 00:00:30,450
+And remember how I said that we don't even need to set up our development environment.
+
+8
+00:00:30,470 --> 00:00:31,580
+And that's right.
+
+9
+00:00:31,610 --> 00:00:38,930
+We can actually write or very first React app right here in basically this online code editor called
+
+10
+00:00:38,930 --> 00:00:41,030
+Code sandbox.io.
+
+11
+00:00:41,950 --> 00:00:51,130
+So right now you can go to codesandbox.io and there they will ask you to try this app for free, but
+
+12
+00:00:51,130 --> 00:00:59,800
+you can do it even more easily, which is to open up a new tab and simply write React dot new.
+
+13
+00:01:00,190 --> 00:01:01,180
+So that's it.
+
+14
+00:01:01,180 --> 00:01:02,380
+React new.
+
+15
+00:01:02,410 --> 00:01:03,370
+Hit, enter.
+
+16
+00:01:03,370 --> 00:01:11,260
+And this will then automatically create a brand new CodeSandbox for you already with the React starter
+
+17
+00:01:11,260 --> 00:01:12,100
+template.
+
+18
+00:01:12,160 --> 00:01:17,890
+Now by the time you're watching this, the CodeSandbox app might look a little bit different, but the
+
+19
+00:01:17,890 --> 00:01:20,500
+idea is probably going to be the same.
+
+20
+00:01:20,500 --> 00:01:27,280
+So here on the left side, you will have some files here, some info about the template that doesn't
+
+21
+00:01:27,280 --> 00:01:28,090
+really matter.
+
+22
+00:01:28,120 --> 00:01:32,470
+Then in the middle you will have a code editor where you can open these files.
+
+23
+00:01:32,470 --> 00:01:39,160
+So just like vs code and on the right you will have your output and even your console down here.
+
+24
+00:01:41,660 --> 00:01:44,570
+So this is again just like vs code.
+
+25
+00:01:44,570 --> 00:01:52,280
+And in fact this whole app is actually really built on vs code and this is actually so helpful and useful
+
+26
+00:01:52,280 --> 00:01:56,330
+that we will use code Sandbox a lot of times throughout this course.
+
+27
+00:01:56,330 --> 00:02:00,920
+For example, for the coding challenges that I included in this course.
+
+28
+00:02:01,650 --> 00:02:08,370
+But anyway, you see here that it has already created a bunch of folders and files for us.
+
+29
+00:02:08,820 --> 00:02:12,540
+And let's start by deleting these styles.css.
+
+30
+00:02:12,570 --> 00:02:14,220
+We're not going to use this.
+
+31
+00:02:15,200 --> 00:02:19,430
+And we have this index.js and app.js.
+
+32
+00:02:19,430 --> 00:02:23,710
+And of course, later we will learn what all of this code here is and does.
+
+33
+00:02:23,720 --> 00:02:29,780
+But for now, let's open up simply app.js and delete everything.
+
+34
+00:02:29,780 --> 00:02:32,750
+And so with this we can then start from scratch.
+
+35
+00:02:32,870 --> 00:02:39,920
+So let's start by building our very first react component, which is essentially a piece of the user
+
+36
+00:02:39,920 --> 00:02:40,910
+interface.
+
+37
+00:02:40,940 --> 00:02:43,730
+Again, more about all that later.
+
+38
+00:02:44,150 --> 00:02:50,750
+So just write function and by default we call our main component, the app component.
+
+39
+00:02:50,930 --> 00:02:55,460
+And as you see, a component in React is really just a function.
+
+40
+00:02:55,610 --> 00:03:03,140
+Now these functions in React so these components can return something called JSX, which is a syntax
+
+41
+00:03:03,140 --> 00:03:08,180
+that looks like HTML and which will basically describe what we can see on the screen.
+
+42
+00:03:08,180 --> 00:03:10,040
+So just like HTML.
+
+43
+00:03:10,750 --> 00:03:13,750
+So let's return a div.
+
+44
+00:03:14,600 --> 00:03:15,950
+Let's close it here.
+
+45
+00:03:18,550 --> 00:03:21,460
+Then let's, for example, write an H1 here.
+
+46
+00:03:23,150 --> 00:03:24,090
+Hello, world.
+
+47
+00:03:24,110 --> 00:03:28,730
+So that's the traditional first line of code that we always write.
+
+48
+00:03:28,940 --> 00:03:32,750
+And then we also will want a button a bit later.
+
+49
+00:03:33,230 --> 00:03:41,390
+And here, let's say, get advice because we are going to build a very small app which will fetch some
+
+50
+00:03:41,390 --> 00:03:45,380
+advice from an API and will display it over here on the screen.
+
+51
+00:03:46,250 --> 00:03:47,800
+So let's give this a save.
+
+52
+00:03:47,810 --> 00:03:53,690
+And you see that it all nicely formats here, which is because behind the scenes here we have the prettier
+
+53
+00:03:53,690 --> 00:03:57,680
+extension already included into the starter template here.
+
+54
+00:03:58,390 --> 00:04:03,030
+And now all we need to do is to export this function from here.
+
+55
+00:04:03,040 --> 00:04:08,350
+Because you see that this index.js file actually imports it here.
+
+56
+00:04:09,600 --> 00:04:12,270
+So export default.
+
+57
+00:04:12,300 --> 00:04:13,530
+Give it a save.
+
+58
+00:04:13,740 --> 00:04:17,220
+And then let's just manually reload here on the right side.
+
+59
+00:04:17,640 --> 00:04:20,610
+And after some time you should then.
+
+60
+00:04:20,940 --> 00:04:21,540
+Yeah.
+
+61
+00:04:21,540 --> 00:04:24,930
+So you should see your hello world and the button.
+
+62
+00:04:25,230 --> 00:04:26,250
+Beautiful.
+
+63
+00:04:26,250 --> 00:04:29,070
+So that's our very first react component.
+
+64
+00:04:29,070 --> 00:04:31,140
+But of course nothing happens.
+
+65
+00:04:31,140 --> 00:04:33,510
+For example, when I click here on this button.
+
+66
+00:04:33,510 --> 00:04:35,040
+And so let's change that.
+
+67
+00:04:35,040 --> 00:04:41,280
+And again, what I want to do is whenever I click on this button, we want to get a new advice from
+
+68
+00:04:41,280 --> 00:04:42,270
+an API.
+
+69
+00:04:42,330 --> 00:04:48,810
+So basically we want to fetch some data from an API and display it on our user interface.
+
+70
+00:04:49,050 --> 00:04:53,400
+So let's actually write a new function right in here.
+
+71
+00:04:53,400 --> 00:04:54,570
+So inside app.
+
+72
+00:04:55,860 --> 00:05:00,000
+We will write an async function so that we can use async await.
+
+73
+00:05:02,030 --> 00:05:05,840
+And so you should be familiar with this basic JavaScript.
+
+74
+00:05:05,840 --> 00:05:11,660
+And if not, don't worry, there is actually a section that reveals the most essential JavaScript that
+
+75
+00:05:11,660 --> 00:05:13,460
+you need to know for React.
+
+76
+00:05:13,880 --> 00:05:16,100
+Now here I'm missing of course, the function name.
+
+77
+00:05:16,980 --> 00:05:19,860
+So let's say get advice.
+
+78
+00:05:22,270 --> 00:05:26,070
+And then here, let's fire off a fetch request.
+
+79
+00:05:26,080 --> 00:05:31,630
+And here I'm just going to type out the URL of this API.
+
+80
+00:05:31,660 --> 00:05:34,240
+So https.
+
+81
+00:05:35,580 --> 00:05:37,470
+Then API dot.
+
+82
+00:05:39,150 --> 00:05:41,340
+Advice, Lipscomb.
+
+83
+00:05:42,890 --> 00:05:44,330
+Slash advice.
+
+84
+00:05:45,450 --> 00:05:45,520
+No.
+
+85
+00:05:45,610 --> 00:05:50,110
+Okay, then we can await this promise and store it.
+
+86
+00:05:51,130 --> 00:05:53,020
+Inside of some variable.
+
+87
+00:05:53,170 --> 00:05:56,800
+And again, all of this should be nothing new for you at this point.
+
+88
+00:05:58,500 --> 00:06:01,320
+Let's just give ourselves a little bit more space.
+
+89
+00:06:01,710 --> 00:06:09,210
+But also, as I said, if this is new stuff, just type out the JavaScript that I'm writing here and
+
+90
+00:06:09,210 --> 00:06:12,900
+it all will make sense in that review of essential JavaScript.
+
+91
+00:06:14,900 --> 00:06:20,900
+But anyway, let's not basically convert that response to Json and then let's.
+
+92
+00:06:22,180 --> 00:06:24,310
+Log it to the console.
+
+93
+00:06:26,120 --> 00:06:26,900
+All right.
+
+94
+00:06:26,900 --> 00:06:32,000
+So inside our component, which again, is this app function here.
+
+95
+00:06:32,120 --> 00:06:38,570
+So inside that component, we now have this get advice function, but we're not calling it anywhere,
+
+96
+00:06:38,600 --> 00:06:39,500
+right?
+
+97
+00:06:39,740 --> 00:06:43,520
+So how do we call this function when we click on this button?
+
+98
+00:06:43,820 --> 00:06:48,110
+Well, we can specify the onClick attribute here.
+
+99
+00:06:49,790 --> 00:06:51,140
+So onClick.
+
+100
+00:06:53,310 --> 00:06:57,050
+Equals and then just open these curly braces.
+
+101
+00:06:57,050 --> 00:07:00,530
+And here we simply write, get advice.
+
+102
+00:07:02,130 --> 00:07:08,280
+All right, let's maybe reload just to make sure, and then let's click and.
+
+103
+00:07:08,280 --> 00:07:09,780
+Well, we got something.
+
+104
+00:07:10,390 --> 00:07:11,200
+Nice.
+
+105
+00:07:12,500 --> 00:07:14,130
+So here we have the slip.
+
+106
+00:07:14,150 --> 00:07:15,620
+Then slip again.
+
+107
+00:07:15,620 --> 00:07:18,020
+And then in there we have the advice.
+
+108
+00:07:18,020 --> 00:07:20,270
+And so here we have some piece of advice.
+
+109
+00:07:20,300 --> 00:07:22,940
+A problem shared is a problem halved.
+
+110
+00:07:24,500 --> 00:07:28,400
+So what we're looking for is actually data dot slip.
+
+111
+00:07:29,500 --> 00:07:30,670
+Dot advise.
+
+112
+00:07:30,700 --> 00:07:31,540
+Right.
+
+113
+00:07:31,540 --> 00:07:33,310
+So let's try that again.
+
+114
+00:07:34,140 --> 00:07:34,590
+Yeah.
+
+115
+00:07:34,590 --> 00:07:43,080
+So now you get this advice directly here, and all we have to do now is to basically get this string
+
+116
+00:07:43,080 --> 00:07:46,410
+so this text here into our user interface.
+
+117
+00:07:46,410 --> 00:07:49,220
+So we want it to be displayed right here.
+
+118
+00:07:49,260 --> 00:07:54,030
+So here in this place now, how do we do that?
+
+119
+00:07:54,060 --> 00:08:01,750
+Well, for that we need a concept called state and state is the most fundamental concept of react.
+
+120
+00:08:01,770 --> 00:08:07,230
+So whenever we need something to change in the user interface, we change the state.
+
+121
+00:08:07,230 --> 00:08:09,930
+So we update something that we call state.
+
+122
+00:08:11,430 --> 00:08:16,290
+So to create new state, we need to do it here at the top level in the function.
+
+123
+00:08:17,140 --> 00:08:18,730
+And we write it like this.
+
+124
+00:08:19,670 --> 00:08:23,330
+So advice and set advice.
+
+125
+00:08:24,050 --> 00:08:26,990
+And then use state.
+
+126
+00:08:29,040 --> 00:08:31,360
+And we start off with an empty string.
+
+127
+00:08:31,380 --> 00:08:36,590
+So you see that automatically you state got imported from the React library.
+
+128
+00:08:36,600 --> 00:08:43,050
+And if for you this didn't happen automatically, then please go ahead and write this line of code here.
+
+129
+00:08:43,350 --> 00:08:44,100
+All right.
+
+130
+00:08:44,280 --> 00:08:48,720
+So this you state here is a function in React, which returns an array.
+
+131
+00:08:48,720 --> 00:08:51,080
+And so here we are, destructuring that array.
+
+132
+00:08:51,090 --> 00:08:57,420
+So in the first position of the array, we have the value of the state that we call advice here.
+
+133
+00:08:57,420 --> 00:09:00,840
+And the second value is a setter function.
+
+134
+00:09:00,840 --> 00:09:05,010
+So a function that we can use to update the piece of state.
+
+135
+00:09:07,530 --> 00:09:07,980
+Okay.
+
+136
+00:09:07,980 --> 00:09:15,240
+And so right here in this get advice function, we can now use this set advice function to update the
+
+137
+00:09:15,240 --> 00:09:15,690
+state.
+
+138
+00:09:15,690 --> 00:09:21,240
+And then whenever this piece of state is updated, the user interface will also be updated.
+
+139
+00:09:21,360 --> 00:09:23,250
+So let's call.
+
+140
+00:09:24,330 --> 00:09:26,130
+Set advice right here.
+
+141
+00:09:26,130 --> 00:09:34,410
+So after we receive the data and now all we have to do is to then use this advice right here in this.
+
+142
+00:09:34,430 --> 00:09:42,660
+JS So remember that I said that this is called JS, which is basically just like HTML, but we can add
+
+143
+00:09:42,660 --> 00:09:44,760
+some JavaScript to it as well.
+
+144
+00:09:45,000 --> 00:09:51,480
+So each time we want some JavaScript we can basically enter a JavaScript mode by using these curly braces.
+
+145
+00:09:51,690 --> 00:09:53,820
+And we already did that down here.
+
+146
+00:09:54,030 --> 00:10:00,990
+So we have this onClick attribute here and then here we opened JavaScript and passed in the function.
+
+147
+00:10:00,990 --> 00:10:04,350
+So this function will then get called whenever we click this button.
+
+148
+00:10:06,820 --> 00:10:10,690
+So here now we can simply place this advice variable.
+
+149
+00:10:11,560 --> 00:10:14,440
+And then let's see the magic happening.
+
+150
+00:10:15,910 --> 00:10:17,140
+And it works.
+
+151
+00:10:17,200 --> 00:10:18,340
+Beautiful.
+
+152
+00:10:18,790 --> 00:10:20,140
+Let's click again.
+
+153
+00:10:20,170 --> 00:10:21,820
+And then we get another one.
+
+154
+00:10:21,850 --> 00:10:22,840
+Beautiful.
+
+155
+00:10:22,840 --> 00:10:24,250
+So it's already working.
+
+156
+00:10:24,250 --> 00:10:31,210
+So this is already your first working react application already with a piece of state, which again
+
+157
+00:10:31,210 --> 00:10:34,360
+is one of the fundamental aspects of React.
+
+158
+00:10:34,360 --> 00:10:40,210
+And of course, right now all of this seems really confusing, but of course you will understand it
+
+159
+00:10:40,210 --> 00:10:41,950
+as we go through the course.
+
+160
+00:10:42,280 --> 00:10:48,070
+So basically what happens is we click this button here and we said here that whenever we click the button,
+
+161
+00:10:48,070 --> 00:10:50,440
+the get advice function should be called.
+
+162
+00:10:50,440 --> 00:10:56,980
+And so then indeed it gets called, it fetches our data, and then we update the state.
+
+163
+00:10:56,980 --> 00:11:00,340
+So we update the state by calling set advice.
+
+164
+00:11:00,340 --> 00:11:02,230
+And then whenever we do that.
+
+165
+00:11:02,230 --> 00:11:07,990
+So when we update state, then this function here, so this whole component is executed again.
+
+166
+00:11:07,990 --> 00:11:14,890
+And then the advice here has been changed and therefore it then changes here on the user interface.
+
+167
+00:11:16,050 --> 00:11:16,860
+Nice.
+
+168
+00:11:16,860 --> 00:11:24,690
+So what I want to do next is to display down here some text which tells us how many times basically
+
+169
+00:11:24,690 --> 00:11:26,220
+we have clicked this button.
+
+170
+00:11:26,220 --> 00:11:30,330
+So which tells us how many pieces of advice we have already read.
+
+171
+00:11:30,600 --> 00:11:33,660
+So basically we want a paragraph here.
+
+172
+00:11:34,510 --> 00:11:37,930
+Which says something like you have read.
+
+173
+00:11:38,420 --> 00:11:42,400
+Then here we can write any HTML like we can make it strong.
+
+174
+00:11:43,090 --> 00:11:46,180
+Let's for now just use some placeholder value here.
+
+175
+00:11:47,430 --> 00:11:50,790
+Pieces of advice.
+
+176
+00:11:53,050 --> 00:11:54,640
+And let's close that here.
+
+177
+00:11:54,940 --> 00:11:58,810
+But now, of course, we want to make this number dynamic, right?
+
+178
+00:11:58,810 --> 00:12:05,290
+And so this is another place where we need some state because we want this value here to be updated
+
+179
+00:12:05,290 --> 00:12:06,190
+over time.
+
+180
+00:12:07,070 --> 00:12:08,840
+So we create more state.
+
+181
+00:12:08,840 --> 00:12:10,460
+So use state again.
+
+182
+00:12:10,460 --> 00:12:13,820
+And now the initial value should be zero.
+
+183
+00:12:14,610 --> 00:12:19,410
+And then again, this returns an array which we can immediately destructure.
+
+184
+00:12:21,030 --> 00:12:24,450
+Into, for example, count and set count.
+
+185
+00:12:24,480 --> 00:12:27,390
+And of course, we can use any names that we want here.
+
+186
+00:12:29,610 --> 00:12:33,840
+So what we do then here is to also update the count.
+
+187
+00:12:34,390 --> 00:12:37,720
+So we can use our set count function.
+
+188
+00:12:37,840 --> 00:12:39,850
+Then here I will do something a bit strange.
+
+189
+00:12:40,650 --> 00:12:44,010
+So we will update now in a different way, but this doesn't really matter.
+
+190
+00:12:44,010 --> 00:12:50,340
+So it simply takes the current count and then adds one, and that will become the new count.
+
+191
+00:12:51,350 --> 00:12:51,770
+Okay.
+
+192
+00:12:51,770 --> 00:12:56,540
+And now here, let's replace that placeholder with the actual count value.
+
+193
+00:12:57,460 --> 00:12:59,260
+And if we reload now?
+
+194
+00:13:01,000 --> 00:13:01,900
+Then.
+
+195
+00:13:02,960 --> 00:13:04,580
+Yeah, it increased.
+
+196
+00:13:05,360 --> 00:13:06,850
+And it keeps increasing.
+
+197
+00:13:06,860 --> 00:13:08,870
+So that works just fine.
+
+198
+00:13:09,570 --> 00:13:10,350
+Nice.
+
+199
+00:13:10,380 --> 00:13:15,810
+Now, maybe you noticed that when we load this for the first time, we have no advice here at all.
+
+200
+00:13:15,810 --> 00:13:17,720
+And of course, we start at zero.
+
+201
+00:13:17,730 --> 00:13:24,540
+So let's change that so that whenever we open up the app for the first time, we already are graded
+
+202
+00:13:24,540 --> 00:13:27,600
+here with our very first piece of advice.
+
+203
+00:13:28,590 --> 00:13:31,680
+And we can do that with something called an effect.
+
+204
+00:13:32,740 --> 00:13:35,310
+So we can use use effect.
+
+205
+00:13:35,320 --> 00:13:38,050
+And again, it needs to be imported here.
+
+206
+00:13:38,050 --> 00:13:40,720
+So make sure that use effect is up here.
+
+207
+00:13:41,570 --> 00:13:45,260
+And then into use effect we pass a function.
+
+208
+00:13:46,650 --> 00:13:48,540
+So what do we want to happen here?
+
+209
+00:13:48,810 --> 00:13:52,530
+Well, basically exactly the same thing as here.
+
+210
+00:13:53,200 --> 00:13:55,090
+So we can simply call.
+
+211
+00:13:56,530 --> 00:13:57,670
+Get advice.
+
+212
+00:13:59,180 --> 00:13:59,840
+Right.
+
+213
+00:14:01,470 --> 00:14:04,650
+Now you're seeing that it's getting completely out of control.
+
+214
+00:14:04,650 --> 00:14:07,320
+And that's because we have a bug in our code.
+
+215
+00:14:07,920 --> 00:14:10,440
+So here we need this empty array.
+
+216
+00:14:10,710 --> 00:14:13,980
+And as soon as I save this, you see that it stopped.
+
+217
+00:14:14,920 --> 00:14:17,250
+So use effect takes two arguments.
+
+218
+00:14:17,260 --> 00:14:21,130
+First, a function that we want to get executed at the beginning.
+
+219
+00:14:21,130 --> 00:14:26,740
+So when this component first gets loaded, basically and then the second argument, which is called
+
+220
+00:14:26,740 --> 00:14:29,890
+the dependency array, but that doesn't matter for now.
+
+221
+00:14:29,890 --> 00:14:32,020
+So we will learn all about this later.
+
+222
+00:14:32,020 --> 00:14:35,650
+But for now, just make sure that you have this empty array here.
+
+223
+00:14:36,780 --> 00:14:37,350
+All right.
+
+224
+00:14:37,350 --> 00:14:43,230
+And if we reload now, you see that very soon you get this very first advice automatically.
+
+225
+00:14:43,500 --> 00:14:48,600
+Now, down here, we also get two pieces of advice, even though it should be only one.
+
+226
+00:14:48,600 --> 00:14:51,040
+But again, we will worry about that later.
+
+227
+00:14:51,060 --> 00:14:55,590
+This is just because of something called strict mode in development.
+
+228
+00:14:56,790 --> 00:15:00,210
+Now, if we keep clicking, then of course it keeps increasing normally.
+
+229
+00:15:00,210 --> 00:15:05,490
+But when we load for the first time, basically this effect will be executed twice.
+
+230
+00:15:05,490 --> 00:15:08,970
+And so then this increases two times nice.
+
+231
+00:15:08,970 --> 00:15:16,020
+And this is actually all the functionality that I wanted already for this little application to make
+
+232
+00:15:16,020 --> 00:15:24,360
+it just a little bit more real world, so to say, let's create a new component for this message down
+
+233
+00:15:24,360 --> 00:15:24,840
+here.
+
+234
+00:15:25,050 --> 00:15:30,180
+So in React, we try to divide user interfaces into components.
+
+235
+00:15:30,180 --> 00:15:30,900
+And so.
+
+236
+00:15:31,850 --> 00:15:34,130
+That's kind of do this already here.
+
+237
+00:15:35,670 --> 00:15:38,010
+So let's call this component message.
+
+238
+00:15:38,250 --> 00:15:40,760
+And notice how it is uppercase here.
+
+239
+00:15:40,770 --> 00:15:44,470
+So just like app, this one also needs to be uppercase.
+
+240
+00:15:44,490 --> 00:15:48,000
+That's a convention in React for all components.
+
+241
+00:15:48,960 --> 00:15:52,050
+So here all we want to return is basically.
+
+242
+00:15:52,780 --> 00:15:53,820
+Just this.
+
+243
+00:15:54,220 --> 00:15:56,260
+So we cut it from here.
+
+244
+00:15:56,260 --> 00:15:59,290
+And then here we simply include message.
+
+245
+00:15:59,830 --> 00:16:04,720
+Now you see that we have this error there, but we will take care of that in a minute.
+
+246
+00:16:05,940 --> 00:16:09,720
+And so now we can basically include this component.
+
+247
+00:16:09,840 --> 00:16:14,740
+So actually message just as if it was another HTML element.
+
+248
+00:16:14,760 --> 00:16:16,230
+So message.
+
+249
+00:16:16,260 --> 00:16:19,430
+And then we can close it immediately like this.
+
+250
+00:16:19,500 --> 00:16:24,500
+But now we have a problem because here we are using this count value.
+
+251
+00:16:24,510 --> 00:16:31,140
+And well, right now this component has no way of knowing about the value of this variable.
+
+252
+00:16:31,140 --> 00:16:35,640
+And so what we need to do is to pass it right into the component.
+
+253
+00:16:36,620 --> 00:16:39,730
+So we do that using something called props.
+
+254
+00:16:39,740 --> 00:16:43,460
+And the prop is basically just like parameters to a function.
+
+255
+00:16:43,550 --> 00:16:47,390
+So let's say we wanted to call this prop count.
+
+256
+00:16:48,140 --> 00:16:50,870
+And then we pass in the count value.
+
+257
+00:16:50,870 --> 00:16:56,480
+And again, here we are entering this JavaScript mode by using the curly braces.
+
+258
+00:16:56,480 --> 00:17:00,400
+And so now here we can accept that, but not like this.
+
+259
+00:17:00,410 --> 00:17:04,430
+So it's not like a normal function where we simply accept count.
+
+260
+00:17:04,430 --> 00:17:11,210
+Instead, what we accept is an object called props, and it's on this props object.
+
+261
+00:17:11,210 --> 00:17:13,070
+That count is now a property.
+
+262
+00:17:15,910 --> 00:17:20,170
+And again, if this sounds too confusing, well, it is actually pretty simple.
+
+263
+00:17:20,170 --> 00:17:24,970
+As you will see when we learn this all step by step and not all at once.
+
+264
+00:17:24,970 --> 00:17:30,940
+So here I just want us to have a little bit of fun and very briefly get to know all these different
+
+265
+00:17:30,940 --> 00:17:32,350
+ingredients of react.
+
+266
+00:17:32,350 --> 00:17:35,830
+But you don't need to worry about learning any of this right now.
+
+267
+00:17:35,830 --> 00:17:42,130
+Just type the code and have some fun and you'll see the application here coming together.
+
+268
+00:17:43,730 --> 00:17:45,620
+So now it actually works.
+
+269
+00:17:45,620 --> 00:17:53,330
+So if we reload, then all these errors will be gone and the application is back to working.
+
+270
+00:17:54,130 --> 00:17:55,690
+So beautiful.
+
+271
+00:17:55,870 --> 00:18:01,660
+And actually, this is all that I wanted to do for this small application, which still already has
+
+272
+00:18:01,660 --> 00:18:07,160
+a lot of the react ingredients that real world React applications will have.
+
+273
+00:18:07,180 --> 00:18:13,210
+So we have state, we have effects, we have props, we have, of course.
+
+274
+00:18:13,210 --> 00:18:18,980
+JS Here we created two components and so that's already pretty nice.
+
+275
+00:18:19,000 --> 00:18:24,360
+So I hope that this was fun and that you also got this application to work.
+
+276
+00:18:24,370 --> 00:18:32,050
+And if not, so if for some reason you run into some trouble, I will attach a link to this code sandbox
+
+277
+00:18:32,050 --> 00:18:34,360
+right onto this Udemy lecture.
+
+278
+00:18:34,360 --> 00:18:40,600
+And with that being said, after this small introduction, it's now time to actually set up our system
+
+279
+00:18:40,600 --> 00:18:46,480
+a little bit and really start learning about what React actually is why it exists.
+
+280
+00:18:46,480 --> 00:18:49,090
+And yeah, start learning.
+
+281
+00:18:49,090 --> 00:18:50,260
+Really react.
