@@ -1,0 +1,795 @@
+1
+00:00:01,100 --> 00:00:05,300
+Next up, let's actually render the received weather data.
+
+2
+00:00:06,380 --> 00:00:09,860
+And for that, let's create a brand new component.
+
+3
+00:00:09,860 --> 00:00:13,730
+And I will actually do that again here in the same file.
+
+4
+00:00:15,220 --> 00:00:16,830
+So let's call this one here.
+
+5
+00:00:16,840 --> 00:00:17,680
+Whether.
+
+6
+00:00:20,190 --> 00:00:22,860
+And so it again extends.
+
+7
+00:00:24,000 --> 00:00:26,970
+React dot component.
+
+8
+00:00:28,510 --> 00:00:35,500
+And as usually we start out with the render method, which again is called each time that the component
+
+9
+00:00:35,500 --> 00:00:36,820
+is rendered.
+
+10
+00:00:37,120 --> 00:00:44,470
+And then from here, let's just return a div and then for now, let's just.
+
+11
+00:00:45,150 --> 00:00:45,660
+Right.
+
+12
+00:00:45,690 --> 00:00:46,530
+An H2.
+
+13
+00:00:47,410 --> 00:00:48,250
+Whether.
+
+14
+00:00:49,550 --> 00:00:50,510
+All right.
+
+15
+00:00:50,510 --> 00:00:58,460
+And so now, of course, we need to include this component here in our X, So let's do that and let's
+
+16
+00:00:58,460 --> 00:00:59,990
+do so conditionally.
+
+17
+00:01:00,080 --> 00:01:06,590
+So only when there actually is some weather data, then we want to display the weather component.
+
+18
+00:01:07,440 --> 00:01:12,330
+So let's say this dot state dot weather.
+
+19
+00:01:12,720 --> 00:01:20,340
+But this is not enough actually, because by default, this is also an object, Right?
+
+20
+00:01:20,340 --> 00:01:24,540
+And so we actually need to read some property from this.
+
+21
+00:01:24,840 --> 00:01:26,640
+So to see if it exists.
+
+22
+00:01:26,640 --> 00:01:30,210
+So let's for now comment this out and run our code again.
+
+23
+00:01:31,080 --> 00:01:32,100
+So that.
+
+24
+00:01:33,720 --> 00:01:40,000
+And we are not logging it to the console anymore, but we can still take a look at it here in our dev
+
+25
+00:01:40,030 --> 00:01:40,690
+tools.
+
+26
+00:01:42,930 --> 00:01:48,600
+So let's then say here if this dot state dot weather dot.
+
+27
+00:01:49,490 --> 00:01:51,830
+Whether code exists.
+
+28
+00:01:51,830 --> 00:01:57,620
+So this array here, this can only exist if the whether does exist.
+
+29
+00:01:57,620 --> 00:02:03,380
+And so if that's the case, then let's render the whether component.
+
+30
+00:02:04,600 --> 00:02:09,490
+And as a prop, let's actually pass in the weather that we want to render.
+
+31
+00:02:11,160 --> 00:02:14,160
+And then also the location.
+
+32
+00:02:15,980 --> 00:02:21,170
+And here, of course, it's not whether this is how we would do it in normal functional components,
+
+33
+00:02:21,380 --> 00:02:25,720
+but here we need to do this dot state dot.
+
+34
+00:02:26,360 --> 00:02:32,990
+So of course I'm actually no longer used to writing code like this, so this is a bit of a change for
+
+35
+00:02:32,990 --> 00:02:33,800
+me as well.
+
+36
+00:02:34,730 --> 00:02:41,270
+So we're passing in weather and location, and so then we can receive these here as props.
+
+37
+00:02:42,250 --> 00:02:44,020
+But more about that later.
+
+38
+00:02:44,020 --> 00:02:49,180
+For now, let's see if our component actually gets rendered as soon as the data arrives.
+
+39
+00:02:49,450 --> 00:02:54,700
+And yeah, so in our component tree now we also have the weather.
+
+40
+00:02:55,830 --> 00:02:56,430
+Okay.
+
+41
+00:02:56,430 --> 00:02:59,130
+And so now let's take those props.
+
+42
+00:02:59,310 --> 00:03:05,790
+And in class components, there's actually no easy way of destructuring all the received props.
+
+43
+00:03:05,790 --> 00:03:08,910
+So we can only do that in each method separately.
+
+44
+00:03:09,060 --> 00:03:14,640
+But first of all, let's actually see how we receive props in a component like this.
+
+45
+00:03:14,640 --> 00:03:19,170
+And so let's log to the console, this dot props.
+
+46
+00:03:21,460 --> 00:03:25,630
+And so if we click here now, then we should get.
+
+47
+00:03:26,790 --> 00:03:28,010
+Yeah, here it is.
+
+48
+00:03:28,020 --> 00:03:32,670
+So here is the props object which contains the weather and the location.
+
+49
+00:03:33,300 --> 00:03:37,530
+And actually here we want the display location.
+
+50
+00:03:38,900 --> 00:03:40,490
+Just like this.
+
+51
+00:03:41,230 --> 00:03:46,360
+And now let's actually take all this data here out of the weather.
+
+52
+00:03:48,270 --> 00:03:55,680
+So let's destructure the props, which again, we have to do it manually inside of each method here.
+
+53
+00:03:55,680 --> 00:03:59,850
+So we cannot do that centrally like we do in function components.
+
+54
+00:04:00,750 --> 00:04:01,050
+Let's look.
+
+55
+00:04:01,050 --> 00:04:02,970
+Props, dot weather.
+
+56
+00:04:03,300 --> 00:04:06,930
+And so now let's take out all these things there.
+
+57
+00:04:09,230 --> 00:04:12,410
+So temperature underscore two.
+
+58
+00:04:13,600 --> 00:04:14,200
+M.
+
+59
+00:04:15,270 --> 00:04:15,960
+Max.
+
+60
+00:04:15,960 --> 00:04:17,820
+And let's also rename these.
+
+61
+00:04:17,820 --> 00:04:21,330
+So this is basically just the maximum temperature.
+
+62
+00:04:23,350 --> 00:04:25,780
+Okay, let's copy that.
+
+63
+00:04:28,800 --> 00:04:30,600
+We also have the min.
+
+64
+00:04:31,260 --> 00:04:33,570
+Which you will just call Min.
+
+65
+00:04:33,840 --> 00:04:38,970
+And here we are getting this error because of course, this is this dot props.
+
+66
+00:04:39,120 --> 00:04:40,470
+Not just props.
+
+67
+00:04:42,650 --> 00:04:51,290
+Let's take also the time and let's call this dates, and then let's also take the weather code.
+
+68
+00:04:51,290 --> 00:04:54,280
+And this one I will call codes.
+
+69
+00:04:54,290 --> 00:04:58,430
+So codes because it is multiple codes, not just one.
+
+70
+00:04:58,430 --> 00:05:01,580
+So these here are basically four arrays.
+
+71
+00:05:01,580 --> 00:05:07,790
+And so in order to render those, we need to, of course, loop over the arrays and then for each of
+
+72
+00:05:07,790 --> 00:05:11,540
+them, render one of these components right there.
+
+73
+00:05:11,780 --> 00:05:14,360
+So that's going to be another component.
+
+74
+00:05:15,500 --> 00:05:15,640
+No.
+
+75
+00:05:15,760 --> 00:05:16,400
+Okay.
+
+76
+00:05:16,640 --> 00:05:19,460
+And before we do that, let's also quickly.
+
+77
+00:05:20,340 --> 00:05:24,090
+Now include the location here in this H2.
+
+78
+00:05:25,130 --> 00:05:30,440
+And then let's finally do what I just said, which is to loop over these arrays.
+
+79
+00:05:31,470 --> 00:05:34,050
+So let's create this list here with.
+
+80
+00:05:34,610 --> 00:05:39,460
+The prop name or with the class name, actually, of whether.
+
+81
+00:05:39,470 --> 00:05:43,750
+And then we will just loop over one of these arrays, as always.
+
+82
+00:05:43,790 --> 00:05:50,000
+So in this case, since all of these four are actually arrays and we will need to pass the data for
+
+83
+00:05:50,000 --> 00:05:56,300
+each of them into the new component, it doesn't really matter over which one we loop, so let's just
+
+84
+00:05:56,300 --> 00:05:57,350
+choose the dates.
+
+85
+00:06:03,290 --> 00:06:06,540
+And then here we will create a day component.
+
+86
+00:06:06,560 --> 00:06:09,040
+And for now, I will not pass anything in.
+
+87
+00:06:09,050 --> 00:06:13,610
+And so instead I will just create that component here first.
+
+88
+00:06:13,640 --> 00:06:15,680
+So class day.
+
+89
+00:06:16,630 --> 00:06:17,620
+Extends.
+
+90
+00:06:18,410 --> 00:06:22,010
+React dot component.
+
+91
+00:06:23,370 --> 00:06:25,320
+And then I'll render method.
+
+92
+00:06:26,210 --> 00:06:32,990
+And then in their return one list item which will now just says de.
+
+93
+00:06:33,790 --> 00:06:35,500
+And so let's check that.
+
+94
+00:06:36,920 --> 00:06:37,120
+Here.
+
+95
+00:06:37,130 --> 00:06:39,830
+Let's get rid of that highlighting.
+
+96
+00:06:41,430 --> 00:06:42,840
+And let's wait for it.
+
+97
+00:06:44,910 --> 00:06:46,320
+And there we go.
+
+98
+00:06:46,350 --> 00:06:50,490
+So we have one day component for each of the days.
+
+99
+00:06:50,490 --> 00:06:53,860
+And so now let's pass in all the data that we need.
+
+100
+00:06:53,880 --> 00:07:01,470
+So basically we need the current maximum temperature, the minimum the date and the weather code for
+
+101
+00:07:01,470 --> 00:07:02,790
+each particular day.
+
+102
+00:07:05,070 --> 00:07:09,390
+So let's start with the date, which is just the current date.
+
+103
+00:07:09,750 --> 00:07:11,820
+Then the max temperature.
+
+104
+00:07:11,820 --> 00:07:20,010
+And so now let's come to the max array and then take the element at the current position that we are
+
+105
+00:07:20,010 --> 00:07:22,410
+looping over this date's array.
+
+106
+00:07:22,530 --> 00:07:28,380
+So here we also need to receive the current index and so then use that index here.
+
+107
+00:07:28,860 --> 00:07:32,040
+Now the same thing with the minimum temperature.
+
+108
+00:07:33,820 --> 00:07:35,380
+So min at.
+
+109
+00:07:36,260 --> 00:07:37,400
+I as well.
+
+110
+00:07:37,700 --> 00:07:41,120
+And finally, also for the code.
+
+111
+00:07:41,240 --> 00:07:44,510
+So codes dot add I.
+
+112
+00:07:45,490 --> 00:07:49,810
+And finally react also needs the key, as always.
+
+113
+00:07:49,840 --> 00:07:55,030
+And so here we can actually use the date itself, which is going to be a unique string.
+
+114
+00:07:55,890 --> 00:08:01,770
+So if we reload that now, well, actually, there's no need to test this because we're not yet doing
+
+115
+00:08:01,770 --> 00:08:03,990
+anything with that data here.
+
+116
+00:08:04,910 --> 00:08:10,040
+But so let's now do that and let's again start by destructuring our props.
+
+117
+00:08:11,640 --> 00:08:12,870
+So date.
+
+118
+00:08:12,900 --> 00:08:14,790
+Max Min.
+
+119
+00:08:16,240 --> 00:08:20,680
+Code is equals to this dot props.
+
+120
+00:08:21,280 --> 00:08:26,410
+And now it's time to actually use that data to render the weather.
+
+121
+00:08:27,230 --> 00:08:35,330
+So let's create a paragraph here first with the date and then here the minimum and the maximum temperatures.
+
+122
+00:08:35,600 --> 00:08:38,780
+So let's use the HTML entity for degrees.
+
+123
+00:08:40,200 --> 00:08:41,640
+Then a dash.
+
+124
+00:08:42,270 --> 00:08:47,250
+So another entity and then the max temperature.
+
+125
+00:08:51,340 --> 00:08:57,250
+Okay, so that's not the final version, but it should already show us something.
+
+126
+00:08:58,870 --> 00:08:59,770
+Nice.
+
+127
+00:08:59,980 --> 00:09:05,850
+So that's already the current weather, even though that's not really easy to understand yet.
+
+128
+00:09:05,860 --> 00:09:07,630
+So it needs some formatting.
+
+129
+00:09:07,630 --> 00:09:12,310
+For example here, this one should actually get the day class.
+
+130
+00:09:13,680 --> 00:09:16,020
+And also we want the weather code now.
+
+131
+00:09:16,350 --> 00:09:21,810
+And for that we will create a span and you will see why that is in a minute.
+
+132
+00:09:23,120 --> 00:09:27,740
+So let's just try this again so we can see what changes we need to do next.
+
+133
+00:09:31,240 --> 00:09:33,230
+And so here we are.
+
+134
+00:09:33,250 --> 00:09:36,930
+So this is our temperature here, which we should probably round.
+
+135
+00:09:36,940 --> 00:09:38,930
+So like this, it's a bit confusing.
+
+136
+00:09:38,950 --> 00:09:44,890
+Then we want to format these dates and we want to transform these strange looking weather codes here
+
+137
+00:09:44,890 --> 00:09:46,510
+into something meaningful.
+
+138
+00:09:46,510 --> 00:09:51,250
+And so that's where we have all those functions for that we included in the beginning.
+
+139
+00:09:52,230 --> 00:09:54,870
+But first, let's round these values here.
+
+140
+00:09:55,290 --> 00:09:59,890
+So let's round this one down with math dot floor.
+
+141
+00:09:59,910 --> 00:10:05,850
+In this one we can round it up with math dot ceil.
+
+142
+00:10:06,120 --> 00:10:08,310
+But let's not save this yet.
+
+143
+00:10:08,580 --> 00:10:11,820
+And so let's continue now with the code and the date.
+
+144
+00:10:12,630 --> 00:10:18,290
+So for that we have the get weather icon function, which just takes in the code.
+
+145
+00:10:18,300 --> 00:10:19,710
+So a code like this.
+
+146
+00:10:19,740 --> 00:10:25,740
+It will then return the corresponding emoji and we have the format day function.
+
+147
+00:10:25,860 --> 00:10:28,200
+So let's now use both of them.
+
+148
+00:10:29,310 --> 00:10:30,450
+So.
+
+149
+00:10:32,030 --> 00:10:37,700
+Here we use format de and here we use.
+
+150
+00:10:38,340 --> 00:10:39,900
+Get weather.
+
+151
+00:10:40,690 --> 00:10:41,290
+Aiken.
+
+152
+00:10:42,330 --> 00:10:44,730
+All right, So let's try again.
+
+153
+00:10:44,730 --> 00:10:46,530
+And it always takes some time.
+
+154
+00:10:46,860 --> 00:10:49,590
+But this time it was actually fast.
+
+155
+00:10:50,190 --> 00:10:52,890
+So that's looking nice already.
+
+156
+00:10:52,920 --> 00:10:57,720
+Let's just make the second one here bold, which I think I have.
+
+157
+00:10:58,630 --> 00:10:59,860
+In the demo.
+
+158
+00:11:01,340 --> 00:11:05,480
+And then closing it, of course, right after here.
+
+159
+00:11:05,660 --> 00:11:12,200
+And then what also have in the original demo application is that for the first weather here, that is
+
+160
+00:11:12,200 --> 00:11:16,570
+basically today I want to display actually today here.
+
+161
+00:11:16,580 --> 00:11:24,230
+And so now we need to pass in another prop here into the day component which tells us whether this is
+
+162
+00:11:24,230 --> 00:11:26,450
+actually the current day or not.
+
+163
+00:11:27,230 --> 00:11:30,410
+So let's say is today.
+
+164
+00:11:31,100 --> 00:11:36,870
+And then if it is today, it simply means that the index is equal to zero.
+
+165
+00:11:36,890 --> 00:11:41,540
+So basically that it's the very first day component that will be rendered.
+
+166
+00:11:42,860 --> 00:11:46,880
+And so then here we can say is today.
+
+167
+00:11:47,360 --> 00:11:51,680
+And of course, then first we need to also destructure that.
+
+168
+00:11:51,800 --> 00:12:01,580
+So if it is today, then here the output should just be today and otherwise format the date.
+
+169
+00:12:02,500 --> 00:12:04,510
+And this should be it.
+
+170
+00:12:05,830 --> 00:12:06,900
+So let's see.
+
+171
+00:12:06,910 --> 00:12:08,260
+And there it is.
+
+172
+00:12:09,010 --> 00:12:11,740
+Let's do London now.
+
+173
+00:12:13,770 --> 00:12:16,530
+And there, of course, it rains a lot more.
+
+174
+00:12:16,930 --> 00:12:19,960
+And so we have the exact same weather as we have here.
+
+175
+00:12:19,980 --> 00:12:22,830
+And our app now looks exactly the same.
+
+176
+00:12:23,610 --> 00:12:24,480
+Great.
+
+177
+00:12:25,580 --> 00:12:29,280
+So we did a lot of things here in this lecture.
+
+178
+00:12:29,300 --> 00:12:34,100
+Let's just quickly recap, even though it wasn't really complicated stuff.
+
+179
+00:12:34,310 --> 00:12:41,060
+So we just created this weather component and included it here in case that there is some weather data.
+
+180
+00:12:41,120 --> 00:12:45,630
+So basically in case that this property here exists on the weather.
+
+181
+00:12:45,650 --> 00:12:52,280
+So we pass in weather and location and then here we destructure at least the weather right inside the
+
+182
+00:12:52,280 --> 00:12:53,090
+render method.
+
+183
+00:12:53,090 --> 00:12:58,850
+And if we had more methods that also needed access to these props, then we would have to destructure
+
+184
+00:12:58,850 --> 00:13:00,680
+them again in there.
+
+185
+00:13:01,390 --> 00:13:09,040
+Now, also notice that this component here and also the day component, they both don't have the constructor
+
+186
+00:13:09,040 --> 00:13:09,670
+method.
+
+187
+00:13:09,670 --> 00:13:10,390
+Right?
+
+188
+00:13:10,390 --> 00:13:17,140
+And so the reason for that is that when we don't need to initialize state and we don't need to explicitly
+
+189
+00:13:17,140 --> 00:13:23,770
+bind the this keyword to some event handler methods, then we actually don't even need to implement
+
+190
+00:13:23,770 --> 00:13:27,040
+the constructor in the component in question.
+
+191
+00:13:27,310 --> 00:13:30,280
+And so that's why these two actually don't have it.
+
+192
+00:13:30,580 --> 00:13:37,210
+But anyway, here then we do pretty standard stuff, so we just loop over the dates array so that we
+
+193
+00:13:37,210 --> 00:13:41,020
+can render one day component for each of the dates.
+
+194
+00:13:41,170 --> 00:13:48,850
+So then we pass in the relevant date max and min temperatures weather code and letting it know whether
+
+195
+00:13:48,850 --> 00:13:51,490
+the current component is today or not.
+
+196
+00:13:51,580 --> 00:13:54,310
+And then here we simply display all that.
+
+197
+00:13:54,460 --> 00:13:58,870
+So these two here are basically just presentational components.
+
+198
+00:13:58,870 --> 00:14:05,720
+They don't own any state and they just display our weather data, which was exactly the goal that we
+
+199
+00:14:05,720 --> 00:14:07,310
+had for this lecture.

@@ -1,0 +1,483 @@
+1
+00:00:00,930 --> 00:00:08,940
+In this lecture, we're going to create a new custom hook called Use Local Storage State, which basically
+
+2
+00:00:08,940 --> 00:00:16,170
+will behave exactly like the use state hook, but where the state actually gets stored in local storage.
+
+3
+00:00:17,190 --> 00:00:22,320
+And so with that hook, we will then be able to replace this code right here.
+
+4
+00:00:22,560 --> 00:00:31,590
+So this state, which gets the initial value from use state or from local storage actually, plus this
+
+5
+00:00:31,590 --> 00:00:37,230
+part right here, which is responsible for storing the state in local storage.
+
+6
+00:00:38,480 --> 00:00:46,370
+Okay, so right in our source folder, let's create a new file for use local.
+
+7
+00:00:47,430 --> 00:00:49,470
+Storage state.
+
+8
+00:00:51,700 --> 00:00:56,670
+Okay, so export and then again use local.
+
+9
+00:00:58,200 --> 00:01:00,000
+Storage state.
+
+10
+00:01:00,660 --> 00:01:05,850
+Now, some people would probably just call this use local storage.
+
+11
+00:01:05,880 --> 00:01:12,210
+But I want to make it really clear that the idea of this hook is to work in the exact same way as the
+
+12
+00:01:12,210 --> 00:01:13,320
+use state hook.
+
+13
+00:01:14,140 --> 00:01:17,020
+So of course, here we're missing the function keyword.
+
+14
+00:01:19,540 --> 00:01:21,850
+But now let's come back here.
+
+15
+00:01:21,850 --> 00:01:28,690
+And in order for us to know how we should design our hook, let's first call it.
+
+16
+00:01:31,030 --> 00:01:36,700
+So as I mentioned, I want this hook to work basically the same way as the use state hook.
+
+17
+00:01:36,730 --> 00:01:40,240
+And so it should also return an array of the state.
+
+18
+00:01:40,420 --> 00:01:42,610
+So let's call it watched again.
+
+19
+00:01:42,820 --> 00:01:44,890
+And of a setter function.
+
+20
+00:01:44,890 --> 00:01:46,810
+So set watched.
+
+21
+00:01:48,920 --> 00:01:49,760
+And then.
+
+22
+00:01:50,890 --> 00:01:57,630
+Well use local storage state and again, make sure that it is correctly imported.
+
+23
+00:01:57,640 --> 00:02:05,050
+And then we want to pass in the initial state, which remember for the watched array was simply this
+
+24
+00:02:05,080 --> 00:02:06,070
+empty array.
+
+25
+00:02:07,190 --> 00:02:08,030
+Right.
+
+26
+00:02:08,300 --> 00:02:11,330
+And so let's now comment out this.
+
+27
+00:02:13,300 --> 00:02:17,920
+And actually before I will copy it and then comment it out.
+
+28
+00:02:19,210 --> 00:02:20,110
+All right.
+
+29
+00:02:21,090 --> 00:02:24,320
+So let's then come back here to our hook.
+
+30
+00:02:24,330 --> 00:02:28,260
+And so first of all, we can specify the parameter.
+
+31
+00:02:28,440 --> 00:02:32,400
+So the parameter here is basically the initial.
+
+32
+00:02:33,310 --> 00:02:34,000
+State.
+
+33
+00:02:35,960 --> 00:02:36,650
+Okay.
+
+34
+00:02:36,650 --> 00:02:42,080
+And now I will paste in what we just had there before, which is this state.
+
+35
+00:02:42,770 --> 00:02:45,590
+So let's import use state here.
+
+36
+00:02:46,690 --> 00:02:51,570
+Also import use state from React.
+
+37
+00:02:51,580 --> 00:02:58,960
+And now here I want to give these variables here some more generic names because remember that the idea
+
+38
+00:02:58,960 --> 00:03:03,690
+of this hook here is to easily reuse it in other projects.
+
+39
+00:03:03,730 --> 00:03:06,670
+So let's just call this value here and then.
+
+40
+00:03:07,510 --> 00:03:08,830
+Set value.
+
+41
+00:03:10,070 --> 00:03:10,820
+All right.
+
+42
+00:03:11,440 --> 00:03:12,040
+Now.
+
+43
+00:03:12,040 --> 00:03:18,700
+Right now, we simply have a custom hook which sets some state and reads the state from local storage.
+
+44
+00:03:18,700 --> 00:03:25,870
+But that's not super helpful yet because of course we also need to update the state in local storage.
+
+45
+00:03:26,230 --> 00:03:28,060
+So we also need to get.
+
+46
+00:03:28,710 --> 00:03:30,750
+This use effect right here.
+
+47
+00:03:30,930 --> 00:03:32,970
+So let's cut that from here.
+
+48
+00:03:34,180 --> 00:03:37,840
+And let's actually delete all of this as well.
+
+49
+00:03:39,330 --> 00:03:45,480
+And then let's paste this here and of course we will have to rename then these things.
+
+50
+00:03:45,480 --> 00:03:48,630
+So this is now no longer watched, but.
+
+51
+00:03:49,500 --> 00:03:52,380
+Just our generic value, right?
+
+52
+00:03:52,380 --> 00:03:56,430
+And then here we need to also import use effect.
+
+53
+00:03:56,760 --> 00:04:02,910
+Now, there's still one big problem here, which is that we have this key here hardcoded.
+
+54
+00:04:02,940 --> 00:04:09,720
+So of course, again, this needs to be reusable and generic and so therefore we need to allow the user
+
+55
+00:04:09,720 --> 00:04:11,970
+to pass in the name of the key.
+
+56
+00:04:13,150 --> 00:04:21,180
+So this is not 100% similar to use state any more, but this is really necessary.
+
+57
+00:04:21,190 --> 00:04:23,050
+Otherwise this cannot work.
+
+58
+00:04:24,670 --> 00:04:25,600
+All right.
+
+59
+00:04:26,880 --> 00:04:29,460
+Then here we also need to pass in the key.
+
+60
+00:04:31,950 --> 00:04:35,970
+Because our effect here depends on that variable.
+
+61
+00:04:37,240 --> 00:04:37,890
+Okay.
+
+62
+00:04:37,890 --> 00:04:39,720
+And now to return.
+
+63
+00:04:40,980 --> 00:04:45,150
+We simply return an array which has the value.
+
+64
+00:04:46,010 --> 00:04:48,200
+And set value.
+
+65
+00:04:48,200 --> 00:04:52,430
+And so then it works exactly like the use state hook.
+
+66
+00:04:52,700 --> 00:04:55,760
+So here we already destructured that result.
+
+67
+00:04:55,760 --> 00:05:01,100
+So that array again into the state variable and into the state setter.
+
+68
+00:05:02,530 --> 00:05:05,140
+Now, here we just need to pass in that key.
+
+69
+00:05:06,250 --> 00:05:08,090
+So that's what.
+
+70
+00:05:09,260 --> 00:05:18,050
+And as I save this actually immediately or watch list is back, which means that this custom hook is
+
+71
+00:05:18,050 --> 00:05:19,550
+fully working already.
+
+72
+00:05:20,300 --> 00:05:27,260
+But let's just go back and do some fixes here, because in the very beginning, if we had no local state
+
+73
+00:05:27,260 --> 00:05:28,220
+at all yet.
+
+74
+00:05:29,580 --> 00:05:31,110
+So let's simulate that.
+
+75
+00:05:33,660 --> 00:05:36,180
+Here in the application tab.
+
+76
+00:05:36,980 --> 00:05:38,540
+So let's remove this.
+
+77
+00:05:39,380 --> 00:05:41,510
+And so now this doesn't really exist.
+
+78
+00:05:41,540 --> 00:05:43,580
+And so then we should get some problem.
+
+79
+00:05:45,000 --> 00:05:52,590
+So here in the console now, of course, we have these problems because now our watch list is basically
+
+80
+00:05:52,590 --> 00:05:53,100
+null.
+
+81
+00:05:53,100 --> 00:05:57,990
+And so then our app somewhere is trying to call the map method on that.
+
+82
+00:05:57,990 --> 00:06:05,430
+And so we need to fix this and we do this by actually using now the initial state, which up until this
+
+83
+00:06:05,430 --> 00:06:08,490
+point we actually have used nowhere.
+
+84
+00:06:09,550 --> 00:06:13,150
+So we passed it in, but we haven't used it anywhere.
+
+85
+00:06:13,950 --> 00:06:21,240
+So what we need to do now is to check if this stored value here actually exists, because right now
+
+86
+00:06:21,240 --> 00:06:22,110
+it doesn't.
+
+87
+00:06:22,710 --> 00:06:24,450
+So we can easily check that.
+
+88
+00:06:25,980 --> 00:06:29,370
+So this will then be this null that we can see here.
+
+89
+00:06:30,730 --> 00:06:32,800
+So there it is.
+
+90
+00:06:33,070 --> 00:06:44,530
+And so we need to say here, basically, if there is a stored value, then return this and otherwise
+
+91
+00:06:44,830 --> 00:06:51,460
+then return the initial state, which in this case is going to be that empty array.
+
+92
+00:06:53,790 --> 00:06:55,320
+So let's get rid of this.
+
+93
+00:06:56,020 --> 00:06:57,400
+Let's reload.
+
+94
+00:06:57,400 --> 00:07:04,450
+And so then as we come back here to the application, we will see that indeed now we have an empty array.
+
+95
+00:07:04,480 --> 00:07:11,770
+So that's our initial state that was stored into local storage because of this use effect, Right.
+
+96
+00:07:11,800 --> 00:07:18,700
+So remember that whatever this function here returns will be the initial state value of this use state
+
+97
+00:07:18,700 --> 00:07:19,210
+hook.
+
+98
+00:07:19,210 --> 00:07:23,740
+And so then at the very beginning, value becomes this empty array.
+
+99
+00:07:23,740 --> 00:07:29,950
+And then as this effect here is executed after the rerender, that value is already that empty array.
+
+100
+00:07:29,950 --> 00:07:34,570
+And so that's what is then stored here into our local storage.
+
+101
+00:07:35,200 --> 00:07:35,890
+Okay.
+
+102
+00:07:36,010 --> 00:07:38,530
+So that's again it.
+
+103
+00:07:38,710 --> 00:07:45,730
+So what we did again was to take all the code that belonged together and placed it into yet another
+
+104
+00:07:45,730 --> 00:07:46,270
+hook.
+
+105
+00:07:46,270 --> 00:07:53,140
+And in this case, we made it so that this hook looks as close as possible to the use state hook.
+
+106
+00:07:53,140 --> 00:08:01,790
+So we also pass in some initial state and then we get back a state variable and a state variable and
+
+107
+00:08:01,790 --> 00:08:03,860
+the updater function as always.
+
+108
+00:08:03,860 --> 00:08:09,290
+But thanks to our special custom hook, now these work a bit different.
+
+109
+00:08:09,290 --> 00:08:14,960
+So this piece of state here can be read from local storage as the component first mounts.
+
+110
+00:08:14,990 --> 00:08:21,350
+While the setter function will not only update the state itself, but it will also update the local
+
+111
+00:08:21,350 --> 00:08:22,190
+storage.
+
+112
+00:08:23,130 --> 00:08:29,280
+And so we coded all this functionality right here in this reusable custom hook.
+
+113
+00:08:29,400 --> 00:08:32,310
+Let's just test this one more time.
+
+114
+00:08:35,260 --> 00:08:37,740
+So being sure that it works.
+
+115
+00:08:37,780 --> 00:08:39,400
+Yeah, but here it appears.
+
+116
+00:08:39,400 --> 00:08:42,340
+And as we reload, then there it is.
+
+117
+00:08:43,110 --> 00:08:48,030
+So great just to make sure that you understood what happened here.
+
+118
+00:08:48,030 --> 00:08:53,580
+And if you want, it might even be a good exercise to put all the code back and then do it all again
+
+119
+00:08:53,580 --> 00:08:54,480
+on your own.
+
+120
+00:08:54,660 --> 00:09:00,990
+But anyway, if you don't feel like doing that, then let's just move on to the next lecture where we
+
+121
+00:09:00,990 --> 00:09:03,810
+will create just one more custom hook.

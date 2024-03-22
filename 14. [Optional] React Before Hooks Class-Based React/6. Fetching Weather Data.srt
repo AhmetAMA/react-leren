@@ -1,0 +1,551 @@
+1
+00:00:00,890 --> 00:00:07,190
+So now it's time to fetch the weather data according to the user's input location.
+
+2
+00:00:08,140 --> 00:00:12,700
+And to do that, I actually already prepared much of the code.
+
+3
+00:00:12,910 --> 00:00:16,270
+So that's right here in starter Dot JS.
+
+4
+00:00:16,360 --> 00:00:18,400
+So let's copy all of this.
+
+5
+00:00:19,980 --> 00:00:24,010
+And close that and then just paste it in here.
+
+6
+00:00:24,030 --> 00:00:26,850
+So before our actual component.
+
+7
+00:00:27,150 --> 00:00:32,670
+So here we have basically a function that will get these weather icons here.
+
+8
+00:00:34,560 --> 00:00:37,020
+So the icons that we have right here.
+
+9
+00:00:38,580 --> 00:00:41,100
+So they will come from this function here.
+
+10
+00:00:42,560 --> 00:00:49,310
+Then we also have this function that converts a country code to an emoji just to make this look a little
+
+11
+00:00:49,310 --> 00:00:50,190
+bit nicer.
+
+12
+00:00:50,210 --> 00:00:57,830
+And then we have this function here for formatting a day so that one will be responsible to showing
+
+13
+00:00:57,860 --> 00:00:59,750
+the weekday here like this.
+
+14
+00:01:00,020 --> 00:01:07,400
+But what we're interested in now is this get weather location and in fact, all that we need is to grab
+
+15
+00:01:07,400 --> 00:01:08,630
+this code here.
+
+16
+00:01:08,630 --> 00:01:10,640
+So just this try catch.
+
+17
+00:01:11,660 --> 00:01:13,280
+And cut it from here.
+
+18
+00:01:13,280 --> 00:01:16,820
+And then this function itself, we actually don't need it.
+
+19
+00:01:17,030 --> 00:01:25,220
+So just grab that code there, then get rid of this temporary code and paste that here.
+
+20
+00:01:26,700 --> 00:01:32,040
+Now, immediately we see that we have a problem because we are using the await keyword.
+
+21
+00:01:32,040 --> 00:01:34,950
+And so this needs to be an async function.
+
+22
+00:01:34,950 --> 00:01:36,450
+But that's a.
+
+23
+00:01:37,180 --> 00:01:40,230
+But that's luckily for us, very easy.
+
+24
+00:01:40,240 --> 00:01:42,910
+So we can simply make these methods here.
+
+25
+00:01:43,120 --> 00:01:45,400
+Async methods like this.
+
+26
+00:01:46,480 --> 00:01:46,750
+No.
+
+27
+00:01:46,750 --> 00:01:47,230
+Right.
+
+28
+00:01:47,230 --> 00:01:48,550
+So that's looking better.
+
+29
+00:01:48,550 --> 00:01:54,520
+But we still have a problem here, which is that we are using this location here.
+
+30
+00:01:54,520 --> 00:01:58,080
+So trying to reference a variable that doesn't exist.
+
+31
+00:01:58,090 --> 00:02:04,930
+So instead here what we want is this dot state dot location.
+
+32
+00:02:06,910 --> 00:02:07,650
+Okay.
+
+33
+00:02:07,660 --> 00:02:10,210
+Now it looks like we have no more errors.
+
+34
+00:02:10,210 --> 00:02:13,510
+And so let's just quickly go through what this code here does.
+
+35
+00:02:14,140 --> 00:02:23,230
+So we have this API here at Open Metrocom so we can check that out and check out the documentation if
+
+36
+00:02:23,230 --> 00:02:23,970
+you want.
+
+37
+00:02:23,980 --> 00:02:27,460
+But it's basically just a free weather API.
+
+38
+00:02:27,820 --> 00:02:34,960
+So if you want you can check out the documentation here, but that's not necessary here right now to
+
+39
+00:02:34,960 --> 00:02:44,920
+use this API, we first need to basically geocode our location here into a latitude longitude, a country
+
+40
+00:02:44,920 --> 00:02:46,030
+and so on.
+
+41
+00:02:46,180 --> 00:02:52,570
+So first we do a fetch request to this endpoint right here with our location string, which will then
+
+42
+00:02:52,570 --> 00:02:57,010
+return basically all the information about that location.
+
+43
+00:02:57,010 --> 00:03:01,840
+So then here we are for now simply logging that to the console.
+
+44
+00:03:01,840 --> 00:03:07,750
+So the name of the location that came back and then converting the country to an emoji flag.
+
+45
+00:03:07,750 --> 00:03:14,120
+So just as I showed you before, and then once we have that information, we plug that here into this
+
+46
+00:03:14,150 --> 00:03:15,770
+URL endpoint.
+
+47
+00:03:16,160 --> 00:03:22,760
+So the latitude, longitude and timezone are things that this endpoint here needs.
+
+48
+00:03:22,760 --> 00:03:29,000
+And so that's why first we need to convert our location to basically this information.
+
+49
+00:03:29,000 --> 00:03:32,090
+And so then we get the data here.
+
+50
+00:03:32,090 --> 00:03:38,780
+And again for now, just log it to the console and in case there is any error, then that simply gets
+
+51
+00:03:38,810 --> 00:03:41,000
+logged also to the console.
+
+52
+00:03:41,150 --> 00:03:42,860
+So let's just reload.
+
+53
+00:03:42,950 --> 00:03:44,330
+Let's click here.
+
+54
+00:03:44,420 --> 00:03:48,200
+And so you see that it's actually working.
+
+55
+00:03:48,440 --> 00:03:50,510
+So let's see what we have here.
+
+56
+00:03:50,930 --> 00:03:52,970
+So first we have the geo data.
+
+57
+00:03:55,100 --> 00:04:02,000
+And so then in the results, we have basically different possible results where we then take the first
+
+58
+00:04:02,000 --> 00:04:02,560
+one.
+
+59
+00:04:02,570 --> 00:04:09,740
+So here we take data dot results and the first one, and from there we get all this information that
+
+60
+00:04:09,740 --> 00:04:10,730
+we need.
+
+61
+00:04:11,830 --> 00:04:12,430
+Okay.
+
+62
+00:04:12,460 --> 00:04:16,890
+Then we display the name that came back together with the emoji.
+
+63
+00:04:17,050 --> 00:04:20,080
+And finally, we have the weather data.
+
+64
+00:04:20,230 --> 00:04:23,110
+So that's weather data dot daily.
+
+65
+00:04:23,380 --> 00:04:28,390
+And so here we have all the information that we will need to then later display the weather.
+
+66
+00:04:29,140 --> 00:04:29,860
+Okay.
+
+67
+00:04:30,160 --> 00:04:35,890
+Now, one thing that I want to start by doing here is to create an is loading state.
+
+68
+00:04:35,920 --> 00:04:42,670
+So just like we have been doing before, we want to indicate the user that we are currently loading.
+
+69
+00:04:42,670 --> 00:04:45,490
+And so let's add a new piece of state.
+
+70
+00:04:46,050 --> 00:04:53,970
+And as I said previously here, we now do not create multiple state variables, but instead we add them
+
+71
+00:04:53,970 --> 00:04:55,710
+all to the same object.
+
+72
+00:04:56,060 --> 00:04:57,540
+And so here, let's say.
+
+73
+00:04:58,280 --> 00:05:02,090
+Is loading and we start at faults.
+
+74
+00:05:02,270 --> 00:05:10,730
+And then here in the beginning of this try block we simply do this dot set state.
+
+75
+00:05:11,800 --> 00:05:14,710
+And so now here comes a very important part.
+
+76
+00:05:14,740 --> 00:05:21,940
+So in this object that we pass to set state, we only need to specify the actual properties that we
+
+77
+00:05:21,940 --> 00:05:23,320
+want to change.
+
+78
+00:05:23,470 --> 00:05:32,440
+So here we just need to write isloading set to false and that will then not overwrite the location.
+
+79
+00:05:32,440 --> 00:05:36,640
+So it will really only update this isloading property.
+
+80
+00:05:36,640 --> 00:05:43,090
+And this is important to mention because with the use state hook, if we updated the state that is an
+
+81
+00:05:43,090 --> 00:05:43,690
+object.
+
+82
+00:05:43,720 --> 00:05:45,460
+We could not do this.
+
+83
+00:05:45,490 --> 00:05:49,410
+We would first have to destructure the current state.
+
+84
+00:05:49,420 --> 00:05:54,880
+So like this dot state for example, and then we would mutate this one property.
+
+85
+00:05:55,450 --> 00:05:58,990
+So basically we would have to return the entire object.
+
+86
+00:05:58,990 --> 00:06:01,630
+But here again, that's not necessary.
+
+87
+00:06:01,630 --> 00:06:05,380
+So just mutating this one property.
+
+88
+00:06:05,410 --> 00:06:07,630
+And of course, it needs to be true.
+
+89
+00:06:08,510 --> 00:06:12,980
+And then let's copy it and at the end set it to false.
+
+90
+00:06:13,870 --> 00:06:21,490
+So let's add a finally block here, which will run no matter if the code here threw an error or not.
+
+91
+00:06:21,490 --> 00:06:25,630
+And then down here in our render output.
+
+92
+00:06:26,580 --> 00:06:28,740
+Let's do some conditional rendering.
+
+93
+00:06:28,950 --> 00:06:39,450
+So this dot state dot is loading and maybe you start seeing that it is quite annoying to always type
+
+94
+00:06:39,450 --> 00:06:41,370
+that this dot state.
+
+95
+00:06:43,060 --> 00:06:47,440
+But anyway, that's why we no longer use these components in practice.
+
+96
+00:06:49,570 --> 00:06:49,710
+No.
+
+97
+00:06:49,750 --> 00:06:50,380
+Okay.
+
+98
+00:06:50,380 --> 00:06:55,030
+But so here we just render a paragraph with this predefined class name.
+
+99
+00:06:55,730 --> 00:06:57,620
+And so let's try that again.
+
+100
+00:06:59,090 --> 00:07:00,740
+And beautiful.
+
+101
+00:07:01,070 --> 00:07:08,810
+Now we just forgot to actually change it back to false and not leave it at true.
+
+102
+00:07:10,330 --> 00:07:12,250
+Yeah, that looks a lot better.
+
+103
+00:07:13,420 --> 00:07:14,090
+Okay.
+
+104
+00:07:14,090 --> 00:07:21,020
+And now next up, we also want to get this city here and, of course, the weather onto the user interface,
+
+105
+00:07:21,020 --> 00:07:24,470
+which means that we need two new pieces of state.
+
+106
+00:07:24,860 --> 00:07:32,210
+And by the way, we need to get also this new location into the UI, even though we already have it
+
+107
+00:07:32,210 --> 00:07:36,260
+here, because sometimes it's actually different.
+
+108
+00:07:36,440 --> 00:07:39,230
+So, for example, if I search for London.
+
+109
+00:07:40,050 --> 00:07:45,780
+So if I just type Lun, then our API will automatically assume that it is London.
+
+110
+00:07:45,790 --> 00:07:52,140
+So here we then want to display that the weather is indeed coming from London, not just from London.
+
+111
+00:07:52,770 --> 00:07:53,370
+Okay.
+
+112
+00:07:54,350 --> 00:07:56,750
+So let's, uh.
+
+113
+00:07:56,990 --> 00:07:57,710
+Come.
+
+114
+00:07:58,040 --> 00:07:58,970
+Where is that?
+
+115
+00:08:01,650 --> 00:08:03,450
+Uh, yeah, right here.
+
+116
+00:08:04,960 --> 00:08:07,750
+So let's call this one the display.
+
+117
+00:08:08,950 --> 00:08:15,670
+Location and it starts as an empty string and then also the weather.
+
+118
+00:08:16,270 --> 00:08:22,480
+And let's initialize this one as an empty object because it will later also become an object.
+
+119
+00:08:23,630 --> 00:08:24,380
+All right.
+
+120
+00:08:24,380 --> 00:08:28,730
+And so then here, instead of logging this stuff to the console.
+
+121
+00:08:29,120 --> 00:08:35,300
+Well, this one we actually only want to log we don't want this one in state, but we want this display
+
+122
+00:08:35,300 --> 00:08:35,930
+name.
+
+123
+00:08:35,930 --> 00:08:41,120
+And so let's now do this dot set state.
+
+124
+00:08:41,300 --> 00:08:44,660
+And then of course, this needs to be an object.
+
+125
+00:08:47,660 --> 00:08:53,630
+And then display location and the same thing for the weather.
+
+126
+00:08:54,080 --> 00:08:55,160
+So here.
+
+127
+00:08:56,870 --> 00:08:58,610
+This.setstate.
+
+128
+00:09:00,970 --> 00:09:02,170
+An object.
+
+129
+00:09:02,170 --> 00:09:03,730
+And then whether.
+
+130
+00:09:04,590 --> 00:09:05,730
+Just like this.
+
+131
+00:09:06,960 --> 00:09:07,160
+No.
+
+132
+00:09:07,200 --> 00:09:07,920
+Okay.
+
+133
+00:09:08,710 --> 00:09:10,510
+So let's reload here.
+
+134
+00:09:10,870 --> 00:09:13,060
+Let's come to our components.
+
+135
+00:09:14,440 --> 00:09:17,710
+So we have all the initial state right there.
+
+136
+00:09:18,440 --> 00:09:27,410
+Then let's get the weather and nice so we get our actual weather or display location and really all
+
+137
+00:09:27,410 --> 00:09:32,860
+the data that we need to nicely display and render our data here in the UI.
+
+138
+00:09:32,870 --> 00:09:37,040
+And so that's going to be the topic of our next lecture.

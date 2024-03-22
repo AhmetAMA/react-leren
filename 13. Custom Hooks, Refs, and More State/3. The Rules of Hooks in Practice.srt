@@ -1,0 +1,443 @@
+1
+00:00:00,870 --> 00:00:08,280
+Let's now actually break the main rule of hooks that we just learned about, which is that hooks can
+
+2
+00:00:08,280 --> 00:00:10,680
+only be called at the top level.
+
+3
+00:00:11,870 --> 00:00:19,010
+And here I still have the Use Popcorn app open both in VS code and in the browser.
+
+4
+00:00:19,010 --> 00:00:24,050
+And so that's because we will keep working on this app in this section.
+
+5
+00:00:24,050 --> 00:00:31,310
+And so if for some reason you closed the application, then make sure to just open it up again here.
+
+6
+00:00:32,060 --> 00:00:33,500
+Now, just like before.
+
+7
+00:00:33,530 --> 00:00:40,520
+I will again duplicate this file here and then I'm going to copy or actually, I'm going to call it
+
+8
+00:00:40,550 --> 00:00:41,780
+V two.
+
+9
+00:00:42,080 --> 00:00:49,640
+And so again, with this, we then can keep our previous versions of the code and let's actually get
+
+10
+00:00:49,640 --> 00:00:52,340
+rid now of this dummy data.
+
+11
+00:00:55,000 --> 00:00:59,350
+Just like this and also of this comment.
+
+12
+00:01:00,610 --> 00:01:03,190
+So cleaning up the code a little bit.
+
+13
+00:01:03,850 --> 00:01:11,380
+But now let's break some rules here, which, as I mentioned before, is always a great way of learning
+
+14
+00:01:11,380 --> 00:01:14,200
+why the rules exist in the first place.
+
+15
+00:01:15,050 --> 00:01:22,640
+So coming here to our movie Details component, this is where we will now write some code to break that
+
+16
+00:01:22,640 --> 00:01:23,210
+rule.
+
+17
+00:01:23,710 --> 00:01:28,660
+But let's actually start by again searching for some movies here.
+
+18
+00:01:31,500 --> 00:01:34,080
+And then I will open this one up.
+
+19
+00:01:35,690 --> 00:01:41,630
+So that we can check out the hooks that we actually have right now in this component.
+
+20
+00:01:41,990 --> 00:01:47,690
+So in the dev tools, check out the movie Details component, which is this one.
+
+21
+00:01:47,690 --> 00:01:53,930
+And so down here we have the list of hooks that we just saw in the previous lecture.
+
+22
+00:01:54,410 --> 00:01:56,000
+Let's make this even bigger.
+
+23
+00:01:56,090 --> 00:02:00,750
+And so indeed you see that the hooks are actually numbered.
+
+24
+00:02:00,770 --> 00:02:09,620
+So in fact, each of the hooks is identified by React by their order number, not some name or anything
+
+25
+00:02:09,620 --> 00:02:12,640
+like that, but really only the number.
+
+26
+00:02:12,650 --> 00:02:15,950
+So this first hook here is exactly this movie.
+
+27
+00:02:15,980 --> 00:02:20,010
+Then we have the Isloading State, which is currently false.
+
+28
+00:02:20,030 --> 00:02:22,880
+Then we have the user rating, which is this one.
+
+29
+00:02:22,880 --> 00:02:25,640
+And then we have our three effects.
+
+30
+00:02:26,650 --> 00:02:27,370
+All right.
+
+31
+00:02:27,370 --> 00:02:30,160
+So the three effects down here.
+
+32
+00:02:31,460 --> 00:02:32,150
+Okay.
+
+33
+00:02:32,240 --> 00:02:41,000
+Now, if we did call a hook outside of the top level, so basically, if we called a hook conditionally,
+
+34
+00:02:41,000 --> 00:02:44,900
+that would mess up this entire order here.
+
+35
+00:02:44,900 --> 00:02:48,200
+And so that's where we would then run into problems.
+
+36
+00:02:48,200 --> 00:02:51,260
+And that's exactly what we want to do now.
+
+37
+00:02:51,560 --> 00:02:54,830
+So let's experiment here and let's say if.
+
+38
+00:02:55,530 --> 00:02:59,850
+The IMDb rating is greater than eight.
+
+39
+00:03:00,720 --> 00:03:03,810
+Then we want to create two new variables.
+
+40
+00:03:04,440 --> 00:03:07,350
+Called is top and set.
+
+41
+00:03:07,380 --> 00:03:12,330
+Is top and then equals use state.
+
+42
+00:03:12,360 --> 00:03:13,980
+Set to true.
+
+43
+00:03:14,400 --> 00:03:22,110
+Now as we save this vs code will immediately complain and tell us that here we are not allowed to use
+
+44
+00:03:22,110 --> 00:03:24,720
+use state conditionally.
+
+45
+00:03:25,670 --> 00:03:30,350
+Okay, but we can actually disable this eslint rule.
+
+46
+00:03:30,470 --> 00:03:33,080
+So just write this comment here.
+
+47
+00:03:34,000 --> 00:03:36,310
+Eslint disable.
+
+48
+00:03:38,530 --> 00:03:39,970
+Just like this.
+
+49
+00:03:40,000 --> 00:03:42,190
+And then it should work.
+
+50
+00:03:42,340 --> 00:03:47,350
+I mean, at least here in VS code, we no longer get the problems that we had before.
+
+51
+00:03:48,410 --> 00:03:50,270
+So let's reload here.
+
+52
+00:03:50,660 --> 00:03:53,480
+Then Let's again search for Interstellar.
+
+53
+00:03:56,820 --> 00:03:57,660
+Okay.
+
+54
+00:03:57,660 --> 00:04:03,960
+And now I will first select this one here, which has a rating that is not greater than eight.
+
+55
+00:04:06,820 --> 00:04:10,150
+And well, here we already have some problem.
+
+56
+00:04:11,050 --> 00:04:12,100
+It's because.
+
+57
+00:04:13,030 --> 00:04:17,890
+This actually must be after the Destructuring.
+
+58
+00:04:19,230 --> 00:04:24,810
+So of course, at this point the IMDb rating variable is not even defined yet.
+
+59
+00:04:25,520 --> 00:04:27,530
+So let's just try that again.
+
+60
+00:04:31,120 --> 00:04:33,760
+And again, let's select this one here.
+
+61
+00:04:34,940 --> 00:04:38,450
+And so for now, we don't have any problems.
+
+62
+00:04:38,570 --> 00:04:44,450
+So let's again check out this state here or the list of hooks.
+
+63
+00:04:44,450 --> 00:04:47,390
+And so indeed, we have our six hooks.
+
+64
+00:04:47,990 --> 00:04:52,610
+So the same three states as before and the three effects.
+
+65
+00:04:52,940 --> 00:04:57,680
+So that's because the rating in this case is just 1.7.
+
+66
+00:04:57,680 --> 00:05:01,090
+And so then this use state here was not called.
+
+67
+00:05:01,100 --> 00:05:07,430
+But now let's check out what happens with Interstellar, where the rating is greater than eight.
+
+68
+00:05:08,220 --> 00:05:13,230
+So as we click well, our application immediately stops working.
+
+69
+00:05:13,590 --> 00:05:21,330
+So let's come here to the console and then react immediately tells us that it has detected a change
+
+70
+00:05:21,330 --> 00:05:24,730
+in the order of hooks called in this component.
+
+71
+00:05:24,750 --> 00:05:28,940
+So it tells us here actually some helpful information.
+
+72
+00:05:28,980 --> 00:05:35,490
+So in the previous render there were three usestate hooks and then the number four was an effect.
+
+73
+00:05:36,280 --> 00:05:41,530
+So this effect right here was hook number four before in the previous render.
+
+74
+00:05:41,530 --> 00:05:46,750
+And that previous render actually happened after we clicked on the movie.
+
+75
+00:05:46,750 --> 00:05:53,320
+But while the movie data had not been fetched yet, so at that point the IMDb rating here was still
+
+76
+00:05:53,320 --> 00:05:54,160
+undefined.
+
+77
+00:05:54,160 --> 00:05:57,640
+And so then this use state hook was not called.
+
+78
+00:05:57,640 --> 00:06:03,700
+But then as soon as the data arrived, the IMDb rating was indeed greater than eight.
+
+79
+00:06:03,700 --> 00:06:06,460
+And so then React called use state here.
+
+80
+00:06:06,460 --> 00:06:14,470
+And so then on the next render, the fourth hook was no longer the use effect but this state right here.
+
+81
+00:06:14,860 --> 00:06:21,700
+And so therefore now clearly we can see that our linked list of hooks is different.
+
+82
+00:06:21,700 --> 00:06:25,210
+And so React is not happy about that at all.
+
+83
+00:06:26,170 --> 00:06:31,690
+So let's, of course, turn this off and then it should go back to working.
+
+84
+00:06:32,930 --> 00:06:35,840
+So this one is pretty obvious that we shouldn't use it.
+
+85
+00:06:35,840 --> 00:06:42,320
+And also, as you saw, Eslint immediately warned us of that problem that we were creating.
+
+86
+00:06:42,500 --> 00:06:47,030
+However, in certain situations you might not have eslint installed.
+
+87
+00:06:47,030 --> 00:06:51,200
+And so in those cases, you really need to be very careful.
+
+88
+00:06:51,790 --> 00:06:56,680
+Now, one more subtle thing that can happen is an early return.
+
+89
+00:06:56,980 --> 00:06:58,390
+So if we say.
+
+90
+00:06:58,990 --> 00:07:09,100
+If IMDb rating greater than eight, then let's immediately return some JSX here.
+
+91
+00:07:09,370 --> 00:07:10,420
+Let's say.
+
+92
+00:07:11,280 --> 00:07:12,210
+Greatest.
+
+93
+00:07:13,000 --> 00:07:13,630
+Ever.
+
+94
+00:07:15,360 --> 00:07:19,590
+And so if we do the same thing as before Interstellar.
+
+95
+00:07:21,260 --> 00:07:29,180
+Then here the IMDb rating is less than eight, but as we click here, then we run into exactly the same
+
+96
+00:07:29,180 --> 00:07:29,900
+problem.
+
+97
+00:07:30,890 --> 00:07:31,250
+Now.
+
+98
+00:07:31,250 --> 00:07:36,200
+This time, the error message doesn't contain the previous list of hooks.
+
+99
+00:07:36,200 --> 00:07:41,510
+But still, it tells us that this time fewer hooks were actually rendered.
+
+100
+00:07:41,510 --> 00:07:45,530
+And so that's because right now we only have the movie.
+
+101
+00:07:45,650 --> 00:07:53,690
+And so these three states, but then the effects, so the three effects that we had, they are now no
+
+102
+00:07:53,690 --> 00:07:54,850
+longer created.
+
+103
+00:07:54,860 --> 00:07:58,790
+So instead of the six hooks, we now only have three hooks.
+
+104
+00:07:58,790 --> 00:08:05,480
+And so therefore this again creates a big problem because like this, we cannot guarantee that all the
+
+105
+00:08:05,480 --> 00:08:08,480
+hooks are always called in the same order.
+
+106
+00:08:08,660 --> 00:08:10,580
+So be very careful of that.
+
+107
+00:08:10,580 --> 00:08:16,460
+And so now after this small experiment, you know what these error messages here mean.
+
+108
+00:08:16,460 --> 00:08:20,540
+And so hopefully you enjoyed this small experiment.
+
+109
+00:08:20,840 --> 00:08:22,490
+Let's just turn this off.
+
+110
+00:08:22,490 --> 00:08:29,570
+And also let's remove this line right here, because of course, we want Eslint to work so that it can
+
+111
+00:08:29,570 --> 00:08:33,450
+warn us before we create a bug like this.

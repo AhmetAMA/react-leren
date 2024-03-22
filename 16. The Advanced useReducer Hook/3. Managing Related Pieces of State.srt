@@ -1,0 +1,683 @@
+1
+00:00:00,870 --> 00:00:02,130
+Welcome back.
+
+2
+00:00:02,130 --> 00:00:08,760
+So let's now also incorporate the step state into the reducer that we have been building.
+
+3
+00:00:10,190 --> 00:00:15,920
+So usually we use reducers when we have some more complex state to manage.
+
+4
+00:00:15,920 --> 00:00:20,130
+So not just one single value as we have been doing here.
+
+5
+00:00:20,150 --> 00:00:27,650
+So what this means is that usually the state is going to be an object and not just one single value.
+
+6
+00:00:28,470 --> 00:00:31,800
+So let's now comment out this here as well.
+
+7
+00:00:31,800 --> 00:00:37,140
+And then let's define an object called initial state.
+
+8
+00:00:39,250 --> 00:00:41,590
+And this again, is a pretty common name.
+
+9
+00:00:41,590 --> 00:00:46,450
+And so here, let's define our count as zero.
+
+10
+00:00:46,480 --> 00:00:49,570
+And then the step as one.
+
+11
+00:00:49,690 --> 00:00:54,070
+So exactly the same default values that we had before.
+
+12
+00:00:54,280 --> 00:01:01,330
+And then here we will now pass in that initial state instead of just the zero.
+
+13
+00:01:01,360 --> 00:01:09,160
+And then here now, our state will no longer be called count, but well, let's call it just state.
+
+14
+00:01:09,460 --> 00:01:14,020
+And we could also immediately destructure that state object there.
+
+15
+00:01:14,350 --> 00:01:15,880
+But let's do that here.
+
+16
+00:01:16,920 --> 00:01:18,420
+So let's say count.
+
+17
+00:01:19,230 --> 00:01:20,220
+And step.
+
+18
+00:01:21,920 --> 00:01:24,050
+Restructuring from state.
+
+19
+00:01:26,200 --> 00:01:27,670
+And so now again, we have.
+
+20
+00:01:29,160 --> 00:01:34,170
+These function here that we had before, which now no longer exist.
+
+21
+00:01:35,740 --> 00:01:36,640
+Okay.
+
+22
+00:01:36,820 --> 00:01:41,650
+And now also what we have here is not going to make a lot of sense anymore.
+
+23
+00:01:41,650 --> 00:01:45,880
+And so let's just go back for now to our console dot log here.
+
+24
+00:01:47,290 --> 00:01:49,180
+Also don't need this anymore.
+
+25
+00:01:49,540 --> 00:01:56,020
+And so let's just quickly reload and click on one of these buttons here, which will then dispatch an
+
+26
+00:01:56,020 --> 00:01:56,710
+action.
+
+27
+00:01:57,040 --> 00:02:01,180
+And here we have our first problem for some reason.
+
+28
+00:02:02,130 --> 00:02:06,870
+Uh, maybe we actually need to return something from there, but let's just try that again.
+
+29
+00:02:07,550 --> 00:02:07,910
+Yeah.
+
+30
+00:02:07,910 --> 00:02:09,320
+So that doesn't really work.
+
+31
+00:02:09,320 --> 00:02:13,790
+So let's just try to return some object from there.
+
+32
+00:02:17,330 --> 00:02:19,880
+So you maybe don't have to even do this.
+
+33
+00:02:21,000 --> 00:02:24,110
+So this is just to avoid that error.
+
+34
+00:02:24,120 --> 00:02:26,220
+And so, yeah, now that works.
+
+35
+00:02:26,370 --> 00:02:32,130
+So all I wanted to do here is to now show you the state and the action again.
+
+36
+00:02:32,370 --> 00:02:39,990
+So the state that we now get in the reducer is the same as this initial step that we passed into use
+
+37
+00:02:39,990 --> 00:02:40,850
+reducer.
+
+38
+00:02:40,860 --> 00:02:47,340
+And so then we need to return an object with the same shape, so which also contains the count and the
+
+39
+00:02:47,340 --> 00:02:47,940
+step.
+
+40
+00:02:48,660 --> 00:02:53,070
+And so let's now adapt our reducer function here for that.
+
+41
+00:02:54,750 --> 00:03:02,550
+Now, actually, it is very common to use a switch statement inside of a reducer function like this.
+
+42
+00:03:04,420 --> 00:03:08,740
+So instead of multiple ifs, we just do usually a switch.
+
+43
+00:03:09,880 --> 00:03:15,370
+At the value that we want to evaluate is of course the action dot type.
+
+44
+00:03:16,700 --> 00:03:18,500
+And then we just do one case.
+
+45
+00:03:19,050 --> 00:03:22,740
+For, well, all the possible cases that we can have.
+
+46
+00:03:26,450 --> 00:03:32,180
+So what do we want to return in the case that the action type is decrease?
+
+47
+00:03:32,760 --> 00:03:37,350
+Well before we were just returning the state plus one.
+
+48
+00:03:38,350 --> 00:03:40,840
+But now we can no longer do that.
+
+49
+00:03:40,870 --> 00:03:45,580
+So now we need to return an object with this shape, remember?
+
+50
+00:03:45,610 --> 00:03:47,380
+So how do we do that?
+
+51
+00:03:47,470 --> 00:03:52,960
+Well, first of all, let's set the count based on.
+
+52
+00:03:54,150 --> 00:03:54,810
+State.
+
+53
+00:03:55,890 --> 00:03:58,470
+Dot count plus one.
+
+54
+00:03:58,590 --> 00:04:01,050
+And then we also need to set the step.
+
+55
+00:04:01,050 --> 00:04:08,400
+But instead of writing it out explicitly, what we do is to spread out the entire current state object
+
+56
+00:04:08,400 --> 00:04:08,910
+here.
+
+57
+00:04:08,910 --> 00:04:13,800
+And then with this part here, we basically overwrite the count property there.
+
+58
+00:04:13,800 --> 00:04:19,470
+And so this is exactly the way that we have been updating objects in the past as well.
+
+59
+00:04:19,470 --> 00:04:27,330
+So basically creating a brand new object which contains all the information of the previous object and
+
+60
+00:04:27,330 --> 00:04:29,670
+then whatever we want to overwrite.
+
+61
+00:04:31,220 --> 00:04:35,900
+Now here I'm getting this warning because we need also a default.
+
+62
+00:04:35,900 --> 00:04:38,180
+And so here in case.
+
+63
+00:04:38,810 --> 00:04:42,960
+We basically get an action that is not recognized by our switch.
+
+64
+00:04:42,980 --> 00:04:46,970
+We just throw a new error which says.
+
+65
+00:04:48,200 --> 00:04:48,980
+Unknown.
+
+66
+00:04:50,110 --> 00:04:50,740
+Action.
+
+67
+00:04:52,230 --> 00:04:54,840
+Well, this is still not happy, but.
+
+68
+00:04:55,410 --> 00:04:57,510
+Well, let's just keep going here for now.
+
+69
+00:04:58,690 --> 00:05:00,940
+So don't really see what the problem there is.
+
+70
+00:05:03,170 --> 00:05:05,320
+So let's do the other case as well.
+
+71
+00:05:05,330 --> 00:05:11,300
+So to increment is minus one and the error is still not disappearing.
+
+72
+00:05:11,600 --> 00:05:14,870
+But the reason for that is that here we are already returning.
+
+73
+00:05:14,870 --> 00:05:18,230
+And so then this code here would be unreachable.
+
+74
+00:05:20,060 --> 00:05:20,570
+Okay.
+
+75
+00:05:20,570 --> 00:05:25,160
+And finally, we have this other set count case.
+
+76
+00:05:26,220 --> 00:05:33,390
+So here I'm basically just converting the code that we already had into a switch statement and also
+
+77
+00:05:33,390 --> 00:05:38,670
+to returning an object with the shape again of count and step.
+
+78
+00:05:40,480 --> 00:05:41,290
+All right.
+
+79
+00:05:41,290 --> 00:05:50,710
+So spreading out the state and then the count will be equal to action dot payload.
+
+80
+00:05:52,230 --> 00:05:53,130
+Okay.
+
+81
+00:05:53,310 --> 00:05:58,320
+So for now, this is going to work exactly the same way as before.
+
+82
+00:05:59,960 --> 00:06:02,840
+Except that I did switch here.
+
+83
+00:06:03,170 --> 00:06:04,190
+So here it is.
+
+84
+00:06:04,190 --> 00:06:04,990
+The plus.
+
+85
+00:06:05,000 --> 00:06:07,280
+And here the minus.
+
+86
+00:06:08,650 --> 00:06:09,660
+So let's.
+
+87
+00:06:09,670 --> 00:06:11,020
+Yeah, now that works.
+
+88
+00:06:11,020 --> 00:06:14,560
+And if I type here, then that also updates the state.
+
+89
+00:06:15,210 --> 00:06:16,110
+Great.
+
+90
+00:06:16,140 --> 00:06:21,030
+And now let's actually do the same thing here for the step.
+
+91
+00:06:22,340 --> 00:06:27,260
+So here we now also want to dispatch an action.
+
+92
+00:06:30,410 --> 00:06:31,580
+With the type.
+
+93
+00:06:32,720 --> 00:06:33,410
+Of.
+
+94
+00:06:33,940 --> 00:06:40,180
+Set step right and the payload is going to be exactly the same.
+
+95
+00:06:42,140 --> 00:06:44,480
+So again, we convert to a number.
+
+96
+00:06:44,510 --> 00:06:45,890
+E dot target.
+
+97
+00:06:46,610 --> 00:06:48,110
+But value.
+
+98
+00:06:49,520 --> 00:06:51,770
+Okay, so set step.
+
+99
+00:06:51,770 --> 00:06:55,910
+And so now here we need to then add a new case for that.
+
+100
+00:07:00,210 --> 00:07:09,030
+And so in this case, we want to return the entire state and set the step this time.
+
+101
+00:07:09,630 --> 00:07:10,920
+To action.
+
+102
+00:07:10,920 --> 00:07:12,900
+Dot payload.
+
+103
+00:07:14,430 --> 00:07:16,470
+So that's state.
+
+104
+00:07:17,680 --> 00:07:19,060
+Let's reload.
+
+105
+00:07:19,820 --> 00:07:20,630
+And.
+
+106
+00:07:21,370 --> 00:07:23,200
+Yeah, beautiful.
+
+107
+00:07:23,230 --> 00:07:24,350
+That works.
+
+108
+00:07:24,370 --> 00:07:31,000
+And so now the only thing that we have to do is to actually take this step here into account when we
+
+109
+00:07:31,000 --> 00:07:33,670
+increase and decrease here.
+
+110
+00:07:34,430 --> 00:07:36,320
+So that's easy enough.
+
+111
+00:07:36,560 --> 00:07:40,310
+So that's just state dot step.
+
+112
+00:07:42,970 --> 00:07:45,610
+And then here, of course, the same thing.
+
+113
+00:07:47,760 --> 00:07:50,610
+And so now this should become two.
+
+114
+00:07:50,640 --> 00:07:54,330
+Yes, eight and so on and so forth.
+
+115
+00:07:54,670 --> 00:07:55,160
+Now.
+
+116
+00:07:55,170 --> 00:07:55,920
+Okay.
+
+117
+00:07:57,110 --> 00:07:59,390
+Let's just get rid of this here.
+
+118
+00:07:59,540 --> 00:08:06,110
+And, well, up until this point, maybe all of this still doesn't seem so interesting.
+
+119
+00:08:06,110 --> 00:08:12,700
+So everything that we did so far could easily have been achieved with the use state hooks as well.
+
+120
+00:08:12,710 --> 00:08:13,660
+Right.
+
+121
+00:08:13,670 --> 00:08:16,550
+But now let's actually do something different.
+
+122
+00:08:17,520 --> 00:08:19,520
+I'll also get rid of these here.
+
+123
+00:08:23,770 --> 00:08:24,940
+Okay.
+
+124
+00:08:27,790 --> 00:08:31,340
+So as I was saying, let's do something different.
+
+125
+00:08:31,360 --> 00:08:34,240
+So which is this reset function?
+
+126
+00:08:34,390 --> 00:08:41,600
+So what we did before was to simply take the two state setters and then call both of them.
+
+127
+00:08:41,620 --> 00:08:47,740
+But now we can do one big state transition, which does all that at the same time.
+
+128
+00:08:48,660 --> 00:08:53,980
+And so that's going to be one of the huge advantages of the use reducer hook.
+
+129
+00:08:54,000 --> 00:08:59,550
+So especially, of course, if we had even more states than just these two.
+
+130
+00:09:00,510 --> 00:09:02,820
+So let me show what I mean in practice.
+
+131
+00:09:02,940 --> 00:09:09,450
+So here we can just dispatch an action with the type, for example, reset.
+
+132
+00:09:09,480 --> 00:09:16,590
+And here we don't need to pass any data into the reducer and therefore we don't need to specify the
+
+133
+00:09:16,590 --> 00:09:22,530
+payload because we can do that right inside the reducer function.
+
+134
+00:09:24,260 --> 00:09:27,200
+So let's then add that case here as well.
+
+135
+00:09:27,560 --> 00:09:28,850
+So reset.
+
+136
+00:09:29,840 --> 00:09:39,320
+And so then here all we need to do is to return a new object where the count is reset to zero and the
+
+137
+00:09:39,320 --> 00:09:41,630
+step is reset to one.
+
+138
+00:09:41,630 --> 00:09:48,710
+And so here we can essentially update these two pieces of state at the same time and we can do even
+
+139
+00:09:48,710 --> 00:09:49,310
+better.
+
+140
+00:09:49,340 --> 00:09:51,140
+Let's cut this from here.
+
+141
+00:09:53,130 --> 00:09:55,250
+So this can actually live outside.
+
+142
+00:09:55,260 --> 00:09:57,210
+And then here we can just return.
+
+143
+00:09:58,100 --> 00:09:59,600
+The initial state.
+
+144
+00:10:00,900 --> 00:10:01,530
+All right.
+
+145
+00:10:01,530 --> 00:10:06,290
+And so if I click on Reset, then bam, there we go.
+
+146
+00:10:06,300 --> 00:10:11,160
+So our entire state just got reset to its initial state.
+
+147
+00:10:11,160 --> 00:10:16,290
+So all in one go, just with one dispatch right here.
+
+148
+00:10:17,340 --> 00:10:25,260
+So all we're doing here actually in these event handlers is to just dispatch and so we could just move
+
+149
+00:10:25,260 --> 00:10:28,910
+all of these dispatches in here right into the JS X.
+
+150
+00:10:28,950 --> 00:10:31,290
+So that would actually make a lot of sense.
+
+151
+00:10:31,290 --> 00:10:33,080
+But I won't do that right now.
+
+152
+00:10:33,090 --> 00:10:39,240
+But yeah, we could just replace all these event handlers that we have here because all of them, all
+
+153
+00:10:39,240 --> 00:10:43,350
+they do is to dispatch actions, the logic itself.
+
+154
+00:10:43,500 --> 00:10:50,880
+So the real logic of what they do is now all centralized in this one reducer function.
+
+155
+00:10:50,880 --> 00:10:56,130
+And so that is the beauty and the big advantage of the reducer function.
+
+156
+00:10:56,370 --> 00:11:04,500
+So basically we have all the possible state updates that can happen in our application in this one central
+
+157
+00:11:04,500 --> 00:11:05,400
+place here.
+
+158
+00:11:05,400 --> 00:11:12,060
+And so this makes it really easy to understand the entire application without having to go into all
+
+159
+00:11:12,060 --> 00:11:15,330
+the different components and all the different functions.
+
+160
+00:11:15,660 --> 00:11:22,330
+I mean, of course, here we only have one component and it's all really simple, but maybe you can
+
+161
+00:11:22,330 --> 00:11:26,560
+start seeing how nice this can be in a bigger application.
+
+162
+00:11:26,740 --> 00:11:33,670
+And in fact we will see that in action once we start building the big application for this section.
+
+163
+00:11:33,670 --> 00:11:37,750
+But all these advantages will become more clear later on.
+
+164
+00:11:37,750 --> 00:11:43,810
+For now, in these two lectures, I just wanted to focus on the mechanics of the usereducer hooks,
+
+165
+00:11:43,810 --> 00:11:49,240
+so really how it works and especially how this reducer function here works.
+
+166
+00:11:49,240 --> 00:11:56,800
+But I know that this all looks very confusing right now because I perfectly remember how I felt when
+
+167
+00:11:56,800 --> 00:12:00,970
+I first learned about this quite complex hook.
+
+168
+00:12:01,060 --> 00:12:08,320
+But since we are in the advanced React part now it's time to learn about these more difficult things.
+
+169
+00:12:08,790 --> 00:12:15,450
+But anyway, in the next lecture we will have some nice diagrams that will really illustrate the flow
+
+170
+00:12:15,450 --> 00:12:17,820
+of the data and of the state here.
+
+171
+00:12:17,820 --> 00:12:20,160
+And so stay tuned for that.

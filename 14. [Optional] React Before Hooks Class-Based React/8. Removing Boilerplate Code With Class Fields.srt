@@ -1,0 +1,199 @@
+1
+00:00:00,990 --> 00:00:07,470
+Let's now remove some of the boilerplate code that we have been writing using the modern JavaScript
+
+2
+00:00:07,470 --> 00:00:09,330
+class fields feature.
+
+3
+00:00:10,690 --> 00:00:15,970
+But before we do that, let's quickly duplicate our file again and.
+
+4
+00:00:17,090 --> 00:00:23,780
+Rename this one to version one, so then you can keep both versions of doing things.
+
+5
+00:00:24,990 --> 00:00:31,470
+So, yeah, let's come back here to our app component and now use the class fields feature.
+
+6
+00:00:31,470 --> 00:00:39,540
+So in JavaScript with class fields, we can basically declare properties directly on a component instance,
+
+7
+00:00:39,540 --> 00:00:41,910
+right in the class definition.
+
+8
+00:00:41,910 --> 00:00:44,520
+So outside of any method.
+
+9
+00:00:45,200 --> 00:00:52,620
+So basically what we can do is taking this and pasting it right here.
+
+10
+00:00:52,640 --> 00:00:57,650
+And so with this, we can then completely remove this thing from here.
+
+11
+00:00:58,290 --> 00:01:06,240
+And notice that here we do not need any this keyword because this will basically simply be placed on
+
+12
+00:01:06,240 --> 00:01:07,710
+the component instance.
+
+13
+00:01:07,710 --> 00:01:14,750
+And since the this keyword is also the component instance, well then that's really not needed anymore.
+
+14
+00:01:14,760 --> 00:01:21,810
+So we just basically take everything that we want to declare on a class instance and place that here
+
+15
+00:01:21,810 --> 00:01:22,800
+outside.
+
+16
+00:01:22,980 --> 00:01:27,960
+So again, that's a JavaScript feature, not a React feature.
+
+17
+00:01:27,960 --> 00:01:34,350
+And so if we now save this and then run our code again here, then you see that it still works.
+
+18
+00:01:34,350 --> 00:01:36,780
+So it's doing the exact same thing.
+
+19
+00:01:36,780 --> 00:01:44,310
+So that's already a huge win, but we can do even better because we can also define methods as class
+
+20
+00:01:44,310 --> 00:01:45,780
+fields as well.
+
+21
+00:01:46,080 --> 00:01:52,590
+So instead of writing a method in the traditional way, we can instead do this.
+
+22
+00:01:52,620 --> 00:01:54,690
+So let's comment out this part.
+
+23
+00:01:54,690 --> 00:01:56,370
+And so now we can do.
+
+24
+00:01:58,640 --> 00:02:05,420
+Fetch weather like this and then we can simply assign a function value to this variable.
+
+25
+00:02:05,420 --> 00:02:10,250
+And the great thing about this is that we can now use an arrow function here.
+
+26
+00:02:10,250 --> 00:02:17,190
+And the great advantage of that is that arrow functions do not lose their binding to the disk keyword.
+
+27
+00:02:17,210 --> 00:02:23,360
+So arrow functions don't have their own disk keyword and instead they get access to the surrounding
+
+28
+00:02:23,360 --> 00:02:27,380
+one and therefore we then no longer will have to do this.
+
+29
+00:02:28,270 --> 00:02:29,170
+So what.
+
+30
+00:02:29,320 --> 00:02:34,240
+As I type async and then again an error function.
+
+31
+00:02:36,250 --> 00:02:40,030
+And I'm missing just the curly braces here.
+
+32
+00:02:41,090 --> 00:02:42,920
+But that should be enough.
+
+33
+00:02:42,920 --> 00:02:45,440
+And so now I can delete this.
+
+34
+00:02:46,520 --> 00:02:48,380
+So let's try that.
+
+35
+00:02:48,920 --> 00:02:52,160
+And yeah, it still works exactly the same.
+
+36
+00:02:52,160 --> 00:02:54,740
+And so now we no longer need this.
+
+37
+00:02:54,920 --> 00:02:59,510
+So Eslint even tells us that this is now a useless constructor.
+
+38
+00:03:00,620 --> 00:03:05,540
+So with this, we got rid of all the boilerplate code that we had.
+
+39
+00:03:05,540 --> 00:03:12,440
+And the biggest win by far is this one here so that we no longer need to manually bind the this keyword
+
+40
+00:03:12,440 --> 00:03:14,470
+to our event handler methods.
+
+41
+00:03:14,480 --> 00:03:18,710
+So now these methods are basically defined as a normal variable.
+
+42
+00:03:18,710 --> 00:03:25,010
+And so then using the async function, that problem that we had with the this keyword simply disappears.
+
+43
+00:03:25,740 --> 00:03:27,980
+Now, this function here is really huge.
+
+44
+00:03:27,990 --> 00:03:35,760
+But unfortunately for us with class components, there is no easy way of extracting it into, well,
+
+45
+00:03:35,760 --> 00:03:37,550
+somewhere else basically.
+
+46
+00:03:37,560 --> 00:03:44,400
+So we can not just remove this function from here like we could do with custom hooks in function components.
+
+47
+00:03:44,400 --> 00:03:51,480
+So if we have a lot of long methods like this, then our components can get really annoyingly long.
+
+48
+00:03:51,480 --> 00:03:54,300
+But again, there is not really a way around this.
+
+49
+00:03:54,300 --> 00:04:01,230
+But I still wanted to mention this here just so you could see another great advantage of functional
+
+50
+00:04:01,230 --> 00:04:02,130
+components.

@@ -1,0 +1,703 @@
+1
+00:00:00,870 --> 00:00:06,630
+And as our first custom hook, let's start with a hook called Use Movies.
+
+2
+00:00:07,710 --> 00:00:13,980
+So there are basically two strategies to decide if we want to create a new custom hook.
+
+3
+00:00:14,010 --> 00:00:20,000
+So the first one is that we want to reuse some part of our non-visual logic.
+
+4
+00:00:20,010 --> 00:00:23,100
+So just as we learned in the previous lecture.
+
+5
+00:00:23,100 --> 00:00:31,140
+And the second factor might be that we simply want to extract a huge part of our component out into
+
+6
+00:00:31,170 --> 00:00:32,380
+some custom hook.
+
+7
+00:00:32,400 --> 00:00:36,300
+And so that's actually what we will do in this lecture.
+
+8
+00:00:36,510 --> 00:00:44,760
+So we will take this use effect here, which fetches our movie data and we will extract it into a hook
+
+9
+00:00:44,760 --> 00:00:46,420
+called Use Movies.
+
+10
+00:00:46,440 --> 00:00:51,480
+And so then we get rid of all of this code here in our component.
+
+11
+00:00:51,480 --> 00:00:57,060
+And of course, if we wanted, we could then later reuse this hook in some other project.
+
+12
+00:00:58,310 --> 00:01:05,330
+Okay, so in this lecture I will show you how we can extract all the stateful logic that belongs together
+
+13
+00:01:05,330 --> 00:01:09,230
+into a nice and well packaged custom hook.
+
+14
+00:01:09,500 --> 00:01:11,210
+So let's do that.
+
+15
+00:01:11,540 --> 00:01:15,470
+And actually, for that, I will create a brand new file.
+
+16
+00:01:16,570 --> 00:01:21,910
+Here in our source and I will then call it use movies.
+
+17
+00:01:21,910 --> 00:01:23,350
+Dot JS.
+
+18
+00:01:26,160 --> 00:01:26,820
+Okay.
+
+19
+00:01:26,820 --> 00:01:30,120
+And from here, we will export a function.
+
+20
+00:01:30,980 --> 00:01:34,040
+Which is going to be our custom hook called.
+
+21
+00:01:34,070 --> 00:01:34,970
+Exactly.
+
+22
+00:01:34,970 --> 00:01:37,330
+Use movies.
+
+23
+00:01:38,630 --> 00:01:39,350
+Okay.
+
+24
+00:01:39,350 --> 00:01:44,920
+And notice that here I'm not doing an export default, but a named export.
+
+25
+00:01:44,930 --> 00:01:48,110
+And so that's kind of a strategy that I like to use.
+
+26
+00:01:48,470 --> 00:01:58,110
+So using default exports for components like this one here and using named exports for custom hooks.
+
+27
+00:01:58,130 --> 00:02:03,000
+Now, that's not really mandatory, but that's just the way I like to do it.
+
+28
+00:02:03,020 --> 00:02:06,740
+So you could, of course, also do a default export here.
+
+29
+00:02:08,370 --> 00:02:09,180
+Okay.
+
+30
+00:02:09,210 --> 00:02:13,950
+And so let's start by extracting this use effect here.
+
+31
+00:02:14,620 --> 00:02:16,780
+So this huge thing.
+
+32
+00:02:17,630 --> 00:02:22,400
+And then we will notice that we will need a lot more stuff than just this.
+
+33
+00:02:22,940 --> 00:02:24,440
+Here in this function.
+
+34
+00:02:26,120 --> 00:02:27,990
+Okay, So give it a save.
+
+35
+00:02:28,000 --> 00:02:33,360
+And immediately we see that we are missing all of these state variables.
+
+36
+00:02:33,370 --> 00:02:36,460
+So in this case, the state setter functions.
+
+37
+00:02:36,460 --> 00:02:42,310
+And so that's because fetching the movies requires a lot more than just this effect.
+
+38
+00:02:43,320 --> 00:02:48,060
+So notice how we actually also need multiple state variables.
+
+39
+00:02:49,670 --> 00:02:53,150
+So the movies is loading and error.
+
+40
+00:02:53,180 --> 00:02:58,640
+All of them are necessary to make the functionality of fetching movies work.
+
+41
+00:02:58,640 --> 00:03:05,060
+And so let's also extract them from here and paste them where they are unnecessary.
+
+42
+00:03:06,610 --> 00:03:06,740
+No.
+
+43
+00:03:06,820 --> 00:03:07,340
+Okay.
+
+44
+00:03:07,340 --> 00:03:10,880
+And then we just have some problems with importing.
+
+45
+00:03:11,530 --> 00:03:16,840
+So import use state and use effect.
+
+46
+00:03:17,890 --> 00:03:19,060
+From React.
+
+47
+00:03:20,610 --> 00:03:23,360
+Okay, so that's looking already better.
+
+48
+00:03:23,360 --> 00:03:26,770
+But we still have some missing information right here.
+
+49
+00:03:26,780 --> 00:03:30,080
+So we're missing the key and we're missing the query.
+
+50
+00:03:30,820 --> 00:03:37,960
+So to fix that, we can simply accept the query here, for example, as a parameter to our function.
+
+51
+00:03:40,550 --> 00:03:45,380
+And so now remember that this really is a function, this is not a component.
+
+52
+00:03:45,380 --> 00:03:51,980
+And so here we don't accept props, but really we accept arguments like this.
+
+53
+00:03:54,280 --> 00:04:00,070
+So even though our custom hook is not yet going to work, let's already call it.
+
+54
+00:04:00,620 --> 00:04:02,150
+So use.
+
+55
+00:04:03,330 --> 00:04:04,200
+Movies.
+
+56
+00:04:04,200 --> 00:04:09,090
+And so then again vs code will automatically import this for us.
+
+57
+00:04:10,200 --> 00:04:16,860
+So now you have this line of code here which again, imports the custom hook that we just created.
+
+58
+00:04:17,100 --> 00:04:22,890
+And notice how it's using here, the curly braces, meaning that this is a named export and the named
+
+59
+00:04:22,890 --> 00:04:23,730
+import.
+
+60
+00:04:24,300 --> 00:04:28,200
+But anyway, now here we are calling our new custom hook.
+
+61
+00:04:28,230 --> 00:04:31,080
+And so let's pass the query in.
+
+62
+00:04:31,820 --> 00:04:32,120
+Now.
+
+63
+00:04:32,120 --> 00:04:38,990
+Right now, we're not saving anything to a variable here just yet because for now, our custom hook
+
+64
+00:04:39,020 --> 00:04:40,970
+is not returning anything.
+
+65
+00:04:40,970 --> 00:04:43,430
+And so let's actually change that.
+
+66
+00:04:44,270 --> 00:04:49,130
+So what exactly should we actually return from this custom hook?
+
+67
+00:04:49,460 --> 00:04:55,300
+Well, basically, we want to return everything that we need here in the app.
+
+68
+00:04:55,310 --> 00:05:00,770
+So basically all the variables that somewhere in our JS are necessary.
+
+69
+00:05:00,770 --> 00:05:06,430
+And so that's basically exactly the three pieces of state that we just removed from here.
+
+70
+00:05:06,440 --> 00:05:14,210
+So it's the movies, the error and the is loading state because again, we will need these somewhere
+
+71
+00:05:14,210 --> 00:05:15,140
+here in our JS.
+
+72
+00:05:16,520 --> 00:05:20,270
+So we have movies we have is loading and we have error.
+
+73
+00:05:20,270 --> 00:05:26,810
+And so again, we of course now need access to this variables right here as well.
+
+74
+00:05:26,810 --> 00:05:32,840
+And so that's basically what we will want this custom hook to return.
+
+75
+00:05:32,840 --> 00:05:36,680
+And so let's return them from here.
+
+76
+00:05:37,410 --> 00:05:40,090
+So I think that's the correct place.
+
+77
+00:05:40,110 --> 00:05:40,730
+Yeah.
+
+78
+00:05:40,740 --> 00:05:47,490
+So right after the use effect, we will return and we will place them all into one object.
+
+79
+00:05:48,380 --> 00:05:50,170
+So it could be an array as well.
+
+80
+00:05:50,180 --> 00:05:56,510
+But it's very common to just return an object, especially when we have so many different things like
+
+81
+00:05:56,510 --> 00:06:00,950
+movies is loading and error.
+
+82
+00:06:02,620 --> 00:06:03,550
+All right.
+
+83
+00:06:03,700 --> 00:06:08,260
+Now, here we actually have a problem now with this handle close movie.
+
+84
+00:06:08,410 --> 00:06:10,930
+So let's comment this out for now.
+
+85
+00:06:11,970 --> 00:06:16,560
+And now there's only one thing that we are missing here, which is this key.
+
+86
+00:06:16,890 --> 00:06:18,870
+And so let's grab this.
+
+87
+00:06:18,900 --> 00:06:23,010
+So copying it and then pasting that here as well.
+
+88
+00:06:24,060 --> 00:06:28,890
+So we could also have passed this in as an argument into the function.
+
+89
+00:06:28,890 --> 00:06:36,000
+But I think that the key itself really should be part of this file here because it is tightly coupled
+
+90
+00:06:36,000 --> 00:06:38,940
+also to the movie URL.
+
+91
+00:06:39,090 --> 00:06:45,660
+So if we pass in the key, then we should probably also pass in the URL, but that we don't want.
+
+92
+00:06:45,690 --> 00:06:49,440
+So we want to make this as reusable as possible.
+
+93
+00:06:50,770 --> 00:06:51,490
+Okay.
+
+94
+00:06:51,490 --> 00:06:54,910
+And so now all we have to do is to then.
+
+95
+00:06:55,530 --> 00:06:56,310
+Here.
+
+96
+00:06:56,990 --> 00:07:04,340
+Basically get the data that is returned and destructure them here into their own variables again.
+
+97
+00:07:04,340 --> 00:07:09,080
+So that's movies is loading and.
+
+98
+00:07:09,800 --> 00:07:10,340
+Error.
+
+99
+00:07:11,120 --> 00:07:12,950
+And so that's actually it.
+
+100
+00:07:13,740 --> 00:07:19,080
+So again, here we are returning these three pieces of information.
+
+101
+00:07:19,080 --> 00:07:24,330
+So these state variables that we are going to need outside of this custom hook.
+
+102
+00:07:24,390 --> 00:07:32,030
+And so basically then this returns an object which we then immediately destructure right here.
+
+103
+00:07:32,040 --> 00:07:39,450
+And so then as far as the app component here is concerned, having this is exactly the same as having
+
+104
+00:07:39,450 --> 00:07:42,830
+all the code that we had here in the component before.
+
+105
+00:07:42,840 --> 00:07:50,790
+And so if we give this a save and try this now, then you see that it's working just like before.
+
+106
+00:07:50,820 --> 00:07:57,540
+The only difference right now is that when we select a movie here and then we search for another one.
+
+107
+00:07:58,210 --> 00:07:59,650
+Let's say test.
+
+108
+00:07:59,680 --> 00:08:03,000
+Then this one here is not closed.
+
+109
+00:08:03,010 --> 00:08:08,230
+And so that's because we are no longer calling handle closed movie.
+
+110
+00:08:08,350 --> 00:08:10,720
+So what should we do about it?
+
+111
+00:08:10,900 --> 00:08:14,450
+Well, we can just leave it as it is right now.
+
+112
+00:08:14,470 --> 00:08:22,480
+So in order to make this really reusable or we could also accept a callback function that the user of
+
+113
+00:08:22,480 --> 00:08:28,180
+this custom hook can pass in if they want, and then we can call that at the very beginning.
+
+114
+00:08:28,180 --> 00:08:33,100
+And so this is a way of customizing this custom hook a little bit more.
+
+115
+00:08:33,190 --> 00:08:39,700
+So we can think of these arguments here again, a bit like the public API of this custom hook.
+
+116
+00:08:39,700 --> 00:08:45,280
+So just like we can think of props as the custom API of a component.
+
+117
+00:08:45,370 --> 00:08:52,570
+So a custom hook like this can also be created by someone and then consumed by someone else.
+
+118
+00:08:52,570 --> 00:08:58,220
+And so that's the whole point of creating reusable pieces of stateful logic.
+
+119
+00:08:59,180 --> 00:08:59,900
+Okay.
+
+120
+00:09:00,410 --> 00:09:01,160
+And so.
+
+121
+00:09:01,640 --> 00:09:03,770
+Well, let's remove that from here.
+
+122
+00:09:03,770 --> 00:09:10,340
+And just to make this a bit more clear, we can call this at the very beginning of our effect.
+
+123
+00:09:11,570 --> 00:09:16,370
+So we can say callback and then we only want to call it if it actually exists.
+
+124
+00:09:16,370 --> 00:09:21,170
+And so we can basically do optional chaining on calling a function as well.
+
+125
+00:09:21,650 --> 00:09:26,150
+So that's just like this or actually the other way around.
+
+126
+00:09:26,180 --> 00:09:27,430
+So like this.
+
+127
+00:09:27,440 --> 00:09:31,960
+And so now this function will only be called if it actually exists.
+
+128
+00:09:31,970 --> 00:09:37,730
+So without this optional chaining part here, we would first have to check if it does exist and then
+
+129
+00:09:37,730 --> 00:09:38,780
+we would call it.
+
+130
+00:09:39,680 --> 00:09:45,590
+So if we now try this again, since we didn't pass in any callback yet, this will then work without
+
+131
+00:09:45,590 --> 00:09:46,400
+problems.
+
+132
+00:09:47,860 --> 00:09:50,220
+So you see no problems there.
+
+133
+00:09:50,230 --> 00:09:59,500
+But now we can actually pass in that callback, which is handle close movie and we can use this function
+
+134
+00:09:59,500 --> 00:10:02,080
+here before it is actually defined.
+
+135
+00:10:02,110 --> 00:10:07,600
+Because remember that in JavaScript function declarations like this are hoisted.
+
+136
+00:10:07,600 --> 00:10:15,160
+And so that's one of the big reasons why I don't like to do this, what many people do these days.
+
+137
+00:10:16,540 --> 00:10:19,030
+So writing an arrow function like this.
+
+138
+00:10:19,030 --> 00:10:22,840
+So if I did this, then I couldn't do it like this.
+
+139
+00:10:23,230 --> 00:10:25,930
+I would first have to create a function.
+
+140
+00:10:25,930 --> 00:10:28,120
+But like this, that's not necessary.
+
+141
+00:10:28,120 --> 00:10:32,710
+And so one of the reasons why I always prefer function declarations.
+
+142
+00:10:33,980 --> 00:10:35,720
+Okay, let's try this again.
+
+143
+00:10:37,120 --> 00:10:39,190
+So let's open some movie.
+
+144
+00:10:41,170 --> 00:10:42,770
+And beautiful.
+
+145
+00:10:42,790 --> 00:10:49,840
+So now the currently open movie is immediately closed as the search query here, it changes.
+
+146
+00:10:50,870 --> 00:10:51,680
+Great.
+
+147
+00:10:51,680 --> 00:10:55,790
+So with this, we really cleaned up our app component here.
+
+148
+00:10:56,150 --> 00:11:02,450
+So we only have like this small effect here left, but we will actually also take care of that in the
+
+149
+00:11:02,450 --> 00:11:03,230
+future.
+
+150
+00:11:03,470 --> 00:11:07,160
+And now let's just quickly recap what we did here.
+
+151
+00:11:07,310 --> 00:11:15,500
+So basically, we took all the logic that belongs together to search for movies and simply placed it
+
+152
+00:11:15,500 --> 00:11:17,540
+here into this custom hook.
+
+153
+00:11:17,570 --> 00:11:22,340
+And notice that we used for hooks to achieve that result.
+
+154
+00:11:22,400 --> 00:11:25,970
+So one use effect and three use states.
+
+155
+00:11:25,970 --> 00:11:33,140
+And that's important because remember, a custom hook actually needs to use at least one react hook.
+
+156
+00:11:33,170 --> 00:11:35,720
+Otherwise, it's just a regular function.
+
+157
+00:11:36,500 --> 00:11:37,130
+Right.
+
+158
+00:11:37,400 --> 00:11:44,750
+So we took all the logic that belongs together, packed it here into this one function, and then returned
+
+159
+00:11:44,780 --> 00:11:51,410
+everything that is necessary for the app to keep working in exactly the same way as before.
+
+160
+00:11:52,380 --> 00:11:58,610
+Now here we just need to probably also add the callback to the dependency array.
+
+161
+00:11:58,620 --> 00:12:02,820
+But then you see we have this like infinite.
+
+162
+00:12:03,760 --> 00:12:05,230
+A reload here of error.
+
+163
+00:12:05,470 --> 00:12:09,840
+Now, fixing this is too difficult for us at this point.
+
+164
+00:12:09,850 --> 00:12:15,820
+So I actually didn't think of this because I hadn't even prepared this lecture here before.
+
+165
+00:12:15,910 --> 00:12:20,950
+So let's actually go back, remove that from the dependency array.
+
+166
+00:12:20,950 --> 00:12:28,210
+But since we should really not lie about our dependencies in the array, let's then remove the entire
+
+167
+00:12:28,210 --> 00:12:30,090
+ability to do this.
+
+168
+00:12:30,100 --> 00:12:32,380
+So I will just comment this out.
+
+169
+00:12:32,410 --> 00:12:34,210
+Take away the callback.
+
+170
+00:12:35,020 --> 00:12:36,580
+And here as well.
+
+171
+00:12:37,770 --> 00:12:42,090
+So then the custom hook will not work exactly the way as it did before.
+
+172
+00:12:42,090 --> 00:12:44,100
+But that's not a big deal here.
+
+173
+00:12:44,100 --> 00:12:45,810
+So we are just learning.
+
+174
+00:12:45,810 --> 00:12:53,820
+So we just wanted to learn how we can extract this non-visual logic into a custom hook like we just
+
+175
+00:12:53,820 --> 00:12:54,420
+did.
+
+176
+00:12:54,450 --> 00:12:59,940
+And to practice this a little bit more, we will do a few more in the next few lectures.

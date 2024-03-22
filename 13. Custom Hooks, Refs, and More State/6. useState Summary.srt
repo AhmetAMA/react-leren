@@ -1,0 +1,139 @@
+1
+00:00:00,940 --> 00:00:08,020
+Let's quickly summarize everything that we know about the use state hook in one single slide so that
+
+2
+00:00:08,020 --> 00:00:10,660
+you can keep it as a handy reference.
+
+3
+00:00:12,500 --> 00:00:20,630
+So we use the use state took to first create state and then the setter function that results from creating
+
+4
+00:00:20,630 --> 00:00:23,090
+state to update state.
+
+5
+00:00:23,660 --> 00:00:31,130
+Now we can create a state variable in the simple way, which is what we do most of the time, but we
+
+6
+00:00:31,130 --> 00:00:35,030
+can also create state based on a callback function.
+
+7
+00:00:35,640 --> 00:00:43,590
+So whenever the initial state depends on some computation, for example, reading data from local storage,
+
+8
+00:00:43,590 --> 00:00:49,770
+we can pass in a callback function like this instead of just a single value.
+
+9
+00:00:49,920 --> 00:00:54,390
+And this process is sometimes called lazy evaluation.
+
+10
+00:00:54,960 --> 00:01:02,430
+Now this callback function is only called on the initial render of the component, so on subsequent
+
+11
+00:01:02,440 --> 00:01:05,400
+renders it will simply be ignored.
+
+12
+00:01:05,670 --> 00:01:09,970
+Also, this callback needs to fulfill two requirements.
+
+13
+00:01:09,990 --> 00:01:17,640
+First, it must be a pure function and second, it should require no arguments in order to work.
+
+14
+00:01:17,790 --> 00:01:19,560
+And that's actually it.
+
+15
+00:01:19,590 --> 00:01:23,970
+That's how we create state variables using usestate.
+
+16
+00:01:24,120 --> 00:01:32,880
+And now about updating state, we can again update state in a simple way just by passing a single value
+
+17
+00:01:32,880 --> 00:01:37,170
+into the returned setter function as the next state.
+
+18
+00:01:37,290 --> 00:01:41,940
+So in this example, the next state would be 1000.
+
+19
+00:01:42,180 --> 00:01:49,500
+On the other hand, in many situations we actually want to update state based on the current state.
+
+20
+00:01:49,530 --> 00:01:52,980
+For example, increasing a counter by one.
+
+21
+00:01:53,310 --> 00:01:59,960
+So if that's the case, we can give the setter function a callback function like this.
+
+22
+00:01:59,980 --> 00:02:06,820
+So a function that is pure and returns the next state based on the current state.
+
+23
+00:02:06,880 --> 00:02:14,110
+And this is, in my opinion, the preferred way of updating state whenever it makes sense.
+
+24
+00:02:14,260 --> 00:02:21,880
+Now, one important rule to keep in mind about updating state is that you should never mutate objects
+
+25
+00:02:21,880 --> 00:02:23,180
+or arrays.
+
+26
+00:02:23,260 --> 00:02:30,430
+Instead, you must create a new object or a new array which incorporates the changes that you want to
+
+27
+00:02:30,430 --> 00:02:35,390
+make and then pass that new object into the setter function.
+
+28
+00:02:35,410 --> 00:02:38,230
+And we have done that multiple times already.
+
+29
+00:02:38,230 --> 00:02:42,850
+But I just wanted to mention this here in the summary lecture as well.
+
+30
+00:02:43,630 --> 00:02:44,320
+Okay.
+
+31
+00:02:44,320 --> 00:02:53,050
+So in conclusion, both for creating and for updating state, we have both a simple way and a way that
+
+32
+00:02:53,050 --> 00:02:55,510
+requires a callback function.
+
+33
+00:02:55,840 --> 00:03:02,020
+So this can be a little bit confusing, which is why I decided to create this overview.
+
+34
+00:03:02,170 --> 00:03:09,150
+So I hope that this makes everything crystal clear and that you have now mastered the use state hook
+
+35
+00:03:09,160 --> 00:03:10,660
+once and for all.

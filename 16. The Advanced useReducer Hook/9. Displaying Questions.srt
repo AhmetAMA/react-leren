@@ -1,0 +1,439 @@
+1
+00:00:00,880 --> 00:00:05,590
+So let's now render and display the current question.
+
+2
+00:00:06,770 --> 00:00:13,550
+So of course we will not render all the questions at the same time here, but instead one by one.
+
+3
+00:00:13,550 --> 00:00:18,750
+And so therefore we need a way of knowing which the current question is.
+
+4
+00:00:18,770 --> 00:00:25,250
+So basically we need some way of keeping track, which question is the current one?
+
+5
+00:00:25,400 --> 00:00:31,310
+And so let's add a new piece of state to our initial state here.
+
+6
+00:00:31,490 --> 00:00:38,750
+And we could call this the current or the current index, but I would like to just call it index.
+
+7
+00:00:40,030 --> 00:00:40,330
+No.
+
+8
+00:00:40,330 --> 00:00:40,780
+Okay.
+
+9
+00:00:40,780 --> 00:00:48,700
+At this index starts at zero because we will use this index here to take a certain question object out
+
+10
+00:00:48,700 --> 00:00:50,230
+of the questions array.
+
+11
+00:00:50,230 --> 00:00:55,590
+And so the first element of this questions array is element number zero.
+
+12
+00:00:55,600 --> 00:00:58,570
+Therefore, our index starts at zero.
+
+13
+00:00:58,570 --> 00:01:04,660
+And so then in the future, at some point, if we want to display the next question, we can already
+
+14
+00:01:04,660 --> 00:01:08,860
+imagine that we will do that by changing this index.
+
+15
+00:01:09,040 --> 00:01:16,120
+So then in the future, when we change that index from 0 to 1, that should display the next question.
+
+16
+00:01:16,120 --> 00:01:22,240
+So it should then rerender the screen and therefore this needs to be a state variable.
+
+17
+00:01:23,010 --> 00:01:23,610
+All right.
+
+18
+00:01:23,610 --> 00:01:31,050
+So that's the reasoning behind why we need this variable right here or this piece of state and also
+
+19
+00:01:31,080 --> 00:01:34,170
+why it needs to be state in the first place.
+
+20
+00:01:34,370 --> 00:01:39,570
+And again, it's because it needs to rerender the screen once it is updated.
+
+21
+00:01:39,780 --> 00:01:48,930
+But anyway, let's now take this index to pass in the right question object into our question component.
+
+22
+00:01:50,130 --> 00:01:55,830
+So this component will, of course, need access to that current question.
+
+23
+00:01:55,950 --> 00:02:00,140
+And as we just said, that will be questions.
+
+24
+00:02:00,150 --> 00:02:05,010
+So the array at the current position, which is index.
+
+25
+00:02:06,380 --> 00:02:07,210
+Okay.
+
+26
+00:02:07,220 --> 00:02:11,540
+Now here, that is not available because we haven't yet Destructured.
+
+27
+00:02:12,080 --> 00:02:14,330
+This index out of the state.
+
+28
+00:02:14,910 --> 00:02:16,260
+But there we go.
+
+29
+00:02:17,340 --> 00:02:19,530
+And now let's go to this component.
+
+30
+00:02:19,530 --> 00:02:26,730
+And just like before, if I hit the command key and then click here, it will automatically go to that
+
+31
+00:02:26,730 --> 00:02:29,340
+component even if it is in another file.
+
+32
+00:02:30,760 --> 00:02:31,570
+All right.
+
+33
+00:02:31,570 --> 00:02:36,160
+So here, let's now receive that question.
+
+34
+00:02:39,950 --> 00:02:42,050
+And then let's display it.
+
+35
+00:02:42,650 --> 00:02:48,440
+Well, first, let's even take a look at the shape of this object so that we actually know what we are
+
+36
+00:02:48,440 --> 00:02:49,340
+dealing with.
+
+37
+00:02:51,330 --> 00:02:55,590
+So let's come to the console and as we click here, that should appear.
+
+38
+00:02:56,350 --> 00:03:00,730
+So inside the question we have the question property.
+
+39
+00:03:01,450 --> 00:03:04,510
+So that's what we want to use first.
+
+40
+00:03:05,650 --> 00:03:09,640
+So here we have basically question dot, question.
+
+41
+00:03:11,520 --> 00:03:16,350
+And so with this, we get the question already here in the UI.
+
+42
+00:03:16,680 --> 00:03:17,720
+Great.
+
+43
+00:03:17,730 --> 00:03:21,990
+But then we also have this array of the options.
+
+44
+00:03:21,990 --> 00:03:28,830
+And so next we will want to loop over this array and of course display these options as well.
+
+45
+00:03:28,920 --> 00:03:36,750
+Now this time I will not use a unordered list for that because we will not have list elements but actual
+
+46
+00:03:36,750 --> 00:03:37,500
+buttons.
+
+47
+00:03:39,510 --> 00:03:40,530
+So here, let's.
+
+48
+00:03:41,290 --> 00:03:43,540
+Call this the options.
+
+49
+00:03:44,970 --> 00:03:48,840
+And so then here we loop over question.
+
+50
+00:03:49,450 --> 00:03:50,920
+Dot options.
+
+51
+00:03:51,590 --> 00:03:53,450
+And then dot map.
+
+52
+00:03:53,720 --> 00:04:00,470
+So here each of them is a question or actually it is an option.
+
+53
+00:04:01,520 --> 00:04:10,070
+And so then for each of them, what I want to do is to return a button with the class name of BTN and
+
+54
+00:04:10,100 --> 00:04:11,420
+BTN.
+
+55
+00:04:12,390 --> 00:04:13,050
+Upton.
+
+56
+00:04:14,740 --> 00:04:14,920
+No.
+
+57
+00:04:14,920 --> 00:04:15,340
+Okay.
+
+58
+00:04:15,370 --> 00:04:22,480
+And then as for the text, it should simply be the option itself, because as we see, this is just
+
+59
+00:04:22,480 --> 00:04:23,650
+a simple string.
+
+60
+00:04:23,650 --> 00:04:26,890
+So each of the options is just the string.
+
+61
+00:04:27,010 --> 00:04:30,220
+And so that's already looking great.
+
+62
+00:04:31,160 --> 00:04:32,780
+Let's just see what we have here.
+
+63
+00:04:32,990 --> 00:04:36,500
+Ah, of course we are missing the key property.
+
+64
+00:04:37,140 --> 00:04:42,450
+So very important for optimization, as we have already learned at this point.
+
+65
+00:04:43,000 --> 00:04:48,400
+So the options are unique and therefore we can use each of them as a key.
+
+66
+00:04:49,150 --> 00:04:51,910
+So as we reload, then let's start.
+
+67
+00:04:51,910 --> 00:04:56,380
+And there is our first question together with the options.
+
+68
+00:04:56,710 --> 00:04:57,850
+Nice.
+
+69
+00:04:58,750 --> 00:04:59,710
+Now here.
+
+70
+00:04:59,710 --> 00:05:03,580
+Actually, I would like to split this component into.
+
+71
+00:05:03,700 --> 00:05:11,500
+So whenever there is a list like this, I personally prefer to have a smaller component in a situation
+
+72
+00:05:11,500 --> 00:05:12,490
+like this.
+
+73
+00:05:12,640 --> 00:05:20,170
+So based on the logical separation of the content of this component, I would say that we can now split
+
+74
+00:05:20,170 --> 00:05:21,430
+this component.
+
+75
+00:05:21,640 --> 00:05:27,280
+So let's grab this entire part and let's create a new component.
+
+76
+00:05:27,280 --> 00:05:35,050
+And actually we are creating so many components that it is a common practice to create a new folder
+
+77
+00:05:35,050 --> 00:05:37,570
+called components.
+
+78
+00:05:39,010 --> 00:05:41,860
+And so this is where we then create a components.
+
+79
+00:05:42,530 --> 00:05:48,440
+So let's do this one right here and then I will later put all the other ones there as well.
+
+80
+00:05:48,560 --> 00:05:50,690
+So options dot JS.
+
+81
+00:05:51,810 --> 00:05:54,000
+And then our snippet again.
+
+82
+00:05:54,210 --> 00:05:57,000
+And here we already have the X.
+
+83
+00:05:57,390 --> 00:05:59,040
+So let's place that there.
+
+84
+00:05:59,820 --> 00:06:01,740
+Now here, this is missing the question.
+
+85
+00:06:01,740 --> 00:06:07,350
+But let's first of all place all the other components into this components folder.
+
+86
+00:06:08,060 --> 00:06:12,710
+So that's app the date counter error header.
+
+87
+00:06:13,680 --> 00:06:18,030
+Loader main question and start screen.
+
+88
+00:06:18,120 --> 00:06:21,270
+So we already have a lot of components here.
+
+89
+00:06:22,890 --> 00:06:25,500
+And so let's place them all in there.
+
+90
+00:06:26,310 --> 00:06:32,940
+Now, of course we will have a problem in the Index.js file because it is still trying to read the app
+
+91
+00:06:32,940 --> 00:06:35,700
+component from the same folder as before.
+
+92
+00:06:36,280 --> 00:06:38,620
+But so now it's in the components folder.
+
+93
+00:06:38,800 --> 00:06:40,690
+So we need to change that here.
+
+94
+00:06:40,780 --> 00:06:47,650
+But then all the other will still work because we are importing them here inside App.js.
+
+95
+00:06:47,800 --> 00:06:50,920
+And so here we are importing them from the same folder.
+
+96
+00:06:50,920 --> 00:06:53,500
+And so that's why this still works.
+
+97
+00:06:54,830 --> 00:06:55,060
+No.
+
+98
+00:06:55,070 --> 00:06:55,810
+Right.
+
+99
+00:06:55,820 --> 00:07:02,030
+But anyway, coming back here to our options here, we now need to receive the question.
+
+100
+00:07:04,780 --> 00:07:07,300
+And so then, of course, we need to.
+
+101
+00:07:08,230 --> 00:07:09,310
+Pass it in there.
+
+102
+00:07:10,370 --> 00:07:12,920
+So we need to even import that here.
+
+103
+00:07:13,660 --> 00:07:15,220
+So options.
+
+104
+00:07:16,270 --> 00:07:22,390
+And then with the current question and then just importing that here.
+
+105
+00:07:23,010 --> 00:07:27,060
+So import options from.
+
+106
+00:07:27,760 --> 00:07:30,550
+And again, it's the same folder.
+
+107
+00:07:32,580 --> 00:07:34,200
+And let's test.
+
+108
+00:07:34,500 --> 00:07:35,640
+And there we go.
+
+109
+00:07:35,850 --> 00:07:39,210
+Now, of course, when we click here now, nothing happens.
+
+110
+00:07:39,210 --> 00:07:42,900
+And so that's what we will take care of in the next video.

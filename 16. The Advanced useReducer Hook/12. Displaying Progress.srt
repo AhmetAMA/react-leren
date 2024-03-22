@@ -1,0 +1,539 @@
+1
+00:00:00,830 --> 00:00:07,520
+So let's continue building our application and display the progress that the user has been making in
+
+2
+00:00:07,520 --> 00:00:08,330
+the quiz.
+
+3
+00:00:09,450 --> 00:00:13,870
+So basically what we want to show is this right here.
+
+4
+00:00:13,890 --> 00:00:20,670
+So the current question out of the number of question and the current points out of the number of points
+
+5
+00:00:20,700 --> 00:00:23,100
+and then also this nice progress bar.
+
+6
+00:00:23,930 --> 00:00:31,220
+So basically what we want to do is to, besides the question at the next button, also display a progress
+
+7
+00:00:31,220 --> 00:00:32,240
+component.
+
+8
+00:00:32,450 --> 00:00:36,290
+And let's actually first go build that component.
+
+9
+00:00:37,690 --> 00:00:38,860
+So a new file.
+
+10
+00:00:40,280 --> 00:00:42,590
+Just calling it progress.
+
+11
+00:00:44,200 --> 00:00:48,420
+And then scaffold our new component like this.
+
+12
+00:00:48,430 --> 00:00:50,440
+And then let's get to work.
+
+13
+00:00:50,990 --> 00:00:55,050
+Now here, let's actually use a more semantic header element.
+
+14
+00:00:55,070 --> 00:00:57,840
+So a header inside the main part.
+
+15
+00:00:57,860 --> 00:01:00,890
+So that's perfectly semantic and so.
+
+16
+00:01:01,710 --> 00:01:05,670
+I think it's a good element to use here.
+
+17
+00:01:06,520 --> 00:01:09,670
+And let's give it the class name of progress.
+
+18
+00:01:10,570 --> 00:01:11,230
+Okay.
+
+19
+00:01:11,230 --> 00:01:16,870
+And let's start with one paragraph for each of these sites right there.
+
+20
+00:01:19,460 --> 00:01:22,310
+So here we need the current question.
+
+21
+00:01:22,310 --> 00:01:24,980
+So remember, that is the index.
+
+22
+00:01:27,920 --> 00:01:32,360
+And then let's place it inside the strong tag.
+
+23
+00:01:33,140 --> 00:01:33,890
+Just write it again.
+
+24
+00:01:33,890 --> 00:01:37,340
+That's easier then to copy and paste that.
+
+25
+00:01:37,610 --> 00:01:41,480
+And then here we also need the number of questions.
+
+26
+00:01:42,490 --> 00:01:45,790
+So these things we will need to receive.
+
+27
+00:01:46,700 --> 00:01:47,630
+As props.
+
+28
+00:01:47,630 --> 00:01:51,260
+And this, of course, is called index, not just I.
+
+29
+00:01:51,560 --> 00:01:54,920
+So index and num questions.
+
+30
+00:01:54,950 --> 00:01:56,300
+I believe it is called.
+
+31
+00:01:57,940 --> 00:02:00,130
+And so let's already try this out.
+
+32
+00:02:03,850 --> 00:02:05,110
+So progress.
+
+33
+00:02:05,110 --> 00:02:11,350
+And I'm selecting this one here from the list again, because here this shows me that this will then
+
+34
+00:02:11,350 --> 00:02:16,840
+automatically import the component into this page.
+
+35
+00:02:16,840 --> 00:02:18,100
+So into this file.
+
+36
+00:02:19,370 --> 00:02:25,550
+So we need again, the index and we need the number of questions.
+
+37
+00:02:27,560 --> 00:02:28,460
+Okay.
+
+38
+00:02:29,840 --> 00:02:30,880
+So let's see.
+
+39
+00:02:30,890 --> 00:02:34,030
+And yeah, we already have something.
+
+40
+00:02:34,040 --> 00:02:36,110
+Let's just start from scratch.
+
+41
+00:02:37,010 --> 00:02:40,130
+And so now we see that we have question zero here.
+
+42
+00:02:40,130 --> 00:02:46,370
+And so that's of course, because the index is zero based, but our users don't know that.
+
+43
+00:02:47,440 --> 00:02:52,540
+So it looks a lot nicer if we just start at one, right?
+
+44
+00:02:54,220 --> 00:02:55,000
+The next step.
+
+45
+00:02:55,000 --> 00:02:56,770
+We want the current points.
+
+46
+00:02:58,170 --> 00:03:00,600
+And again, let's make them bold.
+
+47
+00:03:02,140 --> 00:03:03,520
+So that's points.
+
+48
+00:03:03,730 --> 00:03:06,790
+And then out of all the possible points.
+
+49
+00:03:06,790 --> 00:03:12,190
+So that will basically be the sum of all the points of all the questions.
+
+50
+00:03:12,310 --> 00:03:15,280
+However, we don't have that value yet.
+
+51
+00:03:15,280 --> 00:03:16,260
+And so.
+
+52
+00:03:16,270 --> 00:03:17,950
+Well, let's go compute it.
+
+53
+00:03:17,980 --> 00:03:19,780
+Let's just write an X here.
+
+54
+00:03:21,930 --> 00:03:28,140
+Take the points so that we can correctly display our component.
+
+55
+00:03:28,970 --> 00:03:30,260
+So points.
+
+56
+00:03:32,630 --> 00:03:32,980
+All right.
+
+57
+00:03:32,990 --> 00:03:39,110
+Apparently we haven't destructured that yet, but it should be in our state because I remember how we
+
+58
+00:03:39,110 --> 00:03:41,120
+updated it earlier.
+
+59
+00:03:43,570 --> 00:03:45,310
+And yeah, now it is zero.
+
+60
+00:03:46,530 --> 00:03:47,190
+Okay.
+
+61
+00:03:47,190 --> 00:03:52,050
+And now let's get the maximum amount of points that the user can make.
+
+62
+00:03:52,050 --> 00:03:57,600
+And so that again is derived state because we can just compute that from the questions array.
+
+63
+00:03:58,150 --> 00:04:00,040
+So let's say Max.
+
+64
+00:04:01,120 --> 00:04:03,430
+Possible points.
+
+65
+00:04:05,300 --> 00:04:12,500
+So that's questions dot reduce because we want to reduce this into just one single value.
+
+66
+00:04:12,830 --> 00:04:18,740
+And so here the callback always gets the previous value and the current value in the array.
+
+67
+00:04:20,370 --> 00:04:22,200
+So that's the first argument.
+
+68
+00:04:22,200 --> 00:04:25,490
+And then the second argument is the initial value.
+
+69
+00:04:25,500 --> 00:04:29,640
+And so now all we need to do is to add the previous value.
+
+70
+00:04:29,670 --> 00:04:34,800
+So the one that starts at zero with the current question.
+
+71
+00:04:36,090 --> 00:04:37,140
+Not points.
+
+72
+00:04:37,530 --> 00:04:40,850
+So just a normal regular reducer right here.
+
+73
+00:04:40,860 --> 00:04:45,060
+So that should be nothing strange for you at this point.
+
+74
+00:04:45,900 --> 00:04:47,940
+And so let's then pass that in.
+
+75
+00:04:50,740 --> 00:04:53,020
+And copy that.
+
+76
+00:04:55,530 --> 00:04:58,950
+And then replace our X right here.
+
+77
+00:05:00,190 --> 00:05:01,030
+So let's see.
+
+78
+00:05:01,420 --> 00:05:03,220
+And beautiful.
+
+79
+00:05:03,520 --> 00:05:06,460
+The only thing that we are missing is.
+
+80
+00:05:07,110 --> 00:05:12,180
+Well here we now need to restart because this one times out after a few minutes.
+
+81
+00:05:12,450 --> 00:05:19,320
+So we also want this progress bar here that keeps going as soon as we complete more questions.
+
+82
+00:05:20,590 --> 00:05:26,800
+So you see that it keeps going and this element is actually a progress bar.
+
+83
+00:05:27,930 --> 00:05:32,970
+So this one is a new one, or at least one that I haven't really used before.
+
+84
+00:05:33,240 --> 00:05:37,620
+And so here we can define the max value that this can take.
+
+85
+00:05:37,620 --> 00:05:40,860
+And here it makes sense that this is the number of questions.
+
+86
+00:05:40,860 --> 00:05:45,840
+So it will go basically from 0 to 15 in this case.
+
+87
+00:05:45,840 --> 00:05:48,960
+And then we can also define the current value.
+
+88
+00:05:49,170 --> 00:05:52,590
+So this is basically like an input element.
+
+89
+00:05:52,590 --> 00:05:58,620
+And so here we are making it a controlled element in a way, even though we cannot really set the state
+
+90
+00:05:58,770 --> 00:06:00,150
+on the progress bar.
+
+91
+00:06:00,750 --> 00:06:05,570
+But anyway, here at the current value will be the current index.
+
+92
+00:06:05,580 --> 00:06:12,420
+And here it's actually the index, not the index plus one because we actually want this to start empty.
+
+93
+00:06:13,730 --> 00:06:17,540
+So when we come here, we want it to be empty at the beginning.
+
+94
+00:06:17,630 --> 00:06:19,520
+And so let's see.
+
+95
+00:06:22,220 --> 00:06:23,540
+Let's click here.
+
+96
+00:06:23,810 --> 00:06:26,000
+And now you see that it didn't really move.
+
+97
+00:06:26,030 --> 00:06:28,970
+It will only move once we click here.
+
+98
+00:06:29,090 --> 00:06:31,860
+So then it moved here to one.
+
+99
+00:06:31,880 --> 00:06:36,140
+So if we inspect this element, we will see that the max is 15.
+
+100
+00:06:36,170 --> 00:06:36,710
+Of course.
+
+101
+00:06:36,710 --> 00:06:38,060
+And the value is one.
+
+102
+00:06:39,230 --> 00:06:45,140
+So we can change that here just to see, for example, this is what it would look like with ten and
+
+103
+00:06:45,140 --> 00:06:47,570
+then with 15, it would be completely full.
+
+104
+00:06:48,050 --> 00:06:55,160
+But anyway, the behavior here is slightly different because here when we click, then it immediately
+
+105
+00:06:55,160 --> 00:06:56,900
+moves to the next one.
+
+106
+00:06:56,900 --> 00:07:04,070
+So right after we click so somehow basically this detects if there is an answer and if so, it then
+
+107
+00:07:04,070 --> 00:07:06,680
+immediately moves this value forward.
+
+108
+00:07:07,420 --> 00:07:12,640
+So let's implement that here so we can just pass in the answer.
+
+109
+00:07:13,330 --> 00:07:16,840
+And then I will show you a very nice trick that we can use.
+
+110
+00:07:18,790 --> 00:07:19,960
+So we can.
+
+111
+00:07:20,740 --> 00:07:22,690
+Convert to a number.
+
+112
+00:07:22,720 --> 00:07:29,500
+The boolean that will result from checking again if there is an answer or not.
+
+113
+00:07:30,500 --> 00:07:31,850
+So doing this.
+
+114
+00:07:32,580 --> 00:07:37,850
+So basically what this does is that if there is no answer, then this is false.
+
+115
+00:07:37,860 --> 00:07:41,780
+And so then number will convert that false to a zero.
+
+116
+00:07:41,790 --> 00:07:47,580
+But if there is an answer, then this will of course be true and then that true will be converted to
+
+117
+00:07:47,580 --> 00:07:48,030
+one.
+
+118
+00:07:48,030 --> 00:07:51,630
+And so then we add one to the index.
+
+119
+00:07:52,680 --> 00:07:53,790
+So let's see.
+
+120
+00:07:57,320 --> 00:07:57,740
+And.
+
+121
+00:07:57,920 --> 00:08:01,070
+Well, that's already at one here.
+
+122
+00:08:01,460 --> 00:08:04,160
+But that's because I didn't pass in the answer.
+
+123
+00:08:04,160 --> 00:08:09,110
+So right now the answer is then undefined and undefined is different from null.
+
+124
+00:08:10,100 --> 00:08:12,340
+And so that then gives already one.
+
+125
+00:08:12,350 --> 00:08:15,710
+So of course we also need to pass the answer as a prop.
+
+126
+00:08:16,620 --> 00:08:19,320
+But this will then fix it.
+
+127
+00:08:19,910 --> 00:08:26,090
+So as you see, it's just completely normal that these unexpected small mistakes happen.
+
+128
+00:08:26,390 --> 00:08:28,890
+But in any case, now that's fixed.
+
+129
+00:08:28,910 --> 00:08:31,040
+And so this is what we were looking for.
+
+130
+00:08:32,050 --> 00:08:38,590
+So it keeps going forward all the way until the end, which I will not do now as that takes just a bit
+
+131
+00:08:38,620 --> 00:08:39,490
+too much time.
+
+132
+00:08:39,490 --> 00:08:45,940
+But anyway, with this, we successfully finished the task that we had for this lecture.
+
+133
+00:08:46,240 --> 00:08:47,740
+So let's close this one.
+
+134
+00:08:47,740 --> 00:08:51,670
+We don't need anymore, nor this one or this one.
+
+135
+00:08:51,670 --> 00:08:54,640
+And so with this, let's now move forward.

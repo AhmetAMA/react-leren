@@ -1,0 +1,211 @@
+1
+00:00:00,870 --> 00:00:07,740
+Let me now show you a quick example of child to parent communication, which is a very important thing
+
+2
+00:00:07,740 --> 00:00:09,210
+in React development.
+
+3
+00:00:09,210 --> 00:00:14,100
+And it works basically exactly the same in class based react.
+
+4
+00:00:15,450 --> 00:00:22,380
+So what I want to do now is to quickly extract this input right here into its own component.
+
+5
+00:00:22,530 --> 00:00:25,710
+So let's actually grab all of this here.
+
+6
+00:00:27,380 --> 00:00:30,790
+And then let's create a new class here.
+
+7
+00:00:30,800 --> 00:00:34,070
+So a new component just called input.
+
+8
+00:00:34,930 --> 00:00:38,620
+Which extends react dot component.
+
+9
+00:00:40,130 --> 00:00:43,370
+And then the render method.
+
+10
+00:00:44,490 --> 00:00:54,570
+From which we simply return what we just cut there and then let's come back here and simply include
+
+11
+00:00:54,840 --> 00:00:55,770
+that.
+
+12
+00:00:56,500 --> 00:00:57,370
+Input.
+
+13
+00:00:58,530 --> 00:00:59,280
+All right.
+
+14
+00:00:59,280 --> 00:01:07,620
+But of course, then we get some errors because this input here depends on some state and on updating
+
+15
+00:01:07,620 --> 00:01:12,540
+state, which is not living anymore in this current component.
+
+16
+00:01:12,690 --> 00:01:20,340
+So the location state, of course, needs to stay in the app component because we need it here in this
+
+17
+00:01:20,340 --> 00:01:21,570
+other method.
+
+18
+00:01:22,180 --> 00:01:25,330
+So here in this fetch weather event handler.
+
+19
+00:01:27,720 --> 00:01:32,130
+So we need to do what we always do, which is to pass in.
+
+20
+00:01:32,890 --> 00:01:35,290
+These things as props.
+
+21
+00:01:35,290 --> 00:01:42,820
+So this data of location and so that's at this dot state dot location.
+
+22
+00:01:43,820 --> 00:01:46,900
+And then here we receive that as props.
+
+23
+00:01:46,970 --> 00:01:54,590
+So now it's no longer this dot state dot location, but this dot props, dot, location.
+
+24
+00:01:55,650 --> 00:01:59,910
+And so if I give it a safe now, then we are back to working here.
+
+25
+00:02:00,150 --> 00:02:07,380
+However, the state will of course still not update because the state again still lives in that other
+
+26
+00:02:07,380 --> 00:02:08,120
+component.
+
+27
+00:02:08,130 --> 00:02:09,660
+So in the app component.
+
+28
+00:02:09,690 --> 00:02:14,550
+And so this is where child to parent communication comes into play again.
+
+29
+00:02:14,730 --> 00:02:22,260
+So remember that that basically means that a child component needs to update the state in a parent component.
+
+30
+00:02:22,260 --> 00:02:29,220
+And the way we do that is to simply pass down the state updating function into the child component.
+
+31
+00:02:30,190 --> 00:02:35,680
+So basically we need now this and pass it as a prop.
+
+32
+00:02:36,960 --> 00:02:43,380
+So let's grab that and actually let's create a brand new event handler function here.
+
+33
+00:02:44,350 --> 00:02:47,140
+And we will do it just like this other one.
+
+34
+00:02:47,140 --> 00:02:51,340
+So just like we did in the previous lecture as a class field.
+
+35
+00:02:52,290 --> 00:02:54,270
+So let's call this one set.
+
+36
+00:02:55,100 --> 00:02:59,840
+Location, and then this one needs to receive the event.
+
+37
+00:03:01,160 --> 00:03:04,760
+And actually it's just copy paste at this point.
+
+38
+00:03:06,290 --> 00:03:07,580
+So let's remove that.
+
+39
+00:03:08,310 --> 00:03:11,790
+And so with this, we created ourselves the event handler.
+
+40
+00:03:11,790 --> 00:03:16,260
+And so now all we have to do is to pass that in also here.
+
+41
+00:03:16,440 --> 00:03:19,920
+So let's call that prop maybe on.
+
+42
+00:03:20,690 --> 00:03:21,650
+Change.
+
+43
+00:03:24,200 --> 00:03:25,310
+Location.
+
+44
+00:03:27,060 --> 00:03:30,720
+And then the set location function.
+
+45
+00:03:31,110 --> 00:03:34,290
+So actually this dot set location.
+
+46
+00:03:34,290 --> 00:03:38,970
+So we have so many disks here, it's getting a bit confusing indeed.
+
+47
+00:03:40,330 --> 00:03:43,540
+So on change location, let's just copy that.
+
+48
+00:03:43,540 --> 00:03:44,500
+And so.
+
+49
+00:03:45,140 --> 00:03:50,060
+Now again this dot props dot on change location.
+
+50
+00:03:50,870 --> 00:03:55,970
+And so now we are back to being able to change the input here.
+
+51
+00:03:55,970 --> 00:04:00,500
+But now we are doing it using child to parent communication.
+
+52
+00:04:00,590 --> 00:04:08,900
+So this technique is just as important in class based react as in function, component based, react.
+
+53
+00:04:08,900 --> 00:04:16,400
+So the whole thinking in react part is actually exactly the same in class and in function components.

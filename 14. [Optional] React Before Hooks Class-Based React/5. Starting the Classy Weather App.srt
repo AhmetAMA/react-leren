@@ -1,0 +1,407 @@
+1
+00:00:01,080 --> 00:00:06,360
+Okay, so let's start working on the classy weather application.
+
+2
+00:00:07,630 --> 00:00:12,040
+And let's start by duplicating this file here.
+
+3
+00:00:12,160 --> 00:00:14,320
+And then let's call.
+
+4
+00:00:15,070 --> 00:00:20,500
+This one here, the counter, so that we can keep the code that we wrote previously.
+
+5
+00:00:20,500 --> 00:00:25,300
+And so now let's delete everything from here and start from scratch.
+
+6
+00:00:26,400 --> 00:00:28,980
+So we start by importing react.
+
+7
+00:00:30,330 --> 00:00:32,520
+From React.
+
+8
+00:00:32,880 --> 00:00:37,200
+And then again we use a JavaScript class.
+
+9
+00:00:38,210 --> 00:00:43,040
+We call it app and it need to extend react.
+
+10
+00:00:44,350 --> 00:00:49,660
+Dot component so that we can inherit all the things that we need from React.
+
+11
+00:00:49,690 --> 00:00:56,750
+Here inside this class, for example, the render method to return some JS.
+
+12
+00:00:57,310 --> 00:01:03,820
+So let's actually start writing that JS for our classy weather application.
+
+13
+00:01:04,560 --> 00:01:09,420
+So starting with a div of the app class name.
+
+14
+00:01:09,420 --> 00:01:15,630
+And as always, you can check out the CSS file that is part of this section.
+
+15
+00:01:16,590 --> 00:01:20,550
+And let's start with an H one with the name of the app.
+
+16
+00:01:21,880 --> 00:01:23,680
+So classy weather.
+
+17
+00:01:24,040 --> 00:01:27,700
+Then let's create a div with an input field.
+
+18
+00:01:28,670 --> 00:01:35,690
+And so this field will basically be for the location for which we want to search the weather.
+
+19
+00:01:35,990 --> 00:01:39,080
+So this will be of the type of text.
+
+20
+00:01:39,960 --> 00:01:41,880
+And let's also add a placeholder.
+
+21
+00:01:42,590 --> 00:01:44,930
+Search for.
+
+22
+00:01:45,840 --> 00:01:47,190
+Location.
+
+23
+00:01:48,820 --> 00:01:49,030
+No.
+
+24
+00:01:49,030 --> 00:01:49,660
+Okay.
+
+25
+00:01:49,660 --> 00:01:54,550
+And now all we need to do is to export that component.
+
+26
+00:01:57,380 --> 00:01:58,610
+And there we go.
+
+27
+00:01:58,940 --> 00:02:04,670
+We just need to make this a lot smaller so that it actually fits our screen.
+
+28
+00:02:04,730 --> 00:02:07,780
+And so now here we can search for any city.
+
+29
+00:02:07,790 --> 00:02:11,420
+So just like here in this demo application.
+
+30
+00:02:12,430 --> 00:02:16,720
+Now here in this app, we for now also want a button.
+
+31
+00:02:17,840 --> 00:02:20,210
+Sew a button to search for the weather.
+
+32
+00:02:21,030 --> 00:02:24,300
+So get weather like this.
+
+33
+00:02:24,910 --> 00:02:25,620
+Okay.
+
+34
+00:02:25,620 --> 00:02:30,230
+And next up, let's make this input field here a controlled element.
+
+35
+00:02:30,240 --> 00:02:35,250
+So an element where React controls and owns the state.
+
+36
+00:02:35,490 --> 00:02:42,420
+And so this idea of controlled elements is exactly the same as before in function components.
+
+37
+00:02:42,420 --> 00:02:47,960
+So many of the things that we learned previously still apply to class components.
+
+38
+00:02:47,970 --> 00:02:56,010
+And so this means that we now need to give this component state and remember that we do that by calling
+
+39
+00:02:56,010 --> 00:03:02,040
+the constructor method, which is a method that is available on all JavaScript classes.
+
+40
+00:03:02,040 --> 00:03:10,320
+So this is not coming from React, but this one is called with props so that we can then call the parent
+
+41
+00:03:10,320 --> 00:03:11,160
+component.
+
+42
+00:03:11,160 --> 00:03:16,410
+So that is react component by using here the super keyword.
+
+43
+00:03:17,100 --> 00:03:19,710
+And again, we do that with perhaps.
+
+44
+00:03:21,090 --> 00:03:26,350
+Okay, so this is really like a recipe that you need to follow and it's always the same.
+
+45
+00:03:26,350 --> 00:03:31,840
+And so that's why we say that these class components have a lot more boilerplate code.
+
+46
+00:03:31,870 --> 00:03:37,810
+So it's all of this stuff that doesn't really do much, but which we still have to do in order to make
+
+47
+00:03:37,810 --> 00:03:38,590
+this work.
+
+48
+00:03:39,700 --> 00:03:48,670
+But anyway, let's now define state again by using this dot state and then setting it to an object.
+
+49
+00:03:48,850 --> 00:03:51,850
+And this one will have the location property.
+
+50
+00:03:51,910 --> 00:03:55,310
+And let's start with a default location.
+
+51
+00:03:55,330 --> 00:03:57,490
+So, for example, Lisbon.
+
+52
+00:03:58,150 --> 00:04:07,930
+And so now, just like always, we use this state as a value, but now that state lives in this dot
+
+53
+00:04:07,930 --> 00:04:08,650
+state.
+
+54
+00:04:09,610 --> 00:04:10,960
+Dot location.
+
+55
+00:04:11,320 --> 00:04:18,040
+So as we save this, we see that immediately our state got added to our input field.
+
+56
+00:04:18,700 --> 00:04:19,570
+Nice.
+
+57
+00:04:19,600 --> 00:04:28,050
+Now all we have to do is to then listen for the change event and update the state as the user types.
+
+58
+00:04:28,060 --> 00:04:34,150
+And so again, we get the current event and then here we set the state.
+
+59
+00:04:34,540 --> 00:04:43,330
+So in class components, we do this by using this dot set state and then we pass in the new object.
+
+60
+00:04:44,370 --> 00:04:47,070
+Or at least the properties that have changed.
+
+61
+00:04:48,710 --> 00:04:55,190
+So location will be equal to e dot target dot value.
+
+62
+00:04:55,770 --> 00:04:58,080
+And so if we reload this now.
+
+63
+00:04:59,760 --> 00:05:01,470
+And that's working just fine.
+
+64
+00:05:01,470 --> 00:05:04,770
+And we can see that also here in the dev tools.
+
+65
+00:05:04,950 --> 00:05:09,840
+So you see that just like before, we can see the entire state down here.
+
+66
+00:05:09,870 --> 00:05:16,530
+The only difference is that now it doesn't say hooks and it doesn't have here the numbers for the hooks,
+
+67
+00:05:16,530 --> 00:05:17,880
+of course, as well.
+
+68
+00:05:18,570 --> 00:05:22,140
+But besides that, yeah, everything works the same.
+
+69
+00:05:22,730 --> 00:05:29,750
+Now notice that here in this event handler function, we didn't have to manually bind the disk keyword
+
+70
+00:05:29,750 --> 00:05:31,130
+like we did before.
+
+71
+00:05:31,160 --> 00:05:37,970
+We only have to do that when we define the event handler as an outside method, which is exactly what
+
+72
+00:05:37,970 --> 00:05:39,590
+we will do next.
+
+73
+00:05:40,530 --> 00:05:45,570
+So basically, as an event handler for the event of clicking here on this button.
+
+74
+00:05:46,460 --> 00:05:47,810
+So let's do that.
+
+75
+00:05:48,110 --> 00:05:49,940
+And let's call it fetch.
+
+76
+00:05:51,250 --> 00:05:52,030
+Whether.
+
+77
+00:05:52,940 --> 00:06:00,080
+And for now, we will only just log something here to the console like loading data.
+
+78
+00:06:01,350 --> 00:06:05,040
+And then let's also again log the disk keyword here.
+
+79
+00:06:05,050 --> 00:06:09,150
+So just so we see again the problem that we have.
+
+80
+00:06:12,410 --> 00:06:16,070
+So let's attach that here.
+
+81
+00:06:16,730 --> 00:06:21,950
+And so again, that is this dot and then whatever name of the method.
+
+82
+00:06:23,360 --> 00:06:24,860
+So let's see.
+
+83
+00:06:25,950 --> 00:06:30,240
+And well, here we have the wrong prop name.
+
+84
+00:06:31,400 --> 00:06:32,660
+Let's just reload that.
+
+85
+00:06:32,660 --> 00:06:40,370
+And now as we click here, we get loading data and we also get again that our this keyword is undefined.
+
+86
+00:06:41,030 --> 00:06:47,060
+And that's going to be a problem because we will need the this keyword here to later set some state.
+
+87
+00:06:47,060 --> 00:06:55,490
+And so just like we did in our counter, we need to now explicitly bind the this keyword to this method.
+
+88
+00:06:56,500 --> 00:07:06,340
+So we say this dot weather is equal to this dot fetch weather and then we explicitly bind the this keyword
+
+89
+00:07:06,370 --> 00:07:07,650
+to this method.
+
+90
+00:07:07,660 --> 00:07:14,530
+So basically giving it access to the current component instance so that then we can set the state on
+
+91
+00:07:14,530 --> 00:07:15,100
+there.
+
+92
+00:07:15,220 --> 00:07:16,810
+So give it a save.
+
+93
+00:07:16,840 --> 00:07:18,040
+Try that again.
+
+94
+00:07:18,040 --> 00:07:22,680
+And now indeed we get our current component instance here.
+
+95
+00:07:22,690 --> 00:07:25,120
+So it has our state and everything.
+
+96
+00:07:25,120 --> 00:07:29,470
+And if we change that here, then of course it won't change here.
+
+97
+00:07:29,470 --> 00:07:31,000
+But if we do that again.
+
+98
+00:07:31,680 --> 00:07:32,400
+Then.
+
+99
+00:07:32,400 --> 00:07:32,880
+Yeah.
+
+100
+00:07:32,880 --> 00:07:36,300
+Now we have the new updated state right there.
+
+101
+00:07:36,900 --> 00:07:37,500
+Okay.
+
+102
+00:07:37,500 --> 00:07:42,930
+And with this, we are now ready to actually fetch the weather data in the next video.

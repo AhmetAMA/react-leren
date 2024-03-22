@@ -1,0 +1,523 @@
+1
+00:00:00,800 --> 00:00:07,790
+So with our reducer now in place, it's time to handle the different states that the application can
+
+2
+00:00:07,790 --> 00:00:08,450
+have.
+
+3
+00:00:09,760 --> 00:00:15,620
+So remember that at the beginning our application is in the loading status.
+
+4
+00:00:15,640 --> 00:00:17,650
+So that's how it starts.
+
+5
+00:00:17,650 --> 00:00:21,910
+And then when we receive some data, the status changes to ready.
+
+6
+00:00:21,910 --> 00:00:26,080
+And so that's when we will then want to display the list of questions.
+
+7
+00:00:26,080 --> 00:00:28,210
+And also there can be an error.
+
+8
+00:00:28,210 --> 00:00:31,000
+And so then the status changes to error.
+
+9
+00:00:31,000 --> 00:00:38,560
+And so now we want to display different UIs for these three situations and all of these situations will
+
+10
+00:00:38,560 --> 00:00:42,790
+be always displayed inside this main component right here.
+
+11
+00:00:43,410 --> 00:00:45,240
+So let's get rid of this.
+
+12
+00:00:45,270 --> 00:00:49,190
+And now we will conditionally display some components.
+
+13
+00:00:49,200 --> 00:00:53,040
+And so here we can use state dot status.
+
+14
+00:00:53,860 --> 00:00:56,530
+But that's maybe a bit too much work.
+
+15
+00:00:56,560 --> 00:01:00,640
+And so let's actually destructure our state object.
+
+16
+00:01:00,670 --> 00:01:06,850
+Now, we could do that outside, so creating these variables here, but we can do it on the fly.
+
+17
+00:01:06,880 --> 00:01:12,130
+So basically right here with nested destructuring so we can have.
+
+18
+00:01:12,710 --> 00:01:18,980
+The questions and the status state destructured right here.
+
+19
+00:01:20,290 --> 00:01:27,550
+And so now state of course, no longer exists, but we have status and so now we can just check.
+
+20
+00:01:28,320 --> 00:01:33,570
+For example, if it is loading and if it is, then we want to display something.
+
+21
+00:01:33,780 --> 00:01:36,450
+Now, in this case, we want to show a loader.
+
+22
+00:01:36,450 --> 00:01:41,340
+And I actually also already have that loader component here.
+
+23
+00:01:41,580 --> 00:01:45,030
+So it's again, a very simple presentational component.
+
+24
+00:01:45,030 --> 00:01:48,240
+And so there was no need to create it from scratch.
+
+25
+00:01:49,310 --> 00:01:51,710
+So it doesn't even receive any props.
+
+26
+00:01:51,710 --> 00:01:55,410
+And the same thing also for the error component.
+
+27
+00:01:55,430 --> 00:01:59,660
+So exactly the same thing doesn't receive props, has no state.
+
+28
+00:01:59,660 --> 00:02:06,080
+And so I thought we could save some minutes and not write them manually here in the video.
+
+29
+00:02:06,930 --> 00:02:14,280
+So here, if the status is loading, we want to display that loading component.
+
+30
+00:02:14,940 --> 00:02:16,710
+And let's include that here.
+
+31
+00:02:17,410 --> 00:02:19,360
+But just duplicate this line.
+
+32
+00:02:20,990 --> 00:02:22,880
+And actually it's called loader.
+
+33
+00:02:23,690 --> 00:02:27,590
+And then let's also already import the error.
+
+34
+00:02:28,670 --> 00:02:32,060
+So here that is loader.
+
+35
+00:02:33,770 --> 00:02:35,660
+And then we have some problem here.
+
+36
+00:02:35,690 --> 00:02:38,000
+State is not defined.
+
+37
+00:02:38,680 --> 00:02:45,640
+But while I'm using state nowhere, maybe let's just try to reload and that fixes it.
+
+38
+00:02:46,960 --> 00:02:47,760
+Okay.
+
+39
+00:02:47,770 --> 00:02:53,860
+And now we can just do the same thing again because these different states are, of course, mutually
+
+40
+00:02:53,860 --> 00:02:54,750
+exclusive.
+
+41
+00:02:54,760 --> 00:02:58,930
+So we don't need any ternaries or even nested ternaries.
+
+42
+00:02:58,930 --> 00:03:04,660
+So only this one or this 1 or 1 of the next ones will be true.
+
+43
+00:03:06,140 --> 00:03:09,350
+And yeah, so we can just use the end here.
+
+44
+00:03:11,440 --> 00:03:12,070
+All right.
+
+45
+00:03:12,070 --> 00:03:16,040
+But here, let's use the error and let's already try this out.
+
+46
+00:03:16,060 --> 00:03:19,930
+So let's see if we briefly see the loading.
+
+47
+00:03:19,930 --> 00:03:20,860
+And we saw.
+
+48
+00:03:20,860 --> 00:03:22,270
+But it was very short.
+
+49
+00:03:22,720 --> 00:03:27,190
+So just to make sure, let's do some throttling here.
+
+50
+00:03:27,610 --> 00:03:31,120
+So make our app a little bit slower.
+
+51
+00:03:31,750 --> 00:03:33,360
+It does can be a bit smaller.
+
+52
+00:03:34,450 --> 00:03:35,740
+Yeah, There we go.
+
+53
+00:03:35,740 --> 00:03:37,840
+So there we are, loading our questions.
+
+54
+00:03:38,440 --> 00:03:45,520
+And now let's also pretend that we have a no network connection so that we are offline.
+
+55
+00:03:45,520 --> 00:03:50,860
+And so then when we reload, well, then of course the entire page doesn't work.
+
+56
+00:03:51,930 --> 00:03:55,050
+So that experiment actually doesn't really work.
+
+57
+00:03:55,050 --> 00:04:02,550
+But so to check the error state here, let's again quit our fake API.
+
+58
+00:04:02,700 --> 00:04:06,660
+And so then we should see some error and indeed.
+
+59
+00:04:08,480 --> 00:04:16,400
+Now hear this dispatch was called with this event type here, which then set our status to error.
+
+60
+00:04:16,550 --> 00:04:19,640
+And so therefore, then we got this error component.
+
+61
+00:04:20,550 --> 00:04:24,120
+But of course, let's restart our server.
+
+62
+00:04:24,810 --> 00:04:25,860
+And so then.
+
+63
+00:04:27,170 --> 00:04:28,670
+It should be back to working?
+
+64
+00:04:29,150 --> 00:04:30,050
+Yes.
+
+65
+00:04:31,710 --> 00:04:32,400
+Okay.
+
+66
+00:04:33,210 --> 00:04:38,520
+And we have another state or status that we can handle, which is the ready status.
+
+67
+00:04:38,550 --> 00:04:44,670
+So ready basically means that the questions have arrived and that we are ready to start the quiz.
+
+68
+00:04:48,050 --> 00:04:51,260
+So status ready.
+
+69
+00:04:51,350 --> 00:04:55,250
+And here we will want to create yet another component.
+
+70
+00:04:55,430 --> 00:04:57,650
+So let's just check that out.
+
+71
+00:04:58,390 --> 00:05:04,390
+So here in the demo and this actually is what we want to show in the very beginning, so when the app
+
+72
+00:05:04,390 --> 00:05:05,170
+is ready.
+
+73
+00:05:05,880 --> 00:05:10,650
+So when we load the app, you briefly saw the loading indicator there flash.
+
+74
+00:05:10,650 --> 00:05:13,620
+And then this here is the start screen.
+
+75
+00:05:13,620 --> 00:05:17,880
+So just with this text number of questions and then the button to start.
+
+76
+00:05:18,740 --> 00:05:20,480
+So very simple stuff.
+
+77
+00:05:20,630 --> 00:05:24,170
+So let's create a new file here for that component.
+
+78
+00:05:24,170 --> 00:05:28,070
+And I'm going to call it the start screen.
+
+79
+00:05:29,920 --> 00:05:30,660
+JS.
+
+80
+00:05:31,670 --> 00:05:38,380
+And then again using that snippet RFC, which by the way stands for React Functional component.
+
+81
+00:05:38,390 --> 00:05:42,300
+And so here let's place some text.
+
+82
+00:05:42,320 --> 00:05:47,720
+So starting with welcome to the React Quiz.
+
+83
+00:05:48,410 --> 00:05:49,550
+Like this.
+
+84
+00:05:51,350 --> 00:05:56,480
+That any paragraph with the number of questions, let's just place an X for now.
+
+85
+00:05:59,480 --> 00:06:01,970
+To test your react.
+
+86
+00:06:03,430 --> 00:06:04,330
+Mastery.
+
+87
+00:06:04,480 --> 00:06:09,700
+And then this div should actually have the class name of start.
+
+88
+00:06:10,730 --> 00:06:13,610
+And here let's use an H three instead.
+
+89
+00:06:14,970 --> 00:06:16,050
+And then finally.
+
+90
+00:06:18,380 --> 00:06:21,890
+Also that button which says, let's start.
+
+91
+00:06:22,550 --> 00:06:25,760
+Okay, so that's enough for now.
+
+92
+00:06:26,120 --> 00:06:29,120
+And then let's indeed include that right here.
+
+93
+00:06:29,790 --> 00:06:36,000
+So start and then here vs code this time actually suggests the import for us.
+
+94
+00:06:36,000 --> 00:06:40,470
+So you can see that here by the path name to the file.
+
+95
+00:06:40,590 --> 00:06:45,960
+And so if we click that then that import is nicely automatically added.
+
+96
+00:06:46,530 --> 00:06:49,710
+So if we save this now, then here we go.
+
+97
+00:06:49,890 --> 00:06:55,710
+So we basically reacted or we handled to that ready status there.
+
+98
+00:06:56,070 --> 00:07:00,240
+Now, what we want here is actually the number of questions.
+
+99
+00:07:00,240 --> 00:07:05,400
+And so that's basically the length of the questions array right here.
+
+100
+00:07:05,760 --> 00:07:08,700
+So the questions array has the length of 15.
+
+101
+00:07:08,700 --> 00:07:11,010
+And so 15 is what we want to see there.
+
+102
+00:07:11,950 --> 00:07:15,430
+So where do we calculate that value?
+
+103
+00:07:15,520 --> 00:07:19,750
+Should we maybe place it here also into our state object?
+
+104
+00:07:19,960 --> 00:07:22,990
+Well, that's actually not necessary.
+
+105
+00:07:23,110 --> 00:07:30,250
+So just like we have always been doing, we can just calculate derived state right here in the app component
+
+106
+00:07:30,280 --> 00:07:37,330
+because in fact this is just derived state because we can simply calculate it from the question array
+
+107
+00:07:37,330 --> 00:07:38,180
+itself.
+
+108
+00:07:38,230 --> 00:07:43,630
+So let's just do num questions is just equal.
+
+109
+00:07:44,460 --> 00:07:45,810
+Two questions.
+
+110
+00:07:45,810 --> 00:07:47,970
+So it should be questions here.
+
+111
+00:07:48,540 --> 00:07:49,350
+Let's see.
+
+112
+00:07:49,890 --> 00:07:51,990
+Yeah, it's questions everywhere.
+
+113
+00:07:52,670 --> 00:07:56,480
+So just questions dot length.
+
+114
+00:07:57,550 --> 00:08:03,760
+And of course, we could also pass the entire array into this component, but there's really no need
+
+115
+00:08:03,760 --> 00:08:04,120
+to.
+
+116
+00:08:04,120 --> 00:08:07,030
+And also we will need this in other places.
+
+117
+00:08:08,440 --> 00:08:14,890
+So let's pass the number of questions equal to number of questions.
+
+118
+00:08:15,750 --> 00:08:17,670
+So then we can receive that here.
+
+119
+00:08:17,760 --> 00:08:19,380
+So destructuring.
+
+120
+00:08:19,380 --> 00:08:21,030
+And then num.
+
+121
+00:08:22,020 --> 00:08:23,070
+Questions.
+
+122
+00:08:23,430 --> 00:08:25,410
+And finally.
+
+123
+00:08:26,240 --> 00:08:28,640
+Num questions here as well.
+
+124
+00:08:28,640 --> 00:08:30,080
+And beautiful.
+
+125
+00:08:30,080 --> 00:08:32,720
+Now we get 15 questions.
+
+126
+00:08:33,620 --> 00:08:34,640
+Like this.
+
+127
+00:08:35,240 --> 00:08:45,020
+And now all we need to do is to add some more class names here, which is the BTN and BTN UI class.
+
+128
+00:08:45,110 --> 00:08:49,310
+And as always, feel free to check those out in the CSS file.
+
+129
+00:08:50,080 --> 00:08:50,700
+Okay.
+
+130
+00:08:50,710 --> 00:08:55,270
+And so with this, we actually fulfilled our goal for this lecture.
+
+131
+00:08:55,270 --> 00:09:02,200
+And so in the next one, we will then finally start our game or our quiz by clicking here.

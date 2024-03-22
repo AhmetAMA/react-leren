@@ -1,0 +1,387 @@
+1
+00:00:00,850 --> 00:00:08,350
+In this challenge, let's practice creating a custom hook based on some code that is already working.
+
+2
+00:00:09,400 --> 00:00:17,110
+So here we have a very simple application, which all it does is to get your position using geo location
+
+3
+00:00:17,110 --> 00:00:19,540
+as soon as you click on this button.
+
+4
+00:00:19,810 --> 00:00:26,500
+So when you click here, your browser will automatically ask for your permission and then when you allow,
+
+5
+00:00:26,530 --> 00:00:34,150
+it will give you your position and the link which you can click and which will bring you to the OpenStreetMap
+
+6
+00:00:34,150 --> 00:00:37,300
+application on your location.
+
+7
+00:00:38,470 --> 00:00:38,680
+No.
+
+8
+00:00:38,680 --> 00:00:39,310
+Okay.
+
+9
+00:00:39,760 --> 00:00:44,530
+Also, the app then clicks how many times you have requested your position.
+
+10
+00:00:44,530 --> 00:00:49,120
+And so if I click here again, then it changes to two and it loads again.
+
+11
+00:00:50,450 --> 00:00:51,170
+Okay.
+
+12
+00:00:51,970 --> 00:00:58,420
+And as I was saying in the beginning, I already have all of this code working here in your starter
+
+13
+00:00:58,420 --> 00:00:59,050
+file.
+
+14
+00:00:59,080 --> 00:01:03,130
+So the application again is already working just fine.
+
+15
+00:01:03,130 --> 00:01:08,220
+And you can of course check out all the code that I wrote here.
+
+16
+00:01:08,230 --> 00:01:11,580
+But what matters is this other code.
+
+17
+00:01:11,590 --> 00:01:16,060
+So all of this here outside of the JS return.
+
+18
+00:01:16,640 --> 00:01:25,910
+So my task for you now is to extract this logic into a custom hook called use geolocation and then use
+
+19
+00:01:25,910 --> 00:01:29,540
+that custom hook to make this component work again.
+
+20
+00:01:29,540 --> 00:01:32,810
+So working in the exact same way as before.
+
+21
+00:01:32,960 --> 00:01:39,980
+Now I want you to think about the fact that a custom hook should be as reusable as possible.
+
+22
+00:01:39,980 --> 00:01:47,210
+And so, of course I want you to write a use geolocation hook that you could then use in any other app
+
+23
+00:01:47,210 --> 00:01:48,740
+that you will ever build.
+
+24
+00:01:49,380 --> 00:01:56,460
+So if we think about this, then maybe those future apps where you might need this custom hook, they
+
+25
+00:01:56,460 --> 00:02:01,140
+don't want to count how many times we have clicked on the button here.
+
+26
+00:02:01,260 --> 00:02:02,100
+Right?
+
+27
+00:02:02,100 --> 00:02:07,890
+And so this state right here might not really be relevant to this custom hook.
+
+28
+00:02:07,980 --> 00:02:15,480
+So this custom hook should really only contain the logic that is about getting the position from geolocation.
+
+29
+00:02:15,480 --> 00:02:20,170
+And so that's what I want you to think about while you are doing this exercise.
+
+30
+00:02:20,190 --> 00:02:27,780
+So again, basically make sure to not include this state here, which indicates how many times the button
+
+31
+00:02:27,780 --> 00:02:28,770
+has been clicked.
+
+32
+00:02:28,770 --> 00:02:32,860
+So that's a small additional challenge, but I'm sure you can do it.
+
+33
+00:02:32,880 --> 00:02:39,930
+And again, the goal is to then have the application in the end look and work exactly as it is working
+
+34
+00:02:39,930 --> 00:02:40,770
+right now.
+
+35
+00:02:41,310 --> 00:02:46,650
+So take all the time that you need and then see you back here with my quick solution.
+
+36
+00:02:48,340 --> 00:02:50,660
+So let's get to work.
+
+37
+00:02:50,680 --> 00:02:56,470
+And so let's grab all the logic that is related to the geolocation.
+
+38
+00:02:56,620 --> 00:02:58,330
+So that's all the state.
+
+39
+00:02:58,330 --> 00:03:05,650
+And also this event handler here, except for this counter here.
+
+40
+00:03:06,040 --> 00:03:10,750
+And for now, also, except this part here, although that is debatable.
+
+41
+00:03:10,750 --> 00:03:13,660
+But let's just comment this out for now.
+
+42
+00:03:14,570 --> 00:03:17,870
+So let's grab all this code right here.
+
+43
+00:03:18,800 --> 00:03:21,800
+Cut it and then paste it here.
+
+44
+00:03:22,780 --> 00:03:25,990
+But of course now we will need to adjust a few things.
+
+45
+00:03:26,020 --> 00:03:33,580
+And the first one is that, of course, now this counting logic here is no longer part of Getposition.
+
+46
+00:03:33,760 --> 00:03:35,860
+So let's cut that from here.
+
+47
+00:03:36,890 --> 00:03:39,140
+And paste it into some function here.
+
+48
+00:03:41,900 --> 00:03:44,450
+So let's say handle click.
+
+49
+00:03:48,670 --> 00:03:50,350
+And then let's do that here.
+
+50
+00:03:50,350 --> 00:03:57,100
+And so then here we will actually call that other function, because inside Handleclick is where we
+
+51
+00:03:57,100 --> 00:04:03,970
+will then update the count clicks state and also actually get the position.
+
+52
+00:04:04,930 --> 00:04:06,490
+So let's say for now.
+
+53
+00:04:06,490 --> 00:04:09,820
+But of course, we are now missing all of these variables here.
+
+54
+00:04:09,820 --> 00:04:16,690
+And so just like we did previously, we now need to return all those variables from our hook.
+
+55
+00:04:17,020 --> 00:04:20,740
+So that is actually pretty easy.
+
+56
+00:04:21,820 --> 00:04:24,340
+So let's just return an object.
+
+57
+00:04:24,460 --> 00:04:28,780
+So it is loading with position.
+
+58
+00:04:30,460 --> 00:04:35,800
+With the error and then also with the get position function.
+
+59
+00:04:36,910 --> 00:04:37,880
+All right.
+
+60
+00:04:37,900 --> 00:04:42,940
+And then we see here we have no longer any yellow underlinings.
+
+61
+00:04:42,940 --> 00:04:48,130
+All we have now yellow is this function because we are not using it anywhere.
+
+62
+00:04:48,280 --> 00:04:49,930
+So let's change that.
+
+63
+00:04:52,170 --> 00:04:54,390
+So use geolocation.
+
+64
+00:04:54,390 --> 00:04:59,310
+And then this will, of course, return an object with these names here.
+
+65
+00:04:59,430 --> 00:05:00,930
+So let's just copy that.
+
+66
+00:05:01,110 --> 00:05:02,250
+That's a bit easier.
+
+67
+00:05:03,900 --> 00:05:10,140
+So we will destructure all of that right here into these four variables.
+
+68
+00:05:10,230 --> 00:05:17,580
+Now, you could also have done this destructuring here, right here inside the geolocation.
+
+69
+00:05:17,580 --> 00:05:23,190
+And then instead of returning the position, you could have returned the latitude and the longitude
+
+70
+00:05:23,190 --> 00:05:24,060
+separately.
+
+71
+00:05:24,060 --> 00:05:31,530
+But here I just returned all of them at once and we can now actually do nested destructuring so we can
+
+72
+00:05:31,530 --> 00:05:35,580
+also immediately destructure the position right here.
+
+73
+00:05:37,420 --> 00:05:45,310
+Let and LNG and they are called this way because here we are constructing that position object with
+
+74
+00:05:45,310 --> 00:05:48,460
+these exact property names.
+
+75
+00:05:50,210 --> 00:05:53,150
+Okay, then we don't need this anymore.
+
+76
+00:05:53,150 --> 00:05:58,490
+And then here all we have to do is to also call get position.
+
+77
+00:05:58,730 --> 00:06:01,550
+And with this we should be good to go.
+
+78
+00:06:01,760 --> 00:06:03,650
+So let's just reload here.
+
+79
+00:06:05,670 --> 00:06:08,100
+And there we go.
+
+80
+00:06:10,010 --> 00:06:13,370
+So the state updating works here and here as well.
+
+81
+00:06:13,370 --> 00:06:17,150
+And of course, our link is also still working.
+
+82
+00:06:17,450 --> 00:06:18,500
+Nice.
+
+83
+00:06:18,890 --> 00:06:21,740
+So that's actually already it.
+
+84
+00:06:21,770 --> 00:06:28,820
+So this was a fast one, but also a very important challenge, which hopefully made it even more clear
+
+85
+00:06:28,820 --> 00:06:31,260
+how we create our own custom hooks.
+
+86
+00:06:31,280 --> 00:06:38,750
+So basically we take all the non-visual logic, so all the logic that contains some react hooks and
+
+87
+00:06:38,750 --> 00:06:41,630
+which is relevant to a certain thing.
+
+88
+00:06:41,630 --> 00:06:45,590
+And so in this case, that thing is to use geolocation.
+
+89
+00:06:45,860 --> 00:06:53,540
+So then we took these three state variables and also this event handler function and then returned all
+
+90
+00:06:53,540 --> 00:06:56,620
+of that from here and used it here.
+
+91
+00:06:56,630 --> 00:07:03,170
+And so then we encapsulated all of those states and all the logic inside this custom hook.
+
+92
+00:07:03,500 --> 00:07:11,070
+Then of course, this state we left outside, which then forced us to do a couple of changes here in
+
+93
+00:07:11,070 --> 00:07:12,690
+the event handler for the button.
+
+94
+00:07:12,690 --> 00:07:15,600
+But all that is pretty simple.
+
+95
+00:07:15,720 --> 00:07:21,870
+And so I hope that you had some fun with this and that you're now ready to move to the section.
+
+96
+00:07:21,870 --> 00:07:23,580
+That is coming up next.
+
+97
+00:07:23,580 --> 00:07:25,080
+So see you there.

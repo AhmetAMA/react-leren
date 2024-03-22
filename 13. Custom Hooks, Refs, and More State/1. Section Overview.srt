@@ -1,0 +1,35 @@
+1
+00:00:01,260 --> 00:00:02,600
+Welcome back.
+
+2
+00:00:02,610 --> 00:00:07,980
+In this section, we're going to dive even deeper into React hooks.
+
+3
+00:00:08,430 --> 00:00:15,660
+So I like to say that hooks are easy to learn in the beginning, but hard to really master.
+
+4
+00:00:16,050 --> 00:00:23,520
+However, a really solid understanding of hooks is crucial for all React developers.
+
+5
+00:00:23,670 --> 00:00:31,050
+That's why over the next few videos we'll understand the rules of hooks and why they exist.
+
+6
+00:00:31,080 --> 00:00:34,310
+Learn even more about the use datak.
+
+7
+00:00:34,410 --> 00:00:40,710
+Explore the use ref hook and even create our own react hooks.
+
+8
+00:00:41,130 --> 00:00:49,140
+Now we won't revisit the use effect hook yet because we will inspect it even further at a later point.
+
+9
+00:00:49,470 --> 00:00:55,530
+But anyway, let's get back to work and finish building this project.

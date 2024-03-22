@@ -1,0 +1,831 @@
+1
+00:00:01,020 --> 00:00:06,990
+Our next task is to implement the functionality of actually finishing the quiz.
+
+2
+00:00:08,400 --> 00:00:16,050
+So after the user has given an answer to the last question, we no longer want to display all of this
+
+3
+00:00:16,050 --> 00:00:18,210
+here inside the main component.
+
+4
+00:00:18,210 --> 00:00:25,920
+But instead we will want our application to move into a finished status so that then we can display
+
+5
+00:00:25,920 --> 00:00:28,230
+like a finished screen here.
+
+6
+00:00:28,320 --> 00:00:30,810
+So in the beginning we have a start screen.
+
+7
+00:00:30,960 --> 00:00:38,130
+So when the application is ready, then while it is active we show the progress question and next button.
+
+8
+00:00:38,130 --> 00:00:44,190
+And then when the user is actually finished, we will have the status set to finished.
+
+9
+00:00:44,400 --> 00:00:45,390
+And so let's.
+
+10
+00:00:46,900 --> 00:00:52,720
+Handle that state here, that status state even though we don't have.
+
+11
+00:00:52,810 --> 00:00:57,760
+Any button yet or so that will trigger the status to become finished.
+
+12
+00:00:58,350 --> 00:01:00,150
+But let's implement this anyway.
+
+13
+00:01:00,980 --> 00:01:06,350
+So we want or actually let's create the component first.
+
+14
+00:01:10,850 --> 00:01:13,970
+So finish screen.
+
+15
+00:01:14,710 --> 00:01:16,090
+Dot JS.
+
+16
+00:01:19,260 --> 00:01:22,920
+Now down here, let's return a paragraph that says.
+
+17
+00:01:24,620 --> 00:01:26,180
+Use chords.
+
+18
+00:01:27,190 --> 00:01:28,180
+And then the score.
+
+19
+00:01:30,000 --> 00:01:32,670
+And let's actually wrap this into.
+
+20
+00:01:33,450 --> 00:01:35,640
+A strong tag.
+
+21
+00:01:40,320 --> 00:01:44,820
+And then out of all the maximum amount of points.
+
+22
+00:01:44,820 --> 00:01:48,150
+So that's Max possible.
+
+23
+00:01:49,110 --> 00:01:49,980
+Points.
+
+24
+00:01:49,980 --> 00:01:53,430
+And then let's also calculate a percentage.
+
+25
+00:01:54,600 --> 00:01:56,850
+So let's do that outside here.
+
+26
+00:01:58,670 --> 00:02:01,910
+So as a derived state, basically.
+
+27
+00:02:02,120 --> 00:02:07,760
+So let's say that's the points divided by the max.
+
+28
+00:02:07,760 --> 00:02:09,080
+Possible points.
+
+29
+00:02:10,260 --> 00:02:12,390
+Times 100.
+
+30
+00:02:12,900 --> 00:02:16,170
+So let's take that and use it here.
+
+31
+00:02:16,950 --> 00:02:19,770
+So let's round that down then.
+
+32
+00:02:22,300 --> 00:02:23,470
+Per Senate.
+
+33
+00:02:24,310 --> 00:02:24,730
+Okay.
+
+34
+00:02:24,730 --> 00:02:30,730
+But of course, our code is complaining that none of this exists because of course we will have to receive
+
+35
+00:02:30,730 --> 00:02:32,800
+this as perhaps.
+
+36
+00:02:35,400 --> 00:02:38,730
+Okay, so now our component is happy, but.
+
+37
+00:02:39,400 --> 00:02:43,480
+Of course, it's not yet being displayed because we need to include it here.
+
+38
+00:02:45,840 --> 00:02:48,390
+So finish screen.
+
+39
+00:02:49,090 --> 00:02:52,330
+Just make sure that it got automatically imported.
+
+40
+00:02:52,360 --> 00:02:53,770
+I'm not sure it did.
+
+41
+00:02:54,310 --> 00:02:55,570
+Yeah, actually, it didn't.
+
+42
+00:02:56,240 --> 00:02:58,220
+So let's try that again.
+
+43
+00:03:00,460 --> 00:03:00,850
+Yeah.
+
+44
+00:03:00,880 --> 00:03:01,840
+Just like this.
+
+45
+00:03:02,930 --> 00:03:04,850
+So we pass in the points.
+
+46
+00:03:05,890 --> 00:03:10,750
+And the max possible points as well.
+
+47
+00:03:12,600 --> 00:03:12,840
+No.
+
+48
+00:03:12,870 --> 00:03:13,530
+Okay.
+
+49
+00:03:13,530 --> 00:03:20,910
+But as I mentioned earlier, nowhere in our code we can make the status change to finished.
+
+50
+00:03:21,600 --> 00:03:24,420
+But just to test this, let's do that here.
+
+51
+00:03:24,420 --> 00:03:29,550
+And so that's one of the great advantages of having these dev tools.
+
+52
+00:03:30,360 --> 00:03:34,380
+So right here we can change any value that we want.
+
+53
+00:03:36,150 --> 00:03:37,950
+For example, to finished.
+
+54
+00:03:38,160 --> 00:03:45,570
+And so then we see that we got the the component that we just created here.
+
+55
+00:03:45,570 --> 00:03:48,930
+We're just missing the class name.
+
+56
+00:03:50,410 --> 00:03:51,910
+Of result.
+
+57
+00:03:52,700 --> 00:03:57,310
+So that looks a lot better with the percentage sign as well.
+
+58
+00:03:57,320 --> 00:04:00,980
+And then later we will also include like an emoji here.
+
+59
+00:04:00,980 --> 00:04:07,460
+But let's leave that for a little bit later because for now we actually want to trigger the status to
+
+60
+00:04:07,460 --> 00:04:08,780
+become finished.
+
+61
+00:04:09,320 --> 00:04:11,330
+So when should that happen?
+
+62
+00:04:11,660 --> 00:04:14,240
+So let's just restart here.
+
+63
+00:04:14,240 --> 00:04:17,720
+And now let's go to one of the last questions.
+
+64
+00:04:17,930 --> 00:04:23,930
+And again, I will simply change the index now here, let's say to 13.
+
+65
+00:04:24,200 --> 00:04:27,440
+And so with this, we are almost on the last question.
+
+66
+00:04:27,590 --> 00:04:31,820
+So let's just reply anything here next again.
+
+67
+00:04:31,820 --> 00:04:35,750
+And so now we are on the last question, right?
+
+68
+00:04:35,750 --> 00:04:37,940
+So with the index of 14.
+
+69
+00:04:38,900 --> 00:04:42,350
+So when we select anything here now, what's going to happen?
+
+70
+00:04:42,350 --> 00:04:50,330
+Once we click here, the index will just go to 16 or to 15 actually, and then we will have no question
+
+71
+00:04:50,330 --> 00:04:51,220
+to display.
+
+72
+00:04:51,230 --> 00:04:58,820
+And so it is in this situation where we actually want this button here to not go to the next index,
+
+73
+00:04:58,820 --> 00:05:02,600
+but instead to change the status here to finished.
+
+74
+00:05:03,590 --> 00:05:04,250
+Okay.
+
+75
+00:05:04,250 --> 00:05:06,740
+And so that's what we will implement next.
+
+76
+00:05:07,130 --> 00:05:14,180
+So as I click here now again, then we get an error because there is no question with that index.
+
+77
+00:05:16,050 --> 00:05:16,740
+All right.
+
+78
+00:05:16,740 --> 00:05:24,420
+And so let's go here to our next button and say that actually we only want to return this kind of button
+
+79
+00:05:24,420 --> 00:05:30,180
+that dispatches the next question event if a certain condition is met.
+
+80
+00:05:30,180 --> 00:05:35,880
+And so that condition is that the index is less than the number of questions.
+
+81
+00:05:37,930 --> 00:05:41,470
+So for that we will then of course, have to pass that in here.
+
+82
+00:05:42,110 --> 00:05:47,480
+And here it's actually minus one because the index is zero based, but the number is not.
+
+83
+00:05:49,010 --> 00:05:55,720
+Okay, so let's pass in the index and the Num questions.
+
+84
+00:05:58,980 --> 00:06:00,240
+So there we received them.
+
+85
+00:06:00,240 --> 00:06:02,130
+And here is where we pass them in.
+
+86
+00:06:03,590 --> 00:06:10,490
+So num questions equals num questions and then the index.
+
+87
+00:06:11,120 --> 00:06:17,510
+So you see there is a lot of props being passed around in this application, but we will actually learn
+
+88
+00:06:17,510 --> 00:06:19,880
+a nice solution to this problem.
+
+89
+00:06:19,880 --> 00:06:25,880
+So it's not really a problem, but we can make it a bit nicer with some tools that we will learn about
+
+90
+00:06:25,880 --> 00:06:26,510
+later.
+
+91
+00:06:27,380 --> 00:06:30,590
+But anyway, let's just simulate this again.
+
+92
+00:06:31,830 --> 00:06:36,210
+And so if we now go to the index of 14.
+
+93
+00:06:36,840 --> 00:06:41,130
+Then as we finish, we should no longer see that button there.
+
+94
+00:06:41,550 --> 00:06:42,800
+And that's right.
+
+95
+00:06:42,810 --> 00:06:45,300
+So this time we cannot move forward.
+
+96
+00:06:45,300 --> 00:06:50,130
+And so with that, we prevented that bug that we saw earlier.
+
+97
+00:06:50,130 --> 00:06:53,850
+But now we then, of course, need another button.
+
+98
+00:06:55,180 --> 00:07:01,630
+So let's say then, if the index is equal to the number of questions minus one.
+
+99
+00:07:01,630 --> 00:07:04,870
+So that's our 14 in this case.
+
+100
+00:07:05,650 --> 00:07:08,410
+So in this case, we say finish.
+
+101
+00:07:09,700 --> 00:07:13,720
+And then here we will want to dispatch something else.
+
+102
+00:07:13,720 --> 00:07:17,320
+So let's say an event called Finish.
+
+103
+00:07:18,820 --> 00:07:25,180
+So let's then add or basically handle that right here in our reducer.
+
+104
+00:07:27,540 --> 00:07:31,920
+So finish and this one is going to be quite simple.
+
+105
+00:07:32,850 --> 00:07:39,060
+Again, at least for now, because here all we do for now is to set the status.
+
+106
+00:07:40,690 --> 00:07:42,580
+Two finished.
+
+107
+00:07:43,510 --> 00:07:46,750
+So let's reload here again.
+
+108
+00:07:48,380 --> 00:07:53,450
+So I really don't feel like going through the whole quiz manually.
+
+109
+00:07:53,480 --> 00:07:56,060
+And so let's just type 14.
+
+110
+00:07:57,740 --> 00:07:59,000
+Click on anything.
+
+111
+00:07:59,000 --> 00:08:02,480
+And yeah, here we got our finish button.
+
+112
+00:08:02,480 --> 00:08:06,020
+And so now as we click here, yeah, beautiful.
+
+113
+00:08:06,020 --> 00:08:11,960
+So our status change to finish and we got, of course the finish screen right here.
+
+114
+00:08:12,880 --> 00:08:19,240
+Okay, let's just make this screen a little bit nicer with some emoji here, which will express basically
+
+115
+00:08:19,240 --> 00:08:21,250
+how well the user did.
+
+116
+00:08:22,190 --> 00:08:26,330
+So let's create a let variable here.
+
+117
+00:08:26,330 --> 00:08:32,030
+So I think I'm doing that for the first time in this course, but that's just because we will now have
+
+118
+00:08:32,030 --> 00:08:33,350
+a lot of conditions here.
+
+119
+00:08:33,350 --> 00:08:36,350
+And so this is the easiest way of doing that.
+
+120
+00:08:36,560 --> 00:08:44,000
+So basically, according to different values of the percentage, we will now assign a different value.
+
+121
+00:08:44,590 --> 00:08:47,650
+To the emoji, so giving it a different emoji.
+
+122
+00:08:48,280 --> 00:08:50,290
+So here, let's go for a medal.
+
+123
+00:08:52,000 --> 00:08:53,140
+Like this.
+
+124
+00:08:54,690 --> 00:09:01,290
+Then we can say else if or actually since these will be mutually exclusive, we don't even have to do
+
+125
+00:09:01,290 --> 00:09:01,860
+that.
+
+126
+00:09:02,760 --> 00:09:10,590
+So just a normal if is good enough so greater equal 80 and here if you don't want to spend the time
+
+127
+00:09:10,590 --> 00:09:12,180
+doing this, you can just.
+
+128
+00:09:13,180 --> 00:09:14,770
+Uh, fast forward a little bit.
+
+129
+00:09:16,790 --> 00:09:18,500
+But less than 100.
+
+130
+00:09:18,830 --> 00:09:20,270
+Then our emoji.
+
+131
+00:09:22,750 --> 00:09:23,800
+Let's see.
+
+132
+00:09:25,520 --> 00:09:28,100
+Let's use the party emoji this time.
+
+133
+00:09:33,370 --> 00:09:36,030
+And let's just do a couple few more.
+
+134
+00:09:36,040 --> 00:09:45,940
+So if it's more than 50 and less than 80 and then if it's greater than zero, but less than 50.
+
+135
+00:09:45,940 --> 00:09:52,450
+And finally, let's do one if the user fails, all of the questions.
+
+136
+00:09:53,690 --> 00:09:57,380
+So let's use a face palm for this one.
+
+137
+00:09:59,720 --> 00:10:03,530
+And here let's just use like a thinking emoji.
+
+138
+00:10:05,990 --> 00:10:07,550
+Well, not there.
+
+139
+00:10:10,480 --> 00:10:11,530
+And then here.
+
+140
+00:10:12,540 --> 00:10:13,830
+Let's just use.
+
+141
+00:10:14,040 --> 00:10:15,150
+Well, not.
+
+142
+00:10:16,180 --> 00:10:17,620
+To use a happy.
+
+143
+00:10:18,470 --> 00:10:19,220
+Face.
+
+144
+00:10:19,920 --> 00:10:22,230
+For example, just this one here.
+
+145
+00:10:29,850 --> 00:10:34,080
+And so then let's just include that right here.
+
+146
+00:10:34,650 --> 00:10:36,790
+So that looks a little bit better.
+
+147
+00:10:36,810 --> 00:10:39,420
+Gives the user like an immediate feedback.
+
+148
+00:10:40,150 --> 00:10:40,870
+Great.
+
+149
+00:10:40,870 --> 00:10:43,060
+So this works really great.
+
+150
+00:10:43,060 --> 00:10:49,170
+Right now there's just one more feature that I actually want to implement, which is a high score.
+
+151
+00:10:49,180 --> 00:10:55,390
+So if the user does the quiz and then they score 100 points, but then the next time they do it again,
+
+152
+00:10:55,390 --> 00:11:00,490
+then they score 200, then we want to store that 200 as the high score.
+
+153
+00:11:00,490 --> 00:11:07,240
+And so if they then do it for a third time, but then they score, let's say 150, then the 200 stays
+
+154
+00:11:07,240 --> 00:11:08,890
+as the high score.
+
+155
+00:11:08,890 --> 00:11:12,790
+And so we want to also display that here as a paragraph.
+
+156
+00:11:15,180 --> 00:11:19,200
+So use the class name of high score.
+
+157
+00:11:22,300 --> 00:11:24,700
+And then let's just write here between parentheses.
+
+158
+00:11:25,430 --> 00:11:30,020
+That the high score is for now X points.
+
+159
+00:11:30,410 --> 00:11:37,430
+And then here, let's actually return a fragment because we don't want to pollute our markup here with
+
+160
+00:11:37,430 --> 00:11:38,870
+some unnecessary divs.
+
+161
+00:11:39,980 --> 00:11:47,450
+Okay, so when and where and how is the best way of calculating this high score?
+
+162
+00:11:47,630 --> 00:11:53,960
+Well, I think that the best place to do so is exactly when the user finishes the game.
+
+163
+00:11:53,960 --> 00:11:57,830
+And so that is right here in this finish event.
+
+164
+00:11:59,040 --> 00:11:59,580
+Right.
+
+165
+00:11:59,580 --> 00:12:02,060
+So when this happens, the game finishes.
+
+166
+00:12:02,070 --> 00:12:06,300
+And so here we can perfectly fine calculate the high score.
+
+167
+00:12:08,070 --> 00:12:15,300
+So this is another piece of state because of course, we need it to be remembered across Rerenders.
+
+168
+00:12:18,140 --> 00:12:20,750
+So here we also start at zero.
+
+169
+00:12:22,060 --> 00:12:22,990
+And.
+
+170
+00:12:23,710 --> 00:12:24,070
+Yeah.
+
+171
+00:12:24,190 --> 00:12:29,200
+Then let's update the high score as the game finishes.
+
+172
+00:12:29,910 --> 00:12:37,080
+So we can just do state dot points, which are the current points at the end of the game.
+
+173
+00:12:38,350 --> 00:12:42,720
+And then we can compare that to the current high score.
+
+174
+00:12:42,730 --> 00:12:49,930
+And so if it is greater than the current high score, then here we want to assign that new value to
+
+175
+00:12:49,930 --> 00:12:50,830
+the high score.
+
+176
+00:12:51,010 --> 00:12:54,870
+So then that's going to become state dot points.
+
+177
+00:12:54,880 --> 00:12:58,810
+But otherwise, here actually is the question mark.
+
+178
+00:13:00,370 --> 00:13:05,220
+But otherwise, then the high score will simply stay at state dot.
+
+179
+00:13:05,250 --> 00:13:06,030
+High score.
+
+180
+00:13:08,480 --> 00:13:13,280
+So let's manually reload so that our state gets that new high score.
+
+181
+00:13:14,540 --> 00:13:18,560
+And will now manually set it to, let's say, 20.
+
+182
+00:13:20,660 --> 00:13:22,580
+And then let's start our game.
+
+183
+00:13:23,330 --> 00:13:26,180
+Let's just do a few of them here.
+
+184
+00:13:27,030 --> 00:13:29,040
+Just so we get more points.
+
+185
+00:13:30,320 --> 00:13:32,900
+So now we already have 30 points.
+
+186
+00:13:32,900 --> 00:13:35,810
+And so let's then move on to the last one.
+
+187
+00:13:36,650 --> 00:13:38,330
+So we skipped all of them.
+
+188
+00:13:38,330 --> 00:13:40,910
+So hopefully our users don't do this.
+
+189
+00:13:41,960 --> 00:13:44,630
+But yeah, let's now just click anyone.
+
+190
+00:13:44,780 --> 00:13:47,300
+Oh, that wasn't even on purpose.
+
+191
+00:13:47,750 --> 00:13:50,020
+But anyway, we have 30 points.
+
+192
+00:13:50,030 --> 00:13:51,320
+The highest score is 20.
+
+193
+00:13:51,320 --> 00:13:52,940
+And so let's see what happens.
+
+194
+00:13:53,740 --> 00:14:01,600
+And you saw that the high score got indeed updated to 50 because, of course, those 50 were more than
+
+195
+00:14:01,600 --> 00:14:02,830
+the current high score.
+
+196
+00:14:04,280 --> 00:14:06,920
+Okay, so let's get that out.
+
+197
+00:14:07,900 --> 00:14:15,280
+Here so destructuring out of the state so that we can then pass it into the finished screen.
+
+198
+00:14:16,880 --> 00:14:20,660
+So high score will be equal to high score.
+
+199
+00:14:20,750 --> 00:14:22,250
+And then.
+
+200
+00:14:23,550 --> 00:14:25,770
+Yeah, let's write that here as well.
+
+201
+00:14:26,530 --> 00:14:29,440
+So high score and then accepting it here.
+
+202
+00:14:30,660 --> 00:14:32,310
+High score.
+
+203
+00:14:32,340 --> 00:14:37,320
+But now I'm not going to test that again because we can be pretty sure that it works.
+
+204
+00:14:38,390 --> 00:14:44,400
+Now, here we now have one final thing, which is this button to restart the quiz.
+
+205
+00:14:44,420 --> 00:14:47,440
+So right now, we are still missing that.
+
+206
+00:14:47,450 --> 00:14:49,970
+So again, I'm not going to show that.
+
+207
+00:14:50,750 --> 00:14:56,690
+But so basically, in the end, we will want to have one button to start the quiz over.
+
+208
+00:14:56,690 --> 00:15:04,310
+And so that is what we will implement in the next video where we are then almost done with the application.

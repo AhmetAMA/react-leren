@@ -1,0 +1,283 @@
+1
+00:00:00,960 --> 00:00:06,150
+Now it's time to implement the functionality of starting a new quiz.
+
+2
+00:00:07,400 --> 00:00:09,920
+So how are we going to do that?
+
+3
+00:00:10,160 --> 00:00:17,750
+Well, after we click here on this button, we basically want to display the first question here inside
+
+4
+00:00:17,750 --> 00:00:19,250
+this main component.
+
+5
+00:00:20,130 --> 00:00:27,330
+So basically right here and since we have been using this status state here to basically decide what
+
+6
+00:00:27,330 --> 00:00:33,840
+will be rendered in the main, all we have to do now is to change that status to something else and
+
+7
+00:00:33,840 --> 00:00:36,180
+then display that question here.
+
+8
+00:00:37,010 --> 00:00:39,110
+And let's actually start with that.
+
+9
+00:00:40,800 --> 00:00:43,710
+So let's say if the status was.
+
+10
+00:00:45,190 --> 00:00:45,940
+Active.
+
+11
+00:00:46,330 --> 00:00:50,110
+Then here we want to display the question component.
+
+12
+00:00:52,230 --> 00:00:54,330
+So that component doesn't exist yet.
+
+13
+00:00:54,330 --> 00:00:56,610
+And so let's create it.
+
+14
+00:00:58,110 --> 00:00:59,370
+So yet another.
+
+15
+00:01:00,400 --> 00:01:01,840
+The component file here.
+
+16
+00:01:03,520 --> 00:01:07,300
+Let's close that and then our nice snippet again.
+
+17
+00:01:09,970 --> 00:01:12,850
+So here I will just write question for now.
+
+18
+00:01:12,970 --> 00:01:16,870
+And then of course we need to import that.
+
+19
+00:01:21,730 --> 00:01:22,690
+Okay.
+
+20
+00:01:22,870 --> 00:01:24,400
+Well, that's not correct.
+
+21
+00:01:25,520 --> 00:01:27,440
+But yeah, now it is.
+
+22
+00:01:28,180 --> 00:01:35,120
+So here, remember that Active is one of the five different states that the application can have.
+
+23
+00:01:35,140 --> 00:01:39,580
+And so now we are here basically handling that active state.
+
+24
+00:01:40,750 --> 00:01:41,620
+So right here.
+
+25
+00:01:41,980 --> 00:01:49,360
+So again, we are using these different status to decide what will be displayed here in this main part
+
+26
+00:01:49,360 --> 00:01:50,470
+of the app.
+
+27
+00:01:50,800 --> 00:01:53,210
+And it's a bit like a flow as well.
+
+28
+00:01:53,230 --> 00:01:55,500
+So first the status is loading.
+
+29
+00:01:55,510 --> 00:01:58,510
+Then we display this in case there was an error.
+
+30
+00:01:58,540 --> 00:01:59,860
+Then we display this.
+
+31
+00:01:59,860 --> 00:02:04,330
+But if everything went well, well, then we display the next one.
+
+32
+00:02:04,330 --> 00:02:08,500
+And then once the user clicks here, then we display the next one.
+
+33
+00:02:08,500 --> 00:02:11,050
+So this question right here.
+
+34
+00:02:11,350 --> 00:02:19,330
+But now the question is how do we actually set this status to active or in other words, how do we now
+
+35
+00:02:19,330 --> 00:02:20,500
+start the game?
+
+36
+00:02:23,870 --> 00:02:30,980
+Well, all we have to do is to create basically a new action type here in our reducer, which will set
+
+37
+00:02:30,980 --> 00:02:35,150
+the status to start or to active actually.
+
+38
+00:02:36,330 --> 00:02:38,940
+So let's create a new action type here.
+
+39
+00:02:39,800 --> 00:02:42,050
+And let's call this one start.
+
+40
+00:02:43,750 --> 00:02:45,580
+And so here we want to return.
+
+41
+00:02:46,660 --> 00:02:54,820
+A new state, as always, which is comprised of the current state and the status set to.
+
+42
+00:02:55,760 --> 00:02:56,390
+Active.
+
+43
+00:02:57,320 --> 00:02:58,160
+All right.
+
+44
+00:02:58,160 --> 00:02:59,950
+And so now it's very easy.
+
+45
+00:02:59,960 --> 00:03:06,740
+We just have to dispatch an action from this button here with the action type of start that we just
+
+46
+00:03:06,740 --> 00:03:07,580
+created.
+
+47
+00:03:08,030 --> 00:03:10,250
+So we're going to do that here.
+
+48
+00:03:11,020 --> 00:03:13,660
+So here we will want to dispatch that action.
+
+49
+00:03:13,660 --> 00:03:18,160
+And so therefore, we now need access to that dispatch function.
+
+50
+00:03:18,850 --> 00:03:20,200
+So it needs to be a prop.
+
+51
+00:03:20,200 --> 00:03:24,010
+And so let's pass that here into the start screen.
+
+52
+00:03:25,880 --> 00:03:31,940
+And so as you see, we are basically passing the dispatch function around just like before we were passing
+
+53
+00:03:31,940 --> 00:03:36,080
+around event handler functions or the set state functions.
+
+54
+00:03:37,500 --> 00:03:38,370
+Right.
+
+55
+00:03:38,370 --> 00:03:44,960
+So if we were still using use state, then we would now probably create some new event handler here
+
+56
+00:03:44,970 --> 00:03:49,530
+and then we would pass that event handler into the start screen.
+
+57
+00:03:49,530 --> 00:03:55,560
+But now we don't need to do any of that anymore because we are handling all the state transitions in
+
+58
+00:03:55,560 --> 00:03:56,400
+the reducer.
+
+59
+00:03:56,400 --> 00:04:03,210
+And then all we do is to pass the dispatcher functions around because then it's very easy.
+
+60
+00:04:03,240 --> 00:04:10,620
+All we have to do here is to then call that dispatch function with the action that we want to dispatch.
+
+61
+00:04:12,430 --> 00:04:15,370
+So creating a new function here, as always.
+
+62
+00:04:15,370 --> 00:04:16,270
+And then.
+
+63
+00:04:17,090 --> 00:04:18,200
+Dispatch.
+
+64
+00:04:19,560 --> 00:04:25,410
+Antitype of the event will be as we just defined earlier start.
+
+65
+00:04:26,000 --> 00:04:28,420
+And this should actually be enough.
+
+66
+00:04:28,430 --> 00:04:33,950
+So if we click here now, then the question component should be displayed instead of this.
+
+67
+00:04:34,160 --> 00:04:35,380
+So let's see.
+
+68
+00:04:35,390 --> 00:04:38,000
+And bam, there it is.
+
+69
+00:04:38,570 --> 00:04:41,900
+So here we finished this component.
+
+70
+00:04:42,260 --> 00:04:46,670
+And so actually we finished what we wanted to do in this lecture.
+
+71
+00:04:46,670 --> 00:04:51,740
+So we're going to leave the actual displaying of the question for the next one.

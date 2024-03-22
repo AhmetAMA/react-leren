@@ -1,0 +1,1007 @@
+1
+00:00:01,050 --> 00:00:09,420
+Okay, so let's now set up a fake API on a fake web server and then use that to load the question's
+
+2
+00:00:09,420 --> 00:00:11,910
+data into our application.
+
+3
+00:00:13,290 --> 00:00:20,490
+So this time we're not going to use a real API because I created these questions myself.
+
+4
+00:00:20,490 --> 00:00:23,430
+And so then there's no API with that.
+
+5
+00:00:23,430 --> 00:00:30,960
+But I still want to basically pretend that we are loading these questions from somewhere and so therefore
+
+6
+00:00:30,960 --> 00:00:37,080
+we can create a fake API using an NPM package called Json server.
+
+7
+00:00:37,350 --> 00:00:39,900
+So let's come here to our terminal.
+
+8
+00:00:40,530 --> 00:00:43,260
+Create a new tab basically here.
+
+9
+00:00:44,350 --> 00:00:47,860
+So with this, we keep this process here running.
+
+10
+00:00:47,860 --> 00:00:52,150
+So the one that is running or up and then here we have another terminal.
+
+11
+00:00:52,180 --> 00:00:59,830
+Just make sure that we are in the correct folder and then let's do NPM install Json.
+
+12
+00:01:01,040 --> 00:01:01,940
+Server.
+
+13
+00:01:04,350 --> 00:01:11,910
+And in the meantime, I'm going to get some data here from the starter data that I forgot to include
+
+14
+00:01:11,910 --> 00:01:13,650
+at the beginning of this section.
+
+15
+00:01:14,980 --> 00:01:20,530
+So when you copied the files, you probably already got this questions Json.
+
+16
+00:01:20,620 --> 00:01:25,570
+But again, I did forget actually to place this file here earlier.
+
+17
+00:01:26,520 --> 00:01:33,000
+So let's come here into a React quiz and paste this file here.
+
+18
+00:01:33,390 --> 00:01:38,040
+Or actually what I want to do is to create a new folder out here.
+
+19
+00:01:38,750 --> 00:01:44,930
+So let's call this folder data and please make the same thing here in your file structure.
+
+20
+00:01:45,230 --> 00:01:47,050
+So creating a new file there.
+
+21
+00:01:47,060 --> 00:01:52,820
+And then let's move this questions dot Json file in there.
+
+22
+00:01:54,660 --> 00:01:55,260
+Okay.
+
+23
+00:01:55,380 --> 00:01:58,350
+So make sure you have that file in that folder.
+
+24
+00:01:59,330 --> 00:02:03,560
+And in the meantime, this finished running the installation.
+
+25
+00:02:03,740 --> 00:02:08,740
+And now what we need to do next in order to be able to call that package.
+
+26
+00:02:08,750 --> 00:02:16,190
+So to run the Json server command, we need to add a new NPM script here to this file.
+
+27
+00:02:18,400 --> 00:02:24,030
+So this NPM scripts that we have right here are basically the commands that we write here.
+
+28
+00:02:24,040 --> 00:02:32,140
+So each time that we write NPM start, we are able to do that because here this start command exists.
+
+29
+00:02:33,250 --> 00:02:33,550
+No.
+
+30
+00:02:33,550 --> 00:02:34,150
+Right.
+
+31
+00:02:34,150 --> 00:02:40,480
+And so let's now create our own script here with the name of server.
+
+32
+00:02:42,000 --> 00:02:45,710
+And so what should happen here then is that we want to call.
+
+33
+00:02:45,720 --> 00:02:50,100
+So we want to basically run the Json server package.
+
+34
+00:02:51,210 --> 00:02:53,820
+And we want to watch a certain file.
+
+35
+00:02:55,050 --> 00:02:58,970
+And so that file is going to be our questions data.
+
+36
+00:02:58,980 --> 00:03:02,520
+And actually, let's take a look at that data here.
+
+37
+00:03:04,260 --> 00:03:13,140
+So basically it is just one object with the questions property and then that property has one array.
+
+38
+00:03:13,170 --> 00:03:17,310
+And so then the array is our usual array of objects.
+
+39
+00:03:17,310 --> 00:03:19,650
+So each object then has a question.
+
+40
+00:03:19,680 --> 00:03:22,980
+The options, the correct one and the number of points.
+
+41
+00:03:24,760 --> 00:03:27,640
+And so this is the file that we now want to watch.
+
+42
+00:03:27,640 --> 00:03:30,430
+So basically to create an API from.
+
+43
+00:03:30,430 --> 00:03:38,770
+And so we just do data which is the folder and then questions dot Json.
+
+44
+00:03:39,400 --> 00:03:42,310
+And finally, we also need to specify the port.
+
+45
+00:03:42,340 --> 00:03:44,800
+Let's say 8000.
+
+46
+00:03:45,640 --> 00:03:48,980
+And that should be enough to get us going.
+
+47
+00:03:49,000 --> 00:03:53,290
+So let's do NPM run server.
+
+48
+00:03:53,290 --> 00:03:55,510
+So here we need to run keyword.
+
+49
+00:03:55,540 --> 00:03:59,500
+It's not just npm server but NPM run server.
+
+50
+00:04:00,580 --> 00:04:01,180
+Okay.
+
+51
+00:04:01,180 --> 00:04:03,700
+And so now we should have our API running.
+
+52
+00:04:04,570 --> 00:04:07,690
+But somehow I see that here at Sports 3000.
+
+53
+00:04:08,460 --> 00:04:12,810
+So here it's probably all lowercase, so give that a save.
+
+54
+00:04:13,850 --> 00:04:15,170
+Close that here.
+
+55
+00:04:16,910 --> 00:04:20,240
+So it was running basically before at the same URL.
+
+56
+00:04:20,270 --> 00:04:23,300
+So in the same port as our React application.
+
+57
+00:04:23,880 --> 00:04:25,590
+So let's reload that.
+
+58
+00:04:26,300 --> 00:04:27,830
+Let's retry this.
+
+59
+00:04:29,430 --> 00:04:32,760
+And now it is running on Port 8000.
+
+60
+00:04:33,060 --> 00:04:35,880
+And so we can just copy this URL.
+
+61
+00:04:37,500 --> 00:04:43,830
+Change this to 8000 and well, then we should see our data here.
+
+62
+00:04:43,980 --> 00:04:46,110
+But apparently there was some problem.
+
+63
+00:04:47,310 --> 00:04:48,270
+So let's see.
+
+64
+00:04:48,320 --> 00:04:53,280
+Well, now it thinks that it is already in use.
+
+65
+00:04:56,140 --> 00:05:00,940
+So let's maybe quit our other process here as well and then run.
+
+66
+00:05:01,880 --> 00:05:04,160
+NPM start again.
+
+67
+00:05:05,560 --> 00:05:10,750
+And then here, let's run NPM run server.
+
+68
+00:05:12,100 --> 00:05:14,170
+Okay, that's still not working.
+
+69
+00:05:14,170 --> 00:05:16,630
+So we can just change to any other port.
+
+70
+00:05:16,720 --> 00:05:18,340
+So this doesn't really matter.
+
+71
+00:05:18,340 --> 00:05:23,470
+So if for you it worked like this, then just go with that one.
+
+72
+00:05:25,100 --> 00:05:28,190
+And change the 8000 to 9000.
+
+73
+00:05:28,250 --> 00:05:35,210
+And actually, we also need to then add questions, which is basically the endpoint we are creating
+
+74
+00:05:35,210 --> 00:05:35,720
+here.
+
+75
+00:05:35,720 --> 00:05:41,120
+And it is called questions because that is the name here of this field.
+
+76
+00:05:42,230 --> 00:05:48,290
+So if it was called like this, then here we would have to add these two s as well.
+
+77
+00:05:49,620 --> 00:05:54,450
+So now this no longer works and or data would be here in this URL.
+
+78
+00:05:55,410 --> 00:05:57,750
+But of course, that doesn't make a lot of sense.
+
+79
+00:05:59,160 --> 00:06:00,810
+So let's just use this.
+
+80
+00:06:00,810 --> 00:06:04,890
+And also, you notice that this is actually just the array.
+
+81
+00:06:05,010 --> 00:06:08,340
+So here we see the array is exactly this one.
+
+82
+00:06:09,430 --> 00:06:13,630
+So let's now grab this URL and then fetch it.
+
+83
+00:06:14,420 --> 00:06:16,100
+Into our application.
+
+84
+00:06:16,310 --> 00:06:19,250
+So we want to load that data on mount.
+
+85
+00:06:19,430 --> 00:06:24,500
+And so for that, let's use our friend the use effect hook.
+
+86
+00:06:29,110 --> 00:06:32,920
+And as I mentioned, let's just run it on mount.
+
+87
+00:06:34,330 --> 00:06:41,350
+So here we want to fetch now from this URL and here, let's actually not even bother with an async function,
+
+88
+00:06:41,350 --> 00:06:45,700
+but let's just use the then method to handle this promise.
+
+89
+00:06:46,490 --> 00:06:50,930
+So this will give us a response that we need to convert to Json.
+
+90
+00:06:53,760 --> 00:06:56,820
+Which will then in turn return another promise.
+
+91
+00:06:57,030 --> 00:06:59,520
+So we chain another den handler there.
+
+92
+00:06:59,520 --> 00:07:02,280
+And so this should then give us our data.
+
+93
+00:07:02,950 --> 00:07:03,370
+For now.
+
+94
+00:07:03,370 --> 00:07:05,800
+Let's just lock that to the console then.
+
+95
+00:07:06,620 --> 00:07:11,570
+And also, let's catch a possible error here.
+
+96
+00:07:12,490 --> 00:07:14,470
+But also logging it to the console.
+
+97
+00:07:15,800 --> 00:07:17,930
+Let's do console error here.
+
+98
+00:07:19,730 --> 00:07:21,320
+And just like this.
+
+99
+00:07:22,600 --> 00:07:25,690
+Okay, so let's actually try that.
+
+100
+00:07:27,370 --> 00:07:28,930
+So let's reload.
+
+101
+00:07:29,170 --> 00:07:30,910
+Come to our console.
+
+102
+00:07:31,120 --> 00:07:32,700
+And beautiful.
+
+103
+00:07:32,710 --> 00:07:34,600
+Here is our data.
+
+104
+00:07:35,330 --> 00:07:41,700
+But now, of course, we will at one point need to display that data here in the UI.
+
+105
+00:07:41,720 --> 00:07:45,260
+And so for that, we are going to need state.
+
+106
+00:07:45,380 --> 00:07:51,560
+And as you can imagine, we will now use the Usereducer hook to create that state.
+
+107
+00:07:52,800 --> 00:07:54,420
+So let's do that.
+
+108
+00:07:55,280 --> 00:08:01,280
+So here we will get the state object and the dispatch function.
+
+109
+00:08:01,430 --> 00:08:02,210
+Remember?
+
+110
+00:08:02,780 --> 00:08:03,500
+And then.
+
+111
+00:08:05,440 --> 00:08:11,140
+We use our use reducer hook, which was then added here to the imports.
+
+112
+00:08:11,790 --> 00:08:18,630
+And here we pass the initial state, which we don't have yet, but we will create this object in a second.
+
+113
+00:08:18,630 --> 00:08:24,900
+And actually first we pass in the reducer function, which we also don't have yet.
+
+114
+00:08:24,900 --> 00:08:29,310
+And so let's create both of them outside here of this component.
+
+115
+00:08:30,030 --> 00:08:31,500
+So initial state.
+
+116
+00:08:33,140 --> 00:08:34,160
+And.
+
+117
+00:08:35,500 --> 00:08:36,580
+D reducer.
+
+118
+00:08:37,590 --> 00:08:41,790
+Which will take in remember the current state.
+
+119
+00:08:42,780 --> 00:08:45,960
+And the action that was dispatched.
+
+120
+00:08:47,380 --> 00:08:48,280
+Okay.
+
+121
+00:08:48,610 --> 00:08:53,200
+And now let's start by creating our initial state and here.
+
+122
+00:08:54,090 --> 00:08:59,040
+Let's create questions which by default will just be an empty array.
+
+123
+00:08:59,250 --> 00:09:03,510
+Now, besides this, what we also want is the loading state.
+
+124
+00:09:03,510 --> 00:09:06,960
+So to tell the user that questions are being fetched.
+
+125
+00:09:07,260 --> 00:09:11,000
+However, this time around we will do it in a different way.
+
+126
+00:09:11,010 --> 00:09:20,220
+So we will not create the loading state as always, but instead we will this time have a status state.
+
+127
+00:09:21,390 --> 00:09:27,750
+And so this status will basically be a string of the current status of the application that will change
+
+128
+00:09:27,750 --> 00:09:28,920
+throughout the time.
+
+129
+00:09:29,160 --> 00:09:35,280
+So in the beginning, our application will be in the loading state, but throughout time we will be
+
+130
+00:09:35,310 --> 00:09:37,320
+able to be in different states.
+
+131
+00:09:37,680 --> 00:09:43,800
+So let me write them right here immediately so we can be in loading state.
+
+132
+00:09:43,830 --> 00:09:46,140
+We can be in an error state.
+
+133
+00:09:46,260 --> 00:09:48,690
+We can be in a ready state.
+
+134
+00:09:48,720 --> 00:09:56,610
+Once the data has arrived and we are ready to start the quiz, we can be in an active state once the
+
+135
+00:09:56,610 --> 00:10:02,940
+quiz is actually running and we can be in a finished state once the quiz is finished.
+
+136
+00:10:04,030 --> 00:10:04,720
+Okay.
+
+137
+00:10:05,260 --> 00:10:11,530
+And so this is a bit of a nicer way of handling all these different statuses that the application can
+
+138
+00:10:11,530 --> 00:10:12,180
+be in.
+
+139
+00:10:12,190 --> 00:10:21,150
+So instead of having a is loading or is error or is ready or is active states, we just have the status
+
+140
+00:10:21,160 --> 00:10:26,230
+and then inside the status, we then tell the application what is currently going on.
+
+141
+00:10:26,380 --> 00:10:31,210
+So this has nothing to do with Usereducer, it's just another technique.
+
+142
+00:10:31,750 --> 00:10:38,890
+But anyway, let's now come here to our reducer function and then let's again set up that switch statement
+
+143
+00:10:38,890 --> 00:10:40,690
+that we already saw earlier.
+
+144
+00:10:41,690 --> 00:10:45,600
+So this is now basically a recipe that you will always follow.
+
+145
+00:10:45,620 --> 00:10:47,360
+So which is always the same.
+
+146
+00:10:47,360 --> 00:10:49,160
+So at least the setup here.
+
+147
+00:10:49,760 --> 00:10:50,960
+So we switch.
+
+148
+00:10:52,670 --> 00:10:54,470
+The action.type.
+
+149
+00:10:55,130 --> 00:10:58,550
+So we basically want to test for different types.
+
+150
+00:10:59,590 --> 00:11:04,000
+And let's start with the case of data.
+
+151
+00:11:05,090 --> 00:11:06,110
+Received.
+
+152
+00:11:06,380 --> 00:11:13,460
+So this will be the action that we're going to dispatch right here as soon as we actually have the data.
+
+153
+00:11:13,580 --> 00:11:14,840
+So right here.
+
+154
+00:11:15,520 --> 00:11:17,680
+And actually, let's do that first.
+
+155
+00:11:18,670 --> 00:11:25,900
+So here we will now no longer lock the data to the console, but instead we will dispatch an action
+
+156
+00:11:25,900 --> 00:11:27,370
+to the reducer.
+
+157
+00:11:29,050 --> 00:11:33,460
+And let's create our common usual event here.
+
+158
+00:11:33,460 --> 00:11:36,730
+So that's simply with the type.
+
+159
+00:11:37,650 --> 00:11:40,050
+And so that's the data.
+
+160
+00:11:41,090 --> 00:11:45,790
+Received type, which we can also think of, of an event.
+
+161
+00:11:45,800 --> 00:11:52,520
+So basically it's like here we are now creating this data received event which our reducer will then
+
+162
+00:11:52,520 --> 00:11:53,960
+basically respond to.
+
+163
+00:11:55,640 --> 00:11:57,020
+So that's the first part.
+
+164
+00:11:57,020 --> 00:12:02,840
+And now here we also need a payload because we want to actually send some data.
+
+165
+00:12:02,870 --> 00:12:10,580
+So send some information to the reducer so that the reducer can then use this to compute the next state.
+
+166
+00:12:11,350 --> 00:12:15,820
+And so here that payload will be the data that we just received.
+
+167
+00:12:17,890 --> 00:12:18,670
+Okay.
+
+168
+00:12:19,330 --> 00:12:24,670
+And so here then, remember, we need to return a new state object.
+
+169
+00:12:24,670 --> 00:12:28,030
+And so we will grab all the current state.
+
+170
+00:12:29,670 --> 00:12:34,110
+And then we will set questions to the data that we just received.
+
+171
+00:12:34,350 --> 00:12:37,890
+So that's action dot payload.
+
+172
+00:12:38,010 --> 00:12:44,490
+But what is really great about this is that we can now set this other piece of state that is related
+
+173
+00:12:44,490 --> 00:12:45,540
+to the question.
+
+174
+00:12:46,240 --> 00:12:49,630
+Or two questions, and that is the status.
+
+175
+00:12:49,960 --> 00:12:55,030
+So the status and the questions many times will change at the same time.
+
+176
+00:12:55,030 --> 00:13:03,790
+And so that's why having a reducer is so useful because now we can hear in the same place also set the
+
+177
+00:13:03,790 --> 00:13:07,060
+status to ready.
+
+178
+00:13:07,820 --> 00:13:11,330
+So basically we updated these two state variables.
+
+179
+00:13:11,330 --> 00:13:16,700
+So these two pieces of state all in one go in this one dispatch.
+
+180
+00:13:16,790 --> 00:13:23,870
+So just by dispatching this one event right here, we updated both the questions and the status.
+
+181
+00:13:23,870 --> 00:13:30,890
+And so we say that we transitioned to a new state by simply dispatching this simple event here.
+
+182
+00:13:33,200 --> 00:13:33,740
+Okay.
+
+183
+00:13:33,740 --> 00:13:37,550
+But anyway, let's also create then our default case.
+
+184
+00:13:39,890 --> 00:13:47,930
+And so here we will just like before, throw a new error saying that the action is unknown.
+
+185
+00:13:51,090 --> 00:13:56,700
+So give this a save and let's see what happens.
+
+186
+00:13:57,510 --> 00:14:04,230
+So we are no longer logging to the console, but we should now have those questions in our state already
+
+187
+00:14:04,350 --> 00:14:06,630
+so we can see it on the UI yet.
+
+188
+00:14:06,630 --> 00:14:09,840
+But let's take a look at our dev tools.
+
+189
+00:14:10,880 --> 00:14:19,900
+And yeah, we have our questions in the state and the status has also successfully been changed to ready.
+
+190
+00:14:19,940 --> 00:14:27,590
+So we transitioned to this new state where we changed these two properties of our state object.
+
+191
+00:14:28,750 --> 00:14:30,820
+So that's working great.
+
+192
+00:14:30,820 --> 00:14:34,990
+And now let's just create another event here, basically.
+
+193
+00:14:36,360 --> 00:14:37,410
+For the case.
+
+194
+00:14:37,410 --> 00:14:38,610
+There is an error.
+
+195
+00:14:40,200 --> 00:14:41,220
+So case.
+
+196
+00:14:41,820 --> 00:14:42,660
+Data.
+
+197
+00:14:43,600 --> 00:14:46,270
+The failed, for example.
+
+198
+00:14:46,360 --> 00:14:48,250
+That's just one possible name.
+
+199
+00:14:50,300 --> 00:14:53,870
+And so here, let's again return the entire state.
+
+200
+00:14:54,490 --> 00:14:57,730
+And then we simply set the status.
+
+201
+00:14:58,580 --> 00:15:00,980
+Here to error.
+
+202
+00:15:01,130 --> 00:15:07,400
+And so then later on, we will use, of course, the status to display different things here in our
+
+203
+00:15:07,400 --> 00:15:09,590
+UI in the JS.
+
+204
+00:15:10,160 --> 00:15:15,470
+So when there is an error, we will display that error and if we are ready.
+
+205
+00:15:15,470 --> 00:15:19,100
+So if the status is ready, then we will display the questions.
+
+206
+00:15:19,880 --> 00:15:20,120
+No.
+
+207
+00:15:20,120 --> 00:15:20,750
+Right.
+
+208
+00:15:20,900 --> 00:15:24,650
+But now let's actually dispatch that action.
+
+209
+00:15:28,580 --> 00:15:31,640
+So the type is this time data.
+
+210
+00:15:32,410 --> 00:15:33,120
+Failed.
+
+211
+00:15:33,130 --> 00:15:39,850
+And here actually, let's not pass in any payload because we're not really interested in the error that
+
+212
+00:15:39,850 --> 00:15:40,950
+we're going to receive.
+
+213
+00:15:40,960 --> 00:15:46,930
+So all we will do is tell or state that now the status is an error.
+
+214
+00:15:48,260 --> 00:15:53,930
+So just to test this, let's quit the process here where we load the data.
+
+215
+00:15:54,790 --> 00:15:57,890
+So with control C, we can finish this.
+
+216
+00:15:57,910 --> 00:16:02,620
+And so now we can no longer fetch data from that endpoint, of course.
+
+217
+00:16:02,800 --> 00:16:06,430
+And so we see that we get some error already.
+
+218
+00:16:06,700 --> 00:16:07,630
+And.
+
+219
+00:16:08,610 --> 00:16:12,630
+Also here we see that the status has been set to error.
+
+220
+00:16:13,930 --> 00:16:15,370
+So that's also working.
+
+221
+00:16:15,370 --> 00:16:19,720
+But of course, let's go back to having our work.
+
+222
+00:16:21,050 --> 00:16:27,050
+And so if we load now again, then we have our questions here in the state.
+
+223
+00:16:28,040 --> 00:16:28,790
+Okay.
+
+224
+00:16:28,910 --> 00:16:31,370
+So we did a lot of things.
+
+225
+00:16:31,370 --> 00:16:35,000
+So let's just quickly recap all that we did.
+
+226
+00:16:35,150 --> 00:16:43,220
+So we installed the Json server package to create basically this fake API and then we created our NPM
+
+227
+00:16:43,220 --> 00:16:44,060
+script.
+
+228
+00:16:44,150 --> 00:16:50,780
+In this case called server to then run that package and then watch the file where we actually have this
+
+229
+00:16:50,780 --> 00:16:52,970
+question's data as an array.
+
+230
+00:16:54,070 --> 00:16:55,480
+So this array right here.
+
+231
+00:16:55,630 --> 00:17:02,500
+And so then here inside our application, we use the Useeffect hook to fetch that data on the initial
+
+232
+00:17:02,500 --> 00:17:03,130
+render.
+
+233
+00:17:03,220 --> 00:17:05,980
+Then to store that data in state.
+
+234
+00:17:06,010 --> 00:17:08,980
+This time we used the Usereducer Hook.
+
+235
+00:17:09,460 --> 00:17:13,660
+And so then we created the initial state object and the reducer.
+
+236
+00:17:13,750 --> 00:17:16,330
+So that's pretty standard stuff.
+
+237
+00:17:16,540 --> 00:17:19,900
+So we have the questions array and we have a status.
+
+238
+00:17:19,930 --> 00:17:25,740
+And of course, as we keep building the application, we will add a lot more information here.
+
+239
+00:17:25,750 --> 00:17:29,320
+So we will add like 3 or 4 more pieces of state.
+
+240
+00:17:29,320 --> 00:17:32,000
+But for now, we are just working with these two.
+
+241
+00:17:32,020 --> 00:17:39,910
+And so then as soon as our data is successfully fetched, we dispatch the action here where we tell
+
+242
+00:17:39,940 --> 00:17:46,510
+our reducer that the type of the action is data received, and then as the payload, we pass in the
+
+243
+00:17:46,510 --> 00:17:47,570
+actual data.
+
+244
+00:17:47,590 --> 00:17:52,690
+And so then our reducer receives that action and handles it right here.
+
+245
+00:17:52,690 --> 00:17:55,940
+In this case where we then assign the payload.
+
+246
+00:17:56,030 --> 00:18:01,330
+So that data that we received from the API onto the questions array.
+
+247
+00:18:01,340 --> 00:18:09,230
+But that's not all, because at the same time we now were able to set our status to ready here all in
+
+248
+00:18:09,230 --> 00:18:09,920
+one go.
+
+249
+00:18:09,920 --> 00:18:13,730
+So just with the call of one dispatch function.
+
+250
+00:18:13,910 --> 00:18:21,140
+Now the advantage of this reducer is of course not really clear yet because we only have these two cases
+
+251
+00:18:21,140 --> 00:18:23,960
+yet and only these two state variables.
+
+252
+00:18:23,960 --> 00:18:29,000
+But it will become really clear and really helpful as we go through this section.

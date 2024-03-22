@@ -1,0 +1,183 @@
+1
+00:00:01,170 --> 00:00:02,450
+Welcome back.
+
+2
+00:00:02,460 --> 00:00:07,290
+So the last part of this section is all about custom hooks.
+
+3
+00:00:07,290 --> 00:00:12,960
+And so let's start by understanding what custom hooks are and when to create one.
+
+4
+00:00:14,380 --> 00:00:18,160
+Now custom hooks are all about reusability.
+
+5
+00:00:18,160 --> 00:00:28,570
+And in React, we have basically two types of things that we can reuse a piece of UI or a piece of logic.
+
+6
+00:00:28,600 --> 00:00:29,580
+That's it.
+
+7
+00:00:29,590 --> 00:00:32,380
+That's all the things that we can reuse.
+
+8
+00:00:32,500 --> 00:00:39,100
+Now, if we want to reuse a piece of UI, we already know that we use a component.
+
+9
+00:00:39,370 --> 00:00:46,660
+On the other hand, if you want to reuse logic in React, you first need to ask the question Does the
+
+10
+00:00:46,660 --> 00:00:50,050
+logic that I want to reuse have any hooks?
+
+11
+00:00:50,230 --> 00:00:58,210
+If not, all you need is a regular function which can live either inside or outside of your component.
+
+12
+00:00:58,240 --> 00:01:05,710
+However, if the logic does contain any react hook, you cannot just extract the logic into a regular
+
+13
+00:01:05,710 --> 00:01:06,580
+function.
+
+14
+00:01:06,580 --> 00:01:10,960
+Instead, what you need to create is a custom hook.
+
+15
+00:01:11,680 --> 00:01:20,530
+So basically, custom hooks allow us to reuse stateful logic among multiple components and actually
+
+16
+00:01:20,530 --> 00:01:27,520
+not only stateful logic, but really any logic that contains one or more react hooks.
+
+17
+00:01:27,820 --> 00:01:35,830
+So we can say that custom hooks allow us to reuse non-visual logic, which is a more generic term.
+
+18
+00:01:36,410 --> 00:01:44,630
+Now, just like regular functions or components or effects, one hook should only have one purpose,
+
+19
+00:01:44,630 --> 00:01:49,310
+so it should only do one specific, well-defined thing.
+
+20
+00:01:49,460 --> 00:01:57,800
+So the idea is not to simply put all the hooks of a component into a custom hook and call it a day.
+
+21
+00:01:58,010 --> 00:02:06,560
+No, the idea is to make custom hooks reusable and portable so that you can even use them in completely
+
+22
+00:02:06,560 --> 00:02:07,920
+different projects.
+
+23
+00:02:07,940 --> 00:02:16,040
+And actually, now that we have had hooks for so many years in React, developers have started to share
+
+24
+00:02:16,040 --> 00:02:18,370
+their custom hooks with the world.
+
+25
+00:02:18,380 --> 00:02:26,210
+And so there are now lots of custom hook libraries that you can download from NPM and use in your projects.
+
+26
+00:02:26,480 --> 00:02:33,650
+Now, since custom hooks are made out of regular React hooks, the rules of hooks that we learned about
+
+27
+00:02:33,650 --> 00:02:36,750
+before still apply to them as well.
+
+28
+00:02:37,360 --> 00:02:44,710
+Okay, But now let's look at an actual custom hook so that we can learn just a bit more about them.
+
+29
+00:02:45,310 --> 00:02:53,350
+So first, a custom hook is really just a JavaScript function so it can receive and return any data
+
+30
+00:02:53,350 --> 00:02:56,380
+that is relevant to this custom hook.
+
+31
+00:02:56,500 --> 00:03:02,630
+In fact, it's very common to return an object or an array from a custom hook.
+
+32
+00:03:02,650 --> 00:03:09,730
+And notice how this is different from components which are also just regular JavaScript functions,
+
+33
+00:03:09,730 --> 00:03:15,430
+but which can only receive props and always have to return some JSX.
+
+34
+00:03:16,830 --> 00:03:23,670
+Now, the difference between regular functions and custom hooks is that custom hooks need to use one
+
+35
+00:03:23,670 --> 00:03:25,410
+or more react hooks.
+
+36
+00:03:25,410 --> 00:03:33,750
+So this custom hook here, for example, uses to use state and one use effect hook to abstract a simple
+
+37
+00:03:33,750 --> 00:03:37,080
+fetch functionality into this custom hook.
+
+38
+00:03:37,470 --> 00:03:45,090
+And finally, in order for us and react to recognize this function as an actual hook, the function
+
+39
+00:03:45,090 --> 00:03:48,040
+name needs to start with the word use.
+
+40
+00:03:48,060 --> 00:03:51,220
+So just like all the built in react hooks.
+
+41
+00:03:51,240 --> 00:03:59,970
+So in this example that's use fetch and this is really not optional, so you need to give the function
+
+42
+00:04:00,000 --> 00:04:02,250
+a name starting with use.
+
+43
+00:04:02,280 --> 00:04:07,110
+Otherwise it's going to be just a regular function in the eyes of React.
+
+44
+00:04:07,980 --> 00:04:08,640
+All right.
+
+45
+00:04:08,640 --> 00:04:12,840
+And that's all the theory that you need to know about custom hooks.
+
+46
+00:04:12,840 --> 00:04:18,390
+And so let's now go build ourselves some custom hooks for the rest of this section.

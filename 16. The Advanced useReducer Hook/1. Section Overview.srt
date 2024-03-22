@@ -1,0 +1,39 @@
+1
+00:00:00,810 --> 00:00:09,000
+Hello and welcome back to the next section where we'll dive deep into the advanced use reducer Hook.
+
+2
+00:00:09,480 --> 00:00:17,970
+This special hook gives us another powerful way of managing state, and since state is super important
+
+3
+00:00:17,970 --> 00:00:26,340
+in React, use reducer is a super important hook and it's also important to master it in order to later
+
+4
+00:00:26,340 --> 00:00:28,170
+understand Redux.
+
+5
+00:00:28,290 --> 00:00:33,630
+So that's why I dedicated an entire section to the use reducer hook.
+
+6
+00:00:33,870 --> 00:00:41,280
+Now, this section does run pretty long, but that's because we're going to use use reducer to build
+
+7
+00:00:41,280 --> 00:00:48,660
+this entire new project, reinforcing all the other skills that you have already learned so far.
+
+8
+00:00:48,930 --> 00:00:56,520
+So if you're looking to save some time, you only need to watch like the first 5 or 6 videos in this
+
+9
+00:00:56,520 --> 00:00:57,330
+section.
+
+10
+00:00:57,660 --> 00:01:01,570
+And with that being said, let's now jump right in.

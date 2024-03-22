@@ -1,0 +1,47 @@
+1
+00:00:00,860 --> 00:00:07,980
+Welcome to the last and optional section of the intermediate React part of the course.
+
+2
+00:00:08,000 --> 00:00:12,020
+This one is all about class based react.
+
+3
+00:00:12,680 --> 00:00:19,310
+So once upon a time we used to write React components in quite a different way.
+
+4
+00:00:19,400 --> 00:00:26,360
+Instead of using functions and hooks, we used classes and so called lifecycle methods.
+
+5
+00:00:26,600 --> 00:00:34,130
+Now you will most likely never have to write a class component in your work or personal projects, but
+
+6
+00:00:34,130 --> 00:00:41,720
+you will encounter them in older code bases and you might even need to convert class components to function
+
+7
+00:00:41,720 --> 00:00:43,730
+components at some point.
+
+8
+00:00:43,910 --> 00:00:51,260
+That's why I've decided to include a section on this legacy way of writing React code.
+
+9
+00:00:51,560 --> 00:00:58,400
+Now, if you're concerned that this different syntax will confuse you, please just skip this section
+
+10
+00:00:58,400 --> 00:01:01,320
+for now and come back to it later.
+
+11
+00:01:01,320 --> 00:01:07,570
+Or only if you ever need to learn about these class components at your job.
+
+12
+00:01:07,620 --> 00:01:14,760
+But if you're curious about this historical part of React, then let's move right on.

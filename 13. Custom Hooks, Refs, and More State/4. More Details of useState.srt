@@ -1,0 +1,655 @@
+1
+00:00:00,960 --> 00:00:08,130
+Let's now look at the super important use state hook again and review some important details that we
+
+2
+00:00:08,130 --> 00:00:10,980
+have already talked about as well.
+
+3
+00:00:12,050 --> 00:00:19,730
+So we have been using the use data since almost the beginning of the course because this is in fact
+
+4
+00:00:19,730 --> 00:00:22,560
+the most important hook in React.
+
+5
+00:00:22,580 --> 00:00:28,970
+So we have used it in many different ways and we know pretty much how it works at this point.
+
+6
+00:00:29,120 --> 00:00:36,710
+However, I want to again review some important parts of it, and I want to draw your attention to one
+
+7
+00:00:36,710 --> 00:00:45,410
+very important detail, which is the fact that these initial values that we pass into use state only
+
+8
+00:00:45,410 --> 00:00:47,750
+really matter on the initial render.
+
+9
+00:00:48,640 --> 00:00:50,860
+So let's see an example of that.
+
+10
+00:00:50,860 --> 00:00:56,420
+And let's say that we actually wanted something like this here to work.
+
+11
+00:00:56,440 --> 00:01:04,060
+So we wanted a piece of state called a stop, which is true if the IMDb rating is greater than eight.
+
+12
+00:01:04,330 --> 00:01:12,970
+Now, we cannot do this as we already learned in the previous lecture, but we might think that this
+
+13
+00:01:12,970 --> 00:01:13,780
+works.
+
+14
+00:01:15,320 --> 00:01:17,750
+So basically.
+
+15
+00:01:18,350 --> 00:01:20,150
+Doing this.
+
+16
+00:01:20,150 --> 00:01:21,320
+So IMDb.
+
+17
+00:01:22,890 --> 00:01:24,930
+Greater than eight.
+
+18
+00:01:25,870 --> 00:01:28,980
+So let's see if that works actually.
+
+19
+00:01:29,170 --> 00:01:34,030
+And let's then log this state to the console.
+
+20
+00:01:35,620 --> 00:01:36,500
+Okay.
+
+21
+00:01:40,610 --> 00:01:42,920
+Let's search for a movie, as always.
+
+22
+00:01:43,930 --> 00:01:46,380
+And then let's wait for it.
+
+23
+00:01:46,390 --> 00:01:55,600
+And we see that this log here coming from line 266, which is this one here, is indeed false, even
+
+24
+00:01:55,600 --> 00:01:59,470
+though the rating here is actually greater than eight.
+
+25
+00:02:00,060 --> 00:02:07,590
+And if we take a look at our list of hooks, then we also see that this one is set to false.
+
+26
+00:02:07,860 --> 00:02:09,750
+So why is that?
+
+27
+00:02:09,870 --> 00:02:16,950
+Well, it is because of the reason that I just mentioned before, which is the fact that whatever we
+
+28
+00:02:16,950 --> 00:02:20,580
+pass into use state is the initial state.
+
+29
+00:02:20,580 --> 00:02:26,230
+And react will only look at this initial state on the initial render.
+
+30
+00:02:26,250 --> 00:02:29,100
+So when the component first mounts.
+
+31
+00:02:29,280 --> 00:02:35,430
+However, when the component first mounts here, the IMDb rating will still be undefined.
+
+32
+00:02:35,430 --> 00:02:37,710
+And so this here is then false.
+
+33
+00:02:37,710 --> 00:02:45,470
+And so it will stay false forever because nowhere we update the state and on the second render.
+
+34
+00:02:45,480 --> 00:02:51,990
+So when we then finally get the movie data, this will not be executed again.
+
+35
+00:02:51,990 --> 00:02:55,710
+And so therefore again, it will stay false forever.
+
+36
+00:02:56,410 --> 00:03:01,150
+Now, one way of fixing this would be to use a use effect.
+
+37
+00:03:02,590 --> 00:03:05,560
+So if we did use effect.
+
+38
+00:03:06,570 --> 00:03:08,130
+Passing in a function.
+
+39
+00:03:10,180 --> 00:03:15,680
+And then we wanted to run this effect each time that the IMDb rating updates.
+
+40
+00:03:15,760 --> 00:03:22,360
+And so each time that does happen, then we want to call set is top.
+
+41
+00:03:22,450 --> 00:03:27,550
+And then we can do IMDb rating greater than eight.
+
+42
+00:03:27,580 --> 00:03:31,180
+And so in this case, this should then work.
+
+43
+00:03:32,120 --> 00:03:33,200
+And let's see.
+
+44
+00:03:33,230 --> 00:03:35,630
+And indeed, now it is true.
+
+45
+00:03:35,930 --> 00:03:38,990
+And if we take a look again here at or.
+
+46
+00:03:41,410 --> 00:03:48,990
+Yeah, at our different hooks we see that now indeed is top is true.
+
+47
+00:03:49,000 --> 00:03:55,360
+So our fourth hook here and so that is simply because of this use effect.
+
+48
+00:03:56,150 --> 00:04:02,540
+Now, of course, in this situation, we shouldn't even use a piece of state in the first place.
+
+49
+00:04:02,690 --> 00:04:10,510
+So if this here was the functionality that we really wanted, then what we should do is derived state.
+
+50
+00:04:10,520 --> 00:04:18,740
+So we shouldn't create a real state with the use state hook, but instead we should just do const.
+
+51
+00:04:20,540 --> 00:04:21,170
+Is.
+
+52
+00:04:21,990 --> 00:04:27,030
+Top and then simply IMDb rating greater than eight.
+
+53
+00:04:27,700 --> 00:04:30,340
+So let's comment all of this here out.
+
+54
+00:04:31,180 --> 00:04:32,230
+Gave it a safe.
+
+55
+00:04:32,230 --> 00:04:34,900
+And if we then lock that again to the console.
+
+56
+00:04:36,690 --> 00:04:38,010
+You see that?
+
+57
+00:04:38,610 --> 00:04:41,580
+This simple code works seamlessly.
+
+58
+00:04:44,160 --> 00:04:46,140
+So let's wait for it here.
+
+59
+00:04:49,050 --> 00:04:50,370
+Cleaning or console.
+
+60
+00:04:51,000 --> 00:04:53,310
+And so it is true.
+
+61
+00:04:53,310 --> 00:04:59,340
+And so that's because this variable here is, of course, regenerated each time that the function here
+
+62
+00:04:59,340 --> 00:05:00,300
+is executed.
+
+63
+00:05:00,300 --> 00:05:02,070
+So after each render.
+
+64
+00:05:02,070 --> 00:05:03,660
+And so this is the power.
+
+65
+00:05:03,660 --> 00:05:11,040
+And one of the great advantages of derived state, which is that it updates basically as the component
+
+66
+00:05:11,040 --> 00:05:12,390
+gets re rendered.
+
+67
+00:05:12,390 --> 00:05:16,560
+And this is really as simple as it can get right.
+
+68
+00:05:17,850 --> 00:05:25,890
+So this is pretty important to understand so that the initial state value here is only been looked at
+
+69
+00:05:25,890 --> 00:05:28,050
+by react in the very beginning.
+
+70
+00:05:28,050 --> 00:05:30,630
+So only on component mount.
+
+71
+00:05:31,500 --> 00:05:33,410
+So never forget that.
+
+72
+00:05:33,420 --> 00:05:40,890
+And now I want to come back to this function right here to give you yet another example or another proof
+
+73
+00:05:40,890 --> 00:05:48,240
+that updating state really is asynchronous and that we need to use a callback function to update state
+
+74
+00:05:48,240 --> 00:05:50,130
+in certain situations.
+
+75
+00:05:50,430 --> 00:05:59,550
+So let's say that when we add a new movie to our watch list right here, we want it to display the average
+
+76
+00:05:59,580 --> 00:06:05,250
+of the rating that we gave and the rating that is coming from IMDb.
+
+77
+00:06:06,470 --> 00:06:12,170
+So we wanted that to be displayed right here instead of closing the movie immediately.
+
+78
+00:06:12,870 --> 00:06:18,840
+So let's first of all here remove this part and then let's create a new piece of state.
+
+79
+00:06:18,840 --> 00:06:24,990
+Because if we want to display something on the screen, well, then we need a new piece of state.
+
+80
+00:06:25,140 --> 00:06:31,050
+So let's call this average rating and set average.
+
+81
+00:06:31,900 --> 00:06:32,580
+Rating.
+
+82
+00:06:33,940 --> 00:06:35,110
+And your state.
+
+83
+00:06:35,110 --> 00:06:37,690
+And let's just set it to zero.
+
+84
+00:06:40,490 --> 00:06:43,730
+And then we want to render that here.
+
+85
+00:06:44,700 --> 00:06:50,550
+Really somewhere it doesn't really matter because we will remove this here in a minute anyway.
+
+86
+00:06:51,450 --> 00:06:57,480
+So this is just to give you another demonstration of updating state asynchronously.
+
+87
+00:06:58,110 --> 00:07:00,120
+So where is that function?
+
+88
+00:07:01,180 --> 00:07:02,460
+Uh, here it is.
+
+89
+00:07:04,350 --> 00:07:04,980
+Okay.
+
+90
+00:07:04,980 --> 00:07:07,410
+And so now here we should see the zero.
+
+91
+00:07:07,410 --> 00:07:14,460
+And I used the value of zero here and not the current IMDb rating because again, this will just be
+
+92
+00:07:14,460 --> 00:07:18,900
+undefined in the beginning and so there's no need to place that there.
+
+93
+00:07:20,280 --> 00:07:20,520
+No.
+
+94
+00:07:20,520 --> 00:07:20,910
+Right.
+
+95
+00:07:20,910 --> 00:07:24,360
+But then as we click on this button here.
+
+96
+00:07:25,150 --> 00:07:27,880
+Then this function here is executed.
+
+97
+00:07:27,880 --> 00:07:30,850
+And so let's then actually set that state.
+
+98
+00:07:31,120 --> 00:07:34,080
+So set average rating.
+
+99
+00:07:34,090 --> 00:07:42,160
+And let's say that first we wanted to set it to the actual current IMDb rating, which is a string.
+
+100
+00:07:42,160 --> 00:07:44,080
+So let's convert that to a number.
+
+101
+00:07:44,380 --> 00:07:46,840
+So IMDb rating.
+
+102
+00:07:49,090 --> 00:07:55,240
+And now watch what happens if we lock this to the console or maybe even if we alert this.
+
+103
+00:07:56,030 --> 00:07:58,070
+So then it becomes really visible.
+
+104
+00:07:58,380 --> 00:07:58,940
+So.
+
+105
+00:08:00,860 --> 00:08:01,790
+Rating.
+
+106
+00:08:03,060 --> 00:08:04,320
+So let's see.
+
+107
+00:08:06,370 --> 00:08:15,130
+And so the AVG rating should now be 8.6 because we set it to IMDb rating, which is 8.6.
+
+108
+00:08:15,880 --> 00:08:17,380
+So watch what happens.
+
+109
+00:08:17,530 --> 00:08:19,990
+Well, it is still zero.
+
+110
+00:08:19,990 --> 00:08:25,030
+And so that's again, because the state is set asynchronously here.
+
+111
+00:08:25,060 --> 00:08:31,930
+Or in other words, we do not get access to the updated state right after doing that.
+
+112
+00:08:31,930 --> 00:08:36,430
+So right after we call the state updating function.
+
+113
+00:08:36,550 --> 00:08:43,630
+So only once React is done processing this event handler, it will then update all the state and rerender
+
+114
+00:08:43,630 --> 00:08:44,770
+the UI.
+
+115
+00:08:47,100 --> 00:08:47,970
+All right.
+
+116
+00:08:48,330 --> 00:08:51,070
+But anyway, let's now do another one.
+
+117
+00:08:51,090 --> 00:08:53,690
+So set AVG rating.
+
+118
+00:08:53,700 --> 00:08:57,690
+And so let's now attempt to calculate the average.
+
+119
+00:08:57,690 --> 00:09:04,710
+So taking IMDb rating or actually we want the average rating.
+
+120
+00:09:05,100 --> 00:09:12,030
+So average rating plus the user rating and then divide it by two.
+
+121
+00:09:13,380 --> 00:09:15,150
+So let's see.
+
+122
+00:09:15,330 --> 00:09:17,160
+Let's delete this here.
+
+123
+00:09:20,390 --> 00:09:22,790
+And let's use ten this time.
+
+124
+00:09:23,480 --> 00:09:26,940
+And then we get a wrong average here.
+
+125
+00:09:26,960 --> 00:09:31,080
+So our average is not correctly being calculated.
+
+126
+00:09:31,100 --> 00:09:35,750
+So this five here is really just ten divided by two.
+
+127
+00:09:35,900 --> 00:09:41,300
+So the reason for that is that here the average rating is still at zero.
+
+128
+00:09:41,300 --> 00:09:45,830
+And so then zero plus ten divided by two is indeed the five.
+
+129
+00:09:46,770 --> 00:09:53,340
+But why is the average rating still at zero here, even though we have updated it before?
+
+130
+00:09:53,460 --> 00:09:56,470
+And by now, you already know the answer.
+
+131
+00:09:56,490 --> 00:10:03,750
+So it's asynchronous state setting, which means that at this point here, the average rating has not
+
+132
+00:10:03,750 --> 00:10:04,730
+been set yet.
+
+133
+00:10:04,740 --> 00:10:09,030
+So it's still at zero, which is the initial value right here.
+
+134
+00:10:09,120 --> 00:10:16,000
+And so because of that, we say that the average rating state is stale at this point.
+
+135
+00:10:16,020 --> 00:10:18,990
+So we have stale state right here.
+
+136
+00:10:19,490 --> 00:10:26,750
+But luckily for us, we already know how to solve this, which is by passing in a callback function.
+
+137
+00:10:26,900 --> 00:10:30,920
+And so that callback will get access to the current value.
+
+138
+00:10:32,000 --> 00:10:35,000
+And so let's again call that average rating.
+
+139
+00:10:35,000 --> 00:10:37,970
+But of course, it could be called anything.
+
+140
+00:10:39,980 --> 00:10:42,680
+So let's try one more time.
+
+141
+00:10:44,830 --> 00:10:45,220
+Again.
+
+142
+00:10:45,220 --> 00:10:48,540
+Ten and beautiful.
+
+143
+00:10:48,550 --> 00:10:51,820
+So now we get the correct average.
+
+144
+00:10:51,910 --> 00:10:53,100
+Nice.
+
+145
+00:10:53,110 --> 00:11:01,720
+So this time what happened was that the average was again set to the IMDb rating, so the 8.6.
+
+146
+00:11:01,720 --> 00:11:06,730
+But then in the next line here, we already got access to that new value.
+
+147
+00:11:06,760 --> 00:11:12,100
+And then here the 8.6 plus the ten gave us the correct average.
+
+148
+00:11:12,100 --> 00:11:19,600
+And again here this could be really called anything and it would always work in the exact same way.
+
+149
+00:11:20,380 --> 00:11:25,870
+So if we do that again, then yeah, we will still get 9.3.
+
+150
+00:11:25,870 --> 00:11:32,920
+And so that's because this is simply the name of the argument of the callback function that react will
+
+151
+00:11:32,920 --> 00:11:34,720
+pass into the function.
+
+152
+00:11:34,840 --> 00:11:38,860
+So it will simply pass the current state value into the function.
+
+153
+00:11:38,860 --> 00:11:46,660
+But we can then of course give it any name that we want, but let's put it back and indeed let's actually
+
+154
+00:11:46,660 --> 00:11:49,150
+remove all of this that we just wrote.
+
+155
+00:11:49,150 --> 00:11:52,450
+So this was just yet another experiment.
+
+156
+00:11:53,210 --> 00:11:56,780
+But I hope that it was a helpful one.
+
+157
+00:11:57,540 --> 00:11:58,290
+So here.
+
+158
+00:11:58,980 --> 00:12:01,890
+Actually, no, I thought I saw some error there.
+
+159
+00:12:02,910 --> 00:12:04,330
+So let's put it back.
+
+160
+00:12:04,350 --> 00:12:07,830
+And so now the application should work just like before.
+
+161
+00:12:08,880 --> 00:12:09,690
+All right.
+
+162
+00:12:09,690 --> 00:12:18,000
+And now there's just one final thing to learn about the use state took, which is that besides using
+
+163
+00:12:18,000 --> 00:12:24,180
+a callback like this to update state, we can also use a callback to initialize state.
+
+164
+00:12:24,180 --> 00:12:27,600
+And so let's learn how to do that in the next lecture.

@@ -1,0 +1,711 @@
+1
+00:00:00,840 --> 00:00:08,130
+In this lecture, we're finally going to build a brand new feature for our app, which is to persist
+
+2
+00:00:08,130 --> 00:00:10,950
+the watch list in local storage.
+
+3
+00:00:12,310 --> 00:00:19,720
+So right now, if we have some movies here in our watch list, and if we then reload the page, then
+
+4
+00:00:19,720 --> 00:00:23,200
+you see that of course our movies are going to be gone.
+
+5
+00:00:23,200 --> 00:00:27,490
+So they're not persisted, so they're not stored anywhere.
+
+6
+00:00:27,490 --> 00:00:34,450
+And so that's why in this lecture we will now use local storage to store this watched data information
+
+7
+00:00:34,450 --> 00:00:35,740
+in the browser.
+
+8
+00:00:36,260 --> 00:00:38,920
+So we're going to do this in two parts.
+
+9
+00:00:38,930 --> 00:00:45,740
+First, each time that the watch list state is updated, we will update the local storage.
+
+10
+00:00:45,740 --> 00:00:52,350
+So we will store that data into local storage and then each time that the application loads.
+
+11
+00:00:52,370 --> 00:00:59,450
+So when the app component first mounts, we will read that data from local storage and store it into
+
+12
+00:00:59,450 --> 00:01:00,680
+the watched state.
+
+13
+00:01:01,010 --> 00:01:08,300
+So let's do that starting with the first part, which is to store the watched movies here into local
+
+14
+00:01:08,300 --> 00:01:11,110
+storage each time that they are updated.
+
+15
+00:01:11,120 --> 00:01:16,610
+And we can actually do that in two different ways or in two different places.
+
+16
+00:01:16,730 --> 00:01:24,590
+So the first option is to store that data into local storage each time that a new movie is actually
+
+17
+00:01:24,590 --> 00:01:25,220
+added.
+
+18
+00:01:25,250 --> 00:01:32,660
+So basically right here in this event handler function that is responsible for adding new movies to
+
+19
+00:01:32,660 --> 00:01:33,780
+the watch list.
+
+20
+00:01:33,800 --> 00:01:40,530
+So each time that happens, we can then store the new watch list into local storage.
+
+21
+00:01:41,050 --> 00:01:42,520
+So that's the first option.
+
+22
+00:01:42,520 --> 00:01:46,250
+And the second option is to simply do it in an effect.
+
+23
+00:01:46,270 --> 00:01:51,970
+And so let's actually do both of them starting here in this event handler function.
+
+24
+00:01:52,560 --> 00:01:59,280
+Now, by the way, if you're not familiar with local storage, it's basically just a very simple key
+
+25
+00:01:59,280 --> 00:02:06,720
+value pair storage that is available in the browser and where we can store some data for each domain.
+
+26
+00:02:06,720 --> 00:02:14,280
+So basically the data that we store in local storage now will only be available to exactly this URL
+
+27
+00:02:14,310 --> 00:02:17,730
+right here, not for example, in this other one.
+
+28
+00:02:19,070 --> 00:02:19,730
+All right.
+
+29
+00:02:19,730 --> 00:02:26,810
+And the way we use local storage is simply calling local storage, which is a function available in
+
+30
+00:02:26,810 --> 00:02:27,950
+all browsers.
+
+31
+00:02:28,040 --> 00:02:30,620
+And then we set item.
+
+32
+00:02:31,340 --> 00:02:34,310
+Then we pass in the name of the key.
+
+33
+00:02:34,340 --> 00:02:41,840
+So basically the name of the data that we want to store and then second, the actual data.
+
+34
+00:02:42,820 --> 00:02:49,300
+Now here we can not simply use the watched array like this because it has just been updated here.
+
+35
+00:02:49,300 --> 00:02:54,370
+And so, as we already know, this updating happens in an asynchronous way.
+
+36
+00:02:54,370 --> 00:02:58,780
+And so therefore right here, this is still stale state.
+
+37
+00:02:58,780 --> 00:03:03,970
+So it's basically still the old version before a new movie has been added.
+
+38
+00:03:03,970 --> 00:03:07,750
+And so we need to basically do the same thing as here.
+
+39
+00:03:08,310 --> 00:03:13,050
+So we need to build a new array based on the watched.
+
+40
+00:03:13,230 --> 00:03:14,850
+So the current state.
+
+41
+00:03:15,470 --> 00:03:17,270
+Plus the new movie.
+
+42
+00:03:17,510 --> 00:03:24,860
+And then finally, we need to convert all of this into a string because in local storage we can only
+
+43
+00:03:24,860 --> 00:03:29,110
+store key value pairs where the value is a string.
+
+44
+00:03:29,120 --> 00:03:34,490
+And so let's use the built in Json dot stringify.
+
+45
+00:03:35,650 --> 00:03:36,430
+All right.
+
+46
+00:03:36,430 --> 00:03:38,800
+And this should now actually work.
+
+47
+00:03:39,520 --> 00:03:41,710
+Let's try some different movies now.
+
+48
+00:03:41,710 --> 00:03:42,250
+Here.
+
+49
+00:03:45,060 --> 00:03:50,160
+So let's try this one, which is actually one of my all time favorite movies.
+
+50
+00:03:51,090 --> 00:03:54,900
+So let's add that to the list and maybe another one.
+
+51
+00:03:57,580 --> 00:03:58,300
+All right.
+
+52
+00:03:58,300 --> 00:04:01,210
+And so now we have our two movies in the list.
+
+53
+00:04:01,210 --> 00:04:08,050
+But of course, if we reload the page now, they will not magically appear back in the UI, but we can
+
+54
+00:04:08,050 --> 00:04:12,040
+still check if they have been stored into local storage.
+
+55
+00:04:12,130 --> 00:04:18,580
+So in the dev tools, again, we just come here to application and then here on the left side you should
+
+56
+00:04:18,580 --> 00:04:20,830
+have this local storage thing.
+
+57
+00:04:20,830 --> 00:04:29,470
+And so indeed here we see that our array of watched movies has indeed been stored into local storage.
+
+58
+00:04:30,210 --> 00:04:31,170
+Great.
+
+59
+00:04:31,200 --> 00:04:32,880
+So that's working.
+
+60
+00:04:32,880 --> 00:04:37,590
+But as I was saying, we can also do it right inside an effect.
+
+61
+00:04:37,590 --> 00:04:44,730
+So instead of doing it here in the event handler function and we will actually do it in an effect instead
+
+62
+00:04:44,730 --> 00:04:51,240
+of here in this event handler function, because later in the section we will want to make this storing
+
+63
+00:04:51,240 --> 00:04:53,880
+data into local storage reusable.
+
+64
+00:04:54,970 --> 00:05:00,520
+So let's just comment this out and then let's come down here and create a new effect.
+
+65
+00:05:00,730 --> 00:05:06,010
+So you see that I like to have always the states here in the beginning of the component.
+
+66
+00:05:06,010 --> 00:05:12,040
+Then the event handler functions which update some of the state and then in the end, the effects.
+
+67
+00:05:15,140 --> 00:05:17,210
+So let's create a new effect.
+
+68
+00:05:18,200 --> 00:05:19,460
+With a function.
+
+69
+00:05:19,460 --> 00:05:27,320
+And then as we were just saying, we want this effect to run each time that the watched movies are updated.
+
+70
+00:05:27,350 --> 00:05:36,080
+And so then here we can very easily let's just grab this first part here or actually all of it.
+
+71
+00:05:37,980 --> 00:05:40,440
+So let's paste that here and now.
+
+72
+00:05:40,440 --> 00:05:47,850
+We don't have to create any new array because this effect here will only run after the movies have already
+
+73
+00:05:47,850 --> 00:05:48,770
+been updated.
+
+74
+00:05:48,780 --> 00:05:52,410
+So after Watched is already the new state.
+
+75
+00:05:52,410 --> 00:05:55,260
+And so we can then simply use that here.
+
+76
+00:05:56,840 --> 00:05:59,270
+All right, let's reload.
+
+77
+00:05:59,270 --> 00:06:03,530
+And we see that our local storage has already been updated.
+
+78
+00:06:03,530 --> 00:06:08,750
+And that's because this effect here run when the component was first mount.
+
+79
+00:06:08,760 --> 00:06:13,430
+And so at this point, the watched state is by default still this empty array.
+
+80
+00:06:13,430 --> 00:06:17,120
+And so then react, set that here to the empty array.
+
+81
+00:06:19,020 --> 00:06:20,880
+So let's just try.
+
+82
+00:06:21,030 --> 00:06:22,920
+Well, that's not correct.
+
+83
+00:06:24,090 --> 00:06:27,480
+And for some reason here, the loading state is no longer working.
+
+84
+00:06:27,780 --> 00:06:29,850
+But let's take a look at that later.
+
+85
+00:06:30,560 --> 00:06:37,400
+So as we add new movies to the list now we should see our local storage being updated.
+
+86
+00:06:37,700 --> 00:06:38,600
+Nice.
+
+87
+00:06:38,600 --> 00:06:40,340
+So that part is working.
+
+88
+00:06:40,340 --> 00:06:47,180
+And so now we need to take care of the second part, which is to read this data back into the application
+
+89
+00:06:47,180 --> 00:06:49,880
+as soon as the app component mounts.
+
+90
+00:06:49,880 --> 00:06:53,360
+So the component that owns this watched state.
+
+91
+00:06:53,450 --> 00:06:55,640
+Now, how can we do that?
+
+92
+00:06:55,850 --> 00:07:02,900
+Well, we might think that we should use another effect in order to get the data from local storage
+
+93
+00:07:02,930 --> 00:07:08,180
+on the initial render and then store that data in the watched state.
+
+94
+00:07:08,420 --> 00:07:11,330
+However, there is actually a better way.
+
+95
+00:07:11,570 --> 00:07:13,850
+And so let me show that to you.
+
+96
+00:07:15,450 --> 00:07:19,230
+So let's deactivate this watch state here.
+
+97
+00:07:20,750 --> 00:07:23,480
+And maybe let's move it down here.
+
+98
+00:07:23,630 --> 00:07:29,170
+And then duplicate it, because we still need this state.
+
+99
+00:07:29,180 --> 00:07:30,050
+Of course.
+
+100
+00:07:30,700 --> 00:07:37,660
+So what we're going to do now is to, instead of just passing in a value, is to pass in a callback
+
+101
+00:07:37,660 --> 00:07:38,440
+function.
+
+102
+00:07:38,440 --> 00:07:45,310
+And so that's because the use state hook also accepts a callback function instead of just a single value.
+
+103
+00:07:45,310 --> 00:07:52,030
+And so we can then initialize the state with whatever value this callback function will return.
+
+104
+00:07:52,030 --> 00:07:53,860
+And so let's try that out.
+
+105
+00:07:54,600 --> 00:07:56,820
+So let's pass in a function here.
+
+106
+00:07:56,970 --> 00:07:59,400
+So creating a brand new function.
+
+107
+00:07:59,550 --> 00:08:02,430
+And so then let's create a new variable.
+
+108
+00:08:03,530 --> 00:08:05,120
+Let's say, stored.
+
+109
+00:08:06,030 --> 00:08:09,120
+Value and then we can just read.
+
+110
+00:08:09,850 --> 00:08:14,290
+From local storage with the get item method.
+
+111
+00:08:14,590 --> 00:08:15,850
+So get item.
+
+112
+00:08:15,850 --> 00:08:20,980
+And then the key that we used before to store the data in local storage.
+
+113
+00:08:20,980 --> 00:08:23,140
+So that's this key right here.
+
+114
+00:08:23,530 --> 00:08:27,310
+And so then we just need to return this value.
+
+115
+00:08:28,560 --> 00:08:34,860
+And so again, React will then call this function here on the initial render and we'll use whatever
+
+116
+00:08:34,860 --> 00:08:39,930
+value is returned from this function as the initial value of the state.
+
+117
+00:08:40,020 --> 00:08:47,250
+And this function here actually needs to be a pure function and it cannot receive any arguments.
+
+118
+00:08:47,250 --> 00:08:50,550
+So passing arguments here is not going to work.
+
+119
+00:08:50,640 --> 00:08:57,780
+So just a very simple, pure function that returns something and that something will be used by React
+
+120
+00:08:57,780 --> 00:08:59,310
+as the initial state.
+
+121
+00:08:59,870 --> 00:09:07,640
+And also, just like the values that we pass in React will only consider this function here on the initial
+
+122
+00:09:07,640 --> 00:09:08,280
+render.
+
+123
+00:09:08,300 --> 00:09:16,910
+So this function is only executed once on the initial render and is simply ignored on subsequent rerenders.
+
+124
+00:09:17,450 --> 00:09:21,800
+Now, apparently there is some problem here, so let's check that out.
+
+125
+00:09:22,620 --> 00:09:23,330
+So what?
+
+126
+00:09:23,330 --> 00:09:25,020
+The map is not a function.
+
+127
+00:09:25,020 --> 00:09:31,380
+And I actually saw that coming because right now the local storage here is a string.
+
+128
+00:09:31,590 --> 00:09:37,920
+So remember that we stored the data as a string by doing json.stringify.
+
+129
+00:09:37,950 --> 00:09:44,550
+And then when we get the data back, we need to convert it back by doing Json.
+
+130
+00:09:45,220 --> 00:09:47,320
+Dot parse.
+
+131
+00:09:48,450 --> 00:09:49,440
+All right.
+
+132
+00:09:50,260 --> 00:09:52,280
+And beautiful.
+
+133
+00:09:52,300 --> 00:10:00,370
+So here the movie that we added to our watch list before is now indeed back in our watch list after
+
+134
+00:10:00,370 --> 00:10:02,380
+reloading the page.
+
+135
+00:10:02,710 --> 00:10:09,070
+So we successfully stored the data in local storage and retrieved it as the application loads.
+
+136
+00:10:10,000 --> 00:10:13,570
+So our callback function here is doing its job.
+
+137
+00:10:13,570 --> 00:10:17,380
+And so this creates a much better experience for the user.
+
+138
+00:10:18,150 --> 00:10:26,430
+So whenever the initial value of the state depends on some sort of computation, we should always pass
+
+139
+00:10:26,430 --> 00:10:28,350
+in a function like this.
+
+140
+00:10:28,350 --> 00:10:32,530
+So function that react can execute on its initial render.
+
+141
+00:10:32,550 --> 00:10:36,720
+So we should not call a function inside the state.
+
+142
+00:10:37,900 --> 00:10:39,820
+So we should not.
+
+143
+00:10:40,650 --> 00:10:42,270
+Do this.
+
+144
+00:10:44,620 --> 00:10:45,280
+Okay.
+
+145
+00:10:45,460 --> 00:10:46,980
+So this is very different.
+
+146
+00:10:46,990 --> 00:10:50,950
+Here we are calling a function, not passing a function in.
+
+147
+00:10:50,950 --> 00:10:59,020
+And so this we should not do because even though React would ignore the value of this, it would still
+
+148
+00:10:59,020 --> 00:11:02,880
+call this function on every render, which is not good.
+
+149
+00:11:02,890 --> 00:11:09,160
+So never do this and instead pass in a function that react can then call later.
+
+150
+00:11:10,260 --> 00:11:10,990
+Okay.
+
+151
+00:11:11,350 --> 00:11:17,770
+Now let's again go back to our application tab here, because now we want to see what happens when we
+
+152
+00:11:17,800 --> 00:11:19,600
+delete a movie from here.
+
+153
+00:11:20,550 --> 00:11:27,030
+And you see that it actually automatically got removed here from the local storage as well.
+
+154
+00:11:27,720 --> 00:11:29,490
+So why is that?
+
+155
+00:11:29,670 --> 00:11:37,740
+Well, it's because thanks to our effect here, we have effectively synchronized the watched state with
+
+156
+00:11:37,740 --> 00:11:39,180
+our local storage.
+
+157
+00:11:39,180 --> 00:11:44,400
+So when the watched state changes, our local storage changes as well.
+
+158
+00:11:44,400 --> 00:11:51,930
+And so this is a great advantage of having used the Useeffect hook instead of setting local state right
+
+159
+00:11:51,930 --> 00:11:53,910
+here in the event handler.
+
+160
+00:11:53,910 --> 00:12:01,230
+Because if we had done it like this here, then we would also have to manually set the local storage
+
+161
+00:12:01,230 --> 00:12:03,660
+here as we deleted a movie.
+
+162
+00:12:03,750 --> 00:12:12,150
+So here we would then also have to do the exact same thing and use all this here as the new local storage.
+
+163
+00:12:12,420 --> 00:12:18,990
+But so now since we have basically synchronized the two of them, we no longer need to do that.
+
+164
+00:12:20,400 --> 00:12:24,750
+All right, Now let's just see what happens when we reload the page.
+
+165
+00:12:24,900 --> 00:12:27,180
+And everything's working fine.
+
+166
+00:12:27,270 --> 00:12:29,280
+Let's just do one more test.
+
+167
+00:12:34,410 --> 00:12:36,780
+Add a few more movies to our list.
+
+168
+00:12:38,060 --> 00:12:41,360
+And of course, this is a ten, not some other value.
+
+169
+00:12:45,000 --> 00:12:45,200
+No.
+
+170
+00:12:45,210 --> 00:12:45,720
+Okay.
+
+171
+00:12:45,720 --> 00:12:49,490
+Now, see, we are getting some errors here, but maybe that was.
+
+172
+00:12:49,680 --> 00:12:51,900
+Yeah, that's because of the image not loading.
+
+173
+00:12:52,080 --> 00:12:58,050
+And now when I reload the beautiful, both our movies are still in the list.
+
+174
+00:12:58,500 --> 00:13:03,300
+So we learned here yet another way of using the state took.
+
+175
+00:13:03,420 --> 00:13:11,430
+So now we know that besides passing in a single value, we can also pass in a callback function.
+
+176
+00:13:11,610 --> 00:13:16,620
+So this all can be a little bit confusing with all these different options that we have.
+
+177
+00:13:16,620 --> 00:13:22,950
+And so in the next lecture we will basically summarize everything that we know about the use state hook,
+
+178
+00:13:22,950 --> 00:13:27,120
+since that is such an important talk in React development.

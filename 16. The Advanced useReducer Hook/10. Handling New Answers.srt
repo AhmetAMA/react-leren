@@ -1,0 +1,1015 @@
+1
+00:00:00,880 --> 00:00:07,030
+Now, in this lecture, we are going to implement the logic for handling a new answer.
+
+2
+00:00:08,530 --> 00:00:16,000
+And to understand what that means, let's check out our demo project here and then let's give a new
+
+3
+00:00:16,000 --> 00:00:16,680
+answer.
+
+4
+00:00:16,690 --> 00:00:21,610
+So a new answer is basically when we click on one of these options here.
+
+5
+00:00:22,510 --> 00:00:23,650
+So let's do that.
+
+6
+00:00:23,650 --> 00:00:27,430
+And you see that basically three things happened.
+
+7
+00:00:27,460 --> 00:00:31,780
+So first, the correct and the wrong answers are displayed.
+
+8
+00:00:31,870 --> 00:00:35,290
+Second, the points that we got were updated.
+
+9
+00:00:35,290 --> 00:00:39,460
+And third, the next button was displayed down here.
+
+10
+00:00:40,130 --> 00:00:45,560
+So basically when we click on one of these options, we need to rerender the screen.
+
+11
+00:00:45,560 --> 00:00:50,410
+And so once again, that means that we need a new piece of state.
+
+12
+00:00:50,420 --> 00:00:56,420
+And so that state should basically store which of the options was selected.
+
+13
+00:00:56,450 --> 00:00:59,870
+So in other words, which was the answer?
+
+14
+00:01:00,500 --> 00:01:03,950
+So answer zero one, 2 or 3.
+
+15
+00:01:04,980 --> 00:01:11,460
+So basically the answer is just going to be the index number of this option here.
+
+16
+00:01:12,760 --> 00:01:21,220
+So let's come back to our app.js and add yet another piece of state to our initial state.
+
+17
+00:01:21,460 --> 00:01:24,060
+So let's just call it answer.
+
+18
+00:01:24,070 --> 00:01:27,370
+And in the beginning it will be null.
+
+19
+00:01:27,370 --> 00:01:30,190
+So there will be no answer initially.
+
+20
+00:01:30,190 --> 00:01:32,440
+And so that makes sense, right?
+
+21
+00:01:32,590 --> 00:01:38,500
+And now next, let's then create an action in our reducer to update that answer.
+
+22
+00:01:39,660 --> 00:01:40,900
+So let's do that.
+
+23
+00:01:40,920 --> 00:01:42,630
+Well, after this one here.
+
+24
+00:01:43,810 --> 00:01:45,430
+So let's keep them in order.
+
+25
+00:01:45,430 --> 00:01:48,880
+And here, let's call this one new answer.
+
+26
+00:01:50,860 --> 00:01:55,810
+So then later we will dispatch a new action with the new answer type.
+
+27
+00:01:56,200 --> 00:01:57,070
+Right.
+
+28
+00:01:57,830 --> 00:02:04,790
+And so here, let's return, as always, the state, and then the answer.
+
+29
+00:02:06,250 --> 00:02:10,960
+We'll get set to the action dot payload.
+
+30
+00:02:11,170 --> 00:02:13,460
+So very simple stuff.
+
+31
+00:02:13,480 --> 00:02:22,090
+And so now we need to go here into our question or actually into these options because here is where
+
+32
+00:02:22,090 --> 00:02:24,550
+the click on the button will happen.
+
+33
+00:02:24,730 --> 00:02:29,560
+So here is where we will now need to dispatch a new action.
+
+34
+00:02:31,210 --> 00:02:37,150
+So that means that we need to pass the dispatch function into questions.
+
+35
+00:02:38,950 --> 00:02:40,780
+Well into question, actually.
+
+36
+00:02:42,490 --> 00:02:44,530
+So this patch.
+
+37
+00:02:46,430 --> 00:02:48,200
+And then the dispatch function.
+
+38
+00:02:48,200 --> 00:02:52,520
+And we will also need the answer that we gave.
+
+39
+00:02:54,580 --> 00:03:01,100
+So this one we need so that we can then display the answer that was given was correct or not.
+
+40
+00:03:01,180 --> 00:03:04,630
+So painting it basically with one of these colors.
+
+41
+00:03:06,400 --> 00:03:08,920
+And again, we need to destructure.
+
+42
+00:03:09,620 --> 00:03:10,970
+This first year.
+
+43
+00:03:13,650 --> 00:03:15,420
+So we need our answer.
+
+44
+00:03:16,510 --> 00:03:16,900
+Yeah.
+
+45
+00:03:16,900 --> 00:03:18,700
+So dispatch and answer.
+
+46
+00:03:18,790 --> 00:03:20,710
+So let's grab them here.
+
+47
+00:03:25,260 --> 00:03:27,630
+And then passing them in here.
+
+48
+00:03:28,950 --> 00:03:36,960
+So a bit of prop drilling you can maybe identify here, but that's not a big deal if it's like just
+
+49
+00:03:36,960 --> 00:03:38,130
+this one level.
+
+50
+00:03:41,380 --> 00:03:43,980
+So then accepting these two props here.
+
+51
+00:03:45,110 --> 00:03:46,410
+And there we go.
+
+52
+00:03:46,430 --> 00:03:49,970
+Now we can from here, dispatch the action.
+
+53
+00:03:50,510 --> 00:03:52,160
+So on click.
+
+54
+00:03:57,190 --> 00:04:01,510
+So this patch and the type of this event.
+
+55
+00:04:01,960 --> 00:04:04,470
+Well, let's see.
+
+56
+00:04:04,480 --> 00:04:06,220
+I don't remember.
+
+57
+00:04:06,550 --> 00:04:08,260
+So that's new answer.
+
+58
+00:04:08,560 --> 00:04:12,520
+And the payload should then be the answer that was given.
+
+59
+00:04:13,660 --> 00:04:14,650
+So new.
+
+60
+00:04:15,350 --> 00:04:16,250
+Answer.
+
+61
+00:04:16,670 --> 00:04:18,140
+And the.
+
+62
+00:04:19,390 --> 00:04:21,850
+Payload again is the answer.
+
+63
+00:04:21,880 --> 00:04:23,890
+Now, what is the answer?
+
+64
+00:04:24,130 --> 00:04:30,580
+Well, remember how we said earlier that the answer is basically the index of the option?
+
+65
+00:04:30,640 --> 00:04:34,690
+So in this case, that would be here index number one.
+
+66
+00:04:34,690 --> 00:04:35,570
+Right.
+
+67
+00:04:35,590 --> 00:04:42,070
+And the reason for that is that the correct option is also marked using these same indexes.
+
+68
+00:04:44,730 --> 00:04:51,420
+So I just want to show you that because I think that besides learning the React part, it's also important
+
+69
+00:04:51,420 --> 00:04:55,620
+that you learn how to build applications, basically.
+
+70
+00:04:57,390 --> 00:05:01,020
+Now here are app changed to a different state.
+
+71
+00:05:01,020 --> 00:05:02,220
+So the finished state.
+
+72
+00:05:02,220 --> 00:05:03,360
+But never mind.
+
+73
+00:05:03,990 --> 00:05:09,390
+So what I was saying is that the correct option here is also using these indexes.
+
+74
+00:05:09,390 --> 00:05:13,170
+And so indeed here the correct option is react.
+
+75
+00:05:13,170 --> 00:05:15,390
+And so that's index number one.
+
+76
+00:05:18,200 --> 00:05:19,010
+All right.
+
+77
+00:05:19,810 --> 00:05:22,870
+So then how do we get the current index here?
+
+78
+00:05:23,260 --> 00:05:28,900
+Well, we can just get it here as the second argument of the map method.
+
+79
+00:05:30,020 --> 00:05:35,870
+So that's just how this method works, where the first option is the current element of the array,
+
+80
+00:05:35,870 --> 00:05:40,340
+and the second argument is the current index.
+
+81
+00:05:41,930 --> 00:05:44,180
+And so this is all we need.
+
+82
+00:05:44,660 --> 00:05:46,170
+So let's check that.
+
+83
+00:05:46,190 --> 00:05:48,570
+Let's click maybe here this time.
+
+84
+00:05:48,620 --> 00:05:54,380
+And so then when we come to our state, we should have the answer of two.
+
+85
+00:05:56,170 --> 00:05:57,280
+And.
+
+86
+00:05:58,610 --> 00:05:59,900
+Well, where is that?
+
+87
+00:06:03,510 --> 00:06:04,920
+Well, that's not really anywhere.
+
+88
+00:06:05,070 --> 00:06:06,300
+So let's.
+
+89
+00:06:07,150 --> 00:06:07,810
+Reload.
+
+90
+00:06:07,840 --> 00:06:10,840
+Maybe I forgot to reload the application.
+
+91
+00:06:11,820 --> 00:06:13,410
+Let's try that again.
+
+92
+00:06:14,350 --> 00:06:15,880
+Uh, and apparently I did.
+
+93
+00:06:15,910 --> 00:06:18,280
+So now we got the answer right here.
+
+94
+00:06:18,860 --> 00:06:19,760
+Nice.
+
+95
+00:06:20,060 --> 00:06:25,220
+And so next up, let's then do some formatting based on this answer.
+
+96
+00:06:25,220 --> 00:06:30,050
+And so that's why this options here received that answer prop.
+
+97
+00:06:30,410 --> 00:06:32,270
+So that state right here.
+
+98
+00:06:33,420 --> 00:06:38,820
+So what we're going to do is to basically change the class names here conditionally.
+
+99
+00:06:39,470 --> 00:06:42,110
+So let's create a template literal.
+
+100
+00:06:42,410 --> 00:06:47,560
+And then first of all, let's create a class for the selected option.
+
+101
+00:06:47,570 --> 00:06:52,250
+So here, let's say if the current index is equal.
+
+102
+00:06:52,940 --> 00:06:54,290
+To the answer.
+
+103
+00:06:55,720 --> 00:07:01,960
+Then add the answer class and otherwise don't add anything.
+
+104
+00:07:02,380 --> 00:07:10,060
+So when we're doing conditional CSS, we should always use the ternary operator so that in the opposite
+
+105
+00:07:10,060 --> 00:07:10,750
+case.
+
+106
+00:07:10,780 --> 00:07:14,760
+So in this third branch here, then we return no string at all.
+
+107
+00:07:14,770 --> 00:07:16,780
+And so you saw that here.
+
+108
+00:07:16,780 --> 00:07:22,330
+The question that we selected actually got this special class where it moved a bit to the right.
+
+109
+00:07:22,330 --> 00:07:27,400
+And if we select this one, well, then that one would get that special class.
+
+110
+00:07:28,270 --> 00:07:30,150
+So that's the first thing.
+
+111
+00:07:30,160 --> 00:07:37,180
+And now we also then basically need to paint them in the right color, depending if the option is the
+
+112
+00:07:37,180 --> 00:07:39,340
+correct option or not.
+
+113
+00:07:39,550 --> 00:07:48,940
+So let's again enter here the JavaScript mode and then let's say if the current index is equal.
+
+114
+00:07:49,790 --> 00:07:52,010
+To question Dot?
+
+115
+00:07:52,010 --> 00:07:53,210
+Correct.
+
+116
+00:07:54,470 --> 00:07:57,830
+Option, then add the class.
+
+117
+00:07:58,250 --> 00:08:01,160
+Correct and otherwise.
+
+118
+00:08:02,180 --> 00:08:02,900
+Wrong.
+
+119
+00:08:04,390 --> 00:08:05,920
+And beautiful.
+
+120
+00:08:06,130 --> 00:08:07,720
+So that's working.
+
+121
+00:08:08,110 --> 00:08:13,840
+And again, let's just check or state here so we see what's going on.
+
+122
+00:08:14,550 --> 00:08:21,720
+So again, each of these options or of these questions actually has the correct option as a property
+
+123
+00:08:21,720 --> 00:08:22,170
+here.
+
+124
+00:08:22,170 --> 00:08:23,910
+So that's number one here.
+
+125
+00:08:23,910 --> 00:08:26,890
+And so number one in this case here.
+
+126
+00:08:26,910 --> 00:08:30,030
+So in this option is equal to the index.
+
+127
+00:08:30,030 --> 00:08:35,340
+And so therefore it was then marked as correct and all the other ones as wrong.
+
+128
+00:08:36,900 --> 00:08:37,460
+Okay.
+
+129
+00:08:37,460 --> 00:08:41,330
+And now we can actually click multiple times here.
+
+130
+00:08:41,330 --> 00:08:44,020
+But of course that should not be allowed.
+
+131
+00:08:44,030 --> 00:08:49,130
+So once the user clicks on one of these options, then it should be logged in.
+
+132
+00:08:49,370 --> 00:08:52,280
+And so we then can no longer click.
+
+133
+00:08:52,280 --> 00:08:54,860
+And so let's just disable the button.
+
+134
+00:08:55,720 --> 00:08:58,060
+With the disabled prop.
+
+135
+00:08:58,670 --> 00:09:02,680
+And in here, basically, we want to know if there was an answer.
+
+136
+00:09:02,690 --> 00:09:06,770
+So any answer at all would then disable this button.
+
+137
+00:09:08,570 --> 00:09:15,980
+So since we know that the initial state of the answer is null, we can just check if the answer is not
+
+138
+00:09:16,010 --> 00:09:16,550
+null.
+
+139
+00:09:16,640 --> 00:09:22,580
+So if it's not null means that there was an answer and then we want to disable the buttons.
+
+140
+00:09:23,870 --> 00:09:25,610
+So let's try that again.
+
+141
+00:09:26,940 --> 00:09:28,890
+Ah, but we have some problem here.
+
+142
+00:09:29,040 --> 00:09:32,160
+So all our options are already painted.
+
+143
+00:09:32,160 --> 00:09:36,660
+So that's very bad because it gives away the correct option here.
+
+144
+00:09:36,660 --> 00:09:40,470
+And so actually what we did here was not really correct.
+
+145
+00:09:41,490 --> 00:09:45,320
+So basically classifying each of them as correct and wrong.
+
+146
+00:09:45,330 --> 00:09:49,920
+We only want that to happen if there was an answer at all.
+
+147
+00:09:50,160 --> 00:09:52,290
+So basically in this situation.
+
+148
+00:09:52,530 --> 00:09:54,320
+So we need to reuse that.
+
+149
+00:09:54,330 --> 00:09:55,620
+So let's just.
+
+150
+00:09:57,020 --> 00:10:00,740
+Place that in a special variable and let's say has.
+
+151
+00:10:01,430 --> 00:10:02,330
+Answer it.
+
+152
+00:10:04,230 --> 00:10:04,970
+Okay.
+
+153
+00:10:04,980 --> 00:10:06,480
+And then let's use that here.
+
+154
+00:10:09,440 --> 00:10:11,090
+And here as well.
+
+155
+00:10:11,240 --> 00:10:14,510
+Now, here, this will become a bit confusing.
+
+156
+00:10:15,890 --> 00:10:18,640
+So we use a ternary and then another one.
+
+157
+00:10:18,650 --> 00:10:22,580
+So we have nested ternaries, which is pretty ugly.
+
+158
+00:10:23,210 --> 00:10:26,710
+So we could actually do this outside as well.
+
+159
+00:10:26,720 --> 00:10:34,010
+But let's just keep it like this so it is readable if you understand the logic behind this.
+
+160
+00:10:34,370 --> 00:10:37,370
+And so it looks as though now it is correct.
+
+161
+00:10:37,550 --> 00:10:40,400
+So let's select something here.
+
+162
+00:10:40,580 --> 00:10:48,470
+And yeah, now we cannot click on the other ones and also everything is marked in the correct way.
+
+163
+00:10:48,560 --> 00:10:50,240
+So we selected this one.
+
+164
+00:10:50,240 --> 00:10:53,390
+So this one got the special class, but it is wrong.
+
+165
+00:10:53,390 --> 00:10:58,490
+So it's then yellow and only this one is blue because it is correct.
+
+166
+00:10:58,610 --> 00:11:00,770
+So it has the correct class then?
+
+167
+00:11:00,920 --> 00:11:01,850
+Great.
+
+168
+00:11:01,850 --> 00:11:06,050
+So we took care of one of the three things that should happen.
+
+169
+00:11:06,320 --> 00:11:10,340
+So again, the correct answers should be displayed.
+
+170
+00:11:10,370 --> 00:11:17,420
+Then the user score should be updated and the next button down here should be displayed.
+
+171
+00:11:17,570 --> 00:11:21,500
+So let's now quickly take care of the second part.
+
+172
+00:11:21,500 --> 00:11:25,410
+So basically that the user score should be updated.
+
+173
+00:11:26,660 --> 00:11:33,800
+So that is something that needs to again, update on the screen, which means that we need yet another
+
+174
+00:11:33,800 --> 00:11:35,000
+state variable.
+
+175
+00:11:35,950 --> 00:11:40,690
+So let's call this points and the user starts at zero.
+
+176
+00:11:41,920 --> 00:11:42,480
+Okay.
+
+177
+00:11:42,490 --> 00:11:45,130
+And now where do we update these points?
+
+178
+00:11:45,460 --> 00:11:52,780
+Well, it makes sense that it is exactly in the same place where we received the new answer.
+
+179
+00:11:53,140 --> 00:11:56,530
+So right here, we will also update the points.
+
+180
+00:11:57,690 --> 00:11:59,610
+So how are we going to do that?
+
+181
+00:11:59,640 --> 00:12:05,080
+Because, of course, the points should only be awarded if the answer was correct.
+
+182
+00:12:05,100 --> 00:12:08,860
+So we need to first figure out which is the current question.
+
+183
+00:12:08,880 --> 00:12:16,320
+Then if the answer is correct and only then we want to add the points to the current points.
+
+184
+00:12:16,320 --> 00:12:18,060
+So that sounds confusing.
+
+185
+00:12:18,060 --> 00:12:19,560
+So let's just do it.
+
+186
+00:12:20,660 --> 00:12:25,310
+So first of all, let's figure out which is the current question.
+
+187
+00:12:26,210 --> 00:12:29,470
+Because we actually don't have that stored in the state.
+
+188
+00:12:29,480 --> 00:12:34,130
+So we only know the index, but not the question itself.
+
+189
+00:12:35,950 --> 00:12:38,530
+So let's grab state.
+
+190
+00:12:39,530 --> 00:12:40,670
+Thought questions.
+
+191
+00:12:41,410 --> 00:12:43,000
+ET state.
+
+192
+00:12:43,570 --> 00:12:45,390
+Dot index.
+
+193
+00:12:45,400 --> 00:12:52,210
+And so here really we are leveraging the current state that we get into the reducer to compute the next
+
+194
+00:12:52,210 --> 00:12:52,870
+state.
+
+195
+00:12:54,550 --> 00:12:57,370
+So really relying on that current state.
+
+196
+00:12:58,500 --> 00:13:01,740
+So with this we know which is the current question.
+
+197
+00:13:01,740 --> 00:13:07,380
+And so now we can then check if the current question is equal to the received answer.
+
+198
+00:13:08,130 --> 00:13:12,090
+So that received answer is again action dot.
+
+199
+00:13:12,980 --> 00:13:13,880
+Payload.
+
+200
+00:13:14,300 --> 00:13:18,860
+And now let's check if it is equal to question dot.
+
+201
+00:13:18,860 --> 00:13:19,850
+Correct.
+
+202
+00:13:20,960 --> 00:13:21,890
+Upton again.
+
+203
+00:13:21,890 --> 00:13:27,020
+So this property that we have used before already here.
+
+204
+00:13:28,170 --> 00:13:29,040
+Right.
+
+205
+00:13:29,600 --> 00:13:36,560
+So if that is the case, then we want to add some points to the current points.
+
+206
+00:13:36,560 --> 00:13:42,770
+And so that is state dot points plus something.
+
+207
+00:13:42,770 --> 00:13:47,900
+Let's just do one for now and otherwise the points will just stay the same.
+
+208
+00:13:47,900 --> 00:13:50,900
+So then we will just return again State.
+
+209
+00:13:52,140 --> 00:13:53,640
+Dot points.
+
+210
+00:13:54,870 --> 00:13:55,580
+Okay.
+
+211
+00:13:55,700 --> 00:14:01,370
+Now here we are, adding one for now, but that is not what we want to add in the end.
+
+212
+00:14:01,400 --> 00:14:05,030
+Because notice again, how.
+
+213
+00:14:05,890 --> 00:14:08,980
+Each of our questions object, actually.
+
+214
+00:14:10,650 --> 00:14:12,280
+Let's give a lot more space.
+
+215
+00:14:12,640 --> 00:14:20,050
+So each of them has this points property, which is because each of them actually has a different points
+
+216
+00:14:20,080 --> 00:14:20,740
+value.
+
+217
+00:14:20,770 --> 00:14:26,500
+So the easier ones only give ten points, but then if there are more difficult.
+
+218
+00:14:27,520 --> 00:14:28,540
+Well, let's.
+
+219
+00:14:28,690 --> 00:14:29,830
+Maybe this one.
+
+220
+00:14:29,950 --> 00:14:31,090
+Well, not really.
+
+221
+00:14:32,440 --> 00:14:34,150
+So there are some hard ones.
+
+222
+00:14:34,150 --> 00:14:34,420
+Yeah.
+
+223
+00:14:34,450 --> 00:14:35,260
+Like this one.
+
+224
+00:14:35,260 --> 00:14:37,540
+So this one adds 30 points.
+
+225
+00:14:37,540 --> 00:14:41,380
+And so we need to get actually that value.
+
+226
+00:14:42,000 --> 00:14:44,400
+So that is at the current question.
+
+227
+00:14:45,380 --> 00:14:46,730
+Dot points.
+
+228
+00:14:47,710 --> 00:14:48,610
+All right.
+
+229
+00:14:48,820 --> 00:14:55,600
+So I understand that this year might seem a bit confusing, but this is really just understanding what
+
+230
+00:14:55,600 --> 00:14:58,960
+kind of data we have and then working with that data.
+
+231
+00:14:59,080 --> 00:15:06,820
+And also, you notice that here we now have for the first time quite a more complex state updating logic
+
+232
+00:15:06,820 --> 00:15:08,280
+in our reducer.
+
+233
+00:15:08,290 --> 00:15:11,830
+And this is perfectly fine and actually encouraged.
+
+234
+00:15:11,920 --> 00:15:19,510
+So whenever it's possible, we should try to put as much of the logic for calculating the next state
+
+235
+00:15:19,510 --> 00:15:21,520
+right into the reducer.
+
+236
+00:15:21,760 --> 00:15:29,320
+So it's better for this logic here to be in the reducer then in the place where the event is actually
+
+237
+00:15:29,320 --> 00:15:30,370
+first handled.
+
+238
+00:15:30,550 --> 00:15:37,750
+So basically, we could probably also do this calculation right here in the option where we handle the
+
+239
+00:15:37,750 --> 00:15:38,440
+event.
+
+240
+00:15:39,170 --> 00:15:43,240
+But that would go against the logic of the Usereducer hook.
+
+241
+00:15:43,250 --> 00:15:45,890
+So it's much better to do it like this.
+
+242
+00:15:47,250 --> 00:15:47,910
+All right.
+
+243
+00:15:47,910 --> 00:15:49,470
+So this should be working.
+
+244
+00:15:50,710 --> 00:15:51,910
+Let's check it.
+
+245
+00:15:52,770 --> 00:15:55,770
+So we know that this question is worth ten points.
+
+246
+00:15:55,770 --> 00:16:03,540
+And so if we select the correct one, then you notice that our points have indeed been updated to ten.
+
+247
+00:16:04,360 --> 00:16:05,860
+So that's zero plus ten.
+
+248
+00:16:06,570 --> 00:16:11,730
+And if we select the wrong one, then our points stay at zero.
+
+249
+00:16:12,460 --> 00:16:13,360
+Great.
+
+250
+00:16:13,360 --> 00:16:17,740
+So of course we will later then display these points in the UI.
+
+251
+00:16:18,410 --> 00:16:25,190
+But let's leave that for a bit later because next up, we need to take care of displaying the next button
+
+252
+00:16:25,190 --> 00:16:29,660
+and handling the logic of actually moving to that next question.
+
+253
+00:16:30,320 --> 00:16:36,020
+So basically when we finish here, then we want to click and go to the next one.
+
+254
+00:16:36,020 --> 00:16:39,380
+And so that is what we will do in the next video.

@@ -1,0 +1,555 @@
+1
+00:00:01,030 --> 00:00:07,840
+Let's now learn how we can work with event handlers and how we update state in class components.
+
+2
+00:00:09,150 --> 00:00:18,030
+So just like before, basically here, we now want to use the onClick property in order to add an event
+
+3
+00:00:18,030 --> 00:00:20,010
+handler to this button.
+
+4
+00:00:20,130 --> 00:00:23,850
+But now where do we actually write that event handler?
+
+5
+00:00:24,420 --> 00:00:30,960
+Well, remember how I said that this render method here is basically equivalent to the function body
+
+6
+00:00:30,960 --> 00:00:34,460
+of a functional component or a function component.
+
+7
+00:00:34,470 --> 00:00:37,660
+So I use these two terms interchangeably.
+
+8
+00:00:37,680 --> 00:00:39,420
+So they're basically the same.
+
+9
+00:00:39,510 --> 00:00:46,980
+But anyway, since this is equivalent to basically the function body of the functional component, we
+
+10
+00:00:46,980 --> 00:00:50,970
+might think that this is where we now define our event handlers.
+
+11
+00:00:50,970 --> 00:00:54,870
+So just like we do in functional components, right?
+
+12
+00:00:55,050 --> 00:00:59,180
+However, that's not what we do in class components.
+
+13
+00:00:59,190 --> 00:01:05,970
+So in class components, this render method should be as clean as possible, so it should contain as
+
+14
+00:01:05,970 --> 00:01:08,730
+little render logic as possible.
+
+15
+00:01:08,730 --> 00:01:14,580
+And so instead our handler functions are defined as class methods.
+
+16
+00:01:15,830 --> 00:01:19,850
+So let's define handle decrement.
+
+17
+00:01:19,880 --> 00:01:22,850
+Decrement like this.
+
+18
+00:01:24,090 --> 00:01:27,540
+And so with this, we have a brand new class method.
+
+19
+00:01:27,540 --> 00:01:30,060
+And so here now we update the state.
+
+20
+00:01:30,060 --> 00:01:34,710
+But before we do that, let me actually show you something that we need to do first.
+
+21
+00:01:35,860 --> 00:01:42,070
+So let me log the this keyword because the this keyword is necessary all the time.
+
+22
+00:01:42,070 --> 00:01:44,470
+So we will actually also need it here.
+
+23
+00:01:46,430 --> 00:01:51,980
+Okay, but now let's then connect this onClick prop with this handler function.
+
+24
+00:01:51,980 --> 00:01:59,180
+And the way we do that is, again, using the this keyword and then handle decrement.
+
+25
+00:01:59,180 --> 00:02:06,050
+And so again, the this keyword basically points to the current component instance, which will inherit
+
+26
+00:02:06,050 --> 00:02:09,470
+this method here from the class definition.
+
+27
+00:02:10,260 --> 00:02:10,590
+Now.
+
+28
+00:02:10,590 --> 00:02:11,130
+Right?
+
+29
+00:02:11,130 --> 00:02:12,390
+Let's give it a save.
+
+30
+00:02:13,050 --> 00:02:15,480
+And then let's click this button.
+
+31
+00:02:16,020 --> 00:02:23,850
+And so you see that we get undefined, or in other words, that the this keyword inside this handler
+
+32
+00:02:23,850 --> 00:02:25,830
+here is undefined.
+
+33
+00:02:26,160 --> 00:02:32,670
+However, we need the this keyword to point to the current component because that's how we will update
+
+34
+00:02:32,670 --> 00:02:33,450
+the state.
+
+35
+00:02:33,480 --> 00:02:39,030
+So we will update the state by doing this dot set state.
+
+36
+00:02:39,810 --> 00:02:41,370
+And then here something.
+
+37
+00:02:41,370 --> 00:02:47,940
+So we are going to need the this keyword, but again, it is currently undefined and the reason for
+
+38
+00:02:47,970 --> 00:02:51,450
+that is simply the way in which JavaScript works.
+
+39
+00:02:51,450 --> 00:02:58,770
+So when React calls our event handler here, it first actually behind the scenes creates a copy of this
+
+40
+00:02:58,770 --> 00:02:59,460
+function.
+
+41
+00:02:59,460 --> 00:03:06,450
+And so then the function call is just a normal function call, which is not bound to any object.
+
+42
+00:03:06,450 --> 00:03:12,630
+And so because of that, this function then loses the binding to the current this keyword.
+
+43
+00:03:12,630 --> 00:03:14,970
+But that's all not really important.
+
+44
+00:03:15,000 --> 00:03:21,570
+The only thing that matters to know is that all event handlers that are called here inside the JS will
+
+45
+00:03:21,570 --> 00:03:24,000
+lose their binding to the this keyword.
+
+46
+00:03:24,000 --> 00:03:29,370
+And so we need to fix that by coming here again to our constructor method.
+
+47
+00:03:30,230 --> 00:03:34,010
+And then we basically need to override the method.
+
+48
+00:03:34,830 --> 00:03:39,360
+So writing this dot handle decrement is equal.
+
+49
+00:03:40,470 --> 00:03:43,020
+To this dot decrement.
+
+50
+00:03:43,020 --> 00:03:50,730
+And then we use the bind method to manually bind the this keyword to this function here.
+
+51
+00:03:50,730 --> 00:03:58,380
+And so by doing this, we basically give this method here access to the current component instance again.
+
+52
+00:03:59,680 --> 00:04:00,310
+All right.
+
+53
+00:04:00,310 --> 00:04:06,730
+And so if you ever come across some older react code base, you will see this kind of thing everywhere.
+
+54
+00:04:06,730 --> 00:04:11,410
+So this manually binding the this keyword to our event handler functions.
+
+55
+00:04:11,770 --> 00:04:19,150
+And so now if we click this button, you see that we actually get access to this object so we can see
+
+56
+00:04:19,150 --> 00:04:23,350
+even the state, the props that it received and some other stuff.
+
+57
+00:04:23,990 --> 00:04:26,660
+But that's not really why we're here.
+
+58
+00:04:26,840 --> 00:04:29,810
+So we are here to update the state.
+
+59
+00:04:30,630 --> 00:04:37,400
+And so, as I mentioned earlier, we do this by calling the set state method on the this keyword.
+
+60
+00:04:37,410 --> 00:04:44,100
+And the way this set state method works is very similar to the state setter functions that we get back
+
+61
+00:04:44,100 --> 00:04:46,460
+from a use state hook call.
+
+62
+00:04:46,470 --> 00:04:50,240
+So basically we can update state in two different ways.
+
+63
+00:04:50,250 --> 00:04:57,030
+We can just pass in the new state here or we can update the state based on the current state.
+
+64
+00:04:57,210 --> 00:04:59,370
+So let's actually do the second one.
+
+65
+00:04:59,370 --> 00:05:05,910
+So by providing a callback function here, which gets access to the entire current state object.
+
+66
+00:05:06,520 --> 00:05:09,430
+So let's call it current state.
+
+67
+00:05:10,610 --> 00:05:18,230
+And then let's actually explicitly return the new state object here, just so we know that this is what
+
+68
+00:05:18,230 --> 00:05:19,000
+we need to do.
+
+69
+00:05:19,010 --> 00:05:24,590
+So we need to return a new object where the count property is then updated.
+
+70
+00:05:25,950 --> 00:05:33,360
+So we can get the current count from state dot count and then we just add one.
+
+71
+00:05:34,930 --> 00:05:35,620
+Okay.
+
+72
+00:05:35,620 --> 00:05:36,820
+And that's it.
+
+73
+00:05:39,080 --> 00:05:42,020
+And well, that's actually the opposite direction.
+
+74
+00:05:42,020 --> 00:05:44,450
+So we want to subtract one.
+
+75
+00:05:45,280 --> 00:05:49,060
+But in any case, that's working great.
+
+76
+00:05:49,060 --> 00:05:55,390
+So we just made our first class component dynamic and are already updating some state.
+
+77
+00:05:55,480 --> 00:05:57,580
+So we're doing great progress.
+
+78
+00:05:59,960 --> 00:06:01,790
+Now, let me just tell you the other way.
+
+79
+00:06:05,060 --> 00:06:06,080
+So let's.
+
+80
+00:06:06,680 --> 00:06:07,910
+Remove this.
+
+81
+00:06:08,450 --> 00:06:12,080
+And so here we could also have passed in simply a value.
+
+82
+00:06:13,160 --> 00:06:17,540
+So setting the count, for example, to ten whenever we click here.
+
+83
+00:06:18,700 --> 00:06:20,710
+So you see that works as well.
+
+84
+00:06:21,610 --> 00:06:26,320
+But of course, here we want to set state based on the current state.
+
+85
+00:06:27,770 --> 00:06:28,640
+All right.
+
+86
+00:06:28,670 --> 00:06:35,630
+And by the way, notice how all the concepts behind react that we have been talking about before still
+
+87
+00:06:35,630 --> 00:06:38,020
+apply to class components.
+
+88
+00:06:38,030 --> 00:06:44,530
+So things like updating the state will rerender the UI and all things like that.
+
+89
+00:06:44,540 --> 00:06:46,950
+So those fundamentals haven't changed.
+
+90
+00:06:46,970 --> 00:06:52,280
+The only thing that's changing is that we write the component in a completely different way.
+
+91
+00:06:53,190 --> 00:07:00,270
+But anyway, let's now just duplicate this code here to create or handle increment.
+
+92
+00:07:01,960 --> 00:07:03,520
+Uh, event handler.
+
+93
+00:07:04,000 --> 00:07:09,400
+And then here, all we need to do is to just change this to plus one and then here.
+
+94
+00:07:10,470 --> 00:07:13,380
+Also attach an event handler function.
+
+95
+00:07:13,740 --> 00:07:15,570
+So the one that we just created.
+
+96
+00:07:18,260 --> 00:07:20,000
+So handle increment.
+
+97
+00:07:21,120 --> 00:07:27,390
+And just like before, of course we do not call the function, but we simply let react, call it as
+
+98
+00:07:27,390 --> 00:07:29,220
+soon as we click on the button.
+
+99
+00:07:30,780 --> 00:07:33,480
+And so we got some error.
+
+100
+00:07:33,510 --> 00:07:35,880
+Well, why is that?
+
+101
+00:07:36,250 --> 00:07:37,470
+Ah, of course.
+
+102
+00:07:37,470 --> 00:07:44,600
+So I just told you before that the this keyword will lose its meaning basically.
+
+103
+00:07:44,610 --> 00:07:51,660
+So inside handle increment, it will no longer point to the current component instance.
+
+104
+00:07:51,660 --> 00:07:55,680
+And so that's why we fixed that this binding right here.
+
+105
+00:07:55,680 --> 00:08:00,810
+But we forgot to do the same thing for handle increment.
+
+106
+00:08:04,780 --> 00:08:06,160
+So let's fix that.
+
+107
+00:08:06,190 --> 00:08:07,380
+Give it a save.
+
+108
+00:08:07,390 --> 00:08:09,550
+And so now it should work.
+
+109
+00:08:10,120 --> 00:08:11,020
+Yes.
+
+110
+00:08:12,070 --> 00:08:19,420
+So never forget to do this because you see that the consequence is that your app will not work.
+
+111
+00:08:20,520 --> 00:08:21,270
+Okay.
+
+112
+00:08:21,540 --> 00:08:27,420
+And so now let's instead of just displaying the number here, display the date.
+
+113
+00:08:27,450 --> 00:08:31,680
+So just like we did before in that date calculator.
+
+114
+00:08:31,950 --> 00:08:37,800
+And so this kind of very simple render logic is actually allowed here in the render method.
+
+115
+00:08:39,210 --> 00:08:45,030
+So we just shouldn't define functions here like we do in our render logic in functional components.
+
+116
+00:08:45,030 --> 00:08:48,630
+But some simple logic like this is allowed.
+
+117
+00:08:48,840 --> 00:08:50,970
+So we define our date.
+
+118
+00:08:54,080 --> 00:09:00,280
+Let's just pass in a string here so that JavaScript can parse the date object out of it.
+
+119
+00:09:00,980 --> 00:09:08,360
+So let's say we are in 2027 and then we want to set the date on that.
+
+120
+00:09:09,350 --> 00:09:12,170
+To date dot get date.
+
+121
+00:09:12,170 --> 00:09:15,740
+And this is similar again to what we already did before.
+
+122
+00:09:15,770 --> 00:09:18,890
+So we're just transforming that to a class based component.
+
+123
+00:09:20,490 --> 00:09:21,270
+Right.
+
+124
+00:09:21,270 --> 00:09:25,860
+So here you basically want to add the current state to this state.
+
+125
+00:09:26,070 --> 00:09:34,800
+So that's this dot state dot count, which again is a lot of work where in functional components we
+
+126
+00:09:34,800 --> 00:09:38,160
+would simply call that count, right?
+
+127
+00:09:38,960 --> 00:09:40,190
+And so let's.
+
+128
+00:09:41,030 --> 00:09:42,470
+Just place that here.
+
+129
+00:09:43,140 --> 00:09:47,130
+So date and then to date string.
+
+130
+00:09:48,700 --> 00:09:52,270
+And let's place this here into some brackets.
+
+131
+00:09:53,620 --> 00:09:55,810
+And that looks a bit too big now.
+
+132
+00:09:57,590 --> 00:09:58,430
+Okay.
+
+133
+00:09:59,310 --> 00:10:01,440
+And you see that it is working.
+
+134
+00:10:01,440 --> 00:10:02,100
+Indeed.
+
+135
+00:10:03,250 --> 00:10:03,880
+Okay.
+
+136
+00:10:03,880 --> 00:10:10,810
+And so with this, we finish this short introduction to class components and are now ready to build
+
+137
+00:10:10,810 --> 00:10:12,940
+the classy weather application.
+
+138
+00:10:12,940 --> 00:10:19,570
+But before we go do that, let's just quickly learn all the differences between class components and
+
+139
+00:10:19,570 --> 00:10:22,120
+function components in the next video.

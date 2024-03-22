@@ -1,0 +1,551 @@
+1
+00:00:00,910 --> 00:00:08,110
+So let's now do the same thing that we did before, which was to automatically focus on the input element,
+
+2
+00:00:08,110 --> 00:00:10,720
+but this time using RF.
+
+3
+00:00:12,180 --> 00:00:17,150
+And so let's start by getting rid of this way of doing things.
+
+4
+00:00:17,160 --> 00:00:20,760
+And so again, let's now use a ref instead.
+
+5
+00:00:20,850 --> 00:00:26,270
+So using a ref with a Dom element happens in three steps.
+
+6
+00:00:26,280 --> 00:00:29,010
+First of all, we create the ref.
+
+7
+00:00:29,370 --> 00:00:34,290
+And so for that we use the use ref hook as we just learned before.
+
+8
+00:00:34,860 --> 00:00:37,740
+So we just write use ref.
+
+9
+00:00:38,780 --> 00:00:44,480
+And then we need to again, make sure that it is now correctly imported from React.
+
+10
+00:00:46,320 --> 00:00:48,900
+Okay, so let's go back.
+
+11
+00:00:49,750 --> 00:00:52,170
+So we call the use ref hook.
+
+12
+00:00:52,180 --> 00:00:58,300
+And then here we pass in the initial value that we want to be in that current property that we just
+
+13
+00:00:58,300 --> 00:00:59,290
+talked about.
+
+14
+00:00:59,380 --> 00:01:04,690
+Now, in this case, when we work with a Dom element that is usually just null.
+
+15
+00:01:05,690 --> 00:01:05,990
+Now.
+
+16
+00:01:05,990 --> 00:01:06,410
+Right.
+
+17
+00:01:06,410 --> 00:01:10,790
+And so this will simply return a ref that we can give any name to.
+
+18
+00:01:11,210 --> 00:01:19,040
+And so let's now store this into a variable called input element, because that's what we will want
+
+19
+00:01:19,040 --> 00:01:20,990
+to store inside this ref.
+
+20
+00:01:22,110 --> 00:01:29,220
+So we have our F, and now as a second step, let's actually come to the element that we want to select.
+
+21
+00:01:29,220 --> 00:01:37,040
+And so all we have to do is to use the ref prop and then we just pass in the ref that we just created.
+
+22
+00:01:37,050 --> 00:01:38,310
+So that's input.
+
+23
+00:01:38,340 --> 00:01:47,130
+L And so now these two are basically connected in a declarative way, so there is no need to manually
+
+24
+00:01:47,130 --> 00:01:50,010
+do some query selection like this here.
+
+25
+00:01:50,010 --> 00:01:58,050
+So all we are doing is to tell react that the ref that will contain this input element here should be
+
+26
+00:01:58,140 --> 00:02:01,710
+well, this input element ref that we created.
+
+27
+00:02:01,710 --> 00:02:09,270
+And so now in order to use this ref in the third step we can use again the use effect hook.
+
+28
+00:02:12,100 --> 00:02:17,380
+So a new function that simply runs on mount.
+
+29
+00:02:17,530 --> 00:02:25,510
+So we need to use an effect in order to use a ref that contains a Dom element like this one, because
+
+30
+00:02:25,510 --> 00:02:32,620
+the ref only gets added to this Dom element here after the dom has already loaded and so therefore we
+
+31
+00:02:32,620 --> 00:02:38,920
+can only access it in an effect which also runs after the Dom has been loaded.
+
+32
+00:02:39,040 --> 00:02:44,250
+So this is the perfect place for using a ref that contains a Dom element.
+
+33
+00:02:44,260 --> 00:02:52,300
+And so now if we want to do the same thing as before, we just use our input element and then remember
+
+34
+00:02:52,300 --> 00:02:59,590
+that we need to read the current property, which is basically like that box where whatever we store
+
+35
+00:02:59,590 --> 00:03:02,710
+in the ref will get stored.
+
+36
+00:03:03,280 --> 00:03:05,740
+So input element dot current.
+
+37
+00:03:05,950 --> 00:03:10,330
+And so this here is now really the Dom element itself.
+
+38
+00:03:10,330 --> 00:03:15,160
+And so this is where we can then call the focus method on.
+
+39
+00:03:15,870 --> 00:03:20,430
+And just to show you, we can also lock this to the console, of course.
+
+40
+00:03:20,760 --> 00:03:24,420
+So input element dot current.
+
+41
+00:03:24,870 --> 00:03:26,070
+Give it a save.
+
+42
+00:03:26,100 --> 00:03:28,640
+And let's manually reload here.
+
+43
+00:03:28,650 --> 00:03:34,310
+And so you see that just like before our input field got automatically focused.
+
+44
+00:03:34,320 --> 00:03:39,780
+And also the Dom element itself was rendered here to the console.
+
+45
+00:03:42,130 --> 00:03:42,790
+All right.
+
+46
+00:03:42,790 --> 00:03:50,380
+And so, again, this means that we successfully connected the ref that we created here with this Dom
+
+47
+00:03:50,380 --> 00:03:51,090
+element.
+
+48
+00:03:51,100 --> 00:03:55,360
+So simply by passing this ref into the ref prop.
+
+49
+00:03:55,360 --> 00:04:02,770
+And so then in a use effect, after the Dom has been loaded, we can use this dom element inside the
+
+50
+00:04:02,770 --> 00:04:05,650
+ref dot current property now.
+
+51
+00:04:05,650 --> 00:04:06,070
+Right.
+
+52
+00:04:06,070 --> 00:04:10,270
+But now I actually want to do something a little bit more interesting.
+
+53
+00:04:10,420 --> 00:04:16,120
+So to show you the new feature that we now want to implement, let's come to our demo here.
+
+54
+00:04:16,900 --> 00:04:21,880
+And now when I'm anywhere in the application, I will hit the enter key.
+
+55
+00:04:22,180 --> 00:04:23,590
+So I just did that.
+
+56
+00:04:23,590 --> 00:04:27,780
+And then automatically this input field got focused.
+
+57
+00:04:27,790 --> 00:04:33,130
+And so that's a really nice feature so that we can very easily search for movies.
+
+58
+00:04:33,460 --> 00:04:36,600
+So let's say that I had just searched for this movie.
+
+59
+00:04:36,610 --> 00:04:42,610
+Then I took a look at this one and now at a certain point again I hit the return key.
+
+60
+00:04:42,610 --> 00:04:43,780
+So the enter key.
+
+61
+00:04:44,860 --> 00:04:52,750
+So you see that selected the field and it also removed all the search query text that was still in there.
+
+62
+00:04:53,950 --> 00:04:56,190
+So let's implement that.
+
+63
+00:04:56,200 --> 00:05:02,260
+And so for that, the first thing that we need to do is to listen for that key press event.
+
+64
+00:05:02,710 --> 00:05:06,790
+And in fact, we already did something similar before.
+
+65
+00:05:07,670 --> 00:05:13,100
+So in the movie detail, we already listened here to the Key Down event.
+
+66
+00:05:13,950 --> 00:05:15,210
+Right now.
+
+67
+00:05:15,210 --> 00:05:22,560
+In this case, we do actually need to manually select here this document and then add an event listener
+
+68
+00:05:22,560 --> 00:05:23,070
+there.
+
+69
+00:05:23,750 --> 00:05:29,570
+So there we cannot use a ref, but that's just the way that things work in React.
+
+70
+00:05:30,420 --> 00:05:32,100
+So let's do that.
+
+71
+00:05:32,130 --> 00:05:35,730
+So document dot add Event listener.
+
+72
+00:05:36,880 --> 00:05:39,610
+And then on the key down event.
+
+73
+00:05:39,940 --> 00:05:46,360
+And here let's actually again specify a callback function which we will then.
+
+74
+00:05:47,380 --> 00:05:48,640
+Uh, create here.
+
+75
+00:05:50,310 --> 00:05:56,190
+And we need to call it callback and it gets access to the event object.
+
+76
+00:05:57,130 --> 00:05:58,690
+And let's place that here.
+
+77
+00:05:59,110 --> 00:06:06,070
+And so the reason why we place this in a separate callback function was so that we could clean up after
+
+78
+00:06:06,070 --> 00:06:06,940
+our event.
+
+79
+00:06:07,520 --> 00:06:11,240
+So return and let's use an arrow function here now.
+
+80
+00:06:12,170 --> 00:06:14,210
+Make it a bit shorter.
+
+81
+00:06:15,000 --> 00:06:16,110
+Add event listener.
+
+82
+00:06:19,480 --> 00:06:23,110
+Key down and then the callback.
+
+83
+00:06:23,900 --> 00:06:24,860
+Okay.
+
+84
+00:06:25,040 --> 00:06:28,940
+But now, of course, this will work on any key press.
+
+85
+00:06:28,940 --> 00:06:36,860
+So whenever any key is pressed, it will call this callback function and then our element will get focused.
+
+86
+00:06:36,860 --> 00:06:41,690
+But we only want that to happen when the enter key is pressed.
+
+87
+00:06:41,870 --> 00:06:44,660
+So let's say E dot.
+
+88
+00:06:45,500 --> 00:06:47,450
+Code needs to be equal.
+
+89
+00:06:49,360 --> 00:06:50,140
+Enter.
+
+90
+00:06:50,140 --> 00:06:52,810
+And it really needs to be uppercase here.
+
+91
+00:06:53,430 --> 00:06:55,680
+And so in that situation.
+
+92
+00:06:56,730 --> 00:06:59,880
+Then focus here on the input field.
+
+93
+00:07:00,960 --> 00:07:02,640
+So let's see if that works.
+
+94
+00:07:02,670 --> 00:07:04,680
+Going to hit the enter key now.
+
+95
+00:07:04,950 --> 00:07:07,680
+And yeah, beautiful.
+
+96
+00:07:08,360 --> 00:07:12,560
+But now let's say that I already had a search here for something.
+
+97
+00:07:13,260 --> 00:07:19,800
+And so if I hit the return key now, then of course it will simply focus here, but it will not delete
+
+98
+00:07:19,800 --> 00:07:20,790
+the text yet.
+
+99
+00:07:20,790 --> 00:07:23,220
+But that's very easy to solve.
+
+100
+00:07:23,580 --> 00:07:29,910
+We just say set query, which we already get access to here in this component.
+
+101
+00:07:30,470 --> 00:07:33,560
+So we just set that to an empty string.
+
+102
+00:07:34,640 --> 00:07:38,540
+And so that should now work as I hit the enter key again.
+
+103
+00:07:38,780 --> 00:07:40,910
+And indeed, there it is.
+
+104
+00:07:41,240 --> 00:07:48,260
+There's just one final problem, which is let's say that I'm writing this and then I hit the enter key
+
+105
+00:07:48,290 --> 00:07:48,950
+again.
+
+106
+00:07:49,340 --> 00:07:52,790
+And so this will then delete the text that we have.
+
+107
+00:07:52,910 --> 00:08:00,080
+So basically, we don't want all of this here to happen when the element is already focused, so when
+
+108
+00:08:00,080 --> 00:08:01,380
+it's already active.
+
+109
+00:08:01,400 --> 00:08:08,690
+But luckily for us, we can easily check which element is currently active thanks to the document dot
+
+110
+00:08:08,690 --> 00:08:10,550
+active element property.
+
+111
+00:08:10,670 --> 00:08:11,660
+And so.
+
+112
+00:08:12,280 --> 00:08:21,700
+Thanks to that we can say if document dot active element, which again is the element that is currently
+
+113
+00:08:21,700 --> 00:08:22,840
+being focused.
+
+114
+00:08:23,350 --> 00:08:25,480
+So if that is equal.
+
+115
+00:08:26,340 --> 00:08:28,290
+To our input element.
+
+116
+00:08:28,900 --> 00:08:31,810
+So input l don't current.
+
+117
+00:08:32,140 --> 00:08:34,300
+Then just return.
+
+118
+00:08:34,480 --> 00:08:37,870
+So in this case, basically just don't do anything.
+
+119
+00:08:39,740 --> 00:08:42,170
+All right, let's try that again.
+
+120
+00:08:45,190 --> 00:08:47,400
+So that just works fine.
+
+121
+00:08:47,410 --> 00:08:54,900
+But then if I write something and hit enter, well then actually that still doesn't work.
+
+122
+00:08:54,910 --> 00:08:57,550
+So let's try to reload our page.
+
+123
+00:08:57,550 --> 00:08:59,260
+Maybe that will fix it.
+
+124
+00:09:00,100 --> 00:09:02,830
+So let's try that again.
+
+125
+00:09:04,290 --> 00:09:06,000
+So here it still works.
+
+126
+00:09:07,430 --> 00:09:10,820
+And now, ah, now it's actually fixed.
+
+127
+00:09:10,970 --> 00:09:15,240
+And with this we actually finish building this small feature.
+
+128
+00:09:15,260 --> 00:09:23,300
+So it was just a minor feature, but it was very helpful to understand how we use Hrefs to select Dom
+
+129
+00:09:23,300 --> 00:09:25,640
+elements in the React way.
+
+130
+00:09:26,240 --> 00:09:32,540
+Now, there's just one small thing that I'm noticing here, which is that React is complaining about
+
+131
+00:09:32,540 --> 00:09:33,940
+a missing dependency.
+
+132
+00:09:33,950 --> 00:09:40,100
+And so, yeah, this is once again really helpful because it tells us immediately what we have to do.
+
+133
+00:09:40,130 --> 00:09:44,120
+So here we have to also place the set query function.
+
+134
+00:09:45,190 --> 00:09:51,670
+And so that's because the set query function is indeed a prop to this component.
+
+135
+00:09:51,670 --> 00:09:57,970
+And so therefore, since we are using it here in the effect, we then need to declare it in the dependency
+
+136
+00:09:57,970 --> 00:09:58,570
+array.
+
+137
+00:09:58,930 --> 00:10:05,260
+Now this function is not really ever going to change, but React still needs this to be here in the
+
+138
+00:10:05,260 --> 00:10:06,340
+dependency array.

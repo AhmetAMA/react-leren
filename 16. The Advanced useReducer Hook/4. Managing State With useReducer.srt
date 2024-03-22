@@ -1,0 +1,663 @@
+1
+00:00:01,040 --> 00:00:08,420
+So we just learned how to use the Usereducer hook to centralize all the state updating logic in one
+
+2
+00:00:08,420 --> 00:00:11,780
+central place, which is the reducer function.
+
+3
+00:00:12,020 --> 00:00:19,220
+So let's now dive deeper into the concept of reducers and how and why they can make our applications
+
+4
+00:00:19,250 --> 00:00:21,950
+a lot better in certain situations.
+
+5
+00:00:23,790 --> 00:00:30,900
+So up until this point, we have been using the state to manage all our state, right.
+
+6
+00:00:31,080 --> 00:00:38,850
+However, as components and state updates become more complex, using use state to manage all state
+
+7
+00:00:38,850 --> 00:00:42,330
+is, in certain situations not enough.
+
+8
+00:00:42,450 --> 00:00:49,920
+For example, some components have a lot of state variables and also a lot of state updates that are
+
+9
+00:00:49,920 --> 00:00:56,940
+spread across multiple event handlers all over the component or maybe even multiple components.
+
+10
+00:00:56,940 --> 00:01:01,500
+And so this can quickly become overwhelming and hard to manage.
+
+11
+00:01:01,530 --> 00:01:07,290
+It's also very common that multiple state updates need to happen at the same time.
+
+12
+00:01:07,290 --> 00:01:14,460
+So as a reaction to the same event, for example, when we want to start a game, we might have to set
+
+13
+00:01:14,460 --> 00:01:19,530
+the score to zero set and is playing status and start a timer.
+
+14
+00:01:20,160 --> 00:01:27,930
+And finally, many times updating one piece of state depends on one or more other pieces of state,
+
+15
+00:01:27,960 --> 00:01:32,690
+which can also become challenging when there is a lot of state.
+
+16
+00:01:32,700 --> 00:01:37,770
+And so in all these cases, use reducer can really help.
+
+17
+00:01:37,860 --> 00:01:41,540
+So these are the problems that reducers try to solve.
+
+18
+00:01:41,550 --> 00:01:43,470
+And so let's now see how.
+
+19
+00:01:44,990 --> 00:01:53,330
+So first of all, Usereducer is an alternative way of setting and managing state, which is ideal for
+
+20
+00:01:53,330 --> 00:01:57,290
+complex state and for related pieces of state.
+
+21
+00:01:57,980 --> 00:01:58,520
+Now.
+
+22
+00:01:58,520 --> 00:02:04,520
+We already used Usereducer in the last two lectures, and this is what that looked like.
+
+23
+00:02:04,670 --> 00:02:13,190
+So we call Usereducer with a reducer function and its initial state and it returns a state and a dispatch
+
+24
+00:02:13,220 --> 00:02:13,970
+function.
+
+25
+00:02:14,530 --> 00:02:22,180
+So starting from the beginning, when we use Usereducer, we usually store related pieces of state in
+
+26
+00:02:22,180 --> 00:02:26,620
+a state object that is returned from the use reducer hook.
+
+27
+00:02:26,800 --> 00:02:32,290
+Now, it could also be a primitive value, but usually we use objects.
+
+28
+00:02:32,500 --> 00:02:39,670
+Now, as we already know, use reducer needs something called a reducer function in order to work.
+
+29
+00:02:39,820 --> 00:02:47,620
+So this function is where we place all the logic that will be responsible for updating the state and
+
+30
+00:02:47,620 --> 00:02:48,970
+moving all state.
+
+31
+00:02:48,970 --> 00:02:56,200
+Updating logic from event handlers into this one central place allows us to completely decouple state
+
+32
+00:02:56,200 --> 00:03:04,000
+logic from the component itself, which makes our components so much cleaner and so much more readable.
+
+33
+00:03:04,700 --> 00:03:12,140
+So when we manage state with use reducer, it's ultimately this reducer function that will be updating
+
+34
+00:03:12,140 --> 00:03:13,610
+the state object.
+
+35
+00:03:13,730 --> 00:03:20,660
+So in a way it's a bit like the set state function in new state but with super powers.
+
+36
+00:03:21,200 --> 00:03:28,370
+Now, in practice, the reducer is simply a function that takes in the current state and an action and
+
+37
+00:03:28,370 --> 00:03:32,090
+based on those values returns the next state.
+
+38
+00:03:32,090 --> 00:03:34,220
+So the updated state.
+
+39
+00:03:34,580 --> 00:03:39,050
+Now keep in mind that state is immutable in react.
+
+40
+00:03:39,140 --> 00:03:46,910
+This means that the reducer is not allowed to mutate the state and in fact no side effects are allowed
+
+41
+00:03:46,910 --> 00:03:48,650
+in the reducer at all.
+
+42
+00:03:49,280 --> 00:03:57,860
+So a reducer must be a pure function that always returns a new state and again, based on the current
+
+43
+00:03:57,860 --> 00:04:00,410
+state and the received action.
+
+44
+00:04:00,740 --> 00:04:09,200
+And speaking of the action, the action is simply an object that describes how state should be updated.
+
+45
+00:04:09,290 --> 00:04:17,210
+It usually contains an action type and a so-called payload, which is basically input data, and it's
+
+46
+00:04:17,210 --> 00:04:24,410
+based on this action type and payload that the reducer will then determine how exactly to create the
+
+47
+00:04:24,410 --> 00:04:25,550
+next state.
+
+48
+00:04:26,130 --> 00:04:33,330
+And now the final piece of the puzzle is this How do we actually trigger a state update?
+
+49
+00:04:33,570 --> 00:04:38,040
+Well, that's where the dispatch function comes into play.
+
+50
+00:04:38,310 --> 00:04:46,410
+So use reducer will return a so-called dispatch function, which is a function that we can use to trigger
+
+51
+00:04:46,410 --> 00:04:47,670
+state updates.
+
+52
+00:04:47,820 --> 00:04:55,710
+So instead of using set state to update state, we now use the dispatch function in order to send an
+
+53
+00:04:55,710 --> 00:05:01,180
+action from the event handler where we're calling dispatch to the reducer.
+
+54
+00:05:01,200 --> 00:05:07,680
+And as we already know, the reducer will then use this action to compute the next state.
+
+55
+00:05:08,690 --> 00:05:16,310
+Okay, so these are all the pieces that need to fit together in order to effectively use the use reducer
+
+56
+00:05:16,310 --> 00:05:16,880
+hook.
+
+57
+00:05:17,030 --> 00:05:23,240
+So an action object, a dispatch function, a reducer and a state object.
+
+58
+00:05:23,600 --> 00:05:30,980
+But now let's also look at the diagram to really see how all of these pieces actually fit together in
+
+59
+00:05:30,980 --> 00:05:32,630
+order to update state.
+
+60
+00:05:33,530 --> 00:05:41,210
+So let's say that we're in an event handler in some component and we now need to update some state.
+
+61
+00:05:41,790 --> 00:05:43,680
+So what do we do?
+
+62
+00:05:44,170 --> 00:05:45,520
+Well, that's right.
+
+63
+00:05:45,550 --> 00:05:53,080
+We call it the dispatch function that we got back from use reducer in order to dispatch an action to
+
+64
+00:05:53,080 --> 00:05:54,220
+the reducer.
+
+65
+00:05:54,550 --> 00:06:01,660
+And this action, as we learned before, is an object that contains information for the reducer.
+
+66
+00:06:01,660 --> 00:06:06,460
+So information about how the reducer should update the state.
+
+67
+00:06:06,610 --> 00:06:14,380
+In this case, the action type is update De and the payload is 23, which probably means that the reducer
+
+68
+00:06:14,380 --> 00:06:17,380
+will set the de state to 23.
+
+69
+00:06:17,560 --> 00:06:24,730
+Now the object doesn't need to have this exact shape with a type in the payload, but it's a standard
+
+70
+00:06:24,730 --> 00:06:27,790
+that has been adopted by most developers.
+
+71
+00:06:28,090 --> 00:06:35,590
+Now, basically the reducer takes in this action together with the current state, and it will then
+
+72
+00:06:35,590 --> 00:06:43,990
+return a brand new state object which we usually call the next state in the context of reducers and
+
+73
+00:06:44,090 --> 00:06:50,720
+as always with state updating, the state will then trigger a rerender of the component instance.
+
+74
+00:06:51,020 --> 00:06:58,100
+Now, if you're wondering why the reducer function is actually called a reducer, the answer is that
+
+75
+00:06:58,100 --> 00:07:03,650
+it's because it follows the exact same idea as the array reduce method.
+
+76
+00:07:03,890 --> 00:07:12,200
+So just like the reduce method accumulates all array values into one single value, the react reducer
+
+77
+00:07:12,230 --> 00:07:17,240
+accumulates all actions into one single state over time.
+
+78
+00:07:18,090 --> 00:07:25,680
+Okay, Now, behind the scenes, the dispatch function has access to the reducer because we passed it
+
+79
+00:07:25,680 --> 00:07:27,820
+into the use reducer hook.
+
+80
+00:07:27,840 --> 00:07:28,770
+Right.
+
+81
+00:07:28,770 --> 00:07:36,630
+So dispatch is really coordinating this whole thing and also giving the reducer access to the current
+
+82
+00:07:36,630 --> 00:07:37,320
+state.
+
+83
+00:07:37,470 --> 00:07:44,820
+And now to understand this even better, let's compare the mechanism of use reducer with the much simpler
+
+84
+00:07:44,820 --> 00:07:46,710
+use state mechanism.
+
+85
+00:07:47,310 --> 00:07:54,720
+So when we use use state, we get back a setter function and let's just call it set state.
+
+86
+00:07:54,900 --> 00:08:02,880
+And then when we want to update state, we just pass the new updated state value that we want and react
+
+87
+00:08:02,880 --> 00:08:08,280
+will simply update the state, which in turn will trigger the rerender.
+
+88
+00:08:08,610 --> 00:08:13,770
+So it's a lot simpler and more straightforward than use reducer.
+
+89
+00:08:13,890 --> 00:08:20,700
+But since use reducer solves the problems that we saw earlier in this lecture, it's a great choice
+
+90
+00:08:20,700 --> 00:08:25,770
+in many situations, even though it's a bit more complicated to set up.
+
+91
+00:08:25,800 --> 00:08:34,470
+But we will talk more about the big advantages of use reducer and also when to use it later in the section.
+
+92
+00:08:35,200 --> 00:08:43,300
+Now, I understand that this whole idea of dispatching actions and writing reducers is super confusing
+
+93
+00:08:43,300 --> 00:08:44,320
+in the beginning.
+
+94
+00:08:44,680 --> 00:08:50,130
+I know because I do remember how confused I was back in the day.
+
+95
+00:08:50,140 --> 00:08:57,460
+And so let me show you now a really helpful analogy that made all this really clear to me when I first
+
+96
+00:08:57,460 --> 00:08:58,750
+learned about this.
+
+97
+00:09:00,480 --> 00:09:07,350
+So imagine that you needed to take $5,000 out of your bank account for some reason.
+
+98
+00:09:07,470 --> 00:09:12,660
+Now, since this is a large amount, you can just do it from an ATM.
+
+99
+00:09:12,660 --> 00:09:16,470
+So you need to go physically to a bank.
+
+100
+00:09:16,830 --> 00:09:22,290
+Now, once you're at the bank, how do you actually get those $5,000?
+
+101
+00:09:22,320 --> 00:09:28,080
+Do you walk straight into the bank's vault, grab the cash and then go home?
+
+102
+00:09:28,440 --> 00:09:30,480
+Well, I don't think so.
+
+103
+00:09:30,480 --> 00:09:31,260
+Right.
+
+104
+00:09:31,290 --> 00:09:34,260
+That's usually not how it works.
+
+105
+00:09:34,260 --> 00:09:42,150
+How it does work is that you go into the bank and there you'll find a person sitting at a desk ready
+
+106
+00:09:42,150 --> 00:09:43,440
+to assist you.
+
+107
+00:09:43,740 --> 00:09:50,370
+Now, when you arrive at the bank, you already know how much cash you want to withdraw and from what
+
+108
+00:09:50,370 --> 00:09:51,270
+account number.
+
+109
+00:09:51,270 --> 00:09:58,980
+And so you walk right to the person and tell them that you would like to withdraw $5,000 from account.
+
+110
+00:09:59,110 --> 00:10:02,320
+923577, for example.
+
+111
+00:10:02,530 --> 00:10:09,640
+What happens then is that usually the person will type something into his computer check if you actually
+
+112
+00:10:09,640 --> 00:10:11,740
+have the cash in your account.
+
+113
+00:10:11,740 --> 00:10:18,860
+And if so, he goes to the bank's vault and gets the money to finally hand it over to you.
+
+114
+00:10:18,880 --> 00:10:21,070
+It's your money after all.
+
+115
+00:10:21,070 --> 00:10:21,940
+Right?
+
+116
+00:10:22,240 --> 00:10:29,800
+But note the big difference between this real version and the previous version of the story where you
+
+117
+00:10:29,800 --> 00:10:31,960
+just grabbed the cash yourself.
+
+118
+00:10:32,110 --> 00:10:37,270
+In this real version, you told the person what to do and how to do it.
+
+119
+00:10:37,270 --> 00:10:41,100
+And he then got the money for you on your behalf.
+
+120
+00:10:41,110 --> 00:10:44,620
+And so you didn't take the money directly yourself.
+
+121
+00:10:44,620 --> 00:10:46,810
+And that's a huge difference.
+
+122
+00:10:47,200 --> 00:10:50,590
+So does this maybe start to sound familiar?
+
+123
+00:10:50,770 --> 00:10:52,270
+Well, I hope it does.
+
+124
+00:10:52,300 --> 00:11:00,640
+And so let's now bring this analogy back to use reducer and identify what each of these pieces represents
+
+125
+00:11:00,640 --> 00:11:02,980
+in the use reducer mechanism.
+
+126
+00:11:03,160 --> 00:11:06,880
+And let's start with the most important thing, the state.
+
+127
+00:11:07,090 --> 00:11:10,900
+So what do you think the state is in this analogy?
+
+128
+00:11:11,170 --> 00:11:17,880
+Well, the state is represented by the bank's vault because this is where the relevant data.
+
+129
+00:11:17,890 --> 00:11:22,090
+So the money is stored and also updated.
+
+130
+00:11:22,120 --> 00:11:25,390
+So the vault is what needs to be updated.
+
+131
+00:11:25,390 --> 00:11:27,670
+And so that's our state.
+
+132
+00:11:27,910 --> 00:11:28,840
+Nice.
+
+133
+00:11:28,840 --> 00:11:34,960
+So with that out of the way, let's think about how the money is taken from the vault.
+
+134
+00:11:34,990 --> 00:11:38,950
+So about how state is actually updated.
+
+135
+00:11:39,400 --> 00:11:46,000
+So starting from the beginning, what do you think the customer going to the bank represents in this
+
+136
+00:11:46,000 --> 00:11:46,870
+analogy?
+
+137
+00:11:47,050 --> 00:11:54,220
+Well, the customer going to the bank and requesting the money is clearly the dispatcher because it
+
+138
+00:11:54,220 --> 00:11:56,950
+is who is requesting the state update.
+
+139
+00:11:56,980 --> 00:11:57,940
+Right.
+
+140
+00:11:57,940 --> 00:12:04,600
+And they are doing so by going to the person and requesting to withdraw the $5,000.
+
+141
+00:12:05,080 --> 00:12:09,340
+So what is the reducer here and what is the action?
+
+142
+00:12:09,900 --> 00:12:16,740
+Well, the reducer is going to be the person working at the bank because that's the one who actually
+
+143
+00:12:16,740 --> 00:12:18,450
+makes the update.
+
+144
+00:12:18,540 --> 00:12:23,190
+In this case, it's the one who goes to the vault to get your money.
+
+145
+00:12:23,370 --> 00:12:29,850
+But how does the person know how much money to take and from what account they know?
+
+146
+00:12:29,850 --> 00:12:32,100
+Because you told them so Exactly.
+
+147
+00:12:32,100 --> 00:12:33,860
+In your request message.
+
+148
+00:12:33,870 --> 00:12:38,370
+And so that request message is clearly the action.
+
+149
+00:12:38,580 --> 00:12:46,350
+In this example, the action can be modeled like this with the action type being withdraw and the payload
+
+150
+00:12:46,380 --> 00:12:50,160
+being the data about the withdrawal that you want to make.
+
+151
+00:12:50,490 --> 00:12:55,890
+So summarizing, you went into the bank with a clear action in mind.
+
+152
+00:12:55,920 --> 00:12:59,610
+You then dispatched that action to the reducer.
+
+153
+00:12:59,640 --> 00:13:06,180
+So to the person working there who took the action and followed the instructions to take the right amount
+
+154
+00:13:06,180 --> 00:13:08,220
+of money from your account.
+
+155
+00:13:08,250 --> 00:13:12,210
+So from state, he then gave you your money.
+
+156
+00:13:12,240 --> 00:13:19,270
+Finishing this cycle so you did not go directly into the vault and took your money.
+
+157
+00:13:19,290 --> 00:13:26,400
+Instead, you had the person as a middleman who knows a lot better than you how to perform different
+
+158
+00:13:26,400 --> 00:13:28,260
+actions on the vault.
+
+159
+00:13:28,320 --> 00:13:35,760
+So he knows how to deposit, how to withdraw, how to open and close an account, how to request a loan
+
+160
+00:13:35,760 --> 00:13:36,930
+and more.
+
+161
+00:13:36,930 --> 00:13:42,040
+And he does all this without you having to worry about the details.
+
+162
+00:13:42,060 --> 00:13:50,190
+So exactly like a reducer function which also decouples and abstracts all the state updating logic away
+
+163
+00:13:50,190 --> 00:13:55,290
+from you so that you can have clean and easy to understand components.
+
+164
+00:13:56,180 --> 00:13:56,870
+Okay.
+
+165
+00:13:56,870 --> 00:14:04,820
+So I hope that this now made the relationship between dispatcher reducer action and state crystal clear,
+
+166
+00:14:04,820 --> 00:14:10,460
+and you will get plenty of opportunities throughout this section to practice all this.

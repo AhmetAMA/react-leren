@@ -1,0 +1,419 @@
+1
+00:00:00,850 --> 00:00:07,660
+To finish this section, let's now create another custom hook called Use Key, which will abstract the
+
+2
+00:00:07,660 --> 00:00:13,510
+functionality of attaching and removing an event handler for a key press.
+
+3
+00:00:14,720 --> 00:00:22,010
+So here in the movie Details component, we have that functionality that if we open a movie and then
+
+4
+00:00:22,010 --> 00:00:26,990
+hit the escape key on our keyboard, then it will close the movie.
+
+5
+00:00:26,990 --> 00:00:32,240
+And so we implemented that using a use effect hook.
+
+6
+00:00:32,480 --> 00:00:34,450
+So this one right here.
+
+7
+00:00:34,460 --> 00:00:41,900
+And so since this is using a react hook, we can abstract this into its own custom hook because actually
+
+8
+00:00:41,900 --> 00:00:46,580
+we do something very similar to focus here on the search bar.
+
+9
+00:00:46,700 --> 00:00:52,940
+So again, when I'm here and I hit the enter key, then that will automatically focus this.
+
+10
+00:00:52,940 --> 00:00:57,380
+And so that is using basically some similar functionality.
+
+11
+00:00:57,380 --> 00:01:04,400
+And so it's a good idea to abstract this functionality into a custom hook and then reuse that in both
+
+12
+00:01:04,400 --> 00:01:05,570
+these places.
+
+13
+00:01:05,570 --> 00:01:07,820
+So let's copy this code here.
+
+14
+00:01:07,820 --> 00:01:14,480
+So just copy and then let's create another file for another custom hook.
+
+15
+00:01:15,110 --> 00:01:18,800
+So this one is called use key Dot JS.
+
+16
+00:01:19,670 --> 00:01:26,570
+And by the way, I forgot to mention earlier that they actually also created a copy called App version
+
+17
+00:01:26,570 --> 00:01:30,640
+three before we started extracting all the custom hooks.
+
+18
+00:01:30,650 --> 00:01:36,740
+So basically that we can keep our code before those custom hooks were implemented.
+
+19
+00:01:38,070 --> 00:01:38,690
+Okay.
+
+20
+00:01:38,700 --> 00:01:44,280
+But anyway, let's now export the function called use key.
+
+21
+00:01:46,300 --> 00:01:46,460
+No.
+
+22
+00:01:46,480 --> 00:01:53,890
+Okay, then let's just paste this here and import use effect from React.
+
+23
+00:01:54,960 --> 00:01:55,840
+Okay.
+
+24
+00:01:55,840 --> 00:02:01,120
+And so now what do we actually need as inputs to this custom hook?
+
+25
+00:02:01,510 --> 00:02:08,140
+Well, this one is actually the easiest one of all because this one doesn't need to return anything.
+
+26
+00:02:08,140 --> 00:02:11,320
+And all we need is to know what should happen.
+
+27
+00:02:11,320 --> 00:02:18,700
+So basically we need a callback function here and we also need the user of this custom hook to tell
+
+28
+00:02:18,700 --> 00:02:23,350
+us on which key the effect here should actually be executed.
+
+29
+00:02:23,960 --> 00:02:27,230
+So not the effect, but the callback that they will pass in.
+
+30
+00:02:27,380 --> 00:02:29,180
+So we want the key.
+
+31
+00:02:30,210 --> 00:02:34,320
+For example, in this case here, that would be the escape key.
+
+32
+00:02:35,790 --> 00:02:38,610
+So here, instead of escape, we will have.
+
+33
+00:02:39,170 --> 00:02:40,190
+Just the key.
+
+34
+00:02:40,190 --> 00:02:44,000
+And then we want some callback for an action.
+
+35
+00:02:44,330 --> 00:02:46,250
+So just like this.
+
+36
+00:02:46,250 --> 00:02:51,680
+And then instead of calling of course on close movie, we.
+
+37
+00:02:52,480 --> 00:02:55,480
+Just call the action that the user passed in.
+
+38
+00:02:56,090 --> 00:02:58,010
+And here we also need the key.
+
+39
+00:02:59,510 --> 00:03:06,740
+And so again, never lie to react about your dependencies and always make sure to include every single
+
+40
+00:03:06,740 --> 00:03:10,190
+variable that is used here into your effect.
+
+41
+00:03:10,820 --> 00:03:20,120
+Okay, now here we just need one small fix, so to say, because the user might pass in this key like
+
+42
+00:03:20,120 --> 00:03:21,080
+in different formats.
+
+43
+00:03:21,080 --> 00:03:31,340
+So they might write escape like this or maybe all in lowercase or maybe by mistake they write like this.
+
+44
+00:03:31,670 --> 00:03:39,350
+And so what we should do here is to just transform this key that they pass in to lowercase.
+
+45
+00:03:41,240 --> 00:03:49,850
+And then also the code that we get from the event to lowercase as well so that we can then correctly
+
+46
+00:03:49,850 --> 00:03:50,780
+compare them.
+
+47
+00:03:50,780 --> 00:03:54,950
+And that's a pretty normal thing to do when we compare strings.
+
+48
+00:03:55,810 --> 00:04:00,040
+And so this should at this point already be working.
+
+49
+00:04:00,130 --> 00:04:05,770
+So let's come back here and then let's use use key.
+
+50
+00:04:07,510 --> 00:04:12,160
+So again, make sure that the file was correctly imported.
+
+51
+00:04:12,160 --> 00:04:18,100
+And if it didn't, then go ahead and do this line of code yourself now.
+
+52
+00:04:20,290 --> 00:04:23,020
+And so here we now need to pass in the key.
+
+53
+00:04:23,170 --> 00:04:27,160
+So that's in this case, the escape key.
+
+54
+00:04:27,920 --> 00:04:32,390
+So we want to replace this effect right here.
+
+55
+00:04:32,690 --> 00:04:39,650
+And so that's again, the escape key and the action will be on close movie.
+
+56
+00:04:39,680 --> 00:04:46,340
+So this function right here with the difference that of course now we do not call the function, but
+
+57
+00:04:46,340 --> 00:04:50,780
+instead we will allow react to call this function at a later point.
+
+58
+00:04:50,810 --> 00:04:57,290
+So basically, when this event happens and the key is the escape key.
+
+59
+00:04:58,490 --> 00:05:01,970
+So this whole functionality is now inside that function.
+
+60
+00:05:03,600 --> 00:05:06,600
+And so just to make sure, let's reload.
+
+61
+00:05:08,820 --> 00:05:10,420
+Let's open up some movie.
+
+62
+00:05:10,440 --> 00:05:14,040
+Hit the escape key and nice.
+
+63
+00:05:14,370 --> 00:05:23,010
+So our custom hook is working, and so let's now immediately reuse it in this search component.
+
+64
+00:05:24,980 --> 00:05:27,020
+So where is that?
+
+65
+00:05:27,230 --> 00:05:34,070
+And of course, if I were writing this application for myself, I would have long divided this file
+
+66
+00:05:34,070 --> 00:05:35,810
+into multiple components.
+
+67
+00:05:36,020 --> 00:05:37,430
+So this is the last one.
+
+68
+00:05:37,430 --> 00:05:40,490
+We will have one big file with everything.
+
+69
+00:05:40,850 --> 00:05:45,020
+But anyway, let's now again use use key here.
+
+70
+00:05:46,310 --> 00:05:50,060
+And so this time, the key that we are looking for is the enter key.
+
+71
+00:05:51,170 --> 00:05:52,130
+Like this.
+
+72
+00:05:52,130 --> 00:05:59,450
+But now, as for the callback function, this is actually a little bit more tricky because what at what
+
+73
+00:05:59,450 --> 00:06:02,060
+we have here as the callback function.
+
+74
+00:06:02,300 --> 00:06:09,040
+So we have all this where this part here, of course, is already in the custom hook.
+
+75
+00:06:09,050 --> 00:06:13,940
+So where it compares the pressed key with the key that we're interested in here.
+
+76
+00:06:14,090 --> 00:06:18,980
+So basically this action here is corresponding to this part.
+
+77
+00:06:19,720 --> 00:06:20,770
+So we could.
+
+78
+00:06:22,220 --> 00:06:28,310
+Pass in a callback function like this only with these two pieces.
+
+79
+00:06:28,770 --> 00:06:32,070
+But then we would miss out on this part.
+
+80
+00:06:32,100 --> 00:06:34,380
+So we also need to include that there.
+
+81
+00:06:34,410 --> 00:06:41,970
+So this would then be like cutting it from here and pasting it here, which would not alter the functionality
+
+82
+00:06:41,970 --> 00:06:43,530
+of this code at all.
+
+83
+00:06:43,650 --> 00:06:46,110
+And so let's do the same thing here.
+
+84
+00:06:46,200 --> 00:06:51,240
+So basically what we have here should now be just the callback function here.
+
+85
+00:06:54,080 --> 00:06:54,980
+All right.
+
+86
+00:06:54,980 --> 00:06:59,150
+And so then we can get rid of all this here once again.
+
+87
+00:07:00,070 --> 00:07:05,800
+And also of this comment, since we also have this in that other file that I stored.
+
+88
+00:07:05,950 --> 00:07:08,720
+And so let's see if this works again.
+
+89
+00:07:08,740 --> 00:07:14,920
+So hitting the enter key and yes, that works just as well.
+
+90
+00:07:15,640 --> 00:07:17,530
+So here the callback function.
+
+91
+00:07:17,710 --> 00:07:23,110
+So this action, as we called it in our hook, is a little bit different.
+
+92
+00:07:23,110 --> 00:07:24,940
+So a bit longer than before.
+
+93
+00:07:24,940 --> 00:07:30,970
+But all it does is to just describe what we want to happen when the enter key is pressed.
+
+94
+00:07:32,030 --> 00:07:32,870
+Nice.
+
+95
+00:07:32,870 --> 00:07:39,710
+So with this, we finished this part about custom hooks and actually we finished this entire application.
+
+96
+00:07:39,710 --> 00:07:41,960
+So we are done with this app.
+
+97
+00:07:42,080 --> 00:07:46,160
+Let's just see why there are some problems here.
+
+98
+00:07:46,460 --> 00:07:47,960
+Let's reload that.
+
+99
+00:07:50,090 --> 00:07:52,910
+Okay, so that was from something else.
+
+100
+00:07:52,910 --> 00:07:55,130
+But anyway, we finished.
+
+101
+00:07:55,160 --> 00:07:58,490
+Now this application and this section as well.
+
+102
+00:07:58,490 --> 00:08:05,270
+And so just like always, all there's left to do is one more coding challenge where you will now practice
+
+103
+00:08:05,270 --> 00:08:08,450
+to build your own custom hook on your own.
+
+104
+00:08:08,450 --> 00:08:15,230
+So don't skip that video because it's pretty important that you start getting into the habit of writing
+
+105
+00:08:15,230 --> 00:08:16,670
+these hooks on your own.

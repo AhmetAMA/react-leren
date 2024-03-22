@@ -1,0 +1,471 @@
+1
+00:00:00,850 --> 00:00:07,210
+We have already used a few different react hooks at this point of the course, but we have never really
+
+2
+00:00:07,210 --> 00:00:11,790
+learned what a React hook actually is and how they work.
+
+3
+00:00:11,800 --> 00:00:15,550
+And so let's now do that in this lecture.
+
+4
+00:00:17,180 --> 00:00:25,790
+So react hooks are essentially special functions that are built into react and which allow us to basically
+
+5
+00:00:25,820 --> 00:00:29,780
+hook into some of react's internal mechanisms.
+
+6
+00:00:29,780 --> 00:00:38,990
+Or in other words, hooks are basically APIs that expose some internal react functionality such as creating
+
+7
+00:00:38,990 --> 00:00:45,650
+and accessing state from the fiber tree or registering side effects in the fiber tree as well.
+
+8
+00:00:46,260 --> 00:00:54,290
+So again, the fiber tree is somewhere deep inside react and usually not accessible to us at all.
+
+9
+00:00:54,300 --> 00:01:02,040
+But using the Usestate or the Useeffect hook, we can essentially hook into that internal mechanism.
+
+10
+00:01:02,310 --> 00:01:10,080
+Now, hooks also allow us to manually select and store Dom nodes, access context and many, many other
+
+11
+00:01:10,080 --> 00:01:10,860
+things.
+
+12
+00:01:11,190 --> 00:01:18,420
+Now, what all hooks have in common is that they all start with the word use in order to make it easy
+
+13
+00:01:18,420 --> 00:01:24,120
+for us and for react to distinguish hooks from other regular functions.
+
+14
+00:01:24,210 --> 00:01:31,290
+And in fact, we can even create our own so-called custom hooks, which will also start with the word
+
+15
+00:01:31,290 --> 00:01:32,160
+use.
+
+16
+00:01:32,250 --> 00:01:39,420
+And this is actually one of the greatest things about hooks in general, because custom hooks give us
+
+17
+00:01:39,420 --> 00:01:44,190
+developers an easy way of reusing non-visual logic.
+
+18
+00:01:44,190 --> 00:01:47,320
+So logic that is not about the UI.
+
+19
+00:01:47,840 --> 00:01:54,560
+Now, you might be aware of this or not, but there was a time when we had to use components based on
+
+20
+00:01:54,560 --> 00:01:55,940
+JavaScript classes.
+
+21
+00:01:55,970 --> 00:02:01,520
+If we wanted to give component state and access to the component lifecycle.
+
+22
+00:02:01,550 --> 00:02:07,360
+However, this came with a few problems which let the React team to introduce hooks.
+
+23
+00:02:07,370 --> 00:02:15,200
+And so now with hooks, our components based on functions can have their own state and also run side
+
+24
+00:02:15,200 --> 00:02:16,100
+effects.
+
+25
+00:02:16,220 --> 00:02:23,720
+And so this was a huge step forward for React and made it even more popular than it already was.
+
+26
+00:02:24,960 --> 00:02:32,130
+Now, we only used two hooks so far, but React actually comes with almost 20 built in hooks.
+
+27
+00:02:32,130 --> 00:02:35,340
+And so let's get a quick overview of them here.
+
+28
+00:02:35,640 --> 00:02:42,810
+So use state and use effect are of course, some of the most important hooks and therefore the most
+
+29
+00:02:42,810 --> 00:02:50,100
+used ones along with Usereducer and Usecontext that we will actually study pretty soon.
+
+30
+00:02:50,550 --> 00:02:59,040
+Then we have this huge list of some less used hooks, but where some of them are actually still quite
+
+31
+00:02:59,040 --> 00:03:03,780
+important, like use ref, use callback and use memo.
+
+32
+00:03:03,900 --> 00:03:10,890
+So some of these are actually worth learning, but others are a bit more obscure I would say.
+
+33
+00:03:10,890 --> 00:03:15,030
+And so they are not part of the curriculum of this course.
+
+34
+00:03:15,330 --> 00:03:21,180
+And finally, there are a few hooks that are intended only for library authors.
+
+35
+00:03:21,180 --> 00:03:25,360
+And so of course we will also not bother looking at those.
+
+36
+00:03:26,310 --> 00:03:33,720
+Now in order for hooks to actually work as intended, there are two very simple rules of hooks that
+
+37
+00:03:33,720 --> 00:03:35,310
+we must follow.
+
+38
+00:03:35,550 --> 00:03:40,470
+The first rule is that hooks can only be called at the top level.
+
+39
+00:03:40,500 --> 00:03:48,480
+In practice, this means that we cannot call hooks inside conditionals like if statements and also not
+
+40
+00:03:48,480 --> 00:03:52,740
+inside loops or functions nested inside the component.
+
+41
+00:03:52,830 --> 00:04:00,150
+We can also not call hooks after an early return because that's also similar to a condition.
+
+42
+00:04:00,330 --> 00:04:01,440
+But why?
+
+43
+00:04:01,470 --> 00:04:03,900
+Why is this such an important rule?
+
+44
+00:04:04,080 --> 00:04:11,310
+Well, it's because hooks only work if they are always called in the exact same order, which can only
+
+45
+00:04:11,310 --> 00:04:14,960
+be ensured if we only call them at the top level.
+
+46
+00:04:14,970 --> 00:04:18,920
+And we will look at this in more detail in the next slide.
+
+47
+00:04:18,930 --> 00:04:22,950
+And now the second rule is actually a bit simpler.
+
+48
+00:04:22,980 --> 00:04:28,510
+All it says is that hooks can only be called from React functions.
+
+49
+00:04:28,540 --> 00:04:35,440
+In practice, this means that hooks can only be called from function components or from custom hooks,
+
+50
+00:04:35,440 --> 00:04:39,970
+but not from regular functions or even class components.
+
+51
+00:04:40,510 --> 00:04:47,080
+Now, the great news is that you actually won't have to worry about these rules at all if you're using
+
+52
+00:04:47,080 --> 00:04:53,920
+a linter because these two rules are automatically enforced by React's Eslint rules.
+
+53
+00:04:53,920 --> 00:05:00,790
+So you really won't be allowed to break these rules even if you try, like we will in the next video.
+
+54
+00:05:01,400 --> 00:05:08,070
+So if you want, you can actually just forget about the rules and finish the video right here.
+
+55
+00:05:08,090 --> 00:05:15,140
+But if you're curious about the deeper reason why, React needs rule number one, then let's move on
+
+56
+00:05:15,140 --> 00:05:18,110
+to the final slide of this lecture.
+
+57
+00:05:20,000 --> 00:05:27,080
+So let's now try to answer the question of why do hooks need to be called in the same order on every
+
+58
+00:05:27,080 --> 00:05:27,800
+render?
+
+59
+00:05:27,920 --> 00:05:34,700
+And let's actually start from the very beginning based on all the knowledge that we already have at
+
+60
+00:05:34,700 --> 00:05:35,600
+this point.
+
+61
+00:05:36,450 --> 00:05:44,490
+So remember that whenever an application is rendered, react creates a tree of react elements also called
+
+62
+00:05:44,490 --> 00:05:47,770
+the virtual Dom on the initial render.
+
+63
+00:05:47,790 --> 00:05:54,780
+React also builds a fiber tree out of the virtual dom where each element is a fiber.
+
+64
+00:05:55,380 --> 00:06:03,300
+Now, each of these fibers contains a lot of stuff like the received props, a list of work, and crucially
+
+65
+00:06:03,300 --> 00:06:09,350
+for us, a linked list of all the hooks that were used in the component instance.
+
+66
+00:06:09,390 --> 00:06:16,830
+So to understand how hooks work behind the scenes, let's build ourselves a linked list of used hooks
+
+67
+00:06:16,830 --> 00:06:20,010
+based on this hypothetical code example.
+
+68
+00:06:20,130 --> 00:06:25,380
+And I say hypothetical because this code actually doesn't work.
+
+69
+00:06:25,500 --> 00:06:28,320
+And can you spot why that is?
+
+70
+00:06:28,650 --> 00:06:29,750
+That's right.
+
+71
+00:06:29,760 --> 00:06:36,980
+This code actually violates the first rule of hooks because it conditionally defines state here.
+
+72
+00:06:36,990 --> 00:06:43,980
+But by breaking this rule, we will understand why hooks rely on the order in which they were called.
+
+73
+00:06:44,160 --> 00:06:52,080
+And speaking of this order, our list will be built based on the call order of the used hooks.
+
+74
+00:06:52,200 --> 00:07:01,130
+So first, this use state call, then another use state call, and then finally this use effect call.
+
+75
+00:07:01,150 --> 00:07:06,520
+So this is our list of hooks, but it's not a linked list yet.
+
+76
+00:07:06,610 --> 00:07:09,340
+But what does Linked actually mean?
+
+77
+00:07:09,580 --> 00:07:16,270
+Well, it means that the first list element contains a reference to the second element, which in turn
+
+78
+00:07:16,270 --> 00:07:19,330
+has a link to the third list element.
+
+79
+00:07:19,360 --> 00:07:26,050
+So all the list elements are linked together, which is actually a common data structure in computer
+
+80
+00:07:26,050 --> 00:07:26,860
+science.
+
+81
+00:07:27,010 --> 00:07:34,540
+But anyway, moving back to our code example, let's now imagine that a rerender happened because State
+
+82
+00:07:34,570 --> 00:07:38,440
+A was updated from 23 to 7.
+
+83
+00:07:38,620 --> 00:07:42,220
+But this now creates a huge problem.
+
+84
+00:07:42,430 --> 00:07:50,350
+Notice how State B was only created initially because the condition a equal 23 was true.
+
+85
+00:07:50,380 --> 00:07:51,370
+Right.
+
+86
+00:07:51,460 --> 00:07:58,960
+However, after this rerender, the condition is now false, which means that this use state would not
+
+87
+00:07:58,960 --> 00:08:06,430
+be called and so State B would then no longer exist in this linked list of hooks after the render.
+
+88
+00:08:06,700 --> 00:08:10,180
+But what's the problem with that, you might ask?
+
+89
+00:08:10,360 --> 00:08:17,950
+Well, the problem is that the first hook is still pointing to the original second hook, so to state
+
+90
+00:08:17,980 --> 00:08:21,520
+B, but that link is now broken.
+
+91
+00:08:21,670 --> 00:08:29,230
+So State A is now linking to a hook that no longer exists and nothing is pointing to the effect Hook
+
+92
+00:08:29,260 --> 00:08:33,430
+Z, meaning that the linked list has been destroyed.
+
+93
+00:08:33,520 --> 00:08:42,430
+It works this way because fibers are not recreated on every render, and so this list is also not recreated.
+
+94
+00:08:42,520 --> 00:08:49,780
+So if one of the hooks just disappears from the list, then the order of the list will get completely
+
+95
+00:08:49,780 --> 00:08:50,530
+broken.
+
+96
+00:08:50,680 --> 00:08:57,850
+So in conclusion, if we conditionally use the hook like we did here, that will completely mess up
+
+97
+00:08:57,850 --> 00:09:04,570
+the list of hooks between renderers which will leave, react, confused and unable to correctly track
+
+98
+00:09:04,570 --> 00:09:06,800
+all the hooks that were used.
+
+99
+00:09:06,820 --> 00:09:13,860
+And so this is the reason why hooks need to be called in the same order on every single render.
+
+100
+00:09:13,870 --> 00:09:21,700
+And the only way in which we can assure that is by only calling hooks at the top level, which is exactly
+
+101
+00:09:21,700 --> 00:09:24,280
+what the first rule of hooks says.
+
+102
+00:09:24,490 --> 00:09:31,400
+So following this rule, the code and the list of hooks would look just like this.
+
+103
+00:09:31,420 --> 00:09:38,140
+So without any conditionals in the code and with the list of hooks always in the same order.
+
+104
+00:09:38,470 --> 00:09:46,270
+Now, of course, this opens up the question of why even bother having this linked list if it requires
+
+105
+00:09:46,270 --> 00:09:48,670
+this strange rule to exist?
+
+106
+00:09:48,940 --> 00:09:56,350
+Well, the big reason is that a linked list which relies on the hook call order is the simplest way
+
+107
+00:09:56,350 --> 00:09:59,710
+to associate each hook with its value.
+
+108
+00:09:59,830 --> 00:10:06,100
+So basically, the order in which the hook is called uniquely identifies the hook.
+
+109
+00:10:06,190 --> 00:10:14,110
+For example, React knows that hook number one has a state of 23 and a hook number two has the state
+
+110
+00:10:14,110 --> 00:10:15,550
+of empty string.
+
+111
+00:10:15,670 --> 00:10:19,330
+So the value is associated with the call order.
+
+112
+00:10:19,330 --> 00:10:26,050
+And this is very convenient because by using the call order, we developers don't have to manually assign
+
+113
+00:10:26,050 --> 00:10:32,920
+names to each hook, which would create multiple problems that we don't need to get into at this point.
+
+114
+00:10:33,340 --> 00:10:34,090
+All right.
+
+115
+00:10:34,090 --> 00:10:40,330
+So I hope that you didn't mind yet another deep dive into some of React's internals.
+
+116
+00:10:40,690 --> 00:10:47,470
+I personally find these really interesting and fascinating, which is why I keep getting excited to
+
+117
+00:10:47,470 --> 00:10:49,430
+share this stuff with you.
+
+118
+00:10:49,450 --> 00:10:53,410
+But now it's time to get back into writing some code.
